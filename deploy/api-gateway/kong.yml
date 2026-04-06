@@ -1,0 +1,18 @@
+_format_version: "3.0"
+
+services:
+  - name: identity-api
+    url: http://172.17.0.1:9001
+    routes:
+      - name: identity-route
+        paths:
+          - /identity
+        strip_path: true
+
+  - name: plugin-erp
+    url: http://172.17.0.1:9002
+    routes:
+      - name: erp-route
+        paths:
+          - /erp
+        strip_path: true

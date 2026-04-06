@@ -1,0 +1,13 @@
+code,name,parent_code,level,is_leaf,is_system
+102.01,Ziraat Bankasi,102,2,false,false
+102.01.001,Ziraat TL,102.01,3,true,false
+102.01.002,Ziraat USD,102.01,3,true,false
+102.02,Is Bankasi,102,2,false,false
+102.02.001,Is TL,102.02,3,true,false
+102.03,Sanal POS,102,2,false,false
+102.03.001,POS Ziraat,102.03,3,true,false
+102.03.002,POS Is,102.03,3,true,false
+120.01,Musteri Grubu,120,2,false,false
+120.01.001,Ahmet Ltd,120.01,3,true,false
+600.01,Perakende Satis,600,2,false,false
+600.01.001,Market Satisi,600.01,3,true,false

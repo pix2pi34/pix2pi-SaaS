@@ -1,0 +1,155 @@
+package kernel
+
+import (
+	"database/sql"
+	"encoding/json"
+	"strings"
+
+	"github.com/gofiber/fiber/v2"
+	"gorm.io/gorm"
+)
+
+type TenantContext struct {
+	TenantID    string   `json:"tenant_id"`
+	Plan        string   `json:"plan"`
+	OrgRootID   *int64   `json:"org_root_id"`
+	Features    []string `json:"features"`
+	IsActive    bool     `json:"is_active"`
+	Source      string   `json:"source"`
+	ResolveNote string   `json:"resolve_note"`
+}
+
+// TenantContext middleware:
+// - tenant_id Locals'tan okur
+// - public.tenants tablosundan plan/features/org_root_id okur (varsa)
+// - yoksa defaultlarla devam eder (kernel kırılmasın)
+func TenantContextMiddleware(masterDB *gorm.DB, publicPrefixes []string) fiber.Handler {
+	if publicPrefixes == nil {
+		publicPrefixes = []string{"/health", "/dev/"}
+	}
+
+	return func(c *fiber.Ctx) error {
+		p := c.Path()
+		for _, pref := range publicPrefixes {
+			if pref == "" {
+				continue
+			}
+			if p == pref || strings.HasPrefix(p, pref) {
+				return c.Next()
+			}
+		}
+
+		tenantID, _ := c.Locals("tenant_id").(string)
+
+		// L37 - Enrich tenant context from DB (active/plan/features/org_root)
+		// NOTE: best-effort; if tenant row not found, keep minimal context.
+		type _TenantMeta struct {
+			ID        uint
+			Active    bool
+			Plan      string
+			Features  []byte
+			OrgRootID *uint `gorm:"column:org_root_id"`
+		}
+		var _tm _TenantMeta
+		if err := db.Raw("SELECT id, active, plan, features, org_root_id FROM tenants WHERE id = ?", tenantID).Scan(&_tm).Error; err == nil && _tm.ID != 0 {
+			ctx.Locals("tenant_active", _tm.Active)
+			ctx.Locals("tenant_plan", _tm.Plan)
+			if len(_tm.Features) > 0 {
+				var fm map[string]any
+				if json.Unmarshal(_tm.Features, &fm) == nil {
+					ctx.Locals("tenant_features", fm)
+				} else {
+					ctx.Locals("tenant_features", string(_tm.Features))
+				}
+			}
+			if _tm.OrgRootID != nil {
+				ctx.Locals("tenant_org_root_id", *_tm.OrgRootID)
+			}
+		}
+
+		if strings.TrimSpace(tenantID) == "" {
+			// tenant inject zaten bunu engelliyor olmalı; ama kernel güvenli kalsın
+			return c.Status(400).JSON(fiber.Map{
+				"ok":    false,
+				"error": "tenant missing (context)",
+			})
+		}
+
+		ctx := TenantContext{
+			TenantID: tenantID,
+			Plan:     "free",
+			Features: []string{},
+			IsActive: true,
+			Source:   "default",
+		}
+
+		// DB'den okumayı dene (tablo yoksa/pattern farklıysa default ile devam)
+		// Beklenen tablo: public.tenants (id, plan, features json/jsonb, org_root_id, is_active)
+		// Not: Bazı ortamlarda bu tablo henüz yok olabilir; kernel patlamasın.
+		type row struct {
+			Plan      sql.NullString
+			Features  sql.NullString
+			OrgRootID sql.NullInt64
+			IsActive  sql.NullBool
+		}
+
+		var r row
+		err := masterDB.Raw(`
+SELECT
+  COALESCE(plan,'free') AS plan,
+  COALESCE(features::text,'[]') AS features,
+  org_root_id,
+  COALESCE(is_active,true) AS is_active
+FROM public.tenants
+WHERE id::text = ?
+LIMIT 1
+`, tenantID).Scan(&r).Error
+
+		if err != nil {
+			ctx.Source = "default_no_table_or_error"
+			ctx.ResolveNote = err.Error()
+		} else {
+			ctx.Source = "db"
+			if r.Plan.Valid {
+				ctx.Plan = r.Plan.String
+			}
+			if r.OrgRootID.Valid {
+				v := r.OrgRootID.Int64
+				ctx.OrgRootID = &v
+			}
+			if r.IsActive.Valid {
+				ctx.IsActive = r.IsActive.Bool
+			}
+			if r.Features.Valid {
+				// features json array bekliyoruz: ["a","b"]
+				var feats []string
+				if json.Unmarshal([]byte(r.Features.String), &feats) == nil {
+					ctx.Features = feats
+				} else {
+					// text ise tek özellik gibi gelmiş olabilir
+					s := strings.TrimSpace(r.Features.String)
+					if s != "" && s != "null" {
+						ctx.Features = []string{s}
+					}
+				}
+			}
+		}
+
+		// Locals (kernel standard)
+		c.Locals("tenant_plan", ctx.Plan)
+		c.Locals("tenant_features", ctx.Features)
+		c.Locals("tenant_org_root_id", ctx.OrgRootID)
+		c.Locals("tenant_active", ctx.IsActive)
+		c.Locals("tenant_ctx_source", ctx.Source)
+
+		// Optional: inactive tenant block
+		if ctx.IsActive == false {
+			return c.Status(403).JSON(fiber.Map{
+				"ok":    false,
+				"error": "tenant inactive",
+			})
+		}
+
+		return c.Next()
+	}
+}

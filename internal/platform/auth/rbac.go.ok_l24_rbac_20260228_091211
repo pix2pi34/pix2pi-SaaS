@@ -1,0 +1,40 @@
+package auth
+
+import "github.com/gofiber/fiber/v2"
+
+type RBACRule struct {
+	Method string
+	Path   string
+	Roles  []string
+}
+
+type RBACConfig struct {
+	Rules []RBACRule
+}
+
+func RBACMiddleware(cfg RBACConfig) fiber.Handler {
+	return func(c *fiber.Ctx) error {
+
+		roleAny := c.Locals("role")
+		role, _ := roleAny.(string)
+
+		method := c.Method()
+		path := c.Route().Path
+
+		for _, r := range cfg.Rules {
+			if r.Method == method && r.Path == path {
+				for _, allowed := range r.Roles {
+					if allowed == role {
+						return c.Next()
+					}
+				}
+				return c.Status(403).JSON(fiber.Map{
+					"ok":    false,
+					"error": "rbac forbidden",
+				})
+			}
+		}
+
+		return c.Next()
+	}
+}

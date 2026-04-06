@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pix2pi Monitor</title>
+<style>
+body{background:#0b0f14;color:#c9d1d9;font-family:monospace;font-size:7px}
+.title{font-size:8px;font-weight:bold;margin-bottom:6px}
+.row{display:flex;gap:10px}
+.ok{color:#00ff9c}
+.warn{color:#ffcc00}
+.bad{color:#ff4d4f}
+.plan{color:#888}
+</style>
+</head>
+<body>
+<div class="title">PIX2PI MONITOR</div>
+<div id="global"></div>
+<div id="list"></div>
+<script>
+async function load() {
+  const res = await fetch("/internal/service-monitor");
+  const data = await res.json();
+
+  const g = document.getElementById("global");
+  let gClass = "ok";
+  if (data.global_status === "CRITICAL") gClass = "bad";
+  else if (data.global_status === "DEGRADED") gClass = "warn";
+
+  g.innerHTML = "<div class='"+gClass+"'>GLOBAL: "+(data.global_status || "UNKNOWN")+"</div>";
+
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  (data.services || []).forEach(s => {
+    let cls = "ok";
+    if (s.status === "STOPPED") cls = "bad";
+    else if (s.status === "DEGRADED" || s.status === "FLAPPING") cls = "warn";
+    else if (s.status === "PLANNED") cls = "plan";
+
+    list.innerHTML += `
+      <div class="row">
+        <div>${s.name}</div>
+        <div class="${cls}">${s.status}</div>
+        <div>${s.response_ms || 0}ms</div>
+      </div>
+    `;
+  });
+}
+setInterval(load, 3000);
+load();
+</script>
+</body>
+</html>

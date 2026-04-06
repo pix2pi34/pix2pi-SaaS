@@ -1,0 +1,44 @@
+package main
+
+import (
+	"os"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/golang-jwt/jwt/v5"
+)
+
+func RegisterDevToken(app *fiber.App) {
+
+	app.Get("/dev/token", func(c *fiber.Ctx) error {
+
+		role := c.Query("role", "user")
+		sub := c.Query("sub", "1")
+		tenant := c.Query("tenant", "1")
+
+		secret := os.Getenv("JWT_SECRET")
+		if secret == "" {
+			secret = "dev_secret_change_me"
+		}
+
+		claims := jwt.MapClaims{
+			"sub":         sub,
+			"role":        role,
+			"permissions": []string{"*"},
+			"tenant_id":   tenant,
+		}
+
+		token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+		signed, err := token.SignedString([]byte(secret))
+		if err != nil {
+			return c.Status(500).JSON(fiber.Map{
+				"ok":    false,
+				"error": err.Error(),
+			})
+		}
+
+		return c.JSON(fiber.Map{
+			"ok":    true,
+			"token": signed,
+		})
+	})
+}

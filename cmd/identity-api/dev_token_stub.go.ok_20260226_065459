@@ -1,0 +1,6 @@
+package main
+
+import "github.com/gofiber/fiber/v2"
+
+// TEMP FIX — L16 stub
+func RegisterDevToken(app *fiber.App) {}

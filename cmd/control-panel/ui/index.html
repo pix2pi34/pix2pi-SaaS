@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Pix2pi Control Panel</title>
+  <style>
+    body{font-family:system-ui,Arial;max-width:900px;margin:40px auto;padding:0 16px}
+    .card{border:1px solid #ddd;border-radius:12px;padding:16px;margin:12px 0}
+    code{background:#f6f6f6;padding:2px 6px;border-radius:6px}
+    a{color:#0a58ca;text-decoration:none}
+    .ok{color:green;font-weight:700}
+    .bad{color:#b00020;font-weight:700}
+    button{padding:10px 14px;border-radius:10px;border:1px solid #ccc;background:#fff}
+  </style>
+</head>
+<body>
+  <h1>Pix2pi Control Panel</h1>
+  <div class="card">
+    <div>Panel: <span id="panel" class="bad">checking...</span> (<code>/health</code>)</div>
+    <div>Identity API: <span id="identity" class="bad">checking...</span> (<code>/api/health</code>)</div>
+    <div>Dev Token: <span id="dev" class="bad">checking...</span> (<code>/dev/token</code>)</div>
+  </div>
+
+  <div class="card">
+    <h3>Quick Links</h3>
+    <ul>
+      <li><a href="/health">Panel Health</a></li>
+      <li><a href="/api/health">Identity Health</a></li>
+      <li><a href="/dev/token">Dev Token</a></li>
+    </ul>
+  </div>
+
+  <script>
+    async function check(id, url){
+      try{
+        const r = await fetch(url, {cache:"no-store"});
+        if(!r.ok) throw new Error("HTTP "+r.status);
+        document.getElementById(id).textContent="OK";
+        document.getElementById(id).className="ok";
+      }catch(e){
+        document.getElementById(id).textContent="FAIL";
+        document.getElementById(id).className="bad";
+      }
+    }
+    check("panel","/health");
+    check("identity","/api/health");
+    check("dev","/dev/token");
+  </script>
+</body>
+</html>

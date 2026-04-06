@@ -1,0 +1,26 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+)
+
+func main() {
+	// Mission Control port (panelden ayrı)
+	port := os.Getenv("MISSION_PORT")
+	if port == "" {
+		port = "5860"
+	}
+
+	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "Pix2pi Mission Control OK")
+	})
+
+	addr := ":" + port
+	fmt.Println("🚀 Pix2pi Mission Control listening on " + addr)
+
+	// log.Fatal => hata olursa exit code 1 ile çıkar (systemd doğru görür)
+	log.Fatal(http.ListenAndServe(addr, nil))
+}

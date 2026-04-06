@@ -1,0 +1,9 @@
+BEGIN;
+
+ALTER TABLE tenants
+  DROP COLUMN IF EXISTS org_root_id,
+  DROP COLUMN IF EXISTS features,
+  DROP COLUMN IF EXISTS plan,
+  DROP COLUMN IF EXISTS active;
+
+COMMIT;

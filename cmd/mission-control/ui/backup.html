@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Backup Panel</title>
+  <style>
+    body{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,"Liberation Mono","Courier New",monospace;background:#0b0f14;color:#b8f7d0;margin:0;padding:24px}
+    h1{color:#00ff9c;margin:0 0 14px 0;font-size:28px}
+    .card{border:1px solid #00ff9c33;border-radius:14px;padding:16px;margin:12px 0;background:#0e141b}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{border:1px solid #00ff9c55;border-radius:999px;padding:6px 10px;color:#8bffca}
+    a{color:#7ee7ff}
+    button{background:#0b0f14;border:1px solid #00ff9c55;color:#b8f7d0;border-radius:10px;padding:10px 12px}
+    button:active{transform:scale(0.99)}
+    pre{white-space:pre-wrap;word-break:break-word;background:#071017;border:1px solid #00ff9c22;border-radius:12px;padding:12px;max-height:260px;overflow:auto}
+    .ok{color:#00ff9c;font-weight:700}
+    .bad{color:#ff6b6b;font-weight:700}
+    .muted{color:#88a3a0}
+  </style>
+</head>
+<body>
+  <h1>🕒 Pix2pi Time Machine — Backup Panel</h1>
+
+  <div class="card">
+    <div class="row">
+      <span class="pill">Daily: /root/pix2pi/Back-Up/pix2pi-time-machine/daily</span>
+      <span class="pill">Hourly: /root/pix2pi/Back-Up/pix2pi-time-machine/hourly</span>
+      <span class="pill">Logs: /root/pix2pi/Back-Up/pix2pi-time-machine/logs</span>
+    </div>
+    <p class="muted">Bu sayfa sadece “gösterim” içindir. Bir sonraki adımda API ekleyip listeyi dolduracağız.</p>
+  </div>
+
+  <div class="card">
+    <h3>Durum</h3>
+    <pre id="status">Yükleniyor...</pre>
+  </div>
+
+  <div class="card">
+    <h3>Timerlar</h3>
+    <pre id="timers">Yükleniyor...</pre>
+  </div>
+
+  <script>
+    async function load() {
+      try {
+        const s = await fetch('/api/backup/status').then(r => r.json());
+        document.getElementById('status').textContent = JSON.stringify(s, null, 2);
+      } catch (e) {
+        document.getElementById('status').textContent = 'HATA: /api/backup/status okunamadı';
+      }
+
+      try {
+        const t = await fetch('/api/backup/timers').then(r => r.text());
+        document.getElementById('timers').textContent = t;
+      } catch (e) {
+        document.getElementById('timers').textContent = 'HATA: /api/backup/timers okunamadı';
+      }
+    }
+    load();
+  </script>
+</body>
+</html>

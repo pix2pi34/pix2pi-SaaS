@@ -1,0 +1,117 @@
+package kernel
+
+import (
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+
+	"github.com/divrigili/pix2pi-SaaS/internal/common/config"
+	"github.com/divrigili/pix2pi-SaaS/internal/platform/auth"
+	"github.com/divrigili/pix2pi-SaaS/internal/platform/rbac"
+	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+)
+
+var DefaultRBACPolicy = rbac.Policy{
+	PublicPrefixes: []string{
+		"/health",
+		"/dev/",
+	},
+	Rules: map[string]map[string]bool{
+		"GET /whoami": {
+			"superadmin": true,
+			"admin":      true,
+			"user":       true,
+		},
+		"GET /admin/ping": {
+			"superadmin": true,
+			"admin":      true,
+		},
+	},
+}
+
+func New(cfg *config.Config) *fiber.App {
+
+	app := fiber.New(fiber.Config{
+		Prefork:               cfg.FiberPrefork,
+		DisableStartupMessage: cfg.FiberDisableStartupMsg,
+	})
+
+	dsn := fmt.Sprintf(
+		"host=%s user=%s password=%s dbname=%s port=%d sslmode=disable",
+		cfg.DBHost,
+		cfg.DBUser,
+		cfg.DBPassword,
+		cfg.DBName,
+		cfg.DBPort,
+	)
+
+	masterDB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		panic(err)
+	}
+
+	// Request ID
+	app.Use(func(c *fiber.Ctx) error {
+		rid := c.Get("X-Request-ID")
+		if rid == "" {
+			rid = uuid.NewString()
+		}
+		c.Locals("request_id", rid)
+		c.Set("X-Request-ID", rid)
+		return c.Next()
+	})
+
+	// Tenant Inject
+	app.Use(func(c *fiber.Ctx) error {
+		if c.Path() == "/health" || strings.HasPrefix(c.Path(), "/dev/") {
+			return c.Next()
+		}
+
+		tenant := strings.TrimSpace(c.Get("X-Tenant-ID"))
+
+		if tenant == "" {
+			return c.Status(400).JSON(fiber.Map{
+				"ok":    false,
+				"error": "X-Tenant-ID header missing",
+			})
+		}
+
+		if _, err := strconv.Atoi(tenant); err != nil {
+			return c.Status(400).JSON(fiber.Map{
+				"ok":    false,
+				"error": "X-Tenant-ID must be numeric",
+			})
+		}
+
+		c.Locals("tenant_id", tenant)
+		return c.Next()
+	})
+
+	// JWT
+	jwtSecret := os.Getenv("JWT_SECRET")
+	if jwtSecret == "" {
+		jwtSecret = "dev_secret_change_me"
+	}
+
+	app.Use(auth.JWTMiddleware(auth.MiddlewareConfig{
+		Secret: jwtSecret,
+	}))
+
+	// 🔥 ENTERPRISE RBAC ENGINE (L7)
+	app.Use(rbac.Middleware(DefaultRBACPolicy))
+
+	return app
+}
+
+// 🔥 ENTERPRISE Pattern RBAC
+func matchRBAC(pattern, path string) bool {
+	if strings.HasSuffix(pattern, "*") {
+		base := strings.TrimSuffix(pattern, "*")
+		return strings.HasPrefix(path, base)
+	}
+	return pattern == path
+}

@@ -1,0 +1,72 @@
+package main
+
+import (
+	"os"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/golang-jwt/jwt/v5"
+)
+
+// L21: Role -> Permissions mapping (DEV)
+// Not: Prod'da DB/Policy engine'den gelecek. Dev'de hızlı test için burada.
+func roleToPermissions(role string) []string {
+	role = strings.TrimSpace(strings.ToLower(role))
+	switch role {
+	case "superadmin":
+		return []string{"*"}
+	case "admin":
+		return []string{
+			"identity:whoami:read",
+			"identity:admin:read",
+			"identity:admin:ping",
+		}
+	default: // user
+		return []string{
+			"identity:whoami:read",
+		}
+	}
+}
+
+func RegisterDevToken(app *fiber.App) {
+
+	// L22_SCOPES_IN_TOKEN
+
+	// Public endpoint: /dev/token?tenant=1&role=admin&sub=1
+	app.Get("/dev/token", func(c *fiber.Ctx) error {
+		tenant := strings.TrimSpace(c.Query("tenant", "1"))
+		if _, err := strconv.Atoi(tenant); err != nil {
+			return c.Status(400).JSON(fiber.Map{"ok": false, "error": "tenant must be numeric"})
+		}
+
+		role := strings.TrimSpace(c.Query("role", "user"))
+		sub := strings.TrimSpace(c.Query("sub", "1"))
+
+		secret := strings.TrimSpace(os.Getenv("JWT_SECRET"))
+		if secret == "" {
+			secret = "dev_secret_change_me"
+		}
+
+		claims := jwt.MapClaims{
+			"tenant_id":    tenant,
+			"role":         role,
+			"sub":          sub,
+			"permissions":  roleToPermissions(role),
+			"exp":          time.Now().Add(24 * time.Hour).Unix(),
+			"issued_scope": "dev",
+		}
+
+		tok := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+		signed, err := tok.SignedString([]byte(secret))
+		if err != nil {
+			return c.Status(500).JSON(fiber.Map{"ok": false, "error": "token sign failed"})
+		}
+
+		return c.JSON(fiber.Map{
+			"ok":    true,
+			"token": signed,
+		})
+	})
+}

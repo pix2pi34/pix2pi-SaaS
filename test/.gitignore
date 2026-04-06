@@ -1,0 +1,8 @@
+_backup_archive/
+var/logs/
+*.bak
+*.zip
+*.txt
+*_dump*
+verify_done_detail.txt
+verify_done_report.txt

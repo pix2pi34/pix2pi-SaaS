@@ -1,0 +1,63 @@
+package rbac
+
+import (
+	"strings"
+
+	"github.com/gofiber/fiber/v2"
+)
+
+type Policy struct {
+	// Key: "METHOD path" ör: "GET /whoami"
+	// Value: allowed roles ör: {"superadmin":true,"admin":true}
+	Rules map[string]map[string]bool
+
+	// Public path prefix'leri (auth/rbac bypass)
+	PublicPrefixes []string
+}
+
+func Middleware(p Policy) fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		path := c.Path()
+		method := c.Method()
+
+		// Public bypass
+		for _, pref := range p.PublicPrefixes {
+			if pref == "" {
+				continue
+			}
+			if strings.HasPrefix(path, pref) {
+				return c.Next()
+			}
+		}
+
+		roleAny := c.Locals("role")
+		role, _ := roleAny.(string)
+		if role == "" {
+			return c.Status(403).JSON(fiber.Map{
+				"ok":    false,
+				"error": "rbac: role missing",
+			})
+		}
+
+		key := method + " " + path
+		allowed, ok := p.Rules[key]
+		if !ok {
+			return c.Status(403).JSON(fiber.Map{
+				"ok":    false,
+				"error": "rbac: no policy for route",
+				"route": key,
+			})
+		}
+
+		if allowed[role] {
+			return c.Next()
+		}
+
+		return c.Status(403).JSON(fiber.Map{
+			"ok":    false,
+			"error": "rbac: forbidden",
+			"route": key,
+			"role":  role,
+		})
+	}
+}

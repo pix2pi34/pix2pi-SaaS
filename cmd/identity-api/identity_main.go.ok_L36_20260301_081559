@@ -1,0 +1,62 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/divrigili/pix2pi-SaaS/internal/common/config"
+	"github.com/divrigili/pix2pi-SaaS/internal/platform/auth"
+	"github.com/divrigili/pix2pi-SaaS/internal/platform/kernel"
+	"github.com/gofiber/fiber/v2"
+)
+
+func main() {
+	cfg, err := config.Load()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	app := kernel.New(cfg)
+
+	// DEV TOKEN (PUBLIC)
+	RegisterDevToken(app)
+
+	// HEALTH
+	app.Get("/health", func(c *fiber.Ctx) error {
+		return c.JSON(fiber.Map{
+			"ok":      true,
+			"service": "identity",
+			"env":     cfg.AppEnv,
+		})
+	})
+
+	// WHOAMI (debug)
+	app.Get("/whoami", auth.RequirePermissions("identity:whoami:read"), func(c *fiber.Ctx) error {
+
+		// L24 RBAC negatif test endpoint (dev token ile 403 beklenir)
+		app.Get("/rbac/deny", auth.RequirePermissions("admin:read"), func(c *fiber.Ctx) error {
+			return c.JSON(fiber.Map{"ok": true, "rbac": "allow"})
+		})
+		return c.JSON(fiber.Map{
+			"tenant_id":   c.Locals("tenant_id"),
+			"request_id":  c.Locals("request_id"),
+			"role":        c.Locals("role"),
+			"sub":         c.Locals("sub"),
+			"permissions": c.Locals("permissions"),
+		})
+	})
+
+	// ADMIN (RBAC test)
+	app.Get("/admin/ping", func(c *fiber.Ctx) error {
+		return c.JSON(fiber.Map{
+			"ok":   true,
+			"pong": "admin",
+		})
+	})
+
+	port := fmt.Sprintf(":%d", cfg.IdentityPort)
+	log.Printf("🚀 Identity API Fiber server http://localhost:%d", cfg.IdentityPort)
+	if err := app.Listen(port); err != nil {
+		log.Fatal(err)
+	}
+}

@@ -1,0 +1,26 @@
+package http
+
+import (
+	"github.com/gofiber/fiber/v2"
+	"gorm.io/gorm"
+)
+
+// Register Identity HTTP Routes (Enterprise)
+func Register(app *fiber.App, db *gorm.DB) {
+
+	app.Get("/whoami", func(c *fiber.Ctx) error {
+		tenantID := c.Locals("tenant_id")
+		requestID := c.Locals("request_id")
+
+		var searchPath string
+		db.Raw("SHOW search_path").Scan(&searchPath)
+
+		return c.JSON(fiber.Map{
+			"tenant_id":   tenantID,
+			"request_id":  requestID,
+			"db":          db.Name(),
+			"search_path": searchPath,
+			"source":      "repo:postgres(gorm)",
+		})
+	})
+}

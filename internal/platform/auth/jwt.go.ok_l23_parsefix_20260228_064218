@@ -1,0 +1,138 @@
+package auth
+
+import (
+	"strings"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/golang-jwt/jwt/v5"
+)
+
+// L19_JWT_PERMS_HELPER
+func setPermissionsLocals(c *fiber.Ctx, claimsAny any) {
+	// supports both struct Claims and map style claims
+	switch t := claimsAny.(type) {
+	case *Claims:
+		if t != nil && len(t.Permissions) > 0 {
+			c.Locals("permissions", t.Permissions)
+		}
+	case Claims:
+		if len(t.Permissions) > 0 {
+			c.Locals("permissions", t.Permissions)
+		}
+	case map[string]any:
+		v, ok := t["permissions"]
+		if !ok {
+			return
+		}
+		perms := []string{}
+		switch a := v.(type) {
+		case []any:
+			for _, it := range a {
+				if s, ok := it.(string); ok {
+					perms = append(perms, s)
+				}
+			}
+		case []string:
+			perms = a
+		}
+		if len(perms) > 0 {
+			c.Locals("permissions", perms)
+		}
+	}
+}
+
+type MiddlewareConfig struct {
+	Secret string
+}
+
+type Claims struct {
+	UserID   string `json:"uid"`
+	TenantID string `json:"tid"`
+	Role     string `json:"role"`
+	jwt.RegisteredClaims
+	Permissions []string `json:"permissions,omitempty"`
+	Scopes      []string `json:"scopes,omitempty"`
+}
+
+func JWTMiddleware(cfg MiddlewareConfig) fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		// /health gibi endpointleri serbest bırak
+		if c.Path() == "/health" {
+			return c.Next()
+		}
+
+		// Public bypass (no Authorization required)
+		reqPath := c.Path()
+		if strings.HasPrefix(reqPath, "/health") || strings.HasPrefix(reqPath, "/dev") {
+			return c.Next()
+		}
+		authHeader := c.Get("Authorization")
+		// L16 DEV TENANT SKIP
+		if strings.HasPrefix(c.Path(), "/identity/dev") {
+			return c.Next()
+		}
+
+		if !strings.HasPrefix(authHeader, "Bearer ") {
+			return c.Status(401).JSON(fiber.Map{
+				"ok":    false,
+				"error": "missing bearer token",
+			})
+		}
+
+		tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
+
+		token, err := jwt.ParseWithClaims(tokenStr, &Claims{}, func(token *jwt.Token) (interface{}, error) {
+			return []byte(cfg.Secret), nil
+		})
+		if err != nil || token == nil || !token.Valid {
+			return c.Status(401).JSON(fiber.Map{
+				"ok":    false,
+				"error": "invalid token",
+			})
+		}
+
+		claims, ok := token.Claims.(*Claims)
+		if !ok {
+			return c.Status(401).JSON(fiber.Map{
+				"ok":    false,
+				"error": "invalid claims",
+			})
+		}
+
+		// Kernel locals
+		c.Locals("user_id", claims.UserID)
+		c.Locals("tenant_id", claims.TenantID)
+		c.Locals("role", claims.Role)
+
+		scopes := []string{}
+		scopes = append(scopes, claims.Scopes...)
+		c.Locals("scopes", scopes)
+
+		// L19_JWT_PERMS_CALL
+		setPermissionsLocals(c, claims)
+
+		// L22_SCOPE_PARSE
+		scopes = append(scopes, claims.Scopes...)
+		c.Locals("scopes", scopes)
+		return c.Next()
+	}
+}
+
+// DEV için token üret (RBAC geçmeden test edelim)
+func GenerateDevToken(secret, tenant string) (string, error) {
+
+	claims := Claims{
+		UserID:      "dev_user",
+		TenantID:    tenant,
+		Role:        "owner",
+		Permissions: []string{"*"},
+		Scopes:      []string{"branch:istanbul"},
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	return token.SignedString([]byte(secret))
+}

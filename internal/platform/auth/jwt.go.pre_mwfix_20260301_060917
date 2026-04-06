@@ -1,0 +1,196 @@
+package auth
+
+import (
+	"fmt"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/golang-jwt/jwt/v5"
+)
+
+type Claims struct {
+	UserID      string   `json:"sub"`
+	TenantID    string   `json:"tenant_id"`
+	Role        string   `json:"role"`
+	Permissions []string `json:"permissions"`
+	jwt.RegisteredClaims
+}
+
+func jwtSecretDefault() string {
+	s := os.Getenv("JWT_SECRET")
+	if s == "" {
+		s = "dev-secret"
+	}
+	return s
+}
+
+// -----------------------
+// CORE SIGN (new engine)
+// -----------------------
+
+func SignJWTWithClaims(secret string, c Claims) (string, error) {
+	c.RegisteredClaims = jwt.RegisteredClaims{
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
+		IssuedAt:  jwt.NewNumericDate(time.Now()),
+	}
+
+	t := jwt.NewWithClaims(jwt.SigningMethodHS256, c)
+	return t.SignedString([]byte(secret))
+}
+
+// -----------------------
+// COMPAT SIGN (legacy)
+// SignJWT(map[string]any) -> used by routes.go
+// -----------------------
+
+func SignJWT(m map[string]any) (string, error) {
+	secret := getString(m, "secret")
+	if secret == "" {
+		secret = jwtSecretDefault()
+	}
+
+	claims := Claims{
+		UserID:      firstNonEmpty(getString(m, "sub"), getString(m, "user_id"), getString(m, "userId")),
+		TenantID:    firstNonEmpty(getString(m, "tenant_id"), getString(m, "tenant"), getString(m, "tenantId")),
+		Role:        firstNonEmpty(getString(m, "role"), getString(m, "user_role")),
+		Permissions: getStringSlice(m, "permissions"),
+	}
+
+	// tolerate alt keys (scopes etc.) if someone sends it wrongly
+	if len(claims.Permissions) == 0 {
+		claims.Permissions = getStringSlice(m, "scopes")
+	}
+
+	return SignJWTWithClaims(secret, claims)
+}
+
+func firstNonEmpty(vs ...string) string {
+	for _, v := range vs {
+		if strings.TrimSpace(v) != "" {
+			return v
+		}
+	}
+	return ""
+}
+
+func getString(m map[string]any, k string) string {
+	v, ok := m[k]
+	if !ok || v == nil {
+		return ""
+	}
+	switch t := v.(type) {
+	case string:
+		return t
+	case []byte:
+		return string(t)
+	default:
+		return fmt.Sprint(t)
+	}
+}
+
+func getStringSlice(m map[string]any, k string) []string {
+	v, ok := m[k]
+	if !ok || v == nil {
+		return nil
+	}
+	switch t := v.(type) {
+	case []string:
+		return t
+	case []any:
+		out := make([]string, 0, len(t))
+		for _, it := range t {
+			if it == nil {
+				continue
+			}
+			out = append(out, fmt.Sprint(it))
+		}
+		return out
+	case string:
+		// allow comma-separated
+		s := strings.TrimSpace(t)
+		if s == "" {
+			return nil
+		}
+		parts := strings.Split(s, ",")
+		out := make([]string, 0, len(parts))
+		for _, p := range parts {
+			p = strings.TrimSpace(p)
+			if p != "" {
+				out = append(out, p)
+			}
+		}
+		return out
+	default:
+		return nil
+	}
+}
+
+// -----------------------
+// COMPAT MIDDLEWARE
+// Some code expects: JWTMiddleware(secret, publicPrefixes []string)
+// We'll support both by keeping this signature.
+// -----------------------
+
+func JWTMiddleware(secret string, publicPrefixes []string) fiber.Handler {
+	if secret == "" {
+		secret = jwtSecretDefault()
+	}
+
+	return func(ctx *fiber.Ctx) error {
+
+		// bypass for public paths if configured
+		if len(publicPrefixes) > 0 {
+			p := ctx.Path()
+			for _, pref := range publicPrefixes {
+				if pref == "" {
+					continue
+				}
+				if strings.HasPrefix(p, pref) {
+					return ctx.Next()
+				}
+			}
+		}
+
+		authHeader := ctx.Get("Authorization")
+		if authHeader == "" {
+			return ctx.Status(401).JSON(fiber.Map{"ok": false, "error": "missing token"})
+		}
+
+		ah := strings.TrimSpace(authHeader)
+		if !strings.HasPrefix(strings.ToLower(ah), "bearer ") {
+			return ctx.Status(401).JSON(fiber.Map{"ok": false, "error": "invalid auth header"})
+		}
+
+		tokenStr := strings.TrimSpace(ah[len("Bearer "):])
+		if tokenStr == "" {
+			return ctx.Status(401).JSON(fiber.Map{"ok": false, "error": "missing token"})
+		}
+
+		token, err := jwt.ParseWithClaims(
+			tokenStr,
+			&Claims{},
+			func(token *jwt.Token) (interface{}, error) {
+				return []byte(secret), nil
+			},
+		)
+
+		if err != nil || !token.Valid {
+			return ctx.Status(401).JSON(fiber.Map{"ok": false, "error": "invalid token"})
+		}
+
+		claims, ok := token.Claims.(*Claims)
+		if !ok || claims == nil {
+			return ctx.Status(401).JSON(fiber.Map{"ok": false, "error": "invalid claims"})
+		}
+
+		// locals
+		ctx.Locals("user_id", claims.UserID)
+		ctx.Locals("tenant_id", claims.TenantID)
+		ctx.Locals("role", claims.Role)
+		ctx.Locals("permissions", claims.Permissions)
+
+		return ctx.Next()
+	}
+}

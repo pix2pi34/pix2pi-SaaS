@@ -1,0 +1,3 @@
+services:
+  promtail:
+    user: "0"

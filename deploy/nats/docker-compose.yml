@@ -1,0 +1,17 @@
+services:
+  nats:
+    image: nats:2.10-alpine
+    container_name: pix2pi_nats
+    command:
+      - "-js"
+      - "-sd"
+      - "/data"
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    volumes:
+      - pix2pi_nats_data:/data
+    restart: unless-stopped
+
+volumes:
+  pix2pi_nats_data:

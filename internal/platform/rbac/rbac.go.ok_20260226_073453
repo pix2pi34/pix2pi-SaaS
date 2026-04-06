@@ -1,0 +1,209 @@
+package rbac
+
+import (
+	"strings"
+	"sync"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
+)
+
+// PolicyResolver: DB/policy-engine gibi "dinamik" kaynaklardan karar üreten hook.
+// ok=false => route için policy yok (no policy)
+// allowed => role izinli mi
+type PolicyResolver interface {
+	Resolve(tenantID, method, path, role string) (allowed bool, ok bool, err error)
+}
+
+// TTLCache: RBAC resolve sonuçlarını RAM'de tutar (positive + negative cache).
+type TTLCache struct {
+	mu    sync.RWMutex
+	ttl   time.Duration
+	max   int
+	items map[string]cacheEntry
+}
+
+type cacheEntry struct {
+	allowed bool
+	ok      bool
+	exp     time.Time
+}
+
+func NewTTLCache(ttl time.Duration, max int) *TTLCache {
+	if ttl <= 0 {
+		ttl = 30 * time.Second
+	}
+	if max <= 0 {
+		max = 10_000
+	}
+	return &TTLCache{
+		ttl:   ttl,
+		max:   max,
+		items: make(map[string]cacheEntry, max),
+	}
+}
+
+func (c *TTLCache) Get(k string) (allowed bool, ok bool, hit bool) {
+	now := time.Now()
+	c.mu.RLock()
+	e, exists := c.items[k]
+	c.mu.RUnlock()
+	if !exists {
+		return false, false, false
+	}
+	if now.After(e.exp) {
+		c.mu.Lock()
+		delete(c.items, k)
+		c.mu.Unlock()
+		return false, false, false
+	}
+	return e.allowed, e.ok, true
+}
+
+func (c *TTLCache) Set(k string, allowed bool, ok bool) {
+	exp := time.Now().Add(c.ttl)
+
+	c.mu.Lock()
+	// basit eviction: limit aşarsa ilk bulduğunu sil
+	if len(c.items) >= c.max {
+		for kk := range c.items {
+			delete(c.items, kk)
+			break
+		}
+	}
+	c.items[k] = cacheEntry{allowed: allowed, ok: ok, exp: exp}
+	c.mu.Unlock()
+}
+
+type Policy struct {
+	// Key: "METHOD path" ör: "GET /whoami"
+	// Value: allowed roles ör: {"superadmin":true,"admin":true}
+	Rules map[string]map[string]bool
+
+	// Public path prefix'leri (auth/rbac bypass)
+	PublicPrefixes []string
+
+	// Opsiyonel: DB/engine resolver (Rules yoksa buraya düşer)
+	Resolver PolicyResolver
+
+	// Opsiyonel: Resolver sonucu TTL cache
+	Cache *TTLCache
+}
+
+func Middleware(p Policy) fiber.Handler {
+	// Cache verilmemişse, resolver varsa default cache oluştur
+	if p.Resolver != nil && p.Cache == nil {
+		p.Cache = NewTTLCache(30*time.Second, 10_000)
+	}
+
+	return func(c *fiber.Ctx) error {
+		path := c.Path()
+		method := c.Method()
+
+		// Public bypass
+		for _, pref := range p.PublicPrefixes {
+			if pref == "" {
+				continue
+			}
+			if strings.HasPrefix(path, pref) {
+				return c.Next()
+			}
+		}
+
+		roleAny := c.Locals("role")
+		role, _ := roleAny.(string)
+		if role == "" {
+			return c.Status(403).JSON(fiber.Map{
+				"ok":    false,
+				"error": "rbac: role missing",
+			})
+		}
+
+		// Tenant ID: önce locals, yoksa header
+		tenantID := ""
+		if v, ok := c.Locals("tenant_id").(string); ok {
+			tenantID = v
+		}
+		if tenantID == "" {
+			tenantID = c.Get("X-Tenant-ID")
+		}
+
+		key := method + " " + path
+
+		// 1) Static rules (en hızlı yol)
+		if allowedMap, ok := p.Rules[key]; ok {
+			if allowedMap[role] {
+				return c.Next()
+			}
+			return c.Status(403).JSON(fiber.Map{
+				"ok":    false,
+				"error": "rbac: forbidden",
+				"route": key,
+				"role":  role,
+			})
+		}
+
+		// 2) Resolver fallback (DB/engine)
+		if p.Resolver != nil {
+			ck := tenantID + "|" + key + "|" + role
+
+			if p.Cache != nil {
+				allowed, ok, hit := p.Cache.Get(ck)
+				if hit {
+					if !ok {
+						return c.Status(403).JSON(fiber.Map{
+							"ok":    false,
+							"error": "rbac: no policy for route",
+							"route": key,
+						})
+					}
+					if allowed {
+						return c.Next()
+					}
+					return c.Status(403).JSON(fiber.Map{
+						"ok":    false,
+						"error": "rbac: forbidden",
+						"route": key,
+						"role":  role,
+					})
+				}
+			}
+
+			allowed, ok, err := p.Resolver.Resolve(tenantID, method, path, role)
+			if err != nil {
+				return c.Status(500).JSON(fiber.Map{
+					"ok":    false,
+					"error": "rbac: resolver error",
+				})
+			}
+
+			if p.Cache != nil {
+				p.Cache.Set(ck, allowed, ok)
+			}
+
+			if !ok {
+				return c.Status(403).JSON(fiber.Map{
+					"ok":    false,
+					"error": "rbac: no policy for route",
+					"route": key,
+				})
+			}
+			if allowed {
+				return c.Next()
+			}
+			return c.Status(403).JSON(fiber.Map{
+				"ok":    false,
+				"error": "rbac: forbidden",
+				"route": key,
+				"role":  role,
+			})
+		}
+
+		// 3) Hiç policy yok
+		return c.Status(403).JSON(fiber.Map{
+			"ok":    false,
+			"error": "rbac: no policy for route",
+			"route": key,
+		})
+	}
+}

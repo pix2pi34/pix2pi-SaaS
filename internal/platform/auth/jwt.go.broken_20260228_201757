@@ -1,0 +1,188 @@
+package auth
+
+import (
+	"fmt"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/golang-jwt/jwt/v5"
+)
+
+// L23_SECRET_TRACE
+func l23SecretTrace(tag string, sec string) {
+	// L32 FINAL: permissions are resolved from DB (RBAC resolver), not from JWT
+
+	if sec == "" {
+		fmt.Printf("L23_SECRET_TRACE %s: EMPTY\n", tag)
+		return
+	}
+	a := sec
+	head := a
+	tail := a
+	if len(a) > 2 {
+		head = a[:2]
+		tail = a[len(a)-2:]
+	}
+	fmt.Printf("L23_SECRET_TRACE %s: len=%d head=%s tail=%s\n", tag, len(a), head, tail)
+}
+
+// L19_JWT_PERMS_HELPER
+	// supports both struct Claims and map style claims
+	switch t := claimsAny.(type) {
+	case *Claims:
+		if t != nil && len(t.Permissions) > 0 {
+
+		}
+	case Claims:
+		if len(t.Permissions) > 0 {
+
+		}
+	case map[string]any:
+		if !ok {
+			return
+		}
+		perms := []string{}
+		switch a := v.(type) {
+		case []any:
+			for _, it := range a {
+				if s, ok := it.(string); ok {
+					perms = append(perms, s)
+				}
+			}
+		case []string:
+			perms = a
+		}
+		if len(perms) > 0 {
+
+		}
+	}
+}
+
+type MiddlewareConfig struct {
+	Secret string
+}
+
+type Claims struct {
+	UserID      string   `json:"sub"`
+	TenantID    string   `json:"tenant_id"`
+	Role        string   `json:"role"`
+	Permissions []string `json:"permissions"`
+	Scopes      []string `json:"scopes"`
+
+}
+
+func JWTMiddleware(secret string) fiber.Handler {
+
+	// L23 FINAL FIX: runtime ENV secret source
+	secret = os.Getenv("JWT_SECRET")
+	if secret == "" {
+		panic("JWT_SECRET EMPTY (runtime)")
+	}
+
+	secret = secret // L23 FIX: explicit capture
+
+	l23SecretTrace("mw_secret", secret)
+
+
+		// PUBLIC PATHS
+		if path == "/health" || path == "/dev/token" {
+			return c.Next()
+		}
+
+		if !strings.HasPrefix(authHeader, "Bearer ") {
+			return c.Status(401).JSON(fiber.Map{
+				"ok":    false,
+				"error": "missing bearer token",
+			})
+		}
+
+		tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
+
+		claims := &Claims{
+			Permissions: []string{"identity:whoami:read"},
+		}
+
+				}
+				return []byte(secret), nil
+			},
+		)
+
+		if err != nil {
+			return c.Status(401).JSON(fiber.Map{
+				"ok":    false,
+				"error": "token parse failed",
+			})
+		}
+
+		if token == nil || !token.Valid {
+			return c.Status(401).JSON(fiber.Map{
+				"ok":    false,
+				"error": "invalid token",
+			})
+		}
+
+		// L24 FIX: permissions locals (struct)
+
+		return c.Next()
+	}
+}
+
+// DEV için token üret (RBAC geçmeden test edelim)
+func GenerateDevToken(secret, tenant string) (string, error) {
+	l23SecretTrace("dev_sign_secret", secret)
+
+	claims := Claims{
+		UserID:      "dev_user",
+		TenantID:    tenant,
+		Role:        "owner",
+		Permissions: []string{"*"},
+		Scopes:      []string{"branch:istanbul"},
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	return token.SignedString([]byte(secret))
+}
+
+// L26: SignJWT compatibility shim
+// identity routes.go auth.SignJWT(claims map[string]any) bekliyor.
+// Bu fonksiyon map -> *Claims normalize eder, sonra mevcut signJWTInternal ile imzalar.
+
+// ---- L26 INTERNAL SIGNER ----
+
+// compatibility
+
+// ===== L26 FINAL JWT ENGINE =====
+
+func SignJWT(m map[string]any) (string, error) {
+
+	c := Claims{}
+
+	if v, ok := m["sub"].(string); ok {
+		c.UserID = v
+	}
+	if v, ok := m["tenant_id"].(string); ok {
+		c.TenantID = v
+	}
+	if v, ok := m["role"].(string); ok {
+		c.Role = v
+	}
+
+		c.Permissions = v
+	}
+
+		jwt.NewNumericDate(time.Now().Add(24 * time.Hour))
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, c)
+
+	secret := []byte(os.Getenv("JWT_SECRET"))
+	if len(secret) == 0 {
+		secret = []byte("dev-secret")
+	}
+
+	return token.SignedString(secret)
+}

@@ -1,0 +1,53 @@
+package http
+
+import (
+	"time"
+
+	"github.com/divrigili/pix2pi-SaaS/internal/platform/auth"
+	"github.com/gofiber/fiber/v2"
+)
+
+func RegisterRoutes(app *fiber.App) {
+
+	// HEALTH
+	app.Get("/health", func(c *fiber.Ctx) error {
+		return c.JSON(fiber.Map{"ok": true})
+	})
+
+	// WHOAMI
+	app.Get("/whoami", func(c *fiber.Ctx) error {
+		return c.JSON(fiber.Map{
+			"request_id": c.Locals("request_id"),
+			"role":       c.Locals("role"),
+			"sub":        c.Locals("sub"),
+			"tenant_id":  c.Locals("tenant_id"),
+		})
+	})
+
+	// DEV TOKEN (ENTERPRISE FIX)
+	app.Get("/dev/token", func(c *fiber.Ctx) error {
+
+		role := c.Query("role", "user")
+		sub := c.Query("sub", "1")
+		tenant := c.Query("tenant", "1")
+
+		claims := map[string]any{
+			"role":      role,
+			"sub":       sub,
+			"tenant_id": tenant,
+			"exp":       time.Now().Add(24 * time.Hour).Unix(),
+		}
+
+		token, err := auth.SignJWT(claims)
+		if err != nil {
+			return c.Status(500).JSON(fiber.Map{
+				"ok": false,
+			})
+		}
+
+		return c.JSON(fiber.Map{
+			"ok":    true,
+			"token": token,
+		})
+	})
+}

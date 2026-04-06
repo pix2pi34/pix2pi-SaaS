@@ -1,0 +1,91 @@
+version: "3.8"
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: pix2pi_prometheus
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    networks:
+      - pix2pi_observability
+
+  node_exporter:
+    image: prom/node-exporter:latest
+    container_name: pix2pi_node_exporter
+    restart: always
+    ports:
+      - "9100:9100"
+    networks:
+      - pix2pi_observability
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: pix2pi_grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: "admin"
+      GF_SECURITY_ADMIN_PASSWORD: "237aabbc"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - prometheus
+      - loki
+      - tempo
+    networks:
+      - pix2pi_observability
+
+  loki:
+    image: grafana/loki:3.1.0
+    container_name: pix2pi_loki
+    restart: always
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/loki.yml
+    volumes:
+      - ./loki/loki.yml:/etc/loki/loki.yml:ro
+      - pix2pi_loki_data:/loki
+    networks:
+      - pix2pi_observability
+
+  promtail:
+    image: grafana/promtail:3.1.0
+    container_name: pix2pi_promtail
+    restart: always
+    command: -config.file=/etc/promtail/promtail.yml
+    volumes:
+      - ./promtail/promtail.yml:/etc/promtail/promtail.yml:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - loki
+    networks:
+      - pix2pi_observability
+
+  tempo:
+    image: grafana/tempo:2.6.1
+    container_name: pix2pi_tempo
+    restart: always
+    ports:
+      - "3200:3200"
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP
+    command: -config.file=/etc/tempo/tempo.yml
+    volumes:
+      - ./tempo/tempo.yml:/etc/tempo/tempo.yml:ro
+      - pix2pi_tempo_data:/var/tempo
+    networks:
+      - pix2pi_observability
+
+networks:
+  pix2pi_observability:
+    name: pix2pi_observability
+
+volumes:
+  pix2pi_loki_data:
+  pix2pi_tempo_data:

@@ -1,0 +1,88 @@
+package auth
+
+import (
+	"strings"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/golang-jwt/jwt/v5"
+)
+
+type MiddlewareConfig struct {
+	Secret string
+}
+
+type Claims struct {
+	UserID   string `json:"uid"`
+	TenantID string `json:"tid"`
+	Role     string `json:"role"`
+	jwt.RegisteredClaims
+}
+
+func JWTMiddleware(cfg MiddlewareConfig) fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		// /health gibi endpointleri serbest bırak
+		if c.Path() == "/health" {
+			return c.Next()
+		}
+
+		// Public bypass (no Authorization required)
+		reqPath := c.Path()
+		if strings.HasPrefix(reqPath, "/health") || strings.HasPrefix(reqPath, "/dev") {
+			return c.Next()
+		}
+		authHeader := c.Get("Authorization")
+		// L16 DEV TENANT SKIP
+		if strings.HasPrefix(c.Path(), "/identity/dev") {
+			return c.Next()
+		}
+
+		if !strings.HasPrefix(authHeader, "Bearer ") {
+			return c.Status(401).JSON(fiber.Map{
+				"ok":    false,
+				"error": "missing bearer token",
+			})
+		}
+
+		tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
+
+		token, err := jwt.ParseWithClaims(tokenStr, &Claims{}, func(token *jwt.Token) (interface{}, error) {
+			return []byte(cfg.Secret), nil
+		})
+		if err != nil || token == nil || !token.Valid {
+			return c.Status(401).JSON(fiber.Map{
+				"ok":    false,
+				"error": "invalid token",
+			})
+		}
+
+		claims, ok := token.Claims.(*Claims)
+		if !ok {
+			return c.Status(401).JSON(fiber.Map{
+				"ok":    false,
+				"error": "invalid claims",
+			})
+		}
+
+		// Kernel locals
+		c.Locals("user_id", claims.UserID)
+		c.Locals("tenant_id", claims.TenantID)
+		c.Locals("role", claims.Role)
+
+		return c.Next()
+	}
+}
+
+// DEV için token üret (RBAC geçmeden test edelim)
+func GenerateDevToken(secret, tenant string) (string, error) {
+	claims := Claims{
+		UserID:   "dev_user",
+		TenantID: tenant,
+		Role:     "owner",
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
+		},
+	}
+	t := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	return t.SignedString([]byte(secret))
+}

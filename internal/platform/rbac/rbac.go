@@ -1,0 +1,406 @@
+package rbac
+
+import (
+	"strings"
+
+	"github.com/gofiber/fiber/v2"
+)
+
+// L23_SCOPE_MATCHER
+// Scope format examples:
+//
+//	"*"                       -> global allow
+//	"branch:istanbul"         -> exact
+//	"branch:*"                -> wildcard on same key
+//	"branch:tr/istanbul"      -> hierarchy in value (parent/child)
+//
+// Matching rules:
+//   - user="*" matches everything
+//   - same key: exact or wildcard value match ("*")
+//   - hierarchy: required "key:parent/child" is satisfied by user "key:parent/*" or exact
+//
+// NOTE: cross-key inheritance (region -> branch) requires mapping (L24). Here we implement safe value-hierarchy only.
+func scopeMatchOne(userScope string, required string) bool {
+	userScope = strings.TrimSpace(userScope)
+	required = strings.TrimSpace(required)
+	if userScope == "" || required == "" {
+		return false
+	}
+	if userScope == "*" || userScope == required {
+		return true
+	}
+
+	uk, uv, ok1 := strings.Cut(userScope, ":")
+	rk, rv, ok2 := strings.Cut(required, ":")
+	if !ok1 || !ok2 {
+		return false
+	}
+	if uk != rk {
+		return false
+	}
+	if uv == "*" {
+		return true
+	}
+	// value hierarchy support: parent/child
+	if strings.Contains(rv, "/") {
+		// required = parent/child
+		parent := strings.SplitN(rv, "/", 2)[0]
+		// user = parent/*
+		if uv == parent+"/*" {
+			return true
+		}
+	}
+	return false
+}
+
+func scopesAllowAny(userScopes []string, required []string) bool {
+	// If route doesn't require any scopes -> allow
+	if len(required) == 0 {
+		return true
+	}
+	// If user has "*" -> allow
+	for _, us := range userScopes {
+		if strings.TrimSpace(us) == "*" {
+			return true
+		}
+	}
+	// Any-of required scopes satisfied -> allow
+	for _, req := range required {
+		req = strings.TrimSpace(req)
+		if req == "" {
+			continue
+		}
+		for _, us := range userScopes {
+			if scopeMatchOne(us, req) {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+// Policy: Kernel seviyesinde route güvenlik politikası
+// - PublicPrefixes: auth/rbac atlanacak path prefixleri
+// - Rules: routeKey -> role allow map (örn: "GET /admin/*": {"admin":true})
+// - Permissions: routeKey -> required permission (örn: "GET /admin/ping": "identity:admin:ping")
+type Policy struct {
+	PublicPrefixes []string
+	Rules          map[string]map[string]bool
+	Permissions    map[string]string   // route -> permission
+	Scopes         map[string][]string // routeKey -> required scopes (any-of)
+}
+
+// L22_SCOPE_ENFORCE
+func scopesSet(xs []string) map[string]bool {
+	m := map[string]bool{}
+	for _, x := range xs {
+		x = strings.TrimSpace(x)
+		if x == "" {
+			continue
+		}
+		m[x] = true
+	}
+	return m
+}
+
+func hasAnyScope(user []string, required []string) bool {
+	if len(required) == 0 {
+		return true
+	}
+	if len(user) == 0 {
+		return false
+	}
+	u := scopesSet(user)
+	if u["*"] {
+		return true
+	}
+	for _, r := range required {
+		r = strings.TrimSpace(r)
+		if r == "" {
+			continue
+		}
+		if r == "*" || u[r] {
+			return true
+		}
+	}
+	return false
+}
+
+func Middleware(p Policy) fiber.Handler {
+	return func(c *fiber.Ctx) error {
+
+		// L24 FINAL: permissions normalize
+		raw := c.Locals("permissions")
+
+		var perms []string
+
+		switch v := raw.(type) {
+		case []string:
+			perms = v
+		case []any:
+			for _, x := range v {
+				if str, ok := x.(string); ok {
+					perms = append(perms, str)
+				}
+			}
+		case string:
+			perms = []string{v}
+		}
+
+		path := c.Path()
+
+		// Public bypass
+		for _, pref := range p.PublicPrefixes {
+			if pref != "" && strings.HasPrefix(path, pref) {
+				// L22_SCOPE_CHECK
+				routeKey := c.Method() + " " + c.Path()
+
+				// L23_SCOPE_ENFORCE
+				// Route scope requirements (kernel policy)
+				var requiredScopes []string
+				if p.Scopes != nil {
+					if rs, ok := p.Scopes[routeKey]; ok {
+						requiredScopes = rs
+					}
+				}
+				// User scopes from JWT middleware (locals)
+				var userScopes []string
+				if v := c.Locals("scopes"); v != nil {
+					if arr, ok := v.([]string); ok {
+						userScopes = arr
+					}
+				}
+				if !scopesAllowAny(userScopes, requiredScopes) {
+					return c.Status(403).JSON(fiber.Map{"ok": false, "error": "rbac: scope forbidden"})
+				}
+				if p.Scopes != nil {
+					if reqScopes, ok := p.Scopes[routeKey]; ok && len(reqScopes) > 0 {
+						userScopes, _ := c.Locals("scopes").([]string)
+						if !hasAnyScope(userScopes, reqScopes) {
+							return c.Status(403).JSON(fiber.Map{"ok": false, "error": "rbac: scope forbidden"})
+						}
+					}
+				}
+
+				return c.Next()
+			}
+		}
+
+		method := c.Method()
+		role, _ := c.Locals("role").(string)
+
+		// 1) ROLE enforcement
+		matchedRuleKey, allowed := isRoleAllowed(p.Rules, method, path, role)
+		if !allowed {
+			return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
+				"ok":    false,
+				"error": "rbac: forbidden",
+			})
+		}
+
+		// superadmin her şeye geçsin
+		if role == "superadmin" {
+			return c.Next()
+		}
+
+		// 2) PERMISSION enforcement (sadece policy.Permissions varsa)
+		required := resolveRequiredPermission(p.Permissions, matchedRuleKey, method, path)
+		if required != "" {
+			perms := getPermissionsFromLocals(c)
+			if !hasPermission(perms, required) && !hasPermission(perms, "*") {
+				return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
+					"ok":    false,
+					"error": "rbac: permission missing",
+				})
+			}
+		}
+
+		// L20_PERMISSION_ENFORCEMENT
+		// Permission check (optional, varsa enforce)
+		// Route key: "METHOD /path"
+		routeKey := c.Method() + " " + c.Path()
+
+		// policy.Permissions içinde birebir ya da wildcard eşleşmesi arıyoruz
+		requiredPerm := ""
+		if p.Permissions != nil {
+			if v, ok := p.Permissions[routeKey]; ok {
+				requiredPerm = v
+			} else {
+				// wildcard: "GET /admin/*" gibi
+				for k, v2 := range p.Permissions {
+					if strings.Contains(k, "/*") {
+						prefix := strings.TrimSuffix(k, "/*")
+						if strings.HasPrefix(routeKey, prefix) {
+							requiredPerm = v2
+							break
+						}
+					}
+				}
+			}
+		}
+
+		if requiredPerm != "" {
+			// locals("permissions") jwt'den gelir
+			permsAny := c.Locals("permissions")
+			// L20_WILDCARD_GLOBAL_ALLOW_V2
+			// Eğer permissions içinde "*" varsa tüm route'lara izin ver (dev/super permission)
+			if permsAny != nil {
+				switch t := permsAny.(type) {
+				case []string:
+					for _, x := range t {
+						if x == "*" {
+							return c.Next()
+						}
+					}
+				case []interface{}:
+					for _, it := range t {
+						if s, ok := it.(string); ok && s == "*" {
+							return c.Next()
+						}
+					}
+				}
+			}
+			allowed := false
+
+			// permissions []string
+			if ps, ok := permsAny.([]string); ok {
+				for _, x := range ps {
+					if x == requiredPerm {
+						allowed = true
+						break
+					}
+				}
+			} else if ps2, ok := permsAny.(string); ok {
+				// tek string ise
+				if ps2 == requiredPerm {
+					allowed = true
+				}
+			}
+
+			if !allowed {
+				return c.Status(403).JSON(fiber.Map{"ok": false, "error": "permission denied"})
+			}
+		}
+
+		return c.Next()
+	}
+}
+
+func isRoleAllowed(rules map[string]map[string]bool, method, path, role string) (matchedKey string, ok bool) {
+	// exact > wildcard
+	exactKey := method + " " + path
+	if rules != nil {
+		if m, exists := rules[exactKey]; exists {
+			if role != "" && m[role] {
+				return exactKey, true
+			}
+			return exactKey, false
+		}
+		// wildcard: "GET /admin/*"
+		for k, m := range rules {
+			km, kp, good := splitKey(k)
+			if !good || km != method {
+				continue
+			}
+			if matchPath(kp, path) {
+				if role != "" && m[role] {
+					return k, true
+				}
+				return k, false
+			}
+		}
+	}
+	// rules yoksa: güvenli davran -> kapat
+	return exactKey, false
+}
+
+func resolveRequiredPermission(permsMap map[string]string, matchedRuleKey, method, path string) string {
+	if permsMap == nil {
+		return ""
+	}
+	// 1) rule ile match edilen key üzerinden bak
+	if matchedRuleKey != "" {
+		if v := strings.TrimSpace(permsMap[matchedRuleKey]); v != "" {
+			return v
+		}
+	}
+	// 2) exact
+	exactKey := method + " " + path
+	if v := strings.TrimSpace(permsMap[exactKey]); v != "" {
+		return v
+	}
+	// 3) wildcard (permissions tarafında da olabilir)
+	for k, v := range permsMap {
+		km, kp, good := splitKey(k)
+		if !good || km != method {
+			continue
+		}
+		if matchPath(kp, path) {
+			vv := strings.TrimSpace(v)
+			if vv != "" {
+				return vv
+			}
+		}
+	}
+	return ""
+}
+
+func getPermissionsFromLocals(c *fiber.Ctx) []string {
+	v := c.Locals("permissions")
+	if v == nil {
+		return nil
+	}
+	switch t := v.(type) {
+	case []string:
+		return t
+	case []interface{}:
+		out := make([]string, 0, len(t))
+		for _, it := range t {
+			if s, ok := it.(string); ok && s != "" {
+				out = append(out, s)
+			}
+		}
+		return out
+	default:
+		return nil
+	}
+}
+
+func hasPermission(perms []string, required string) bool {
+	required = strings.TrimSpace(required)
+	if required == "" {
+		return true
+	}
+	for _, p := range perms {
+		if strings.TrimSpace(p) == required {
+			return true
+		}
+	}
+	return false
+}
+
+func splitKey(key string) (method string, path string, ok bool) {
+	key = strings.TrimSpace(key)
+	sp := strings.SplitN(key, " ", 2)
+	if len(sp) != 2 {
+		return "", "", false
+	}
+	m := strings.TrimSpace(sp[0])
+	p := strings.TrimSpace(sp[1])
+	if m == "" || p == "" {
+		return "", "", false
+	}
+	return m, p, true
+}
+
+func matchPath(pattern string, path string) bool {
+	pattern = strings.TrimSpace(pattern)
+	if pattern == path {
+		return true
+	}
+	if strings.HasSuffix(pattern, "*") {
+		pref := strings.TrimSuffix(pattern, "*")
+		return strings.HasPrefix(path, pref)
+	}
+	return false
+}

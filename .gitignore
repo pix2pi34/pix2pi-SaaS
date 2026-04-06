@@ -1,0 +1,8 @@
+.backups/
+_backup_archive/
+var/
+*.bak
+*.zip
+*.txt
+pix2pi_dump*
+dump_one_file*

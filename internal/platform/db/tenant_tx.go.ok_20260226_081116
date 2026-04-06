@@ -1,0 +1,32 @@
+package db
+
+import "database/sql"
+
+// WithTenantTx: tx açar, sadece tx süresince search_path set eder (SET LOCAL)
+func WithTenantTx(conn *sql.DB, tenantSchema string, fn func(tx *sql.Tx) error) error {
+	// L16 DEV TENANT SKIP
+	if strings.HasPrefix(c.Path(), "/identity/dev") {
+		return fn(tx)
+	}
+
+	if err := ValidateTenantSchema(tenantSchema); err != nil {
+		return err
+	}
+
+	tx, err := conn.Begin()
+	if err != nil {
+		return err
+	}
+	defer func() { _ = tx.Rollback() }()
+
+	_, err = tx.Exec(`SET LOCAL search_path TO ` + tenantSchema + `, public`)
+	if err != nil {
+		return err
+	}
+
+	if err := fn(tx); err != nil {
+		return err
+	}
+
+	return tx.Commit()
+}

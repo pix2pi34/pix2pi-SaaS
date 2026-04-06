@@ -1,0 +1,13 @@
+[
+  {"name":"api_gateway","method":"health","target":"http://127.0.0.1:8080/health"},
+  {"name":"identity","method":"health","target":"http://127.0.0.1:9001/health"},
+  {"name":"accounting_service","method":"port","target":"127.0.0.1:8007"},
+  {"name":"reporting_service","method":"port","target":"127.0.0.1:8445"},
+  {"name":"service_discovery","method":"port","target":"127.0.0.1:6379"},
+  {"name":"query_read_model","method":"port","target":"127.0.0.1:8002"},
+  {"name":"nats","method":"port","target":"127.0.0.1:4222"},
+  {"name":"redis","method":"port","target":"127.0.0.1:6379"},
+  {"name":"nginx","method":"port","target":"127.0.0.1:8099"},
+  {"name":"auth","method":"design","target":"not active"},
+  {"name":"stock_service","method":"design","target":"not active"}
+]

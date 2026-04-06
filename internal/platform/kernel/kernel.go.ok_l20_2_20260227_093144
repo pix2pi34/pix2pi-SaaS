@@ -1,0 +1,128 @@
+package kernel
+
+import (
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+
+	"github.com/divrigili/pix2pi-SaaS/internal/common/config"
+	"github.com/divrigili/pix2pi-SaaS/internal/platform/auth"
+	"github.com/divrigili/pix2pi-SaaS/internal/platform/rbac"
+	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+)
+
+func New(cfg *config.Config) *fiber.App {
+	app := fiber.New(fiber.Config{
+		Prefork:               cfg.FiberPrefork,
+		DisableStartupMessage: cfg.FiberDisableStartupMsg,
+	})
+
+	// Master DB
+	dsn := fmt.Sprintf(
+		"host=%s user=%s password=%s dbname=%s port=%d sslmode=disable",
+		cfg.DBHost, cfg.DBUser, cfg.DBPassword, cfg.DBName, cfg.DBPort,
+	)
+	masterDB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		panic(err)
+	}
+
+	// 1) Request ID
+	app.Use(func(c *fiber.Ctx) error {
+		rid := c.Get("X-Request-ID")
+		if rid == "" {
+			rid = uuid.NewString()
+		}
+		c.Locals("request_id", rid)
+		c.Set("X-Request-ID", rid)
+		return c.Next()
+	})
+
+	// 2) Tenant Inject (X-Tenant-ID zorunlu) — dev endpointler hariç
+	app.Use(func(c *fiber.Ctx) error {
+		if c.Path() == "/health" || strings.HasPrefix(c.Path(), "/dev/") || strings.HasPrefix(c.Path(), "/identity/dev") {
+			return c.Next()
+		}
+
+		// L16 DEV TENANT BYPASS REAL
+		if strings.HasPrefix(c.Path(), "/identity/dev") || strings.HasPrefix(c.Path(), "/health") {
+			return c.Next()
+		}
+
+		tenant := strings.TrimSpace(c.Get("X-Tenant-ID"))
+		if tenant == "" {
+			return c.Status(400).JSON(fiber.Map{"ok": false, "error": "X-Tenant-ID header missing"})
+		}
+		if _, err := strconv.Atoi(tenant); err != nil {
+			return c.Status(400).JSON(fiber.Map{"ok": false, "error": "X-Tenant-ID must be numeric"})
+		}
+
+		c.Locals("tenant_id", tenant)
+		return c.Next()
+	})
+
+	// 3) JWT (Zero Trust)
+	jwtSecret := os.Getenv("JWT_SECRET")
+	if jwtSecret == "" {
+		jwtSecret = "dev_secret_change_me"
+	}
+	app.Use(auth.JWTMiddleware(auth.MiddlewareConfig{
+		Secret: jwtSecret,
+	}))
+
+	// 4) RBAC (enterprise route policy)
+	app.Use(rbac.Middleware(rbac.Policy{
+		PublicPrefixes: []string{"/health", "/dev/"},
+		Rules: map[string]map[string]bool{
+			"GET /whoami": {
+				"superadmin": true,
+				"admin":      true,
+				"user":       true,
+			},
+			"GET /admin/*": {
+				"superadmin": true,
+				"admin":      true,
+			},
+			"GET /admin/ping": {
+				"superadmin": true,
+				"admin":      true,
+			},
+		},
+		Permissions: map[string]string{
+			"GET /whoami":     "identity:whoami:read",
+			"GET /admin/ping": "identity:admin:ping",
+			"GET /admin/*":    "identity:admin:read",
+		},
+	}))
+
+	// 5) Tenancy Prepare (schema + migrate)
+	app.Use(func(c *fiber.Ctx) error {
+		if c.Path() == "/health" || strings.HasPrefix(c.Path(), "/dev/") || strings.HasPrefix(c.Path(), "/identity/dev") {
+			return c.Next()
+		}
+
+		tenant, _ := c.Locals("tenant_id").(string)
+		if tenant == "" {
+			return c.Status(400).JSON(fiber.Map{"ok": false, "error": "tenant missing"})
+		}
+
+		schema := fmt.Sprintf("tenant_%s", tenant)
+
+		if err := EnsureTenantSchema(masterDB, schema); err != nil {
+			return c.Status(500).JSON(fiber.Map{"ok": false, "error": "ensure tenant schema failed"})
+		}
+		if err := PrepareTenant(masterDB, schema); err != nil {
+			return c.Status(500).JSON(fiber.Map{"ok": false, "error": "ensure tenant tables failed"})
+		}
+
+		c.Locals("tenancy_strategy", "shared_schema")
+		c.Locals("tenancy_schema", schema)
+		return c.Next()
+	})
+
+	return app
+}

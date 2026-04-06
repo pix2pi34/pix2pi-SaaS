@@ -1,0 +1,213 @@
+package auth
+
+import (
+	"errors"
+	"strings"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
+	jwt "github.com/golang-jwt/jwt/v5"
+)
+
+// Claims: uygulamanın kullandığı standart claim seti.
+// Not: permissions claim token içinde olsa bile, middleware tarafında "authority" kabul ETMİYORUZ.
+// Permissions DB resolver (L31) tarafından doldurulacak.
+type Claims struct {
+	UserID      string   `json:"sub"`
+	TenantID    string   `json:"tenant_id"`
+	Role        string   `json:"role"`
+	Permissions []string `json:"permissions,omitempty"`
+	Scopes      []string `json:"scopes,omitempty"`
+
+	jwt.RegisteredClaims
+}
+
+var (
+	ErrMissingAuthHeader = errors.New("missing authorization header")
+	ErrInvalidAuthHeader = errors.New("invalid authorization header")
+	ErrInvalidToken      = errors.New("invalid token")
+)
+
+// SignJWT: repo içindeki çağrılarla uyumlu olsun diye basit imza fonksiyonu.
+// - secret: HMAC secret
+// - c: custom claims
+func signJWTCore(secret string, c Claims) (string, error) {
+	if c.RegisteredClaims.IssuedAt == nil {
+		c.RegisteredClaims.IssuedAt = jwt.NewNumericDate(time.Now())
+	}
+	// Subject'ı UserID ile paralel tut.
+	if c.RegisteredClaims.Subject == "" && c.UserID != "" {
+		c.RegisteredClaims.Subject = c.UserID
+	}
+	// ExpiresAt boşsa default 24h verelim (dev için güvenli varsayılan)
+	if c.RegisteredClaims.ExpiresAt == nil {
+		c.RegisteredClaims.ExpiresAt = jwt.NewNumericDate(time.Now().Add(24 * time.Hour))
+	}
+
+	t := jwt.NewWithClaims(jwt.SigningMethodHS256, c)
+	return t.SignedString([]byte(secret))
+}
+
+// VerifyJWT: token doğrular ve Claims döndürür.
+func VerifyJWT(secret, tokenStr string) (*Claims, error) {
+	if tokenStr == "" {
+		return nil, ErrInvalidToken
+	}
+	claims := &Claims{}
+	parsed, err := jwt.ParseWithClaims(tokenStr, claims, func(token *jwt.Token) (any, error) {
+		// HS256 bekliyoruz
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, ErrInvalidToken
+		}
+		return []byte(secret), nil
+	})
+	if err != nil || parsed == nil || !parsed.Valid {
+		return nil, ErrInvalidToken
+	}
+
+	// UserID boşsa Subject'tan al (eski tokenlarla uyumluluk)
+	if claims.UserID == "" && claims.RegisteredClaims.Subject != "" {
+		claims.UserID = claims.RegisteredClaims.Subject
+	}
+
+	return claims, nil
+}
+
+// JWTMiddleware: Fiber middleware.
+// - publicPrefixes: bu prefix'lerle başlayan path'lerde auth bypass.
+func JWTMiddleware(secret string, publicPrefixes []string) fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		path := c.Path()
+		for _, p := range publicPrefixes {
+			if p != "" && strings.HasPrefix(path, p) {
+				return c.Next()
+			}
+		}
+
+		h := c.Get("Authorization")
+		if h == "" {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+				"ok":    false,
+				"error": ErrMissingAuthHeader.Error(),
+			})
+		}
+
+		parts := strings.SplitN(h, " ", 2)
+		if len(parts) != 2 || !strings.EqualFold(parts[0], "Bearer") {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+				"ok":    false,
+				"error": ErrInvalidAuthHeader.Error(),
+			})
+		}
+
+		claims, err := VerifyJWT(secret, strings.TrimSpace(parts[1]))
+		if err != nil {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+				"ok":    false,
+				"error": ErrInvalidToken.Error(),
+			})
+		}
+
+		// Locals: downstream (L31 DB resolver + handlerlar) bunu kullanacak
+		c.Locals("claims", claims)
+		c.Locals("sub", claims.UserID)
+		c.Locals("tenant_id", claims.TenantID)
+		c.Locals("role", claims.Role)
+
+		// L32: Token authority değil → permissions token'dan ENJEKTE ETME.
+		// DB resolver bunları dolduracak. Şimdilik boş bırak.
+		c.Locals("permissions", []string{})
+
+		// scopes gerekirse:
+		if claims.Scopes != nil {
+			c.Locals("scopes", claims.Scopes)
+		} else {
+			c.Locals("scopes", []string{})
+		}
+
+		return c.Next()
+	}
+}
+
+//
+// ===============================
+// L32 COMPATIBILITY LAYER
+// ===============================
+// Eski repo çağrılarını kırmamak için adapter fonksiyonları.
+//
+
+// --- OLD STYLE ---
+// auth.SignJWT(map[string]any)
+func SignJWTLegacy(secret string, m map[string]any) (string, error) {
+	c := Claims{}
+
+	if v, ok := m["sub"].(string); ok {
+		c.UserID = v
+	}
+	if v, ok := m["tenant_id"].(string); ok {
+		c.TenantID = v
+	}
+	if v, ok := m["role"].(string); ok {
+		c.Role = v
+	}
+
+	return SignJWT(secret, c)
+}
+
+// Backward compatible overload-like helper.
+// Eğer yanlışlıkla map gönderilmişse yakala.
+func SignJWTCompat(secret string, v any) (string, error) {
+	switch t := v.(type) {
+	case Claims:
+		return SignJWT(secret, t)
+	case map[string]any:
+		return SignJWTLegacy(secret, t)
+	default:
+		return "", ErrInvalidToken
+	}
+}
+
+// Eski middleware çağrısı:
+// auth.JWTMiddleware(secret)
+func JWTMiddlewareCompat(secret string) fiber.Handler {
+	return JWTMiddleware(secret, []string{
+		"/health",
+		"/auth/login",
+		"/auth/register",
+	})
+}
+
+// ===============================
+// L32 FINAL COMPAT WRAPPER
+// ===============================
+
+// ESKI KULLANIM:
+// auth.SignJWT(map[string]any)
+func SignJWT(m map[string]any) (string, error) {
+
+	secret := GetJWTSecret() // projedeki mevcut helper
+
+	c := Claims{}
+
+	if v, ok := m["sub"].(string); ok {
+		c.UserID = v
+	}
+	if v, ok := m["tenant_id"].(string); ok {
+		c.TenantID = v
+	}
+	if v, ok := m["role"].(string); ok {
+		c.Role = v
+	}
+
+	return signJWTCore(secret, c)
+}
+
+// Eski çağrı desteği:
+// auth.JWTMiddleware(secret)
+func JWTMiddleware(secret string) fiber.Handler {
+	return JWTMiddlewareV2(secret, []string{
+		"/health",
+		"/auth/login",
+		"/auth/register",
+	})
+}

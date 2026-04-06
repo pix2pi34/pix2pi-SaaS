@@ -1,0 +1,70 @@
+package kernel
+
+import (
+	"sync"
+	"time"
+)
+
+type cacheKey struct {
+	Method string
+	Path   string
+	Role   string
+}
+
+type cacheVal struct {
+	Allow     bool
+	ExpiresAt time.Time
+}
+
+// CachedPolicyResolver: alttaki resolver'i sarar, karar cache'ler (TTL).
+type CachedPolicyResolver struct {
+	Inner PolicyResolver
+	TTL   time.Duration
+
+	mu    sync.RWMutex
+	store map[cacheKey]cacheVal
+}
+
+func NewCachedPolicyResolver(inner PolicyResolver, ttl time.Duration) *CachedPolicyResolver {
+	return &CachedPolicyResolver{
+		Inner: inner,
+		TTL:   ttl,
+		store: make(map[cacheKey]cacheVal),
+	}
+}
+
+func (c *CachedPolicyResolver) Allow(method, path, role string) bool {
+	if c == nil || c.Inner == nil {
+		return false
+	}
+	if c.TTL <= 0 {
+		return c.Inner.Allow(method, path, role)
+	}
+
+	k := cacheKey{Method: method, Path: path, Role: role}
+	now := time.Now()
+
+	c.mu.RLock()
+	if v, ok := c.store[k]; ok && now.Before(v.ExpiresAt) {
+		c.mu.RUnlock()
+		return v.Allow
+	}
+	c.mu.RUnlock()
+
+	allow := c.Inner.Allow(method, path, role)
+
+	c.mu.Lock()
+	c.store[k] = cacheVal{Allow: allow, ExpiresAt: now.Add(c.TTL)}
+	c.mu.Unlock()
+
+	return allow
+}
+
+func (c *CachedPolicyResolver) Purge() {
+	if c == nil {
+		return
+	}
+	c.mu.Lock()
+	c.store = make(map[cacheKey]cacheVal)
+	c.mu.Unlock()
+}

@@ -1,0 +1,63 @@
+//go:build playground
+// +build playground
+
+package main
+
+import (
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/divrigili/pix2pi-SaaS/internal/identity/domain"
+	"github.com/divrigili/pix2pi-SaaS/internal/identity/repository"
+	"github.com/divrigili/pix2pi-SaaS/internal/identity/service"
+	"github.com/joho/godotenv"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+)
+
+func main() {
+	fmt.Println("🧠 SERVICE KATMANI TESTİ BAŞLIYOR...")
+
+	if err := godotenv.Load(); err != nil {
+		log.Println("Uyarı: .env dosyası bulunamadı, sistem değişkenleri kullanılacak.")
+	}
+
+	if os.Getenv("DB_PASSWORD") == "" {
+		log.Fatal("KRİTİK HATA: DB_PASSWORD ortam değişkeni bulunamadı!")
+	}
+	if os.Getenv("TEST_COMPANY_PASSWORD") == "" {
+		log.Fatal("KRİTİK HATA: TEST_COMPANY_PASSWORD ortam değişkeni bulunamadı!")
+	}
+
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s",
+		os.Getenv("DB_HOST"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_NAME"), os.Getenv("DB_PORT"), os.Getenv("DB_SSLMODE"))
+
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		log.Fatalf("DB Hatası: %v", err)
+	}
+
+	db.AutoMigrate(&domain.Tenant{}, &domain.User{})
+
+	repo := repository.NewGormRepository(db)
+	authService := service.NewIdentityService(repo)
+
+	fmt.Println("\n📝 1. Kayıt İşlemi Deneniyor...")
+
+	password := os.Getenv("TEST_COMPANY_PASSWORD")
+
+	tenant, user, err := authService.RegisterCompany(
+		"Tellioğlu Yazılım A.Ş.",
+		"tellioglu-yazilim-as",
+		"34001907",
+		"ceo@tellioglu.com",
+		password,
+	)
+	if err != nil {
+		log.Fatalf("Kayıt Hatası: %v", err)
+	}
+
+	fmt.Printf("✅ Başarılı! Tenant: %d, User: %s\n", tenant.ID, user.Email)
+}

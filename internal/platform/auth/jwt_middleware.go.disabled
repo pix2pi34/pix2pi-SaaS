@@ -1,0 +1,62 @@
+package auth
+
+import (
+	"strings"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/golang-jwt/jwt/v5"
+)
+
+type MiddlewareConfig struct {
+	Secret      string
+	PublicPaths []string // prefix match: "/health", "/dev/token" gibi
+}
+
+func JWTMiddleware(cfg MiddlewareConfig) fiber.Handler {
+	// defaults (enterprise safe)
+	if len(cfg.PublicPaths) == 0 {
+		cfg.PublicPaths = []string{"/health", "/dev/token"}
+	}
+
+	return func(c *fiber.Ctx) error {
+		path := c.Path()
+
+		// ✅ Public endpoints: JWT kontrol etme
+		for _, p := range cfg.PublicPaths {
+			if p == "" {
+				continue
+			}
+			if strings.HasPrefix(path, p) {
+				return c.Next()
+			}
+		}
+
+		// Bearer token al
+		authz := c.Get("Authorization")
+		if authz == "" || !strings.HasPrefix(authz, "Bearer ") {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+				"ok":    false,
+				"error": "missing bearer token",
+			})
+		}
+		tokenStr := strings.TrimSpace(strings.TrimPrefix(authz, "Bearer "))
+
+		// Token doğrula
+		tok, err := jwt.Parse(tokenStr, func(token *jwt.Token) (any, error) {
+			return []byte(cfg.Secret), nil
+		})
+		if err != nil || tok == nil || !tok.Valid {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+				"ok":    false,
+				"error": "invalid token",
+			})
+		}
+
+		// Claims'i locals'a koy (ileride RBAC buradan okuyacak)
+		if claims, ok := tok.Claims.(jwt.MapClaims); ok {
+			c.Locals("claims", claims)
+		}
+
+		return c.Next()
+	}
+}

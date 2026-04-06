@@ -1,0 +1,17 @@
+{
+  "name": "user_authenticated",
+  "version": 1,
+  "description": "A user or customer successfully authenticated",
+  "schema": {
+    "type": "object",
+    "required": ["event_id", "occurred_at", "subject_type", "subject_id"],
+    "properties": {
+      "event_id": {"type": "string"},
+      "occurred_at": {"type": "string"},
+      "subject_type": {"type": "string", "enum": ["tenant_user", "customer", "service"]},
+      "subject_id": {"type": "string"},
+      "tenant_id": {"type": ["integer", "null"]},
+      "ip": {"type": ["string", "null"]}
+    }
+  }
+}
