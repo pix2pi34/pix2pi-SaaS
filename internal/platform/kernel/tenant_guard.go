@@ -5,6 +5,8 @@ import (
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
+
+	tenancy "github.com/divrigili/pix2pi-SaaS/internal/platform/tenancy"
 )
 
 // TenantGuardMiddleware enforces tenant scope on tenant-scoped endpoints.
@@ -13,62 +15,100 @@ import (
 // - Public endpoints bypass: /health, /dev/*
 // - If request not authenticated yet (no auth locals), don't block flow
 // - If locals("tenant_id") already exists (set by JWT/auth middleware), it is source of truth and header must match
-// - If token tenant is absent, header is required (legacy)
-// - Canonical tenant_id stored in locals("tenant_id") as string
+// - If token tenant identity is complete (tenant_id + tenant_uuid), common tenancy contract is used
+// - If token tenant identity is partial/legacy, tenant_id based fallback is preserved
+// - Canonical tenant_id / tenant_uuid stored in locals
 func TenantGuardMiddleware() fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		path := c.Path()
 
-		// Public/unauth endpoints
 		if path == "/health" || strings.HasPrefix(path, "/dev/") {
 			return c.Next()
 		}
 
-		// If auth not executed yet, do not block (safe for middleware ordering)
 		if c.Locals("user") == nil && c.Locals("jwt") == nil {
 			return c.Next()
 		}
 
-		// Token tenant (source of truth if present)
-		var tokenTenant string
-		if v := c.Locals("tenant_id"); v != nil {
-			switch t := v.(type) {
-			case string:
-				tokenTenant = strings.TrimSpace(t)
-			default:
-				tokenTenant = strings.TrimSpace(fmt.Sprint(t))
-			}
-		}
+		tokenTenantID := localString(c, "tenant_id")
+		tokenTenantUUID := localString(c, "tenant_uuid")
+		headerTenantID := strings.TrimSpace(c.Get("X-Tenant-ID"))
 
-		headerTenant := strings.TrimSpace(c.Get("X-Tenant-ID"))
-
-		// If JWT carries tenant_id => header must exist and match
-		if tokenTenant != "" {
-			if headerTenant == "" {
-				return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+		// Full contract path: tenant_id + tenant_uuid both present
+		if tokenTenantID != "" && tokenTenantUUID != "" {
+			identity, err := tenancy.NewTenantIdentity(tokenTenantID, tokenTenantUUID)
+			if err != nil {
+				return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 					"ok":    false,
-					"error": "tenant missing",
+					"error": "tenant identity invalid",
 				})
 			}
-			if headerTenant != tokenTenant {
+
+			if err := identity.RequireHeaderMatch(headerTenantID); err != nil {
+				if err == tenancy.ErrEmptyTenantID {
+					return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+						"ok":    false,
+						"error": "tenant missing",
+					})
+				}
+
 				return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 					"ok":    false,
 					"error": "tenant boundary violation",
 				})
 			}
-			// Canonicalize
-			c.Locals("tenant_id", tokenTenant)
+
+			c.Locals("tenant_id", identity.TenantID)
+			c.Locals("tenant_uuid", identity.TenantUUID)
 			return c.Next()
 		}
 
-		// Legacy fallback: header required
-		if headerTenant == "" {
+		// Legacy token path: only tenant_id exists
+		if tokenTenantID != "" {
+			if headerTenantID == "" {
+				return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+					"ok":    false,
+					"error": "tenant missing",
+				})
+			}
+
+			if headerTenantID != tokenTenantID {
+				return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+					"ok":    false,
+					"error": "tenant boundary violation",
+				})
+			}
+
+			c.Locals("tenant_id", tokenTenantID)
+			if tokenTenantUUID != "" {
+				c.Locals("tenant_uuid", tokenTenantUUID)
+			}
+			return c.Next()
+		}
+
+		// Legacy fallback: header only
+		if headerTenantID == "" {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 				"ok":    false,
 				"error": "tenant missing",
 			})
 		}
-		c.Locals("tenant_id", headerTenant)
+
+		c.Locals("tenant_id", headerTenantID)
 		return c.Next()
+	}
+}
+
+func localString(c *fiber.Ctx, key string) string {
+	v := c.Locals(key)
+	if v == nil {
+		return ""
+	}
+
+	switch t := v.(type) {
+	case string:
+		return strings.TrimSpace(t)
+	default:
+		return strings.TrimSpace(fmt.Sprint(t))
 	}
 }

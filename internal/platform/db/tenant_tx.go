@@ -39,16 +39,23 @@ func TenantIDFromCtx(c *fiber.Ctx) (uint, error) {
 	}
 }
 
-// WithTenantTx: tenant_id ile transaction calistirir.
-// Not: Burada "tenant filter" uygulamak, repo katmaninda scope ile yapilacak (L26/L27).
+// WithTenantTx:
+// - tenant_id okur
+// - tx içine tenant_id / tenant_schema bind eder
+// - session config set eder
+// - search_path tenant schema + public olarak hazirlar
 func WithTenantTx(c *fiber.Ctx, db *gorm.DB, fn func(tx *gorm.DB, tenantID uint) error) error {
 	tenantID, err := TenantIDFromCtx(c)
 	if err != nil {
 		return err
 	}
+
 	return db.Transaction(func(tx *gorm.DB) error {
-		// tenant id'yi tx contextine koyuyoruz (istersen repo buradan okuyabilir)
-		tx = tx.Set("tenant_id", tenantID)
-		return fn(tx, tenantID)
+		boundTx, err := BindTenantSession(tx, tenantID)
+		if err != nil {
+			return err
+		}
+
+		return fn(boundTx, tenantID)
 	})
 }

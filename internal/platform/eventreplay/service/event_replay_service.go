@@ -1,0 +1,128 @@
+package service
+
+import (
+	"fmt"
+	"strings"
+	"time"
+
+	eventbusservice "github.com/divrigili/pix2pi-SaaS/internal/platform/eventbus/service"
+	eventstoredomain "github.com/divrigili/pix2pi-SaaS/internal/platform/eventstore/domain"
+	eventstoreservice "github.com/divrigili/pix2pi-SaaS/internal/platform/eventstore/service"
+)
+
+type ReplaySonuc struct {
+	Toplam       int
+	ReplayEdilen int
+	Atlanan      int
+	HataSayisi   int
+	Hatalar      []string
+}
+
+type EventReplayService struct {
+	store eventstoreservice.EventStorePort
+	bus   *eventbusservice.EventBusService
+}
+
+func NewEventReplayService(
+	store eventstoreservice.EventStorePort,
+	bus *eventbusservice.EventBusService,
+) *EventReplayService {
+	return &EventReplayService{
+		store: store,
+		bus:   bus,
+	}
+}
+
+func (s *EventReplayService) ReplayTumEventler() []eventstoredomain.EventStoreRecord {
+	return s.store.TumKayitlariListele()
+}
+
+func (s *EventReplayService) ReplayTenantEventleri(tenantID string) []eventstoredomain.EventStoreRecord {
+	return s.store.TenantKayitlariniListele(tenantID)
+}
+
+func (s *EventReplayService) ReplayTopicEventleri(topic string) []eventstoredomain.EventStoreRecord {
+	return s.store.TopicKayitlariniListele(topic)
+}
+
+func (s *EventReplayService) ReplayTumEventleriBusaBas() (ReplaySonuc, error) {
+	return s.replayKayitlariBusaBas(s.store.TumKayitlariListele())
+}
+
+func (s *EventReplayService) ReplayTenantEventleriniBusaBas(
+	tenantID string,
+) (ReplaySonuc, error) {
+	if tenantID == "" {
+		return ReplaySonuc{}, fmt.Errorf("tenant id zorunlu")
+	}
+
+	return s.replayKayitlariBusaBas(s.store.TenantKayitlariniListele(tenantID))
+}
+
+func (s *EventReplayService) ReplayTopicEventleriniBusaBas(
+	topic string,
+) (ReplaySonuc, error) {
+	if topic == "" {
+		return ReplaySonuc{}, fmt.Errorf("topic zorunlu")
+	}
+
+	return s.replayKayitlariBusaBas(s.store.TopicKayitlariniListele(topic))
+}
+
+func (s *EventReplayService) replayKayitlariBusaBas(
+	kayitlar []eventstoredomain.EventStoreRecord,
+) (ReplaySonuc, error) {
+	if s.store == nil {
+		return ReplaySonuc{}, fmt.Errorf("event store zorunlu")
+	}
+
+	if s.bus == nil {
+		return ReplaySonuc{}, fmt.Errorf("event bus zorunlu")
+	}
+
+	sonuc := ReplaySonuc{
+		Toplam:  len(kayitlar),
+		Hatalar: make([]string, 0),
+	}
+
+	for _, kayit := range kayitlar {
+		event, err := BuildReplayEventFromStoreRecord(kayit)
+		if err != nil {
+			sonuc.HataSayisi++
+			sonuc.Hatalar = append(
+				sonuc.Hatalar,
+				fmt.Sprintf("%s: %s", kayit.EventID, err.Error()),
+			)
+			continue
+		}
+
+		err = s.bus.ReplayIcinKuyrugaAl(event)
+		if err != nil {
+			if strings.Contains(err.Error(), "zaten kuyrukta veya dlq'da") {
+				sonuc.Atlanan++
+				continue
+			}
+
+			sonuc.HataSayisi++
+			sonuc.Hatalar = append(
+				sonuc.Hatalar,
+				fmt.Sprintf("%s: %s", kayit.EventID, err.Error()),
+			)
+			continue
+		}
+
+		err = s.store.ReplayGuncelle(kayit.EventID, time.Now())
+		if err != nil {
+			sonuc.HataSayisi++
+			sonuc.Hatalar = append(
+				sonuc.Hatalar,
+				fmt.Sprintf("%s: %s", kayit.EventID, err.Error()),
+			)
+			continue
+		}
+
+		sonuc.ReplayEdilen++
+	}
+
+	return sonuc, nil
+}

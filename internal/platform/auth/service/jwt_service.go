@@ -8,13 +8,26 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
+const (
+	DefaultJWTIssuer   = "pix2pi-auth"
+	DefaultJWTAudience = "pix2pi-api"
+)
+
 type JWTService struct {
 	secretKey []byte
+	issuer    string
+	audience  string
+	ttl       time.Duration
+	clockSkew time.Duration
 }
 
 func NewJWTService(secretKey string) *JWTService {
 	return &JWTService{
 		secretKey: []byte(secretKey),
+		issuer:    DefaultJWTIssuer,
+		audience:  DefaultJWTAudience,
+		ttl:       24 * time.Hour,
+		clockSkew: 30 * time.Second,
 	}
 }
 
@@ -45,32 +58,24 @@ func (s *JWTService) TokenUret(
 		TenantID:   tenantID,
 		TenantUUID: tenantUUID,
 		RegisteredClaims: jwt.RegisteredClaims{
-			Issuer:    "pix2pi",
 			Subject:   userID,
+			Issuer:    s.issuer,
+			Audience:  jwt.ClaimStrings{s.audience},
 			IssuedAt:  jwt.NewNumericDate(now),
-			ExpiresAt: jwt.NewNumericDate(now.Add(24 * time.Hour)),
+			NotBefore: jwt.NewNumericDate(now),
+			ExpiresAt: jwt.NewNumericDate(now.Add(s.ttl)),
 		},
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
-	signedToken, err := token.SignedString(s.secretKey)
-	if err != nil {
-		return "", err
-	}
-
-	return signedToken, nil
+	return token.SignedString(s.secretKey)
 }
 
 func (s *JWTService) TokenCoz(
-	tokenStr string,
+	tokenString string,
 ) (*authdomain.TenantClaims, error) {
-	if tokenStr == "" {
-		return nil, errors.New("token zorunlu")
-	}
-
 	token, err := jwt.ParseWithClaims(
-		tokenStr,
+		tokenString,
 		&authdomain.TenantClaims{},
 		func(token *jwt.Token) (interface{}, error) {
 			_, ok := token.Method.(*jwt.SigningMethodHMAC)
@@ -79,6 +84,7 @@ func (s *JWTService) TokenCoz(
 			}
 			return s.secretKey, nil
 		},
+		jwt.WithoutClaimsValidation(),
 	)
 	if err != nil {
 		return nil, err
@@ -89,12 +95,42 @@ func (s *JWTService) TokenCoz(
 		return nil, errors.New("gecersiz token claims")
 	}
 
-	if claims.TenantID == "" {
-		return nil, errors.New("token icinde tenant id yok")
+	contract := authdomain.JWTClaimContract{
+		Subject:       claims.Subject,
+		Issuer:        claims.Issuer,
+		Audience:      firstAudience(claims.Audience),
+		TenantID:      claims.TenantID,
+		TenantUUID:    claims.TenantUUID,
+		ExpiresAtUnix: numericDateUnix(claims.ExpiresAt),
+		IssuedAtUnix:  numericDateUnix(claims.IssuedAt),
+		NotBeforeUnix: numericDateUnix(claims.NotBefore),
 	}
-	if claims.TenantUUID == "" {
-		return nil, errors.New("token icinde tenant uuid yok")
+
+	err = contract.Validate(
+		authdomain.JWTValidationPolicy{
+			RequiredIssuer:   s.issuer,
+			RequiredAudience: s.audience,
+			ClockSkew:        s.clockSkew,
+		},
+		time.Now(),
+	)
+	if err != nil {
+		return nil, err
 	}
 
 	return claims, nil
+}
+
+func firstAudience(aud jwt.ClaimStrings) string {
+	if len(aud) == 0 {
+		return ""
+	}
+	return aud[0]
+}
+
+func numericDateUnix(v *jwt.NumericDate) int64 {
+	if v == nil {
+		return 0
+	}
+	return v.Time.Unix()
 }

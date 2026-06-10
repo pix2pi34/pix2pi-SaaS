@@ -24,12 +24,11 @@ func (s *AuditLogService) LogEkle(
 	if log.LogID == "" {
 		return fmt.Errorf("log id zorunlu")
 	}
-	if log.TenantID == "" {
-		return fmt.Errorf("tenant id zorunlu")
+
+	if err := log.ValidateTenantIdentity(); err != nil {
+		return err
 	}
-	if log.TenantUUID == "" {
-		return fmt.Errorf("tenant uuid zorunlu")
-	}
+
 	if log.UserID == "" {
 		return fmt.Errorf("user id zorunlu")
 	}

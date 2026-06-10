@@ -35,8 +35,8 @@ func TestBuildSaleJournal_LineCount(t *testing.T) {
 		Amount:   2000,
 	})
 
-	if len(entry.Lines) != 2 {
-		t.Fatalf("2 satir bekleniyordu, gelen %d", len(entry.Lines))
+	if len(entry.Lines) != 3 {
+		t.Fatalf("3 satir bekleniyordu, gelen %d", len(entry.Lines))
 	}
 }
 

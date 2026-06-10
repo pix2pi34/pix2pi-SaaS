@@ -35,6 +35,7 @@ func isPublicPath(path string, publicPrefixes []string) bool {
 
 // TenantContextMiddleware:
 // - expects tenant id either in c.Locals("tenant_id") or header X-Tenant-ID
+// - if tenant_uuid also exists, validates full identity through common bridge
 // - enriches locals from DB: tenant_name, tenant_active, tenant_plan, tenant_features, tenant_org_root_id
 // - sets tenant_ctx_source = "db" when found
 func TenantContextMiddleware(masterDB *gorm.DB, publicPrefixes []string) fiber.Handler {
@@ -43,26 +44,36 @@ func TenantContextMiddleware(masterDB *gorm.DB, publicPrefixes []string) fiber.H
 			return c.Next()
 		}
 
-		// 1) Resolve tenant id
-		var tenantIDStr string
-		if v := c.Locals("tenant_id"); v != nil {
-			if s, ok := v.(string); ok {
-				tenantIDStr = strings.TrimSpace(s)
+		localTenantID := localString(c, "tenant_id")
+		localTenantUUID := localString(c, "tenant_uuid")
+		headerTenantID := strings.TrimSpace(c.Get("X-Tenant-ID"))
+
+		bridge, err := ResolveTenantContextIdentity(
+			localTenantID,
+			localTenantUUID,
+			headerTenantID,
+		)
+		if err != nil {
+			switch err.Error() {
+			case "tenancy: tenant id zorunlu":
+				return c.Status(400).JSON(fiber.Map{"ok": false, "error": "X-Tenant-ID header missing"})
+			case "tenancy: tenant boundary violation":
+				return c.Status(401).JSON(fiber.Map{"ok": false, "error": "tenant boundary violation"})
+			default:
+				return c.Status(401).JSON(fiber.Map{"ok": false, "error": "tenant identity invalid"})
 			}
 		}
+
+		tenantIDStr := strings.TrimSpace(bridge.TenantID)
 		if tenantIDStr == "" {
-			tenantIDStr = strings.TrimSpace(c.Get("X-Tenant-ID"))
-		}
-		if tenantIDStr == "" {
-			// L36 already blocks this, but keep safe
 			return c.Status(400).JSON(fiber.Map{"ok": false, "error": "X-Tenant-ID header missing"})
 		}
+
 		tenantID64, err := strconv.ParseInt(tenantIDStr, 10, 64)
 		if err != nil {
 			return c.Status(400).JSON(fiber.Map{"ok": false, "error": "X-Tenant-ID must be numeric"})
 		}
 
-		// 2) Load tenant row
 		var row tenantRow
 		q := `
 SELECT id, name, active, plan, COALESCE(features,'{}'::jsonb)::text::bytea AS features, org_root_id::text
@@ -74,20 +85,27 @@ LIMIT 1
 		if tx.Error != nil {
 			return c.Status(500).JSON(fiber.Map{"ok": false, "error": "tenant lookup failed"})
 		}
+
 		if tx.RowsAffected == 0 {
-			// tenant not found
 			c.Locals("tenant_exists", false)
 			c.Locals("tenant_ctx_source", "db")
 			return c.Status(404).JSON(fiber.Map{"ok": false, "error": "tenant not found"})
 		}
 
-		// 3) Decode features JSON
 		var featuresAny any = map[string]any{}
 		if len(row.Features) > 0 {
 			_ = json.Unmarshal(row.Features, &featuresAny)
 		}
 
-		// 4) Set locals (used by /whoami)
+		c.Locals("tenant_id", bridge.TenantID)
+		if bridge.TenantUUID != "" {
+			c.Locals("tenant_uuid", bridge.TenantUUID)
+		}
+
+		c.Locals("tenant_identity_verified", bridge.IdentityVerified)
+		c.Locals("tenant_header_matched", bridge.HeaderMatched)
+		c.Locals("tenant_legacy_fallback", bridge.UsedLegacyFallback)
+
 		c.Locals("tenant_exists", true)
 		c.Locals("tenant_ctx_source", "db")
 		c.Locals("tenant_name", row.Name)
@@ -96,14 +114,8 @@ LIMIT 1
 		c.Locals("tenant_features", featuresAny)
 
 		if row.OrgRoot != nil && *row.OrgRoot != "" {
-
-			if row.OrgRoot != nil {
-				orgRootCopy := *row.OrgRoot
-				c.Locals("tenant_org_root_id", orgRootCopy)
-			} else {
-				c.Locals("tenant_org_root_id", nil)
-			}
-
+			orgRootCopy := *row.OrgRoot
+			c.Locals("tenant_org_root_id", orgRootCopy)
 		} else {
 			c.Locals("tenant_org_root_id", nil)
 		}
