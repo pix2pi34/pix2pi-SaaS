@@ -1,0 +1,32 @@
+package sales
+
+import "errors"
+
+var (
+	ErrTenantRequired         = errors.New("tenant_id zorunlu")
+	ErrCustomerIDRequired     = errors.New("customer_id zorunlu")
+	ErrPartyIDRequired        = errors.New("party_id zorunlu")
+	ErrWarehouseIDRequired    = errors.New("warehouse_id zorunlu")
+	ErrItemIDRequired         = errors.New("item_id zorunlu")
+	ErrUnitIDRequired         = errors.New("unit_id zorunlu")
+	ErrQuotationIDRequired    = errors.New("quotation_id zorunlu")
+	ErrSalesOrderIDRequired   = errors.New("sales_order_id zorunlu")
+	ErrDeliveryIDRequired     = errors.New("delivery_id zorunlu")
+	ErrSalesInvoiceIDRequired = errors.New("sales_invoice_id zorunlu")
+	ErrQuotationNoRequired    = errors.New("quotation_no zorunlu")
+	ErrSalesOrderNoRequired   = errors.New("sales_order_no zorunlu")
+	ErrDeliveryNoRequired     = errors.New("delivery_no zorunlu")
+	ErrSalesInvoiceNoRequired = errors.New("sales_invoice_no zorunlu")
+	ErrLineNoInvalid          = errors.New("line_no gecersiz")
+	ErrQuantityMustBePositive = errors.New("quantity sifirdan buyuk olmali")
+	ErrQuantityRangeInvalid   = errors.New("quantity araligi gecersiz")
+	ErrAmountInvalid          = errors.New("amount gecersiz")
+	ErrDiscountRateInvalid    = errors.New("discount_rate gecersiz")
+	ErrVATRateInvalid         = errors.New("vat_rate gecersiz")
+	ErrInvoiceTypeInvalid     = errors.New("invoice_type gecersiz")
+	ErrEDocumentStatusInvalid = errors.New("e_document_status gecersiz")
+	ErrSalesQuotationNotFound = errors.New("sales quotation bulunamadi")
+	ErrSalesOrderNotFound     = errors.New("sales order bulunamadi")
+	ErrSalesDeliveryNotFound  = errors.New("sales delivery bulunamadi")
+	ErrSalesInvoiceNotFound   = errors.New("sales invoice bulunamadi")
+)

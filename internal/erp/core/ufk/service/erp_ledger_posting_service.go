@@ -2,8 +2,9 @@ package service
 
 import (
 	"fmt"
+	"sort"
 
-	ufkdomain "github.com/divrigili/pix2pi-SaaS/internal/erp/core/ufk/domain"
+	ufkdomain "github.com/divrigili/pix2pi-SaaS/internal/erp/core/kernel/ufk/domain"
 )
 
 type LedgerPostingService struct {
@@ -11,7 +12,6 @@ type LedgerPostingService struct {
 }
 
 func NewLedgerPostingService() *LedgerPostingService {
-
 	return &LedgerPostingService{
 		hesaplar: make(map[string]*ufkdomain.LedgerAccount),
 	}
@@ -22,16 +22,13 @@ func (s *LedgerPostingService) Post(
 	borc float64,
 	alacak float64,
 ) {
-
 	h, ok := s.hesaplar[hesapKodu]
 
 	if !ok {
-
 		h = &ufkdomain.LedgerAccount{
 			HesapKodu: hesapKodu,
 			Bakiye:    0,
 		}
-
 		s.hesaplar[hesapKodu] = h
 	}
 
@@ -40,18 +37,22 @@ func (s *LedgerPostingService) Post(
 }
 
 func (s *LedgerPostingService) Yazdir() {
-
 	fmt.Println("Ledger Hesaplari")
 	fmt.Println("----------------")
 
-	for _, h := range s.hesaplar {
+	kodlar := make([]string, 0, len(s.hesaplar))
+	for kod := range s.hesaplar {
+		kodlar = append(kodlar, kod)
+	}
+	sort.Strings(kodlar)
 
+	for _, kod := range kodlar {
+		h := s.hesaplar[kod]
 		fmt.Printf(
 			"Hesap:%s Bakiye:%.2f\n",
 			h.HesapKodu,
 			h.Bakiye,
 		)
-
 	}
 }
 

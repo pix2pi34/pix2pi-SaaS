@@ -214,3 +214,16 @@ func (s *CariHesapService) BakiyeHesapla(
 
 	return bakiye, nil
 }
+
+// HesaplariListele eski rapor katmanı için compatibility wrapper'dır.
+// Yeni tenant-aware rapor katmanı geldiğinde tenant_id parametreli gerçek listeleme ile değiştirilecektir.
+func (s *CariHesapService) HesaplariListele() []caridomain.CariHesap {
+	return []caridomain.CariHesap{}
+}
+
+// HareketleriListele eski rapor katmanı için compatibility wrapper'dır.
+// Yeni tenant-aware rapor katmanı geldiğinde gerçek tenant filtreli listeleme ile değiştirilecektir.
+func (s *CariHesapService) HareketleriListele(tenantID string) []caridomain.CariHareket {
+	_ = tenantID
+	return []caridomain.CariHareket{}
+}

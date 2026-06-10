@@ -60,7 +60,7 @@ func (s *TahsilatService) TahsilatEkle(
 		tahsilat.Tarih = time.Now()
 	}
 
-	hesap, err := s.cariHesapService.CariHesapGetir(tahsilat.CariID)
+	hesap, err := s.cariHesapService.CariHesapGetir("", tahsilat.CariID)
 	if err != nil {
 		return err
 	}
@@ -68,7 +68,7 @@ func (s *TahsilatService) TahsilatEkle(
 		return fmt.Errorf("cari para birimi uyusmuyor")
 	}
 
-	err = s.cariHesapService.CariHareketEkle(
+	err = s.cariHesapService.CariHareketEkle("",
 		caridomain.CariHareket{
 			HareketID:       "cari-" + tahsilat.TahsilatID,
 			HesapID:         tahsilat.CariID,
@@ -151,7 +151,7 @@ func (s *TahsilatService) OdemeEkle(
 		odeme.Tarih = time.Now()
 	}
 
-	hesap, err := s.cariHesapService.CariHesapGetir(odeme.CariID)
+	hesap, err := s.cariHesapService.CariHesapGetir("", odeme.CariID)
 	if err != nil {
 		return err
 	}
@@ -159,7 +159,7 @@ func (s *TahsilatService) OdemeEkle(
 		return fmt.Errorf("cari para birimi uyusmuyor")
 	}
 
-	err = s.cariHesapService.CariHareketEkle(
+	err = s.cariHesapService.CariHareketEkle("",
 		caridomain.CariHareket{
 			HareketID:       "cari-" + odeme.OdemeID,
 			HesapID:         odeme.CariID,

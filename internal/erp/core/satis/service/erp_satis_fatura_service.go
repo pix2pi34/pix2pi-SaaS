@@ -46,7 +46,7 @@ func (s *SatisFaturaService) SatisFaturaOlustur(
 		return satisdomain.SatisFatura{}, nil, fmt.Errorf("fatura satiri zorunludur")
 	}
 
-	_, err := s.cariHesapService.CariHesapGetir(cariHesapID)
+	_, err := s.cariHesapService.CariHesapGetir("", cariHesapID)
 	if err != nil {
 		return satisdomain.SatisFatura{}, nil, err
 	}
@@ -107,7 +107,7 @@ func (s *SatisFaturaService) SatisFaturaOlustur(
 		OlusturmaTarihi: olusturmaTarihi,
 	}
 
-	err = s.cariHesapService.CariHareketEkle(
+	err = s.cariHesapService.CariHareketEkle("",
 		caridomain.CariHareket{
 			HareketID:       "cari-" + faturaID,
 			HesapID:         cariHesapID,
