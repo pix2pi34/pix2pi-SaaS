@@ -1,6 +1,77 @@
+# ============================================
+# Pix2pi SaaS — .gitignore
+# ============================================
+
+# --- Environment & Secrets ---
+.env
+*.env.local
+
+# --- Go Build Artifacts (root binary'ler) ---
+/identity-api
+/pix2pi-api-gateway
+/api-gateway
+/accounting-service
+/cache-service
+/cache-pattern-clean-test
+/event-consumer
+/event-bus-store-lifecycle-test
+/event-concurrency-test
+/event-idempotency-test
+/event-metadata-test
+/event-replay-test
+/event-schema-test
+/event-store-postgres-test
+/gateway-rate-limit-redis-test
+/identity
+/migrate
+/mission-control
+/policy-cache-hybrid-test
+/service-watchdog
+/user-created-consumer
+
+# --- Geçici Operasyon Script'leri (root) ---
+/step_*.sh
+/faz_*.sh
+/install_phase1_scaffold.sh
+
+# --- Backup Dizinleri ---
+.backup/
 .backups/
+_backup/
 _backup_archive/
-var/
+_panel_backups/
+backups/
+backup/
+
+# --- Build & Dist ---
+.build/
+web/dist/
+coverage.out
+
+# --- Node ---
+node_modules/
+
+# --- IDE & Editor ---
+.vscode/
+
+# --- PID & Process ---
+.pids/
+
+# --- Tmp & Logs ---
+tmp/
+logs/
+*.log
+
+# --- Infra Data (runtime state) ---
+infra/observability/promtail/data/
+
+# --- Junk / Accidental Files ---
+/string
+/| tenant_id*
+/${BACKUP_DIR}/
+/${PATCHED_FILES_LIST}
+
+# --- Archives ---
 *.bak
 *.zip
 *.txt
