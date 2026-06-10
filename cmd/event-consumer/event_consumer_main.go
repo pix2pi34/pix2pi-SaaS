@@ -8,12 +8,12 @@ import (
 	"github.com/nats-io/nats.go"
 )
 
-type Event struct {
+type UserCreatedEvent struct {
 	Event  string `json:"event"`
-	UserID int    `json:"user_id"`
+	UserID string `json:"user_id"`
 }
 
-var processedEvents = map[string]bool{}
+var userCount = 0
 
 func main() {
 	nc, err := nats.Connect(nats.DefaultURL)
@@ -28,31 +28,26 @@ func main() {
 	}
 
 	_, err = js.Subscribe("pix2pi.>", func(msg *nats.Msg) {
-		eventID := msg.Subject + string(msg.Data)
+		log.Println("📥 Event alındı:", string(msg.Data))
 
-		if processedEvents[eventID] {
-			fmt.Println("⚠️ duplicate event ignore edildi")
-			_ = msg.Ack()
-			return
+		var event map[string]interface{}
+		_ = json.Unmarshal(msg.Data, &event)
+
+		// 🔥 KRİTİK NOKTA
+		if event["event"] == "user.created" {
+			userCount++
+
+			log.Println("🧠 USER CREATED işlendi")
+			log.Println("👤 user_count:", userCount)
 		}
 
-		processedEvents[eventID] = true
-
-		var e Event
-		if err := json.Unmarshal(msg.Data, &e); err != nil {
-			fmt.Println("HATA ❌ json parse")
-			return
-		}
-
-		fmt.Printf("Event işlendi: %+v subject=%s\n", e, msg.Subject)
-		_ = msg.Ack()
-
+		msg.Ack()
 	}, nats.Durable("pix2pi-consumer-v2"), nats.ManualAck())
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Consumer dinliyor...")
+	fmt.Println("🚀 Event Consumer RUNNING...")
 	select {}
 }

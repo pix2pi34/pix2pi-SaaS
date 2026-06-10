@@ -1,51 +1,356 @@
 <!doctype html>
-<html>
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Pix2pi Control Panel</title>
-  <style>
-    body{font-family:system-ui,Arial;max-width:900px;margin:40px auto;padding:0 16px}
-    .card{border:1px solid #ddd;border-radius:12px;padding:16px;margin:12px 0}
-    code{background:#f6f6f6;padding:2px 6px;border-radius:6px}
-    a{color:#0a58ca;text-decoration:none}
-    .ok{color:green;font-weight:700}
-    .bad{color:#b00020;font-weight:700}
-    button{padding:10px 14px;border-radius:10px;border:1px solid #ccc;background:#fff}
-  </style>
-</head>
-<body>
-  <h1>Pix2pi Control Panel</h1>
-  <div class="card">
-    <div>Panel: <span id="panel" class="bad">checking...</span> (<code>/health</code>)</div>
-    <div>Identity API: <span id="identity" class="bad">checking...</span> (<code>/api/health</code>)</div>
-    <div>Dev Token: <span id="dev" class="bad">checking...</span> (<code>/dev/token</code>)</div>
-  </div>
-
-  <div class="card">
-    <h3>Quick Links</h3>
-    <ul>
-      <li><a href="/health">Panel Health</a></li>
-      <li><a href="/api/health">Identity Health</a></li>
-      <li><a href="/dev/token">Dev Token</a></li>
-    </ul>
-  </div>
-
-  <script>
-    async function check(id, url){
-      try{
-        const r = await fetch(url, {cache:"no-store"});
-        if(!r.ok) throw new Error("HTTP "+r.status);
-        document.getElementById(id).textContent="OK";
-        document.getElementById(id).className="ok";
-      }catch(e){
-        document.getElementById(id).textContent="FAIL";
-        document.getElementById(id).className="bad";
-      }
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pix2pi Faz 1</title>
+    <script type="module" crossorigin src="/assets/index-AcFpAOY1.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-3dBQnNG3.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  
+<!-- PIX2PI_ERP_RUNTIME_SMOKE_START -->
+<style>
+  .pix2pi-erp-runtime-card {
+    margin: 24px auto;
+    max-width: 1120px;
+    padding: 20px;
+    border: 1px solid rgba(37, 99, 235, 0.24);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(30, 64, 175, 0.78));
+    color: #eef6ff;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .pix2pi-erp-runtime-card h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+  }
+  .pix2pi-erp-runtime-card p {
+    margin: 6px 0;
+    color: rgba(238, 246, 255, 0.86);
+    line-height: 1.45;
+  }
+  .pix2pi-runtime-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .pix2pi-runtime-field label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: rgba(238, 246, 255, 0.82);
+  }
+  .pix2pi-runtime-field input,
+  .pix2pi-runtime-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 1px solid rgba(191, 219, 254, 0.35);
+    padding: 11px 12px;
+    color: #0f172a;
+    background: #ffffff;
+    outline: none;
+    font-size: 14px;
+  }
+  .pix2pi-runtime-field textarea {
+    min-height: 74px;
+    resize: vertical;
+  }
+  .pix2pi-runtime-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .pix2pi-runtime-actions button {
+    border: 0;
+    border-radius: 999px;
+    padding: 11px 16px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .pix2pi-runtime-primary {
+    background: #38bdf8;
+    color: #082f49;
+  }
+  .pix2pi-runtime-secondary {
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  }
+  .pix2pi-runtime-status {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.46);
+    border: 1px solid rgba(191, 219, 254, 0.22);
+    white-space: pre-wrap;
+  }
+  .pix2pi-runtime-result {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .pix2pi-runtime-metric {
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .pix2pi-runtime-metric strong {
+    display: block;
+    font-size: 12px;
+    color: rgba(238, 246, 255, 0.72);
+    margin-bottom: 5px;
+  }
+  .pix2pi-runtime-json {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 14px;
+    background: #020617;
+    color: #dbeafe;
+    overflow: auto;
+    max-height: 360px;
+    font-size: 13px;
+  }
+  .pix2pi-runtime-note {
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(250, 204, 21, 0.15);
+    border: 1px solid rgba(250, 204, 21, 0.28);
+    color: #fef9c3;
+  }
+  @media (max-width: 760px) {
+    .pix2pi-runtime-grid,
+    .pix2pi-runtime-result {
+      grid-template-columns: 1fr;
     }
-    check("panel","/health");
-    check("identity","/api/health");
-    check("dev","/dev/token");
-  </script>
+  }
+</style>
+
+<section id="erp-runtime-smoke-section" class="pix2pi-erp-runtime-card" data-version="14.2A-20260426_234800">
+  <h2>ERP Runtime Smoke Panel</h2>
+  <p>Canlı Gateway üzerindeki ERP Runtime endpoint'i admin/test amaçlı çağırır.</p>
+  <p><strong>Endpoint:</strong> <code>POST /api/v1/erp/runtime/flows</code></p>
+
+  <div class="pix2pi-runtime-note">
+    Güvenlik notu: Token bu panelde saklanmaz. Sayfa yenilenince manuel tekrar girilir.
+  </div>
+
+  <div class="pix2pi-runtime-grid">
+    <div class="pix2pi-runtime-field">
+      <label for="erpRuntimeEndpoint">API Endpoint</label>
+      <input id="erpRuntimeEndpoint" value="/api/v1/erp/runtime/flows" />
+    </div>
+
+    <div class="pix2pi-runtime-field">
+      <label for="erpRuntimeTenant">Tenant ID</label>
+      <input id="erpRuntimeTenant" value="tenant_7" />
+    </div>
+
+    <div class="pix2pi-runtime-field">
+      <label for="erpRuntimeToken">Bearer Token</label>
+      <textarea id="erpRuntimeToken" placeholder="JWT token buraya yapıştırılacak"></textarea>
+    </div>
+
+    <div class="pix2pi-runtime-field">
+      <label for="erpRuntimeSourceNo">Source Document No</label>
+      <input id="erpRuntimeSourceNo" value="PANEL-SALES-INV-20260426_234800" />
+    </div>
+
+    <div class="pix2pi-runtime-field">
+      <label for="erpRuntimeAmount">Total Amount</label>
+      <input id="erpRuntimeAmount" type="number" step="0.01" value="120" />
+    </div>
+
+    <div class="pix2pi-runtime-field">
+      <label for="erpRuntimeCurrency">Currency Code</label>
+      <input id="erpRuntimeCurrency" value="TRY" />
+    </div>
+  </div>
+
+  <div class="pix2pi-runtime-actions">
+    <button class="pix2pi-runtime-primary" id="erpRuntimeStartBtn" type="button">ERP Runtime Flow Başlat</button>
+    <button class="pix2pi-runtime-secondary" id="erpRuntimeExampleBtn" type="button">Örnek Doldur</button>
+    <button class="pix2pi-runtime-secondary" id="erpRuntimeClearBtn" type="button">Sonucu Temizle</button>
+  </div>
+
+  <div id="erpRuntimeStatus" class="pix2pi-runtime-status">Hazır ✅</div>
+
+  <div class="pix2pi-runtime-result">
+    <div class="pix2pi-runtime-metric"><strong>HTTP</strong><span id="erpRuntimeHttp">-</span></div>
+    <div class="pix2pi-runtime-metric"><strong>Flow Status</strong><span id="erpRuntimeFlowStatus">-</span></div>
+    <div class="pix2pi-runtime-metric"><strong>Step Count</strong><span id="erpRuntimeStepCount">-</span></div>
+  </div>
+
+  <pre id="erpRuntimeJson" class="pix2pi-runtime-json">{}</pre>
+</section>
+
+<script>
+(function () {
+  "use strict";
+
+  window.__PIX2PI_ERP_RUNTIME_PANEL_VERSION__ = "14.2A-20260426_234800";
+
+  function byId(id) {
+    return document.getElementById(id);
+  }
+
+  function nowID(prefix) {
+    return prefix + "-" + Date.now();
+  }
+
+  function setText(id, value) {
+    var el = byId(id);
+    if (el) {
+      el.textContent = value;
+    }
+  }
+
+  function setJSON(value) {
+    setText("erpRuntimeJson", JSON.stringify(value, null, 2));
+  }
+
+  function endpointValue() {
+    return byId("erpRuntimeEndpoint").value.trim() || "/api/v1/erp/runtime/flows";
+  }
+
+  function buildPayload() {
+    var tenantID = byId("erpRuntimeTenant").value.trim() || "tenant_7";
+    var sourceNo = byId("erpRuntimeSourceNo").value.trim() || nowID("PANEL-SALES-INV");
+    var amount = Number(byId("erpRuntimeAmount").value || "120");
+    var currency = byId("erpRuntimeCurrency").value.trim() || "TRY";
+    var requestID = nowID("req-panel-runtime");
+    var correlationID = nowID("corr-panel-runtime");
+
+    return {
+      tenant_id: tenantID,
+      request_id: requestID,
+      actor_id: "panel-admin-user",
+      actor_type: "user",
+      transaction_kind: "sales_invoice",
+      source: {
+        source_module: "sales",
+        source_document_type: "invoice",
+        source_document_id: "",
+        source_document_no: sourceNo
+      },
+      money: {
+        total_amount: amount,
+        currency_code: currency,
+        exchange_rate: 1
+      },
+      idempotency_key: tenantID + ":sales_invoice:" + sourceNo,
+      correlation_id: correlationID
+    };
+  }
+
+  async function startFlow() {
+    var token = byId("erpRuntimeToken").value.trim();
+    var tenantID = byId("erpRuntimeTenant").value.trim() || "tenant_7";
+    var payload = buildPayload();
+
+    setText("erpRuntimeHttp", "-");
+    setText("erpRuntimeFlowStatus", "-");
+    setText("erpRuntimeStepCount", "-");
+
+    if (!token) {
+      setText("erpRuntimeStatus", "Token gerekli ❌");
+      setJSON({ ok: false, error: "Bearer token gerekli" });
+      return;
+    }
+
+    setText("erpRuntimeStatus", "İstek gönderiliyor...");
+    setJSON({ request: payload });
+
+    try {
+      var response = await fetch(endpointValue(), {
+        method: "POST",
+        headers: {
+          "Authorization": "Bearer " + token,
+          "X-Tenant-ID": tenantID,
+          "X-Request-ID": payload.request_id,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      var raw = await response.text();
+      var parsed;
+
+      try {
+        parsed = raw ? JSON.parse(raw) : {};
+      } catch (err) {
+        parsed = { raw: raw };
+      }
+
+      var routeHeaders = {
+        "x-request-id": response.headers.get("x-request-id"),
+        "x-correlation-id": response.headers.get("x-correlation-id"),
+        "x-gateway-route-name": response.headers.get("x-gateway-route-name"),
+        "x-gateway-route-scope": response.headers.get("x-gateway-route-scope"),
+        "x-gateway-route-match": response.headers.get("x-gateway-route-match")
+      };
+
+      setText("erpRuntimeHttp", String(response.status));
+      setText("erpRuntimeFlowStatus", parsed.status || "-");
+      setText("erpRuntimeStepCount", String(parsed.step_count || "-"));
+
+      if (response.ok && parsed.ok === true) {
+        setText("erpRuntimeStatus", "Flow tamamlandı ✅");
+      } else {
+        setText("erpRuntimeStatus", "Flow hata/uyarı döndü ⚠️");
+      }
+
+      setJSON({
+        http_status: response.status,
+        route_headers: routeHeaders,
+        response: parsed
+      });
+    } catch (err) {
+      setText("erpRuntimeStatus", "İstek başarısız ❌");
+      setJSON({
+        ok: false,
+        error: String(err),
+        note: "CORS veya endpoint/proxy ayarı gerekebilir."
+      });
+    }
+  }
+
+  function fillExample() {
+    var stamp = String(Date.now());
+    byId("erpRuntimeTenant").value = "tenant_7";
+    byId("erpRuntimeSourceNo").value = "PANEL-SALES-INV-" + stamp;
+    byId("erpRuntimeAmount").value = "120";
+    byId("erpRuntimeCurrency").value = "TRY";
+    setText("erpRuntimeStatus", "Örnek dolduruldu ✅");
+  }
+
+  function clearResult() {
+    setText("erpRuntimeStatus", "Hazır ✅");
+    setText("erpRuntimeHttp", "-");
+    setText("erpRuntimeFlowStatus", "-");
+    setText("erpRuntimeStepCount", "-");
+    setJSON({});
+  }
+
+  var startBtn = byId("erpRuntimeStartBtn");
+  var exampleBtn = byId("erpRuntimeExampleBtn");
+  var clearBtn = byId("erpRuntimeClearBtn");
+
+  if (startBtn) startBtn.addEventListener("click", startFlow);
+  if (exampleBtn) exampleBtn.addEventListener("click", fillExample);
+  if (clearBtn) clearBtn.addEventListener("click", clearResult);
+})();
+</script>
+<!-- PIX2PI_ERP_RUNTIME_SMOKE_END -->
 </body>
 </html>
+
