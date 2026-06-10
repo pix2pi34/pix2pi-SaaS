@@ -77,3 +77,4 @@ infra/observability/promtail/data/
 *.txt
 pix2pi_dump*
 dump_one_file*var/
+.env
