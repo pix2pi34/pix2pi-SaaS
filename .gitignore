@@ -76,4 +76,4 @@ infra/observability/promtail/data/
 *.zip
 *.txt
 pix2pi_dump*
-dump_one_file*
+dump_one_file*var/
