@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: pix2pi
       POSTGRES_PASSWORD: pix2pi
     ports:
-      - "5433:5432"
+      - "127.0.0.1:5433:5432"
     volumes:
       - pix2pi_pg_data:/var/lib/postgresql/data
 volumes:
