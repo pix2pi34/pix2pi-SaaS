@@ -50,34 +50,9 @@ finance:
 gateway:
 	@PORT=9003 ./scripts/run_gateway.sh
 
-ports:
-	@echo "---- Listening Ports ----"
-	@ss -lntp | grep -E ':(9000|9001|9002|9003)\b' || true
-
-ps:
-	@docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
-
-all:
-	@./scripts/run_all.sh
-
-stop:
-	@./scripts/stop_all.sh
-
-restart:
-	@./scripts/stop_all.sh
-	@sleep 1
-	@./scripts/run_all.sh
-
-status:
-	@echo "---- Listening Ports ----"
-	@ss -lntp | grep -E ':(9000|9001|9002|9003)\b' || true
-	@echo "---- Docker ----"
-	@docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" || true
-
-logs:
-	@echo "tail -f logs/identity-api.log logs/finance-api.log logs/gateway.log"
-
 # --- PIX2PI Enterprise Control Panel ---
+all: core
+
 core:
 	@./scripts/run_all.sh
 
@@ -95,11 +70,12 @@ health:
 
 ports:
 	@echo "---- Listening Ports ----"
-	@ss -lntp | grep -E ':(9000|9001|9002|9003)\b' || true
+	@ss -lntp | grep -E ':(9[0-9]{3}|3[012][0-9]{2}|5432|6379|4222|8080|8443)\b' || true
 
 ps:
 	@docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
 
+status: ports ps
 # =========================
 # L5 Observability (Enterprise)
 # =========================
