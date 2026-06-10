@@ -94,7 +94,7 @@ func NewPostgresEventStoreServiceFromEnv(
 
 	password := envFirst("EVENT_STORE_PG_PASSWORD", "DB_PASSWORD", "POSTGRES_PASSWORD")
 	if password == "" {
-		password = "postgres"
+		password = "postgres" // local dev fallback — override with EVENT_STORE_PG_PASSWORD in production
 	}
 
 	dbname := envFirst("EVENT_STORE_PG_DBNAME", "DB_NAME", "POSTGRES_DB")
@@ -104,7 +104,7 @@ func NewPostgresEventStoreServiceFromEnv(
 
 	sslmode := envFirst("EVENT_STORE_PG_SSLMODE", "DB_SSLMODE")
 	if sslmode == "" {
-		sslmode = "disable"
+		sslmode = "disable" // set EVENT_STORE_PG_SSLMODE=require in production
 	}
 
 	dsn := fmt.Sprintf(

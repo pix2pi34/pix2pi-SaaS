@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"time"
 
@@ -10,8 +11,8 @@ import (
 func buildDevToken(role, tenant, sub string) (string, error) {
 
 	secret := os.Getenv("JWT_SECRET")
-	if secret == "" {
-		secret = "dev_secret_change_me"
+	if secret == "" || len(secret) < 32 {
+		return "", fmt.Errorf("security: JWT_SECRET must be set and at least 32 characters")
 	}
 
 	claims := jwt.MapClaims{

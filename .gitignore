@@ -78,3 +78,6 @@ infra/observability/promtail/data/
 pix2pi_dump*
 dump_one_file*var/
 .env
+scripts/__pycache__/
+*.pyc
+**/__pycache__/
