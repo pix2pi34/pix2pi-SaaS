@@ -44,7 +44,12 @@ func startDevTokenServer() {
 }
 
 func createDevToken() string {
-	return "dev-token-admin"
+	token := os.Getenv("DEV_TOKEN_VALUE")
+	if token == "" {
+		println("WARNING: DEV_TOKEN_VALUE not set — dev token endpoint is non-functional")
+		return "invalid-dev-token-set-DEV_TOKEN_VALUE"
+	}
+	return token
 }
 
 func RegisterDevToken(app *fiber.App) {

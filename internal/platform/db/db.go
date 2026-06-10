@@ -3,13 +3,16 @@ package db
 import (
 	"database/sql"
 	"log"
+	"os"
 
 	_ "github.com/lib/pq"
 )
 
 func Connect() *sql.DB {
-
-	connStr := "host=localhost port=5433 user=pix2pi password=pix2pi dbname=pix2pi sslmode=disable"
+	connStr := os.Getenv("DB_DSN")
+	if connStr == "" {
+		log.Fatal("security: DB_DSN environment variable is required")
+	}
 
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {

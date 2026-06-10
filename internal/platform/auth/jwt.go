@@ -2,6 +2,7 @@ package auth
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strings"
 	"time"
@@ -21,7 +22,13 @@ type Claims struct {
 func jwtSecretDefault() string {
 	s := os.Getenv("JWT_SECRET")
 	if s == "" {
-		s = "dev-secret"
+		if os.Getenv("APP_ENV") != "development" {
+			log.Fatal("security: JWT_SECRET environment variable is required in non-development environments")
+		}
+		s = "dev-secret-do-not-use-in-production"
+	}
+	if len(s) < 32 {
+		log.Fatal("security: JWT_SECRET must be at least 32 characters long")
 	}
 	return s
 }

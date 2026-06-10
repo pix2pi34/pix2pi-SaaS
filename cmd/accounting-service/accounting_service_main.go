@@ -52,10 +52,10 @@ func writeAudit(writeFn func(auditlog.Record) error, record auditlog.Record) {
 }
 
 func main() {
-	connStr := envOr(
-		"DB_WRITE_DSN",
-		"host=localhost port=5433 user=pix2pi password=pix2pi dbname=pix2pi sslmode=disable",
-	)
+	connStr := os.Getenv("DB_WRITE_DSN")
+	if connStr == "" {
+		log.Fatal("security: DB_WRITE_DSN environment variable is required")
+	}
 	natsURL := envOr("NATS_URL", nats.DefaultURL)
 
 	db, err := sql.Open("postgres", connStr)

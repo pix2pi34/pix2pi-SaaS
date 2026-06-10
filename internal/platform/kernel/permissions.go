@@ -188,6 +188,11 @@ func CheckPermissions(c *fiber.Ctx, perms ...string) error {
 }
 
 // --- helper: parse Authorization Bearer JWT without verifying signature
+// SECURITY NOTE: This function is intentionally unverified and is used ONLY
+// for read-only claim extraction (tenant routing, logging) BEFORE the actual
+// auth middleware verifies the token. These claims MUST NOT be used for
+// access control decisions. The actual signature verification is performed
+// by the JWT middleware (JWTMiddleware) on protected routes.
 func parseBearerClaimsUnverified(c *fiber.Ctx) (jwt.MapClaims, bool) {
 
 	auth := strings.TrimSpace(c.Get("Authorization"))
@@ -204,6 +209,11 @@ func parseBearerClaimsUnverified(c *fiber.Ctx) (jwt.MapClaims, bool) {
 
 	tok, _, err := new(jwt.Parser).ParseUnverified(tokenStr, jwt.MapClaims{})
 	if err != nil || tok == nil {
+		return nil, false
+	}
+
+	// Guard against alg:none attack — reject tokens with no signing algorithm
+	if tok.Method == nil || tok.Method.Alg() == "none" || tok.Method.Alg() == "" {
 		return nil, false
 	}
 

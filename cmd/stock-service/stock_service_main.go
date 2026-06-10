@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"log"
+	"os"
 
 	_ "github.com/lib/pq"
 	"github.com/nats-io/nats.go"
@@ -19,7 +20,13 @@ type SaleEvent struct {
 }
 
 func main() {
-	connStr := "host=localhost port=5433 user=pix2pi password=pix2pi dbname=pix2pi sslmode=disable"
+	connStr := os.Getenv("DB_WRITE_DSN")
+	if connStr == "" {
+		connStr = os.Getenv("DB_DSN")
+	}
+	if connStr == "" {
+		log.Fatal("security: DB_WRITE_DSN or DB_DSN environment variable is required")
+	}
 
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
