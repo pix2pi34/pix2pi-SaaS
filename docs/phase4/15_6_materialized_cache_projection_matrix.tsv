@@ -1,0 +1,19 @@
+gate	status	note
+previous_14	PASS	migration lifecycle prerequisite
+previous_15_2	PASS	finance reporting prerequisite
+previous_15_3	PASS	ebelge/export prerequisite
+previous_15_4	PASS	payment/reconciliation prerequisite
+previous_15_5	PASS	search/index prerequisite
+manifest	PASS	rows=10
+tenant_cache_key	PASS	tenant_scoped=10
+refresh	PASS	bad_refresh=0 bad_ttl=0
+rebuild	PASS	bad_rebuild=0
+invalidation	PASS	bad_invalidation=0
+projection_type	PASS	cache=6 materialized=1 hybrid=3
+apply_gate	PASS	dry_run=10 apply_gate=10
+candidate_plan	PASS	blocked_by_default=YES
+db_mutation	NO	standard only
+redis_mutation	NO	standard only
+materialized_view_refresh_executed	NO	standard only
+cache_write_executed	NO	standard only
+query_text_printed	NO	secret-safe report

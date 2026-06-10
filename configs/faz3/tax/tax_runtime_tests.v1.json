@@ -1,0 +1,26 @@
+{
+  "phase": "FAZ_3_10_2_6_TAX_RUNTIME_TESTS",
+  "runtime": "tax_runtime_test_suite",
+  "test_mode": "SIMULATION",
+  "covered_modules": [
+    "KDV_RUNTIME_EXECUTION",
+    "STOPAJ_RUNTIME_EXECUTION",
+    "TAX_EXEMPTION_RUNTIME_EXECUTION",
+    "TAX_RULE_VERSION_ROLLOUT",
+    "TAX_AUDIT_PERSISTENCE"
+  ],
+  "test_scenarios": [
+    "KDV_STOPAJ_EXEMPTION_ROLLOUT_AUDIT_PERSISTENCE_E2E",
+    "TAX_RUNTIME_FAILURE_PATHS_PROTECT_RUNTIME"
+  ],
+  "guard_policy": {
+    "kdv_currency_mismatch_rejected": true,
+    "stopaj_tenant_missing_rejected": true,
+    "exemption_reason_missing_rejected": true,
+    "canary_allowlist_missing_rejected": true,
+    "audit_duplicate_idempotency_rejected": true,
+    "audit_export_tenant_scoped": true,
+    "audit_export_tax_family_scoped": true
+  },
+  "next_gate": "FAZ_3_R_NEXT_PRIORITY_READY"
+}

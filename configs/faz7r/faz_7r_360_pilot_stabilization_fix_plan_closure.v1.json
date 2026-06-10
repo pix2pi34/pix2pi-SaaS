@@ -1,0 +1,47 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "360",
+  "name": "Pilot stabilization / fix plan closure",
+  "surface": "pilot_stabilization_fix_plan",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/pilot-stabilization-fix-plan/",
+  "runtime_path": "/assets/pilot-stabilization-fix-plan/pilot-stabilization-fix-plan-runtime.js",
+  "depends_on": [
+    "359 - Pilot feedback / issue triage"
+  ],
+  "runtime_contract": {
+    "real_hotfix_deploy_enabled": false,
+    "real_ticket_create_enabled": false,
+    "real_customer_notification_send_enabled": false,
+    "real_data_mutation_enabled": false,
+    "stabilization_preview_enabled": true,
+    "fix_plan_preview_enabled": true,
+    "regression_checklist_preview_enabled": true,
+    "rollback_ready_required": true,
+    "ready_for_step_361": true
+  },
+  "required_capabilities": [
+    "pilot_stabilization_app_shell",
+    "pilot_triage_summary_context",
+    "stabilization_scope_board",
+    "non_blocker_backlog_closure",
+    "hotfix_not_required_decision",
+    "fix_plan_owner_assignment",
+    "release_freeze_no_destructive_change_guard",
+    "regression_checklist_preview",
+    "support_followup_plan",
+    "customer_communication_plan_preview",
+    "monitoring_continuation_plan",
+    "rollback_readiness_remains_active",
+    "data_mutation_disabled_guard",
+    "stabilization_risk_register",
+    "go_forward_decision_preview",
+    "stabilization_audit_timeline",
+    "stabilization_runtime_data_contract",
+    "i18n_ready_stabilization_marker",
+    "seo_opengraph_stabilization_placeholder",
+    "pilot_stabilization_smoke_test"
+  ],
+  "next_step": "361 - Pilot closure / controlled rollout readiness"
+}

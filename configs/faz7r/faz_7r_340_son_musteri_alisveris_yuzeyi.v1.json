@@ -1,0 +1,64 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "340",
+  "name": "Son müşteri alışveriş yüzeyi",
+  "surface": "marketplace_customer",
+  "domain": "market.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/market",
+  "path": "/shop/",
+  "runtime_path": "/assets/shop/market-shop-runtime.js",
+  "depends_on": [
+    "335 - İşletme mağaza vitrini",
+    "336 - Ürün listeleme ekranı",
+    "337 - Marketplace keşif ekranı",
+    "338 - Sipariş ekranı",
+    "339 - Satıcı yönetim ekranı"
+  ],
+  "backend_contract": {
+    "shopping_home_endpoint": "/api/market/shop/home",
+    "basket_preview_endpoint": "/api/market/shop/basket-preview",
+    "customer_session_endpoint": "/api/market/customer/session",
+    "method": "GET/POST",
+    "region_header": "X-Market-Region",
+    "customer_session_header": "X-Market-Customer-Session"
+  },
+  "runtime_contract": {
+    "real_customer_login_enabled": false,
+    "real_basket_mutation_enabled": false,
+    "real_order_submit_enabled": false,
+    "real_payment_handoff_enabled": false,
+    "real_stock_reservation_enabled": false,
+    "shopping_home_enabled": true,
+    "fallback_shopping_snapshot_enabled": true,
+    "ready_for_step_341": true
+  },
+  "shopping_contract": {
+    "entrypoint": "/shop/",
+    "discovery_path": "/discover/",
+    "products_path": "/products/",
+    "orders_path": "/orders/",
+    "storefront_path": "/storefront/",
+    "seller_path": "/seller/",
+    "currency": "TRY"
+  },
+  "required_capabilities": [
+    "customer_shopping_app_shell",
+    "customer_session_anonymous_context",
+    "region_neighborhood_context",
+    "store_discovery_shortcut",
+    "product_discovery_shortcut",
+    "basket_preview_widget",
+    "storefront_products_order_deeplink_hub",
+    "campaign_recommendation_strip",
+    "delivery_pickup_preference_selector",
+    "add_to_basket_disabled_guard",
+    "checkout_order_submit_disabled_guard",
+    "payment_disabled_guard",
+    "customer_region_store_basket_scope_guard",
+    "shopping_runtime_data_contract",
+    "i18n_ready_shopping_marker",
+    "seo_opengraph_shopping_placeholder",
+    "customer_shopping_smoke_test"
+  ],
+  "next_step": "341 - Paket / abonelik ekranı"
+}

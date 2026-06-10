@@ -1,0 +1,174 @@
+{
+  "incident_management_id": "pilot_incident_management.controlled_pilot.v1",
+  "incident_management_status": "READY",
+  "incident_management_mode": "CONTROLLED_PILOT",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT"
+  },
+  "chain_dependencies": {
+    "218_FAZ_4_16_5_1_PILOT_HEALTH_DASHBOARD": "PASS"
+  },
+  "incident_rules": [
+    {
+      "code": "INCIDENT_INTAKE",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "area": "INTAKE",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/incident_intake.md"
+    },
+    {
+      "code": "INCIDENT_CLASSIFICATION",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "area": "CLASSIFICATION",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/incident_classification.md"
+    },
+    {
+      "code": "SEVERITY_P0_P1_P2_P3_MAPPING",
+      "required": true,
+      "status": "READY",
+      "owner": "TECH_OWNER",
+      "area": "SEVERITY",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/severity_p0_p1_p2_p3_mapping.md"
+    },
+    {
+      "code": "INCIDENT_OWNER_ASSIGNMENT",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "area": "OWNER",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/incident_owner_assignment.md"
+    },
+    {
+      "code": "INCIDENT_TIMELINE_RECORD",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "area": "TIMELINE",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/incident_timeline_record.md"
+    },
+    {
+      "code": "EVIDENCE_ATTACHMENT_RULE",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "area": "EVIDENCE",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/evidence_attachment_rule.md"
+    },
+    {
+      "code": "INCIDENT_STATUS_LIFECYCLE",
+      "required": true,
+      "status": "READY",
+      "owner": "TECH_OWNER",
+      "area": "LIFECYCLE",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/incident_status_lifecycle.md"
+    },
+    {
+      "code": "COMMUNICATION_LOG",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "area": "COMMUNICATION",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/communication_log.md"
+    },
+    {
+      "code": "ESCALATION_LINK",
+      "required": true,
+      "status": "READY",
+      "owner": "TECH_OWNER",
+      "area": "ESCALATION",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/escalation_link.md"
+    },
+    {
+      "code": "ROLLBACK_SIGNAL_LINK",
+      "required": true,
+      "status": "READY",
+      "owner": "TECH_OWNER",
+      "area": "ROLLBACK",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/rollback_signal_link.md"
+    },
+    {
+      "code": "RESOLUTION_NOTE",
+      "required": true,
+      "status": "READY",
+      "owner": "TECH_OWNER",
+      "area": "RESOLUTION",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/resolution_note.md"
+    },
+    {
+      "code": "POST_REVIEW",
+      "required": true,
+      "status": "READY",
+      "owner": "PRODUCT_OWNER",
+      "area": "POST_REVIEW",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/post_review.md"
+    },
+    {
+      "code": "CLOSED_PROVIDER_POLICY_INCIDENT_ROUTE",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "area": "POLICY",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/closed_provider_policy_incident_route.md"
+    },
+    {
+      "code": "INCIDENT_CLOSURE_CHECKLIST",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "area": "CLOSURE",
+      "evidence_ref": "docs/faz4r/pilot_incident_management/incident_closure_checklist.md"
+    }
+  ],
+  "incident_controls": {
+    "pilot_health_dashboard_status": "PASS",
+    "incident_status_lifecycle": "READY",
+    "escalation_link_status": "READY",
+    "rollback_signal_link_status": "READY",
+    "closure_checklist_status": "READY",
+    "no_real_ticket_system": true,
+    "no_real_email_dispatch": true,
+    "no_real_rollback_execution": true,
+    "no_hotfix_deploy": true
+  },
+  "incident_metrics": {
+    "open_incident_count": 0,
+    "open_blocker_count": 0,
+    "critical_issue_count": 0,
+    "required_fail_count": 0,
+    "real_ticket_dispatch_count": 0,
+    "real_email_dispatch_count": 0
+  },
+  "summary": {
+    "total_rule_count": 14,
+    "ready_rule_count": 14,
+    "missing_rule_count": 0,
+    "required_fail_count": 0,
+    "critical_issue_count": 0,
+    "open_blocker_count": 0,
+    "pilot_health_dashboard_status": "PASS",
+    "incident_status_lifecycle": "READY",
+    "escalation_link_status": "READY",
+    "rollback_signal_link_status": "READY",
+    "closure_checklist_status": "READY",
+    "incident_management_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "real_ticket_system": "CLOSED",
+    "real_email_dispatch": "CLOSED",
+    "production_launch": "CLOSED",
+    "hotfix_deploy": "CLOSED",
+    "real_rollback_execution": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

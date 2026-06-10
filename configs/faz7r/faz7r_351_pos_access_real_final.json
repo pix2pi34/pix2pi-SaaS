@@ -1,0 +1,18 @@
+{
+  "step": "FAZ 7-R / 351",
+  "name": "POS erişim testi real final",
+  "dependencies": ["319/347 tenant opening", "348 invite acceptance", "321 RBAC", "350 panel access"],
+  "apis": [
+    "POST /api/pos/access/session-create",
+    "POST /api/pos/access/check"
+  ],
+  "evidenceRequired": [
+    "curl session create",
+    "DB SELECT session/audit",
+    "cashier POS allow",
+    "accountant forbidden",
+    "invalid register",
+    "invalid session",
+    "rollback no partial write"
+  ]
+}

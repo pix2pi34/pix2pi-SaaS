@@ -1,0 +1,42 @@
+{
+  "phase": "FAZ 2-7.6.1",
+  "runtime": "workflow_state_machine",
+  "require_tenant": true,
+  "states": [
+    "DRAFT",
+    "READY",
+    "RUNNING",
+    "WAITING_APPROVAL",
+    "COMPLETED",
+    "FAILED",
+    "COMPENSATING",
+    "COMPENSATED",
+    "CANCELED",
+    "APPROVAL_REJECTED"
+  ],
+  "terminal_states": [
+    "COMPLETED",
+    "COMPENSATED",
+    "CANCELED"
+  ],
+  "guards": [
+    "tenant_required",
+    "workflow_id_required",
+    "cross_tenant_denied",
+    "from_state_must_match_current_state",
+    "terminal_state_cannot_transition",
+    "transition_must_be_allowed"
+  ],
+  "audit_fields": [
+    "tenant_id",
+    "workflow_id",
+    "from_state",
+    "to_state",
+    "step_id",
+    "actor_ref",
+    "reason",
+    "correlation_id",
+    "occurred_at"
+  ],
+  "next_ready": "FAZ_2_7_6_2_WORKFLOW_DEFINITION_LOADER_RUNTIME"
+}

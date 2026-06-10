@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Auth + Tenant State Persistence</title>
+  <link rel="stylesheet" href="./auth_state_persistence.css">
+</head>
+<body>
+  <main class="pix2pi-shell">
+    <header class="pix2pi-header">
+      <div>
+        <h1 class="pix2pi-title">Pix2pi Auth + Tenant State Persistence</h1>
+        <p class="pix2pi-subtitle">FAZ 1-5.6 — Auth / Tenant Experience</p>
+      </div>
+      <span class="pix2pi-badge ok">WEB-L2 READY</span>
+    </header>
+
+    <section class="pix2pi-grid">
+      <aside class="pix2pi-card">
+        <div class="pix2pi-label">State Actions</div>
+        <div class="pix2pi-actions">
+          <button class="pix2pi-button primary" id="createSessionButton" type="button">Session oluştur</button>
+          <button class="pix2pi-button primary" id="refreshSessionButton" type="button">Refresh simüle et</button>
+          <button class="pix2pi-button" id="saveTenantButton" type="button">Tenant state yaz</button>
+          <button class="pix2pi-button warn" id="expireSessionButton" type="button">Session expire et</button>
+          <button class="pix2pi-button danger" id="logoutButton" type="button">Logout cleanup</button>
+          <button class="pix2pi-button" id="validateStateButton" type="button">State doğrula</button>
+        </div>
+
+        <div class="pix2pi-log" id="authStateLog">Auth + tenant state event log...</div>
+      </aside>
+
+      <section class="pix2pi-card">
+        <div class="pix2pi-label">State Snapshot</div>
+
+        <div class="pix2pi-state-list">
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Session state</div>
+            <pre class="pix2pi-state-value" id="sessionStateValue">SESSION_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Tenant state</div>
+            <pre class="pix2pi-state-value" id="tenantStateValue">TENANT_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Refresh behavior</div>
+            <pre class="pix2pi-state-value" id="refreshStateValue">REFRESH_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Logout cleanup</div>
+            <pre class="pix2pi-state-value" id="logoutStateValue">LOGOUT_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Multi-tab behavior</div>
+            <pre class="pix2pi-state-value" id="multiTabStateValue">MULTI_TAB_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Validation</div>
+            <pre class="pix2pi-state-value" id="stateValidationValue">VALIDATION_LOADING</pre>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="./auth_state_persistence.js"></script>
+</body>
+</html>

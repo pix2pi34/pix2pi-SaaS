@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Login / Session Flow</title>
+  <link rel="stylesheet" href="./login_session.css">
+</head>
+<body>
+  <main class="pix2pi-shell">
+    <section class="pix2pi-grid">
+      <article class="pix2pi-card">
+        <h1 class="pix2pi-title">Pix2pi Login / Session Akışı</h1>
+        <p class="pix2pi-subtitle">FAZ 1-5.1 — Auth / Tenant Experience</p>
+
+        <div class="pix2pi-alert" id="loginErrorAlert" role="alert"></div>
+
+        <form class="pix2pi-form" id="loginForm">
+          <div>
+            <label class="pix2pi-label" for="loginEmail">E-posta</label>
+            <input class="pix2pi-input" id="loginEmail" type="email" autocomplete="username" placeholder="admin@pix2pi.local">
+          </div>
+
+          <div>
+            <label class="pix2pi-label" for="loginPassword">Şifre</label>
+            <input class="pix2pi-input" id="loginPassword" type="password" autocomplete="current-password" placeholder="Pix2piDemo123">
+          </div>
+
+          <div>
+            <label class="pix2pi-label" for="tenantHint">Tenant / Firma Kodu</label>
+            <input class="pix2pi-input" id="tenantHint" type="text" placeholder="tenant_7">
+          </div>
+
+          <label class="pix2pi-check-row">
+            <input id="rememberMe" type="checkbox">
+            Beni hatırla
+          </label>
+
+          <button class="pix2pi-button primary" id="loginButton" type="submit">Giriş yap</button>
+        </form>
+
+        <div class="pix2pi-actions">
+          <button class="pix2pi-button" id="fillAdminDemoButton" type="button">Admin demo doldur</button>
+          <button class="pix2pi-button" id="fillAccountantDemoButton" type="button">Muhasebeci demo doldur</button>
+          <button class="pix2pi-button" id="validateSessionButton" type="button">Session validate</button>
+          <button class="pix2pi-button" id="expireSessionButton" type="button">Session expire test</button>
+          <button class="pix2pi-button danger" id="clearLoginStateButton" type="button">Login state temizle</button>
+        </div>
+
+        <div class="pix2pi-log" id="loginSessionLog">Login event log...</div>
+      </article>
+
+      <aside class="pix2pi-card">
+        <span class="pix2pi-badge ok">WEB-L2 READY</span>
+
+        <div class="pix2pi-state-list" style="margin-top: 18px;">
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Session Snapshot</div>
+            <pre class="pix2pi-state-value" id="sessionSnapshot">SESSION_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Token Persistence</div>
+            <pre class="pix2pi-state-value" id="tokenSnapshot">TOKEN_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Tenant Snapshot</div>
+            <pre class="pix2pi-state-value" id="tenantSnapshot">TENANT_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Session Validation</div>
+            <pre class="pix2pi-state-value" id="validationSnapshot">VALIDATION_LOADING</pre>
+          </article>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./login_session.js"></script>
+</body>
+</html>

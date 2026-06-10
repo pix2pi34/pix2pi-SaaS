@@ -1,0 +1,38 @@
+{
+  "phase": "FAZ_5_18_6_4",
+  "title": "Sales Ops Raporu",
+  "status": "READY",
+  "control_surface": "SALES_OPS_REPORT",
+  "inputs": [
+    "FAZ_5_18_6_2_CRM_STAGE_YONETIMI",
+    "FAZ_5_18_6_3_TEKLIF_SATIS_AKISI",
+    "FAZ_5_18_4_1_SLA_SEVIYELERI",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "CRM_PIPELINE_SUMMARY",
+    "QUOTE_SALES_SUMMARY",
+    "CONVERSION_FUNNEL_SUMMARY",
+    "ACTIVITY_SLA_SUMMARY",
+    "FORECAST_PIPELINE_SUMMARY",
+    "LOST_REASON_SUMMARY",
+    "OWNER_PERFORMANCE_SUMMARY",
+    "AUDIT_EVIDENCE_SUMMARY",
+    "MRR_ARR_REPORT_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_sales_ops_report_ready": true,
+    "production_report_enabled": false,
+    "real_customer_report_enabled": false,
+    "external_bi_export_enabled": false,
+    "auto_executive_email_enabled": false,
+    "mrr_arr_report_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

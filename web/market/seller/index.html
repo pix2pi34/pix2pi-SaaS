@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi Market satıcı yönetim ekranı" />
+  <meta property="og:title" content="Pix2pi Market Satıcı Yönetim" />
+  <meta property="og:description" content="Satıcı mağaza, ürün, sipariş ve kampanya yönetim yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Market Satıcı Yönetim</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --brand: #16a34a;
+      --brand2: #2563eb;
+      --warn: #f59e0b;
+      --danger: #dc2626;
+      --shadow: 0 16px 42px rgba(15, 23, 42, .08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.12), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.12), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 62px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+    }
+
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    a {
+      color: #1d4ed8;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      background: #f1f5f9;
+      color: #64748b;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 28px;
+      letter-spacing: -0.05em;
+      color: #166534;
+    }
+
+    .seller-order-row, .seller-alert {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .seller-order-row {
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      align-items: center;
+    }
+
+    .seller-order-row em {
+      font-style: normal;
+      font-weight: 950;
+      font-size: 19px;
+      color: #166534;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 980px) {
+      .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+      .seller-order-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_339_SELLER_MANAGEMENT_APP_SHELL_START -->
+  <main class="shell" data-step="339" data-surface="market-seller">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 339</span>
+      <h1 data-i18n="market_seller.title">Satıcı yönetim ekranı</h1>
+      <p data-i18n="market_seller.description">Mağaza, ürün, sipariş ve kampanya yönetimi için satıcı yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_339_STORE_SELLER_SESSION_CONTEXT_START -->
+    <section class="card guard" data-widget="store_seller_session_context">
+      <h2>Store / seller session context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="seller-tenant">controlled-pilot</strong></p>
+        <p>Store: <strong id="seller-store-slug">demo-market</strong></p>
+        <p>Session: <strong id="seller-session">SELLER_DEMO_SESSION</strong></p>
+        <p>Role: <strong id="seller-role">STORE_MANAGER</strong></p>
+      </div>
+      <p>Scope validation: <strong id="seller-scope-validation" data-validation-status="valid">VALID</strong></p>
+    </section>
+    <!-- PIX2PI_339_STORE_SELLER_SESSION_CONTEXT_END -->
+
+    <!-- PIX2PI_339_STORE_PROFILE_MANAGEMENT_PLACEHOLDER_START -->
+    <section class="card" data-widget="store_profile_management_placeholder">
+      <h2>Mağaza profil yönetimi placeholder</h2>
+      <div class="grid-4">
+        <p>Mağaza: <strong id="seller-store-name">Demo Market</strong></p>
+        <p>Durum: <strong id="seller-store-status">OPEN</strong></p>
+        <p>Saat: <strong id="seller-working-hours">09:00 - 22:00</strong></p>
+        <p><a id="seller-storefront-link" href="/storefront/?store=demo-market">Vitrini aç</a></p>
+      </div>
+      <p><a id="seller-products-link" href="/products/?store=demo-market">Ürün listelemeye git</a></p>
+    </section>
+    <!-- PIX2PI_339_STORE_PROFILE_MANAGEMENT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_339_SELLER_PERFORMANCE_KPI_CARDS_START -->
+    <section class="grid-4" data-widget="seller_performance_kpi_cards">
+      <article class="card metric"><h2>Bugünkü sipariş</h2><strong id="seller-kpi-today-orders">0</strong></article>
+      <article class="card metric"><h2>Bekleyen sipariş</h2><strong id="seller-kpi-pending-orders">0</strong></article>
+      <article class="card metric"><h2>Ürün</h2><strong id="seller-kpi-products">0</strong></article>
+      <article class="card metric"><h2>Düşük stok</h2><strong id="seller-kpi-low-stock">0</strong></article>
+      <article class="card metric"><h2>Kampanya</h2><strong id="seller-kpi-campaigns">0</strong></article>
+      <article class="card metric"><h2>Puan</h2><strong id="seller-kpi-rating">0</strong></article>
+    </section>
+    <!-- PIX2PI_339_SELLER_PERFORMANCE_KPI_CARDS_END -->
+
+    <section class="grid-2">
+      <!-- PIX2PI_339_ORDER_MANAGEMENT_PREVIEW_START -->
+      <section class="card" data-widget="order_management_preview">
+        <h2>Sipariş yönetimi preview</h2>
+        <div id="seller-order-preview">
+          <article class="seller-order-row" data-order-id="ord-demo-001" data-order-status="DRAFT">
+            <div>
+              <strong>ord-demo-001</strong>
+              <p>Anonim müşteri / DELIVERY / DRAFT</p>
+            </div>
+            <em>₺120,00</em>
+            <button type="button" disabled>Operasyon aksiyonu kapalı</button>
+          </article>
+        </div>
+      </section>
+      <!-- PIX2PI_339_ORDER_MANAGEMENT_PREVIEW_END -->
+
+      <!-- PIX2PI_339_SELLER_NOTIFICATION_ALERT_PANEL_START -->
+      <section class="card" data-widget="seller_notification_alert_panel">
+        <h2>Satıcı bildirim / uyarı paneli</h2>
+        <div id="seller-alert-panel">
+          <article class="seller-alert" data-alert-level="INFO">
+            <strong>INFO — Satıcı yönetim yüzeyi hazır</strong>
+            <p>Gerçek operasyon aksiyonları kapalı gate altındadır.</p>
+          </article>
+        </div>
+      </section>
+      <!-- PIX2PI_339_SELLER_NOTIFICATION_ALERT_PANEL_END -->
+    </section>
+
+    <!-- PIX2PI_339_PRODUCT_MANAGEMENT_QUICK_ACTIONS_START -->
+    <section class="card" data-widget="product_management_quick_actions">
+      <h2>Ürün yönetimi quick actions</h2>
+      <div class="grid-4">
+        <button type="button" disabled>Ürün ekleme kapalı</button>
+        <button type="button" disabled>Toplu fiyat güncelleme kapalı</button>
+        <button type="button" disabled>Stok güncelleme kapalı</button>
+        <button type="button" disabled>Ürünleri yayına alma kapalı</button>
+      </div>
+    </section>
+    <!-- PIX2PI_339_PRODUCT_MANAGEMENT_QUICK_ACTIONS_END -->
+
+    <!-- PIX2PI_339_ORDER_STATUS_ACTIONS_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="order_status_actions_disabled_gate">
+      <h2>Sipariş durum aksiyonları disabled gate</h2>
+      <p>real_order_action_enabled=false. ACCEPT_ORDER / REJECT_ORDER / MARK_PREPARING bu adımda kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_339_ORDER_STATUS_ACTIONS_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_339_STOCK_AVAILABILITY_MANAGEMENT_PLACEHOLDER_START -->
+    <section class="card locked" data-widget="stock_availability_management_placeholder">
+      <h2>Stok / uygunluk yönetimi placeholder</h2>
+      <p>real_stock_update_enabled=false. Satıcı stok güncelleme mutasyonu bu adımda kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_339_STOCK_AVAILABILITY_MANAGEMENT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_339_DELIVERY_PICKUP_OPS_CARD_START -->
+    <section class="card locked" data-widget="delivery_pickup_ops_card">
+      <h2>Teslimat / gel-al operasyon kartı</h2>
+      <p>real_delivery_ops_enabled=false. Kurye/teslimat operasyon aksiyonları sonraki aşamalarda açılır.</p>
+    </section>
+    <!-- PIX2PI_339_DELIVERY_PICKUP_OPS_CARD_END -->
+
+    <!-- PIX2PI_339_CAMPAIGN_STOREFRONT_MANAGEMENT_PLACEHOLDER_START -->
+    <section class="card locked" data-widget="campaign_storefront_management_placeholder">
+      <h2>Kampanya / vitrin yönetimi placeholder</h2>
+      <p>real_campaign_publish_enabled=false. Kampanya yayınlama ve vitrin sıralama aksiyonları kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_339_CAMPAIGN_STOREFRONT_MANAGEMENT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_339_TENANT_SELLER_STORE_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="tenant_seller_store_scope_guard">
+      <h2>Tenant / seller / store scope guard</h2>
+      <p>Satıcı yönetim endpointleri `X-Tenant-ID`, `X-Store-Slug`, `X-Market-Seller-Session` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_339_TENANT_SELLER_STORE_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_339_SELLER_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="seller_runtime_data_contract">
+      <h2>Seller runtime data contract</h2>
+      <p id="seller-runtime-contract">seller_dashboard_enabled=true / fallback_seller_snapshot_enabled=true / ready_for_step_340=true</p>
+    </section>
+    <!-- PIX2PI_339_SELLER_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_339_SEO_OPENGRAPH_SELLER_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_seller_placeholder">
+      <h2>SEO / OpenGraph seller placeholder</h2>
+      <p>Title, description ve og:* metadata satıcı yönetim yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_339_SEO_OPENGRAPH_SELLER_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_339_I18N_READY_SELLER_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_seller_markers">
+      <h2 data-i18n="market_seller.i18n_ready">i18n-ready seller management</h2>
+      <p data-i18n="market_seller.surface_ready">Satıcı yönetim ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_339_I18N_READY_SELLER_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_339_SELLER_MANAGEMENT_APP_SHELL_END -->
+
+  <script src="/assets/seller/market-seller-runtime.js"></script>
+  <script>
+    Pix2piMarketSeller.bootSellerScreen().then(function (contract) {
+      console.log("PIX2PI_339_SELLER_MANAGEMENT_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

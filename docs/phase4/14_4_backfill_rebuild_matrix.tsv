@@ -1,0 +1,18 @@
+gate	status	note
+previous_14_1	PASS	migration chain prerequisite
+previous_14_2	PASS	reference seed prerequisite
+previous_14_3	PASS	import staging prerequisite
+manifest	PASS	rows=8
+required_jobs	PASS	missing=0
+dry_run	PASS	bad=0
+apply_gate	PASS	bad=0
+idempotency	PASS	bad=0
+resume_retry	PASS	bad_resume=0 bad_retry=0
+tenant_safety	PASS	tenant_scoped=8
+batch_cursor	PASS	bad_batch=0
+mutation_scope	PASS	bad=0
+candidate_plan	PASS	blocked_by_default=YES
+db_mutation	NO	standard only
+backfill_apply_executed	NO	standard only
+rebuild_apply_executed	NO	standard only
+query_text_printed	NO	secret-safe report

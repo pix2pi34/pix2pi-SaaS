@@ -1,0 +1,27 @@
+{
+  "step": "FAZ 7-R / 339",
+  "name": "Marketplace müşteri / sipariş görünümü real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "marketplace-customer-order-view-339-20260513_224534",
+  "sellerId": "seller-335-main",
+  "marketplaceOrderId": "market-order-338-main-20260513_224137",
+  "buyerSessionId": "buyer-338-main",
+  "paymentIntentId": "payment-intent-338-main-20260513_224137",
+  "deliveryId": "delivery-338-main-20260513_224137",
+  "routes": [
+    "/customer-orders/",
+    "POST /api/market/customer/order-lookup",
+    "POST /api/market/customer/order-timeline"
+  ],
+  "requiredEvidence": [
+    "customer order tracking screen",
+    "order lookup API",
+    "payment/delivery summary view",
+    "public buyer session guard",
+    "tenant-safe customer order visibility",
+    "customer order route smoke",
+    "order status timeline",
+    "rollback no partial write",
+    "customer audit evidence"
+  ]
+}

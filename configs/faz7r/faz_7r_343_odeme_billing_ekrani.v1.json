@@ -1,0 +1,60 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "343",
+  "name": "Ödeme / billing ekranı",
+  "surface": "merchant_panel_commercial",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/billing/",
+  "runtime_path": "/assets/billing/panel-billing-runtime.js",
+  "depends_on": [
+    "341 - Paket / abonelik ekranı",
+    "342 - Kullanım hakkı / kota ekranı"
+  ],
+  "backend_contract": {
+    "billing_summary_endpoint": "/api/commercial/billing/summary",
+    "invoice_draft_endpoint": "/api/commercial/billing/invoice-draft",
+    "payment_attempt_endpoint": "/api/commercial/billing/payment-attempt",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "merchant_session_header": "X-Merchant-Session",
+    "billing_scope_header": "X-Billing-Scope"
+  },
+  "runtime_contract": {
+    "real_payment_collection_enabled": false,
+    "real_card_storage_enabled": false,
+    "real_provider_transaction_enabled": false,
+    "real_invoice_issue_enabled": false,
+    "real_subscription_activation_enabled": false,
+    "billing_summary_enabled": true,
+    "fallback_billing_snapshot_enabled": true,
+    "ready_for_step_344": true
+  },
+  "approval_gates": {
+    "financial_approval_required": true,
+    "tax_consultant_approval_required": true,
+    "legal_approval_required": true,
+    "payment_provider_contract_required": true,
+    "live_payment_allowed": false
+  },
+  "required_capabilities": [
+    "billing_app_shell",
+    "tenant_merchant_subscription_context",
+    "billing_summary_cards",
+    "plan_price_vat_total_breakdown",
+    "payment_method_placeholder",
+    "card_storage_provider_token_disabled_gate",
+    "payment_provider_selection_placeholder",
+    "invoice_draft_preview",
+    "collection_start_disabled_gate",
+    "payment_attempt_disabled_gate",
+    "billing_approval_gates_panel",
+    "financial_tax_legal_approval_status",
+    "tenant_billing_payment_scope_guard",
+    "billing_runtime_data_contract",
+    "i18n_ready_billing_marker",
+    "seo_opengraph_billing_placeholder",
+    "billing_smoke_test"
+  ],
+  "next_step": "344 - Fatura geçmişi ekranı"
+}

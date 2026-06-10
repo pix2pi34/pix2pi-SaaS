@@ -1,0 +1,146 @@
+{
+  "version": "sre_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_7_2",
+  "mode": "dry_run_guarded",
+  "rules": [
+    {
+      "id": "remediate-edge-attack-spike",
+      "signal": "edge_attack_spike",
+      "severity_candidates": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "runbook_id": "rb-edge-security-incident",
+      "safe_actions": [
+        "capture_logs",
+        "capture_metrics",
+        "recommend_edge_challenge"
+      ],
+      "unsafe_actions_blocked": [
+        "edge_block_rule_push",
+        "firewall_enforce_execute"
+      ],
+      "approval_required_for_execute": true
+    },
+    {
+      "id": "remediate-tls-expiry",
+      "signal": "tls_certificate_expiring",
+      "severity_candidates": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "runbook_id": "rb-tls-cert-incident",
+      "safe_actions": [
+        "capture_health_snapshot",
+        "recommend_runbook"
+      ],
+      "unsafe_actions_blocked": [
+        "production_restart",
+        "rollback_execute"
+      ],
+      "approval_required_for_execute": true
+    },
+    {
+      "id": "remediate-api-5xx-spike",
+      "signal": "api_5xx_spike",
+      "severity_candidates": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "runbook_id": "rb-api-outage",
+      "safe_actions": [
+        "capture_logs",
+        "capture_metrics",
+        "recommend_restart",
+        "recommend_rollback"
+      ],
+      "unsafe_actions_blocked": [
+        "production_restart",
+        "rollback_execute"
+      ],
+      "approval_required_for_execute": true
+    },
+    {
+      "id": "remediate-db-degradation",
+      "signal": "db_degradation",
+      "severity_candidates": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "runbook_id": "rb-db-degradation",
+      "safe_actions": [
+        "capture_metrics",
+        "capture_health_snapshot",
+        "recommend_runbook"
+      ],
+      "unsafe_actions_blocked": [
+        "database_failover_execute",
+        "data_restore_execute"
+      ],
+      "approval_required_for_execute": true
+    },
+    {
+      "id": "remediate-event-backlog",
+      "signal": "event_queue_backlog",
+      "severity_candidates": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "runbook_id": "rb-event-queue-backlog",
+      "safe_actions": [
+        "capture_metrics",
+        "recommend_scale_consumer"
+      ],
+      "unsafe_actions_blocked": [
+        "production_restart",
+        "rollback_execute"
+      ],
+      "approval_required_for_execute": true
+    },
+    {
+      "id": "remediate-cache-degradation",
+      "signal": "cache_degradation",
+      "severity_candidates": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "runbook_id": "rb-cache-degradation",
+      "safe_actions": [
+        "capture_metrics",
+        "recommend_cache_fallback"
+      ],
+      "unsafe_actions_blocked": [
+        "mass_cache_delete",
+        "production_restart"
+      ],
+      "approval_required_for_execute": true
+    },
+    {
+      "id": "remediate-release-regression",
+      "signal": "release_regression",
+      "severity_candidates": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "runbook_id": "rb-release-rollback",
+      "safe_actions": [
+        "capture_logs",
+        "capture_metrics",
+        "recommend_rollback"
+      ],
+      "unsafe_actions_blocked": [
+        "rollback_execute",
+        "production_restart"
+      ],
+      "approval_required_for_execute": true
+    }
+  ]
+}

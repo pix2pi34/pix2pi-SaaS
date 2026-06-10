@@ -1,0 +1,15 @@
+gate	status	note
+operational_readmodel_test	PASS	evidence=docs/phase4/15_readmodel_final_closure_report.md
+finance_reporting_test	PASS	tables=4
+ebelge_export_reporting_test	PASS	tables=7
+payment_reconciliation_reporting_test	PASS	tables=7
+search_index_projection_test	PASS	tables=7
+materialized_cache_projection_test	PASS	manifest_rows=10
+tenant_safety_test	PASS	prior tenant gates verified
+migration_pair_test	PASS	pairs=28
+no_apply_test	PASS	DB/Redis/apply gates are NO
+secret_safety_test	PASS	secret_hits=0 query_hits=0
+db_mutation	NO	final evidence only
+db_apply_executed	NO	final evidence only
+redis_mutation	NO	final evidence only
+query_text_printed	NO	secret-safe report

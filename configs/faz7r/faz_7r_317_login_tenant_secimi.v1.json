@@ -1,0 +1,34 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "317",
+  "name": "Login / tenant seçimi",
+  "surface": "merchant_panel",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "auth": {
+    "login_path": "/login/",
+    "tenant_select_path": "/tenant-select/",
+    "unauthorized_path": "/unauthorized/",
+    "forbidden_path": "/forbidden/",
+    "session_timeout_path": "/session-timeout/",
+    "login_endpoint": "/api/auth/login",
+    "tenant_list_endpoint": "/api/auth/tenants",
+    "token_storage_key": "pix2pi.panel.jwt",
+    "tenant_preference_key": "pix2pi.panel.tenant.preference",
+    "session_timeout_ms": 1800000
+  },
+  "required_capabilities": [
+    "login_screen",
+    "jwt_login_connection_adapter",
+    "tenant_selection_screen",
+    "multi_tenant_user_support",
+    "remember_tenant_preference",
+    "session_timeout_behavior",
+    "login_error_messages",
+    "unauthorized_screen",
+    "forbidden_screen",
+    "login_smoke_test"
+  ],
+  "depends_on": "316 - panel.pix2pi.com.tr altyapısı",
+  "next_step": "318 - Dil Modülü / i18n / Alfabe Altyapısı"
+}

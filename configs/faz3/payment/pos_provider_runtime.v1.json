@@ -1,0 +1,37 @@
+{
+  "phase": "FAZ_3_10_7_1_POS_PROVIDER_RUNTIME",
+  "provider_code": "SIM_BANK_POS",
+  "provider_mode": "SIMULATION",
+  "real_payment_gate_open": false,
+  "production_approved": false,
+  "operations": [
+    "AUTHORIZE",
+    "CAPTURE",
+    "SALE",
+    "REFUND",
+    "VOID",
+    "STATUS_CHECK",
+    "THREE_DS_INIT",
+    "THREE_DS_COMPLETE"
+  ],
+  "security_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "payment_transaction_id_required": true,
+    "merchant_id_required": true,
+    "terminal_id_required": true,
+    "provider_code_match_required": true,
+    "masked_card_pan_required": true,
+    "card_token_required": true,
+    "refund_reason_required": true,
+    "void_reason_required": true
+  },
+  "live_policy": {
+    "real_payment_status": "CLOSED_UNTIL_BANK_PROVIDER_APPROVALS",
+    "production_payment_status": "DENIED_BY_DEFAULT",
+    "secret_policy": "CREDENTIAL_REF_ONLY_NO_RAW_SECRET"
+  },
+  "next_gate": "FAZ_3_10_7_2_BANK_COLLECTION_RUNTIME"
+}

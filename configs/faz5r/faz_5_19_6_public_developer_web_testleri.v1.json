@@ -1,0 +1,42 @@
+{
+  "phase": "FAZ_5_19_6",
+  "title": "Public / Developer Web Testleri",
+  "status": "READY",
+  "control_surface": "PUBLIC_DEVELOPER_WEB_TESTS",
+  "inputs": [
+    "FAZ_5_19_3_DEVELOPER_DOCS_PORTALI",
+    "FAZ_5_19_4_API_KEY_YONETIM_EKRANI",
+    "FAZ_5_19_5_SANDBOX_KULLANIM_YUZEYI",
+    "FAZ_5_19_2_FIYATLAMA_SAYFALARI"
+  ],
+  "outputs": [
+    "DEVELOPER_DOCS_WEB_TEST",
+    "API_KEY_MANAGEMENT_WEB_TEST",
+    "SANDBOX_SURFACE_WEB_TEST",
+    "PRICING_PAGES_WEB_TEST",
+    "LAUNCH_GUARD_MATRIX",
+    "HTML_QUALITY_MATRIX",
+    "SECURITY_GUARD_MATRIX",
+    "FINAL_CLOSURE_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_web_tests_ready": true,
+    "public_developer_surface_tests_ready": true,
+    "production_publish_allowed": false,
+    "real_customer_access_enabled": false,
+    "real_developer_access_enabled": false,
+    "checkout_enabled": false,
+    "payment_collection_enabled": false,
+    "api_key_creation_enabled": false,
+    "sandbox_live_enabled": false,
+    "faz_5_r_priority_4_web_l8_complete": true,
+    "faz_5_r_final_review_closure_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

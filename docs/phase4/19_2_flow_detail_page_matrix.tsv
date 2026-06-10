@@ -1,0 +1,14 @@
+gate	status	note
+previous_19_1	PASS	runtime flow history prerequisite
+contract	PASS	fields=15 routes=6 components=12
+route_manifest	PASS	route_count=6
+component_manifest	PASS	component_count=12
+tenant_safety	PASS	tenant_refs=10 tenant_required=12
+no_apply	PASS	contract only
+secret_safety	PASS	secret_hits=0
+db_mutation	NO	contract only
+db_apply_executed	NO	contract only
+migration_created	NO	contract only
+panel_route_deployed	NO	contract only
+panel_build_executed	NO	contract only
+query_text_printed	NO	secret-safe report

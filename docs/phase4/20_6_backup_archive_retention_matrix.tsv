@@ -1,0 +1,39 @@
+gate	status	note
+previous_20_5	PASS	docker/compose hardening prerequisite
+backup_archive_inventory	PASS	rows=700
+volume_retention	PASS	volumes=31 stateful=13
+backup_candidates	PASS	backup=697 archive=0 restic=3
+db_backup_candidates	PASS	count=51
+secret_backup_paths	PASS	count=16 values_not_printed
+high_risk_inventory	PASS	count=67
+backup_required_volumes	PASS	count=13
+restore_drill_required	PASS	count=8
+policy	PASS	retention policy documented
+no_delete	PASS	backup/archive delete not executed
+no_prune	PASS	restic/docker prune not executed
+no_restore	PASS	restore not executed
+secret_safe	PASS	secret values not printed
+backup_delete_executed	NO	evidence only
+archive_delete_executed	NO	evidence only
+file_delete_executed	NO	evidence only
+file_move_executed	NO	evidence only
+docker_volume_removed	NO	evidence only
+docker_volume_prune_executed	NO	evidence only
+restic_forget_executed	NO	evidence only
+restic_prune_executed	NO	evidence only
+restic_repair_executed	NO	evidence only
+restore_executed	NO	evidence only
+pg_dump_executed	NO	evidence only
+pg_restore_executed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+deploy_executed	NO	evidence only
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

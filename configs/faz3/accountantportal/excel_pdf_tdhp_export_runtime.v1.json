@@ -1,0 +1,52 @@
+{
+  "phase": "FAZ_3_10_5_3_EXCEL_PDF_TDHP_EXPORT_RUNTIME",
+  "runtime": "excel_pdf_tdhp_export_runtime",
+  "runtime_enabled": true,
+  "default_currency_code": "TRY",
+  "require_permission_decision": true,
+  "require_tenant_scope": true,
+  "require_company_scope": true,
+  "require_ledger_rows": true,
+  "require_balanced_export": true,
+  "require_export_hash": true,
+  "require_audit_subject": true,
+  "max_rows": 10000,
+  "allowed_formats": [
+    "EXCEL",
+    "PDF",
+    "TDHP"
+  ],
+  "permission_bridge": {
+    "EXCEL": "EXPORT_EXCEL",
+    "PDF": "EXPORT_PDF",
+    "TDHP": "EXPORT_TDHP",
+    "resource_type": "EXPORT",
+    "company_permission_enforcement_required": true
+  },
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "export_id_required": true,
+    "format_allowed_required": true,
+    "accountant_firm_id_required": true,
+    "accountant_user_id_required": true,
+    "assignment_id_required": true,
+    "target_firm_tenant_id_required": true,
+    "target_company_id_required": true,
+    "target_company_name_required": true,
+    "period_code_required": true,
+    "fiscal_year_required": true,
+    "permission_decision_required": true,
+    "ledger_rows_required": true,
+    "ledger_row_tenant_scope_required": true,
+    "ledger_row_company_scope_required": true,
+    "ledger_row_balance_required": true,
+    "ledger_row_posting_hash_required": true,
+    "ledger_row_audit_trace_required": true,
+    "export_hash_required": true,
+    "bundle_export_supported": true
+  },
+  "next_gate": "FAZ_3_10_5_4_MONTHLY_SUBSCRIPTION_RUNTIME"
+}

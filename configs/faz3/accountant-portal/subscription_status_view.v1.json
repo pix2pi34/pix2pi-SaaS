@@ -1,0 +1,84 @@
+{
+  "phase": "FAZ_3_12_5_SUBSCRIPTION_STATUS_VIEW",
+  "screen": "subscription_status_view",
+  "screen_enabled": true,
+  "route": "/faz3/accountant-portal/subscription-status/",
+  "static_file": "web/faz3/accountant-portal/subscription-status/index.html",
+  "scope": {
+    "subscription_status_visibility": true,
+    "firm_subscription_visibility": true,
+    "accountant_subscription_visibility": true,
+    "monthly_validation_visibility": true,
+    "plan_visibility": true,
+    "active_status_visibility": true,
+    "trial_status_visibility": true,
+    "suspended_status_visibility": true,
+    "expired_status_visibility": true,
+    "access_decision_visibility": true,
+    "quota_visibility": true,
+    "firm_limit_visibility": true,
+    "export_quota_visibility": true,
+    "renewal_date_visibility": true,
+    "validation_date_visibility": true,
+    "billing_mode_visibility": true,
+    "audit_timeline_visibility": true
+  },
+  "guard_policy": {
+    "tenant_indicator_required": true,
+    "accountant_indicator_required": true,
+    "firm_indicator_required": true,
+    "subscription_id_required": true,
+    "firm_id_required": true,
+    "tenant_id_required": true,
+    "accountant_id_required": true,
+    "plan_required": true,
+    "status_required": true,
+    "period_required": true,
+    "access_decision_required": true,
+    "access_reason_required": true,
+    "firm_limit_required": true,
+    "export_quota_required": true,
+    "renewal_date_required": true,
+    "validation_date_required": true,
+    "subscription_hash_required": true,
+    "quota_hash_required": true,
+    "access_hash_required": true,
+    "audit_hash_required": true,
+    "evidence_file_required": true
+  },
+  "status_coverage": {
+    "status_active": true,
+    "status_trial": true,
+    "status_suspended": true,
+    "status_expired": true
+  },
+  "plan_coverage": {
+    "plan_accountant_starter": true,
+    "plan_accountant_pro": true,
+    "plan_accountant_enterprise": true
+  },
+  "access_decision_coverage": {
+    "access_allowed": true,
+    "read_only_allowed": true,
+    "access_blocked": true
+  },
+  "live_policy": {
+    "production_approved": false,
+    "real_billing_allowed": false,
+    "real_payment_collection_allowed": false,
+    "real_invoice_issue_allowed": false,
+    "monthly_validation_required": true,
+    "subscription_access_gate_required": true,
+    "quota_hash_required": true,
+    "audit_required": true,
+    "ui_actions_are_validate_quota_access_audit_only": true
+  },
+  "covered_backend_gates": [
+    "FAZ_3_12_3_COMPANY_BASED_PERMISSION_SCREEN",
+    "FAZ_3_12_1_MULTI_COMPANY_WORKSPACE",
+    "FAZ_3_12_4_ACCOUNTANT_EXPORT_WORKSPACE",
+    "FAZ_3_11_10_ERP_UI_TESTS"
+  ],
+  "previous_gate": "FAZ_3_12_3_COMPANY_BASED_PERMISSION_SCREEN",
+  "next_gate": "FAZ_3_12_6_PORTAL_AUDIT_HISTORY"
+}

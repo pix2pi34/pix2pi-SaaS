@@ -1,0 +1,51 @@
+{
+  "test_name": "faz_5_18_5_2_tenant_yukseltme_dusurme_test",
+  "phase": "FAZ_5_18_5_2",
+  "expected": {
+    "required_step_count": 10,
+    "required_event_count": 10,
+    "internal_tenant_plan_change_ready": true,
+    "production_plan_change_enabled": false,
+    "real_customer_plan_change_enabled": false,
+    "auto_entitlement_switch_enabled": false,
+    "auto_proration_billing_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_step_keys": [
+    "plan_change_request_intake",
+    "current_plan_snapshot",
+    "target_plan_validate",
+    "entitlement_diff_calculate",
+    "billing_impact_calculate",
+    "proration_policy_prepare",
+    "downgrade_safety_check",
+    "owner_approval_queue",
+    "effective_date_schedule",
+    "plan_change_deferred_marker"
+  ],
+  "must_have_events": [
+    "PLAN_CHANGE_REQUESTED",
+    "CURRENT_PLAN_SNAPSHOTTED",
+    "TARGET_PLAN_VALIDATED",
+    "ENTITLEMENT_DIFF_CALCULATED",
+    "BILLING_IMPACT_CALCULATED",
+    "PRORATION_POLICY_PREPARED",
+    "DOWNGRADE_SAFETY_CHECKED",
+    "OWNER_APPROVAL_QUEUED",
+    "EFFECTIVE_DATE_SCHEDULED",
+    "PLAN_CHANGE_DEFERRED"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_plan_change_request_id",
+    "requires_current_plan_id",
+    "requires_target_plan_id",
+    "requires_plan_snapshot",
+    "requires_entitlement_diff",
+    "requires_billing_impact",
+    "requires_proration_policy",
+    "requires_downgrade_safety_check",
+    "blocks_production_plan_change"
+  ]
+}

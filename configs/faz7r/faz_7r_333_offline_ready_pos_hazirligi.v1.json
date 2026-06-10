@@ -1,0 +1,55 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "333",
+  "name": "Offline-ready POS hazırlığı",
+  "surface": "pos",
+  "domain": "pos.pix2pi.com.tr",
+  "path": "/offline/",
+  "runtime_path": "/assets/offline/pos-offline-runtime.js",
+  "depends_on": [
+    "329 - pos.pix2pi.com.tr altyapısı",
+    "330 - Kasiyer giriş ekranı",
+    "331 - POS satış ekranı",
+    "332 - Sepet / ödeme akışı"
+  ],
+  "backend_contract": {
+    "offline_sync_endpoint": "/api/pos/offline/sync",
+    "replay_status_endpoint": "/api/pos/offline/replay-status",
+    "method": "POST/GET",
+    "tenant_header": "X-Tenant-ID",
+    "device_header": "X-POS-Device-ID",
+    "cashier_header": "X-POS-Cashier-Code"
+  },
+  "offline_contract": {
+    "real_offline_replay_enabled": false,
+    "real_stock_decrement_enabled": false,
+    "real_payment_finalize_enabled": false,
+    "local_queue_enabled": true,
+    "idempotency_required": true,
+    "conflict_resolution_required": true,
+    "ready_for_step_334": true
+  },
+  "session_storage": {
+    "tenant_key": "pix2pi.pos.tenant.preference",
+    "device_key": "pix2pi.pos.device.id",
+    "cashier_session_key": "pix2pi.pos.cashier.session",
+    "checkout_draft_key": "pix2pi.pos.checkout.draft",
+    "offline_queue_key": "pix2pi.pos.offline.queue"
+  },
+  "required_capabilities": [
+    "offline_ready_pos_app_shell",
+    "network_status_indicator",
+    "local_offline_queue_storage_contract",
+    "offline_sale_draft_queue",
+    "idempotency_key_generation",
+    "sync_replay_policy_placeholder",
+    "conflict_resolution_preview",
+    "queue_retention_clear_guard",
+    "tenant_device_cashier_scoped_offline_guard",
+    "service_worker_pwa_handoff_placeholder",
+    "offline_runtime_health_contract",
+    "i18n_ready_offline_markers",
+    "offline_ready_pos_smoke_test"
+  ],
+  "next_step": "334 - Mobile-ready PWA yüzeyi"
+}

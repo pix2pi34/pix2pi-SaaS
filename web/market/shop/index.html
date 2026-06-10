@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi Market son müşteri alışveriş yüzeyi" />
+  <meta property="og:title" content="Pix2pi Market Alışveriş" />
+  <meta property="og:description" content="Son müşteri için mağaza, ürün, sepet ve sipariş taslak alışveriş yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Market Alışveriş</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --brand: #16a34a;
+      --brand2: #2563eb;
+      --warn: #f59e0b;
+      --danger: #dc2626;
+      --shadow: 0 16px 42px rgba(15, 23, 42, .08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.12), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.12), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1320px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+    }
+
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    a {
+      color: #1d4ed8;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    button, select {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+    }
+
+    button {
+      background: #eff6ff;
+      color: #1d4ed8;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      background: #f1f5f9;
+      color: #64748b;
+    }
+
+    select {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      width: 100%;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .shop-card, .metric {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .shop-card .emoji {
+      font-size: 40px;
+    }
+
+    .shop-card em, .metric strong {
+      font-style: normal;
+      font-weight: 950;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+      color: #166534;
+    }
+
+    .campaign {
+      background: linear-gradient(135deg, #14532d, #1d4ed8);
+      color: #fff;
+      border: none;
+    }
+
+    .campaign p {
+      color: rgba(255,255,255,.84);
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 980px) {
+      .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_340_CUSTOMER_SHOPPING_APP_SHELL_START -->
+  <main class="shell" data-step="340" data-surface="market-shop">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 340</span>
+      <h1 data-i18n="market_shop.title">Pix2pi Market alışveriş</h1>
+      <p data-i18n="market_shop.description">Son müşteri için mağaza keşfi, ürün keşfi, sepet önizleme ve sipariş yönlendirme yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_340_CUSTOMER_SESSION_ANONYMOUS_CONTEXT_START -->
+    <section class="card guard" data-widget="customer_session_anonymous_context">
+      <h2>Customer session / anonymous context</h2>
+      <div class="grid-4">
+        <p>Customer: <strong id="shop-customer-label">Anonim müşteri</strong></p>
+        <p>Session: <strong id="shop-customer-session">ANONYMOUS_PLACEHOLDER</strong></p>
+        <p>Scope: <strong id="shop-scope-validation" data-validation-status="valid">VALID</strong></p>
+        <p>Login gate: <strong>disabled</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_340_CUSTOMER_SESSION_ANONYMOUS_CONTEXT_END -->
+
+    <!-- PIX2PI_340_REGION_NEIGHBORHOOD_CONTEXT_START -->
+    <section class="card guard" data-widget="region_neighborhood_context">
+      <h2>Region / neighborhood context</h2>
+      <div class="grid-4">
+        <p>Şehir: <strong id="shop-city">İstanbul</strong></p>
+        <p>İlçe: <strong id="shop-district">Pilot</strong></p>
+        <p>Mahalle: <strong id="shop-neighborhood">Demo Mahalle</strong></p>
+        <p>Region: <strong id="shop-region-code">TR-34-PILOT</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_340_REGION_NEIGHBORHOOD_CONTEXT_END -->
+
+    <!-- PIX2PI_340_CAMPAIGN_RECOMMENDATION_STRIP_START -->
+    <section id="shop-campaign-strip" class="card campaign" data-widget="campaign_recommendation_strip">
+      <strong>Mahalle vitrini hazır</strong>
+      <p>Pilot mağazalardan ürün keşfi ve sipariş taslak akışı.</p>
+    </section>
+    <!-- PIX2PI_340_CAMPAIGN_RECOMMENDATION_STRIP_END -->
+
+    <!-- PIX2PI_340_DELIVERY_PICKUP_PREFERENCE_SELECTOR_START -->
+    <section class="card" data-widget="delivery_pickup_preference_selector">
+      <h2>Teslimat / gel-al tercihi</h2>
+      <select id="shop-fulfillment-preference">
+        <option value="DELIVERY">Teslimat</option>
+        <option value="PICKUP">Gel-al</option>
+      </select>
+    </section>
+    <!-- PIX2PI_340_DELIVERY_PICKUP_PREFERENCE_SELECTOR_END -->
+
+    <section class="grid-2">
+      <!-- PIX2PI_340_STORE_DISCOVERY_SHORTCUT_START -->
+      <section class="card" data-widget="store_discovery_shortcut">
+        <h2>Önerilen mağazalar</h2>
+        <div id="shop-store-shortcuts" class="grid-2">
+          <article class="shop-card" data-store-slug="demo-market">
+            <strong>Demo Market</strong>
+            <p>Market / OPEN / 0.4 km</p>
+            <a href="/storefront/?store=demo-market">Vitrine git</a>
+            <a href="/products/?store=demo-market">Ürünlere git</a>
+          </article>
+        </div>
+        <p><a href="/discover/">Tüm mağazaları keşfet</a></p>
+      </section>
+      <!-- PIX2PI_340_STORE_DISCOVERY_SHORTCUT_END -->
+
+      <!-- PIX2PI_340_PRODUCT_DISCOVERY_SHORTCUT_START -->
+      <section class="card" data-widget="product_discovery_shortcut">
+        <h2>Önerilen ürünler</h2>
+        <div id="shop-product-shortcuts" class="grid-3">
+          <article class="shop-card" data-product-id="mkt-prd-001">
+            <span class="emoji">🥛</span>
+            <strong>Demo Süt 1L</strong>
+            <p>Store: demo-market</p>
+            <em>₺35,00</em>
+            <button type="button" disabled>Sepete ekleme kapalı</button>
+          </article>
+        </div>
+      </section>
+      <!-- PIX2PI_340_PRODUCT_DISCOVERY_SHORTCUT_END -->
+    </section>
+
+    <!-- PIX2PI_340_BASKET_PREVIEW_WIDGET_START -->
+    <section class="card" data-widget="basket_preview_widget">
+      <h2>Sepet preview</h2>
+      <div class="grid-4">
+        <article class="metric"><span>Satır</span><strong id="shop-basket-line-count">0</strong></article>
+        <article class="metric"><span>Ürün</span><strong id="shop-basket-item-count">0</strong></article>
+        <article class="metric"><span>Ara toplam</span><strong id="shop-basket-subtotal">₺0,00</strong></article>
+        <article class="metric"><span>KDV</span><strong id="shop-basket-vat">₺0,00</strong></article>
+        <article class="metric"><span>Teslimat</span><strong id="shop-basket-delivery-fee">₺0,00</strong></article>
+        <article class="metric"><span>Genel toplam</span><strong id="shop-basket-grand-total">₺0,00</strong></article>
+        <article class="metric"><span>Store</span><strong id="shop-basket-store">demo-market</strong></article>
+      </div>
+    </section>
+    <!-- PIX2PI_340_BASKET_PREVIEW_WIDGET_END -->
+
+    <!-- PIX2PI_340_STOREFRONT_PRODUCTS_ORDER_DEEPLINK_HUB_START -->
+    <section class="card" data-widget="storefront_products_order_deeplink_hub">
+      <h2>Deep-link hub</h2>
+      <div class="grid-4">
+        <a href="/discover/">Keşif</a>
+        <a href="/storefront/?store=demo-market">Mağaza vitrini</a>
+        <a href="/products/?store=demo-market">Ürünler</a>
+        <a href="/orders/?store=demo-market">Sipariş taslağı</a>
+      </div>
+    </section>
+    <!-- PIX2PI_340_STOREFRONT_PRODUCTS_ORDER_DEEPLINK_HUB_END -->
+
+    <!-- PIX2PI_340_ADD_TO_BASKET_DISABLED_GUARD_START -->
+    <section class="card locked" data-widget="add_to_basket_disabled_guard">
+      <h2>Add-to-basket disabled guard</h2>
+      <p>real_basket_mutation_enabled=false. Sepete ekleme gerçek mutasyonu bu adımda kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_340_ADD_TO_BASKET_DISABLED_GUARD_END -->
+
+    <!-- PIX2PI_340_CHECKOUT_ORDER_SUBMIT_DISABLED_GUARD_START -->
+    <section class="card locked" data-widget="checkout_order_submit_disabled_guard">
+      <h2>Checkout / order submit disabled guard</h2>
+      <p>real_order_submit_enabled=false. Sipariş oluşturma gerçek endpoint production gate olmadan açılmaz.</p>
+    </section>
+    <!-- PIX2PI_340_CHECKOUT_ORDER_SUBMIT_DISABLED_GUARD_END -->
+
+    <!-- PIX2PI_340_PAYMENT_DISABLED_GUARD_START -->
+    <section class="card locked" data-widget="payment_disabled_guard">
+      <h2>Payment disabled guard</h2>
+      <p>real_payment_handoff_enabled=false. Ödeme yönlendirme bu adımda kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_340_PAYMENT_DISABLED_GUARD_END -->
+
+    <!-- PIX2PI_340_CUSTOMER_REGION_STORE_BASKET_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="customer_region_store_basket_scope_guard">
+      <h2>Customer / region / store / basket scope guard</h2>
+      <p>Alışveriş yüzeyi `X-Market-Region` ve `X-Market-Customer-Session` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_340_CUSTOMER_REGION_STORE_BASKET_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_340_SHOPPING_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="shopping_runtime_data_contract">
+      <h2>Shopping runtime data contract</h2>
+      <p id="shop-runtime-contract">shopping_home_enabled=true / fallback_shopping_snapshot_enabled=true / ready_for_step_341=true</p>
+    </section>
+    <!-- PIX2PI_340_SHOPPING_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_340_SEO_OPENGRAPH_SHOPPING_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_shopping_placeholder">
+      <h2>SEO / OpenGraph shopping placeholder</h2>
+      <p>Title, description ve og:* metadata son müşteri alışveriş yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_340_SEO_OPENGRAPH_SHOPPING_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_340_I18N_READY_SHOPPING_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_shopping_marker">
+      <h2 data-i18n="market_shop.i18n_ready">i18n-ready shopping</h2>
+      <p data-i18n="market_shop.surface_ready">Son müşteri alışveriş ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_340_I18N_READY_SHOPPING_MARKER_END -->
+  </main>
+  <!-- PIX2PI_340_CUSTOMER_SHOPPING_APP_SHELL_END -->
+
+  <script src="/assets/shop/market-shop-runtime.js"></script>
+  <script>
+    (function () {
+      const fulfillment = document.getElementById("shop-fulfillment-preference");
+
+      Pix2piMarketShop.bootShopScreen().then(function (contract) {
+        console.log("PIX2PI_340_CUSTOMER_SHOPPING_CONTRACT", contract);
+      });
+
+      fulfillment.addEventListener("change", function () {
+        Pix2piMarketShop.setFulfillmentPreference(fulfillment.value);
+        Pix2piMarketShop.bootShopScreen().then(function (contract) {
+          console.log("PIX2PI_340_FULFILLMENT_CHANGE", contract);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

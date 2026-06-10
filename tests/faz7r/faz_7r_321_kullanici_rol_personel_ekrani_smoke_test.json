@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "321",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "users_screen",
+      "path": "/users/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_321_USERS_APP_SHELL_START",
+        "PIX2PI_321_USER_LIST_START",
+        "PIX2PI_321_TENANT_SCOPED_USER_GUARD_START"
+      ]
+    },
+    {
+      "name": "users_runtime",
+      "path": "/assets/users/users-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_321_USERS_RUNTIME_START",
+        "tenantScopedHeaders",
+        "buildPermissionMatrix"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "317",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "login_screen",
+      "path": "/login/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_317_LOGIN_SCREEN_START",
+        "PIX2PI_317_JWT_LOGIN_CONNECTION_START",
+        "PIX2PI_317_LOGIN_ERROR_MESSAGES_START"
+      ]
+    },
+    {
+      "name": "tenant_selection_screen",
+      "path": "/tenant-select/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_317_TENANT_SELECTION_SCREEN_START",
+        "PIX2PI_317_MULTI_TENANT_USER_SUPPORT_START",
+        "PIX2PI_317_REMEMBER_TENANT_PREFERENCE_START"
+      ]
+    },
+    {
+      "name": "auth_runtime",
+      "path": "/assets/auth/auth-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_317_AUTH_RUNTIME_START",
+        "loginWithJwtConnection",
+        "sessionTimeoutMs"
+      ]
+    },
+    {
+      "name": "unauthorized_screen",
+      "path": "/unauthorized/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_317_UNAUTHORIZED_SCREEN_START"
+      ]
+    },
+    {
+      "name": "forbidden_screen",
+      "path": "/forbidden/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_317_FORBIDDEN_SCREEN_START"
+      ]
+    },
+    {
+      "name": "session_timeout_screen",
+      "path": "/session-timeout/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_317_SESSION_TIMEOUT_BEHAVIOR_START"
+      ]
+    }
+  ]
+}

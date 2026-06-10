@@ -1,0 +1,94 @@
+{
+  "valid_fixture": {
+    "training_set_id": "user_training_set.valid_fixture",
+    "training_set_status": "READY",
+    "training_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT"
+    },
+    "chain_dependencies": {
+      "209_FAZ_4_16_3_6_UAT_SIGN_OFF": "PASS"
+    },
+    "training_modules": [
+      {"code": "FIRST_LOGIN_GUIDE", "required": true, "status": "READY", "audience": "PILOT_USER", "format": "STEP_BY_STEP_DOC", "evidence_ref": "docs/faz4r/training/first_login_guide.md"},
+      {"code": "TENANT_CONTEXT_GUIDE", "required": true, "status": "READY", "audience": "PILOT_USER", "format": "STEP_BY_STEP_DOC", "evidence_ref": "docs/faz4r/training/tenant_context_guide.md"},
+      {"code": "MANAGEMENT_PANEL_BASIC_GUIDE", "required": true, "status": "READY", "audience": "ADMIN_USER", "format": "STEP_BY_STEP_DOC", "evidence_ref": "docs/faz4r/training/management_panel_basic_guide.md"},
+      {"code": "POS_BASIC_GUIDE", "required": true, "status": "READY", "audience": "CASHIER_USER", "format": "STEP_BY_STEP_DOC", "evidence_ref": "docs/faz4r/training/pos_basic_guide.md"},
+      {"code": "CUSTOMER_IMPORT_GUIDE", "required": true, "status": "READY", "audience": "ADMIN_USER", "format": "CHECKLIST_DOC", "evidence_ref": "docs/faz4r/training/customer_import_guide.md"},
+      {"code": "PRODUCT_STOCK_IMPORT_GUIDE", "required": true, "status": "READY", "audience": "ADMIN_USER", "format": "CHECKLIST_DOC", "evidence_ref": "docs/faz4r/training/product_stock_import_guide.md"},
+      {"code": "RECEIPT_MOVEMENT_IMPORT_GUIDE", "required": true, "status": "READY", "audience": "ADMIN_USER", "format": "CHECKLIST_DOC", "evidence_ref": "docs/faz4r/training/receipt_movement_import_guide.md"},
+      {"code": "IMPORT_VALIDATION_REPORT_GUIDE", "required": true, "status": "READY", "audience": "ADMIN_USER", "format": "REPORT_READING_DOC", "evidence_ref": "docs/faz4r/training/import_validation_report_guide.md"},
+      {"code": "ACCOUNTING_BASIC_GUIDE", "required": true, "status": "READY", "audience": "ACCOUNTING_USER", "format": "STEP_BY_STEP_DOC", "evidence_ref": "docs/faz4r/training/accounting_basic_guide.md"},
+      {"code": "ACCOUNTANT_PORTAL_READONLY_GUIDE", "required": true, "status": "READY", "audience": "ACCOUNTANT_USER", "format": "READONLY_FLOW_DOC", "evidence_ref": "docs/faz4r/training/accountant_portal_readonly_guide.md"},
+      {"code": "E_DOCUMENT_EXPORT_PREVIEW_GUIDE", "required": true, "status": "READY", "audience": "ACCOUNTING_USER", "format": "PREVIEW_FLOW_DOC", "evidence_ref": "docs/faz4r/training/e_document_export_preview_guide.md"},
+      {"code": "SUPPORT_ISSUE_REPORTING_GUIDE", "required": true, "status": "READY", "audience": "PILOT_USER", "format": "SUPPORT_FLOW_DOC", "evidence_ref": "docs/faz4r/training/support_issue_reporting_guide.md"},
+      {"code": "PILOT_LIMITS_AND_CLOSED_POLICY_GUIDE", "required": true, "status": "READY", "audience": "PILOT_USER", "format": "POLICY_DOC", "evidence_ref": "docs/faz4r/training/pilot_limits_and_closed_policy_guide.md"},
+      {"code": "COMMON_MISTAKES_GUIDE", "required": true, "status": "READY", "audience": "PILOT_USER", "format": "FAQ_DOC", "evidence_ref": "docs/faz4r/training/common_mistakes_guide.md"},
+      {"code": "TRAINING_COMPLETION_CHECKLIST", "required": true, "status": "READY", "audience": "PILOT_OWNER", "format": "CHECKLIST_DOC", "evidence_ref": "docs/faz4r/training/training_completion_checklist.md"}
+    ],
+    "summary": {
+      "total_module_count": 15,
+      "ready_module_count": 15,
+      "missing_module_count": 0,
+      "required_fail_count": 0,
+      "critical_issue_count": 0,
+      "uat_signoff_status": "PASS",
+      "support_handoff_ready": "YES",
+      "completion_checklist_status": "READY",
+      "training_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "real_export": "CLOSED",
+      "production_launch": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "training_set_id": "user_training_set.invalid_fixture",
+    "training_set_status": "DRAFT",
+    "training_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED"
+    },
+    "chain_dependencies": {
+      "209_FAZ_4_16_3_6_UAT_SIGN_OFF": "FAIL"
+    },
+    "training_modules": [
+      {"code": "FIRST_LOGIN_GUIDE", "required": true, "status": "MISSING", "audience": "PILOT_USER", "format": "STEP_BY_STEP_DOC", "evidence_ref": ""},
+      {"code": "TENANT_CONTEXT_GUIDE", "required": true, "status": "READY", "audience": "PILOT_USER", "format": "STEP_BY_STEP_DOC", "evidence_ref": "x"},
+      {"code": "TENANT_CONTEXT_GUIDE", "required": true, "status": "READY", "audience": "PILOT_USER", "format": "STEP_BY_STEP_DOC", "evidence_ref": "x"}
+    ],
+    "summary": {
+      "total_module_count": 99,
+      "ready_module_count": 99,
+      "missing_module_count": 99,
+      "required_fail_count": 99,
+      "critical_issue_count": 1,
+      "uat_signoff_status": "FAIL",
+      "support_handoff_ready": "NO",
+      "completion_checklist_status": "DRAFT",
+      "training_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "real_export": "OPEN",
+      "production_launch": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

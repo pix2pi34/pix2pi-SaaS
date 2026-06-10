@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/assets/pwa/icon-192-placeholder.svg" />
+  <title>Pix2pi POS Mobile PWA</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: rgba(17,24,39,.92);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --border: rgba(255,255,255,.12);
+      --brand: #60a5fa;
+      --brand2: #22c55e;
+      --warn: #f59e0b;
+      --shadow: 0 20px 52px rgba(0,0,0,.28);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(96,165,250,.22), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(34,197,94,.12), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+      overscroll-behavior: contain;
+      touch-action: manipulation;
+    }
+
+    .shell {
+      width: min(100%, 1180px);
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+      padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(16px);
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(30px, 7vw, 56px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 28px;
+      color: #bbf7d0;
+      letter-spacing: -0.05em;
+    }
+
+    .touch-nav {
+      position: sticky;
+      bottom: max(10px, env(safe-area-inset-bottom));
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .touch-nav a, button {
+      min-height: 54px;
+      border: 1px solid rgba(147,197,253,.24);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(96,165,250,.14);
+      color: #bfdbfe;
+      font: inherit;
+      font-weight: 950;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color: #06101f;
+      border: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: rgba(96,165,250,.14);
+      color: #bfdbfe;
+      border: 1px solid rgba(147,197,253,.26);
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .locked {
+      border: 1px dashed rgba(245,158,11,.55);
+      background: rgba(245,158,11,.08);
+    }
+
+    @media (max-width: 820px) {
+      .grid-3 { grid-template-columns: 1fr; }
+      .touch-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_334_MOBILE_READY_PWA_APP_SHELL_START -->
+  <main class="shell" data-step="334" data-surface="pos-mobile-pwa">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 334</span>
+      <h1 data-i18n="pos_pwa.title">Mobile-ready PWA</h1>
+      <p data-i18n="pos_pwa.description">POS ekranlarını mobil kullanım, install prompt, manifest ve service worker hazırlığıyla PWA yüzeyine bağla.</p>
+    </section>
+
+    <section class="grid-3">
+      <!-- PIX2PI_334_PWA_MANIFEST_START -->
+      <article class="card metric" data-widget="pwa_manifest">
+        <h2>Manifest</h2>
+        <strong>/manifest.json</strong>
+        <p>display=standalone / orientation=portrait</p>
+      </article>
+      <!-- PIX2PI_334_PWA_MANIFEST_END -->
+
+      <!-- PIX2PI_334_SERVICE_WORKER_PLACEHOLDER_START -->
+      <article class="card metric" data-widget="service_worker_placeholder">
+        <h2>Service worker</h2>
+        <strong id="pwa-service-worker-status">CHECKING</strong>
+        <p>/sw.js cache-first static + offline fallback</p>
+      </article>
+      <!-- PIX2PI_334_SERVICE_WORKER_PLACEHOLDER_END -->
+
+      <!-- PIX2PI_334_INSTALL_PROMPT_RUNTIME_CONTRACT_START -->
+      <article class="card metric" data-widget="install_prompt_runtime_contract">
+        <h2>Install prompt</h2>
+        <strong id="pwa-install-status">WAITING</strong>
+        <button type="button" id="pwa-install-button" class="primary" style="margin-top:12px;">PWA install prompt</button>
+      </article>
+      <!-- PIX2PI_334_INSTALL_PROMPT_RUNTIME_CONTRACT_END -->
+    </section>
+
+    <!-- PIX2PI_334_SAFE_AREA_MOBILE_VIEWPORT_CONTRACT_START -->
+    <section class="card" data-widget="safe_area_mobile_viewport_contract">
+      <h2>Safe-area / mobile viewport</h2>
+      <p>viewport-fit=cover / env(safe-area-inset-*) / touch-action=manipulation / overscroll-behavior=contain</p>
+    </section>
+    <!-- PIX2PI_334_SAFE_AREA_MOBILE_VIEWPORT_CONTRACT_END -->
+
+    <!-- PIX2PI_334_TOUCH_OPTIMIZED_NAVIGATION_START -->
+    <nav class="touch-nav" data-widget="touch_optimized_navigation" aria-label="POS PWA hızlı navigasyon">
+      <a href="/login/">Giriş</a>
+      <a href="/sale/">Satış</a>
+      <a href="/checkout/">Ödeme</a>
+      <a href="/offline/">Offline</a>
+    </nav>
+    <!-- PIX2PI_334_TOUCH_OPTIMIZED_NAVIGATION_END -->
+
+    <section class="grid-3">
+      <!-- PIX2PI_334_SESSION_PRESERVATION_CONTRACT_START -->
+      <article class="card metric" data-widget="tenant_device_cashier_session_preservation_contract">
+        <h2>Tenant</h2>
+        <strong id="pwa-tenant">controlled-pilot</strong>
+        <p>Tenant preference korunur.</p>
+      </article>
+
+      <article class="card metric">
+        <h2>Device</h2>
+        <strong id="pwa-device">NO_DEVICE</strong>
+        <p>POS device id korunur.</p>
+      </article>
+
+      <article class="card metric">
+        <h2>Session / queue</h2>
+        <strong id="pwa-session">NO_SESSION</strong>
+        <p>Offline queue: <span id="pwa-offline-queue-count">0</span></p>
+      </article>
+      <!-- PIX2PI_334_SESSION_PRESERVATION_CONTRACT_END -->
+    </section>
+
+    <!-- PIX2PI_334_OFFLINE_FALLBACK_CONTRACT_START -->
+    <section class="card locked" data-widget="offline_fallback_page">
+      <h2>Offline fallback page</h2>
+      <p>Fallback: /offline-fallback.html. Production offline replay ve payment finalize kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_334_OFFLINE_FALLBACK_CONTRACT_END -->
+
+    <!-- PIX2PI_334_CACHE_STRATEGY_PLACEHOLDER_START -->
+    <section class="card" data-widget="cache_strategy_placeholder">
+      <h2>Cache strategy placeholder</h2>
+      <p>CACHE_FIRST_STATIC_NETWORK_FALLBACK. POS route allowlist: /, /login/, /sale/, /checkout/, /offline/, /pwa/.</p>
+    </section>
+    <!-- PIX2PI_334_CACHE_STRATEGY_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_334_POS_ROUTE_CACHE_ALLOWLIST_START -->
+    <section class="card" data-widget="pos_route_cache_allowlist">
+      <h2>POS route cache allowlist</h2>
+      <p>/login/ /sale/ /checkout/ /offline/ /pwa/ /manifest.json /offline-fallback.html</p>
+    </section>
+    <!-- PIX2PI_334_POS_ROUTE_CACHE_ALLOWLIST_END -->
+
+    <!-- PIX2PI_334_PWA_ICON_ASSET_PLACEHOLDER_START -->
+    <section class="card" data-widget="pwa_icon_asset_placeholder">
+      <h2>PWA icon / asset placeholder</h2>
+      <p>icon-192-placeholder.svg ve icon-512-placeholder.svg hazırdır.</p>
+    </section>
+    <!-- PIX2PI_334_PWA_ICON_ASSET_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_334_STANDALONE_STATUS_START -->
+    <section class="card" data-widget="standalone_status">
+      <h2>PWA standalone status</h2>
+      <p id="pwa-standalone-status">BROWSER</p>
+    </section>
+    <!-- PIX2PI_334_STANDALONE_STATUS_END -->
+
+    <!-- PIX2PI_334_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_pwa_markers">
+      <h2 data-i18n="pos_pwa.i18n_ready">i18n-ready PWA</h2>
+      <p data-i18n="pos_pwa.surface_ready">Mobile-ready PWA ekran metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_334_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_334_MOBILE_READY_PWA_APP_SHELL_END -->
+
+  <script src="/assets/pwa/pos-pwa-runtime.js"></script>
+  <script>
+    (function () {
+      const installButton = document.getElementById("pwa-install-button");
+
+      Pix2piPOSPWA.bootPOSPWAScreen();
+
+      installButton.addEventListener("click", async function () {
+        const result = await Pix2piPOSPWA.requestInstallPrompt();
+        console.log("PIX2PI_334_PWA_INSTALL_PROMPT_RESULT", result);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "module_code": "FAZ_7_8Z",
+  "module_name": "Zirve Connector Module Foundation",
+  "provider_id": "zirve",
+  "provider_display_name": "Zirve",
+  "module_status": "READY",
+  "dry_run_module_status": "FOUNDATION_READY_DRY_RUN_ONLY",
+  "provider_live_module_status": "NOT_STARTED",
+  "handoff_gate_status": "READY_FOR_PROVIDER_LIVE_MODULE",
+  "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+  "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+  "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+  "real_delivery_channel_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+  "real_operator_provider_action_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+  "secret_policy": "FORBIDDEN_IN_CODE_CONFIG_DOCS",
+  "tenant_safety_mode": "TENANT_CONTEXT_REQUIRED",
+  "audit_policy": "AUDIT_DECISION_REQUIRED_FOR_EVERY_OPERATION",
+  "supported_capabilities": [
+    "PROVIDER_IDENTITY",
+    "EXPORT_PACKAGE_DRY_RUN_CONTRACT",
+    "IMPORT_DELIVERY_CONTRACT_PLACEHOLDER",
+    "VALIDATION_ERROR_MAPPING_READY",
+    "RETRY_DLQ_POLICY_READY",
+    "MANUAL_REVIEW_READY",
+    "E2E_DRY_RUN_READY"
+  ],
+  "supported_auth_modes": [
+    "NONE_DRY_RUN",
+    "CREDENTIAL_REFERENCE_ONLY",
+    "PROVIDER_LIVE_MODULE_ONLY"
+  ],
+  "supported_delivery_modes": [
+    "NONE_DRY_RUN",
+    "FILE_PACKAGE_DRY_RUN",
+    "PROVIDER_LIVE_MODULE_ONLY"
+  ],
+  "supported_sync_directions": [
+    "PIX2PI_TO_ZIRVE",
+    "ZIRVE_TO_PIX2PI"
+  ],
+  "live_operation_policy": {
+    "real_zirve_api": false,
+    "real_file_delivery": false,
+    "real_erp_write": false,
+    "real_delivery_channel": false,
+    "real_operator_provider_action": false
+  }
+}

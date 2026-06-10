@@ -1,0 +1,30 @@
+{
+  "step": "FAZ 7-R / 332",
+  "name": "POS sepet / ödeme akışı real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "pos-checkout-payment-332-20260513_230836",
+  "cartId": "cart-332-main-20260513_230836",
+  "paymentId": "payment-332-main-20260513_230836",
+  "routes": [
+    "/checkout/",
+    "POST /api/pos/checkout/cart-create",
+    "POST /api/pos/checkout/cart-add-item",
+    "POST /api/pos/checkout/cart-summary",
+    "POST /api/pos/checkout/payment-start",
+    "POST /api/pos/checkout/payment-complete"
+  ],
+  "requiredEvidence": [
+    "cart create",
+    "cart add item",
+    "cart summary",
+    "payment start",
+    "payment idempotency",
+    "payment paid",
+    "payment failed placeholder",
+    "tenant-safe checkout guard",
+    "no-role denied",
+    "rollback no partial write",
+    "route smoke",
+    "checkout audit evidence"
+  ]
+}

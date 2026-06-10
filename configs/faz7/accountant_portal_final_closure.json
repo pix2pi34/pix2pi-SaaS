@@ -1,0 +1,50 @@
+{
+  "module_code": "FAZ_7_12_ACCOUNTANT_PORTAL_FINAL_CLOSURE",
+  "mode": "ACCOUNTANT_PORTAL_FINAL_CLOSURE_COMMERCIAL_HANDOFF_GATE",
+  "status": "READY_DRY_RUN_ONLY",
+  "depends_on": {
+    "faz_7_9_accountant_portal_commercial_surface_final_status": "PASS",
+    "faz_7_10_accountant_portal_access_runtime_final_status": "PASS",
+    "faz_7_11_accountant_portal_reporting_export_preview_final_status": "PASS"
+  },
+  "dependency_seals": [
+    {
+      "module_code": "FAZ_7_9_ACCOUNTANT_PORTAL_COMMERCIAL_SURFACE",
+      "final_status": "PASS",
+      "seal_status": "SEALED",
+      "gate_status": "READY_AFTER_TEST_AND_AUDIT_PASS"
+    },
+    {
+      "module_code": "FAZ_7_10_ACCOUNTANT_PORTAL_ACCESS_RUNTIME",
+      "final_status": "PASS",
+      "seal_status": "SEALED",
+      "gate_status": "READY_AFTER_TEST_AND_AUDIT_PASS"
+    },
+    {
+      "module_code": "FAZ_7_11_ACCOUNTANT_PORTAL_REPORTING_EXPORT_PREVIEW",
+      "final_status": "PASS",
+      "seal_status": "SEALED",
+      "gate_status": "READY_AFTER_TEST_AND_AUDIT_PASS"
+    }
+  ],
+  "provider_dry_run_set": "PARASUT_LOGO_MIKRO_ZIRVE",
+  "provider_live_modules_status": "NOT_STARTED",
+  "commercial_handoff_gate": "READY_FOR_COMMERCIAL_LIVE_MODULE",
+  "closed_live_gates": {
+    "real_accountant_billing_status": "CLOSED_UNTIL_BILLING_LIVE_MODULE",
+    "real_payment_capture_status": "CLOSED_UNTIL_BILLING_LIVE_MODULE",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "real_customer_data_export_live_status": "CLOSED_UNTIL_EXPORT_LIVE_MODULE",
+    "real_operator_provider_action_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE"
+  },
+  "live_operation_policy": {
+    "billing": "NO_REAL_ACCOUNTANT_BILLING_IN_FINAL_CLOSURE",
+    "payment_capture": "NO_REAL_PAYMENT_CAPTURE_IN_FINAL_CLOSURE",
+    "provider_api": "NO_REAL_PROVIDER_API_OPERATION_IN_FINAL_CLOSURE",
+    "file_delivery": "NO_REAL_FILE_DELIVERY_IN_FINAL_CLOSURE",
+    "erp_write": "NO_REAL_ERP_WRITE_IN_FINAL_CLOSURE",
+    "customer_data_export": "NO_REAL_CUSTOMER_DATA_EXPORT_IN_FINAL_CLOSURE"
+  }
+}

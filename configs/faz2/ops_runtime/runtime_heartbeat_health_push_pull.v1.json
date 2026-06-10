@@ -1,0 +1,33 @@
+{
+  "phase": "FAZ 2-7.1.2",
+  "runtime": "runtime_heartbeat_health_push_pull",
+  "heartbeat_path": "/ops/registry/heartbeat",
+  "health_snapshot_path": "/ops/registry/health",
+  "heartbeat_method": "POST",
+  "snapshot_method": "GET",
+  "tenant_header": "X-Tenant-ID",
+  "require_tenant_header": true,
+  "allow_body_tenant_fallback": false,
+  "default_heartbeat_status": "HEALTHY",
+  "default_metadata_visibility": "INTERNAL",
+  "enable_stale_cleanup_bridge": true,
+  "guards": [
+    "heartbeat_post_method_required",
+    "health_get_method_required",
+    "tenant_header_required",
+    "cross_tenant_body_denied",
+    "registry_required",
+    "valid_json_body_required",
+    "service_name_required",
+    "tenant_aware_snapshot_visibility",
+    "stale_cleanup_bridge"
+  ],
+  "bridges": [
+    "instance_metadata_runtime",
+    "registry_visibility_runtime",
+    "stale_instance_cleanup_runtime",
+    "register_or_update_instance",
+    "upsert_last_heartbeat_metadata"
+  ],
+  "next_ready": "FAZ_2_7_2_2_RESTART_ACTION_RUNTIME"
+}

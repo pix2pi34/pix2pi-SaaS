@@ -1,0 +1,41 @@
+version: v1
+thresholds:
+  - id: infra.cpu.usage
+    warn: 70
+    crit: 85
+    unit: percent
+
+  - id: infra.memory.usage
+    warn: 75
+    crit: 90
+    unit: percent
+
+  - id: infra.io.utilization
+    warn: 70
+    crit: 90
+    unit: percent
+
+  - id: app.latency.p95
+    warn: 300
+    crit: 800
+    unit: ms
+
+  - id: app.error.rate
+    warn: 2
+    crit: 5
+    unit: percent
+
+  - id: event.backlog.size
+    warn: 1000
+    crit: 5000
+    unit: count
+
+  - id: db.storage.usage
+    warn: 70
+    crit: 85
+    unit: percent
+
+  - id: app.connection.saturation
+    warn: 80
+    crit: 95
+    unit: percent

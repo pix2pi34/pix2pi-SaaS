@@ -1,0 +1,37 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 185,
+  "step": "FAZ_4_15_5",
+  "title": "Search / index projection tabloları",
+  "priority_group": "DB-L6 Reporting / Readmodel",
+  "depends_on": [
+    "180_FAZ_4_14_3_IMPORT_STAGING_TABLES",
+    "181_FAZ_4_14_7_MIGRATION_LIFECYCLE_IMPORT_TESTS",
+    "182_FAZ_4_14_4_BACKFILL_REBUILD_SCRIPT_STANDARD",
+    "183_FAZ_4_14_1_MIGRATION_CHAIN_STANDARD",
+    "184_FAZ_4_14_2_REFERENCE_DATA_SEED_STANDARD"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "tables": [
+    "search_projection_sources",
+    "search_index_documents",
+    "search_index_terms",
+    "search_projection_offsets",
+    "search_projection_rebuild_jobs",
+    "search_projection_audit_events"
+  ],
+  "readmodel_scope": [
+    "tenant_safe_search_documents",
+    "search_terms",
+    "projection_offsets",
+    "projection_rebuild_jobs",
+    "projection_audit_events"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "186_FAZ_4_15_2_FINANCE_REPORTING_MART"
+  ]
+}

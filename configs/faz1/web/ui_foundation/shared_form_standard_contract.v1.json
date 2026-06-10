@@ -1,0 +1,52 @@
+{
+  "phase": "FAZ_1_4_4",
+  "module": "WEB_L1_UI_FOUNDATION_DESIGN_SYSTEM",
+  "component": "shared_form_standard",
+  "status": "READY",
+  "required_capabilities": [
+    "input_standard",
+    "validation_standard",
+    "error_display",
+    "save_cancel_pattern",
+    "form_tests"
+  ],
+  "form_contract": {
+    "form_class": "pix2pi-form",
+    "form_row_class": "pix2pi-form-row",
+    "input_class": "pix2pi-input",
+    "select_class": "pix2pi-select",
+    "textarea_class": "pix2pi-textarea",
+    "field_error_class": "pix2pi-field-error",
+    "form_error_class": "pix2pi-form-error",
+    "form_success_class": "pix2pi-form-success",
+    "action_bar_class": "pix2pi-form-actions",
+    "save_button_class": "pix2pi-button primary",
+    "cancel_button_class": "pix2pi-button secondary"
+  },
+  "validation_contract": {
+    "required": "FIELD_REQUIRED",
+    "email": "INVALID_EMAIL",
+    "min_length": "MIN_LENGTH_NOT_MET",
+    "tenant_code": "INVALID_TENANT_CODE",
+    "tax_number": "INVALID_TAX_NUMBER"
+  },
+  "save_cancel_contract": {
+    "save_event": "pix2pi:form-save",
+    "cancel_event": "pix2pi:form-cancel",
+    "validation_event": "pix2pi:form-validation",
+    "dirty_state_policy": "WARN_ON_CANCEL_WHEN_DIRTY",
+    "save_policy": "VALIDATE_BEFORE_SAVE"
+  },
+  "test_contract": {
+    "required_fields": [
+      "legal_name",
+      "email",
+      "tenant_code"
+    ],
+    "optional_fields": [
+      "tax_number",
+      "description"
+    ],
+    "final_gate": "PASS_ONLY_IF_ALL_FORM_TESTS_PASS"
+  }
+}

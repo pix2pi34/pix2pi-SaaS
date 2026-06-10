@@ -1,0 +1,43 @@
+gate	status	note
+baseline	PASS	22.1 observability baseline
+metrics	PASS	22.2 metrics scrape readiness
+logs	PASS	22.3 logs/loki readiness
+traces	PASS	22.4 traces/tempo readiness
+alerts	PASS	22.5 alert rule catalog
+ops_console	PASS	22.6 ops console signal contract
+artifact_coverage	PASS	missing=0
+no_runtime_change	PASS	failures=0
+no_config_change	PASS	failures=0
+body_not_printed	PASS	failures=0
+secret_safe	PASS	failures=0
+metric_evidence	PASS	total=1032 missing=0
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+ops_console_code_changed	NO	test only
+ops_console_api_implemented	NO	test only
+ops_console_ui_changed	NO	test only
+prometheus_config_changed	NO	evidence only
+alertmanager_config_changed	NO	evidence only
+grafana_dashboard_changed	NO	evidence only
+grafana_alert_changed	NO	evidence only
+alert_rule_changed	NO	evidence only
+loki_config_changed	NO	evidence only
+tempo_config_changed	NO	evidence only
+otel_config_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+metric_body_printed	NO	secret-safe report
+log_content_printed	NO	secret-safe report
+trace_body_printed	NO	secret-safe report
+query_body_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

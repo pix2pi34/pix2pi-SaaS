@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <title>Pix2pi POS Kasiyer Giriş</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: rgba(17,24,39,.9);
+      --card: rgba(31,41,55,.9);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --border: rgba(255,255,255,.12);
+      --brand: #60a5fa;
+      --brand2: #22c55e;
+      --danger: #fb7185;
+      --warn: #f59e0b;
+      --shadow: 0 20px 52px rgba(0,0,0,.28);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(96,165,250,.24), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(34,197,94,.14), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+      display: grid;
+      place-items: center;
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      backdrop-filter: blur(16px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 8vw, 62px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr .85fr;
+      gap: 16px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--muted);
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: rgba(15,23,42,.88);
+      color: var(--text);
+      border-radius: 18px;
+      padding: 17px 16px;
+      font: inherit;
+      font-size: 20px;
+      outline: none;
+    }
+
+    input[type="password"] {
+      letter-spacing: .25em;
+    }
+
+    button {
+      border: none;
+      border-radius: 18px;
+      padding: 16px 18px;
+      font: inherit;
+      font-weight: 950;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color: #06101f;
+      width: 100%;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: rgba(96,165,250,.14);
+      color: #bfdbfe;
+      border: 1px solid rgba(147,197,253,.26);
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .status-box {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(15,23,42,.56);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .status-box[data-validation-status="valid"] {
+      border-color: rgba(34,197,94,.42);
+      color: #bbf7d0;
+    }
+
+    .status-box[data-validation-status="invalid"] {
+      border-color: rgba(251,113,133,.5);
+      color: #fecdd3;
+    }
+
+    .locked {
+      border: 1px dashed rgba(245,158,11,.55);
+      background: rgba(245,158,11,.08);
+    }
+
+    @media (max-width: 820px) {
+      body { display: block; }
+      .grid { grid-template-columns: 1fr; }
+      .hero, .card { padding: 20px; border-radius: 22px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_330_CASHIER_LOGIN_APP_SHELL_START -->
+  <main class="shell" data-step="330" data-surface="pos-cashier-login">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 330</span>
+      <h1 data-i18n="pos_cashier_login.title">Kasiyer giriş</h1>
+      <p data-i18n="pos_cashier_login.description">POS kullanımına başlamadan önce kasiyer kodu ve PIN ile oturum hazırla.</p>
+    </section>
+
+    <section class="grid">
+      <!-- PIX2PI_330_CASHIER_CODE_PIN_FORM_START -->
+      <article class="card" data-widget="cashier_code_pin_form">
+        <h2>Giriş bilgileri</h2>
+
+        <form id="cashier-login-form" class="form-grid">
+          <label>
+            Kasiyer kodu
+            <input name="cashier_code" autocomplete="username" inputmode="text" placeholder="Örn. KASA01" required />
+          </label>
+
+          <label>
+            PIN
+            <input name="pin" type="password" autocomplete="current-password" inputmode="numeric" maxlength="8" placeholder="••••" required />
+          </label>
+
+          <!-- PIX2PI_330_LOGIN_VALIDATION_CONTRACT_START -->
+          <section id="cashier-login-validation" class="status-box" hidden data-validation-status="">
+            Login validation sonucu burada gösterilir.
+          </section>
+          <!-- PIX2PI_330_LOGIN_VALIDATION_CONTRACT_END -->
+
+          <button type="submit">POS oturumu hazırla</button>
+        </form>
+      </article>
+      <!-- PIX2PI_330_CASHIER_CODE_PIN_FORM_END -->
+
+      <aside class="mini-grid">
+        <!-- PIX2PI_330_TENANT_CONTEXT_INDICATOR_START -->
+        <article class="card" data-widget="tenant_context_indicator">
+          <h2>Tenant context</h2>
+          <p>Tenant: <strong id="pos-login-tenant">controlled-pilot</strong></p>
+          <p>Session: <strong id="pos-login-session-status">NO_SESSION</strong></p>
+        </article>
+        <!-- PIX2PI_330_TENANT_CONTEXT_INDICATOR_END -->
+
+        <!-- PIX2PI_330_DEVICE_REGISTER_PLACEHOLDER_START -->
+        <article class="card" data-widget="device_register_placeholder">
+          <h2>Cihaz / kasa</h2>
+          <p>Device: <strong id="pos-login-device">pending</strong></p>
+          <p>Kasa register akışı sonraki POS adımlarında gerçek backend ile bağlanacak.</p>
+        </article>
+        <!-- PIX2PI_330_DEVICE_REGISTER_PLACEHOLDER_END -->
+      </aside>
+    </section>
+
+    <!-- PIX2PI_330_AUTH_ENDPOINT_CONTRACT_START -->
+    <section class="card" data-widget="auth_endpoint_contract">
+      <h2>Auth endpoint contract</h2>
+      <p>Cashier login: <strong>/api/pos/auth/cashier-login</strong></p>
+      <p>Session verify: <strong>/api/pos/auth/session</strong></p>
+    </section>
+    <!-- PIX2PI_330_AUTH_ENDPOINT_CONTRACT_END -->
+
+    <!-- PIX2PI_330_SESSION_STORAGE_CONTRACT_START -->
+    <section class="card" data-widget="session_storage_contract">
+      <h2>Session storage contract</h2>
+      <p>pix2pi.pos.tenant.preference / pix2pi.pos.device.id / pix2pi.pos.cashier.session</p>
+    </section>
+    <!-- PIX2PI_330_SESSION_STORAGE_CONTRACT_END -->
+
+    <!-- PIX2PI_330_ERROR_LOCKOUT_MESSAGES_START -->
+    <section class="card locked" data-widget="error_lockout_messages">
+      <h2>Hata / lockout mesajları</h2>
+      <p>Geçersiz kasiyer kodu, hatalı PIN ve 5 başarısız deneme sonrası lockout policy hazırdır.</p>
+    </section>
+    <!-- PIX2PI_330_ERROR_LOCKOUT_MESSAGES_END -->
+
+    <!-- PIX2PI_330_POS_SALE_REDIRECT_PLACEHOLDER_START -->
+    <section class="card" data-widget="pos_sale_redirect_placeholder">
+      <h2>Satış ekranına yönlendirme</h2>
+      <p>Başarılı oturum sonrası hedef: <strong>/sale/</strong>. Gerçek satış ekranı 331 adımında kurulacak.</p>
+    </section>
+    <!-- PIX2PI_330_POS_SALE_REDIRECT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_330_OFFLINE_LOGIN_POLICY_PLACEHOLDER_START -->
+    <section class="card locked" data-widget="offline_login_policy_placeholder">
+      <h2>Offline login policy placeholder</h2>
+      <p>Offline login ve cached cashier policy 333 offline-ready POS hazırlığında genişletilecek.</p>
+    </section>
+    <!-- PIX2PI_330_OFFLINE_LOGIN_POLICY_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_330_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_cashier_login_markers">
+      <h2 data-i18n="pos_cashier_login.i18n_ready">i18n-ready cashier login</h2>
+      <p data-i18n="pos_cashier_login.surface_ready">Kasiyer giriş ekran metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_330_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_330_CASHIER_LOGIN_APP_SHELL_END -->
+
+  <script src="/assets/login/cashier-login-runtime.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById("cashier-login-form");
+      const status = document.getElementById("cashier-login-validation");
+
+      Pix2piCashierLogin.bootCashierLoginScreen();
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const payload = Pix2piCashierLogin.readLoginForm(form);
+        const result = await Pix2piCashierLogin.loginCashier(payload);
+        Pix2piCashierLogin.renderLoginValidation(status, result.validation);
+        Pix2piCashierLogin.renderLoginContext();
+
+        if (result.logged_in) {
+          status.textContent = "Kasiyer oturumu hazır. Satış ekranı 331 adımında bağlanacak.";
+          status.setAttribute("data-validation-status", "valid");
+          status.hidden = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+version: v1
+registry_rules:
+  health_ttl_seconds: __REGISTRY_HEALTH_TTL_SECONDS__
+  stale_after_seconds: __REGISTRY_STALE_AFTER_SECONDS__
+  max_instances_per_service: __REGISTRY_MAX_INSTANCES_PER_SERVICE__
+  tenant_visibility_mode: __REGISTRY_TENANT_VISIBILITY_MODE__
+
+mission_control_rules:
+  allow_restart: __MISSION_CONTROL_ALLOW_RESTART__
+  allow_isolate: __MISSION_CONTROL_ALLOW_ISOLATE__
+  allow_maintenance: __MISSION_CONTROL_ALLOW_MAINTENANCE__
+  incident_notes_enabled: __MISSION_CONTROL_INCIDENT_NOTES__
+  default_view: __MISSION_CONTROL_DEFAULT_VIEW__

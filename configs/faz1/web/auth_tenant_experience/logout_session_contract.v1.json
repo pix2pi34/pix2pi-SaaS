@@ -1,0 +1,43 @@
+{
+  "phase": "FAZ_1_5_2",
+  "module": "WEB_L2_AUTH_TENANT_EXPERIENCE",
+  "component": "logout_session_expiry_flow",
+  "status": "READY",
+  "required_capabilities": [
+    "logout",
+    "token_cleanup",
+    "expired_session_redirect",
+    "session_timeout",
+    "logout_tests"
+  ],
+  "storage_keys": {
+    "session": "pix2pi.session",
+    "auth_token": "pix2pi.authToken",
+    "refresh_token": "pix2pi.refreshToken",
+    "active_tenant": "pix2pi.activeTenant",
+    "tenant_context": "pix2pi.tenantContext",
+    "login_attempt": "pix2pi.loginAttempt",
+    "login_error": "pix2pi.loginError",
+    "logout_signal": "pix2pi.logoutSignal",
+    "session_expired_signal": "pix2pi.sessionExpiredSignal",
+    "last_redirect_reason": "pix2pi.lastRedirectReason"
+  },
+  "logout_contract": {
+    "logout_event": "pix2pi:logout",
+    "token_cleanup_event": "pix2pi:token-cleanup",
+    "session_expired_event": "pix2pi:session-expired",
+    "redirect_event": "pix2pi:auth-redirect",
+    "logout_policy": "CLEAR_SESSION_TOKEN_TENANT_AND_ERROR_STATE"
+  },
+  "expiry_contract": {
+    "expired_session_redirect_target": "../auth-errors/session-expired.html",
+    "login_redirect_target": "../login-session/index.html",
+    "timeout_check_interval_ms": 1000,
+    "timeout_policy": "CHECK_EXPIRES_AT_AND_REDIRECT_ON_EXPIRY"
+  },
+  "test_contract": {
+    "demo_session_minutes": 30,
+    "expired_session_minutes": -1,
+    "timeout_demo_seconds": 5
+  }
+}

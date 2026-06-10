@@ -1,0 +1,22 @@
+{
+  "step": "FAZ 7-R / 357",
+  "name": "Yardım merkezi / ilk doküman seti real final",
+  "routes": [
+    "/help-center/",
+    "/help-center/login/",
+    "/help-center/business/",
+    "/help-center/party/",
+    "/help-center/product/",
+    "/help-center/pos-sale/",
+    "/help-center/report/",
+    "/help-center/language/"
+  ],
+  "requiredLocales": ["tr-TR", "ota", "ar", "fa", "en"],
+  "smokeRunId": "help-center-357-20260513_080936",
+  "evidenceRequired": [
+    "every document HTTP 200",
+    "data-i18n keys exist in all locale files",
+    "help center smoke DB write",
+    "smoke DB SELECT"
+  ]
+}

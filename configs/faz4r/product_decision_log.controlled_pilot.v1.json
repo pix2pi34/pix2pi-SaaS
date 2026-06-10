@@ -1,0 +1,91 @@
+{
+  "decision_log_id": "product_decision_log.controlled_pilot.v1",
+  "decision_log_status": "READY",
+  "decision_log_mode": "CONTROLLED_PILOT",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT",
+    "tenant_status": "PILOT_ACTIVE"
+  },
+  "chain_dependencies": {
+    "223_FAZ_4_16_6_3_HIZLI_DUZELTME_HATTI": "PASS"
+  },
+  "decision_rules": [
+    {"code": "PRODUCT_DECISION_INTAKE", "required": true, "status": "READY", "area": "INTAKE", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/product_decision_intake.md"},
+    {"code": "DECISION_TYPE_TAXONOMY", "required": true, "status": "READY", "area": "TAXONOMY", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/decision_type_taxonomy.md"},
+    {"code": "DECISION_OWNER_ASSIGNMENT", "required": true, "status": "READY", "area": "OWNER", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/decision_owner_assignment.md"},
+    {"code": "IMPACT_AREA_MAPPING", "required": true, "status": "READY", "area": "IMPACT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/impact_area_mapping.md"},
+    {"code": "PRIORITY_MAPPING", "required": true, "status": "READY", "area": "PRIORITY", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/priority_mapping.md"},
+    {"code": "SCOPE_BOUNDARY_MAPPING", "required": true, "status": "READY", "area": "SCOPE", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/scope_boundary_mapping.md"},
+    {"code": "ACCEPTED_DECISION_MARKER", "required": true, "status": "READY", "area": "ACCEPTED", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/accepted_decision_marker.md"},
+    {"code": "REJECTED_DECISION_MARKER", "required": true, "status": "READY", "area": "REJECTED", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/rejected_decision_marker.md"},
+    {"code": "DEFERRED_DECISION_MARKER", "required": true, "status": "READY", "area": "DEFERRED", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/deferred_decision_marker.md"},
+    {"code": "QUICK_FIX_LINK", "required": true, "status": "READY", "area": "QUICK_FIX", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/quick_fix_link.md"},
+    {"code": "FEEDBACK_LINK", "required": true, "status": "READY", "area": "FEEDBACK", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/feedback_link.md"},
+    {"code": "EVIDENCE_ATTACHMENT", "required": true, "status": "READY", "area": "EVIDENCE", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/evidence_attachment.md"},
+    {"code": "APPROVAL_RECORD", "required": true, "status": "READY", "area": "APPROVAL", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/approval_record.md"},
+    {"code": "DECISION_HISTORY", "required": true, "status": "READY", "area": "HISTORY", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/decision_history.md"},
+    {"code": "CLOSURE_CHECKLIST", "required": true, "status": "READY", "area": "CLOSURE", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/closure_checklist.md"},
+    {"code": "CLOSED_PROVIDER_POLICY_GUARD", "required": true, "status": "READY", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/product_decision_log/closed_provider_policy_guard.md"}
+  ],
+  "decision_controls": {
+    "quick_fix_lane_status": "PASS",
+    "decision_type_taxonomy_status": "READY",
+    "owner_assignment_status": "READY",
+    "impact_area_mapping_status": "READY",
+    "priority_mapping_status": "READY",
+    "scope_boundary_mapping_status": "READY",
+    "approval_record_status": "READY",
+    "closure_checklist_status": "READY",
+    "no_auto_apply_decision": true,
+    "no_hotfix_deploy": true,
+    "no_real_roadmap_tool": true,
+    "no_real_crm_system": true,
+    "no_real_ticket_system": true,
+    "no_live_external_provider_activation": true
+  },
+  "decision_metrics": {
+    "open_blocker_count": 0,
+    "critical_issue_count": 0,
+    "required_fail_count": 0,
+    "missing_rule_count": 0,
+    "auto_apply_decision_count": 0,
+    "hotfix_deploy_count": 0,
+    "real_roadmap_tool_dispatch_count": 0,
+    "real_crm_dispatch_count": 0,
+    "real_ticket_dispatch_count": 0,
+    "live_external_policy_status": "CLOSED"
+  },
+  "summary": {
+    "total_rule_count": 16,
+    "ready_rule_count": 16,
+    "missing_rule_count": 0,
+    "required_fail_count": 0,
+    "critical_issue_count": 0,
+    "open_blocker_count": 0,
+    "quick_fix_lane_status": "PASS",
+    "decision_type_taxonomy_status": "READY",
+    "owner_assignment_status": "READY",
+    "impact_area_mapping_status": "READY",
+    "approval_record_status": "READY",
+    "closure_checklist_status": "READY",
+    "decision_log_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "real_roadmap_tool": "CLOSED",
+    "real_crm_system": "CLOSED",
+    "real_ticket_system": "CLOSED",
+    "real_email_dispatch": "CLOSED",
+    "production_launch": "CLOSED",
+    "hotfix_deploy": "CLOSED",
+    "real_rollback_execution": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

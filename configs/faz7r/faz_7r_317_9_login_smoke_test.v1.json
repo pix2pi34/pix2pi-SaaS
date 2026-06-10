@@ -1,0 +1,46 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "317.9",
+  "name": "Login smoke test gerçek E2E",
+  "component": "internal/auth/loginsmoke",
+  "verified_steps": [
+    "317.2",
+    "317.3",
+    "317.4",
+    "317.5",
+    "317.6",
+    "317.7",
+    "317.8"
+  ],
+  "panel_urls": {
+    "login": "https://panel.pix2pi.com.tr/login/",
+    "tenant_select": "https://panel.pix2pi.com.tr/tenant-select/",
+    "unauthorized": "https://panel.pix2pi.com.tr/unauthorized/",
+    "forbidden": "https://panel.pix2pi.com.tr/forbidden/"
+  },
+  "runtime_contract": {
+    "jwt_login_e2e": true,
+    "tenant_selection_e2e": true,
+    "multi_tenant_switch_e2e": true,
+    "remember_tenant_preference_e2e": true,
+    "session_timeout_e2e": true,
+    "login_error_message_e2e": true,
+    "access_denial_e2e": true,
+    "panel_route_smoke": true
+  },
+  "required_checks": [
+    "jwt_login_success",
+    "tenant_list_from_access_token",
+    "tenant_select_persists_preference",
+    "multi_tenant_switch",
+    "remember_tenant_restore",
+    "session_validate_touch",
+    "logout_revoke",
+    "wrong_password_safe_error",
+    "unauthorized_decision_401",
+    "forbidden_decision_403",
+    "panel_url_smoke",
+    "go_test"
+  ],
+  "next_step": "349 - Kullanıcı şifre / giriş akışı gerçek password/session"
+}

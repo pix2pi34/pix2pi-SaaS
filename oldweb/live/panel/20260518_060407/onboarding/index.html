@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="tr-TR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi | İşletme Onboarding</title>
+  <meta name="description" content="Pix2pi işletme onboarding ve pilot tenant açılışı." />
+  <meta property="og:title" content="Pix2pi İşletme Onboarding" />
+  <!-- PIX2PI_319_347_ONBOARDING_TENANT_OPENING_META -->
+  <style>
+    :root {
+      --bg: #07090d;
+      --panel: rgba(255,255,255,.06);
+      --line: rgba(255,214,10,.22);
+      --text: #f8fafc;
+      --muted: #a8b0bf;
+      --yellow: #ffd60a;
+      --ok: #34d399;
+      --danger: #fb7185;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 15%, rgba(255,214,10,.14), transparent 30rem),
+        linear-gradient(180deg, #05070a, #0b0f16);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .wrap { width: min(100% - 32px, 1180px); margin: 0 auto; padding: 42px 0; }
+    .hero, .card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.34);
+    }
+    h1 { margin: 0 0 10px; font-size: clamp(34px, 5vw, 60px); line-height: .95; letter-spacing: -.06em; }
+    h2 { margin: 0 0 16px; }
+    p { color: var(--muted); line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    label { display:block; color:var(--muted); font-weight:800; font-size:13px; margin:12px 0 6px; }
+    input, select {
+      width:100%;
+      height:48px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.055);
+      color:var(--text);
+      border-radius:13px;
+      padding:0 13px;
+      font:inherit;
+    }
+    select option { color:#111827; }
+    button {
+      width:100%;
+      height:52px;
+      margin-top:18px;
+      border:0;
+      border-radius:14px;
+      background:linear-gradient(135deg, var(--yellow), #f5b800);
+      color:#07090d;
+      font-weight:950;
+      cursor:pointer;
+    }
+    .status {
+      margin-top:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.2);
+      border-radius:16px;
+      padding:16px;
+      color:var(--muted);
+    }
+    .status[data-status="ok"] { color:var(--ok); border-color:rgba(52,211,153,.35); }
+    .status[data-status="error"] { color:var(--danger); border-color:rgba(251,113,133,.35); }
+    pre {
+      white-space: pre-wrap;
+      color:#dbeafe;
+      background:rgba(0,0,0,.26);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:16px;
+      padding:16px;
+      overflow:auto;
+      max-height:360px;
+    }
+    .checklist { display:grid; gap:10px; }
+    .item { border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:12px; color:var(--muted); }
+    .item strong { color:var(--text); }
+    @media(max-width: 860px){ .grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <!-- PIX2PI_319_347_ONBOARDING_TENANT_OPENING_SCREEN_START -->
+  <main class="wrap">
+    <section class="hero">
+      <h1>İşletme onboarding ve pilot tenant açılışı</h1>
+      <p>319.1–319.9 işletme bilgileri ile 347.1–347.5 pilot tenant config, dil, paket, şube ve kasa başlangıç kurulumu aynı kayıt akışı içinde doğrulanır.</p>
+    </section>
+
+    <section class="grid">
+      <form class="card" data-onboarding-form>
+        <h2>319 — İşletme onboarding</h2>
+
+        <label>319.1 İşletme adı</label>
+        <input name="businessName" value="Pix2pi Pilot Market" />
+
+        <label>319.2 Vergi / TCKN bilgisi</label>
+        <input name="taxIdentity" value="1234567890" />
+
+        <label>319.3 Adres</label>
+        <input name="addressLine" value="Merkez Mah. Ticaret Cad. No:1" />
+
+        <label>319.4 Şehir</label>
+        <input name="city" value="İstanbul" />
+
+        <label>319.5 Sektör</label>
+        <input name="sector" value="perakende" />
+
+        <label>319.6 Şube bilgisi</label>
+        <input name="branchName" value="Merkez Şube" />
+
+        <label>319.7 Varsayılan para birimi</label>
+        <select name="defaultCurrency">
+          <option value="TRY" selected>TRY</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+        </select>
+
+        <label>319.8 Varsayılan dil</label>
+        <select name="defaultLanguage">
+          <option value="tr-TR" selected>Türkçe</option>
+          <option value="ota">Osmanlıca Türkçesi</option>
+          <option value="ar">Arapça</option>
+          <option value="fa">Farsça</option>
+          <option value="en">English</option>
+        </select>
+
+        <label>319.9 İlk kullanıcı rolü</label>
+        <select name="initialRole">
+          <option value="owner" selected>Owner</option>
+          <option value="manager">Manager</option>
+          <option value="cashier">Kasiyer</option>
+          <option value="accountant">Muhasebeci</option>
+        </select>
+
+        <h2 style="margin-top:24px;">347 — Pilot tenant açılışı</h2>
+
+        <label>347.1 Tenant slug</label>
+        <input name="tenantSlug" value="pix2pi-pilot-market" />
+
+        <label>347.2 Varsayılan paket</label>
+        <input name="defaultPlan" value="pilot-free-controlled" />
+
+        <label>347.3 Kasa kodu</label>
+        <input name="registerCode" value="KASA-001" />
+
+        <button type="submit">319 + 347 kayıt akışını doğrula</button>
+      </form>
+
+      <aside class="card">
+        <h2>Alt iş kapanış kontrolü</h2>
+        <div class="checklist">
+          <div class="item"><strong>319.1</strong> İşletme adı kayıt kontratı</div>
+          <div class="item"><strong>319.2</strong> Vergi / TCKN kayıt kontratı</div>
+          <div class="item"><strong>319.3</strong> Adres kayıt kontratı</div>
+          <div class="item"><strong>319.4</strong> Sektör kayıt kontratı</div>
+          <div class="item"><strong>319.5</strong> Şube kayıt kontratı</div>
+          <div class="item"><strong>319.6</strong> Para birimi kayıt kontratı</div>
+          <div class="item"><strong>319.7</strong> Dil kayıt kontratı</div>
+          <div class="item"><strong>319.8</strong> İlk rol kayıt kontratı</div>
+          <div class="item"><strong>319.9</strong> Onboarding tamamlandı işareti</div>
+          <div class="item"><strong>347.1</strong> Pilot tenant config</div>
+          <div class="item"><strong>347.2</strong> Varsayılan dil tr-TR</div>
+          <div class="item"><strong>347.3</strong> Varsayılan paket</div>
+          <div class="item"><strong>347.4</strong> Şube / kasa başlangıç setup</div>
+          <div class="item"><strong>347.5</strong> Tenant opening smoke</div>
+        </div>
+
+        <div class="status" data-onboarding-status>Onboarding doğrulaması bekleniyor.</div>
+        <pre data-onboarding-payload>{}</pre>
+      </aside>
+    </section>
+  </main>
+  <script src="/onboarding/onboarding-runtime.js"></script>
+  <!-- PIX2PI_319_347_ONBOARDING_TENANT_OPENING_SCREEN_END -->
+</body>
+</html>

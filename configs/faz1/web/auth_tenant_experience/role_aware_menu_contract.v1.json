@@ -1,0 +1,60 @@
+{
+  "phase": "FAZ_1_5_4",
+  "module": "WEB_L2_AUTH_TENANT_EXPERIENCE",
+  "component": "role_aware_menu",
+  "status": "READY",
+  "required_capabilities": [
+    "role_based_menu",
+    "permission_based_menu",
+    "feature_entitlement_menu",
+    "accountant_portal_menu",
+    "admin_operator_separation"
+  ],
+  "roles": [
+    "SUPER_ADMIN",
+    "TENANT_ADMIN",
+    "OWNER",
+    "ACCOUNTANT",
+    "MANAGER",
+    "OPERATOR",
+    "SUPPORT"
+  ],
+  "permissions": [
+    "dashboard:view",
+    "tenant:admin",
+    "tenant:switch",
+    "erp:view",
+    "erp:write",
+    "inventory:view",
+    "inventory:write",
+    "accounting:view",
+    "accounting:export",
+    "accountant:portal",
+    "users:manage",
+    "settings:manage",
+    "ops:view"
+  ],
+  "entitlements": [
+    "feature:dashboard",
+    "feature:erp",
+    "feature:inventory",
+    "feature:accounting",
+    "feature:accountant_portal",
+    "feature:admin",
+    "feature:ops"
+  ],
+  "menu_groups": [
+    "dashboard",
+    "erp",
+    "inventory",
+    "accounting",
+    "accountant_portal",
+    "admin",
+    "ops"
+  ],
+  "guard_contract": {
+    "hidden_policy": "HIDE_UNAUTHORIZED_MENU_ITEM",
+    "disabled_policy": "DISABLE_ENTITLEMENT_BLOCKED_ITEM",
+    "admin_operator_policy": "SEPARATE_ADMIN_AND_OPERATOR_SURFACES"
+  }
+}

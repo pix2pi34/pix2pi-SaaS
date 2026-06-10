@@ -1,0 +1,36 @@
+{
+  "phase": "FAZ 2-7.2.2",
+  "runtime": "restart_action_runtime",
+  "require_tenant": true,
+  "allowed_operator_roles": [
+    "PLATFORM_ADMIN",
+    "OPS_ADMIN",
+    "SRE"
+  ],
+  "restartable_statuses": [
+    "HEALTHY",
+    "UNHEALTHY",
+    "STALE"
+  ],
+  "metadata_bridge_enabled": true,
+  "metadata_visibility": "INTERNAL",
+  "guards": [
+    "tenant_required",
+    "registry_required",
+    "instance_required",
+    "operator_required",
+    "operator_role_required",
+    "authorized_operator_role_required",
+    "cross_tenant_instance_denied",
+    "restartable_status_required",
+    "tenant_safe_action_access",
+    "audit_log_bridge"
+  ],
+  "bridges": [
+    "instance_metadata_runtime",
+    "restart_action_metadata",
+    "mission_control_action_state",
+    "audit_event_log"
+  ],
+  "next_ready": "FAZ_2_7_2_3_ISOLATE_QUARANTINE_ACTION_RUNTIME"
+}

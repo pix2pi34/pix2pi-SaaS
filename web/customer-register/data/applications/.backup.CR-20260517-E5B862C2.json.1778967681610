@@ -1,0 +1,29 @@
+{
+  "marker": "CUSTOMER_REGISTER_PENDING_APPLICATION_MARKER",
+  "application_id": "CR-20260517-E5B862C2",
+  "status": "PENDING",
+  "application_status": "PENDING",
+  "source": "phoenix_missing_email_manual_recovery",
+  "created_at": "2026-05-16T21:40:44.617364+00:00",
+  "updated_at": "2026-05-16T21:40:44.617364+00:00",
+  "company_name": "Digi Bilişim",
+  "owner_name": "Digi Bilişim Yetkili",
+  "email": "digibilisim@gmail.com",
+  "phone": "",
+  "approval_flow": {
+    "owner_admin_required": true,
+    "owner_admin_marker": "OWNER_REGISTER_APPROVALS_ADMIN_MARKER",
+    "tenant_create_real_create": false,
+    "tenant_create_status": "WAITING_OWNER_APPROVAL",
+    "note": "digibilisim@gmail.com listede görünmediği için manuel PENDING kayıt oluşturuldu."
+  },
+  "audit_trail": [
+    {
+      "at": "2026-05-16T21:40:44.617364+00:00",
+      "actor": "PIX2PI_OWNER_ADMIN",
+      "action": "CREATE_PENDING_APPLICATION_FOR_MISSING_EMAIL",
+      "to_status": "PENDING",
+      "tenant_created": false
+    }
+  ]
+}

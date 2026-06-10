@@ -1,0 +1,41 @@
+# FAZ 1-2.7 Audit / Export Isolation Strict Suite Result
+
+- Tarih: 2026-05-04T23:26:43+03:00
+- Repo: /root/pix2pi/pix2pi-SaaS
+- Backup dir: /root/pix2pi/pix2pi-SaaS/backups/faz1/faz_1_2_7_audit_export_isolation_strict_reseal_20260504_232636/suite_runtime
+
+## Required Scope
+- Tenant-safe audit
+- Legal entity-safe audit
+- Branch-safe audit
+- Tenant-safe export
+- Cross-tenant export guard
+- Export evidence
+
+## DB Counters
+- AUDIT_TABLE_COUNT=6
+- TENANT_SAFE_AUDIT_COLUMN_COUNT=6
+- LEGAL_ENTITY_SAFE_AUDIT_COLUMN_COUNT=1
+- BRANCH_SAFE_AUDIT_COLUMN_COUNT=1
+- AUDIT_RLS_ENABLED_COUNT=6
+- AUDIT_RLS_FORCED_COUNT=6
+- AUDIT_POLICY_COUNT=13
+- AUDIT_INDEX_COUNT=8
+
+## Repo Counters
+- EXPORT_CONTRACT_REPO_COUNT=67450
+- TENANT_SAFE_EXPORT_REPO_COUNT=136
+- CROSS_TENANT_EXPORT_GUARD_REPO_COUNT=1687
+- EXPORT_EVIDENCE_REPO_COUNT=110
+- EXPORT_TEST_REPO_COUNT=787
+- EXPORT_PATH_GUARD_REPO_COUNT=558
+- TENANT_SAFE_AUDIT_REPO_COUNT=358
+- LEGAL_ENTITY_SAFE_AUDIT_REPO_COUNT=5
+- BRANCH_SAFE_AUDIT_REPO_COUNT=8
+- API_EXPORT_GUARD_REPO_COUNT=1768
+- AUDIT_EXPORT_EVIDENCE_FILE_COUNT=365
+
+## Final Counters
+- PASS_COUNT=27
+- FAIL_COUNT=0
+- WARN_COUNT=0

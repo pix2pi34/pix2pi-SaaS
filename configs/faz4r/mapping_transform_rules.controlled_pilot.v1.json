@@ -1,0 +1,108 @@
+{
+  "rule_set_id": "mapping_transform_rules.controlled_pilot.v1",
+  "rule_set_status": "READY",
+  "transform_mode": "DRY_RUN",
+  "commit_allowed": false,
+  "common_transforms": [
+    "trim_string",
+    "uppercase_code",
+    "normalize_enum",
+    "normalize_date",
+    "parse_decimal",
+    "normalize_currency",
+    "normalize_boolean"
+  ],
+  "import_types": {
+    "CUSTOMER": {
+      "target_staging_table": "import_staging_customers",
+      "field_mappings": [
+        {"source": "Cari Kodu", "target": "customer_code", "required": true, "transforms": ["trim_string", "uppercase_code"]},
+        {"source": "Cari Ünvan", "target": "customer_name", "required": true, "transforms": ["trim_string"]},
+        {"source": "Tip", "target": "customer_type", "required": true, "transforms": ["trim_string", "normalize_enum"]},
+        {"source": "Yön", "target": "customer_kind", "required": true, "transforms": ["trim_string", "normalize_enum"]},
+        {"source": "Vergi No", "target": "tax_no", "required": false, "transforms": ["trim_string"]},
+        {"source": "Vergi Dairesi", "target": "tax_office", "required": false, "transforms": ["trim_string"]},
+        {"source": "Adres", "target": "address.full_address", "required": true, "transforms": ["trim_string"]},
+        {"source": "Şehir", "target": "address.city", "required": true, "transforms": ["trim_string"]}
+      ],
+      "enum_maps": {
+        "customer_type": {
+          "ŞİRKET": "COMPANY",
+          "SIRKET": "COMPANY",
+          "COMPANY": "COMPANY",
+          "ŞAHIS": "INDIVIDUAL",
+          "SAHIS": "INDIVIDUAL",
+          "INDIVIDUAL": "INDIVIDUAL"
+        },
+        "customer_kind": {
+          "MÜŞTERİ": "CUSTOMER",
+          "MUSTERI": "CUSTOMER",
+          "CUSTOMER": "CUSTOMER",
+          "TEDARİKÇİ": "SUPPLIER",
+          "TEDARIKCI": "SUPPLIER",
+          "SUPPLIER": "SUPPLIER",
+          "BOTH": "BOTH"
+        }
+      }
+    },
+    "PRODUCT_STOCK": {
+      "target_staging_table": "import_staging_products",
+      "field_mappings": [
+        {"source": "Ürün Kodu", "target": "product_code", "required": true, "transforms": ["trim_string", "uppercase_code"]},
+        {"source": "Ürün Adı", "target": "product_name", "required": true, "transforms": ["trim_string"]},
+        {"source": "Ürün Tipi", "target": "product_type", "required": true, "transforms": ["trim_string", "normalize_enum"]},
+        {"source": "Birim", "target": "unit_code", "required": true, "transforms": ["trim_string", "uppercase_code"]},
+        {"source": "KDV", "target": "tax_rate", "required": true, "transforms": ["parse_decimal"]},
+        {"source": "Satış Fiyatı", "target": "sales_price", "required": false, "transforms": ["parse_decimal"]},
+        {"source": "Alış Fiyatı", "target": "purchase_price", "required": false, "transforms": ["parse_decimal"]},
+        {"source": "Stok Takip", "target": "track_stock", "required": true, "transforms": ["normalize_boolean"]}
+      ],
+      "enum_maps": {
+        "product_type": {
+          "FİZİKSEL": "PHYSICAL",
+          "FIZIKSEL": "PHYSICAL",
+          "PHYSICAL": "PHYSICAL",
+          "HİZMET": "SERVICE",
+          "HIZMET": "SERVICE",
+          "SERVICE": "SERVICE"
+        }
+      }
+    },
+    "RECEIPT_MOVEMENT": {
+      "target_staging_table": "import_staging_finance_documents",
+      "field_mappings": [
+        {"source": "Fiş No", "target": "receipt_no", "required": true, "transforms": ["trim_string", "uppercase_code"]},
+        {"source": "Fiş Tipi", "target": "receipt_type", "required": true, "transforms": ["trim_string", "normalize_enum"]},
+        {"source": "Fiş Tarihi", "target": "receipt_date", "required": true, "transforms": ["normalize_date"]},
+        {"source": "Cari Kodu", "target": "customer_code", "required": true, "transforms": ["trim_string", "uppercase_code"]},
+        {"source": "Para Birimi", "target": "currency_code", "required": true, "transforms": ["normalize_currency"]},
+        {"source": "Net Tutar", "target": "net_total", "required": true, "transforms": ["parse_decimal"]},
+        {"source": "KDV Tutar", "target": "tax_total", "required": true, "transforms": ["parse_decimal"]},
+        {"source": "Brüt Tutar", "target": "gross_total", "required": true, "transforms": ["parse_decimal"]}
+      ],
+      "enum_maps": {
+        "receipt_type": {
+          "SATIŞ": "SALE",
+          "SATIS": "SALE",
+          "SALE": "SALE",
+          "ALIŞ": "PURCHASE",
+          "ALIS": "PURCHASE",
+          "PURCHASE": "PURCHASE",
+          "TAHSİLAT": "COLLECTION",
+          "TAHSILAT": "COLLECTION",
+          "COLLECTION": "COLLECTION"
+        }
+      }
+    }
+  },
+  "guards": {
+    "unknown_source_field_forbidden": true,
+    "duplicate_target_field_forbidden": true,
+    "required_transform_missing_forbidden": true,
+    "dry_run_required": true,
+    "real_commit_forbidden": true,
+    "audit_safe_output_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

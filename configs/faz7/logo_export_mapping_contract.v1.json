@@ -1,0 +1,204 @@
+{
+  "module": "FAZ_7_8L",
+  "step": "FAZ_7_8L.4",
+  "name": "Logo Export Mapping Contract",
+  "provider": {
+    "provider_code": "LOGO",
+    "provider_name": "Logo",
+    "connector_code": "logo_connector",
+    "connector_family": "accounting_export_connector",
+    "provider_directory": "internal/platform/integrations/providers/logo",
+    "foundation_runtime_file": "internal/platform/integrations/providers/logo/logo_foundation.go",
+    "live_contract_runtime_file": "internal/platform/integrations/providers/logo/logo_live_contract.go",
+    "credential_runtime_file": "internal/platform/integrations/providers/logo/logo_credential.go",
+    "runtime_file": "internal/platform/integrations/providers/logo/logo_export_mapping.go",
+    "test_file": "internal/platform/integrations/providers/logo/logo_export_mapping_test.go"
+  },
+  "runtime": {
+    "mode": "DRY_RUN",
+    "mapping_mode": "EXPORT_MAPPING_CONTRACT_ONLY",
+    "mapping_direction": "PIX2PI_TO_LOGO",
+    "target_system": "LOGO_ACCOUNTING_IMPORT_DRY_RUN",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_generation_status": "CLOSED_UNTIL_FILE_GENERATION_DRY_RUN_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE"
+  },
+  "entity_mappings": [
+    {
+      "source_entity": "PIX2PI_JOURNAL_HEADER",
+      "target_entity": "LOGO_FICHE_HEADER",
+      "required": true,
+      "field_mappings": [
+        { "source_field": "tenant_id", "target_field": "TENANT_REF", "required": true, "transform": "COPY", "validation": "NON_EMPTY" },
+        { "source_field": "correlation_id", "target_field": "CORRELATION_REF", "required": true, "transform": "COPY", "validation": "NON_EMPTY" },
+        { "source_field": "idempotency_key", "target_field": "IDEMPOTENCY_REF", "required": true, "transform": "COPY", "validation": "NON_EMPTY" },
+        { "source_field": "document_no", "target_field": "FICHE_NO", "required": true, "transform": "COPY", "validation": "NON_EMPTY" },
+        { "source_field": "document_date", "target_field": "FICHE_DATE", "required": true, "transform": "DATE_YYYY_MM_DD", "validation": "DATE" }
+      ]
+    },
+    {
+      "source_entity": "PIX2PI_JOURNAL_LINE",
+      "target_entity": "LOGO_FICHE_LINE",
+      "required": true,
+      "field_mappings": [
+        { "source_field": "account_code", "target_field": "ACCOUNT_CODE", "required": true, "transform": "TDHP_ACCOUNT", "validation": "NON_EMPTY" },
+        { "source_field": "debit_amount", "target_field": "DEBIT", "required": true, "transform": "DECIMAL_2", "validation": "AMOUNT" },
+        { "source_field": "credit_amount", "target_field": "CREDIT", "required": true, "transform": "DECIMAL_2", "validation": "AMOUNT" },
+        { "source_field": "currency_code", "target_field": "CURRENCY", "required": true, "transform": "ISO_4217", "validation": "NON_EMPTY" },
+        { "source_field": "description", "target_field": "LINE_DESCRIPTION", "required": false, "transform": "TRIM", "validation": "OPTIONAL_TEXT" }
+      ]
+    },
+    {
+      "source_entity": "PIX2PI_PARTY_ACCOUNT",
+      "target_entity": "LOGO_CARI_CARD",
+      "required": true,
+      "field_mappings": [
+        { "source_field": "party_name", "target_field": "TITLE", "required": true, "transform": "TRIM", "validation": "NON_EMPTY" },
+        { "source_field": "party_tax_no", "target_field": "TAX_NO", "required": true, "transform": "DIGITS_ONLY", "validation": "TAX_NO" },
+        { "source_field": "tax_office", "target_field": "TAX_OFFICE", "required": true, "transform": "TRIM", "validation": "NON_EMPTY" },
+        { "source_field": "address", "target_field": "ADDRESS", "required": true, "transform": "TRIM", "validation": "NON_EMPTY" }
+      ]
+    },
+    {
+      "source_entity": "PIX2PI_TAX_DETAIL",
+      "target_entity": "LOGO_TAX_LINE",
+      "required": true,
+      "field_mappings": [
+        { "source_field": "tax_rate", "target_field": "VAT_RATE", "required": true, "transform": "PERCENT", "validation": "TAX_RATE" },
+        { "source_field": "tax_amount", "target_field": "VAT_AMOUNT", "required": true, "transform": "DECIMAL_2", "validation": "AMOUNT" },
+        { "source_field": "tax_account_code", "target_field": "VAT_ACCOUNT_CODE", "required": true, "transform": "TDHP_ACCOUNT", "validation": "NON_EMPTY" }
+      ]
+    },
+    {
+      "source_entity": "PIX2PI_INVOICE_SUMMARY",
+      "target_entity": "LOGO_INVOICE_REFERENCE",
+      "required": true,
+      "field_mappings": [
+        { "source_field": "invoice_no", "target_field": "INVOICE_NO", "required": true, "transform": "COPY", "validation": "NON_EMPTY" },
+        { "source_field": "invoice_date", "target_field": "INVOICE_DATE", "required": true, "transform": "DATE_YYYY_MM_DD", "validation": "DATE" },
+        { "source_field": "gross_total", "target_field": "GROSS_TOTAL", "required": true, "transform": "DECIMAL_2", "validation": "AMOUNT" },
+        { "source_field": "net_total", "target_field": "NET_TOTAL", "required": true, "transform": "DECIMAL_2", "validation": "AMOUNT" }
+      ]
+    }
+  ],
+  "tdhp_mappings": [
+    {
+      "rule_code": "SATIS_FATURASI",
+      "source_event": "sales.invoice.posted",
+      "voucher_type": "SALES",
+      "debit_account": "120",
+      "credit_account": "600",
+      "tax_account": "391",
+      "currency": "TRY",
+      "tax_policy": "KDV_OUTPUT"
+    },
+    {
+      "rule_code": "ALIS_FATURASI",
+      "source_event": "purchase.invoice.posted",
+      "voucher_type": "PURCHASE",
+      "debit_account": "153",
+      "credit_account": "320",
+      "tax_account": "191",
+      "currency": "TRY",
+      "tax_policy": "KDV_INPUT"
+    },
+    {
+      "rule_code": "TAHSILAT",
+      "source_event": "payment.received",
+      "voucher_type": "COLLECTION",
+      "debit_account": "100",
+      "credit_account": "120",
+      "tax_account": "",
+      "currency": "TRY",
+      "tax_policy": "NO_TAX"
+    },
+    {
+      "rule_code": "ODEME",
+      "source_event": "payment.sent",
+      "voucher_type": "PAYMENT",
+      "debit_account": "320",
+      "credit_account": "100",
+      "tax_account": "",
+      "currency": "TRY",
+      "tax_policy": "NO_TAX"
+    }
+  ],
+  "operations": [
+    {
+      "name": "DECLARE_LOGO_EXPORT_MAPPING",
+      "mode": "EXPORT_MAPPING_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_generation_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_REQUIRED_FIELDS",
+      "mode": "EXPORT_MAPPING_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_generation_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_TDHP_ACCOUNT_MAPPING",
+      "mode": "EXPORT_MAPPING_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_generation_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_TAX_MAPPING",
+      "mode": "EXPORT_MAPPING_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_generation_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_TENANT_MAPPING_BOUNDARY",
+      "mode": "EXPORT_MAPPING_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_generation_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_LOGO_FILE_GENERATION_HANDOFF",
+      "mode": "EXPORT_MAPPING_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_generation_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_LOGO_IMPORT_PACKAGE_MAPPING_HANDOFF",
+      "mode": "EXPORT_MAPPING_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_generation_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    }
+  ],
+  "handoff_gates": {
+    "logo_foundation_gate": "READY_FROM_7_8L_1",
+    "logo_live_contract_gate": "READY_FROM_7_8L_2",
+    "logo_credential_secret_gate": "READY_FROM_7_8L_3",
+    "logo_export_mapping_gate": "READY",
+    "logo_file_generation_gate": "PENDING_7_8L_5",
+    "logo_import_delivery_gate": "PENDING_7_8L_6",
+    "logo_validation_retry_dlq_gate": "PENDING_7_8L_7",
+    "logo_admin_ops_gate": "PENDING_7_8L_8",
+    "logo_e2e_dry_run_gate": "PENDING_7_8L_9",
+    "logo_final_closure_gate": "PENDING_7_8L_10"
+  },
+  "audit": {
+    "real_implementation_audit_required": true,
+    "real_provider_api_must_remain_closed": true,
+    "real_file_generation_must_remain_closed": true,
+    "real_file_delivery_must_remain_closed": true,
+    "real_erp_write_must_remain_closed": true
+  }
+}

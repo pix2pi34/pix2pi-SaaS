@@ -1,0 +1,16 @@
+container_name	image	status	ports	category	risk	note
+pix2pi-redis	redis:7-alpine	Up 7 days	0.0.0.0:6379->6379/tcp, [::]:6379->6379/tcp	docker_container	HIGH	public_container_port_review
+pix2pi_pg_replica	postgres:16	Up 7 days	0.0.0.0:5434->5432/tcp, [::]:5434->5432/tcp	docker_container	HIGH	public_container_port_review
+pix2pi-mission-control	deploy-mission-control	Up 7 days	9001/tcp, 0.0.0.0:9101->5860/tcp, [::]:9101->5860/tcp	docker_container	HIGH	public_container_port_review
+pix2pi-service-registry	deploy-service-registry	Up 7 days		docker_container	LOW	evidence_only
+pix2pi-identity-api	deploy-identity-api	Up 7 days	0.0.0.0:9002->9002/tcp, [::]:9002->9002/tcp	docker_container	HIGH	public_container_port_review
+pix2pi_grafana	grafana/grafana:latest	Up 7 days	0.0.0.0:3001->3000/tcp, [::]:3001->3000/tcp	docker_container	HIGH	public_container_port_review
+pix2pi_promtail	grafana/promtail:2.9.8	Up 7 days		docker_container	LOW	evidence_only
+pix2pi_loki	grafana/loki:2.9.8	Up 7 days	0.0.0.0:3100->3100/tcp, [::]:3100->3100/tcp	docker_container	HIGH	public_container_port_review
+pix2pi_prometheus	prom/prometheus:latest	Up 7 days	0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp	docker_container	HIGH	public_container_port_review
+pix2pi_node_exporter	prom/node-exporter:latest	Up 7 days	0.0.0.0:9100->9100/tcp, [::]:9100->9100/tcp	docker_container	HIGH	public_container_port_review
+pix2pi_nats	nats:2.10-alpine	Up 7 days	0.0.0.0:4222->4222/tcp, [::]:4222->4222/tcp, 0.0.0.0:8222->8222/tcp, [::]:8222->8222/tcp, 6222/tcp	docker_container	HIGH	public_container_port_review
+pix2pi_tempo	grafana/tempo:2.6.1	Up 7 days	0.0.0.0:3200->3200/tcp, [::]:3200->3200/tcp, 0.0.0.0:4317-4318->4317-4318/tcp, [::]:4317-4318->4317-4318/tcp	docker_container	HIGH	public_container_port_review
+pix2pi-api-gateway	kong:3.7	Up 7 days (healthy)		docker_container	LOW	evidence_only
+pix2pi_pg	postgres:16	Up 40 hours	0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp	docker_container	HIGH	public_container_port_review
+pix2pi_cadvisor	gcr.io/cadvisor/cadvisor:latest	Up 7 days (healthy)	0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp	docker_container	HIGH	public_container_port_review

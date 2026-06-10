@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "322",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "business_settings_screen",
+      "path": "/settings/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_322_BUSINESS_SETTINGS_APP_SHELL_START",
+        "PIX2PI_322_BUSINESS_PROFILE_CARD_START",
+        "PIX2PI_322_SETTINGS_VALIDATION_DRAFT_SAVE_START"
+      ]
+    },
+    {
+      "name": "business_settings_runtime",
+      "path": "/assets/settings/business-settings-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_322_BUSINESS_SETTINGS_RUNTIME_START",
+        "tenantScopedHeaders",
+        "buildSettingsPayload"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+item	status	note
+18.1_readiness	PASS	readiness=READY blockers=0
+18.2_service_entry_plan	PASS	target=cmd/api-gateway/api_gateway_main.go kind=API_GATEWAY
+18.3_apply_gate	PASS	ready=YES
+18.4_controlled_apply	PASS	import=1 call=1
+18.5_live_smoke	PASS	auth_mode=NO_VALID_TOKEN_PROVIDED protected=PASS
+gateway_target_file	FOUND	cmd/api-gateway/api_gateway_main.go
+target_reporting_import_count	1	expected=1
+target_reporting_register_call_count	1	expected=1
+live_gateway_reachable	YES	base_url=http://127.0.0.1:9010
+live_route_security_status	AUTH_PROTECTED	200_count=0 auth_401_count=6
+real_token_full_smoke_status	DEFERRED_NO_VALID_TOKEN	auth_mode=NO_VALID_TOKEN_PROVIDED
+reporting_go_test_suite	PASS	internal/platform/reporting
+api_gateway_go_test_status	PASS	cmd/api-gateway
+runtime_restart_executed	NO	closure only
+gateway_config_changed	NO	closure only
+nginx_config_changed	NO	closure only
+db_mutation	NO	closure only
+query_text_printed	NO	closure only

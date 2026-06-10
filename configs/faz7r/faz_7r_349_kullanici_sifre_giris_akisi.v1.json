@@ -1,0 +1,75 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "349",
+  "name": "Kullanıcı şifre / giriş akışı gerçek password/session",
+  "component": "internal/auth/passwordflow",
+  "panel_path": "/password-login/",
+  "asset_path": "/assets/password-flow/password-flow-runtime.js",
+  "database_contract": {
+    "schema": "auth",
+    "tables": [
+      "auth.user_password_credentials",
+      "auth.password_reset_tokens",
+      "auth.password_flow_events",
+      "auth.login_sessions"
+    ],
+    "tracked_fields": [
+      "user_id",
+      "email",
+      "password_hash",
+      "password_set_at",
+      "reset_token_hash",
+      "session_id",
+      "access_token_id",
+      "refresh_token_id",
+      "tenant_id"
+    ]
+  },
+  "runtime_contract": {
+    "initial_password_setup": true,
+    "password_policy_validation": true,
+    "password_hashing": true,
+    "password_reset_token_flow": true,
+    "email_password_login": true,
+    "tenant_required_for_login": true,
+    "session_created_on_login": true,
+    "session_validation": true,
+    "tenant_selection_handoff": true,
+    "audit_event_contract": true
+  },
+  "api_contract": {
+    "initial_password": {
+      "method": "POST",
+      "path": "/api/auth/password/initial"
+    },
+    "password_reset_request": {
+      "method": "POST",
+      "path": "/api/auth/password/reset/request"
+    },
+    "password_reset_complete": {
+      "method": "POST",
+      "path": "/api/auth/password/reset/complete"
+    },
+    "login": {
+      "method": "POST",
+      "path": "/api/auth/login"
+    },
+    "session_validate": {
+      "method": "GET",
+      "path": "/api/auth/session/validate"
+    }
+  },
+  "required_checks": [
+    "initial_password_setup",
+    "password_policy_rejection",
+    "password_confirm_validation",
+    "password_reset_complete",
+    "wrong_password_rejection",
+    "login_session_creation",
+    "tenant_required",
+    "session_validation",
+    "panel_password_login_screen",
+    "go_test"
+  ],
+  "next_step": "350 - Panel erişim testi gerçek auth ile"
+}

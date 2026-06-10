@@ -1,0 +1,16 @@
+scenario_id	scenario_name	source_block	required	blocking	owner_role	evidence_required	tenant_required	status
+tenant_login_context	Tenant login and context validation	21_security_rbac_future	YES	YES	tenant_admin	YES	YES	contract_only
+customer_create_required_fields	Customer create required fields	18_inventory_pilot_motor	YES	YES	tenant_admin	YES	YES	contract_only
+vendor_create_required_fields	Vendor create required fields	18_inventory_pilot_motor	YES	YES	tenant_admin	YES	YES	contract_only
+product_create_unit_category	Product item unit/category setup	18_inventory_pilot_motor	YES	YES	tenant_admin	YES	YES	contract_only
+opening_stock_import	Opening stock import preview	14_migration_lifecycle_import	YES	YES	tenant_admin	YES	YES	contract_only
+sales_stock_decrement	Sales stock decrement flow	18_3_sales_stock_decrement	YES	YES	tenant_admin	YES	YES	contract_only
+purchase_stock_increment	Purchase stock increment flow	18_4_purchase_stock_increment	YES	YES	tenant_admin	YES	YES	contract_only
+stock_reservation_release	Stock reservation and release flow	18_5_stock_reservation	YES	YES	tenant_admin	YES	YES	contract_only
+negative_stock_policy	Negative stock policy decision	18_6_negative_stock_policy	YES	YES	tenant_admin	YES	YES	contract_only
+stock_valuation	Stock valuation evidence	18_7_stock_valuation	YES	YES	tenant_admin	YES	YES	contract_only
+finance_reporting_mart	Finance reporting mart check	15_readmodel_reporting	YES	NO	tenant_admin	YES	YES	contract_only
+ebelde_export_reporting	e-Belge/export reporting check	15_readmodel_reporting	YES	NO	tenant_admin	YES	YES	contract_only
+payment_reconciliation	Payment reconciliation summary check	15_readmodel_reporting	YES	NO	tenant_admin	YES	YES	contract_only
+runtime_flow_trace	Runtime flow trace drilldown	19_1_runtime_flow_history	YES	NO	tenant_admin	YES	YES	contract_only
+admin_dashboard_visibility	Admin dashboard visibility check	19_3_admin_dashboard_cards	YES	NO	tenant_admin	YES	YES	contract_only

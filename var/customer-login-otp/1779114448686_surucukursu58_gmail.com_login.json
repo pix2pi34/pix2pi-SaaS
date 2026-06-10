@@ -1,0 +1,12 @@
+{
+  "email": "surucukursu58@gmail.com",
+  "purpose": "login",
+  "account_file": "CR-20260516-C8EB09F9.json",
+  "otp_hash_sha256": "f905b92e0dbaff7da22885ef1263358748a2da06597d3d02b1858ccb8d09b07e",
+  "created_at": "2026-05-18T14:27:28.686Z",
+  "expires_at": "2026-05-18T14:37:28.686Z",
+  "ttl_seconds": 600,
+  "used": true,
+  "marker": "PIX2PI_CUSTOMER_LOGIN_PASSWORD_CHECK_OTP_MAIL_MARKER",
+  "used_at": "2026-05-18T14:28:01.817Z"
+}

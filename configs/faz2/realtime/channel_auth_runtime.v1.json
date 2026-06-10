@@ -1,0 +1,37 @@
+{
+  "phase": "FAZ 2-7.5.3",
+  "runtime": "tenant_safe_channel_auth",
+  "tenant_header": "X-Tenant-ID",
+  "require_tenant": true,
+  "channel_policy": {
+    "implicit_tenant_scope": true,
+    "explicit_tenant_prefixes": [
+      "tenant:{tenant_id}:",
+      "tenant/{tenant_id}/",
+      "tenant.{tenant_id}."
+    ],
+    "forbidden_prefixes": [
+      "global:",
+      "system:",
+      "admin:",
+      "super-admin:",
+      "break-glass:"
+    ],
+    "max_channel_length": 160
+  },
+  "bridges": {
+    "websocket": true,
+    "sse": true
+  },
+  "audit_decision_fields": [
+    "decision",
+    "allowed",
+    "tenant_id",
+    "channel",
+    "transport",
+    "reason",
+    "normalized_key",
+    "checked_at"
+  ],
+  "production_live_policy": "runtime_ready_but_channel_permission_expansion_in_next_phase"
+}

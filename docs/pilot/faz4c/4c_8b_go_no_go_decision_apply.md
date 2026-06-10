@@ -1,0 +1,66 @@
+# FAZ 4C — 4C-8B Go / No-Go Decision Apply Guard
+
+## Blok
+
+4C-8B — Go / No-Go Decision Apply Guard
+
+## Amaç
+
+4C-8A decision input dosyasını okuyup final GO / CONDITIONAL_GO / NO_GO kararının geçerli olup olmadığını kontrol etmek.
+
+Bu adım DB'ye yazmaz.
+
+---
+
+## 1. Kaynak
+
+PREV_REPORT=reports/pilot/faz4c/4c_8a_go_no_go_criteria_report.md
+INPUT_ENV=docs/pilot/faz4c/4c_8a_go_no_go_decision_input.env
+DECISION_FORM=uat/pilot/faz4c/uzmanparcaci/go_no_go_decision_form.md
+
+---
+
+## 2. Input değerleri
+
+SYSTEM_RECOMMENDATION=GO
+FINAL_GO_NO_GO_DECISION=GO
+DECISION_OWNER=mert_omur
+DECISION_DATE=2026-05-01
+DECISION_NOTE=FAZ 4C pilot kapsaminda teknik UAT, business acceptance ve burn-down kontrolleri PASS oldugu icin GO karari verildi.
+
+ACCEPTS_PHASE_4D_CARRY_FORWARD=YES
+ACCEPTS_MARKETPLACE_PHASE_4D=YES
+ACCEPTS_NO_CORE_PRODUCT_APPLY_IN_4C=YES
+ACCEPTS_NO_LIVE_MARKETPLACE_IN_4C=YES
+
+---
+
+## 3. Guard sonucu
+
+MISSING_FIELD_COUNT=0
+PENDING_FIELD_COUNT=0
+INVALID_FIELD_COUNT=0
+
+MISSING_FIELDS=
+PENDING_FIELDS=
+INVALID_FIELDS=
+
+BLOCKER_REASON=NONE
+
+---
+
+## 4. Final status
+
+4C_8B_GO_NO_GO_DECISION_APPLY_STATUS=PASS
+4C_8B_DECISION_GATE_STATUS=GO
+4C_8B_SYSTEM_RECOMMENDATION=GO
+4C_8B_FINAL_GO_NO_GO_DECISION=GO
+4C_8B_GO_NO_GO_FINALIZATION_READY=YES
+4C_8B_MISSING_FIELD_COUNT=0
+4C_8B_PENDING_FIELD_COUNT=0
+4C_8B_INVALID_FIELD_COUNT=0
+4C_8B_BLOCKER_REASON=NONE
+4C_8B_DB_WRITE_APPLIED=NO
+4C_8B_CRITICAL_BLOCKER_COUNT=0
+4C_8B_WARNING_COUNT=0
+4C_8C_READY=YES

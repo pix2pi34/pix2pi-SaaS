@@ -1,0 +1,100 @@
+{
+  "phase": "FAZ_3_11_10_ERP_UI_TESTS",
+  "suite": "erp_ui_tests",
+  "suite_enabled": true,
+  "route": "/faz3/erp-ui/ui-tests/",
+  "report_file": "web/faz3/erp-ui/ui-tests/index.html",
+  "test_script": "scripts/faz3/faz_3_11_10_erp_ui_tests_suite.sh",
+  "audit_script": "scripts/faz3/faz_3_11_10_erp_ui_tests_audit.sh",
+  "screen_coverage": {
+    "screen_157_ebelge_operations": {
+      "route": "/faz3/erp-ui/ebelge-operations/",
+      "html_file": "web/faz3/erp-ui/ebelge-operations/index.html",
+      "config_file": "configs/faz3/web/ebelge_operations_screen.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_11_8_EBELGE_OPERATIONS_SCREEN_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_158_reconciliation": {
+      "route": "/faz3/erp-ui/reconciliation/",
+      "html_file": "web/faz3/erp-ui/reconciliation/index.html",
+      "config_file": "configs/faz3/web/reconciliation_screen.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_11_6_RECONCILIATION_SCREEN_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_159_tax_kdv_rule": {
+      "route": "/faz3/erp-ui/tax-kdv-rules/",
+      "html_file": "web/faz3/erp-ui/tax-kdv-rules/index.html",
+      "config_file": "configs/faz3/web/tax_kdv_rule_screen.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_11_5_TAX_KDV_RULE_SCREEN_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_160_journal_ledger": {
+      "route": "/faz3/erp-ui/journal-ledger/",
+      "html_file": "web/faz3/erp-ui/journal-ledger/index.html",
+      "config_file": "configs/faz3/web/journal_ledger_screen.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_11_3_JOURNAL_LEDGER_SCREEN_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_161_tdhp_mapping": {
+      "route": "/faz3/erp-ui/tdhp-mapping/",
+      "html_file": "web/faz3/erp-ui/tdhp-mapping/index.html",
+      "config_file": "configs/faz3/web/tdhp_mapping_screen.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_11_4_TDHP_MAPPING_VIEW_CONTROL_SCREEN_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_162_payment_reconciliation": {
+      "route": "/faz3/erp-ui/payment-reconciliation/",
+      "html_file": "web/faz3/erp-ui/payment-reconciliation/index.html",
+      "config_file": "configs/faz3/web/payment_reconciliation_screen.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_11_9_PAYMENT_RECONCILIATION_SCREEN_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_163_export_center": {
+      "route": "/faz3/erp-ui/export-center/",
+      "html_file": "web/faz3/erp-ui/export-center/index.html",
+      "config_file": "configs/faz3/web/export_center_screen.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_11_7_EXPORT_CENTER_SCREEN_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_164_finance_summary": {
+      "route": "/faz3/erp-ui/finance-summary/",
+      "html_file": "web/faz3/erp-ui/finance-summary/index.html",
+      "config_file": "configs/faz3/web/finance_summary_screen.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_11_2_FINANCE_SUMMARY_SCREEN_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_165_main_dashboard": {
+      "route": "/faz3/erp-ui/main-dashboard/",
+      "html_file": "web/faz3/erp-ui/main-dashboard/index.html",
+      "config_file": "configs/faz3/web/main_management_dashboard.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_11_1_MAIN_MANAGEMENT_DASHBOARD_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    }
+  },
+  "test_policy": {
+    "html_file_required": true,
+    "config_file_required": true,
+    "documentation_file_required": true,
+    "evidence_file_required": true,
+    "phase_marker_required": true,
+    "screen_marker_required": true,
+    "tenant_guard_required": true,
+    "correlation_guard_required": true,
+    "production_false_required": true,
+    "readonly_or_gate_closed_required": true,
+    "route_trace_required": true,
+    "main_dashboard_links_required": true,
+    "no_real_external_action_required": true
+  },
+  "live_policy": {
+    "production_approved": false,
+    "ui_tests_are_static_and_readonly": true,
+    "real_ledger_write_allowed": false,
+    "real_tax_rule_activation_allowed": false,
+    "real_payment_capture_allowed": false,
+    "real_export_delivery_allowed": false,
+    "real_ebelge_provider_call_allowed": false
+  },
+  "previous_gate": "FAZ_3_11_1_MAIN_MANAGEMENT_DASHBOARD",
+  "next_gate": "FAZ_3_12_4_EXCEL_PDF_TDHP_EXPORT_WORKSPACE"
+}

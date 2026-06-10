@@ -1,0 +1,53 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 213,
+  "step": "FAZ_4_16_4_4",
+  "title": "Pilot issue escalation",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "212_FAZ_4_16_4_3_ILK_DESTEK_TRIAGE_AKISI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "escalation_policy": {
+    "escalation_status_required": "READY",
+    "escalation_mode_required": "CONTROLLED_PILOT",
+    "required_rule_status_required": "READY",
+    "missing_rule_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "triage_status_required": "PASS",
+    "owner_matrix_status_required": "READY",
+    "escalation_sla_status_required": "READY",
+    "evidence_completeness_status_required": "READY",
+    "decision_log_status_required": "READY",
+    "no_real_external_dispatch_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_escalation_rules": [
+    "ESCALATE_P0_BLOCKER",
+    "ESCALATE_P1_CRITICAL",
+    "ESCALATE_P2_NORMAL",
+    "ESCALATE_P3_QUESTION",
+    "PRODUCT_OWNER_ESCALATION",
+    "TECH_OWNER_ESCALATION",
+    "SUPPORT_OWNER_ESCALATION",
+    "BUSINESS_OWNER_VISIBILITY",
+    "ESCALATION_SLA_MATRIX",
+    "EVIDENCE_COMPLETENESS_GUARD",
+    "DUPLICATE_LINKED_ISSUE_GUARD",
+    "DECISION_LOG_LINK",
+    "HOTFIX_CANDIDATE_MARKER",
+    "POLICY_ONLY_ISSUE_ROUTE",
+    "ESCALATION_CLOSURE_CHECKLIST"
+  ],
+  "escalation_artifact": "configs/faz4r/pilot_issue_escalation.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "214_FAZ_4_16_4_5_EGITIM_DESTEK_SMOKE"
+  ]
+}

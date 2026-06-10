@@ -1,0 +1,90 @@
+{
+  "marker": "CUSTOMER_REGISTER_PENDING_APPLICATION_MARKER",
+  "application_id": "CR-20260517-E5B862C2",
+  "status": "ACTIVE",
+  "application_status": "ACTIVE",
+  "source": "phoenix_missing_email_manual_recovery",
+  "created_at": "2026-05-16T21:40:44.617364+00:00",
+  "updated_at": "2026-05-16T22:12:16.575Z",
+  "company_name": "Digi Bilişim",
+  "owner_name": "Digi Bilişim Yetkili",
+  "email": "digibilisim@gmail.com",
+  "phone": "",
+  "approval_flow": {
+    "owner_admin_required": true,
+    "owner_admin_marker": "OWNER_REGISTER_APPROVALS_ADMIN_MARKER",
+    "tenant_create_real_create": false,
+    "tenant_create_status": "WAITING_OWNER_APPROVAL",
+    "note": "digibilisim@gmail.com listede görünmediği için manuel PENDING kayıt oluşturuldu."
+  },
+  "audit_trail": [
+    {
+      "at": "2026-05-16T21:40:44.617364+00:00",
+      "actor": "PIX2PI_OWNER_ADMIN",
+      "action": "CREATE_PENDING_APPLICATION_FOR_MISSING_EMAIL",
+      "to_status": "PENDING",
+      "tenant_created": false
+    },
+    {
+      "at": "2026-05-16T21:41:21.610Z",
+      "actor": "PIX2PI_OWNER_ADMIN",
+      "action": "APPROVE_REGISTER_APPLICATION",
+      "from_status": "PENDING",
+      "to_status": "APPROVED",
+      "tenant_created": false,
+      "handoff_marker": "REGISTER_APPROVAL_HANDOFF_MARKER"
+    },
+    {
+      "at": "2026-05-16T21:46:26.406080+00:00",
+      "actor": "PIX2PI_OWNER_ADMIN",
+      "action": "ACTIVATE_DIGIBILISIM_CUSTOMER_LOGIN",
+      "to_status": "ACTIVE",
+      "login_allowed": true,
+      "mail_code_allowed": true,
+      "tenant_create_real_create": false
+    },
+    {
+      "at": "2026-05-16T22:10:54.276Z",
+      "actor": "PIX2PI_OWNER_ADMIN",
+      "action": "ACTIVATE_REAL_EMAIL_LOGIN_ACCOUNT",
+      "from_status": "ACTIVE",
+      "to_status": "ACTIVE",
+      "login_allowed": true,
+      "mail_code_allowed": true,
+      "tenant_create_real_create": false
+    },
+    {
+      "at": "2026-05-16T22:12:16.575Z",
+      "actor": "PIX2PI_OWNER_ADMIN",
+      "action": "ACTIVATE_REAL_EMAIL_LOGIN_ACCOUNT",
+      "from_status": "ACTIVE",
+      "to_status": "ACTIVE",
+      "login_allowed": true,
+      "mail_code_allowed": true,
+      "tenant_create_real_create": false
+    }
+  ],
+  "previous_status": "PENDING",
+  "owner_admin_action": "APPROVE",
+  "owner_admin_action_at": "2026-05-16T21:41:21.610Z",
+  "owner_admin_actor": "PIX2PI_OWNER_ADMIN",
+  "approved_at": "2026-05-16T21:41:21.610Z",
+  "approved_by": "PIX2PI_OWNER_ADMIN",
+  "approval_handoff": {
+    "marker": "REGISTER_APPROVAL_HANDOFF_MARKER",
+    "tenant_create_real_create": false,
+    "tenant_create_status": "PENDING_MANUAL_HANDOFF",
+    "tenant_create_note": "Tenant bu adımda otomatik açılmaz. Pix2pi owner admin onayı sonrası aktivasyon ayrı kontrollü handoff olarak ilerler.",
+    "handoff_at": "2026-05-16T21:41:21.610Z"
+  },
+  "login_activation": {
+    "marker": "CUSTOMER_LOGIN_ACTIVE_ACCOUNT_MARKER",
+    "status": "ACTIVE",
+    "login_allowed": true,
+    "mail_code_allowed": true,
+    "account_file": "/root/pix2pi/pix2pi-SaaS/web/customer-login/data/accounts/50e203bb2385627553a7d59ab329aebab6ad6a198ff85b08820fc38d36e0d964.json",
+    "activated_at": "2026-05-16T22:12:16.575Z",
+    "tenant_create_real_create": false,
+    "handoff_marker": "REGISTER_APPROVAL_HANDOFF_MARKER"
+  }
+}

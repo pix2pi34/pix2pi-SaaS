@@ -1,0 +1,33 @@
+version: v1
+registry:
+  registration_standard:
+    required_fields:
+      - service_name
+      - service_id
+      - instance_id
+      - host
+      - port
+      - protocol
+      - health_endpoint
+
+  health_sync:
+    mode: polling_or_push
+    required_fields:
+      - health_status
+      - health_checked_at
+
+  instance_metadata:
+    required_fields:
+      - version
+      - environment
+      - region
+      - tenant_scope
+
+  stale_instance_cleanup:
+    strategy: ttl_cleanup
+    required_fields:
+      - registered_at
+      - last_seen_at
+
+  tenant_visibility:
+    mode: tenant_scoped

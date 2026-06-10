@@ -1,0 +1,36 @@
+{
+  "phase": "FAZ_3_10_1_6_TDHP_LIVE_TESTS",
+  "runtime": "tdhp_live_test_suite",
+  "runtime_enabled": true,
+  "mode": "LIVE_READY_SIMULATION",
+  "real_external_system_call": false,
+  "covered_modules": [
+    "FAZ_3_10_1_1_REAL_VOUCHER_PIPELINE",
+    "FAZ_3_10_1_2_CHART_ACCOUNT_LIVE_VERSION_SWITCH",
+    "FAZ_3_10_1_3_DOCUMENT_BASED_POSTING_RUNTIME",
+    "FAZ_3_10_1_4_AUDIT_TRACE_PERSISTENCE",
+    "FAZ_3_10_1_5_RECONCILIATION_RUNTIME"
+  ],
+  "test_scenarios": [
+    "SALES_INVOICE_TDHP_E2E",
+    "PURCHASE_INVOICE_TDHP_E2E",
+    "AUDIT_TRACE_EXPORT",
+    "RECONCILIATION_DIFFERENCE",
+    "CURRENCY_MISMATCH_REJECTION",
+    "MISSING_AUDIT_TRACE_REJECTION"
+  ],
+  "guard_policy": {
+    "chart_switch_required": true,
+    "account_resolve_required": true,
+    "voucher_pipeline_required": true,
+    "posting_required": true,
+    "audit_trace_required": true,
+    "reconciliation_required": true,
+    "ledger_closure_ready_required": true,
+    "tdhp_391_output_kdv_resolve_required": true,
+    "tdhp_191_input_kdv_resolve_required": true,
+    "currency_mismatch_rejected": true,
+    "missing_audit_trace_rejected": true
+  },
+  "next_gate": "FAZ_3_10_4_4_ETA_REAL_FORMAT_GENERATION"
+}

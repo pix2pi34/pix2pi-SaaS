@@ -1,0 +1,19 @@
+{
+  "phase": "FAZ 2-7.3.6",
+  "runtime": "job_engine_integration_tests",
+  "test_scope": [
+    "tenant_aware_job_dispatch_runtime",
+    "job_audit_log_persistence_runtime",
+    "dispatch_to_audit_lifecycle",
+    "tenant_scoped_dedupe_boundary",
+    "cross_tenant_access_denied",
+    "deny_cases"
+  ],
+  "required_test_package": "./internal/platform/ops/runtime",
+  "final_gate": {
+    "go_test_status": "PASS",
+    "fail_count": 0,
+    "seal_status": "SEALED"
+  },
+  "next_ready": "FAZ_2_7_4_2_EMAIL_DELIVERY_RUNTIME"
+}

@@ -1,0 +1,7 @@
+route_id	method	path	purpose	auth_required	tenant_required	status
+flow_detail_summary	GET	/api/v1/admin/runtime-flows/:flow_run_id	flow_summary	YES	YES	contract_only
+flow_detail_steps	GET	/api/v1/admin/runtime-flows/:flow_run_id/steps	flow_steps	YES	YES	contract_only
+flow_detail_events	GET	/api/v1/admin/runtime-flows/:flow_run_id/events	flow_events	YES	YES	contract_only
+flow_detail_timeline	GET	/api/v1/admin/runtime-flows/:flow_run_id/timeline	flow_timeline	YES	YES	contract_only
+flow_detail_errors	GET	/api/v1/admin/runtime-flows/:flow_run_id/errors	flow_error_links	YES	YES	contract_only
+flow_detail_snapshots	GET	/api/v1/admin/runtime-flows/:flow_run_id/snapshots	flow_snapshots	YES	YES	contract_only

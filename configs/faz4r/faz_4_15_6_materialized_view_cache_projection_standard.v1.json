@@ -1,0 +1,38 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 189,
+  "step": "FAZ_4_15_6",
+  "title": "Materialized view / cache projection standardı",
+  "priority_group": "DB-L6 Reporting / Readmodel",
+  "depends_on": [
+    "188_FAZ_4_15_3_E_DOCUMENT_EXPORT_REPORTING_MART"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "tables": [
+    "materialized_projection_definitions",
+    "projection_cache_profiles",
+    "projection_cache_entries",
+    "materialized_projection_dependencies",
+    "materialized_projection_refresh_jobs",
+    "materialized_projection_audit_events"
+  ],
+  "materialized_views": [
+    "mv_projection_cache_health"
+  ],
+  "readmodel_scope": [
+    "projection_definitions",
+    "cache_profiles",
+    "cache_entries",
+    "projection_dependencies",
+    "refresh_jobs",
+    "audit_events",
+    "cache_health_materialized_view"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "190_FAZ_4_15_7_READMODEL_REPORTING_TEST_SET"
+  ]
+}

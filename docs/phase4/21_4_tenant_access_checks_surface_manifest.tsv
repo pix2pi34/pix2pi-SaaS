@@ -1,0 +1,11 @@
+surface_id	surface_name	resource_area	default_action	required_check	tenant_required	audit_required	boundary_required	status
+panel_admin_tenant_check	Panel admin tenant check	panel	read	header_tenant_match	YES	YES	YES	contract_only
+api_route_tenant_check	API route tenant check	api	execute	jwt_tenant_required	YES	YES	YES	contract_only
+import_batch_tenant_check	Import batch tenant check	import	execute	resource_tenant_match	YES	YES	YES	contract_only
+inventory_resource_tenant_check	Inventory resource tenant check	inventory	write	resource_tenant_match	YES	YES	YES	contract_only
+reporting_resource_tenant_check	Reporting resource tenant check	reporting	read	permission_tenant_scope	YES	YES	YES	contract_only
+uat_checklist_tenant_check	UAT checklist tenant check	uat	write	actor_tenant_match	YES	YES	YES	contract_only
+issue_feedback_tenant_check	Issue feedback tenant check	issue_feedback	write	actor_tenant_match	YES	YES	YES	contract_only
+audit_event_tenant_check	Audit event tenant check	audit	write	audit_tenant_scope	YES	YES	YES	contract_only
+support_access_tenant_check	Support access tenant check	support	read	support_boundary_tenant_scope	YES	YES	YES	contract_only
+super_admin_tenant_check	Super admin tenant check	super_admin	admin	super_admin_boundary_tenant_scope	YES	YES	YES	contract_only

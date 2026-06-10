@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "status": "ok",
+  "route": "/customer-login/react/",
+  "marker": "CUSTOMER_LOGIN_STANDALONE_REAL_OTP_MARKER",
+  "real_mail_marker": "CUSTOMER_LOGIN_REAL_MAIL_CODE_MARKER",
+  "verify_marker": "CUSTOMER_LOGIN_MAIL_CODE_VERIFY_MARKER",
+  "test_code_removed": true,
+  "built_at": "20260517_012129"
+}

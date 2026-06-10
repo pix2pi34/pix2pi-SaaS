@@ -1,0 +1,31 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 190,
+  "step": "FAZ_4_15_7",
+  "title": "Readmodel / reporting test seti",
+  "priority_group": "DB-L6 Reporting / Readmodel",
+  "depends_on": [
+    "185_FAZ_4_15_5_SEARCH_INDEX_PROJECTION_TABLES",
+    "186_FAZ_4_15_2_FINANCE_REPORTING_MART",
+    "187_FAZ_4_15_4_PAYMENT_RECONCILIATION_REPORTING_MART",
+    "188_FAZ_4_15_3_E_DOCUMENT_EXPORT_REPORTING_MART",
+    "189_FAZ_4_15_6_MATERIALIZED_VIEW_CACHE_PROJECTION_STANDARD"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "test_scope": [
+    "search_projection",
+    "finance_reporting",
+    "payment_reconciliation_reporting",
+    "e_document_export_reporting",
+    "materialized_cache_projection",
+    "cross_readmodel_consistency",
+    "rollback_safety"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "191_FAZ_4_15_1_OPERATIONAL_READMODEL_TABLES"
+  ]
+}

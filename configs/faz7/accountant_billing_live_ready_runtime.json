@@ -1,0 +1,49 @@
+{
+  "module_code": "FAZ_7_14_ACCOUNTANT_BILLING_LIVE_READY_RUNTIME",
+  "mode": "ACCOUNTANT_BILLING_LIVE_READY_WITH_REAL_BILLING_DISABLED",
+  "status": "BILLING_LIVE_READY_RUNTIME_READY",
+  "depends_on": {
+    "faz_7_13_commercial_live_ready_control_plane_final_status": "PASS",
+    "commercial_live_ready_control_plane_gate": "READY_FOR_LIVE_READY_MODULES"
+  },
+  "billing_live_ready_gate": {
+    "production_billing_allowed": false,
+    "real_invoice_issue_allowed": false,
+    "real_billing_commit_allowed": false,
+    "real_payment_capture_allowed": false,
+    "real_money_movement_allowed": false,
+    "real_tax_submission_allowed": false,
+    "real_provider_api_call_allowed": false,
+    "real_customer_data_export_allowed": false,
+    "billing_live_module_status": "BILLING_LIVE_READY_RUNTIME_READY",
+    "payment_live_module_status": "NOT_STARTED",
+    "approval_matrix_status": "CLOSED_UNTIL_APPROVAL_MATRIX_PASS",
+    "tax_live_module_status": "CLOSED_UNTIL_TAX_LIVE_MODULE",
+    "provider_live_module_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "production_billing_lock": "PRODUCTION_BILLING_LOCKED_IN_FAZ_7_14"
+  },
+  "required_billing_live_ready_matrix": [
+    "plan_catalog_ready",
+    "subscription_runtime_ready",
+    "invoice_draft_runtime_ready",
+    "tenant_account_binding_ready",
+    "tax_config_ready",
+    "billing_idempotency_ready",
+    "billing_audit_ready",
+    "billing_rollback_ready",
+    "legal_approval_gate_ready",
+    "finance_approval_gate_ready",
+    "security_gate_ready",
+    "billing_observability_ready"
+  ],
+  "live_operation_policy": {
+    "invoice_issue": "NO_REAL_INVOICE_ISSUE_IN_FAZ_7_14",
+    "billing_commit": "NO_REAL_BILLING_COMMIT_IN_FAZ_7_14",
+    "payment_capture": "NO_REAL_PAYMENT_CAPTURE_IN_FAZ_7_14",
+    "money_movement": "NO_REAL_MONEY_MOVEMENT_IN_FAZ_7_14",
+    "tax_submission": "NO_REAL_TAX_SUBMISSION_IN_FAZ_7_14",
+    "provider_api": "NO_REAL_PROVIDER_API_CALL_IN_FAZ_7_14",
+    "customer_export": "NO_REAL_CUSTOMER_DATA_EXPORT_IN_FAZ_7_14"
+  },
+  "next_module": "FAZ_7_15_PAYMENT_CAPTURE_LIVE_READY_RUNTIME"
+}

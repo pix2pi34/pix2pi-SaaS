@@ -1,0 +1,32 @@
+{
+  "phase": "FAZ_5_18_4_5",
+  "title": "Müşteri İletişim Şablonları",
+  "status": "READY",
+  "control_surface": "CUSTOMER_COMMUNICATION_TEMPLATES",
+  "inputs": [
+    "FAZ_5_18_4_1_SLA_SEVIYELERI",
+    "FAZ_5_18_4_2_DESTEK_KANAL_YAPISI",
+    "FAZ_5_18_3_5_UYUM_DOKUMAN_KONTROLU"
+  ],
+  "outputs": [
+    "TICKET_ACK_TEMPLATE",
+    "INCIDENT_UPDATE_TEMPLATE",
+    "SLA_BREACH_TEMPLATE",
+    "KVKK_REQUEST_TEMPLATE",
+    "BILLING_ISSUE_TEMPLATE",
+    "SECURITY_REPORT_TEMPLATE"
+  ],
+  "gates": {
+    "internal_templates_ready": true,
+    "public_templates_published": false,
+    "real_customer_sending_enabled": false,
+    "escalation_matrix_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

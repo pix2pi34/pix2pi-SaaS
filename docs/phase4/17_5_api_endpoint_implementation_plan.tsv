@@ -1,0 +1,23 @@
+method	path	category	handler_candidate	request_contract	response_contract	required_permission	tenant_scope	audit_required	realtime_binding	implementation_order	implementation_status	note
+GET	/api/v1/workflows	workflow	ListWorkflowDefinitions	query:cursor/filter	list envelope + meta.next_cursor	workflow:read	tenant_scoped	NO	none	10	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+POST	/api/v1/workflows	workflow	CreateWorkflowDefinition	workflow definition DTO	workflow definition envelope	workflow:write	tenant_scoped	YES	tenant.workflow.events	20	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/api/v1/workflow-instances	workflow	ListWorkflowInstances	query:cursor/status	instance list envelope	workflow:read	tenant_scoped	NO	tenant.workflow.events	30	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+POST	/api/v1/workflow-instances	workflow	StartWorkflowInstance	start instance DTO	instance envelope	workflow:execute	tenant_scoped	YES	tenant.workflow.events	40	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/api/v1/workflow-instances/{id}	workflow	GetWorkflowInstance	path:id	instance detail envelope	workflow:read	tenant_scoped	NO	tenant.workflow.timeline	50	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+POST	/api/v1/workflow-instances/{id}/actions	workflow	ExecuteWorkflowAction	action DTO + idempotency key	action result envelope	workflow:execute	tenant_scoped	YES	tenant.workflow.events	60	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/api/v1/approvals	approval	ListApprovals	query:cursor/status	approval list envelope	approval:read	tenant_scoped	NO	tenant.approval.events	70	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/api/v1/approvals/{id}	approval	GetApproval	path:id	approval detail envelope	approval:read	tenant_scoped	NO	tenant.approval.events	75	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+POST	/api/v1/approvals/{id}/approve	approval	ApproveRequest	approve DTO + idempotency key	approval result envelope	approval:write	tenant_scoped	YES	tenant.approval.events	80	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+POST	/api/v1/approvals/{id}/reject	approval	RejectRequest	reject DTO + reason + idempotency key	approval result envelope	approval:write	tenant_scoped	YES	tenant.approval.events	90	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/api/v1/tasks	task	ListTasks	query:cursor/status	task list envelope	task:read	tenant_scoped	NO	tenant.task.events	100	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+POST	/api/v1/tasks/{id}/complete	task	CompleteTask	complete task DTO + idempotency key	task result envelope	task:write	tenant_scoped	YES	tenant.task.events	110	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/api/v1/notifications	notification	ListNotifications	query:cursor	notification list envelope	notification:read	tenant_scoped	NO	tenant.notification.events	120	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/api/v1/audit/workflow	audit	ListWorkflowAudit	query:cursor	audit list envelope	audit:read	tenant_scoped	NO	tenant.audit.events	130	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/api/v1/realtime/events	realtime	OpenSSEStream	query:channels	SSE stream envelope	realtime:read	tenant_scoped	YES	tenant.workflow.events	140	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/api/v1/realtime/ws	realtime	OpenWebSocketStream	query:channels	WS subscribe envelope	realtime:read	tenant_scoped	YES	tenant.workflow.events	150	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/ops/v1/workflow	ops	GetWorkflowOpsSummary	query:scope	ops workflow envelope	ops:read	platform_scoped	NO	ops.workflow.events	160	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/ops/v1/workflow/backlog	ops	GetWorkflowBacklog	query:cursor	backlog envelope	ops:read	platform_scoped	NO	ops.workflow.backlog	170	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/ops/v1/workflow/dlq	ops	GetWorkflowDLQ	query:cursor	dlq envelope	ops:read	platform_scoped	NO	ops.workflow.dlq	180	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/ops/v1/realtime/health	ops	GetRealtimeHealth	none	realtime health envelope	ops:read	platform_scoped	NO	platform.realtime.health	190	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/ops/v1/security/workflow	security	GetWorkflowSecurityEvents	query:cursor	security event envelope	security:read	platform_scoped	NO	security.workflow.events	200	READY_FOR_IMPLEMENTATION	plan_only_no_route_created
+GET	/ops/v1/security/tenant-isolation	security	GetTenantIsolationEvents	query:cursor	tenant isolation envelope	security:read	platform_scoped	NO	security.tenant_isolation.events	210	READY_FOR_IMPLEMENTATION	plan_only_no_route_created

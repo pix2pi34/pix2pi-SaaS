@@ -1,0 +1,64 @@
+{
+  "module_code": "FAZ_7_17_EXPORT_LIVE_READY_PIPELINE",
+  "mode": "EXPORT_LIVE_READY_PIPELINE_WITH_REAL_EXPORT_DISABLED",
+  "status": "EXPORT_LIVE_READY_PIPELINE_READY",
+  "depends_on": {
+    "faz_7_16_provider_live_adapter_readiness_final_status": "PASS",
+    "provider_live_adapter_readiness_gate": "PROVIDER_LIVE_ADAPTER_READINESS_READY"
+  },
+  "export_live_ready_gate": {
+    "production_export_allowed": false,
+    "real_customer_data_export_allowed": false,
+    "real_file_delivery_allowed": false,
+    "real_provider_api_call_allowed": false,
+    "real_erp_write_allowed": false,
+    "real_operator_export_action_allowed": false,
+    "real_customer_payload_allowed": false,
+    "export_live_module_status": "EXPORT_LIVE_READY_PIPELINE_READY",
+    "provider_live_module_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "file_delivery_module_status": "CLOSED_UNTIL_FILE_DELIVERY_LIVE_MODULE",
+    "sync_worker_live_module_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "approval_matrix_status": "CLOSED_UNTIL_APPROVAL_MATRIX_PASS",
+    "customer_consent_gate_status": "CLOSED_UNTIL_CUSTOMER_DATA_CONSENT_GATE",
+    "production_export_lock": "PRODUCTION_EXPORT_LOCKED_IN_FAZ_7_17",
+    "provider_dry_run_set": "PARASUT_LOGO_MIKRO_ZIRVE"
+  },
+  "supported_providers": [
+    "PARASUT",
+    "LOGO",
+    "MIKRO",
+    "ZIRVE"
+  ],
+  "supported_formats": [
+    "PARASUT_EXPORT_DRY_RUN_PACKAGE",
+    "LOGO_EXPORT_DRY_RUN_PACKAGE",
+    "MIKRO_EXPORT_DRY_RUN_PACKAGE",
+    "ZIRVE_EXPORT_DRY_RUN_PACKAGE"
+  ],
+  "required_export_live_ready_matrix": [
+    "provider_live_adapter_ready",
+    "export_schema_ready",
+    "export_manifest_ready",
+    "export_package_builder_ready",
+    "export_checksum_ready",
+    "export_delivery_plan_ready",
+    "customer_data_consent_gate_ready",
+    "export_idempotency_ready",
+    "export_retry_dlq_ready",
+    "export_audit_ready",
+    "export_rollback_ready",
+    "legal_approval_gate_ready",
+    "finance_approval_gate_ready",
+    "security_gate_ready",
+    "export_observability_ready"
+  ],
+  "live_operation_policy": {
+    "customer_data_export": "NO_REAL_CUSTOMER_DATA_EXPORT_IN_FAZ_7_17",
+    "file_delivery": "NO_REAL_FILE_DELIVERY_IN_FAZ_7_17",
+    "provider_api": "NO_REAL_PROVIDER_API_CALL_IN_FAZ_7_17",
+    "erp_write": "NO_REAL_ERP_WRITE_IN_FAZ_7_17",
+    "customer_payload": "NO_REAL_CUSTOMER_DATA_PAYLOAD_IN_FAZ_7_17",
+    "operator_action": "NO_REAL_OPERATOR_EXPORT_ACTION_IN_FAZ_7_17"
+  },
+  "next_module": "FAZ_7_18_ERP_SYNC_WORKER_LIVE_READY_RUNTIME"
+}

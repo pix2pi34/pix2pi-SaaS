@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — 403 Forbidden</title>
+  <link rel="stylesheet" href="./auth_error_pages.css">
+</head>
+<body>
+  <main class="pix2pi-error-shell">
+    <section class="pix2pi-error-card" id="authErrorRoot" data-error-code="FORBIDDEN">
+      <div class="pix2pi-error-grid">
+        <article>
+          <div class="pix2pi-error-code" id="authErrorTechnicalCode">FORBIDDEN</div>
+          <h1 class="pix2pi-error-title" id="authErrorTitle">403 Forbidden</h1>
+          <p class="pix2pi-error-message" id="authErrorMessage">Yetki kontrolü yapılıyor...</p>
+
+          <div class="pix2pi-error-actions">
+            <button class="pix2pi-error-button primary" id="authErrorAction" type="button">Devam</button>
+            <a class="pix2pi-error-button" href="./index.html">Hata merkezi</a>
+          </div>
+        </article>
+
+        <aside class="pix2pi-error-panel">
+          <div class="pix2pi-error-label">API Error Preview</div>
+          <pre class="pix2pi-api-preview" id="authErrorApiPreview">{}</pre>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="./auth_error_pages.js"></script>
+</body>
+</html>

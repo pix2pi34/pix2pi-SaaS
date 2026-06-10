@@ -1,0 +1,66 @@
+# PIX2PI_335_MARKET_NGINX_ROUTE_START
+# FIX_V2_MARKET_DOMAIN_ISOLATION
+# Domain is hard-pinned to market.pix2pi.com.tr. Do not use panel route for this host.
+
+server {
+    location = / {
+        add_header X-Pix2pi-Root-Mode "blank" always;
+        add_header X-Pix2pi-Root-Marker "PIX2PI_EXACT_ROOT_LINE_CLEAN_BLANK_MARKER" always;
+        return 204;
+    }
+
+
+
+
+    include /etc/nginx/snippets/pix2pi_339_marketplace_customer_order_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_338_marketplace_payment_delivery_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_337_marketplace_order_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_336_marketplace_management_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_335_marketplace_catalog_api_route.conf;
+
+
+
+    listen 80;
+    server_name market.pix2pi.com.tr;
+    root /var/www/pix2pi/market;
+    index index.html;
+
+    add_header X-Pix2pi-Surface marketplace always;
+    add_header X-Pix2pi-Step 335 always;
+    add_header X-Pix2pi-Fix v2-market-domain-isolation always;
+    add_header X-Frame-Options SAMEORIGIN always;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+
+    location = /health {
+        default_type application/json;
+        add_header Cache-Control "no-store" always;
+        try_files /health.json =404;
+    }
+
+    location /assets/storefront/ {
+        try_files $uri =404;
+    }
+
+    location /storefront/ {
+        try_files $uri $uri/ /storefront/index.html;
+    }
+
+    location / {
+        try_files $uri $uri/ /storefront/index.html;
+    }
+
+}
+
+
+# PIX2PI_335_MARKET_NGINX_ROUTE_END

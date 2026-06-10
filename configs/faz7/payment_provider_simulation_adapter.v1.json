@@ -1,0 +1,45 @@
+{
+  "module_code": "7-5P.7",
+  "module_name": "Payment Provider Simulation Adapter / Sandbox Runtime",
+  "parent_module": "7-5P",
+  "depends_on": [
+    "7-5P",
+    "7-5P.1",
+    "7-5P.2",
+    "7-5P.3",
+    "7-5P.4",
+    "7-5P.5",
+    "7-5P.6"
+  ],
+  "simulation_adapter_version": "payment_provider_simulation_adapter.v1",
+  "provider_code": "pix2pi_simulation",
+  "allowed_modes": [
+    "SIMULATION",
+    "SANDBOX"
+  ],
+  "forbidden_modes": [
+    "PRODUCTION"
+  ],
+  "real_payment_enabled": false,
+  "operations": [
+    "AUTHORIZE",
+    "CAPTURE",
+    "REFUND",
+    "VOID",
+    "WEBHOOK_BUILD"
+  ],
+  "guards": {
+    "production_mode_denied": true,
+    "real_payment_enabled_denied": true,
+    "provider_transaction_id_generated": true,
+    "operation_contract_validation_required": true,
+    "webhook_signature_generation_required": true,
+    "final_status_from_counters_required": true,
+    "hardcoded_final_ok_forbidden": true
+  },
+  "test_strategy": {
+    "go_test_required": true,
+    "test_names_verified_from_output": true,
+    "simulation_provider_does_not_call_real_payment_network": true
+  }
+}

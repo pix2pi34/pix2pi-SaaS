@@ -1,0 +1,21 @@
+{
+  "step": "FAZ 7-R / 345",
+  "name": "Commercial account / billing console runtime real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "commercial-account-console-345-20260513_232918",
+  "routes": [
+    "/commercial/account/",
+    "POST /api/commercial/account/summary",
+    "POST /api/commercial/account/health"
+  ],
+  "requiredEvidence": [
+    "commercial account summary DB runtime",
+    "plan subscription invoice entitlement joined summary",
+    "billing account API",
+    "commercial health active paid entitlement ok",
+    "tenant-safe commercial account guard",
+    "no-role commercial account deny",
+    "route smoke",
+    "commercial account audit evidence"
+  ]
+}

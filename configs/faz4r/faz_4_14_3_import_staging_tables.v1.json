@@ -1,0 +1,36 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 180,
+  "step": "FAZ_4_14_3",
+  "title": "Import / staging tabloları",
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "scope": {
+    "included": [
+      "import_batches",
+      "import_source_files",
+      "import_staging_rows",
+      "import_staging_customers",
+      "import_staging_products",
+      "import_staging_stock_entries",
+      "import_staging_finance_documents",
+      "import_validation_errors",
+      "import_audit_events"
+    ],
+    "excluded": [
+      "live_external_provider_activation",
+      "live_gib_activation",
+      "live_bank_activation",
+      "live_pos_provider_activation"
+    ],
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "next_steps": [
+    "181_FAZ_4_14_7_MIGRATION_LIFECYCLE_IMPORT_TESTS",
+    "182_FAZ_4_14_4_BACKFILL_REBUILD_SCRIPT_STANDARD",
+    "183_FAZ_4_14_1_MIGRATION_CHAIN_STANDARD",
+    "184_FAZ_4_14_2_REFERENCE_DATA_SEED_STANDARD"
+  ]
+}

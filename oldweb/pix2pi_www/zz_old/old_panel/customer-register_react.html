@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+  <!-- PIX2PI_NAMED_HTML_CUSTOMER_REGISTER_REACT_MARKER -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pix2pi İşletme Kaydı</title>
+    <meta name="pix2pi-marker" content="PIX2PI_REGISTER_PAGE_REACT_PASSWORD_MARKER" />
+    <script type="module" crossorigin src="/assets/customer-register-react/index-Tj4SR7jo.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/customer-register-react/index-DfGcJ8bP.css">
+  
+<style id="PIX2PI_COMPACT_CUSTOMER_FORM_CSS">
+  html {
+    font-size: 11.5px !important;
+  }
+
+  body {
+    font-size: 11.5px !important;
+  }
+
+  body, input, select, textarea, button {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  }
+
+  h1 {
+    font-size: clamp(22px, 2.9vw, 30px) !important;
+    line-height: 1.06 !important;
+    letter-spacing: -0.038em !important;
+    margin-top: 0 !important;
+    margin-bottom: 6px !important;
+  }
+
+  h2 {
+    font-size: clamp(16px, 2.1vw, 21px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.028em !important;
+  }
+
+  h3 {
+    font-size: 14px !important;
+  }
+
+  p {
+    font-size: 12px !important;
+    line-height: 1.38 !important;
+  }
+
+  label {
+    font-size: 11px !important;
+    line-height: 1.15 !important;
+    font-weight: 700 !important;
+    margin-bottom: 3px !important;
+  }
+
+  input,
+  select,
+  textarea {
+    min-height: 30px !important;
+    height: 30px !important;
+    padding: 5px 9px !important;
+    font-size: 11.5px !important;
+    line-height: 1.15 !important;
+    border-radius: 9px !important;
+  }
+
+  textarea {
+    min-height: 58px !important;
+    height: auto !important;
+  }
+
+  button,
+  .btn,
+  a[class*="btn"],
+  [role="button"] {
+    min-height: 31px !important;
+    padding: 6px 11px !important;
+    font-size: 11.5px !important;
+    border-radius: 9px !important;
+  }
+
+  form {
+    gap: 6px !important;
+  }
+
+  .card,
+  .panel,
+  .form-card,
+  .content,
+  main > section,
+  main > div {
+    border-radius: 14px !important;
+  }
+
+  .note,
+  .alert,
+  [class*="note"],
+  [class*="alert"] {
+    font-size: 11.5px !important;
+    padding: 8px 10px !important;
+    border-radius: 10px !important;
+  }
+
+  [class*="grid"] {
+    gap: 7px !important;
+  }
+
+  [class*="field"],
+  [class*="formGroup"],
+  [class*="form-group"] {
+    gap: 3px !important;
+    margin-bottom: 5px !important;
+  }
+
+  main,
+  section,
+  .container,
+  .wrap {
+    max-width: 980px !important;
+  }
+
+  @media (max-width: 720px) {
+    html {
+      font-size: 11px !important;
+    }
+
+    body {
+      overflow-x: hidden !important;
+    }
+
+    h1 {
+      font-size: 24px !important;
+      line-height: 1.06 !important;
+    }
+
+    h2 {
+      font-size: 18px !important;
+    }
+
+    p {
+      font-size: 11.5px !important;
+    }
+
+    label {
+      font-size: 10.8px !important;
+    }
+
+    input,
+    select,
+    textarea {
+      min-height: 30px !important;
+      height: 30px !important;
+      font-size: 11px !important;
+    }
+
+    button,
+    .btn,
+    a[class*="btn"],
+    [role="button"] {
+      width: 100%;
+      min-height: 31px !important;
+      font-size: 11px !important;
+    }
+
+    main,
+    section,
+    .container,
+    .wrap {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+  }
+</style>
+
+</head>
+  <body>
+    <div id="root"></div>
+  
+<script id="pix2pi-customer-register-live-submit-bridge">
+(function () {
+  "use strict";
+
+  var MARKER = "CUSTOMER_REGISTER_LIVE_SUBMIT_FRONTEND_BRIDGE_MARKER";
+  var API_URL = "/customer-register/application-api/submit";
+  var busy = false;
+
+  function norm(value) {
+    return String(value || "").trim();
+  }
+
+  function lower(value) {
+    return norm(value).toLocaleLowerCase("tr-TR");
+  }
+
+  function allFields(form) {
+    return Array.prototype.slice.call(form.querySelectorAll("input,textarea,select"));
+  }
+
+  function fieldMeta(el) {
+    var label = "";
+    if (el.id) {
+      var direct = document.querySelector('label[for="' + CSS.escape(el.id) + '"]');
+      if (direct) label += " " + direct.textContent;
+    }
+
+    var parentLabel = el.closest("label");
+    if (parentLabel) label += " " + parentLabel.textContent;
+
+    return lower([
+      el.name,
+      el.id,
+      el.type,
+      el.placeholder,
+      el.getAttribute("aria-label"),
+      el.getAttribute("autocomplete"),
+      label
+    ].join(" "));
+  }
+
+  function findByHints(form, hints) {
+    var fields = allFields(form);
+
+    for (var i = 0; i < fields.length; i++) {
+      var el = fields[i];
+      var meta = fieldMeta(el);
+
+      for (var j = 0; j < hints.length; j++) {
+        if (meta.indexOf(hints[j]) !== -1) {
+          return el;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  function getEmail(form) {
+    var el = form.querySelector('input[type="email"]') ||
+      findByHints(form, ["email", "e-posta", "eposta", "mail"]);
+
+    return norm(el && el.value).toLowerCase();
+  }
+
+  function collectPayload(form) {
+    var email = getEmail(form);
+
+    var company = findByHints(form, ["firma", "şirket", "sirket", "company", "unvan", "ünvan"]);
+    var owner = findByHints(form, ["yetkili", "ad soyad", "ad-soyad", "isim", "name", "owner"]);
+    var phone = form.querySelector('input[type="tel"]') || findByHints(form, ["telefon", "phone", "gsm"]);
+    var taxOffice = findByHints(form, ["vergi dairesi", "tax office"]);
+    var taxNumber = findByHints(form, ["vkn", "tckn", "vergi no", "vergi numarası", "tax number"]);
+    var password = form.querySelector('input[type="password"]');
+
+    var payload = {
+      email: email,
+      company_name: norm(company && company.value),
+      owner_name: norm(owner && owner.value),
+      phone: norm(phone && phone.value),
+      tax_office: norm(taxOffice && taxOffice.value),
+      tax_number: norm(taxNumber && taxNumber.value),
+      password: norm(password && password.value),
+      source_frontend_marker: MARKER
+    };
+
+    allFields(form).forEach(function (el) {
+      var key = norm(el.name || el.id);
+      if (!key) return;
+      if (String(el.type || "").toLowerCase() === "password") return;
+      payload["field_" + key] = norm(el.value);
+    });
+
+    return payload;
+  }
+
+  function boxAfter(form) {
+    var box = document.getElementById("pix2pi-register-submit-box");
+
+    if (!box) {
+      box = document.createElement("div");
+      box.id = "pix2pi-register-submit-box";
+      box.setAttribute("data-marker", MARKER);
+      box.style.margin = "14px 0";
+      box.style.padding = "14px 16px";
+      box.style.borderRadius = "14px";
+      box.style.fontWeight = "800";
+      box.style.lineHeight = "1.45";
+
+      if (form && form.parentNode) {
+        form.parentNode.insertBefore(box, form.nextSibling);
+      } else {
+        document.body.insertBefore(box, document.body.firstChild);
+      }
+    }
+
+    return box;
+  }
+
+  function paint(form, message, type) {
+    var box = boxAfter(form);
+    box.textContent = message;
+    box.style.display = "block";
+
+    if (type === "ok") {
+      box.style.background = "#ecfdf3";
+      box.style.border = "1px solid #abefc6";
+      box.style.color = "#067647";
+    } else if (type === "warn") {
+      box.style.background = "#fffaeb";
+      box.style.border = "1px solid #fedf89";
+      box.style.color = "#92400e";
+    } else {
+      box.style.background = "#fef3f2";
+      box.style.border = "1px solid #fecdca";
+      box.style.color = "#b42318";
+    }
+  }
+
+  function submitForm(form, event) {
+    if (busy) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      return;
+    }
+
+    var payload = collectPayload(form);
+
+    if (!payload.email || payload.email.indexOf("@") === -1) {
+      return;
+    }
+
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    busy = true;
+    paint(form, "Başvurunuz kaydediliyor…", "warn");
+
+    fetch(API_URL, {
+      method: "POST",
+      credentials: "same-origin",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data && data.ok && data.created) {
+          paint(form, "Başvurunuz alındı. Pix2pi onayı bekleniyor.", "ok");
+          window.PIX2PI_CUSTOMER_REGISTER_LAST_APPLICATION = data;
+          return;
+        }
+
+        if (data && data.ok && data.duplicate) {
+          paint(form, data.message || "Bu e-posta için başvuru zaten mevcut.", "warn");
+          window.PIX2PI_CUSTOMER_REGISTER_LAST_APPLICATION = data;
+          return;
+        }
+
+        paint(form, (data && data.message) || "Başvuru kaydedilemedi.", "error");
+      })
+      .catch(function () {
+        paint(form, "Başvuru kaydedilemedi. Lütfen tekrar deneyin.", "error");
+      })
+      .finally(function () {
+        busy = false;
+      });
+  }
+
+  function isRegisterForm(form) {
+    var text = lower(form.textContent);
+    var html = lower(form.innerHTML);
+
+    return (
+      text.indexOf("kayıt") !== -1 ||
+      text.indexOf("kayit") !== -1 ||
+      html.indexOf("customer-register") !== -1 ||
+      !!getEmail(form)
+    );
+  }
+
+  function bind() {
+    var forms = document.querySelectorAll("form");
+
+    for (var i = 0; i < forms.length; i++) {
+      var form = forms[i];
+      if (form.getAttribute("data-pix2pi-register-submit-bound")) continue;
+      if (!isRegisterForm(form)) continue;
+
+      form.setAttribute("data-pix2pi-register-submit-bound", MARKER);
+      form.addEventListener("submit", function (event) {
+        submitForm(event.currentTarget, event);
+      }, true);
+    }
+
+    var buttons = document.querySelectorAll("button");
+
+    for (var j = 0; j < buttons.length; j++) {
+      var btn = buttons[j];
+      if (btn.getAttribute("data-pix2pi-register-submit-bound")) continue;
+
+      var txt = lower(btn.textContent);
+      var looksRegister =
+        txt.indexOf("kayıt") !== -1 ||
+        txt.indexOf("kayit") !== -1 ||
+        txt.indexOf("başvur") !== -1 ||
+        txt.indexOf("basvur") !== -1;
+
+      if (!looksRegister) continue;
+
+      btn.setAttribute("data-pix2pi-register-submit-bound", MARKER);
+      btn.addEventListener("click", function (event) {
+        var form = event.currentTarget.closest("form") || document.querySelector("form");
+        if (!form) return;
+        submitForm(form, event);
+      }, true);
+    }
+  }
+
+  var observer = new MutationObserver(bind);
+
+  function start() {
+    bind();
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.PIX2PI_CUSTOMER_REGISTER_LIVE_SUBMIT_FRONTEND_BRIDGE_MARKER = MARKER;
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
+})();
+</script>
+
+
+<script id="pix2pi-customer-auth-nav-bar">
+(function () {
+  "use strict";
+
+  var MARKER = "PIX2PI_CUSTOMER_AUTH_NAV_BAR_MARKER";
+
+  function isRegisterPage() {
+    return window.location.pathname.indexOf("/customer-register/") !== -1;
+  }
+
+  function isLoginPage() {
+    return window.location.pathname.indexOf("/customer-login/") !== -1;
+  }
+
+  function addStyles() {
+    if (document.getElementById("pix2pi-customer-auth-nav-style")) return;
+
+    var style = document.createElement("style");
+    style.id = "pix2pi-customer-auth-nav-style";
+    style.textContent = [
+      ".pix2pi-auth-nav{position:sticky;top:0;z-index:99999;display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 18px;background:#0f172a;color:#fff;box-shadow:0 12px 30px rgba(15,23,42,.16);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}",
+      ".pix2pi-auth-nav strong{font-size:14px;letter-spacing:.02em}",
+      ".pix2pi-auth-nav-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}",
+      ".pix2pi-auth-nav a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:999px;padding:9px 13px;font-size:13px;font-weight:800;background:#fff;color:#0f172a;border:1px solid rgba(255,255,255,.22)}",
+      ".pix2pi-auth-nav a.primary{background:#2563eb;color:#fff;border-color:#2563eb}",
+      ".pix2pi-auth-nav a.warn{background:#16a34a;color:#fff;border-color:#16a34a}",
+      "@media(max-width:640px){.pix2pi-auth-nav{align-items:flex-start;flex-direction:column}.pix2pi-auth-nav-actions{justify-content:flex-start}}"
+    ].join("\\n");
+
+    document.head.appendChild(style);
+  }
+
+  function createNav() {
+    if (document.getElementById("pix2pi-customer-auth-nav")) return;
+
+    addStyles();
+
+    var nav = document.createElement("div");
+    nav.id = "pix2pi-customer-auth-nav";
+    nav.className = "pix2pi-auth-nav";
+    nav.setAttribute("data-marker", MARKER);
+
+    var title = document.createElement("strong");
+    title.textContent = isRegisterPage() ? "Pix2pi Müşteri Kayıt" : "Pix2pi Müşteri Giriş";
+
+    var actions = document.createElement("div");
+    actions.className = "pix2pi-auth-nav-actions";
+
+    var home = document.createElement("a");
+    home.href = "https://pix2pi.com.tr/";
+    home.textContent = "Ana Sayfa";
+
+    var login = document.createElement("a");
+    login.href = "/customer-login/react/";
+    login.textContent = "Giriş Yap";
+    login.className = isLoginPage() ? "primary" : "";
+
+    var register = document.createElement("a");
+    register.href = "/customer-register/react/";
+    register.textContent = "Kayıt Ol";
+    register.className = isRegisterPage() ? "warn" : "";
+
+    actions.appendChild(home);
+
+    if (isRegisterPage()) {
+      actions.appendChild(login);
+    } else if (isLoginPage()) {
+      actions.appendChild(register);
+    } else {
+      actions.appendChild(login);
+      actions.appendChild(register);
+    }
+
+    nav.appendChild(title);
+    nav.appendChild(actions);
+
+    if (document.body.firstChild) {
+      document.body.insertBefore(nav, document.body.firstChild);
+    } else {
+      document.body.appendChild(nav);
+    }
+
+    window.PIX2PI_CUSTOMER_AUTH_NAV_BAR_MARKER = MARKER;
+  }
+
+  function start() {
+    createNav();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
+})();
+</script>
+
+
+<!-- PIX2PI_COMPACT_CUSTOMER_FORM_MARKER -->
+
+<!-- PIX2PI_EXTRA_COMPACT_CUSTOMER_FORM_MARKER -->
+
+<!-- PIX2PI_ULTRA_COMPACT_CUSTOMER_FORM_MARKER -->
+
+<style id="PIX2PI_REGISTER_REAL_ERROR_STYLE">
+  .pix2pi-real-register-error {
+    margin-top: 12px !important;
+    padding: 12px 14px !important;
+    border-radius: 14px !important;
+    border: 1px solid #fecaca !important;
+    background: #fef2f2 !important;
+    color: #991b1b !important;
+    font-size: 12px !important;
+    font-weight: 850 !important;
+    line-height: 1.45 !important;
+    white-space: pre-wrap !important;
+    display: none;
+  }
+  .pix2pi-real-register-error.show {
+    display: block !important;
+  }
+  .pix2pi-real-register-error small {
+    display: block !important;
+    margin-top: 6px !important;
+    color: #7f1d1d !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+  }
+</style>
+
+<script id="PIX2PI_REGISTER_REAL_ERROR_SCRIPT">
+(function(){
+  function ready(fn){
+    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+    else fn();
+  }
+
+  function textOf(el){
+    return ((el && (el.innerText || el.value || el.textContent)) || "").trim();
+  }
+
+  function findForm(){
+    return document.querySelector("form") || document.querySelector("[data-register-form]") || document.body;
+  }
+
+  function findSubmit(){
+    var nodes = Array.from(document.querySelectorAll('button, input[type="submit"]'));
+    return nodes.find(function(el){
+      var t = textOf(el).toLowerCase();
+      return t.includes("başvuruyu gönder") || t.includes("basvuruyu gonder") || t.includes("başvuru") || t.includes("kayıt");
+    }) || nodes[nodes.length - 1];
+  }
+
+  function ensureErrorBox(){
+    var box = document.querySelector(".pix2pi-real-register-error");
+    if(box) return box;
+
+    box = document.createElement("div");
+    box.className = "pix2pi-real-register-error";
+    box.setAttribute("role", "alert");
+
+    var btn = findSubmit();
+    if(btn && btn.parentNode){
+      btn.parentNode.insertBefore(box, btn.nextSibling);
+    } else {
+      findForm().appendChild(box);
+    }
+
+    return box;
+  }
+
+  function normalizeError(data, status){
+    if(!data) return "Başvuru kaydedilemedi. Sunucudan cevap alınamadı.";
+
+    var raw =
+      data.message ||
+      data.error_message ||
+      data.error ||
+      data.reason ||
+      data.detail ||
+      data.code ||
+      "";
+
+    var map = {
+      "PASSWORD_MISMATCH": "Şifre ve Şifre Tekrar aynı değil.",
+      "INVALID_EMAIL": "Mail adresi geçerli değil.",
+      "EMAIL_REQUIRED": "Mail alanı zorunlu.",
+      "PASSWORD_REQUIRED": "Şifre alanı zorunlu.",
+      "COMPANY_NAME_REQUIRED": "Firmanızın Adı alanı zorunlu.",
+      "TAX_NUMBER_REQUIRED": "Vergi No alanı zorunlu.",
+      "APPLICATION_ALREADY_EXISTS": "Bu mail veya firma için daha önce başvuru yapılmış.",
+      "DUPLICATE_APPLICATION": "Bu mail veya firma için daha önce başvuru yapılmış.",
+      "API_NOT_FOUND": "Kayıt API route’u bulunamadı.",
+      "NOT_FOUND": "Kayıt API route’u bulunamadı.",
+      "VALIDATION_ERROR": "Form doğrulama hatası var.",
+      "INTERNAL_ERROR": "Sunucu tarafında kayıt hatası oluştu.",
+      "EACCES": "Sunucu dosya yazma izni hatası.",
+      "ENOENT": "Sunucu kayıt dizini bulunamadı."
+    };
+
+    var friendly = map[String(raw).toUpperCase()] || raw || "Başvuru kaydedilemedi.";
+
+    var missing = [];
+    if(data.missing && Array.isArray(data.missing)) missing = data.missing;
+    if(data.missing_fields && Array.isArray(data.missing_fields)) missing = data.missing_fields;
+
+    if(missing.length){
+      friendly += "\nEksik alanlar: " + missing.join(", ");
+    }
+
+    if(status){
+      friendly += "\nHTTP durum: " + status;
+    }
+
+    return friendly;
+  }
+
+  function showError(message, data){
+    var box = ensureErrorBox();
+    var debug = "";
+
+    if(data){
+      try {
+        debug = "\n\nTeknik cevap:\n" + JSON.stringify(data, null, 2);
+      } catch(e) {}
+    }
+
+    box.className = "pix2pi-real-register-error show";
+    box.textContent = message + debug;
+
+    var oldGeneric = Array.from(document.querySelectorAll("div, p, span"))
+      .filter(function(el){
+        return textOf(el).includes("Başvuru kaydedilemedi. Lütfen tekrar deneyin.");
+      });
+
+    oldGeneric.forEach(function(el){
+      if(!el.classList.contains("pix2pi-real-register-error")){
+        el.textContent = message;
+      }
+    });
+
+    box.scrollIntoView({behavior:"smooth", block:"center"});
+  }
+
+  function showOk(message){
+    var box = ensureErrorBox();
+    box.className = "pix2pi-real-register-error show";
+    box.style.background = "#ecfdf5";
+    box.style.borderColor = "#a7f3d0";
+    box.style.color = "#065f46";
+    box.textContent = message || "Başvuru kaydedildi.";
+  }
+
+  function hookFetch(){
+    if(window.__PIX2PI_REGISTER_REAL_ERROR_FETCH_HOOKED__) return;
+    window.__PIX2PI_REGISTER_REAL_ERROR_FETCH_HOOKED__ = true;
+
+    var originalFetch = window.fetch;
+    if(!originalFetch) return;
+
+    window.fetch = async function(){
+      var url = "";
+      try {
+        url = String(arguments[0] && arguments[0].url ? arguments[0].url : arguments[0]);
+      } catch(e) {}
+
+      var res;
+      try {
+        res = await originalFetch.apply(this, arguments);
+      } catch(err) {
+        if(url.includes("register") || url.includes("application") || url.includes("submit")){
+          showError("Kayıt API bağlantısı kurulamadı: " + (err && err.message ? err.message : "network error"), {
+            error: "NETWORK_ERROR",
+            url: url
+          });
+        }
+        throw err;
+      }
+
+      try {
+        if(url.includes("register") || url.includes("application") || url.includes("submit")){
+          var cloned = res.clone();
+          cloned.json().then(function(data){
+            if(data && data.ok === false){
+              showError(normalizeError(data, res.status), data);
+            } else if(data && data.ok === true){
+              showOk("Başvuru kaydedildi. Onay süreci için bekleyiniz.");
+            } else if(!res.ok){
+              showError("Başvuru kaydedilemedi. HTTP durum: " + res.status, data || {});
+            }
+          }).catch(function(){
+            if(!res.ok){
+              showError("Başvuru kaydedilemedi. API JSON cevap dönmedi. HTTP durum: " + res.status, {
+                error: "NON_JSON_RESPONSE",
+                url: url
+              });
+            }
+          });
+        }
+      } catch(e) {}
+
+      return res;
+    };
+  }
+
+  function basicClientValidation(){
+    var pass = document.querySelector('input[type="password"], input[name*="password" i], input[name*="sifre" i], input[name*="şifre" i]');
+    var passwordInputs = Array.from(document.querySelectorAll('input[type="password"]'));
+
+    if(passwordInputs.length >= 2){
+      var p1 = passwordInputs[0].value || "";
+      var p2 = passwordInputs[1].value || "";
+      if(p1 && p2 && p1 !== p2){
+        showError("Şifre ve Şifre Tekrar aynı değil.", {error:"PASSWORD_MISMATCH"});
+        return false;
+      }
+    }
+
+    var email = document.querySelector('input[type="email"], input[name*="mail" i], input[id*="mail" i]');
+    if(email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){
+      showError("Mail adresi geçerli değil.", {error:"INVALID_EMAIL"});
+      return false;
+    }
+
+    return true;
+  }
+
+  ready(function(){
+    ensureErrorBox();
+    hookFetch();
+
+    document.addEventListener("submit", function(ev){
+      if(!basicClientValidation()){
+        ev.preventDefault();
+        ev.stopPropagation();
+        if(ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+        return false;
+      }
+    }, true);
+
+    document.addEventListener("click", function(ev){
+      var target = ev.target && ev.target.closest ? ev.target.closest('button, input[type="submit"]') : null;
+      if(!target) return;
+
+      var t = textOf(target).toLowerCase();
+      if(t.includes("başvuruyu gönder") || t.includes("basvuruyu gonder")){
+        if(!basicClientValidation()){
+          ev.preventDefault();
+          ev.stopPropagation();
+          if(ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+          return false;
+        }
+      }
+    }, true);
+
+    document.documentElement.setAttribute("data-pix2pi-register-real-error", "PIX2PI_REGISTER_REAL_ERROR_MARKER");
+  });
+})();
+</script>
+<!-- PIX2PI_REGISTER_REAL_ERROR_MARKER -->
+
+
+
+
+
+
+
+
+<style id="PIX2PI_REGISTER_DIRECT_SUBMIT_STYLE">
+  .pix2pi-register-result {
+    margin-top: 12px !important;
+    padding: 12px 14px !important;
+    border-radius: 14px !important;
+    border: 1px solid #bfdbfe !important;
+    background: #eff6ff !important;
+    color: #1e3a8a !important;
+    font-size: 12px !important;
+    font-weight: 850 !important;
+    line-height: 1.45 !important;
+    white-space: pre-wrap !important;
+    display: none;
+  }
+  .pix2pi-register-result.show { display: block !important; }
+  .pix2pi-register-result.err {
+    border-color: #fecaca !important;
+    background: #fef2f2 !important;
+    color: #991b1b !important;
+  }
+  .pix2pi-register-result.ok {
+    border-color: #a7f3d0 !important;
+    background: #ecfdf5 !important;
+    color: #065f46 !important;
+  }
+</style>
+
+<script id="PIX2PI_REGISTER_DIRECT_SUBMIT_SCRIPT">
+(function(){
+  function ready(fn){
+    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+    else fn();
+  }
+
+  function textOf(el){
+    return ((el && (el.innerText || el.value || el.textContent)) || "").trim();
+  }
+
+  function ensureBox(){
+    var box = document.querySelector(".pix2pi-register-result");
+    if(box) return box;
+
+    box = document.createElement("div");
+    box.className = "pix2pi-register-result";
+    box.setAttribute("role", "alert");
+
+    var submit = findSubmitButton();
+    if(submit && submit.parentNode){
+      submit.parentNode.insertBefore(box, submit.nextSibling);
+    } else {
+      document.body.appendChild(box);
+    }
+
+    return box;
+  }
+
+  function show(type, msg, data){
+    var box = ensureBox();
+    box.className = "pix2pi-register-result show " + type;
+
+    var detail = "";
+    if(data){
+      try { detail = "\n\nTeknik cevap:\n" + JSON.stringify(data, null, 2); } catch(e){}
+    }
+
+    box.textContent = msg + detail;
+    box.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function findSubmitButton(){
+    var nodes = Array.from(document.querySelectorAll('button, input[type="submit"], a'));
+    return nodes.find(function(el){
+      var t = textOf(el).toLowerCase();
+      return t.includes("başvuruyu gönder") || t.includes("basvuruyu gonder") || t.includes("başvuru gönder");
+    });
+  }
+
+  function labelFor(input){
+    var parts = [];
+
+    if(input.id){
+      var l = document.querySelector('label[for="' + CSS.escape(input.id) + '"]');
+      if(l) parts.push(textOf(l));
+    }
+
+    if(input.labels){
+      Array.from(input.labels).forEach(function(l){ parts.push(textOf(l)); });
+    }
+
+    var prev = input.previousElementSibling;
+    if(prev) parts.push(textOf(prev));
+
+    var parent = input.parentElement;
+    if(parent) parts.push(textOf(parent).slice(0, 80));
+
+    parts.push(input.name || "");
+    parts.push(input.id || "");
+    parts.push(input.placeholder || "");
+
+    return parts.join(" ").toLowerCase();
+  }
+
+  function getByLabel(inputs, keys, fallbackIndex){
+    var found = inputs.find(function(input){
+      var l = labelFor(input);
+      return keys.some(function(k){ return l.includes(k); });
+    });
+
+    if(found) return (found.value || "").trim();
+
+    if(typeof fallbackIndex === "number" && inputs[fallbackIndex]){
+      return (inputs[fallbackIndex].value || "").trim();
+    }
+
+    return "";
+  }
+
+  function collect(){
+    var all = Array.from(document.querySelectorAll("input, textarea")).filter(function(i){
+      var type = String(i.type || "").toLowerCase();
+      return !["hidden", "button", "submit"].includes(type);
+    });
+
+    var nonPass = all.filter(function(i){ return String(i.type || "").toLowerCase() !== "password"; });
+    var pass = all.filter(function(i){ return String(i.type || "").toLowerCase() === "password"; });
+
+    return {
+      tax_number: getByLabel(nonPass, ["vergi no", "tax"], 0),
+      tax_office: getByLabel(nonPass, ["vergi dairesi"], 1),
+      company_name: getByLabel(nonPass, ["firmanızın adı", "firmanizin adi", "firma", "company"], 2),
+      address: getByLabel(nonPass, ["adres", "address"], 3),
+      district: getByLabel(nonPass, ["ilçe", "ilce", "district"], 4),
+      city: getByLabel(nonPass, [" il ", "şehir", "sehir", "city"], 5),
+      phone: getByLabel(nonPass, ["tel", "telefon", "phone"], 6),
+      web_address: getByLabel(nonPass, ["web", "site"], 7),
+      mersis_no: getByLabel(nonPass, ["mersis"], 8),
+      trade_registry_no: getByLabel(nonPass, ["ticaret sicil", "sicil"], 9),
+      email: getByLabel(nonPass, ["mail", "e-posta", "email"], 10),
+      password: pass[0] ? pass[0].value : "",
+      password_confirm: pass[1] ? pass[1].value : ""
+    };
+  }
+
+  function friendly(data, status){
+    var error = String((data && (data.error || data.code || data.message)) || "").toUpperCase();
+
+    var map = {
+      "PASSWORD_MISMATCH": "Şifre ve Şifre Tekrar aynı değil.",
+      "EMAIL_REQUIRED": "Mail alanı zorunlu.",
+      "INVALID_EMAIL": "Mail adresi geçerli değil.",
+      "PASSWORD_REQUIRED": "Şifre alanı zorunlu.",
+      "PASSWORD_CONFIRM_REQUIRED": "Şifre Tekrar alanı zorunlu.",
+      "COMPANY_NAME_REQUIRED": "Firmanızın Adı alanı zorunlu.",
+      "STORAGE_NOT_WRITABLE": "Sunucu kayıt dizinine yazamıyor.",
+      "APPLICATION_SAVE_FAILED": "Başvuru dosyası kaydedilemedi.",
+      "NOT_FOUND": "Kayıt API route bulunamadı."
+    };
+
+    return map[error] || (data && data.message) || ("Başvuru kaydedilemedi. HTTP durum: " + status);
+  }
+
+  var busy = false;
+
+  async function submit(ev){
+    if(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+      if(ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+    }
+
+    if(busy) return false;
+    busy = true;
+
+    var btn = findSubmitButton();
+    if(btn) btn.disabled = true;
+
+    var data = collect();
+
+    if(!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)){
+      show("err", "Mail adresi geçerli değil.", { error: "INVALID_EMAIL" });
+      busy = false;
+      if(btn) btn.disabled = false;
+      return false;
+    }
+
+    if(!data.password || !data.password_confirm){
+      show("err", "Şifre ve Şifre Tekrar alanları zorunlu.", { error: "PASSWORD_REQUIRED" });
+      busy = false;
+      if(btn) btn.disabled = false;
+      return false;
+    }
+
+    if(data.password !== data.password_confirm){
+      show("err", "Şifre ve Şifre Tekrar aynı değil.", { error: "PASSWORD_MISMATCH" });
+      busy = false;
+      if(btn) btn.disabled = false;
+      return false;
+    }
+
+    try {
+      var res = await fetch("/customer-register/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      var json = null;
+      try { json = await res.json(); } catch(e) {}
+
+      if(res.ok && json && json.ok){
+        show("ok", "Başvuru kaydedildi. Başvuru ID: " + (json.id || json.application_id || "-") + "\nOnay süreci için bekleyiniz.", json);
+      } else {
+        show("err", friendly(json, res.status), json || { error: "NON_JSON_RESPONSE", status: res.status });
+      }
+    } catch(err) {
+      show("err", "Kayıt API bağlantısı kurulamadı: " + (err && err.message ? err.message : "network error"), {
+        error: "NETWORK_ERROR"
+      });
+    } finally {
+      busy = false;
+      if(btn) btn.disabled = false;
+    }
+
+    return false;
+  }
+
+  ready(function(){
+    ensureBox();
+
+    document.addEventListener("submit", function(ev){
+      var btn = findSubmitButton();
+      if(btn) submit(ev);
+    }, true);
+
+    document.addEventListener("click", function(ev){
+      var target = ev.target && ev.target.closest ? ev.target.closest('button, input[type="submit"], a') : null;
+      if(!target) return;
+
+      if(target === findSubmitButton()){
+        submit(ev);
+      }
+    }, true);
+
+    document.documentElement.setAttribute("data-pix2pi-register-direct-submit", "PIX2PI_REGISTER_DIRECT_SUBMIT_MARKER");
+  });
+})();
+</script>
+<!-- PIX2PI_REGISTER_DIRECT_SUBMIT_MARKER -->
+
+</body>
+</html>

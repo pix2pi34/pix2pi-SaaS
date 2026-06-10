@@ -1,0 +1,16 @@
+version: v1
+plugin_rules:
+  runtime: __PLUGIN_RUNTIME__
+  contract_version: __PLUGIN_CONTRACT_VERSION__
+  default_state: __PLUGIN_DEFAULT_STATE__
+  tenant_mode: __PLUGIN_TENANT_MODE__
+  permission_mode: __PLUGIN_PERMISSION_MODE__
+  min_compatible_core: __PLUGIN_MIN_COMPATIBLE_CORE__
+
+public_api_rules:
+  gateway_mode: __PUBLIC_API_GATEWAY_MODE__
+  auth_mode: __PUBLIC_API_AUTH_MODE__
+  rate_limit_per_minute: __PUBLIC_API_RATE_LIMIT_PER_MINUTE__
+  quota_per_day: __PUBLIC_API_QUOTA_PER_DAY__
+  sandbox_mode: __PUBLIC_API_SANDBOX_MODE__
+  docs_mode: __PUBLIC_API_DOCS_MODE__

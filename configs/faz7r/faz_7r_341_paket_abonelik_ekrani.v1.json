@@ -1,0 +1,56 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "341",
+  "name": "Paket / abonelik ekranı",
+  "surface": "merchant_panel_commercial",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/plans/",
+  "runtime_path": "/assets/plans/panel-plans-runtime.js",
+  "depends_on": [
+    "340 - Son müşteri alışveriş yüzeyi"
+  ],
+  "backend_contract": {
+    "plan_catalog_endpoint": "/api/commercial/plans/catalog",
+    "tenant_subscription_endpoint": "/api/commercial/subscription/current",
+    "plan_change_endpoint": "/api/commercial/subscription/change",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "merchant_session_header": "X-Merchant-Session"
+  },
+  "runtime_contract": {
+    "real_plan_change_enabled": false,
+    "real_payment_collection_enabled": false,
+    "real_invoice_issue_enabled": false,
+    "real_entitlement_enforcement_enabled": false,
+    "plan_catalog_enabled": true,
+    "fallback_plan_catalog_enabled": true,
+    "ready_for_step_342": true
+  },
+  "pricing_contract": {
+    "currency": "TRY",
+    "vat_rate": 20,
+    "monthly_default": true,
+    "annual_view_enabled": true
+  },
+  "required_capabilities": [
+    "plan_subscription_app_shell",
+    "tenant_merchant_context",
+    "plan_cards",
+    "feature_matrix",
+    "monthly_annual_price_view",
+    "current_plan_badge",
+    "upgrade_downgrade_disabled_gate",
+    "trial_pilot_plan_placeholder",
+    "tax_vat_price_note",
+    "commercial_policy_note",
+    "plan_comparison_runtime_contract",
+    "entitlement_preview_handoff",
+    "billing_handoff_disabled_gate",
+    "tenant_plan_subscription_scope_guard",
+    "i18n_ready_plan_marker",
+    "seo_opengraph_plan_placeholder",
+    "plan_subscription_smoke_test"
+  ],
+  "next_step": "342 - Kullanım hakkı / kota ekranı"
+}

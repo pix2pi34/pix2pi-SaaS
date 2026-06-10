@@ -1,0 +1,11 @@
+type_id	type_name	default_severity	default_priority	owner_area	link_required	tenant_required	status
+bug	Bug	HIGH	P1	support	runtime_flow	YES	contract_only
+feedback	Feedback	LOW	P4	product	none	YES	contract_only
+feature_request	Feature Request	MEDIUM	P3	product	none	YES	contract_only
+question	Question	INFO	P4	support	none	YES	contract_only
+data_issue	Data Issue	HIGH	P1	operations	import_batch	YES	contract_only
+import_issue	Import Issue	HIGH	P1	operations	import_batch	YES	contract_only
+inventory_issue	Inventory Issue	HIGH	P1	operations	inventory_context	YES	contract_only
+reporting_issue	Reporting Issue	MEDIUM	P2	operations	reporting_context	YES	contract_only
+security_concern	Security Concern	CRITICAL	P0	security	tenant_context	YES	contract_only
+uat_blocker	UAT Blocker	CRITICAL	P0	pilot_owner	uat_checklist	YES	contract_only

@@ -1,0 +1,142 @@
+{
+  "schema_version": "integration_catalog.v1",
+  "phase": "FAZ_7",
+  "step": "7-8",
+  "runtime_status": "READY",
+  "source_catalog": "configs/faz7/product_plan_catalog.v1.json",
+  "source_entitlement": "configs/faz7/entitlement_feature_gate.v1.json",
+  "source_billing": "configs/faz7/billing_readiness.v1.json",
+  "next_step": "7-9 Muhasebeci Portal Commercial Surface",
+  "integration_statuses": [
+    "DISCOVERY",
+    "READY",
+    "GATED",
+    "DISABLED"
+  ],
+  "categories": [
+    "accounting",
+    "marketplace",
+    "webhook",
+    "public_api",
+    "export",
+    "accountant"
+  ],
+  "required_context": {
+    "tenant_id_required": true,
+    "user_id_required": true,
+    "plan_code_required": true
+  },
+  "integrations": [
+    {
+      "code": "parasut",
+      "name": "Parasut",
+      "category": "accounting",
+      "status": "GATED",
+      "required_features": ["integration_catalog"],
+      "required_limit": "integrations",
+      "commercial_note": "Gercek Parasut API baglantisi sonraki entegrasyon fazinda acilacak."
+    },
+    {
+      "code": "marketplace_discovery",
+      "name": "Marketplace Discovery",
+      "category": "marketplace",
+      "status": "READY",
+      "required_features": ["marketplace_discovery"],
+      "required_limit": "integrations",
+      "commercial_note": "Pazaryeri kesif ve ticari hazirlik akisi."
+    },
+    {
+      "code": "marketplace_orders",
+      "name": "Marketplace Orders",
+      "category": "marketplace",
+      "status": "GATED",
+      "required_features": ["integration_catalog"],
+      "required_limit": "integrations",
+      "commercial_note": "Siparis senkronizasyonu sonraki runtime fazina bagli."
+    },
+    {
+      "code": "marketplace_stock_sync",
+      "name": "Marketplace Stock Sync",
+      "category": "marketplace",
+      "status": "GATED",
+      "required_features": ["integration_catalog"],
+      "required_limit": "integrations",
+      "commercial_note": "Stok senkronizasyonu sonraki runtime fazina bagli."
+    },
+    {
+      "code": "webhook",
+      "name": "Webhook Access",
+      "category": "webhook",
+      "status": "READY",
+      "required_features": ["webhook_access"],
+      "required_limit": "integrations",
+      "commercial_note": "Webhook erisimi paket bazli entitlement ile acilir."
+    },
+    {
+      "code": "public_api",
+      "name": "Public API",
+      "category": "public_api",
+      "status": "READY",
+      "required_features": ["api_access_advanced"],
+      "required_limit": "api_monthly_requests",
+      "commercial_note": "Public API ileri paketlerde acilir."
+    },
+    {
+      "code": "tdhp_export",
+      "name": "TDHP Export",
+      "category": "export",
+      "status": "READY",
+      "required_features": ["tdhp_export_ready"],
+      "required_limit": "monthly_exports",
+      "commercial_note": "Muhasebeci paketi ve export temelli ticari model icin hazirlik."
+    },
+    {
+      "code": "accountant_portal_bridge",
+      "name": "Accountant Portal Bridge",
+      "category": "accountant",
+      "status": "READY",
+      "required_features": ["accountant_portal"],
+      "required_limit": "accountant_firms",
+      "commercial_note": "7-9 muhasebeci portal ticari yuzeyi icin hazirlik."
+    }
+  ],
+  "plan_packaging_rules": {
+    "starter": {
+      "integration_access": "disabled",
+      "upsell_target": "pro"
+    },
+    "pro": {
+      "integration_access": "marketplace_discovery_limited",
+      "upsell_target": "enterprise"
+    },
+    "enterprise": {
+      "integration_access": "advanced",
+      "upsell_target": "custom"
+    },
+    "accountant": {
+      "integration_access": "accounting_export_focused",
+      "upsell_target": "enterprise"
+    },
+    "marketplace": {
+      "integration_access": "marketplace_api_webhook_focused",
+      "upsell_target": "enterprise"
+    }
+  },
+  "decision_model": {
+    "allow_status": "ALLOW",
+    "deny_status": "DENY",
+    "reason_codes": [
+      "ALLOW_INTEGRATION_ACCESS",
+      "ALLOW_INTEGRATION_LIMIT_AVAILABLE",
+      "DENY_TENANT_REQUIRED",
+      "DENY_USER_REQUIRED",
+      "DENY_PLAN_REQUIRED",
+      "DENY_PLAN_UNKNOWN",
+      "DENY_INTEGRATION_UNKNOWN",
+      "DENY_INTEGRATION_DISABLED",
+      "DENY_FEATURE_NOT_INCLUDED",
+      "DENY_LIMIT_UNKNOWN",
+      "DENY_LIMIT_EXCEEDED"
+    ]
+  }
+}

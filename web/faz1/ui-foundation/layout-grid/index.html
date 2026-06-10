@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Layout / Grid Standardı</title>
+  <link rel="stylesheet" href="./layout_grid.css">
+</head>
+<body>
+  <main class="pix2pi-page" data-responsive-layout="true">
+    <header class="pix2pi-page-header">
+      <div>
+        <h1 class="pix2pi-page-title">Pix2pi Layout / Grid Standardı</h1>
+        <p class="pix2pi-page-subtitle">FAZ 1-4.2 — WEB-L1 UI Foundation / Design System</p>
+      </div>
+      <span class="pix2pi-badge ok">WEB-L1 READY</span>
+    </header>
+
+    <section class="pix2pi-page-grid">
+      <section class="pix2pi-card-grid">
+        <article class="pix2pi-card">
+          <h2 class="pix2pi-card-title">Page grid</h2>
+          <p class="pix2pi-card-text">Sayfa genelinde standart gap, header ve içerik akışı.</p>
+        </article>
+
+        <article class="pix2pi-card">
+          <h2 class="pix2pi-card-title">Card layout</h2>
+          <p class="pix2pi-card-text">Dashboard ve domain yüzeyleri için ortak kart düzeni.</p>
+        </article>
+
+        <article class="pix2pi-card">
+          <h2 class="pix2pi-card-title">Responsive layout</h2>
+          <p class="pix2pi-card-text">Desktop, tablet ve mobil kırılımları desteklenir.</p>
+        </article>
+      </section>
+
+      <section class="pix2pi-grid-sidebar-content">
+        <aside class="pix2pi-card">
+          <h2 class="pix2pi-card-title">Form layout</h2>
+          <form class="pix2pi-form-layout">
+            <div class="pix2pi-form-grid">
+              <label class="pix2pi-form-row">
+                <span class="pix2pi-label">Firma adı</span>
+                <input class="pix2pi-input" type="text" value="Pix2pi Pilot">
+              </label>
+
+              <label class="pix2pi-form-row">
+                <span class="pix2pi-label">Tenant kodu</span>
+                <input class="pix2pi-input" type="text" value="tenant_7">
+              </label>
+            </div>
+
+            <label class="pix2pi-form-row">
+              <span class="pix2pi-label">Açıklama</span>
+              <input class="pix2pi-input" type="text" value="Form layout standardı">
+            </label>
+
+            <button class="pix2pi-button primary" type="button">Kaydet</button>
+          </form>
+        </aside>
+
+        <section class="pix2pi-card pix2pi-table-region">
+          <div class="pix2pi-table-toolbar">
+            <div>
+              <h2 class="pix2pi-card-title">Table layout</h2>
+              <p class="pix2pi-card-text">Tablo bölgesi scroll, toolbar ve responsive davranış ile gelir.</p>
+            </div>
+            <button class="pix2pi-button" id="runLayoutGridCheckButton" type="button">Layout check</button>
+          </div>
+
+          <div class="pix2pi-table-scroll">
+            <table class="pix2pi-table">
+              <thead>
+                <tr>
+                  <th>Kod</th>
+                  <th>Alan</th>
+                  <th>Durum</th>
+                </tr>
+              </thead>
+              <tbody id="layoutGridTableBody"></tbody>
+            </table>
+          </div>
+
+          <pre class="pix2pi-card-text" id="layoutGridCheckOutput">CHECK_LOADING</pre>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="./layout_grid.js"></script>
+</body>
+</html>

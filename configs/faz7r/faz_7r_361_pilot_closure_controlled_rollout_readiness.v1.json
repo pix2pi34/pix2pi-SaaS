@@ -1,0 +1,47 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "361",
+  "name": "Pilot closure / controlled rollout readiness",
+  "surface": "pilot_closure_controlled_rollout_readiness",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/pilot-closure-rollout-readiness/",
+  "runtime_path": "/assets/pilot-closure-rollout-readiness/pilot-closure-rollout-readiness-runtime.js",
+  "depends_on": [
+    "360 - Pilot stabilization / fix plan closure"
+  ],
+  "runtime_contract": {
+    "production_public_rollout_enabled": false,
+    "controlled_rollout_preview_enabled": true,
+    "real_billing_enabled": false,
+    "real_payment_enabled": false,
+    "real_data_mutation_enabled": false,
+    "legal_kvkk_final_approval_required": true,
+    "support_ready_required": true,
+    "monitoring_ready_required": true,
+    "ready_for_step_362": true
+  },
+  "required_capabilities": [
+    "pilot_closure_app_shell",
+    "pilot_completion_summary_context",
+    "evidence_package_checklist",
+    "pilot_kpis_closure_board",
+    "customer_acceptance_preview",
+    "open_issue_closure_state",
+    "rollout_cohort_readiness_preview",
+    "commercial_readiness_gate",
+    "support_readiness_gate",
+    "monitoring_readiness_gate",
+    "legal_kvkk_approval_placeholder",
+    "billing_payment_live_disabled_gate",
+    "data_mutation_safety_guard",
+    "rollout_risk_register",
+    "go_hold_rollout_decision_preview",
+    "pilot_closure_audit_timeline",
+    "rollout_readiness_runtime_data_contract",
+    "i18n_ready_rollout_marker",
+    "seo_opengraph_rollout_placeholder",
+    "pilot_closure_rollout_readiness_smoke_test"
+  ],
+  "next_step": "362 - Controlled rollout cohort setup"
+}

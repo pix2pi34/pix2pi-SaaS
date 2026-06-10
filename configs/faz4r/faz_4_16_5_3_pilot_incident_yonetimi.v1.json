@@ -1,0 +1,54 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 219,
+  "step": "FAZ_4_16_5_3",
+  "title": "Pilot incident yönetimi",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "218_FAZ_4_16_5_1_PILOT_HEALTH_DASHBOARD"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "incident_policy": {
+    "incident_management_status_required": "READY",
+    "incident_management_mode_required": "CONTROLLED_PILOT",
+    "required_rule_status_required": "READY",
+    "missing_rule_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "pilot_health_dashboard_status_required": "PASS",
+    "incident_status_lifecycle_required": "READY",
+    "escalation_link_status_required": "READY",
+    "rollback_signal_link_status_required": "READY",
+    "closure_checklist_status_required": "READY",
+    "no_real_ticket_system_required": true,
+    "no_real_email_dispatch_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_incident_rules": [
+    "INCIDENT_INTAKE",
+    "INCIDENT_CLASSIFICATION",
+    "SEVERITY_P0_P1_P2_P3_MAPPING",
+    "INCIDENT_OWNER_ASSIGNMENT",
+    "INCIDENT_TIMELINE_RECORD",
+    "EVIDENCE_ATTACHMENT_RULE",
+    "INCIDENT_STATUS_LIFECYCLE",
+    "COMMUNICATION_LOG",
+    "ESCALATION_LINK",
+    "ROLLBACK_SIGNAL_LINK",
+    "RESOLUTION_NOTE",
+    "POST_REVIEW",
+    "CLOSED_PROVIDER_POLICY_INCIDENT_ROUTE",
+    "INCIDENT_CLOSURE_CHECKLIST"
+  ],
+  "incident_artifact": "configs/faz4r/pilot_incident_management.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "220_FAZ_4_16_5_5_TENANT_BAZLI_DURUM_RAPORU"
+  ]
+}

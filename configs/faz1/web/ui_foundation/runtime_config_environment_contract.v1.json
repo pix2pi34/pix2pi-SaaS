@@ -1,0 +1,48 @@
+{
+  "phase": "FAZ_1_4_7",
+  "module": "WEB_L1_UI_FOUNDATION_DESIGN_SYSTEM",
+  "component": "runtime_config_environment_surfaces",
+  "status": "READY",
+  "required_capabilities": [
+    "environment_indicator",
+    "runtime_config_surface",
+    "config_permission_guard",
+    "read_only_config_view",
+    "tests"
+  ],
+  "environment_contract": {
+    "environment_indicator_id": "pix2piEnvironmentIndicator",
+    "supported_environments": [
+      "LOCAL",
+      "DEV",
+      "STAGING",
+      "PRODUCTION"
+    ],
+    "default_environment": "STAGING",
+    "production_warning_policy": "SHOW_STRONG_BADGE"
+  },
+  "runtime_config_contract": {
+    "surface_id": "pix2piRuntimeConfigSurface",
+    "config_table_id": "pix2piRuntimeConfigTable",
+    "config_output_id": "pix2piRuntimeConfigOutput",
+    "readonly_policy": "READ_ONLY_UI_SURFACE",
+    "masked_keys": [
+      "API_BASE_URL",
+      "AUTH_BASE_URL",
+      "PUBLIC_APP_URL"
+    ],
+    "secret_keys_policy": "NEVER_RENDER_SECRETS"
+  },
+  "permission_guard_contract": {
+    "required_permission": "config:read",
+    "admin_role": "TENANT_ADMIN",
+    "ops_role": "OPS_ADMIN",
+    "guard_status_id": "pix2piConfigPermissionGuard",
+    "deny_policy": "SHOW_READONLY_DENIED_STATE"
+  },
+  "test_contract": {
+    "final_gate": "PASS_ONLY_IF_ALL_RUNTIME_CONFIG_TESTS_PASS",
+    "required_fail_count": 0,
+    "next_ready_flag": "FAZ_1_4_8_READY"
+  }
+}

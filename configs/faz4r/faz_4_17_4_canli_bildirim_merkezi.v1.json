@@ -1,0 +1,69 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 241,
+  "step": "FAZ_4_17_4",
+  "title": "Canlı bildirim merkezi",
+  "priority_group": "WEB-L7 Workflow / Realtime UI",
+  "depends_on": [
+    "240_FAZ_4_17_3_REALTIME_EVENT_FEED"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "notification_center_policy": {
+    "notification_center_status_required": "READY",
+    "notification_center_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "tenant_scope_required": "SINGLE_TENANT",
+    "realtime_event_feed_status_required": "PASS",
+    "notification_list_status_required": "READY",
+    "unread_counter_status_required": "READY",
+    "read_state_placeholder_status_required": "READY",
+    "severity_badge_status_required": "READY",
+    "channel_badge_status_required": "READY",
+    "web_checkpoint_status_required": "READY",
+    "no_push_delivery_required": true,
+    "no_email_delivery_required": true,
+    "no_sms_delivery_required": true,
+    "no_live_websocket_connection_required": true,
+    "no_live_sse_connection_required": true,
+    "no_event_stream_subscribe_required": true,
+    "no_event_stream_publish_required": true,
+    "no_notification_mutation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_notification_items": [
+    "NOTIFICATION_CENTER_SHELL",
+    "TENANT_SCOPED_NOTIFICATION_CENTER",
+    "NOTIFICATION_LIST",
+    "NOTIFICATION_METADATA_MODEL",
+    "UNREAD_COUNTER_MODEL",
+    "READ_STATE_PLACEHOLDER",
+    "SEVERITY_BADGE_MODEL",
+    "CHANNEL_BADGE_MODEL",
+    "DELIVERY_PREFERENCE_PLACEHOLDER",
+    "EVENT_FEED_LINK",
+    "WORKFLOW_MONITOR_LINK",
+    "REALTIME_HEALTH_LINK",
+    "FILTER_SORT_MODEL",
+    "EMPTY_STATE",
+    "ERROR_STATE",
+    "NO_PUSH_DELIVERY_GUARD",
+    "NO_EMAIL_SMS_DELIVERY_GUARD",
+    "NO_LIVE_SOCKET_GUARD",
+    "EXTERNAL_POLICY_CLOSED_GATE",
+    "UI_CHECKPOINT_HTML",
+    "FINAL_NOTIFICATION_CENTER_REPORT"
+  ],
+  "notification_center_artifact": "configs/faz4r/notification_center.controlled_pilot.v1.json",
+  "web_checkpoint": "web/faz4r/notification-center/index.html",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "FAZ_4_R_WEB_L7_FINAL_REVIEW"
+  ]
+}

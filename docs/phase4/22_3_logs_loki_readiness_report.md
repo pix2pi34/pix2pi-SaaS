@@ -1,0 +1,176 @@
+# FAZ 4B / 22.3 - Logs / Loki Readiness Report
+
+Generated at: 2026-04-29 11:43:02 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+DOCKER_COMPOSE_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+FIREWALL_CHANGED=NO
+PORT_CHANGED=NO
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+LOKI_CONFIG_CHANGED=NO
+LOKI_RELOAD_EXECUTED=NO
+LOKI_RESTARTED=NO
+PROMTAIL_CONFIG_CHANGED=NO
+LOG_AGENT_CONFIG_CHANGED=NO
+GRAFANA_DASHBOARD_CHANGED=NO
+ALERT_RULE_CHANGED=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+LOG_CONTENT_PRINTED=NO
+LOKI_QUERY_BODY_PRINTED=NO
+JOURNAL_LOG_BODY_PRINTED=NO
+DOCKER_LOG_BODY_PRINTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+VALIDATION_MODE=LOGS_LOKI_READINESS_EVIDENCE_ONLY
+PREVIOUS_22_2_FINAL_STATUS=PASS
+PREVIOUS_22_2_METRICS_SCRAPE_READINESS=PASS
+PREVIOUS_22_2_SERVICE_RESTARTED=NO
+PREVIOUS_22_2_SECRET_VALUE_PRINTED=NO
+PREVIOUS_22_1_FINAL_STATUS=PASS
+PREVIOUS_20_FINAL_STATUS=PASS
+PREVIOUS_20_INFRA_PRODUCTION_HARDENING_FINAL_CLOSURE=PASS
+PREVIOUS_21_FINAL_STATUS=PASS
+PREVIOUS_21_SECURITY_RBAC_AUDIT_FINAL_CLOSURE=PASS
+LOGS_LOKI_ENDPOINT_PROBE_COUNT=7
+LOGS_LOKI_ENDPOINT_REACHABLE_COUNT=5
+LOGS_LOKI_ENDPOINT_REVIEW_COUNT=2
+LOGS_LOKI_READY_OK=YES
+LOGS_LOKI_REACHABLE_COUNT=4
+LOGS_SOURCE_COUNT=44
+LOGS_DOCKER_SOURCE_COUNT=15
+LOGS_SYSTEMD_SOURCE_COUNT=29
+LOGS_HIGH_RISK_SOURCE_COUNT=35
+LOGS_PIPELINE_CONFIG_COUNT=239
+LOGS_TENANT_LABEL_MARKER_COUNT=51
+LOGS_SERVICE_LABEL_MARKER_COUNT=2945
+LOGS_TRACE_LABEL_MARKER_COUNT=187
+LOGS_REDACTION_MARKER_COUNT=834
+LOGS_PUBLIC_SURFACE_POLICY_COUNT=6
+LOGS_HIGH_RISK_PUBLIC_SURFACE_COUNT=6
+LOGS_LOKI_PUBLIC_SURFACE_COUNT=2
+LOGS_PREVIOUS_22_2=PASS
+LOGS_LOKI_ENDPOINT_PROBE=PASS
+LOGS_SOURCE_INVENTORY=PASS
+LOGS_PIPELINE_INVENTORY=PASS
+LOGS_PUBLIC_SURFACE_POLICY=PASS
+LOGS_BODY_NOT_PRINTED=PASS
+LOGS_NO_RESTART=PASS
+LOGS_NO_CONFIG_CHANGE=PASS
+LOGS_SECRET_SAFE=PASS
+LOGS_MATRIX_LINE_COUNT=37
+LOGS_SOURCE_INVENTORY_FILE=docs/phase4/22_3_logs_source_inventory.tsv
+LOGS_LOKI_ENDPOINT_PROBE_FILE=docs/phase4/22_3_loki_endpoint_probe.tsv
+LOGS_PIPELINE_INVENTORY_FILE=docs/phase4/22_3_log_pipeline_inventory.tsv
+LOGS_PUBLIC_SURFACE_POLICY_FILE=docs/phase4/22_3_logs_public_surface_policy.tsv
+LOGS_LOKI_READINESS=PASS
+FAZ4B_22_3_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+LOGS_LOKI_READINESS=PASS
+FAZ4B_22_3_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+TOOL_curl=FOUND
+TOOL_docker=FOUND
+TOOL_systemctl=FOUND
+
+## Matrix
+MATRIX_FILE=docs/phase4/22_3_logs_loki_readiness_matrix.tsv
+gate	status	note
+previous_22_2	PASS	metrics scrape readiness prerequisite
+loki_endpoint_probe	PASS	probes=7 reachable=5 review=2
+loki_ready_metadata	PASS	loki_ready_ok=YES loki_reachable=4
+log_source_inventory	PASS	sources=44 docker=15 systemd=29
+log_pipeline_inventory	PASS	configs=239 tenant_markers=51 redaction_markers=834
+public_surface_policy	PASS	public_log_rows=6 high_risk=6 loki_public=2
+body_not_printed	PASS	log/loki/journal/docker log body not printed
+no_restart	PASS	service/container not restarted
+no_config_change	PASS	loki/promtail/log agent config not changed
+secret_safe	PASS	secret values not printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+loki_config_changed	NO	evidence only
+loki_reload_executed	NO	evidence only
+loki_restarted	NO	evidence only
+promtail_config_changed	NO	evidence only
+log_agent_config_changed	NO	evidence only
+grafana_dashboard_changed	NO	evidence only
+alert_rule_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+log_content_printed	NO	secret-safe report
+loki_query_body_printed	NO	secret-safe report
+journal_log_body_printed	NO	secret-safe report
+docker_log_body_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+
+## Inventories
+LOG_SOURCE_INVENTORY_FILE=docs/phase4/22_3_logs_source_inventory.tsv
+LOKI_ENDPOINT_PROBE_FILE=docs/phase4/22_3_loki_endpoint_probe.tsv
+LOG_PIPELINE_INVENTORY_FILE=docs/phase4/22_3_log_pipeline_inventory.tsv
+PUBLIC_SURFACE_POLICY_FILE=docs/phase4/22_3_logs_public_surface_policy.tsv
+NOTE=Log body, Loki query body, Docker logs, journal logs, raw DSN, token, password, or secret values are never printed.
+
+## Safety Decision
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+DOCKER_COMPOSE_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+FIREWALL_CHANGED=NO
+PORT_CHANGED=NO
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+LOKI_CONFIG_CHANGED=NO
+LOKI_RELOAD_EXECUTED=NO
+LOKI_RESTARTED=NO
+PROMTAIL_CONFIG_CHANGED=NO
+LOG_AGENT_CONFIG_CHANGED=NO
+GRAFANA_DASHBOARD_CHANGED=NO
+ALERT_RULE_CHANGED=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+LOG_CONTENT_PRINTED=NO
+LOKI_QUERY_BODY_PRINTED=NO
+JOURNAL_LOG_BODY_PRINTED=NO
+DOCKER_LOG_BODY_PRINTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+LOG_CONTENT_PRINTED=NO
+LOKI_QUERY_BODY_PRINTED=NO
+JOURNAL_LOG_BODY_PRINTED=NO
+DOCKER_LOG_BODY_PRINTED=NO
+QUERY_TEXT_PRINTED=NO
+SECRET_VALUE_PRINTED=NO

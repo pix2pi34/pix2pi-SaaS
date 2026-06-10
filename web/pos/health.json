@@ -1,0 +1,10 @@
+{
+  "status": "ok",
+  "surface": "pos",
+  "service": "pix2pi-pos",
+  "phase": "FAZ 7-R",
+  "step": "329",
+  "domain": "pos.pix2pi.com.tr",
+  "fix": "v2-route-body-marker",
+  "ready_for_step_330": true
+}

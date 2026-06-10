@@ -1,0 +1,67 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "326",
+  "name": "Fatura / belge ekranı",
+  "surface": "merchant_panel",
+  "domain": "panel.pix2pi.com.tr",
+  "path": "/documents/",
+  "runtime_path": "/assets/documents/documents-runtime.js",
+  "depends_on": [
+    "316 - panel.pix2pi.com.tr altyapısı",
+    "317 - Login / tenant seçimi",
+    "318 - Dil Modülü / i18n / Alfabe Altyapısı",
+    "319 - İşletme onboarding ekranı",
+    "320 - Merchant dashboard",
+    "321 - Kullanıcı / rol / personel ekranı",
+    "322 - İşletme ayarları / profil ekranı",
+    "323 - Cari ekranı",
+    "324 - Ürün / stok ekranı",
+    "325 - Satış / POS yönetim ekranı"
+  ],
+  "backend_contract": {
+    "list_endpoint": "/api/panel/documents",
+    "draft_endpoint": "/api/panel/documents/draft",
+    "action_endpoint": "/api/panel/documents/action",
+    "export_endpoint": "/api/panel/documents/export",
+    "method": "GET/POST",
+    "auth": "Bearer JWT",
+    "tenant_header": "X-Tenant-ID"
+  },
+  "document_types": [
+    "E_INVOICE",
+    "E_ARCHIVE",
+    "E_ADISYON",
+    "SALES_INVOICE",
+    "PURCHASE_INVOICE"
+  ],
+  "document_statuses": [
+    "DRAFT",
+    "READY_FOR_REVIEW",
+    "APPROVED",
+    "EXPORT_READY",
+    "PROVIDER_CLOSED",
+    "CANCELLED"
+  ],
+  "provider_live_gate": {
+    "gib_live_enabled": false,
+    "private_integrator_live_enabled": false,
+    "real_send_enabled": false
+  },
+  "required_capabilities": [
+    "document_app_shell",
+    "document_list",
+    "document_create_edit_form",
+    "document_type_selection",
+    "customer_tax_preview",
+    "document_line_items",
+    "vat_total_summary",
+    "document_lifecycle_preview",
+    "gib_private_integrator_live_closed_gate",
+    "pdf_xml_export_placeholder",
+    "tenant_scoped_document_guard",
+    "document_validation_contract",
+    "i18n_ready_document_markers",
+    "document_smoke_test"
+  ],
+  "next_step": "327 - Rapor ekranları"
+}

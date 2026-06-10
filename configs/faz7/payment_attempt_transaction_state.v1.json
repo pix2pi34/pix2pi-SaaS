@@ -1,0 +1,83 @@
+{
+  "module_code": "7-5P.2",
+  "module_name": "Payment Attempt / Transaction State Model",
+  "parent_module": "7-5P",
+  "depends_on": [
+    "7-5P",
+    "7-5P.1"
+  ],
+  "state_model_version": "payment_attempt_transaction_state.v1",
+  "payment_attempt_required_fields": [
+    "attempt_id",
+    "tenant_id",
+    "invoice_id",
+    "provider_code",
+    "correlation_id",
+    "idempotency_key",
+    "amount_minor",
+    "currency"
+  ],
+  "statuses": [
+    "CREATED",
+    "AUTHORIZED",
+    "CAPTURED",
+    "REFUNDED",
+    "VOIDED",
+    "FAILED"
+  ],
+  "valid_transitions": [
+    {
+      "from": "CREATED",
+      "to": "AUTHORIZED",
+      "operation": "AUTHORIZE"
+    },
+    {
+      "from": "CREATED",
+      "to": "FAILED",
+      "operation": "AUTHORIZE_DENIED"
+    },
+    {
+      "from": "AUTHORIZED",
+      "to": "CAPTURED",
+      "operation": "CAPTURE"
+    },
+    {
+      "from": "AUTHORIZED",
+      "to": "VOIDED",
+      "operation": "VOID"
+    },
+    {
+      "from": "AUTHORIZED",
+      "to": "FAILED",
+      "operation": "CAPTURE_DENIED_OR_VOID_DENIED"
+    },
+    {
+      "from": "CAPTURED",
+      "to": "REFUNDED",
+      "operation": "REFUND"
+    },
+    {
+      "from": "CAPTURED",
+      "to": "FAILED",
+      "operation": "REFUND_DENIED"
+    }
+  ],
+  "guards": {
+    "tenant_required": true,
+    "invoice_required": true,
+    "provider_code_required": true,
+    "correlation_id_required": true,
+    "idempotency_key_required": true,
+    "positive_amount_required": true,
+    "currency_required": true,
+    "provider_transaction_mapping_required": true,
+    "idempotency_replay_guard_required": true,
+    "audit_event_history_required": true
+  },
+  "provider_transaction_mapping": {
+    "authorize_sets_provider_transaction_id": true,
+    "capture_requires_matching_provider_transaction_id": true,
+    "refund_requires_matching_provider_transaction_id": true,
+    "void_requires_matching_provider_transaction_id": true
+  }
+}

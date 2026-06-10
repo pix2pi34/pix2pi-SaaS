@@ -1,0 +1,36 @@
+version: v1
+workflow:
+  engine:
+    required_fields:
+      - workflow_id
+      - workflow_type
+      - state
+      - started_at
+
+  definition_model:
+    required_fields:
+      - step_id
+      - step_type
+      - next_step
+      - timeout_seconds
+
+  manual_approval:
+    required_fields:
+      - approver_id
+      - approval_group
+      - approval_status
+      - approved_at
+
+  retry_compensation:
+    required_fields:
+      - retry_count
+      - max_retry
+      - compensation_handler
+      - compensation_status
+
+  observability:
+    required_fields:
+      - trace_id
+      - workflow_latency_ms
+      - current_step
+      - error_code

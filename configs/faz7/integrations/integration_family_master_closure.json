@@ -1,0 +1,63 @@
+{
+  "module_code": "FAZ_7_8F",
+  "module_name": "Integration Family Master Closure / FAZ 7-9 Release Gate",
+  "mode": "INTEGRATION_FAMILY_MASTER_CLOSURE",
+  "final_status": "PASS",
+  "family_seal_status": "SEALED",
+  "family_review_status": "COMPLETE",
+  "provider_dry_run_set": "PARASUT_LOGO_MIKRO_ZIRVE",
+  "required_provider_count": 4,
+  "required_providers": [
+    {
+      "provider_id": "parasut",
+      "display_name": "Paraşüt",
+      "final_closure_step": "7-8P.12",
+      "connector_module_seal_status": "SEALED",
+      "dry_run_module_status": "SEALED",
+      "provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+      "provider_live_module_status": "NOT_STARTED"
+    },
+    {
+      "provider_id": "logo",
+      "display_name": "Logo",
+      "final_closure_step": "7-8L.10",
+      "connector_module_seal_status": "SEALED",
+      "dry_run_module_status": "SEALED",
+      "provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+      "provider_live_module_status": "NOT_STARTED"
+    },
+    {
+      "provider_id": "mikro",
+      "display_name": "Mikro",
+      "final_closure_step": "7-8M.7",
+      "connector_module_seal_status": "SEALED",
+      "dry_run_module_status": "SEALED",
+      "provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+      "provider_live_module_status": "NOT_STARTED"
+    },
+    {
+      "provider_id": "zirve",
+      "display_name": "Zirve",
+      "final_closure_step": "7-8Z.7",
+      "connector_module_seal_status": "SEALED",
+      "dry_run_module_status": "SEALED",
+      "provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+      "provider_live_module_status": "NOT_STARTED"
+    }
+  ],
+  "real_operation_policy": {
+    "all_real_provider_apis_closed": true,
+    "all_real_file_deliveries_closed": true,
+    "all_real_delivery_channels_closed": true,
+    "all_real_erp_writes_closed": true,
+    "all_real_operator_actions_closed": true,
+    "provider_specific_live_modules_status": "NOT_STARTED"
+  },
+  "release_gate": {
+    "faz_7_8_integration_family_final_status": "PASS",
+    "faz_7_8_integration_family_seal_status": "SEALED",
+    "faz_7_9_hold_status": "READY_TO_RELEASE",
+    "faz_7_9_ready": "YES",
+    "next_step": "FAZ 7-9 Accountant Portal Commercial Surface"
+  }
+}

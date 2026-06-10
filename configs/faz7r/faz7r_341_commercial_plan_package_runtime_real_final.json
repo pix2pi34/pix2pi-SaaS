@@ -1,0 +1,28 @@
+{
+  "step": "FAZ 7-R / 341",
+  "name": "Commercial / plan package runtime real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "commercial-plan-runtime-341-20260513_225505",
+  "planCode": "pix2pi-starter",
+  "assignmentId": "plan-assignment-341-20260513_225505",
+  "routes": [
+    "/commercial/plans/",
+    "POST /api/commercial/plans/assign",
+    "POST /api/commercial/plans/summary",
+    "POST /api/commercial/plans/check-feature",
+    "POST /api/commercial/plans/quota-use",
+    "POST /api/commercial/plans/status"
+  ],
+  "requiredEvidence": [
+    "plan package DB runtime",
+    "tenant plan assignment",
+    "plan feature matrix",
+    "quota limit runtime",
+    "active/suspended guard",
+    "tenant-safe commercial guard",
+    "no-role denied",
+    "rollback no partial write",
+    "route smoke",
+    "commercial plan audit evidence"
+  ]
+}

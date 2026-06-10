@@ -1,0 +1,8 @@
+block	status	report_file	migration_base	table_count	tenant_id_count	primary_evidence
+18.1	PASS	docs/phase4/18_1_opening_stock_report.md	20260428_181001_inventory_opening_stock	5	5	OPENING_STOCK=PASS
+18.2	PASS	docs/phase4/18_2_stock_movement_engine_report.md	20260428_182001_inventory_stock_movement_engine	7	7	STOCK_MOVEMENT_ENGINE=PASS
+18.3	PASS	docs/phase4/18_3_sales_stock_decrement_report.md	20260428_183001_inventory_sales_stock_decrement	6	6	SALES_STOCK_DECREMENT=PASS
+18.4	PASS	docs/phase4/18_4_purchase_stock_increment_report.md	20260428_184001_inventory_purchase_stock_increment	6	6	PURCHASE_STOCK_INCREMENT=PASS
+18.5	PASS	docs/phase4/18_5_stock_reservation_report.md	20260428_185001_inventory_stock_reservation	7	7	STOCK_RESERVATION=PASS
+18.6	PASS	docs/phase4/18_6_negative_stock_policy_report.md	20260428_186001_inventory_negative_stock_policy	6	6	NEGATIVE_STOCK_POLICY=PASS
+18.7	PASS	docs/phase4/18_7_stock_valuation_report.md	20260428_187001_inventory_stock_valuation	6	6	STOCK_VALUATION=PASS

@@ -1,0 +1,37 @@
+gate	status	note
+previous_22_2	PASS	metrics scrape readiness prerequisite
+loki_endpoint_probe	PASS	probes=7 reachable=5 review=2
+loki_ready_metadata	PASS	loki_ready_ok=YES loki_reachable=4
+log_source_inventory	PASS	sources=44 docker=15 systemd=29
+log_pipeline_inventory	PASS	configs=239 tenant_markers=51 redaction_markers=834
+public_surface_policy	PASS	public_log_rows=6 high_risk=6 loki_public=2
+body_not_printed	PASS	log/loki/journal/docker log body not printed
+no_restart	PASS	service/container not restarted
+no_config_change	PASS	loki/promtail/log agent config not changed
+secret_safe	PASS	secret values not printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+loki_config_changed	NO	evidence only
+loki_reload_executed	NO	evidence only
+loki_restarted	NO	evidence only
+promtail_config_changed	NO	evidence only
+log_agent_config_changed	NO	evidence only
+grafana_dashboard_changed	NO	evidence only
+alert_rule_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+log_content_printed	NO	secret-safe report
+loki_query_body_printed	NO	secret-safe report
+journal_log_body_printed	NO	secret-safe report
+docker_log_body_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

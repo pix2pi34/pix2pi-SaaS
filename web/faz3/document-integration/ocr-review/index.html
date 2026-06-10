@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="tr" data-phase="FAZ_3_13_4" data-screen="OCR_DOCUMENT_REVIEW_SCREEN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi — OCR / Belge Okuma Review Ekranı</title>
+  <meta name="description" content="FAZ 3-13.4 OCR belge okuma review ekranı: vergi no, vergi dairesi, adres, telefon, e-posta, confidence, review queue, manuel düzeltme ve audit hash görünümü." />
+  <style>
+    :root {
+      --card:#fff; --text:#0f172a; --soft:#475569; --muted:#64748b; --line:#e2e8f0;
+      --ok:#059669; --warn:#d97706; --fail:#dc2626; --info:#2563eb; --violet:#7c3aed;
+      --shadow:0 20px 60px rgba(15,23,42,.15); --radius:20px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;color:var(--text);
+      background:
+        radial-gradient(circle at 8% 0%,rgba(5,150,105,.17),transparent 34rem),
+        radial-gradient(circle at 92% 0%,rgba(124,58,237,.14),transparent 32rem),
+        #f8fafc;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    .shell{min-height:100vh;display:grid;grid-template-columns:280px minmax(0,1fr)}
+    .sidebar{position:sticky;top:0;height:100vh;padding:28px 22px;color:#e5e7eb;background:linear-gradient(180deg,#0f172a,#111827)}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+    .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#059669,#7c3aed);color:white;display:grid;place-items:center;font-weight:900}
+    .brand strong{display:block;font-size:18px}.brand small{color:#94a3b8;font-size:12px}
+    .nav-title{color:#94a3b8;text-transform:uppercase;letter-spacing:.12em;font-size:11px;margin:26px 0 10px}
+    .nav-item{display:flex;justify-content:space-between;gap:12px;padding:12px;border-radius:14px;color:#cbd5e1;font-size:14px;margin-bottom:6px}
+    .nav-item.active{color:white;background:rgba(5,150,105,.15);border:1px solid rgba(110,231,183,.25)}
+    .main{padding:26px;min-width:0}
+    .topbar{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:18px 20px;margin-bottom:20px;border:1px solid rgba(226,232,240,.9);background:rgba(255,255,255,.88);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(16px)}
+    .crumb{color:var(--muted);font-size:13px;margin-bottom:4px}
+    h1{margin:0;font-size:clamp(26px,4vw,40px);letter-spacing:-.04em;line-height:1.05}
+    .top-actions{display:flex;gap:10px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+
+    .pill{display:inline-flex;align-items:center;border-radius:999px;padding:8px 11px;font-size:12px;font-weight:800;border:1px solid var(--line);background:white;color:var(--soft);white-space:nowrap}
+    .pill.ok{color:var(--ok);border-color:rgba(5,150,105,.25);background:rgba(5,150,105,.08)}
+    .pill.warn{color:var(--warn);border-color:rgba(217,119,6,.25);background:rgba(217,119,6,.08)}
+    .pill.fail{color:var(--fail);border-color:rgba(220,38,38,.25);background:rgba(220,38,38,.08)}
+    .pill.info{color:var(--info);border-color:rgba(37,99,235,.25);background:rgba(37,99,235,.08)}
+
+    .grid{display:grid;gap:18px}.kpi-grid{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;min-width:0}
+    .kpi-label{color:var(--muted);font-size:13px;margin-bottom:8px}.kpi-value{font-size:28px;font-weight:900;letter-spacing:-.04em}.kpi-foot{color:var(--soft);font-size:12px;margin-top:8px}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:18px}
+    .panel-title{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:14px}
+    .panel-title h2{margin:0;font-size:20px;letter-spacing:-.03em}.panel-title p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.45}
+    .filters{display:grid;grid-template-columns:1.2fr repeat(4,minmax(120px,.42fr));gap:10px;margin-bottom:14px}
+    input,select{width:100%;border:1px solid var(--line);border-radius:14px;padding:11px 12px;font:inherit;color:var(--text);background:#fff;outline:none}
+    input:focus,select:focus{border-color:rgba(37,99,235,.5);box-shadow:0 0 0 4px rgba(37,99,235,.1)}
+    table{width:100%;border-collapse:collapse}
+    th{text-align:left;color:var(--muted);font-size:12px;padding:12px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+    td{padding:14px 10px;border-bottom:1px solid #edf2f7;vertical-align:top;font-size:14px}
+    tbody tr{cursor:pointer;transition:background .15s ease}tbody tr:hover{background:#f8fafc}
+    .main-text{font-weight:850;letter-spacing:-.02em}.sub{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+
+    .status{display:inline-flex;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:850;border:1px solid transparent;white-space:nowrap}
+    .status.ok{color:var(--ok);background:rgba(5,150,105,.09);border-color:rgba(5,150,105,.22)}
+    .status.info{color:var(--info);background:rgba(37,99,235,.09);border-color:rgba(37,99,235,.22)}
+    .status.warn{color:var(--warn);background:rgba(217,119,6,.09);border-color:rgba(217,119,6,.22)}
+    .status.fail{color:var(--fail);background:rgba(220,38,38,.09);border-color:rgba(220,38,38,.22)}
+
+    .button-row{display:flex;gap:8px;flex-wrap:wrap}
+    button{border:0;border-radius:12px;padding:9px 11px;color:white;background:#0f172a;font-weight:850;font-size:12px;cursor:pointer;box-shadow:0 10px 24px rgba(15,23,42,.14)}
+    button.secondary{color:#0f172a;background:#f1f5f9;border:1px solid var(--line);box-shadow:none}
+    button.warning{background:#d97706}button.success{background:#059669}button.danger{background:#dc2626}
+    button:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
+
+    .side-stack{display:grid;gap:18px;align-content:start}
+    .detail-row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:13px}
+    .detail-row span:first-child{color:var(--muted)}.detail-row strong{text-align:right;word-break:break-word}
+    .notice{border-radius:16px;padding:13px;font-size:13px;line-height:1.5;border:1px solid rgba(5,150,105,.24);color:#065f46;background:rgba(5,150,105,.08)}
+    .ops-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+    .op-card{border:1px solid var(--line);border-radius:16px;padding:13px;background:#f8fafc}
+    .op-card strong{display:block;font-size:13px;margin-bottom:6px}.op-card small{display:block;color:var(--muted);font-size:12px;line-height:1.45}
+    .timeline{display:grid;gap:10px}.event{border:1px solid var(--line);border-radius:16px;padding:12px;background:#f8fafc}.event strong{display:block;font-size:13px;margin-bottom:4px}.event small{color:var(--muted);line-height:1.45}
+
+    @media(max-width:1180px){.shell{grid-template-columns:1fr}.sidebar{display:none}.layout{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:780px){.main{padding:14px}.topbar{flex-direction:column;align-items:flex-start}.filters{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr}table{min-width:1240px}.table-wrap{overflow-x:auto}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Document integration navigation">
+      <div class="brand">
+        <div class="logo">P2</div>
+        <div><strong>Pix2pi Belge AI</strong><small>OCR Review</small></div>
+      </div>
+
+      <div class="nav-title">FAZ 3-13 Belge / Entegrasyon UI</div>
+      <div class="nav-item"><span>e-Belge Durum Merkezi</span><span>174</span></div>
+      <div class="nav-item active"><span>OCR Review</span><span>175</span></div>
+      <div class="nav-item"><span>UI Testleri</span><span>176</span></div>
+      <div class="nav-item"><span>Retry / Cancel / Resend</span><span>177</span></div>
+      <div class="nav-item"><span>Provider Hata</span><span>178</span></div>
+      <div class="nav-item"><span>Manuel Düzeltme Kuyruğu</span><span>179</span></div>
+
+      <div class="nav-title">AI Policy</div>
+      <div class="nav-item"><span>Auto Commit</span><span>CLOSED</span></div>
+      <div class="nav-item"><span>Human Review</span><span>REQUIRED</span></div>
+      <div class="nav-item"><span>Raw Image</span><span>NO STORE</span></div>
+      <div class="nav-item"><span>PII Guard</span><span>ON</span></div>
+    </aside>
+
+    <main class="main">
+      <section class="topbar">
+        <div>
+          <div class="crumb">FAZ 3-R › Öncelik 3 › 175 / FAZ 3-13.4</div>
+          <h1>OCR / Belge Okuma Review Ekranı</h1>
+        </div>
+        <div class="top-actions">
+          <span class="pill info" data-tenant-guard="required">Tenant: tenant_demo_001</span>
+          <span class="pill info" data-review-guard="required">Human Review: required</span>
+          <span class="pill ok" data-confidence-policy="required">Confidence Gate: ON</span>
+          <span class="pill fail" data-auto-commit="closed">Auto Commit: CLOSED</span>
+        </div>
+      </section>
+
+      <section class="grid kpi-grid">
+        <article class="card" data-kpi="pending_reviews">
+          <div class="kpi-label">Review bekleyen</div>
+          <div class="kpi-value">18</div>
+          <div class="kpi-foot">Low confidence / manuel kontrol</div>
+        </article>
+        <article class="card" data-kpi="auto_extract_ready">
+          <div class="kpi-label">Extract hazır</div>
+          <div class="kpi-value">44</div>
+          <div class="kpi-foot">Vergi / adres / iletişim alanları</div>
+        </article>
+        <article class="card" data-kpi="low_confidence">
+          <div class="kpi-label">Düşük confidence</div>
+          <div class="kpi-value">7</div>
+          <div class="kpi-foot">Eşik altı alanlar</div>
+        </article>
+        <article class="card" data-kpi="manual_corrections">
+          <div class="kpi-label">Düzeltme</div>
+          <div class="kpi-value">11</div>
+          <div class="kpi-foot">Kullanıcı onayı bekler</div>
+        </article>
+      </section>
+
+      <section class="layout">
+        <div class="card">
+          <div class="panel-title">
+            <div>
+              <h2>Belge Review Kuyruğu</h2>
+              <p>OCR/Lens benzeri belge okuma çıktıları için vergi, adres, telefon, e-posta, confidence ve manuel düzeltme yüzeyi.</p>
+            </div>
+            <span class="pill ok">OCR Review Ready</span>
+          </div>
+
+          <div class="filters" data-filter-bar="ocr-document-review">
+            <input id="searchInput" aria-label="Belge ara" placeholder="Belge id, firma, vergi no, alan, confidence, hash ara..." />
+            <select id="statusFilter" aria-label="Review durumu filtrele">
+              <option value="ALL">Tüm durumlar</option>
+              <option value="READY_FOR_REVIEW">READY_FOR_REVIEW</option>
+              <option value="LOW_CONFIDENCE">LOW_CONFIDENCE</option>
+              <option value="CORRECTION_REQUIRED">CORRECTION_REQUIRED</option>
+              <option value="APPROVED_DRY_RUN">APPROVED_DRY_RUN</option>
+            </select>
+            <select id="docTypeFilter" aria-label="Belge tipi filtrele">
+              <option value="ALL">Tüm belge tipleri</option>
+              <option value="TAX_CERTIFICATE">TAX_CERTIFICATE</option>
+              <option value="BUSINESS_CARD">BUSINESS_CARD</option>
+              <option value="INVOICE_IMAGE">INVOICE_IMAGE</option>
+              <option value="CONTACT_FORM">CONTACT_FORM</option>
+            </select>
+            <select id="fieldFilter" aria-label="Alan filtrele">
+              <option value="ALL">Tüm alanlar</option>
+              <option value="TAX_NO">TAX_NO</option>
+              <option value="TAX_OFFICE">TAX_OFFICE</option>
+              <option value="ADDRESS">ADDRESS</option>
+              <option value="PHONE">PHONE</option>
+              <option value="EMAIL">EMAIL</option>
+            </select>
+            <select id="confidenceFilter" aria-label="Confidence filtrele">
+              <option value="ALL">Tüm confidence</option>
+              <option value="HIGH">HIGH</option>
+              <option value="MEDIUM">MEDIUM</option>
+              <option value="LOW">LOW</option>
+            </select>
+          </div>
+
+          <div class="table-wrap">
+            <table aria-label="OCR belge review tablosu">
+              <thead>
+                <tr>
+                  <th>Belge</th>
+                  <th>Tip</th>
+                  <th>Durum</th>
+                  <th>Extract Alanları</th>
+                  <th>Confidence</th>
+                  <th>Review</th>
+                  <th>Hash</th>
+                  <th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody id="reviewRows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <aside class="side-stack">
+          <section class="card" data-detail-drawer="ocr-document-review">
+            <div class="panel-title">
+              <div>
+                <h2>Review Detayı</h2>
+                <p>Seçili belge için extracted fields, confidence, correction ve audit izleri.</p>
+              </div>
+            </div>
+            <div id="detailPanel"></div>
+          </section>
+
+          <section class="card" data-operation-actions="ocr-document-review">
+            <div class="panel-title">
+              <div>
+                <h2>Review Operasyonları</h2>
+                <p>Preview, validate, correct, approve dry-run ve audit evidence yüzeyi.</p>
+              </div>
+            </div>
+
+            <div class="notice" data-live-policy="ocr-human-review-guard">
+              Bu ekran otomatik cari kart yazımı yapmaz. OCR sonucu insan onayı olmadan commit edilmez; raw image storage kapalıdır, PII/audit hash zorunludur.
+            </div>
+
+            <div class="ops-grid">
+              <div class="op-card" data-action="preview-extraction">
+                <strong>Preview Extraction</strong>
+                <small>OCR/Lens çıktısı ve alan eşleşmesi.</small>
+              </div>
+              <div class="op-card" data-action="validate-fields">
+                <strong>Validate Fields</strong>
+                <small>Vergi no, vergi dairesi, adres, telefon ve e-posta guard.</small>
+              </div>
+              <div class="op-card" data-action="manual-correction">
+                <strong>Manual Correction</strong>
+                <small>Düşük confidence alanlar için kullanıcı düzeltmesi.</small>
+              </div>
+              <div class="op-card" data-action="audit-evidence">
+                <strong>Audit Evidence</strong>
+                <small>OCR hash, correction hash ve evidence izleri.</small>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" data-audit-trail="ocr-document-review">
+            <div class="panel-title">
+              <div>
+                <h2>Review Timeline</h2>
+                <p>Extraction, confidence, correction ve audit geçmişi.</p>
+              </div>
+            </div>
+            <div class="timeline" id="timeline"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const productionApproved = false;
+    const autoCommitAllowed = false;
+    const humanReviewRequired = true;
+    const rawImageStorageAllowed = false;
+    const piiMaskingRequired = true;
+    const confidenceGateRequired = true;
+    const correctionAuditRequired = true;
+    const customerCardWriteAllowed = false;
+
+    const reviews = [
+      {
+        id:"ocr-001",
+        documentNo:"OCR-2026-0001",
+        documentType:"TAX_CERTIFICATE",
+        firmId:"firm_demo_001",
+        firmName:"Demo Market A.Ş.",
+        tenantId:"tenant_demo_001",
+        status:"READY_FOR_REVIEW",
+        statusClass:"info",
+        confidenceBucket:"HIGH",
+        confidenceScore:96,
+        extractedTaxNo:"1234567890",
+        extractedTaxOffice:"Kadıköy",
+        extractedAddress:"Caferağa Mah. Demo Sok. No:1 Kadıköy / İstanbul",
+        extractedPhone:"+90 216 000 00 01",
+        extractedEmail:"info@demomarket.test",
+        missingFields:[],
+        correctionRequired:"NO",
+        reviewDecision:"PENDING_HUMAN_REVIEW",
+        targetEntity:"CUSTOMER_CARD_DRY_RUN",
+        sourceImageHash:"sha256:source-image-001",
+        ocrPayloadHash:"sha256:ocr-payload-001",
+        extractedFieldsHash:"sha256:fields-001",
+        correctionHash:"sha256:correction-empty-001",
+        piiMaskHash:"sha256:pii-mask-001",
+        auditHash:"sha256:ocr-audit-001",
+        evidenceFile:"docs/faz3/evidence/ocr_review_001.md",
+        allowedActions:["PREVIEW","VALIDATE","AUDIT"]
+      },
+      {
+        id:"ocr-002",
+        documentNo:"OCR-2026-0002",
+        documentType:"BUSINESS_CARD",
+        firmId:"firm_demo_002",
+        firmName:"Pilot Oto Yedek Parça Ltd.",
+        tenantId:"tenant_demo_002",
+        status:"LOW_CONFIDENCE",
+        statusClass:"warn",
+        confidenceBucket:"LOW",
+        confidenceScore:61,
+        extractedTaxNo:"2234567890",
+        extractedTaxOffice:"Ümraniye",
+        extractedAddress:"Dudullu OSB 1. Cadde No:12 Ümraniye / İstanbul",
+        extractedPhone:"+90 216 000 00 02",
+        extractedEmail:"satis@pilototo.test",
+        missingFields:["EMAIL_CONFIDENCE_LOW","PHONE_REVIEW_REQUIRED"],
+        correctionRequired:"YES",
+        reviewDecision:"MANUAL_REVIEW_REQUIRED",
+        targetEntity:"VENDOR_CARD_DRY_RUN",
+        sourceImageHash:"sha256:source-image-002",
+        ocrPayloadHash:"sha256:ocr-payload-002",
+        extractedFieldsHash:"sha256:fields-002",
+        correctionHash:"sha256:correction-pending-002",
+        piiMaskHash:"sha256:pii-mask-002",
+        auditHash:"sha256:ocr-audit-002",
+        evidenceFile:"docs/faz3/evidence/ocr_review_002.md",
+        allowedActions:["PREVIEW","VALIDATE","CORRECT","AUDIT"]
+      },
+      {
+        id:"ocr-003",
+        documentNo:"OCR-2026-0003",
+        documentType:"INVOICE_IMAGE",
+        firmId:"firm_demo_003",
+        firmName:"Demo Cafe İşletmesi",
+        tenantId:"tenant_demo_003",
+        status:"CORRECTION_REQUIRED",
+        statusClass:"fail",
+        confidenceBucket:"MEDIUM",
+        confidenceScore:78,
+        extractedTaxNo:"3234567890",
+        extractedTaxOffice:"Beşiktaş",
+        extractedAddress:"Adres satırı eksik",
+        extractedPhone:"+90 212 000 00 03",
+        extractedEmail:"muhasebe@democafe.test",
+        missingFields:["ADDRESS_REVIEW_REQUIRED"],
+        correctionRequired:"YES",
+        reviewDecision:"WAITING_CORRECTION",
+        targetEntity:"CUSTOMER_CARD_DRY_RUN",
+        sourceImageHash:"sha256:source-image-003",
+        ocrPayloadHash:"sha256:ocr-payload-003",
+        extractedFieldsHash:"sha256:fields-003",
+        correctionHash:"sha256:correction-pending-003",
+        piiMaskHash:"sha256:pii-mask-003",
+        auditHash:"sha256:ocr-audit-003",
+        evidenceFile:"docs/faz3/evidence/ocr_review_003.md",
+        allowedActions:["PREVIEW","VALIDATE","CORRECT","AUDIT"]
+      },
+      {
+        id:"ocr-004",
+        documentNo:"OCR-2026-0004",
+        documentType:"CONTACT_FORM",
+        firmId:"firm_demo_004",
+        firmName:"Demo Hizmet Ltd.",
+        tenantId:"tenant_demo_004",
+        status:"APPROVED_DRY_RUN",
+        statusClass:"ok",
+        confidenceBucket:"HIGH",
+        confidenceScore:94,
+        extractedTaxNo:"4234567890",
+        extractedTaxOffice:"Şişli",
+        extractedAddress:"Halaskargazi Cad. No:44 Şişli / İstanbul",
+        extractedPhone:"+90 212 000 00 04",
+        extractedEmail:"iletisim@demohizmet.test",
+        missingFields:[],
+        correctionRequired:"NO",
+        reviewDecision:"APPROVED_DRY_RUN_ONLY",
+        targetEntity:"CONTACT_CARD_DRY_RUN",
+        sourceImageHash:"sha256:source-image-004",
+        ocrPayloadHash:"sha256:ocr-payload-004",
+        extractedFieldsHash:"sha256:fields-004",
+        correctionHash:"sha256:correction-approved-004",
+        piiMaskHash:"sha256:pii-mask-004",
+        auditHash:"sha256:ocr-audit-004",
+        evidenceFile:"docs/faz3/evidence/ocr_review_004.md",
+        allowedActions:["PREVIEW","VALIDATE","APPROVE","AUDIT"]
+      }
+    ];
+
+    function actionButtons(item) {
+      const actions = [
+        ["PREVIEW","Preview","secondary"],
+        ["VALIDATE","Validate","warning"],
+        ["CORRECT","Correct","success"],
+        ["APPROVE","Approve","success"],
+        ["COMMIT","Commit","danger"],
+        ["AUDIT","Audit","secondary"]
+      ];
+
+      return actions
+        .filter(([key]) => item.allowedActions.includes(key) || key === "COMMIT")
+        .map(([key,label,cls]) => {
+          const disabled = key === "COMMIT" || autoCommitAllowed === false || customerCardWriteAllowed === false;
+          return `<button class="${cls}" data-op="${key}" ${disabled ? "disabled" : ""}>${label}</button>`;
+        }).join("");
+    }
+
+    function renderRows() {
+      const q = document.getElementById("searchInput").value.trim().toLowerCase();
+      const status = document.getElementById("statusFilter").value;
+      const docType = document.getElementById("docTypeFilter").value;
+      const field = document.getElementById("fieldFilter").value;
+      const confidence = document.getElementById("confidenceFilter").value;
+
+      const filtered = reviews.filter(item => {
+        const haystack = [
+          item.id,item.documentNo,item.documentType,item.firmId,item.firmName,item.tenantId,
+          item.status,item.confidenceBucket,item.extractedTaxNo,item.extractedTaxOffice,item.extractedAddress,
+          item.extractedPhone,item.extractedEmail,item.missingFields.join(","),item.correctionRequired,
+          item.reviewDecision,item.targetEntity,item.sourceImageHash,item.ocrPayloadHash,item.extractedFieldsHash,
+          item.correctionHash,item.piiMaskHash,item.auditHash,item.evidenceFile
+        ].join(" ").toLowerCase();
+
+        const fieldOk = field === "ALL"
+          || (field === "TAX_NO" && item.extractedTaxNo)
+          || (field === "TAX_OFFICE" && item.extractedTaxOffice)
+          || (field === "ADDRESS" && item.extractedAddress)
+          || (field === "PHONE" && item.extractedPhone)
+          || (field === "EMAIL" && item.extractedEmail);
+
+        return (q === "" || haystack.includes(q))
+          && (status === "ALL" || item.status === status)
+          && (docType === "ALL" || item.documentType === docType)
+          && fieldOk
+          && (confidence === "ALL" || item.confidenceBucket === confidence);
+      });
+
+      document.getElementById("reviewRows").innerHTML = filtered.map(item => `
+        <tr data-review-id="${item.id}" onclick="selectReview('${item.id}')">
+          <td><span class="main-text">${item.documentNo}</span><span class="sub">${item.firmName} / ${item.tenantId}</span></td>
+          <td><strong>${item.documentType}</strong><span class="sub">${item.targetEntity}</span></td>
+          <td><span class="status ${item.statusClass}">${item.status}</span></td>
+          <td><strong>${item.extractedTaxNo}</strong><span class="sub">${item.extractedTaxOffice} / ${item.extractedEmail}</span></td>
+          <td><strong>${item.confidenceScore}%</strong><span class="sub">${item.confidenceBucket}</span></td>
+          <td><strong>${item.reviewDecision}</strong><span class="sub">Correction: ${item.correctionRequired}</span></td>
+          <td><strong>${item.auditHash}</strong><span class="sub">${item.extractedFieldsHash}</span></td>
+          <td><div class="button-row">${actionButtons(item)}</div></td>
+        </tr>
+      `).join("");
+
+      if (filtered.length > 0) selectReview(filtered[0].id);
+      else {
+        document.getElementById("detailPanel").innerHTML = "";
+        document.getElementById("timeline").innerHTML = "";
+      }
+    }
+
+    function yesNo(value) { return value ? "YES" : "NO"; }
+
+    function selectReview(id) {
+      const item = reviews.find(row => row.id === id);
+      if (!item) return;
+
+      document.getElementById("detailPanel").innerHTML = `
+        <div class="detail-row"><span>Review ID</span><strong>${item.id}</strong></div>
+        <div class="detail-row"><span>Document No</span><strong>${item.documentNo}</strong></div>
+        <div class="detail-row"><span>Document Type</span><strong>${item.documentType}</strong></div>
+        <div class="detail-row"><span>Firm ID</span><strong>${item.firmId}</strong></div>
+        <div class="detail-row"><span>Firm Name</span><strong>${item.firmName}</strong></div>
+        <div class="detail-row"><span>Tenant ID</span><strong>${item.tenantId}</strong></div>
+        <div class="detail-row"><span>Status</span><strong>${item.status}</strong></div>
+        <div class="detail-row"><span>Confidence Bucket</span><strong>${item.confidenceBucket}</strong></div>
+        <div class="detail-row"><span>Confidence Score</span><strong>${item.confidenceScore}%</strong></div>
+        <div class="detail-row"><span>Tax No</span><strong>${item.extractedTaxNo}</strong></div>
+        <div class="detail-row"><span>Tax Office</span><strong>${item.extractedTaxOffice}</strong></div>
+        <div class="detail-row"><span>Address</span><strong>${item.extractedAddress}</strong></div>
+        <div class="detail-row"><span>Phone</span><strong>${item.extractedPhone}</strong></div>
+        <div class="detail-row"><span>Email</span><strong>${item.extractedEmail}</strong></div>
+        <div class="detail-row"><span>Missing Fields</span><strong>${item.missingFields.join(", ") || "-"}</strong></div>
+        <div class="detail-row"><span>Correction Required</span><strong>${item.correctionRequired}</strong></div>
+        <div class="detail-row"><span>Review Decision</span><strong>${item.reviewDecision}</strong></div>
+        <div class="detail-row"><span>Target Entity</span><strong>${item.targetEntity}</strong></div>
+        <div class="detail-row"><span>Source Image Hash</span><strong>${item.sourceImageHash}</strong></div>
+        <div class="detail-row"><span>OCR Payload Hash</span><strong>${item.ocrPayloadHash}</strong></div>
+        <div class="detail-row"><span>Extracted Fields Hash</span><strong>${item.extractedFieldsHash}</strong></div>
+        <div class="detail-row"><span>Correction Hash</span><strong>${item.correctionHash}</strong></div>
+        <div class="detail-row"><span>PII Mask Hash</span><strong>${item.piiMaskHash}</strong></div>
+        <div class="detail-row"><span>Audit Hash</span><strong>${item.auditHash}</strong></div>
+        <div class="detail-row"><span>Evidence File</span><strong>${item.evidenceFile}</strong></div>
+        <div class="detail-row"><span>Auto Commit</span><strong>${yesNo(autoCommitAllowed)}</strong></div>
+        <div class="detail-row"><span>Human Review</span><strong>${yesNo(humanReviewRequired)}</strong></div>
+        <div class="detail-row"><span>Raw Image Storage</span><strong>${yesNo(rawImageStorageAllowed)}</strong></div>
+        <div class="detail-row"><span>Customer Card Write</span><strong>${yesNo(customerCardWriteAllowed)}</strong></div>
+      `;
+
+      document.getElementById("timeline").innerHTML = [
+        ["OCR_REVIEW_SELECTED", `${item.documentNo} OCR review kuyruğunda seçildi.`],
+        [item.status, `Review status: ${item.status}, decision: ${item.reviewDecision}.`],
+        [item.confidenceBucket, `Confidence: ${item.confidenceScore}% / ${item.confidenceBucket}.`],
+        [item.extractedFieldsHash, `Extracted fields hash: ${item.extractedFieldsHash}.`],
+        [item.auditHash, `Audit hash: ${item.auditHash}, evidence: ${item.evidenceFile}.`]
+      ].map(([title,desc]) => `<div class="event"><strong>${title}</strong><small>${desc}</small></div>`).join("");
+    }
+
+    document.getElementById("searchInput").addEventListener("input", renderRows);
+    document.getElementById("statusFilter").addEventListener("change", renderRows);
+    document.getElementById("docTypeFilter").addEventListener("change", renderRows);
+    document.getElementById("fieldFilter").addEventListener("change", renderRows);
+    document.getElementById("confidenceFilter").addEventListener("change", renderRows);
+
+    renderRows();
+  </script>
+</body>
+</html>

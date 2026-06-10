@@ -1,0 +1,39 @@
+{
+  "phase": "FAZ_5_19_3",
+  "title": "Developer Docs Portalı",
+  "status": "READY",
+  "control_surface": "DEVELOPER_DOCS_PORTAL",
+  "inputs": [
+    "FAZ_5_18_1_5_FIYATLAMA_DOGRULAMA",
+    "FAZ_5_R_PRIORITY_4_WEB_L8_PUBLIC_DEVELOPER_SURFACES"
+  ],
+  "outputs": [
+    "DEVELOPER_OVERVIEW",
+    "AUTHENTICATION_DOCS",
+    "TENANT_CONTEXT_DOCS",
+    "API_REFERENCE_DOCS",
+    "WEBHOOK_DOCS",
+    "SANDBOX_USAGE_DOCS",
+    "SECURITY_COMPLIANCE_DOCS",
+    "SUPPORT_SLA_DOCS",
+    "API_KEY_SCREEN_DEFERRED_MARKER"
+  ],
+  "web_artifact": "web/faz5r/developer-docs/index.html",
+  "gates": {
+    "internal_developer_docs_portal_ready": true,
+    "static_html_ready": true,
+    "production_docs_published": false,
+    "real_developer_access_enabled": false,
+    "api_key_creation_enabled": false,
+    "sandbox_live_enabled": false,
+    "api_key_management_screen_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "web_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "tenants": [
+    {
+      "tenant_id": "tenant_pix2pi_holding",
+      "company_code": "PIX2PI-HOLDING",
+      "name": "Pix2pi Holding Demo",
+      "type": "holding",
+      "login_mode": "company_code_username_password",
+      "children": [
+        {
+          "legal_entity_id": "le_istanbul_gida_as",
+          "company_code": "ISTANBUL-GIDA-AS",
+          "name": "İstanbul Gıda A.Ş.",
+          "type": "legal_entity",
+          "children": [
+            {
+              "org_unit_id": "region_marmara",
+              "name": "Marmara Bölge",
+              "type": "region",
+              "children": [
+                {
+                  "org_unit_id": "branch_kadikoy",
+                  "company_code": "KADIKOY-SUBE",
+                  "name": "Kadıköy Şube",
+                  "type": "branch",
+                  "children": [
+                    {
+                      "org_unit_id": "register_kadikoy_1",
+                      "name": "Kadıköy Kasa 1",
+                      "type": "register"
+                    },
+                    {
+                      "org_unit_id": "warehouse_kadikoy",
+                      "name": "Kadıköy Depo",
+                      "type": "warehouse"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "legal_entity_id": "le_ankara_market_as",
+          "company_code": "ANKARA-MARKET-AS",
+          "name": "Ankara Market A.Ş.",
+          "type": "legal_entity"
+        }
+      ]
+    }
+  ]
+}

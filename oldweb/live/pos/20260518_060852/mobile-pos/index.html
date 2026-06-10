@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="tr-TR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ffd60a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Pix2pi POS">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/assets/pwa/icon-192.svg">
+  <title>Pix2pi Mobile POS</title>
+  <style>
+    :root{color-scheme:dark;--gold:#ffd60a;--bg:#07090d;--card:rgba(255,255,255,.06)}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#f8fafc;font-family:system-ui}
+    .app{min-height:100dvh;display:grid;grid-template-rows:auto 1fr auto}
+    header,footer{padding:16px max(16px,env(safe-area-inset-left));background:rgba(0,0,0,.28);backdrop-filter:blur(12px)}
+    main{padding:16px;display:grid;gap:14px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .card{border:1px solid rgba(255,214,10,.25);background:var(--card);border-radius:22px;padding:16px;min-height:96px}
+    .big{font-size:28px;font-weight:900;color:var(--gold)}
+    button{width:100%;border:0;border-radius:18px;padding:16px;font-weight:800;background:var(--gold);color:#111}
+    code{color:var(--gold)}
+    @media (max-width: 520px){
+      .grid{grid-template-columns:1fr}
+      .card{min-height:84px}
+      .big{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <strong>Pix2pi Mobile POS</strong><br>
+      <code>PIX2PI_334_MOBILE_POS_SCREEN_START</code>
+    </header>
+    <main>
+      <section class="grid">
+        <article class="card"><p>Offline queue</p><div class="big">READY</div></article>
+        <article class="card"><p>Sync</p><div class="big">READY</div></article>
+        <article class="card"><p>Stok conflict</p><div class="big">GUARD</div></article>
+        <article class="card"><p>Idempotency</p><div class="big">ON</div></article>
+      </section>
+      <button type="button">Satış başlat</button>
+    </main>
+    <footer>Cache version: pix2pi-pos-pwa-334-20260513_203626</footer>
+  </div>
+  <script>
+    window.PIX2PI_PWA_CACHE_VERSION = "pix2pi-pos-pwa-334-20260513_203626";
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js", { scope: "/" });
+    }
+  </script>
+</body>
+</html>

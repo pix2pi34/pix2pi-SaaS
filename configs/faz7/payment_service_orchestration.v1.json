@@ -1,0 +1,41 @@
+{
+  "module_code": "7-5P.5",
+  "module_name": "Payment Service Orchestration / Use Case Layer",
+  "parent_module": "7-5P",
+  "depends_on": [
+    "7-5P",
+    "7-5P.1",
+    "7-5P.2",
+    "7-5P.3",
+    "7-5P.4"
+  ],
+  "orchestration_version": "payment_service_orchestration.v1",
+  "service": "PaymentService",
+  "bindings": {
+    "provider_adapter_required": true,
+    "provider_capability_matrix_required": true,
+    "payment_attempt_repository_required": true
+  },
+  "use_cases": [
+    "Authorize",
+    "Capture",
+    "Refund",
+    "Void",
+    "VerifyWebhook"
+  ],
+  "guards": {
+    "provider_code_match_required": true,
+    "provider_mode_match_required": true,
+    "tenant_required": true,
+    "idempotency_replay_for_authorize": true,
+    "provider_transaction_required_for_capture_refund_void": true,
+    "repository_persistence_required": true,
+    "audit_event_history_required": true
+  },
+  "test_strategy": {
+    "go_test_required": true,
+    "test_names_verified_from_output": true,
+    "hardcoded_final_ok_forbidden": true,
+    "final_status_from_counters_required": true
+  }
+}

@@ -1,0 +1,45 @@
+version: v1
+ebelge:
+  efatura:
+    required_fields:
+      - document_id
+      - uuid
+      - profile
+      - issue_date
+      - status
+
+  earsiv:
+    required_fields:
+      - document_id
+      - archive_no
+      - issue_date
+      - scenario
+      - status
+
+  eadisyon:
+    required_fields:
+      - document_id
+      - slip_no
+      - issue_date
+      - terminal_id
+      - status
+
+  status_sync:
+    required_fields:
+      - source_status
+      - target_status
+      - synced_at
+      - sync_direction
+
+  error_cancel_retry:
+    required_fields:
+      - error_code
+      - cancel_reason
+      - retry_count
+      - retried_at
+
+  validation_suite:
+    required_fields:
+      - validation_profile
+      - validation_status
+      - validated_at

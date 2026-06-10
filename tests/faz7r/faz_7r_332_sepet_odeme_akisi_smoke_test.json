@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "332",
+  "domain": "pos.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "pos_checkout_screen",
+      "path": "/checkout/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_332_CHECKOUT_APP_SHELL_START",
+        "PIX2PI_332_CART_REVIEW_LINE_SUMMARY_START",
+        "PIX2PI_332_PAYMENT_METHOD_SELECTION_START"
+      ]
+    },
+    {
+      "name": "pos_checkout_runtime",
+      "path": "/assets/checkout/pos-checkout-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_332_POS_CHECKOUT_RUNTIME_START",
+        "tenantDeviceCashierHeaders",
+        "buildCheckoutDraftPayload"
+      ]
+    }
+  ]
+}

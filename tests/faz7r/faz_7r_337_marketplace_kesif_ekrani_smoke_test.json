@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "337",
+  "domain": "market.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "market_discovery_screen",
+      "path": "/discover/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_337_MARKETPLACE_DISCOVERY_APP_SHELL_START",
+        "PIX2PI_337_LOCATION_NEIGHBORHOOD_CONTEXT_START",
+        "PIX2PI_337_NEARBY_STORE_GRID_START"
+      ]
+    },
+    {
+      "name": "market_discovery_runtime",
+      "path": "/assets/discover/market-discovery-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_337_MARKET_DISCOVERY_RUNTIME_START",
+        "marketRegionHeaders",
+        "buildDiscoveryContract"
+      ]
+    }
+  ]
+}

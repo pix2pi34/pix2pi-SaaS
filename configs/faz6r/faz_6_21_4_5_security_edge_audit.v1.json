@@ -1,0 +1,191 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "284",
+  "code": "FAZ_6_21_4_5",
+  "name": "Security edge audit",
+  "depends_on": [
+    "FAZ_6_21_4_1",
+    "FAZ_6_21_4_2",
+    "FAZ_6_21_4_3",
+    "FAZ_6_21_4_4"
+  ],
+  "provider_neutral": true,
+  "live_provider_api_mutation_allowed": false,
+  "release_gate_type": "security_edge_audit",
+  "required_controls": [
+    "waf_tuning_dependency_gate",
+    "abuse_bot_dependency_gate",
+    "edge_rule_review_dependency_gate",
+    "tls_cert_dependency_gate",
+    "public_private_boundary_audit",
+    "auth_surface_audit",
+    "api_surface_audit",
+    "panel_surface_audit",
+    "webhook_surface_audit",
+    "health_endpoint_audit",
+    "static_asset_policy_audit",
+    "tenant_header_observability_audit",
+    "tls_https_hsts_audit",
+    "abuse_bot_signal_audit",
+    "rollback_readiness_audit",
+    "release_blocker_policy",
+    "evidence_audit_policy"
+  ],
+  "dependency_evidence": [
+    {
+      "code": "FAZ_6_21_4_1",
+      "name": "WAF tuning",
+      "file": "docs/faz6r/evidence/FAZ_6_21_4_1_WAF_TUNING_REAL_IMPLEMENTATION_AUDIT.md",
+      "required_final_status": "PASS"
+    },
+    {
+      "code": "FAZ_6_21_4_2",
+      "name": "Abuse / bot tuning",
+      "file": "docs/faz6r/evidence/FAZ_6_21_4_2_ABUSE_BOT_TUNING_REAL_IMPLEMENTATION_AUDIT.md",
+      "required_final_status": "PASS"
+    },
+    {
+      "code": "FAZ_6_21_4_3",
+      "name": "Edge rule review",
+      "file": "docs/faz6r/evidence/FAZ_6_21_4_3_EDGE_RULE_REVIEW_REAL_IMPLEMENTATION_AUDIT.md",
+      "required_final_status": "PASS"
+    },
+    {
+      "code": "FAZ_6_21_4_4",
+      "name": "TLS / cert continuous checks",
+      "file": "docs/faz6r/evidence/FAZ_6_21_4_4_TLS_CERT_CONTINUOUS_CHECKS_REAL_IMPLEMENTATION_AUDIT.md",
+      "required_final_status": "PASS"
+    }
+  ],
+  "audit_surfaces": [
+    {
+      "surface": "public_web",
+      "routes": [
+        "/",
+        "/assets/*",
+        "/faz4r/*",
+        "/faz5r/*"
+      ],
+      "expected_access": "public",
+      "cache_allowed": true,
+      "hard_block_allowed": false,
+      "release_blocker_if_missing": true
+    },
+    {
+      "surface": "auth",
+      "routes": [
+        "/auth/*",
+        "/api/auth/*",
+        "/login"
+      ],
+      "expected_access": "public_entry_but_protected",
+      "cache_allowed": false,
+      "requires_abuse_bot_guard": true,
+      "requires_credential_stuffing_guard": true,
+      "release_blocker_if_missing": true
+    },
+    {
+      "surface": "api",
+      "routes": [
+        "/api/*"
+      ],
+      "expected_access": "authenticated_or_service_policy",
+      "cache_allowed": false,
+      "requires_waf": true,
+      "requires_rate_or_abuse_guard": true,
+      "release_blocker_if_missing": true
+    },
+    {
+      "surface": "panel",
+      "routes": [
+        "/panel/*",
+        "/admin/*"
+      ],
+      "expected_access": "authenticated_private",
+      "cache_allowed": false,
+      "requires_security_headers": true,
+      "requires_managed_challenge_ready": true,
+      "release_blocker_if_missing": true
+    },
+    {
+      "surface": "webhook",
+      "routes": [
+        "/api/webhooks/*",
+        "/webhooks/*"
+      ],
+      "expected_access": "provider_callback",
+      "cache_allowed": false,
+      "signature_validation_layer": "application",
+      "safe_exception_review_required": true,
+      "release_blocker_if_missing": true
+    },
+    {
+      "surface": "health",
+      "routes": [
+        "/health",
+        "/api/health",
+        "/ready",
+        "/live"
+      ],
+      "expected_access": "ops_observable",
+      "cache_allowed": false,
+      "must_not_hard_block": true,
+      "release_blocker_if_missing": true
+    }
+  ],
+  "security_requirements": {
+    "tenant_header_observability": {
+      "enabled": true,
+      "required_header": "X-Tenant-ID",
+      "routes": [
+        "/api/tenant/*",
+        "/api/query/*",
+        "/api/erp/*"
+      ],
+      "action": "log"
+    },
+    "tls_https_hsts": {
+      "enabled": true,
+      "minimum_tls": "TLSv1.2",
+      "preferred_tls": "TLSv1.3",
+      "https_required": true,
+      "hsts_required": true,
+      "hsts_header": "Strict-Transport-Security"
+    },
+    "abuse_bot_signals": {
+      "enabled": true,
+      "required_signals": [
+        "bot_score_policy",
+        "suspicious_automation_guard",
+        "credential_stuffing_guard",
+        "login_rate_anomaly_guard",
+        "api_scraping_guard",
+        "bad_user_agent_guard",
+        "impossible_path_guard",
+        "tenant_abuse_signal_policy"
+      ]
+    },
+    "rollback_readiness": {
+      "enabled": true,
+      "required": true,
+      "strategies": [
+        "return_to_previous_stable_edge_policy",
+        "return_to_previous_stable_abuse_bot_policy",
+        "return_to_previous_stable_edge_rule_set",
+        "return_to_previous_stable_tls_edge_policy"
+      ]
+    }
+  },
+  "release_blocker_policy": {
+    "enabled": true,
+    "block_release_on_required_fail": true,
+    "block_release_on_missing_dependency_evidence": true,
+    "block_release_on_missing_tls_https_hsts": true,
+    "block_release_on_missing_rollback": true
+  },
+  "audit": {
+    "control": "evidence_audit_policy",
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_4_5_SECURITY_EDGE_AUDIT_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Ops Console — Mission Control</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --card: #1f2937;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --line: rgba(255,255,255,.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0f172a, #111827);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+    aside {
+      border-right: 1px solid var(--line);
+      padding: 24px;
+      background: rgba(15, 23, 42, .88);
+    }
+    main { padding: 28px; }
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 28px;
+    }
+    .nav-item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .nav-item.active {
+      background: rgba(34, 197, 94, .14);
+      color: var(--text);
+      border: 1px solid rgba(34, 197, 94, .35);
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    h1 { margin: 0; font-size: 28px; }
+    .tenant {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .card {
+      background: rgba(31, 41, 55, .86);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.22);
+    }
+    .metric-label { color: var(--muted); font-size: 13px; }
+    .metric-value { font-size: 30px; font-weight: 800; margin-top: 8px; }
+    .metric-note { color: var(--muted); margin-top: 6px; font-size: 12px; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      padding: 13px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      font-size: 14px;
+    }
+    th { color: var(--muted); font-weight: 600; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .pill.ok { background: rgba(34, 197, 94, .15); color: #86efac; }
+    .pill.warn { background: rgba(245, 158, 11, .15); color: #fcd34d; }
+    .pill.danger { background: rgba(239, 68, 68, .15); color: #fca5a5; }
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .action-button {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(15, 23, 42, .7);
+      color: var(--text);
+      font-weight: 800;
+    }
+    @media (max-width: 980px) {
+      .shell { grid-template-columns: 1fr; }
+      aside { display: none; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="brand">Pix2pi Ops Console</div>
+      <div class="nav-item">Service Registry</div>
+      <div class="nav-item active">Mission Control</div>
+      <div class="nav-item">Job Queue / Worker Monitor</div>
+      <div class="nav-item">Notification / Webhook İzleme</div>
+      <div class="nav-item">Incident / Audit Center</div>
+      <div class="nav-item">Runtime Health / Topology</div>
+      <div class="nav-item">Early Warning</div>
+    </aside>
+
+    <main>
+      <section class="topbar">
+        <div>
+          <h1>Mission Control</h1>
+          <div class="metric-note">FAZ 2-8.2 — restart, isolate, quarantine, maintenance ve incident note kontrol yüzeyi</div>
+        </div>
+        <div class="tenant">Tenant: tenant_7 · Scope: INTERNAL</div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <div class="metric-label">Requested Actions</div>
+          <div class="metric-value">8</div>
+          <div class="metric-note">waiting operator review</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Approved</div>
+          <div class="metric-value">4</div>
+          <div class="metric-note">ready to execute</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Quarantine</div>
+          <div class="metric-value">1</div>
+          <div class="metric-note">security controlled</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Maintenance</div>
+          <div class="metric-value">1</div>
+          <div class="metric-note">operator controlled</div>
+        </div>
+      </section>
+
+      <section class="two-col">
+        <div class="card">
+          <strong>Mission Actions</strong>
+          <table>
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Instance</th>
+                <th>Operator</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RESTART</td>
+                <td>api_gateway_1</td>
+                <td>operator_1</td>
+                <td><span class="pill warn">REQUESTED</span></td>
+              </tr>
+              <tr>
+                <td>QUARANTINE</td>
+                <td>worker_1</td>
+                <td>admin_1</td>
+                <td><span class="pill ok">APPROVED</span></td>
+              </tr>
+              <tr>
+                <td>MAINTENANCE</td>
+                <td>internal_registry_1</td>
+                <td>admin_1</td>
+                <td><span class="pill ok">EXECUTED</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <strong>Control Actions</strong>
+          <div class="metric-note">Butonlar bu fazda görünüm checkpointidir; gerçek işlem action runtime guard ile bağlanır.</div>
+          <div class="action-grid" style="margin-top:14px;">
+            <button class="action-button">Restart</button>
+            <button class="action-button">Isolate</button>
+            <button class="action-button">Quarantine</button>
+            <button class="action-button">Maintenance</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

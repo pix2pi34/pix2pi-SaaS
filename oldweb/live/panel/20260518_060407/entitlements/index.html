@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="tr-TR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pix2pi Entitlement UI Guard</title>
+  <style>
+    body{margin:0;background:#07090d;color:#f8fafc;font-family:system-ui}
+    .wrap{max-width:1120px;margin:auto;padding:40px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .card{border:1px solid rgba(255,214,10,.28);background:rgba(255,255,255,.06);border-radius:22px;padding:22px}
+    .disabled{opacity:.55}
+    button{border:0;border-radius:14px;padding:12px 16px;font-weight:700}
+    button[disabled]{cursor:not-allowed;opacity:.45}
+    code{color:#ffd60a}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <h1>Plan enforcement / entitlement UI guard</h1>
+      <p>Commercial account, paid invoice, entitlement ve quota durumuna göre UI aksiyon kapatma / upgrade banner / tenant-safe guard.</p>
+      <code>PIX2PI_346_PLAN_ENFORCEMENT_ENTITLEMENT_UI_GUARD_SCREEN_START</code>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Allowed feature</h2>
+        <p>marketplace.catalog.publish</p>
+        <button data-feature="marketplace.catalog.publish">Katalog yayınla</button>
+      </div>
+      <div class="card disabled">
+        <h2>Quota exceeded</h2>
+        <p>marketplace.order.create</p>
+        <button data-feature="marketplace.order.create" disabled>Limit doldu</button>
+        <code>PIX2PI_346_QUOTA_EXCEEDED_BUTTON_DISABLED</code>
+      </div>
+      <div class="card disabled">
+        <h2>Upgrade required</h2>
+        <p>commercial.billing.live</p>
+        <button data-feature="commercial.billing.live" disabled>Upgrade gerekli</button>
+        <code>PIX2PI_346_UPGRADE_REQUIRED_BANNER</code>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

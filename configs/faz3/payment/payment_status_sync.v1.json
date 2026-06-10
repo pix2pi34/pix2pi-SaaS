@@ -1,0 +1,51 @@
+{
+  "phase": "FAZ_3_10_7_3_PAYMENT_STATUS_SYNC",
+  "runtime": "payment_status_sync",
+  "callback_signature_required": true,
+  "webhook_signature_required": true,
+  "poll_enabled": true,
+  "manual_recheck_enabled": true,
+  "poll_interval_seconds": 300,
+  "max_poll_batch_size": 100,
+  "max_retry_count": 3,
+  "allowed_channels": [
+    "POS",
+    "VIRTUAL_POS",
+    "BANK_TRANSFER",
+    "BANK_COLLECTION",
+    "MARKETPLACE_SETTLEMENT"
+  ],
+  "allowed_provider_codes": [
+    "SIM_BANK_POS",
+    "SIM_BANK",
+    "SIM_MARKETPLACE"
+  ],
+  "status_mapping": {
+    "CREATED": "CREATED",
+    "AUTHORIZED": "AUTHORIZED",
+    "CAPTURED": "CAPTURED",
+    "SOLD": "PAID",
+    "PENDING_3DS": "PENDING_3DS",
+    "REFUNDED": "REFUNDED",
+    "VOIDED": "VOIDED",
+    "FAILED": "FAILED",
+    "REGISTERED": "REGISTERED",
+    "MATCHED": "MATCHED",
+    "RECONCILED": "RECONCILED",
+    "SETTLED": "SETTLED",
+    "REVERSED": "REVERSED"
+  },
+  "security_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "payment_transaction_id_required": true,
+    "provider_transaction_id_required": true,
+    "provider_payload_hash_required": true,
+    "callback_signature_required": true,
+    "webhook_signature_required": true,
+    "bank_reference_required_for_bank_collection": true
+  },
+  "next_gate": "FAZ_3_10_7_4_PAYMENT_ERROR_RETRY_REVERSAL_RUNTIME"
+}

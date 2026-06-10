@@ -1,0 +1,70 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "355",
+  "name": "İlk gerçek kullanım smoke testi",
+  "surface": "controlled_customer_access",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/first-real-usage-smoke/",
+  "runtime_path": "/assets/first-real-usage-smoke/first-real-usage-smoke-runtime.js",
+  "depends_on": [
+    "349 - Kullanıcı şifre / giriş akışı",
+    "350 - Panel erişim testi",
+    "351 - POS erişim testi",
+    "352 - Tenant izolasyon kontrolü",
+    "353 - Kullanıcı yetki kontrolü",
+    "354 - Localization customer smoke"
+  ],
+  "surface_domains": {
+    "panel": "panel.pix2pi.com.tr",
+    "pos": "pos.pix2pi.com.tr",
+    "market": "market.pix2pi.com.tr"
+  },
+  "backend_contract": {
+    "first_usage_snapshot_endpoint": "/api/customer-access/first-usage/snapshot",
+    "first_usage_decision_endpoint": "/api/customer-access/first-usage/decision",
+    "first_usage_audit_endpoint": "/api/customer-access/first-usage/audit",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "user_session_header": "X-User-Session",
+    "store_header": "X-Store-ID",
+    "register_header": "X-Register-ID",
+    "first_usage_scope_header": "X-First-Usage-Scope",
+    "correlation_header": "X-Correlation-ID"
+  },
+  "runtime_contract": {
+    "real_customer_go_live_enabled": false,
+    "real_sale_enabled": false,
+    "real_payment_enabled": false,
+    "real_invoice_issue_enabled": false,
+    "real_stock_decrement_enabled": false,
+    "real_data_mutation_enabled": false,
+    "first_usage_smoke_preview_enabled": true,
+    "customer_journey_preview_enabled": true,
+    "rollback_stop_criteria_preview_enabled": true,
+    "fallback_first_usage_snapshot_enabled": true,
+    "ready_for_step_356": true
+  },
+  "required_capabilities": [
+    "first_real_usage_smoke_app_shell",
+    "pilot_tenant_owner_store_register_scenario_context",
+    "panel_login_access_chain_smoke",
+    "tenant_isolation_gate_smoke",
+    "user_permission_gate_smoke",
+    "localization_customer_smoke_dependency_check",
+    "pos_access_chain_smoke",
+    "marketplace_storefront_availability_smoke",
+    "product_stock_read_smoke",
+    "cart_payment_dry_run_smoke",
+    "invoice_billing_disabled_gate_smoke",
+    "audit_correlation_timeline",
+    "data_mutation_disabled_safety_guard",
+    "customer_journey_checklist",
+    "rollback_stop_criteria_preview",
+    "first_usage_runtime_data_contract",
+    "i18n_ready_first_usage_marker",
+    "seo_opengraph_first_usage_placeholder",
+    "first_real_usage_smoke_test"
+  ],
+  "next_step": "356 - Controlled usage go-live kararı"
+}

@@ -1,0 +1,39 @@
+{
+  "expected_dependencies": [
+    "FAZ_6_21_5_1",
+    "FAZ_6_21_5_2",
+    "FAZ_6_21_5_3",
+    "FAZ_6_21_5_4"
+  ],
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_production_change_allowed": false,
+  "expected_cost_action_execute_allowed": false,
+  "expected_required_controls": [
+    "compute_cost_dependency_gate",
+    "db_cost_dependency_gate",
+    "storage_log_cost_dependency_gate",
+    "cache_queue_cost_dependency_gate",
+    "cost_category_consolidation",
+    "performance_guard_summary",
+    "risk_impact_matrix",
+    "savings_priority_model",
+    "mutation_closed_policy",
+    "manual_approval_policy",
+    "slo_dr_data_safety_guard",
+    "tenant_isolation_guard",
+    "dry_run_report_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_categories": [
+    "compute",
+    "database",
+    "storage_log",
+    "cache_queue"
+  ],
+  "expected_report_status": "dry_run_report_only_no_mutation",
+  "expected_min_category_count": 4,
+  "expected_min_risk_count": 4,
+  "expected_next_step": "FAZ_6_21_3_3"
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "FAZ_5_18_5_6",
+  "title": "Tenant Lifecycle Testleri",
+  "status": "READY",
+  "control_surface": "TENANT_LIFECYCLE_TEST_SUITE",
+  "inputs": [
+    "FAZ_5_18_5_4_TENANT_KAPATMA",
+    "FAZ_5_18_5_5_VERI_EXPORT_DEVIR_AKISI",
+    "FAZ_5_18_5_2_TENANT_YUKSELTME_DUSURME",
+    "FAZ_5_18_5_3_TENANT_DONDURMA"
+  ],
+  "outputs": [
+    "TENANT_SHUTDOWN_CONTRACT_TEST",
+    "TENANT_DATA_EXPORT_CONTRACT_TEST",
+    "TENANT_PLAN_CHANGE_CONTRACT_TEST",
+    "TENANT_FREEZE_CONTRACT_TEST",
+    "CROSS_FLOW_BILLING_GUARD_TEST",
+    "CROSS_FLOW_AUDIT_EVIDENCE_TEST",
+    "CRM_STAGE_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_lifecycle_tests_ready": true,
+    "production_lifecycle_live_enabled": false,
+    "real_customer_ops_open": false,
+    "tenant_lifecycle_block_complete": true,
+    "crm_stage_management_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

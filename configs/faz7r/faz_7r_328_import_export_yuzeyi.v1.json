@@ -1,0 +1,84 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "328",
+  "name": "Import / export yüzeyi",
+  "surface": "merchant_panel",
+  "domain": "panel.pix2pi.com.tr",
+  "path": "/import-export/",
+  "runtime_path": "/assets/import-export/import-export-runtime.js",
+  "depends_on": [
+    "316 - panel.pix2pi.com.tr altyapısı",
+    "317 - Login / tenant seçimi",
+    "318 - Dil Modülü / i18n / Alfabe Altyapısı",
+    "319 - İşletme onboarding ekranı",
+    "320 - Merchant dashboard",
+    "321 - Kullanıcı / rol / personel ekranı",
+    "322 - İşletme ayarları / profil ekranı",
+    "323 - Cari ekranı",
+    "324 - Ürün / stok ekranı",
+    "325 - Satış / POS yönetim ekranı",
+    "326 - Fatura / belge ekranı",
+    "327 - Rapor ekranları"
+  ],
+  "backend_contract": {
+    "template_endpoint": "/api/panel/import-export/template",
+    "validate_endpoint": "/api/panel/import-export/validate",
+    "import_endpoint": "/api/panel/import-export/import",
+    "export_endpoint": "/api/panel/import-export/export",
+    "jobs_endpoint": "/api/panel/import-export/jobs",
+    "history_endpoint": "/api/panel/import-export/history",
+    "method": "GET/POST",
+    "auth": "Bearer JWT",
+    "tenant_header": "X-Tenant-ID"
+  },
+  "domains": [
+    "CUSTOMERS",
+    "PRODUCTS",
+    "DOCUMENTS",
+    "ACCOUNTING"
+  ],
+  "import_formats": [
+    "CSV",
+    "XLSX",
+    "JSON"
+  ],
+  "export_formats": [
+    "CSV",
+    "XLSX",
+    "PDF",
+    "JSON",
+    "LOGO",
+    "MIKRO",
+    "ZIRVE",
+    "ETA"
+  ],
+  "accounting_export_formats": [
+    "LOGO",
+    "MIKRO",
+    "ZIRVE",
+    "ETA"
+  ],
+  "runtime_contract": {
+    "real_file_processing_enabled": false,
+    "production_accounting_export_enabled": false,
+    "staging_preview_enabled": true,
+    "fallback_snapshot_enabled": true
+  },
+  "required_capabilities": [
+    "import_export_app_shell",
+    "customer_import_export_surface",
+    "product_stock_import_export_surface",
+    "document_export_surface",
+    "accounting_export_formats",
+    "template_download_placeholder",
+    "file_upload_staging_preview_placeholder",
+    "mapping_validation_preview",
+    "import_job_status_list",
+    "export_history_list",
+    "tenant_scoped_import_export_guard",
+    "import_export_runtime_contract",
+    "i18n_ready_import_export_markers",
+    "import_export_smoke_test"
+  ],
+  "next_step": "329 - pos.pix2pi.com.tr altyapısı"
+}

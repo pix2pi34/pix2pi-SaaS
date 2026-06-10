@@ -1,0 +1,66 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "334",
+  "name": "Mobile-ready PWA yüzeyi",
+  "surface": "pos",
+  "domain": "pos.pix2pi.com.tr",
+  "path": "/pwa/",
+  "runtime_path": "/assets/pwa/pos-pwa-runtime.js",
+  "manifest_path": "/manifest.json",
+  "service_worker_path": "/sw.js",
+  "offline_fallback_path": "/offline-fallback.html",
+  "depends_on": [
+    "329 - pos.pix2pi.com.tr altyapısı",
+    "330 - Kasiyer giriş ekranı",
+    "331 - POS satış ekranı",
+    "332 - Sepet / ödeme akışı",
+    "333 - Offline-ready POS hazırlığı"
+  ],
+  "pwa_contract": {
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#111827",
+    "background_color": "#0f172a",
+    "install_prompt_enabled": true,
+    "service_worker_registration_enabled": true,
+    "production_offline_replay_enabled": false,
+    "production_payment_finalize_enabled": false,
+    "ready_for_step_335": true
+  },
+  "cache_strategy": {
+    "strategy": "CACHE_FIRST_STATIC_NETWORK_FALLBACK",
+    "offline_fallback": "/offline-fallback.html",
+    "cache_allowlist": [
+      "/",
+      "/login/",
+      "/sale/",
+      "/checkout/",
+      "/offline/",
+      "/pwa/",
+      "/manifest.json",
+      "/offline-fallback.html"
+    ]
+  },
+  "session_preservation": {
+    "tenant_key": "pix2pi.pos.tenant.preference",
+    "device_key": "pix2pi.pos.device.id",
+    "cashier_session_key": "pix2pi.pos.cashier.session",
+    "offline_queue_key": "pix2pi.pos.offline.queue"
+  },
+  "required_capabilities": [
+    "mobile_ready_pwa_app_shell",
+    "pwa_manifest",
+    "service_worker_placeholder",
+    "install_prompt_runtime_contract",
+    "offline_fallback_page",
+    "safe_area_mobile_viewport_contract",
+    "touch_optimized_navigation",
+    "cache_strategy_placeholder",
+    "pos_route_cache_allowlist",
+    "pwa_icon_asset_placeholder",
+    "tenant_device_cashier_session_preservation_contract",
+    "i18n_ready_pwa_markers",
+    "mobile_ready_pwa_smoke_test"
+  ],
+  "next_step": "335 - İşletme mağaza vitrini"
+}

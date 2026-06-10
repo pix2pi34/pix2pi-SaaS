@@ -1,0 +1,45 @@
+{
+  "test_name": "faz_5_18_2_3_tahsilat_basarisiz_odeme_akisi_test",
+  "phase": "FAZ_5_18_2_3",
+  "expected": {
+    "required_step_count": 8,
+    "required_event_count": 7,
+    "internal_collection_flow_ready": true,
+    "production_payment_enabled": false,
+    "real_customer_charging_enabled": false,
+    "auto_tenant_suspension_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_step_keys": [
+    "invoice_due_marker",
+    "collection_attempt_create",
+    "payment_failed_capture",
+    "retry_schedule_policy",
+    "grace_period_policy",
+    "manual_review_queue",
+    "tenant_action_block_policy",
+    "provider_live_deferred_marker"
+  ],
+  "must_have_events": [
+    "INVOICE_DUE",
+    "COLLECTION_ATTEMPT",
+    "PAYMENT_FAILED",
+    "RETRY_SCHEDULED",
+    "GRACE_PERIOD_STARTED",
+    "MANUAL_REVIEW_QUEUED",
+    "TENANT_ACTION_BLOCKED"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_invoice_id",
+    "requires_attempt_id",
+    "requires_idempotency_key",
+    "requires_audit_trail",
+    "requires_retry_policy",
+    "requires_dunning_template",
+    "requires_manual_review",
+    "blocks_production_charging",
+    "blocks_auto_tenant_suspension"
+  ]
+}

@@ -1,0 +1,80 @@
+# FAZ 4C — 4C-5E Sample CSV Generation / Validation
+
+## Amac
+
+uzmanparcaci icin kontrollu sample product/stock CSV dosyasi uretmek ve veri kalitesini dogrulamak.
+
+Bu adim DB'ye yazmaz.
+
+---
+
+## 1. Onceki karar
+
+SELECTED_IMPORT_MAPPING_STRATEGY=STAGING_FIRST_THEN_CORE_MAPPING
+CORE_DIRECT_APPLY_NOW=NO
+STAGING_TABLE_CREATE_NEEDED=YES
+
+---
+
+## 2. Dosyalar
+
+TEMPLATE_CSV=imports/pilot/faz4c/uzmanparcaci/product_import_template.csv
+SAMPLE_CSV=imports/pilot/faz4c/uzmanparcaci/product_import_sample.csv
+SAMPLE_CSV_CREATED=YES
+TEMPLATE_CSV_FOUND=YES
+
+---
+
+## 3. Header kontrolu
+
+HEADER_COLUMN_COUNT=15
+EXPECTED_COLUMN_COUNT=15
+HEADER_ORDER_STATUS=PASS
+MISSING_COLUMN_COUNT=0
+EXTRA_COLUMN_COUNT=0
+
+---
+
+## 4. Satir kontrolu
+
+SAMPLE_ROW_COUNT=5
+DUPLICATE_SKU_COUNT=0
+ROW_ERROR_COUNT=0
+BARCODE_BLANK_COUNT=5
+NUMERIC_COLUMN_COUNT=3
+
+---
+
+## 5. Warnings
+
+WARNINGS=BARCODE_BLANK_ALLOWED_FOR_PILOT
+
+Not:
+Barcode bos olabilir. Pilot isletme barkod kullanmadigini bildirdigi icin blocker degildir.
+
+---
+
+## 6. Errors
+
+ERRORS=NONE
+
+---
+
+## 7. Status
+
+4C_5E_SAMPLE_CSV_VALIDATION_STATUS=PASS
+4C_5E_SAMPLE_CSV_CREATED=YES
+4C_5E_TEMPLATE_CSV_FOUND=YES
+4C_5E_HEADER_COLUMN_COUNT=15
+4C_5E_EXPECTED_COLUMN_COUNT=15
+4C_5E_HEADER_ORDER_STATUS=PASS
+4C_5E_MISSING_COLUMN_COUNT=0
+4C_5E_EXTRA_COLUMN_COUNT=0
+4C_5E_SAMPLE_ROW_COUNT=5
+4C_5E_DUPLICATE_SKU_COUNT=0
+4C_5E_ROW_ERROR_COUNT=0
+4C_5E_BARCODE_BLANK_COUNT=5
+4C_5E_DB_WRITE_APPLIED=NO
+4C_5E_CRITICAL_BLOCKER_COUNT=0
+4C_5E_WARNING_COUNT=1
+4C_5F_READY=YES

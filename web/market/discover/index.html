@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi Market marketplace keşif ekranı" />
+  <meta property="og:title" content="Pix2pi Market Keşif" />
+  <meta property="og:description" content="Yakındaki mağazaları, kategorileri ve kampanyaları keşfet." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Market Keşif</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --brand: #16a34a;
+      --brand2: #2563eb;
+      --warn: #f59e0b;
+      --danger: #dc2626;
+      --shadow: 0 16px 42px rgba(15, 23, 42, .08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.12), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.12), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1320px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    a {
+      color: #1d4ed8;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      border-radius: 16px;
+      padding: 13px 14px;
+      font: inherit;
+      outline: none;
+    }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      background: #eff6ff;
+      color: #1d4ed8;
+      cursor: pointer;
+    }
+
+    .category-card, .store-card, .campaign-strip {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .category-card span:first-child {
+      font-size: 38px;
+    }
+
+    .store-card strong {
+      font-size: 19px;
+    }
+
+    .status, .deal {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 950;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status.closed {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .deal {
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .campaign-strip {
+      background: linear-gradient(135deg, #14532d, #1d4ed8);
+      color: #fff;
+      border: none;
+    }
+
+    .campaign-strip p {
+      color: rgba(255,255,255,.84);
+    }
+
+    .campaign-strip span {
+      width: fit-content;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: rgba(255,255,255,.18);
+      font-weight: 950;
+      font-size: 11px;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .quick-preview {
+      display: grid;
+      gap: 8px;
+      border: 1px dashed #86efac;
+      background: #f0fdf4;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .filter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .grid-4, .filter-grid { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_337_MARKETPLACE_DISCOVERY_APP_SHELL_START -->
+  <main class="shell" data-step="337" data-surface="market-discovery">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 337</span>
+      <h1 data-i18n="market_discovery.title">Marketplace keşif</h1>
+      <p data-i18n="market_discovery.description">Yakındaki mağazaları, kategorileri ve kampanyaları keşfet.</p>
+    </section>
+
+    <!-- PIX2PI_337_LOCATION_NEIGHBORHOOD_CONTEXT_START -->
+    <section class="card guard" data-widget="location_neighborhood_context">
+      <h2>Konum / mahalle context</h2>
+      <div class="grid-4">
+        <p>Şehir: <strong id="discovery-city">İstanbul</strong></p>
+        <p>İlçe: <strong id="discovery-district">Pilot</strong></p>
+        <p>Mahalle: <strong id="discovery-neighborhood">Demo Mahalle</strong></p>
+        <p>Region: <strong id="discovery-region-code">TR-34-PILOT</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_337_LOCATION_NEIGHBORHOOD_CONTEXT_END -->
+
+    <!-- PIX2PI_337_CUSTOMER_SESSION_PLACEHOLDER_START -->
+    <section class="card guard" data-widget="customer_session_placeholder">
+      <h2>Son müşteri session placeholder</h2>
+      <p>Customer session: <strong id="discovery-customer-session" data-real-customer-login-enabled="false">ANONYMOUS_PLACEHOLDER</strong></p>
+      <p>real_customer_login_enabled=false / real_order_enabled=false / real_payment_enabled=false</p>
+    </section>
+    <!-- PIX2PI_337_CUSTOMER_SESSION_PLACEHOLDER_END -->
+
+    <section class="card">
+      <h2>Keşif filtreleri</h2>
+      <form id="discovery-filter-form" class="filter-grid">
+        <!-- PIX2PI_337_STORE_SEARCH_BOX_START -->
+        <label>
+          Mağaza ara
+          <input name="search" id="discovery-store-search" placeholder="Mağaza, kategori veya slug ara" autocomplete="off" />
+        </label>
+        <!-- PIX2PI_337_STORE_SEARCH_BOX_END -->
+
+        <!-- PIX2PI_337_DELIVERY_PICKUP_OPEN_STORE_FILTERS_START -->
+        <label>
+          Kategori
+          <select name="category_id" id="discovery-category-filter">
+            <option value="all">Tüm kategoriler</option>
+          </select>
+        </label>
+
+        <label>
+          Teslimat / gel-al
+          <select name="fulfillment" id="discovery-fulfillment-filter">
+            <option value="all">Tümü</option>
+            <option value="delivery">Teslimat var</option>
+            <option value="pickup">Gel-al var</option>
+          </select>
+        </label>
+
+        <label>
+          Açık mağaza
+          <select name="open_now" id="discovery-open-filter">
+            <option value="all">Tümü</option>
+            <option value="open">Sadece açık</option>
+          </select>
+        </label>
+        <!-- PIX2PI_337_DELIVERY_PICKUP_OPEN_STORE_FILTERS_END -->
+
+        <!-- PIX2PI_337_SORT_OPTIONS_START -->
+        <label>
+          Sıralama
+          <select name="sort_by" id="discovery-sort">
+            <option value="nearby">Yakınlık</option>
+            <option value="rating">Puan</option>
+            <option value="delivery_eta">Teslimat süresi</option>
+            <option value="minimum_basket">Minimum sepet</option>
+            <option value="open_first">Açık mağaza önce</option>
+          </select>
+        </label>
+        <!-- PIX2PI_337_SORT_OPTIONS_END -->
+      </form>
+    </section>
+
+    <!-- PIX2PI_337_CATEGORY_DISCOVERY_CARDS_START -->
+    <section class="card" data-widget="category_discovery_cards">
+      <h2>Kategoriler</h2>
+      <div id="discovery-category-cards" class="grid-4">
+        <article class="category-card" data-category-id="market">
+          <span>🛒</span>
+          <strong>Market</strong>
+          <p>18 mağaza</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_337_CATEGORY_DISCOVERY_CARDS_END -->
+
+    <!-- PIX2PI_337_CAMPAIGN_DEAL_STRIPS_START -->
+    <section class="card" data-widget="campaign_deal_strips">
+      <h2>Kampanyalar</h2>
+      <div id="discovery-campaign-strips" class="grid-3">
+        <article class="campaign-strip" data-campaign-id="deal-001">
+          <strong>Mahalle kampanyaları</strong>
+          <p>Yakındaki pilot mağazalarda vitrin fırsatları.</p>
+          <span>PILOT</span>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_337_CAMPAIGN_DEAL_STRIPS_END -->
+
+    <section class="card guard">
+      <h2>Discovery summary</h2>
+      <div class="grid-4">
+        <p>Total store: <strong id="discovery-total-store-count">0</strong></p>
+        <p>Visible store: <strong id="discovery-visible-store-count">0</strong></p>
+        <p>Scope: <strong id="discovery-scope-validation" data-validation-status="valid">VALID</strong></p>
+        <p>Order gate: <strong>disabled</strong></p>
+      </div>
+    </section>
+
+    <!-- PIX2PI_337_NEARBY_STORE_GRID_START -->
+    <section class="card" data-widget="nearby_store_grid">
+      <h2>Yakındaki mağazalar</h2>
+      <div id="discovery-store-grid" class="grid-4">
+        <article class="store-card" data-store-slug="demo-market" data-store-status="OPEN">
+          <span class="status">OPEN</span>
+          <strong>Demo Market</strong>
+          <p>Market / Demo Mahalle / 0.4 km</p>
+          <p>★ 4.8 (128) / ETA 35 dk</p>
+          <span class="deal">Pilot fırsat</span>
+          <a href="/storefront/?store=demo-market">Vitrine git</a>
+          <a href="/products/?store=demo-market">Ürünlere git</a>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_337_NEARBY_STORE_GRID_END -->
+
+    <!-- PIX2PI_337_STORE_CARD_QUICK_PREVIEW_START -->
+    <section class="card" data-widget="store_card_quick_preview">
+      <h2>Store quick preview</h2>
+      <div id="discovery-store-quick-preview" class="quick-preview" data-preview-store-slug="">
+        <strong>Mağaza seçilmedi</strong>
+        <p>Quick preview placeholder mağaza kartından doldurulur.</p>
+      </div>
+    </section>
+    <!-- PIX2PI_337_STORE_CARD_QUICK_PREVIEW_END -->
+
+    <!-- PIX2PI_337_STOREFRONT_PRODUCTS_DEEPLINK_CONTRACT_START -->
+    <section class="card" data-widget="storefront_products_deeplink_contract">
+      <h2>Storefront / products deep-link contract</h2>
+      <p>`/storefront/?store={store_slug}` ve `/products/?store={store_slug}` bağlantıları hazırdır.</p>
+    </section>
+    <!-- PIX2PI_337_STOREFRONT_PRODUCTS_DEEPLINK_CONTRACT_END -->
+
+    <!-- PIX2PI_337_TENANT_MARKET_REGION_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="tenant_market_region_scope_guard">
+      <h2>Tenant / market / region scope guard</h2>
+      <p>Keşif snapshot `X-Market-Region` ve customer session placeholder ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_337_TENANT_MARKET_REGION_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_337_DISCOVERY_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="discovery_runtime_data_contract">
+      <h2>Discovery runtime data contract</h2>
+      <p>discovery_snapshot_enabled=true / fallback_discovery_enabled=true / ready_for_step_338=true</p>
+    </section>
+    <!-- PIX2PI_337_DISCOVERY_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_337_SEO_OPENGRAPH_DISCOVERY_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_discovery_placeholder">
+      <h2>SEO / OpenGraph discovery placeholder</h2>
+      <p>Title, description ve og:* metadata discovery yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_337_SEO_OPENGRAPH_DISCOVERY_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_337_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_discovery_markers">
+      <h2 data-i18n="market_discovery.i18n_ready">i18n-ready discovery</h2>
+      <p data-i18n="market_discovery.surface_ready">Marketplace keşif metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_337_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_337_MARKETPLACE_DISCOVERY_APP_SHELL_END -->
+
+  <script src="/assets/discover/market-discovery-runtime.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById("discovery-filter-form");
+
+      Pix2piMarketDiscovery.bootDiscoveryScreen().then(function (contract) {
+        console.log("PIX2PI_337_MARKET_DISCOVERY_CONTRACT", contract);
+      });
+
+      form.addEventListener("input", function () {
+        Pix2piMarketDiscovery.applyFiltersFromForm(form).then(function (contract) {
+          console.log("PIX2PI_337_MARKET_DISCOVERY_FILTER_CONTRACT", contract);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

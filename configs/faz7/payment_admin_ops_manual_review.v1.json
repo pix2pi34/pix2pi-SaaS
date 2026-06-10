@@ -1,0 +1,54 @@
+{
+  "module_code": "7-5P.11",
+  "module_name": "Payment Admin / Ops Readiness / Manual Review Queue",
+  "parent_module": "7-5P",
+  "depends_on": [
+    "7-5P",
+    "7-5P.1",
+    "7-5P.2",
+    "7-5P.3",
+    "7-5P.4",
+    "7-5P.5",
+    "7-5P.6",
+    "7-5P.7",
+    "7-5P.8",
+    "7-5P.9",
+    "7-5P.10"
+  ],
+  "admin_ops_version": "payment_admin_ops_manual_review.v1",
+  "review_types": [
+    "FAILED_PAYMENT",
+    "RETRY_REVIEW",
+    "WEBHOOK_DISPUTE"
+  ],
+  "review_statuses": [
+    "OPEN",
+    "IN_REVIEW",
+    "RESOLVED",
+    "REJECTED"
+  ],
+  "ops_actions": [
+    "ASSIGN",
+    "RESOLVE",
+    "REJECT"
+  ],
+  "guards": {
+    "tenant_safe_review_required": true,
+    "cross_tenant_access_denied": true,
+    "failed_payment_review_required": true,
+    "retry_review_required": true,
+    "webhook_dispute_review_required": true,
+    "ops_action_actor_required": true,
+    "resolve_requires_in_review": true,
+    "tenant_audit_trail_read_required": true,
+    "final_status_from_counters_required": true,
+    "hardcoded_final_ok_forbidden": true
+  },
+  "test_strategy": {
+    "go_test_required": true,
+    "test_names_verified_from_output": true,
+    "manual_review_queue_verified": true,
+    "ops_action_guard_verified": true,
+    "tenant_audit_read_verified": true
+  }
+}

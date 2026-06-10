@@ -1,0 +1,142 @@
+{
+  "workflow_realtime_ui_test_id": "workflow_realtime_ui_tests.controlled_pilot.v1",
+  "workflow_realtime_ui_test_status": "READY",
+  "workflow_realtime_ui_test_mode": "CONTROLLED_PILOT",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT"
+  },
+  "chain_dependencies": {
+    "236_FAZ_4_17_1_APPROVAL_INBOX": "PASS",
+    "237_FAZ_4_17_2_WORKFLOW_MONITOR": "PASS",
+    "238_FAZ_4_17_5_WEBSOCKET_SSE_BAGLANTI_SAGLIGI_GORUNUMU": "PASS"
+  },
+  "test_items": [
+    {"code": "APPROVAL_INBOX_UI_TEST", "required": true, "status": "READY", "area": "APPROVAL_UI", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/approval-inbox/index.html"},
+    {"code": "WORKFLOW_MONITOR_UI_TEST", "required": true, "status": "READY", "area": "WORKFLOW_UI", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "REALTIME_HEALTH_UI_TEST", "required": true, "status": "READY", "area": "REALTIME_UI", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+    {"code": "CROSS_NAVIGATION_MARKER_TEST", "required": true, "status": "READY", "area": "NAVIGATION", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "TENANT_SCOPE_TEST", "required": true, "status": "READY", "area": "TENANCY", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "STATUS_BADGE_TEST", "required": true, "status": "READY", "area": "STATUS", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "EMPTY_STATE_TEST", "required": true, "status": "READY", "area": "STATE", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "ERROR_STATE_TEST", "required": true, "status": "READY", "area": "STATE", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "NO_WORKFLOW_MUTATION_TEST", "required": true, "status": "READY", "area": "SAFETY", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "NO_REAL_APPROVAL_EXECUTION_TEST", "required": true, "status": "READY", "area": "SAFETY", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "NO_REAL_WORKFLOW_EXECUTION_TEST", "required": true, "status": "READY", "area": "SAFETY", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "NO_LIVE_WEBSOCKET_TEST", "required": true, "status": "READY", "area": "REALTIME", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "NO_LIVE_SSE_TEST", "required": true, "status": "READY", "area": "REALTIME", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "NO_EVENT_STREAM_PUBLISH_TEST", "required": true, "status": "READY", "area": "EVENT", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "EXTERNAL_POLICY_CLOSED_GATE_TEST", "required": true, "status": "READY", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json"},
+    {"code": "FINAL_WORKFLOW_REALTIME_UI_TEST_REPORT", "required": true, "status": "READY", "area": "REPORT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/evidence/FAZ_4_17_6_WORKFLOW_REALTIME_UI_TESTLERI_REAL_IMPLEMENTATION_AUDIT.md"}
+  ],
+  "ui_surfaces": {
+    "approval_inbox": {
+      "status": "PASS",
+      "path": "web/faz4r/approval-inbox/index.html",
+      "required_markers": [
+        "FAZ_4_17_1_APPROVAL_INBOX_UI_CHECKPOINT",
+        "Approval Inbox",
+        "NO_WORKFLOW_MUTATION",
+        "NO_REAL_APPROVAL_EXECUTION",
+        "NO_REALTIME_SOCKET_CONNECTION",
+        "Empty state ready",
+        "Error state ready"
+      ]
+    },
+    "workflow_monitor": {
+      "status": "PASS",
+      "path": "web/faz4r/workflow-monitor/index.html",
+      "required_markers": [
+        "FAZ_4_17_2_WORKFLOW_MONITOR_UI_CHECKPOINT",
+        "Workflow Monitor",
+        "NO_WORKFLOW_MUTATION",
+        "NO_REAL_WORKFLOW_EXECUTION",
+        "NO_REALTIME_SOCKET_CONNECTION",
+        "Empty state ready",
+        "Error state ready"
+      ]
+    },
+    "realtime_health": {
+      "status": "PASS",
+      "path": "web/faz4r/realtime-health/index.html",
+      "required_markers": [
+        "FAZ_4_17_5_WEBSOCKET_SSE_HEALTH_UI_CHECKPOINT",
+        "WebSocket / SSE Health",
+        "NO_LIVE_WEBSOCKET_CONNECTION",
+        "NO_LIVE_SSE_CONNECTION",
+        "NO_EVENT_STREAM_PUBLISH",
+        "Empty state ready",
+        "Error state ready"
+      ]
+    }
+  },
+  "ui_test_controls": {
+    "approval_inbox_status": "PASS",
+    "workflow_monitor_status": "PASS",
+    "realtime_health_status": "PASS",
+    "tenant_scope": "SINGLE_TENANT",
+    "approval_web_checkpoint_status": "PASS",
+    "workflow_web_checkpoint_status": "PASS",
+    "realtime_web_checkpoint_status": "PASS",
+    "cross_navigation_status": "READY",
+    "status_badge_status": "READY",
+    "empty_state_status": "READY",
+    "error_state_status": "READY",
+    "no_workflow_mutation": true,
+    "no_real_approval_execution": true,
+    "no_real_workflow_execution": true,
+    "no_live_websocket_connection": true,
+    "no_live_sse_connection": true,
+    "no_event_stream_publish": true,
+    "no_production_launch": true,
+    "no_live_external_provider_activation": true
+  },
+  "ui_test_metrics": {
+    "total_item_count": 16,
+    "ready_item_count": 16,
+    "missing_item_count": 0,
+    "required_fail_count": 0,
+    "ui_surface_count": 3,
+    "ui_surface_pass_count": 3,
+    "workflow_mutation_count": 0,
+    "real_approval_execution_count": 0,
+    "real_workflow_execution_count": 0,
+    "active_websocket_connection_count": 0,
+    "active_sse_connection_count": 0,
+    "event_stream_publish_count": 0,
+    "production_launch_count": 0,
+    "live_external_provider_activation_count": 0,
+    "live_external_policy_status": "CLOSED"
+  },
+  "summary": {
+    "total_item_count": 16,
+    "ready_item_count": 16,
+    "missing_item_count": 0,
+    "required_fail_count": 0,
+    "approval_inbox_status": "PASS",
+    "workflow_monitor_status": "PASS",
+    "realtime_health_status": "PASS",
+    "tenant_scope": "SINGLE_TENANT",
+    "approval_web_checkpoint_status": "PASS",
+    "workflow_web_checkpoint_status": "PASS",
+    "realtime_web_checkpoint_status": "PASS",
+    "workflow_realtime_ui_test_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "production_launch": "CLOSED",
+    "workflow_mutation": "CLOSED",
+    "real_approval_execution": "CLOSED",
+    "real_workflow_execution": "CLOSED",
+    "live_websocket_connection": "CLOSED",
+    "live_sse_connection": "CLOSED",
+    "event_stream_publish": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

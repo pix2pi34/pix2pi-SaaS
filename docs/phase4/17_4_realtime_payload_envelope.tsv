@@ -1,0 +1,19 @@
+envelope_field	requirement	field_type	sensitivity	source	note
+event_id	required	string_uuid	non_secret	event_bus_or_runtime	unique event identifier
+event_type	required	string	non_secret	contract	normalized realtime event type
+channel	required	string	non_secret	realtime_router	channel name
+tenant_id	required_for_tenant_channels	string_or_int	tenant_sensitive_metadata	tenant_context	tenant isolation key
+tenant_uuid	recommended	string_uuid	tenant_sensitive_metadata	tenant_context	stable tenant key
+actor_id	recommended	string	user_metadata	auth_context	actor identity metadata
+actor_type	recommended	string	non_secret	auth_context	user/system actor
+request_id	required	string_uuid	non_secret	request_context	request correlation
+trace_id	recommended	string	non_secret	otel_context	trace correlation
+workflow_id	recommended	string_uuid	business_metadata	workflow_runtime	workflow definition id
+workflow_instance_id	recommended	string_uuid	business_metadata	workflow_runtime	workflow instance id
+approval_id	optional	string_uuid	business_metadata	approval_runtime	approval request id
+task_id	optional	string_uuid	business_metadata	task_runtime	task id
+severity	required	enum	non_secret	contract	INFO/MEDIUM/HIGH/CRITICAL
+status	required	enum	non_secret	contract	OK/WARN/FAILED/UPDATED
+summary	required	string_short	sanitized	runtime	human readable sanitized summary
+metadata	required	object_flat	sanitized	runtime	metadata only no raw payload
+occurred_at	required	timestamp	non_secret	runtime	event time

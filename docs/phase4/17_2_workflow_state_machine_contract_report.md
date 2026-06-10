@@ -1,0 +1,149 @@
+# FAZ 4B / 17.2 - Workflow State Machine Contract Report
+
+Generated at: 2026-04-29 19:44:37 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+DOCKER_COMPOSE_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+FIREWALL_CHANGED=NO
+PORT_CHANGED=NO
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+UI_CODE_CHANGED=NO
+API_ROUTE_CREATED=NO
+API_IMPLEMENTATION_CHANGED=NO
+WEBSOCKET_SERVER_STARTED=NO
+SSE_SERVER_STARTED=NO
+WORKFLOW_RUNTIME_CHANGED=NO
+WORKFLOW_ENGINE_CODE_CHANGED=NO
+STATE_MACHINE_RUNTIME_CREATED=NO
+EVENT_PUBLISHED=NO
+EVENT_CONSUMED=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+TOKEN_PRINTED=NO
+VALIDATION_MODE=WORKFLOW_STATE_MACHINE_CONTRACT_ONLY
+PREVIOUS_17_1_FINAL_STATUS=PASS
+PREVIOUS_17_1_WORKFLOW_REALTIME_BASELINE=PASS
+PREVIOUS_17_1_WORKFLOW_NO_RUNTIME_CHANGE=PASS
+PREVIOUS_17_1_WORKFLOW_SECRET_SAFE=PASS
+PREVIOUS_22_FINAL_STATUS=PASS
+PREVIOUS_20_FINAL_STATUS=PASS
+PREVIOUS_20_INFRA_PRODUCTION_HARDENING_FINAL_CLOSURE=PASS
+PREVIOUS_21_FINAL_STATUS=PASS
+PREVIOUS_21_SECURITY_RBAC_AUDIT_FINAL_CLOSURE=PASS
+WORKFLOW_STATE_COUNT=10
+WORKFLOW_TRANSITION_COUNT=15
+WORKFLOW_PERMISSION_COUNT=10
+WORKFLOW_INVARIANT_COUNT=10
+WORKFLOW_INITIAL_STATE_COUNT=1
+WORKFLOW_TERMINAL_STATE_COUNT=3
+WORKFLOW_AUDIT_STATE_COUNT=10
+WORKFLOW_AUDIT_TRANSITION_COUNT=15
+WORKFLOW_APPROVAL_TRANSITION_COUNT=3
+WORKFLOW_EVENT_BINDING_COUNT=15
+WORKFLOW_TENANT_SCOPED_STATE_COUNT=10
+WORKFLOW_CRITICAL_INVARIANT_COUNT=6
+WORKFLOW_STATE_PREVIOUS_17_1=PASS
+WORKFLOW_STATE_CATALOG=PASS
+WORKFLOW_TRANSITION_CATALOG=PASS
+WORKFLOW_STATE_PERMISSION_MATRIX=PASS
+WORKFLOW_STATE_INVARIANT_CATALOG=PASS
+WORKFLOW_STATE_NO_RUNTIME_CHANGE=PASS
+WORKFLOW_STATE_NO_CONFIG_CHANGE=PASS
+WORKFLOW_STATE_SECRET_SAFE=PASS
+WORKFLOW_STATE_MACHINE_CONTRACT=PASS
+FAZ4B_17_2_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+WORKFLOW_STATE_MACHINE_CONTRACT=PASS
+FAZ4B_17_2_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+
+## Matrix
+MATRIX_FILE=docs/phase4/17_2_workflow_state_machine_contract_matrix.tsv
+gate	status	note
+previous_17_1	PASS	workflow realtime baseline prerequisite
+state_catalog	PASS	states=10 initial=1 terminal=3
+transition_catalog	PASS	transitions=15 event_bindings=15
+permission_matrix	PASS	permissions=10
+invariant_catalog	PASS	invariants=10 critical=6
+audit_coverage	PASS	state_audit=10 transition_audit=15
+approval_coverage	PASS	approval_transitions=3
+tenant_scope	PASS	tenant_scoped_states=10
+no_runtime_change	PASS	no workflow runtime/code/server changed
+no_config_change	PASS	no config/env/nginx/firewall changed
+secret_safe	PASS	no secrets printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+ui_code_changed	NO	contract only
+api_route_created	NO	contract only
+api_implementation_changed	NO	contract only
+websocket_server_started	NO	contract only
+sse_server_started	NO	contract only
+workflow_runtime_changed	NO	contract only
+workflow_engine_code_changed	NO	contract only
+state_machine_runtime_created	NO	contract only
+event_published	NO	contract only
+event_consumed	NO	contract only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report
+
+## Inventories
+WORKFLOW_STATE_CATALOG_FILE=docs/phase4/17_2_workflow_state_catalog.tsv
+WORKFLOW_TRANSITION_CATALOG_FILE=docs/phase4/17_2_workflow_transition_catalog.tsv
+WORKFLOW_STATE_PERMISSION_MATRIX_FILE=docs/phase4/17_2_workflow_state_permission_matrix.tsv
+WORKFLOW_STATE_INVARIANT_CATALOG_FILE=docs/phase4/17_2_workflow_state_invariant_catalog.tsv
+NOTE=Contract only. No UI/API/runtime/DB/config/event change executed.
+
+## Safety Decision
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+DOCKER_COMPOSE_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+FIREWALL_CHANGED=NO
+PORT_CHANGED=NO
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+UI_CODE_CHANGED=NO
+API_ROUTE_CREATED=NO
+API_IMPLEMENTATION_CHANGED=NO
+WEBSOCKET_SERVER_STARTED=NO
+SSE_SERVER_STARTED=NO
+WORKFLOW_RUNTIME_CHANGED=NO
+WORKFLOW_ENGINE_CODE_CHANGED=NO
+STATE_MACHINE_RUNTIME_CREATED=NO
+EVENT_PUBLISHED=NO
+EVENT_CONSUMED=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+TOKEN_PRINTED=NO
+
+## Issues
+OK ✅ issue yok

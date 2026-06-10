@@ -1,0 +1,60 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 224,
+  "step": "FAZ_4_16_6_4",
+  "title": "Ürün karar defteri",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "223_FAZ_4_16_6_3_HIZLI_DUZELTME_HATTI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "decision_log_policy": {
+    "decision_log_status_required": "READY",
+    "decision_log_mode_required": "CONTROLLED_PILOT",
+    "required_rule_status_required": "READY",
+    "missing_rule_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "quick_fix_lane_status_required": "PASS",
+    "decision_type_taxonomy_status_required": "READY",
+    "owner_assignment_status_required": "READY",
+    "impact_area_mapping_status_required": "READY",
+    "approval_record_status_required": "READY",
+    "closure_checklist_status_required": "READY",
+    "no_auto_apply_decision_required": true,
+    "no_hotfix_deploy_required": true,
+    "no_real_roadmap_tool_required": true,
+    "no_real_crm_system_required": true,
+    "no_real_ticket_system_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_decision_rules": [
+    "PRODUCT_DECISION_INTAKE",
+    "DECISION_TYPE_TAXONOMY",
+    "DECISION_OWNER_ASSIGNMENT",
+    "IMPACT_AREA_MAPPING",
+    "PRIORITY_MAPPING",
+    "SCOPE_BOUNDARY_MAPPING",
+    "ACCEPTED_DECISION_MARKER",
+    "REJECTED_DECISION_MARKER",
+    "DEFERRED_DECISION_MARKER",
+    "QUICK_FIX_LINK",
+    "FEEDBACK_LINK",
+    "EVIDENCE_ATTACHMENT",
+    "APPROVAL_RECORD",
+    "DECISION_HISTORY",
+    "CLOSURE_CHECKLIST",
+    "CLOSED_PROVIDER_POLICY_GUARD"
+  ],
+  "decision_log_artifact": "configs/faz4r/product_decision_log.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "225_FAZ_4_16_6_5_FEEDBACK_CLOSURE"
+  ]
+}

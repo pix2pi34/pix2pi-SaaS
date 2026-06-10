@@ -1,0 +1,45 @@
+{
+  "module_code": "7-5P.9",
+  "module_name": "Payment Failure / Retry / Idempotency E2E Hardening",
+  "parent_module": "7-5P",
+  "depends_on": [
+    "7-5P",
+    "7-5P.1",
+    "7-5P.2",
+    "7-5P.3",
+    "7-5P.4",
+    "7-5P.5",
+    "7-5P.6",
+    "7-5P.7",
+    "7-5P.8"
+  ],
+  "failure_retry_version": "payment_failure_retry_idempotency.v1",
+  "retry_policy": {
+    "max_attempts": 3,
+    "retryable_error_codes": [
+      "PAYMENT_PROVIDER_TRANSACTION_REQUIRED",
+      "PAYMENT_AMOUNT_REQUIRED",
+      "PAYMENT_CURRENCY_REQUIRED"
+    ],
+    "non_retryable_error_codes": [
+      "PAYMENT_PRODUCTION_GATE_CLOSED",
+      "PAYMENT_TENANT_REQUIRED",
+      "PAYMENT_PROVIDER_MISMATCH"
+    ]
+  },
+  "guards": {
+    "authorize_idempotency_replay_required": true,
+    "failed_authorize_persistence_required": true,
+    "duplicate_webhook_dedupe_required": true,
+    "webhook_event_count_protection_required": true,
+    "retry_limit_required": true,
+    "final_status_from_counters_required": true,
+    "hardcoded_final_ok_forbidden": true
+  },
+  "test_strategy": {
+    "go_test_required": true,
+    "test_names_verified_from_output": true,
+    "failed_attempt_repository_lookup_verified": true,
+    "duplicate_webhook_event_count_verified": true
+  }
+}

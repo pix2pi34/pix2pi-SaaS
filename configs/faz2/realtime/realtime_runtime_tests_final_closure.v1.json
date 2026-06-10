@@ -1,0 +1,22 @@
+{
+  "phase": "FAZ 2-7.5.5",
+  "runtime": "realtime_runtime_tests_final_closure",
+  "test_scope": [
+    "websocket_runtime",
+    "sse_runtime",
+    "tenant_safe_channel_auth",
+    "presence_connection_lifecycle",
+    "cross_tenant_deny"
+  ],
+  "required_test_packages": [
+    "./internal/platform/realtime",
+    "./cmd/realtime-ws",
+    "./cmd/realtime-sse"
+  ],
+  "final_gate": {
+    "go_test_status": "PASS",
+    "fail_count": 0,
+    "seal_status": "SEALED"
+  },
+  "next_ready": "FAZ_2_7_6_1_WORKFLOW_STATE_MACHINE_RUNTIME"
+}

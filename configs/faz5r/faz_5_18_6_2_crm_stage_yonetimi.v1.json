@@ -1,0 +1,36 @@
+{
+  "phase": "FAZ_5_18_6_2",
+  "title": "CRM Stage Yönetimi",
+  "status": "READY",
+  "control_surface": "CRM_STAGE_MANAGEMENT",
+  "inputs": [
+    "FAZ_5_18_5_6_TENANT_LIFECYCLE_TESTLERI",
+    "FAZ_5_18_4_1_SLA_SEVIYELERI",
+    "FAZ_5_18_4_2_DESTEK_KANAL_YAPISI",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "CRM_STAGE_MODEL",
+    "CRM_TRANSITION_GUARDS",
+    "CRM_OWNER_ASSIGNMENT",
+    "CRM_CONSENT_KVKK_GUARD",
+    "CRM_AUDIT_TRAIL",
+    "CRM_DUPLICATE_GUARD",
+    "QUOTE_SALES_FLOW_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_crm_stage_ready": true,
+    "production_crm_enabled": false,
+    "real_customer_crm_open": false,
+    "auto_sales_action_enabled": false,
+    "external_crm_provider_enabled": false,
+    "quote_sales_flow_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

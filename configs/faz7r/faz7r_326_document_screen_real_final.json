@@ -1,0 +1,28 @@
+{
+  "step": "FAZ 7-R / 326",
+  "name": "Fatura / belge ekranı real final",
+  "tenantId": "tenant-api-e2e-success",
+  "documentRunId": "document-326-20260513_195222",
+  "documentId": "document-326-main",
+  "sourceSaleId": "sale-355-main",
+  "routes": [
+    "/documents/",
+    "POST /api/panel/documents/create-from-sale",
+    "POST /api/panel/documents/list",
+    "POST /api/panel/documents/detail",
+    "POST /api/panel/documents/status-update",
+    "POST /api/panel/documents/retry-cancel-preview"
+  ],
+  "requiredEvidence": [
+    "document list",
+    "create document from sale",
+    "document detail",
+    "PDF placeholder",
+    "UBL placeholder",
+    "document status tracking",
+    "retry/cancel preview",
+    "tenant-safe document tests",
+    "rollback no partial write",
+    "document route smoke"
+  ]
+}

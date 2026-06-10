@@ -1,0 +1,17 @@
+version: v1
+performance_rules:
+  latency_gate_ms: __PERF_LATENCY_GATE_MS__
+  error_budget_percent: __PERF_ERROR_BUDGET_PERCENT__
+  backlog_gate_count: __PERF_BACKLOG_GATE_COUNT__
+  db_saturation_percent: __PERF_DB_SATURATION_PERCENT__
+  cache_saturation_percent: __PERF_CACHE_SATURATION_PERCENT__
+  failover_retry_required: __PERF_FAILOVER_RETRY_REQUIRED__
+  test_profile: __PERF_TEST_PROFILE__
+
+release_rules:
+  checklist_required: __RELEASE_CHECKLIST_REQUIRED__
+  rollback_ready: __RELEASE_ROLLBACK_READY__
+  observability_evidence_required: __RELEASE_OBSERVABILITY_EVIDENCE_REQUIRED__
+  ops_handoff_required: __RELEASE_OPS_HANDOFF_REQUIRED__
+  report_mode: __RELEASE_REPORT_MODE__
+  final_production_readiness_mode: __FINAL_PRODUCTION_READINESS_MODE__

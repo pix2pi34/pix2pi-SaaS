@@ -1,0 +1,47 @@
+{
+  "test_name": "faz_5_19_3_developer_docs_portali_test",
+  "phase": "FAZ_5_19_3",
+  "expected": {
+    "required_section_count": 9,
+    "required_domain_count": 9,
+    "internal_developer_docs_portal_ready": true,
+    "static_html_ready": true,
+    "production_docs_published": false,
+    "real_developer_access_enabled": false,
+    "api_key_creation_enabled": false,
+    "sandbox_live_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_section_keys": [
+    "developer_overview",
+    "authentication_docs",
+    "tenant_context_docs",
+    "api_reference_docs",
+    "webhook_docs",
+    "sandbox_usage_docs",
+    "security_compliance_docs",
+    "support_sla_docs",
+    "api_key_screen_deferred_marker"
+  ],
+  "must_have_domains": [
+    "OVERVIEW",
+    "AUTH_API",
+    "TENANT_API",
+    "API_REFERENCE",
+    "WEBHOOK_API",
+    "SANDBOX",
+    "SECURITY",
+    "SUPPORT",
+    "NEXT_PRIORITY"
+  ],
+  "must_have_flags": [
+    "requires_public_copy_guard",
+    "requires_versioning",
+    "requires_endpoint_catalog",
+    "requires_auth_guide",
+    "requires_tenant_header_guide",
+    "requires_rate_limit_notice",
+    "blocks_production_publish"
+  ]
+}

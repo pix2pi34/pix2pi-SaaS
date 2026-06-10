@@ -1,0 +1,35 @@
+{
+  "phase": "FAZ_4_R",
+  "step": "GENERAL_FINAL_REVIEW_CLOSURE",
+  "title": "FAZ 4-R General Final Review / Closure",
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "closure_policy": {
+    "total_item_count_required": 62,
+    "sealed_item_count_required": 62,
+    "partial_item_count_required": 0,
+    "pending_item_count_required": 0,
+    "fail_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "optional_warn_count_required": 0,
+    "priority_status_required": "SEALED",
+    "live_html_publish_status_required": "PASS",
+    "live_html_ready_required": "YES",
+    "minimum_required_live_html_count": 5,
+    "closed_policy_reference_required": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+    "production_launch_status_required": "CLOSED",
+    "live_external_provider_status_required": "CLOSED",
+    "gib_live_status_required": "CLOSED",
+    "bank_live_status_required": "CLOSED",
+    "pos_live_status_required": "CLOSED",
+    "payment_live_status_required": "CLOSED"
+  },
+  "required_evidence": {
+    "live_html_evidence": "docs/faz4r/evidence/FAZ_4_R_LIVE_HTML_PUBLISH_AUDIT.md",
+    "live_html_manifest": "configs/faz4r/faz4r_live_html_publish_manifest.json"
+  },
+  "closure_artifact": "configs/faz4r/faz_4_r_general_final_review_closure_manifest.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

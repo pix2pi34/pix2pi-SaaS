@@ -1,0 +1,40 @@
+{
+  "test_name": "faz_5_18_8_1_ticari_checklist_test",
+  "phase": "FAZ_5_18_8_1",
+  "expected": {
+    "required_item_count": 10,
+    "required_domain_count": 5,
+    "internal_commercial_checklist_ready": true,
+    "production_public_launch_allowed": false,
+    "real_customer_commercial_ops_open": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_item_keys": [
+    "compliance_document_control",
+    "log_retention_policy",
+    "support_sla_levels",
+    "support_channel_structure",
+    "customer_communication_templates",
+    "support_escalation_matrix",
+    "incident_classification",
+    "support_ops_test_suite",
+    "billing_lifecycle_next_priority_marker",
+    "pricing_public_surface_next_priority_marker"
+  ],
+  "must_have_domains": [
+    "COMPLIANCE",
+    "SUPPORT_OPS",
+    "COMMERCIAL_OPS",
+    "LAUNCH_GATE",
+    "DEFERRED_NEXT_PRIORITY"
+  ],
+  "must_have_flags": [
+    "requires_evidence",
+    "has_evidence",
+    "requires_counter_based_audit",
+    "has_counter_based_audit",
+    "requires_no_required_fail",
+    "production_enabled"
+  ]
+}

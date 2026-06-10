@@ -1,0 +1,188 @@
+{
+  "phase": "FAZ 5-R",
+  "step_no": 242,
+  "step_code": "FAZ_5_18_3_1",
+  "slug": "faz_5_18_3_1_sozlesme_seti",
+  "module": "commercial_public_launch",
+  "title_tr": "Sözleşme seti",
+  "set_version": "0.2.0-draft-fix",
+  "status": "DRAFT",
+  "public_publish_allowed": false,
+  "public_core_product_allowed": true,
+  "public_contract_draft_allowed": false,
+  "data_monetization_public_allowed": false,
+  "legal_kvkk_approval_required_for_data_model": true,
+  "legal_approval_required": true,
+  "kvkk_approval_required": true,
+  "production_ready": false,
+  "business_terms": {
+    "system_name": "Pix2pi Ticaret Operasyon Sistemi",
+    "data_supported_plan_enabled_after_approval": true,
+    "restricted_paid_plan_supported": true,
+    "module_based_pricing_supported": true,
+    "enterprise_privacy_plan_supported": true,
+    "commercial_benefit_program_supported": true,
+    "procurement_recommendation_supported": true,
+    "pooled_purchasing_supported": true,
+    "sponsored_offer_supported": true,
+    "anonymous_aggregated_insight_supported": true,
+    "pix2pi_supplier_reseller_role_supported": true
+  },
+  "runtime_gate_contract": {
+    "consent_registry_required": true,
+    "commercial_preference_registry_required": true,
+    "entitlement_runtime_required": true,
+    "plan_pricing_engine_required": true,
+    "feature_gate_middleware_required": true,
+    "data_pipeline_guard_required": true,
+    "sponsored_offer_guard_required": true,
+    "procurement_recommendation_guard_required": true
+  },
+  "approval_gates": {
+    "hukukcu_onayi": {
+      "status": "PENDING",
+      "required_for_public_launch": true
+    },
+    "kvkk_danismani_onayi": {
+      "status": "PENDING",
+      "required_for_public_launch": true
+    },
+    "ticari_operasyon_onayi": {
+      "status": "PENDING",
+      "required_for_public_launch": true
+    },
+    "founder_go_no_go": {
+      "status": "PENDING",
+      "required_for_public_launch": true
+    }
+  },
+  "plan_modes": {
+    "DATA_SUPPORTED": {
+      "description": "Ücretsiz, indirimli veya avantajlı kullanım için veri destekli ticari fayda modelini kabul eden plan.",
+      "core_product_allowed": true,
+      "commercial_benefit_program_allowed_after_approval": true,
+      "price_policy": "free_or_discounted_or_advantaged"
+    },
+    "RESTRICTED_PAID": {
+      "description": "Veri destekli modeli tercih etmeyen işletmeler için veri kullanımı kısıtlı ücretli plan.",
+      "core_product_allowed": true,
+      "commercial_benefit_program_allowed_after_approval": false,
+      "price_policy": "module_based_paid"
+    },
+    "ENTERPRISE_PRIVACY": {
+      "description": "Kurumsal gizlilik kontrollü özel sözleşmeli plan.",
+      "core_product_allowed": true,
+      "commercial_benefit_program_allowed_after_approval": false,
+      "price_policy": "custom_quote"
+    }
+  },
+  "pricing_policy": {
+    "pix2pi_can_set_monthly_yearly_periodic_prices": true,
+    "first_year_discount_or_free_does_not_create_permanent_right": true,
+    "renewal_prices_can_change": true,
+    "module_based_pricing_can_apply_when_data_model_declined": true,
+    "customer_may_cancel_before_renewal_if_new_price_declined": true
+  },
+  "required_documents": [
+    {
+      "slug": "abonelik_hizmet_sozlesmesi",
+      "public_name_tr": "Abonelik ve Hizmet Sözleşmesi",
+      "file": "contracts/faz5r/public_launch/abonelik_hizmet_sozlesmesi.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["hukukcu_onayi", "ticari_operasyon_onayi"]
+    },
+    {
+      "slug": "kullanim_sartlari",
+      "public_name_tr": "Kullanım Şartları",
+      "file": "contracts/faz5r/public_launch/kullanim_sartlari.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["hukukcu_onayi"]
+    },
+    {
+      "slug": "gizlilik_politikasi",
+      "public_name_tr": "Gizlilik Politikası",
+      "file": "contracts/faz5r/public_launch/gizlilik_politikasi.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["hukukcu_onayi", "kvkk_danismani_onayi"]
+    },
+    {
+      "slug": "kvkk_aydinlatma_metni",
+      "public_name_tr": "KVKK Aydınlatma Metni",
+      "file": "contracts/faz5r/public_launch/kvkk_aydinlatma_metni.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["kvkk_danismani_onayi", "hukukcu_onayi"]
+    },
+    {
+      "slug": "acik_riza_metni",
+      "public_name_tr": "Açık Rıza Metni",
+      "file": "contracts/faz5r/public_launch/acik_riza_metni.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["kvkk_danismani_onayi", "hukukcu_onayi"]
+    },
+    {
+      "slug": "cerez_politikasi",
+      "public_name_tr": "Çerez Politikası",
+      "file": "contracts/faz5r/public_launch/cerez_politikasi.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["kvkk_danismani_onayi", "hukukcu_onayi"]
+    },
+    {
+      "slug": "veri_isleme_ek_protokolu",
+      "public_name_tr": "Veri İşleme Ek Protokolü",
+      "file": "contracts/faz5r/public_launch/veri_isleme_ek_protokolu.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["kvkk_danismani_onayi", "hukukcu_onayi"]
+    },
+    {
+      "slug": "sla_destek_politikasi",
+      "public_name_tr": "SLA / Destek Politikası",
+      "file": "contracts/faz5r/public_launch/sla_destek_politikasi.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["hukukcu_onayi", "ticari_operasyon_onayi"]
+    },
+    {
+      "slug": "iptal_iade_politikasi",
+      "public_name_tr": "İptal / İade / Fesih Politikası",
+      "file": "contracts/faz5r/public_launch/iptal_iade_politikasi.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["hukukcu_onayi", "ticari_operasyon_onayi"]
+    },
+    {
+      "slug": "muhasebeci_portali_ek_sartlari",
+      "public_name_tr": "Muhasebeci Portalı Ek Şartları",
+      "file": "contracts/faz5r/public_launch/muhasebeci_portali_ek_sartlari.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["hukukcu_onayi", "ticari_operasyon_onayi"]
+    },
+    {
+      "slug": "paket_fiyat_entitlement_ek_sartlari",
+      "public_name_tr": "Paket / Fiyat / Entitlement Ek Şartları",
+      "file": "contracts/faz5r/public_launch/paket_fiyat_entitlement_ek_sartlari.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["hukukcu_onayi", "ticari_operasyon_onayi", "founder_go_no_go"]
+    },
+    {
+      "slug": "ticari_fayda_programi_ek_sartlari",
+      "public_name_tr": "Ticari Fayda Programı Ek Şartları",
+      "file": "contracts/faz5r/public_launch/ticari_fayda_programi_ek_sartlari.tr.md",
+      "status": "DRAFT",
+      "version": "0.2.0-draft-fix",
+      "required_approvals": ["hukukcu_onayi", "kvkk_danismani_onayi", "ticari_operasyon_onayi", "founder_go_no_go"]
+    }
+  ],
+  "next_step": {
+    "step_no": 243,
+    "ready_when_this_passes": true
+  }
+}

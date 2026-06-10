@@ -1,0 +1,36 @@
+{
+  "expected_dependency": "FAZ_6_21_6_4",
+  "expected_runtime_mutation_allowed": false,
+  "expected_live_failover_allowed": false,
+  "expected_dns_mutation_allowed": false,
+  "expected_db_promotion_allowed": false,
+  "expected_queue_mutation_allowed": false,
+  "expected_storage_mutation_allowed": false,
+  "expected_compute_mutation_allowed": false,
+  "expected_customer_notification_allowed": false,
+  "expected_required_controls": [
+    "operational_communication_dependency_gate",
+    "rehearsal_scope_model",
+    "rehearsal_step_catalog",
+    "preflight_check_policy",
+    "rto_rpo_measurement_policy",
+    "backup_restore_readiness_check",
+    "regional_outage_scenario_link",
+    "communication_plan_link",
+    "rollback_readiness_check",
+    "no_live_failover_policy",
+    "no_provider_mutation_policy",
+    "dry_run_rehearsal_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_min_rehearsal_count": 4,
+  "expected_surfaces": [
+    "edge_dns",
+    "database_primary",
+    "event_queue",
+    "file_storage"
+  ],
+  "expected_status": "dry_run_only_no_live_failover",
+  "expected_next_step": "FAZ_6_21_5_1"
+}

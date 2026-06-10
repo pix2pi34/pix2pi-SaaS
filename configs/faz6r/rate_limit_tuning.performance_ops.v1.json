@@ -1,0 +1,73 @@
+{
+  "version": "performance_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_3_4",
+  "status": "dry_run_only_no_rate_limit_mutation",
+  "recommendations": [
+    {
+      "tuning_id": "rate-limit-api-gateway-route-review",
+      "surface": "api_gateway",
+      "current_signal": "request_rate_per_route_and_5xx_ratio",
+      "recommended_action": "review_route_limit_thresholds_no_mutation",
+      "expected_effect": "reduce_abuse_without_legitimate_traffic_loss",
+      "risk_level": "high",
+      "tenant_scope_guard_status": "REQUIRED",
+      "false_positive_guard_status": "REQUIRED",
+      "security_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "rate-limit-auth-bruteforce-review",
+      "surface": "auth",
+      "current_signal": "auth_failed_attempt_count_and_lockout_candidates",
+      "recommended_action": "review_auth_thresholds_no_mutation",
+      "expected_effect": "reduce_bruteforce_risk",
+      "risk_level": "critical",
+      "tenant_scope_guard_status": "REQUIRED",
+      "false_positive_guard_status": "REQUIRED",
+      "security_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "rate-limit-pos-burst-review",
+      "surface": "pos",
+      "current_signal": "burst_rate_per_route_and_tenant",
+      "recommended_action": "review_pos_burst_policy_no_mutation",
+      "expected_effect": "protect_pos_peak_flow_without_blocking_sales",
+      "risk_level": "high",
+      "tenant_scope_guard_status": "REQUIRED",
+      "false_positive_guard_status": "REQUIRED",
+      "security_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "rate-limit-webhook-retry-review",
+      "surface": "webhook",
+      "current_signal": "webhook_retry_count_and_duplicate_count",
+      "recommended_action": "review_webhook_rate_window_no_mutation",
+      "expected_effect": "reduce_webhook_spike_without_breaking_provider_retry",
+      "risk_level": "high",
+      "tenant_scope_guard_status": "REQUIRED",
+      "false_positive_guard_status": "REQUIRED",
+      "security_guard_status": "IDEMPOTENCY_REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "rate-limit-public-web-false-positive-review",
+      "surface": "public_web",
+      "current_signal": "false_positive_candidate_count_and_edge_waf_challenge_count",
+      "recommended_action": "review_public_web_limits_no_mutation",
+      "expected_effect": "reduce_false_positive_and_keep_public_pages_available",
+      "risk_level": "medium",
+      "tenant_scope_guard_status": "NOT_REQUIRED",
+      "false_positive_guard_status": "REQUIRED",
+      "security_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ]
+}

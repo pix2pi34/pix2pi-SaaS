@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "357",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "controlled_customer_access_activation_screen",
+      "path": "/controlled-customer-access-activation/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_357_CONTROLLED_CUSTOMER_ACCESS_ACTIVATION_APP_SHELL_START",
+        "PIX2PI_357_CUSTOMER_ACCESS_TOGGLE_PREVIEW_START",
+        "PIX2PI_357_ACTIVATION_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "controlled_customer_access_activation_runtime",
+      "path": "/assets/controlled-customer-access-activation/controlled-customer-access-activation-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_357_CONTROLLED_CUSTOMER_ACCESS_ACTIVATION_RUNTIME_START",
+        "activationScopeHeaders",
+        "buildActivationRuntimeContract"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "348",
+  "name": "İlk işletme kullanıcı daveti",
+  "surface": "merchant_panel_controlled_access",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/user-invite/",
+  "runtime_path": "/assets/user-invite/panel-user-invite-runtime.js",
+  "depends_on": [
+    "347 - Pilot müşteri tenant açılışı"
+  ],
+  "backend_contract": {
+    "pilot_user_invite_draft_endpoint": "/api/admin/pilot-tenants/user-invite-draft",
+    "pilot_user_invite_send_endpoint": "/api/admin/pilot-tenants/user-invites",
+    "pilot_user_invite_audit_endpoint": "/api/admin/pilot-tenants/user-invite-audit",
+    "method": "GET/POST",
+    "admin_session_header": "X-Admin-Session",
+    "tenant_header": "X-Tenant-ID",
+    "invite_scope_header": "X-Invite-Scope",
+    "correlation_header": "X-Correlation-ID"
+  },
+  "runtime_contract": {
+    "real_user_create_enabled": false,
+    "real_invite_token_enabled": false,
+    "real_email_send_enabled": false,
+    "real_sms_send_enabled": false,
+    "real_password_setup_enabled": false,
+    "invite_draft_enabled": true,
+    "duplicate_invitation_guard_enabled": true,
+    "fallback_invite_snapshot_enabled": true,
+    "ready_for_step_349": true
+  },
+  "invite_contract": {
+    "default_role": "OWNER_ADMIN",
+    "allowed_roles": [
+      "OWNER_ADMIN",
+      "MANAGER",
+      "CASHIER",
+      "ACCOUNTANT_READONLY"
+    ],
+    "default_channel": "EMAIL_PLACEHOLDER",
+    "invite_status": "DRAFT_NOT_SENT"
+  },
+  "required_capabilities": [
+    "first_user_invite_app_shell",
+    "pilot_tenant_owner_invite_context",
+    "invite_user_identity_form",
+    "owner_admin_role_selection",
+    "tenant_scope_validation",
+    "email_invite_channel_placeholder",
+    "sms_whatsapp_invite_channel_placeholder",
+    "invite_token_preview_disabled_gate",
+    "password_setup_flow_handoff",
+    "invite_send_disabled_guard",
+    "duplicate_invitation_guard",
+    "invitation_audit_timeline",
+    "user_activation_status_preview",
+    "invite_runtime_data_contract",
+    "i18n_ready_invite_marker",
+    "seo_opengraph_invite_placeholder",
+    "first_user_invite_smoke_test"
+  ],
+  "next_step": "349 - Kullanıcı şifre / giriş akışı"
+}

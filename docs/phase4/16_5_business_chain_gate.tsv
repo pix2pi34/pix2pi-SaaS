@@ -1,0 +1,11 @@
+chain_name	business_area	required_status	blocker_if_failed	evidence_source	owner_role	implementation_status	note
+product_catalog_ready	product	PASS	YES	product sample dataset evidence	tenant_operator	READY_FOR_IMPLEMENTATION	contract_only
+opening_stock_ready	inventory	PASS	YES	opening stock sample evidence	tenant_operator	READY_FOR_IMPLEMENTATION	contract_only
+cash_sale_ready	sales	PASS	YES	cash sale UAT evidence	cashier	READY_FOR_IMPLEMENTATION	contract_only
+card_sale_ready	sales	PASS	YES	card sale accounting policy evidence	cashier	READY_FOR_IMPLEMENTATION	contract_only
+stock_decrease_ready	inventory	PASS	YES	sale stock decrease evidence	tenant_operator	READY_FOR_IMPLEMENTATION	contract_only
+refund_cancel_ready	sales_inventory	PASS	YES	refund/cancel reversal evidence	cashier	READY_FOR_IMPLEMENTATION	contract_only
+negative_stock_guard_ready	inventory	PASS	YES	negative stock guard evidence	tenant_operator	READY_FOR_IMPLEMENTATION	contract_only
+tdhp_journal_ready	accounting	PASS	YES	100/108/120/600/391 line evidence	accountant	READY_FOR_IMPLEMENTATION	contract_only
+reporting_summary_ready	reporting	PASS	NO	summary report evidence	tenant_admin	READY_FOR_IMPLEMENTATION	contract_only
+go_no_go_business_owner_ready	rollout	PASS	YES	business owner decision evidence	project_owner	READY_FOR_IMPLEMENTATION	contract_only

@@ -1,0 +1,35 @@
+gate	status	note
+previous_22_1	PASS	observability baseline prerequisite
+target_inventory	PASS	targets=48
+endpoint_probe	PASS	probes=10 reachable=7 review=3
+prometheus_readiness	PASS	ready=YES healthy=YES
+prometheus_targets_metadata	PASS	active=2 up=2 down=0 pools=2
+public_surface_policy	PASS	public_metrics_rows=19 high_risk=18
+no_restart	PASS	service/container not restarted
+no_config_change	PASS	prometheus/grafana/config not changed
+body_not_printed	PASS	metric/prometheus body not printed
+secret_safe	PASS	secret values not printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+prometheus_config_changed	NO	evidence only
+prometheus_reload_executed	NO	evidence only
+prometheus_restarted	NO	evidence only
+grafana_dashboard_changed	NO	evidence only
+alert_rule_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+metric_body_printed	NO	secret-safe report
+prometheus_query_body_printed	NO	secret-safe report
+log_content_printed	NO	secret-safe report
+trace_body_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

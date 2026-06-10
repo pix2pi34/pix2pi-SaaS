@@ -1,0 +1,28 @@
+{
+  "step": "FAZ 7-R / 334",
+  "name": "PWA / Mobile real final",
+  "tenantId": "tenant-api-e2e-success",
+  "pwaRunId": "pwa-mobile-334-20260513_203626",
+  "cacheVersion": "pix2pi-pos-pwa-334-20260513_203626",
+  "routes": [
+    "/manifest.json",
+    "/sw.js",
+    "/offline.html",
+    "/mobile-pos/",
+    "/assets/pwa/icon-192.svg",
+    "/assets/pwa/icon-512.svg",
+    "/assets/pwa/splash.svg"
+  ],
+  "requiredEvidence": [
+    "manifest JSON valid",
+    "service worker served with scope header",
+    "offline cache shell served",
+    "installability smoke",
+    "mobile responsive POS screen",
+    "PWA icon/splash placeholders",
+    "cache version/update guard",
+    "PWA DB audit write",
+    "rollback no partial write",
+    "PWA route smoke"
+  ]
+}

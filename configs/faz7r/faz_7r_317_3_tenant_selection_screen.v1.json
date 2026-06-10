@@ -1,0 +1,42 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "317.3",
+  "name": "Tenant selection screen gerçek tenant akışı",
+  "component": "internal/auth/tenantselection",
+  "panel_path": "/tenant-select/",
+  "asset_path": "/assets/tenant-selection/tenant-selection-runtime.js",
+  "api_contract": {
+    "list_tenants": {
+      "method": "GET",
+      "path": "/api/auth/tenants",
+      "requires_authorization_bearer": true
+    },
+    "select_tenant": {
+      "method": "POST",
+      "path": "/api/auth/tenant/select",
+      "requires_authorization_bearer": true,
+      "body": {
+        "tenant_id": "uuid"
+      }
+    }
+  },
+  "runtime_contract": {
+    "requires_access_token": true,
+    "requires_active_membership": true,
+    "requires_active_tenant": true,
+    "records_tenant_preference": true,
+    "returns_selected_tenant": true
+  },
+  "required_checks": [
+    "tenant_list_from_access_token",
+    "active_membership_filter",
+    "active_tenant_filter",
+    "tenant_selection_membership_check",
+    "tenant_preference_record",
+    "http_list_handler",
+    "http_select_handler",
+    "panel_screen_smoke",
+    "go_test"
+  ],
+  "next_step": "317.4 - Multi-tenant user destek gerçek akış"
+}

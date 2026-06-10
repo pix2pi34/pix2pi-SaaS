@@ -1,0 +1,14 @@
+rule_id	rule_name	actor_group	default_decision	reason_required	ticket_required	approval_required	timebox_required	audit_required	high_risk	tenant_required	status
+support_readonly_requires_reason	Support readonly requires reason	support	DENY_SUPPORT_REASON_MISSING	YES	YES	NO	YES	YES	YES	YES	contract_only
+support_operator_requires_ticket	Support operator requires ticket	support	DENY_SUPPORT_TICKET_MISSING	YES	YES	YES	YES	YES	YES	YES	contract_only
+support_timeboxed_access	Support access must be timeboxed	support	DENY_SUPPORT_TIMEBOX_MISSING	YES	YES	NO	YES	YES	YES	YES	contract_only
+support_no_secret_access	Support secret access denied	support	DENY_SUPPORT_SECRET_ACCESS	YES	YES	YES	YES	YES	YES	YES	contract_only
+support_no_export_default	Support export denied by default	support	DENY_SUPPORT_EXPORT_ACCESS	YES	YES	YES	YES	YES	YES	YES	contract_only
+support_tenant_scope_required	Support tenant scope required	support	DENY_SUPPORT_TENANT_SCOPE	YES	YES	NO	YES	YES	YES	YES	contract_only
+super_admin_break_glass_required	Super admin requires break-glass	super_admin	DENY_SUPER_ADMIN_BREAK_GLASS_REQUIRED	YES	YES	YES	YES	YES	YES	YES	contract_only
+super_admin_dual_approval_required	Super admin requires dual approval	super_admin	DENY_SUPER_ADMIN_APPROVAL_MISSING	YES	YES	YES	YES	YES	YES	YES	contract_only
+super_admin_timeboxed_access	Super admin access must be timeboxed	super_admin	DENY_SUPER_ADMIN_TIMEBOX_MISSING	YES	YES	YES	YES	YES	YES	YES	contract_only
+super_admin_no_silent_access	Super admin silent access denied	super_admin	DENY_SUPER_ADMIN_SILENT_ACCESS	YES	YES	YES	YES	YES	YES	YES	contract_only
+cross_tenant_default_deny	Cross tenant default deny	any	DENY_CROSS_TENANT_BOUNDARY	YES	YES	YES	YES	YES	YES	YES	contract_only
+audit_required_for_all_boundary_access	Audit required for boundary access	any	DENY_BOUNDARY_AUDIT_REQUIRED	YES	YES	YES	YES	YES	YES	YES	contract_only
+emergency_revocation_required	Emergency revocation closes access	any	DENY_EMERGENCY_REVOKED	YES	YES	YES	YES	YES	YES	YES	contract_only

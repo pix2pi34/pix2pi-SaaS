@@ -1,0 +1,41 @@
+version: v1
+thresholds:
+  - id: infra.cpu.usage
+    warn: __CPU_WARN_PERCENT__
+    crit: __CPU_CRIT_PERCENT__
+    unit: percent
+
+  - id: infra.memory.usage
+    warn: __MEM_WARN_PERCENT__
+    crit: __MEM_CRIT_PERCENT__
+    unit: percent
+
+  - id: infra.io.utilization
+    warn: __IO_WARN_PERCENT__
+    crit: __IO_CRIT_PERCENT__
+    unit: percent
+
+  - id: app.latency.p95
+    warn: __LATENCY_WARN_MS__
+    crit: __LATENCY_CRIT_MS__
+    unit: ms
+
+  - id: app.error.rate
+    warn: __ERROR_RATE_WARN_PERCENT__
+    crit: __ERROR_RATE_CRIT_PERCENT__
+    unit: percent
+
+  - id: event.backlog.size
+    warn: __QUEUE_WARN_COUNT__
+    crit: __QUEUE_CRIT_COUNT__
+    unit: count
+
+  - id: db.storage.usage
+    warn: __STORAGE_WARN_PERCENT__
+    crit: __STORAGE_CRIT_PERCENT__
+    unit: percent
+
+  - id: app.connection.saturation
+    warn: __CONNECTION_WARN_PERCENT__
+    crit: __CONNECTION_CRIT_PERCENT__
+    unit: percent

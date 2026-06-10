@@ -1,0 +1,154 @@
+{
+  "catalog_code": "pix2pi_legal_compliance_policy_v1",
+  "phase": "FAZ_5",
+  "step": "5-6",
+  "depends_on": [
+    "pix2pi_packages_pricing_v1",
+    "pix2pi_entitlement_matrix_v1",
+    "pix2pi_subscription_billing_policy_v1",
+    "pix2pi_tenant_lifecycle_policy_v1"
+  ],
+  "legal_document_map": [
+    {
+      "code": "terms_of_service",
+      "name_tr": "Kullanım Şartları",
+      "required": true,
+      "public_link_required": true,
+      "professional_review_required": true
+    },
+    {
+      "code": "privacy_policy",
+      "name_tr": "Gizlilik Politikası",
+      "required": true,
+      "public_link_required": true,
+      "professional_review_required": true
+    },
+    {
+      "code": "kvkk_notice",
+      "name_tr": "KVKK Aydınlatma Metni",
+      "required": true,
+      "public_link_required": true,
+      "professional_review_required": true
+    },
+    {
+      "code": "cookie_policy",
+      "name_tr": "Çerez Politikası",
+      "required": true,
+      "public_link_required": true,
+      "professional_review_required": true
+    },
+    {
+      "code": "service_agreement_note",
+      "name_tr": "Hizmet Sözleşmesi Notu",
+      "required": true,
+      "public_link_required": false,
+      "professional_review_required": true
+    },
+    {
+      "code": "data_processing_agreement",
+      "name_tr": "Veri İşleme Sözleşmesi",
+      "required": true,
+      "public_link_required": false,
+      "professional_review_required": true
+    },
+    {
+      "code": "accountant_portal_terms",
+      "name_tr": "Muhasebeci Portal Sözleşme Notu",
+      "required": true,
+      "public_link_required": false,
+      "professional_review_required": true
+    }
+  ],
+  "data_policies": {
+    "retention_policy_required": true,
+    "deletion_policy_required": true,
+    "export_policy_required": true,
+    "backup_retention_alignment_required": true,
+    "tenant_close_data_flow_required": true,
+    "personal_data_request_flow_required": true,
+    "export_formats": [
+      "excel",
+      "pdf",
+      "tdhp",
+      "accountant_handoff_file",
+      "enterprise_custom_format"
+    ]
+  },
+  "public_legal_surface": {
+    "footer_links": [
+      "terms_of_service",
+      "privacy_policy",
+      "kvkk_notice",
+      "cookie_policy",
+      "contact"
+    ],
+    "pricing_page_notes": [
+      "vat_note",
+      "billing_period_note",
+      "cancellation_note",
+      "renewal_note"
+    ],
+    "demo_signup_checkboxes": [
+      "accept_terms",
+      "read_privacy_policy",
+      "read_kvkk_notice",
+      "commercial_communication_optional"
+    ],
+    "paid_subscription_checkboxes": [
+      "accept_terms",
+      "accept_service_agreement",
+      "read_privacy_policy",
+      "read_kvkk_notice"
+    ],
+    "explicit_consent_must_be_separate": true,
+    "commercial_communication_must_be_separate": true
+  },
+  "open_legal_reviews": [
+    {
+      "code": "lawyer_review",
+      "name_tr": "Profesyonel hukukçu incelemesi",
+      "required_before_public_launch": true
+    },
+    {
+      "code": "kvkk_consultant_review",
+      "name_tr": "KVKK danışmanı incelemesi",
+      "required_before_public_launch": true
+    },
+    {
+      "code": "tax_advisor_review",
+      "name_tr": "Vergi / mali müşavir incelemesi",
+      "required_before_public_launch": true
+    },
+    {
+      "code": "enterprise_contract_template",
+      "name_tr": "Enterprise sözleşme taslağı",
+      "required_before_enterprise_sale": true
+    },
+    {
+      "code": "accountant_portal_contract",
+      "name_tr": "Muhasebeci portal özel sözleşme",
+      "required_before_accountant_package_sale": true
+    }
+  ],
+  "approval_gates": {
+    "technical_checklist_status": "ready",
+    "legal_final_approval_status": "open",
+    "kvkk_final_approval_status": "open",
+    "tax_final_approval_status": "open",
+    "public_launch_allowed_without_professional_review": false
+  },
+  "out_of_scope": [
+    "final_lawyer_approved_contract_text",
+    "final_kvkk_consultant_approval",
+    "runtime_cookie_consent",
+    "runtime_kvkk_request_panel",
+    "electronic_signature_flow",
+    "payment_provider_contract",
+    "enterprise_contract_automation"
+  ],
+  "seal": {
+    "FAZ_5_6_LEGAL_COMPLIANCE_STATUS": "PASS",
+    "FAZ_5_6_LEGAL_COMPLIANCE_SEAL_STATUS": "SEALED",
+    "FAZ_5_7_READY": "YES"
+  }
+}

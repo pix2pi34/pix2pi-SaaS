@@ -1,0 +1,71 @@
+{
+  "valid_fixture": {
+    "pilot_data": {
+      "tenant_count": 1,
+      "admin_user_count": 2,
+      "operator_user_count": 6,
+      "accountant_user_count": 2,
+      "customer_count": 250,
+      "supplier_count": 120,
+      "product_count": 3000,
+      "stock_entry_count": 9000,
+      "finance_document_count": 1200,
+      "e_document_export_count": 300,
+      "import_batch_count": 10,
+      "uat_case_count": 60,
+      "training_item_count": 20,
+      "support_ticket_count": 25,
+      "open_issue_count": 10,
+      "critical_issue_count": 0
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED"
+    },
+    "covered_domains": [
+      "tenant",
+      "user_role",
+      "customer",
+      "supplier",
+      "product",
+      "stock",
+      "finance_document",
+      "e_document_export",
+      "import_batch",
+      "uat_case",
+      "support_issue",
+      "training"
+    ]
+  },
+  "invalid_fixture": {
+    "pilot_data": {
+      "tenant_count": 2,
+      "admin_user_count": 4,
+      "operator_user_count": 20,
+      "accountant_user_count": 10,
+      "customer_count": 1000,
+      "supplier_count": 500,
+      "product_count": 7000,
+      "stock_entry_count": 30000,
+      "finance_document_count": 6000,
+      "e_document_export_count": 1500,
+      "import_batch_count": 50,
+      "uat_case_count": 150,
+      "training_item_count": 80,
+      "support_ticket_count": 150,
+      "open_issue_count": 70,
+      "critical_issue_count": 1
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN"
+    },
+    "covered_domains": [
+      "tenant"
+    ]
+  }
+}

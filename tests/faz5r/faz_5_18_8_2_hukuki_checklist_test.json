@@ -1,0 +1,42 @@
+{
+  "test_name": "faz_5_18_8_2_hukuki_checklist_test",
+  "phase": "FAZ_5_18_8_2",
+  "expected": {
+    "required_item_count": 9,
+    "required_domain_count": 6,
+    "internal_legal_checklist_ready": true,
+    "production_public_launch_allowed": false,
+    "real_customer_collection_allowed": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_item_keys": [
+    "contract_set",
+    "kvkk_privacy_notice",
+    "explicit_consent_text",
+    "consent_registry_policy",
+    "log_retention_destruction_policy",
+    "support_legal_readiness",
+    "legal_final_approval_marker",
+    "kvkk_final_approval_marker",
+    "founder_final_go_no_go_marker"
+  ],
+  "must_have_domains": [
+    "CONTRACT",
+    "KVKK",
+    "CONSENT",
+    "RETENTION",
+    "SUPPORT_LEGAL",
+    "LAUNCH_APPROVAL"
+  ],
+  "must_have_flags": [
+    "requires_version",
+    "has_version",
+    "requires_evidence",
+    "has_evidence",
+    "requires_counter_based_audit",
+    "has_counter_based_audit",
+    "public_publish_allowed",
+    "real_customer_collection_allowed"
+  ]
+}

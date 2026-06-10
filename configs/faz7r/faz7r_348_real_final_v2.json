@@ -1,0 +1,1 @@
+{"step":"FAZ 7-R / 348","status_rule":"real SMTP + DB SELECT + token acceptance + rollback required","api":["POST /api/panel/user-invite/send","POST /api/panel/user-invite/accept"]}

@@ -1,0 +1,143 @@
+{
+  "schema_version": "v1",
+  "phase": "FAZ_5_R_FINAL_REVIEW_CLOSURE",
+  "name": "faz_5_r_general_final_review_closure_manifest",
+  "target": "FAZ_5_R_GENERAL_FINAL_REVIEW_CLOSURE",
+  "general_final_review_ready": true,
+  "final_closure_seal_requested": true,
+  "production_launch_allowed": false,
+  "real_customer_collection_open": false,
+  "real_billing_enabled": false,
+  "payment_collection_enabled": false,
+  "public_developer_access_open": false,
+  "checkout_enabled": false,
+  "sandbox_live_enabled": false,
+  "required_controls": {
+    "require_evidence": true,
+    "require_counter_based_audit": true,
+    "require_no_required_fail": true,
+    "require_no_optional_warn": true,
+    "require_doc_ready": true,
+    "require_config_ready": true,
+    "require_code_ready": true,
+    "require_test_pass": true,
+    "require_real_implementation_pass": true,
+    "require_production_launch_blocked": true,
+    "require_real_customer_closed": true,
+    "require_real_billing_closed": true,
+    "require_payment_closed": true,
+    "require_developer_access_closed": true,
+    "require_checkout_closed": true,
+    "require_sandbox_closed": true,
+    "require_next_phase_ready": true
+  },
+  "required_item_keys": [
+    "compliance_contract_consent",
+    "support_ops",
+    "commercial_gate",
+    "billing_tenant_lifecycle_sales_ops",
+    "pricing",
+    "public_developer_surfaces",
+    "public_launch_safety",
+    "next_phase_handoff"
+  ],
+  "required_domains": [
+    "COMPLIANCE_KVKK_CONTRACT_CONSENT",
+    "SUPPORT_OPS",
+    "COMMERCIAL_GATE",
+    "BILLING_TENANT_LIFECYCLE_SALES_OPS",
+    "PRICING",
+    "PUBLIC_DEVELOPER_SURFACES",
+    "PUBLIC_LAUNCH_SAFETY",
+    "NEXT_PHASE_HANDOFF"
+  ],
+  "closure_items": [
+    {
+      "key": "compliance_contract_consent",
+      "domain": "COMPLIANCE_KVKK_CONTRACT_CONSENT",
+      "title": "KVKK / Sözleşme / Consent Closure",
+      "status": "SEALED",
+      "required": true,
+      "required_fail_count": 0,
+      "optional_warn_count": 0
+    },
+    {
+      "key": "support_ops",
+      "domain": "SUPPORT_OPS",
+      "title": "Support Ops Closure",
+      "status": "SEALED",
+      "required": true,
+      "required_fail_count": 0,
+      "optional_warn_count": 0
+    },
+    {
+      "key": "commercial_gate",
+      "domain": "COMMERCIAL_GATE",
+      "title": "Commercial Gate Closure",
+      "status": "SEALED",
+      "required": true,
+      "required_fail_count": 0,
+      "optional_warn_count": 0
+    },
+    {
+      "key": "billing_tenant_lifecycle_sales_ops",
+      "domain": "BILLING_TENANT_LIFECYCLE_SALES_OPS",
+      "title": "Billing / Tenant Lifecycle / Sales Ops Closure",
+      "status": "SEALED",
+      "required": true,
+      "required_fail_count": 0,
+      "optional_warn_count": 0
+    },
+    {
+      "key": "pricing",
+      "domain": "PRICING",
+      "title": "Pricing Closure",
+      "status": "SEALED",
+      "required": true,
+      "required_fail_count": 0,
+      "optional_warn_count": 0
+    },
+    {
+      "key": "public_developer_surfaces",
+      "domain": "PUBLIC_DEVELOPER_SURFACES",
+      "title": "Public / Developer Surfaces Closure",
+      "status": "SEALED",
+      "required": true,
+      "required_fail_count": 0,
+      "optional_warn_count": 0
+    },
+    {
+      "key": "public_launch_safety",
+      "domain": "PUBLIC_LAUNCH_SAFETY",
+      "title": "Public Launch Safety Closure",
+      "status": "SEALED",
+      "required": true,
+      "required_fail_count": 0,
+      "optional_warn_count": 0
+    },
+    {
+      "key": "next_phase_handoff",
+      "domain": "NEXT_PHASE_HANDOFF",
+      "title": "Next Phase Handoff",
+      "status": "SEALED",
+      "required": true,
+      "required_fail_count": 0,
+      "optional_warn_count": 0
+    }
+  ],
+  "final_policy": {
+    "faz_5_r_general_final_review_status": "PASS",
+    "faz_5_r_final_closure_status": "SEALED",
+    "production_launch_allowed": false,
+    "real_customer_collection_open": false,
+    "real_billing_enabled": false,
+    "payment_collection_enabled": false,
+    "public_developer_access_open": false,
+    "checkout_enabled": false,
+    "sandbox_live_enabled": false,
+    "partial_remaining": false,
+    "pending_remaining": false,
+    "fail_remaining": false,
+    "ready_for_next_phase": true
+  }
+}

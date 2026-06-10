@@ -1,0 +1,43 @@
+{
+  "expected_dependency": "FAZ_6_22_6",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_build_publish_allowed": false,
+  "expected_frontend_deploy_allowed": false,
+  "expected_container_image_push_allowed": false,
+  "expected_artifact_upload_allowed": false,
+  "expected_cdn_invalidation_allowed": false,
+  "expected_route_mutation_allowed": false,
+  "expected_migration_apply_allowed": false,
+  "expected_production_release_execute_allowed": false,
+  "expected_required_controls": [
+    "release_checklist_ui_dependency_gate",
+    "release_candidate_manifest_policy",
+    "build_artifact_inventory_policy",
+    "checksum_signature_policy",
+    "secret_scan_policy",
+    "dependency_lock_policy",
+    "source_freeze_policy",
+    "environment_config_policy",
+    "migration_bundle_policy",
+    "rollback_manifest_policy",
+    "container_image_metadata_policy",
+    "static_asset_manifest_policy",
+    "dry_run_release_build_verification_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_surfaces": [
+    "frontend_static_assets",
+    "web_release_manifest",
+    "container_image_metadata",
+    "environment_config_bundle",
+    "migration_bundle",
+    "rollback_manifest"
+  ],
+  "expected_min_check_count": 6,
+  "expected_status": "dry_run_only_no_release_build_mutation",
+  "expected_next_step": "FAZ_6_R_FINAL_CLOSURE"
+}

@@ -1,0 +1,132 @@
+{
+  "workflow_monitor_id": "workflow_monitor.controlled_pilot.v1",
+  "workflow_monitor_status": "READY",
+  "workflow_monitor_mode": "CONTROLLED_PILOT",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT",
+    "tenant_status": "PILOT_CLOSED"
+  },
+  "chain_dependencies": {
+    "236_FAZ_4_17_1_APPROVAL_INBOX": "PASS"
+  },
+  "monitor_items": [
+    {"code": "WORKFLOW_MONITOR_SHELL", "required": true, "status": "READY", "area": "UI", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "TENANT_SCOPED_MONITOR", "required": true, "status": "READY", "area": "TENANCY", "owner": "WEB_OWNER", "evidence_ref": "docs/faz4r/FAZ_4_17_2_WORKFLOW_MONITOR.md"},
+    {"code": "WORKFLOW_INSTANCE_SUMMARY", "required": true, "status": "READY", "area": "SUMMARY", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/workflow_monitor.controlled_pilot.v1.json"},
+    {"code": "PENDING_APPROVAL_COUNTER", "required": true, "status": "READY", "area": "COUNTER", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/workflow_monitor.controlled_pilot.v1.json"},
+    {"code": "RUNNING_WORKFLOW_COUNTER", "required": true, "status": "READY", "area": "COUNTER", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/workflow_monitor.controlled_pilot.v1.json"},
+    {"code": "COMPLETED_WORKFLOW_COUNTER", "required": true, "status": "READY", "area": "COUNTER", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/workflow_monitor.controlled_pilot.v1.json"},
+    {"code": "FAILED_WORKFLOW_COUNTER", "required": true, "status": "READY", "area": "COUNTER", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/workflow_monitor.controlled_pilot.v1.json"},
+    {"code": "SLA_AGE_INDICATOR", "required": true, "status": "READY", "area": "SLA", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "WORKFLOW_STATUS_BADGE_MODEL", "required": true, "status": "READY", "area": "STATUS", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "APPROVAL_INBOX_LINK", "required": true, "status": "READY", "area": "NAVIGATION", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "AUDIT_TRACE_PLACEHOLDER", "required": true, "status": "READY", "area": "AUDIT", "owner": "SECURITY_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "REALTIME_PLACEHOLDER", "required": true, "status": "READY", "area": "REALTIME", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "MONITOR_FILTER_MODEL", "required": true, "status": "READY", "area": "FILTER", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "MONITOR_SORT_MODEL", "required": true, "status": "READY", "area": "SORT", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "EMPTY_STATE", "required": true, "status": "READY", "area": "STATE", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "ERROR_STATE", "required": true, "status": "READY", "area": "STATE", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "NO_MUTATION_GUARD", "required": true, "status": "READY", "area": "SAFETY", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/workflow_monitor.controlled_pilot.v1.json"},
+    {"code": "EXTERNAL_POLICY_CLOSED_GATE", "required": true, "status": "READY", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "configs/faz4r/workflow_monitor.controlled_pilot.v1.json"},
+    {"code": "UI_CHECKPOINT_HTML", "required": true, "status": "READY", "area": "WEB", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/workflow-monitor/index.html"},
+    {"code": "FINAL_WORKFLOW_MONITOR_REPORT", "required": true, "status": "READY", "area": "REPORT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/evidence/FAZ_4_17_2_WORKFLOW_MONITOR_REAL_IMPLEMENTATION_AUDIT.md"}
+  ],
+  "workflow_samples": [
+    {
+      "workflow_id": "WF-PILOT-001",
+      "tenant_id": "pilot_tenant_001",
+      "title": "Import validation approval workflow",
+      "domain": "IMPORT",
+      "status": "PENDING_APPROVAL",
+      "priority": "HIGH",
+      "sla_status": "ON_TRACK",
+      "age_minutes": 18,
+      "current_step": "TENANT_ADMIN_APPROVAL",
+      "linked_approval_id": "APPROVAL-PILOT-001",
+      "action_state": "READ_ONLY_MONITOR"
+    },
+    {
+      "workflow_id": "WF-PILOT-002",
+      "tenant_id": "pilot_tenant_001",
+      "title": "UAT sign-off workflow",
+      "domain": "UAT",
+      "status": "RUNNING",
+      "priority": "MEDIUM",
+      "sla_status": "ON_TRACK",
+      "age_minutes": 34,
+      "current_step": "PRODUCT_OWNER_REVIEW",
+      "linked_approval_id": "APPROVAL-PILOT-002",
+      "action_state": "READ_ONLY_MONITOR"
+    }
+  ],
+  "workflow_counters": {
+    "total_workflow_count": 2,
+    "pending_approval_count": 1,
+    "running_workflow_count": 1,
+    "completed_workflow_count": 0,
+    "failed_workflow_count": 0,
+    "sla_breached_count": 0
+  },
+  "monitor_controls": {
+    "approval_inbox_status": "PASS",
+    "tenant_scope": "SINGLE_TENANT",
+    "workflow_summary_status": "READY",
+    "status_counter_status": "READY",
+    "sla_indicator_status": "READY",
+    "status_badge_status": "READY",
+    "filter_model_status": "READY",
+    "sort_model_status": "READY",
+    "empty_state_status": "READY",
+    "error_state_status": "READY",
+    "audit_trace_placeholder_status": "READY",
+    "realtime_placeholder_status": "READY",
+    "web_checkpoint_status": "READY",
+    "no_workflow_mutation": true,
+    "no_real_workflow_execution": true,
+    "no_realtime_socket_connection": true,
+    "no_production_launch": true,
+    "no_live_external_provider_activation": true
+  },
+  "monitor_metrics": {
+    "total_item_count": 20,
+    "ready_item_count": 20,
+    "missing_item_count": 0,
+    "required_fail_count": 0,
+    "sample_workflow_count": 2,
+    "enabled_action_count": 0,
+    "workflow_mutation_count": 0,
+    "real_workflow_execution_count": 0,
+    "realtime_socket_connection_count": 0,
+    "production_launch_count": 0,
+    "live_external_provider_activation_count": 0,
+    "live_external_policy_status": "CLOSED"
+  },
+  "summary": {
+    "total_item_count": 20,
+    "ready_item_count": 20,
+    "missing_item_count": 0,
+    "required_fail_count": 0,
+    "tenant_scope": "SINGLE_TENANT",
+    "approval_inbox_status": "PASS",
+    "workflow_summary_status": "READY",
+    "status_counter_status": "READY",
+    "sla_indicator_status": "READY",
+    "web_checkpoint_status": "READY",
+    "workflow_monitor_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "production_launch": "CLOSED",
+    "workflow_mutation": "CLOSED",
+    "real_workflow_execution": "CLOSED",
+    "realtime_socket_connection": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

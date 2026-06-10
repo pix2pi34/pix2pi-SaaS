@@ -1,0 +1,7 @@
+config_path	category	risk	listen_count	server_name_count	proxy_pass_count	upstream_count	location_count	ssl_marker_count	security_header_count	rate_limit_marker_count	timeout_marker_count	body_limit_marker_count	allow_deny_marker_count	auth_marker_count	note
+/etc/nginx/nginx.conf	system_nginx_config	LOW	2	0	0	0	0	1	0	2	0	0	0	0	evidence_only
+/etc/nginx/conf.d/00_pix2pi_log_format.conf	system_nginx_config	LOW	0	0	0	0	0	0	0	0	0	0	0	0	evidence_only
+/etc/nginx/conf.d/health.conf	system_nginx_config	MEDIUM	1	0	0	0	1	0	0	0	0	0	0	0	listen_without_tls_marker_review
+/etc/nginx/conf.d/pix2pi_edge_live.conf	system_nginx_config	MEDIUM	5	5	7	4	13	16	0	10	0	0	8	0	proxy_without_security_header_marker_review
+/opt/pix2pi/nginx/BingSiteAuth.xml	pix2pi_runtime_nginx_config	LOW	0	0	0	0	0	0	0	0	0	0	0	0	evidence_only
+/opt/pix2pi/nginx/sitemap.xml	pix2pi_runtime_nginx_config	LOW	0	0	0	0	0	0	0	0	0	0	0	0	evidence_only

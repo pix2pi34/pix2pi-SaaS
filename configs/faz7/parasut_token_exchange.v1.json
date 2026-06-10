@@ -1,0 +1,63 @@
+{
+  "module": "FAZ_7_8P_5_PARASUT_TOKEN_EXCHANGE_REFRESH_READINESS",
+  "version": "v1",
+  "provider_key": "parasut",
+  "runtime_status": "token_exchange_refresh_dry_run_ready",
+  "real_provider_api_enabled": false,
+  "real_token_exchange_enabled": false,
+  "real_token_refresh_enabled": false,
+  "depends_on": [
+    "FAZ_7_8I_INTEGRATION_RUNTIME_FOUNDATION",
+    "FAZ_7_8P_PARASUT_CONNECTOR_MODULE",
+    "FAZ_7_8P_1_PARASUT_LIVE_CONTRACT_READINESS",
+    "FAZ_7_8P_2_PARASUT_TOKEN_VAULT_READINESS",
+    "FAZ_7_8P_3_PARASUT_CREDENTIAL_UI_READINESS",
+    "FAZ_7_8P_4_PARASUT_OAUTH_CALLBACK_READINESS"
+  ],
+  "token_exchange_contract": {
+    "tenant_id_required": true,
+    "app_key_required": true,
+    "authorization_code_required": true,
+    "redirect_uri_required": true,
+    "client_id_required": true,
+    "client_secret_ref_required": true,
+    "correlation_id_required": true,
+    "real_token_exchange_must_remain_false": true
+  },
+  "simulated_token_response": {
+    "access_token_required": true,
+    "refresh_token_required": true,
+    "expires_in_seconds_required": true,
+    "access_token_ref_created": true,
+    "refresh_token_ref_created": true,
+    "plaintext_token_db_storage_allowed": false
+  },
+  "refresh_readiness": {
+    "active_token_refresh_required": false,
+    "refresh_required_token_refresh_allowed": true,
+    "expired_access_token_refresh_allowed": true,
+    "revoked_token_refresh_allowed": false,
+    "refresh_token_ref_tenant_safe_required": true,
+    "real_refresh_endpoint_enabled": false
+  },
+  "simulated_refresh_rotation": {
+    "rotate_access_token_ref": true,
+    "rotate_refresh_token_ref_optional": true,
+    "old_token_status": "ROTATED",
+    "new_token_status": "ACTIVE",
+    "tenant_safe_rotation_required": true
+  },
+  "token_endpoint_error_mapping": {
+    "401": "UNAUTHORIZED_NON_RETRYABLE",
+    "408": "TIMEOUT_RETRYABLE",
+    "422": "VALIDATION_NON_RETRYABLE",
+    "429": "RATE_LIMIT_RETRYABLE",
+    "500": "SERVER_ERROR_RETRYABLE",
+    "unknown": "UNKNOWN_PROVIDER_ERROR_DLQ"
+  },
+  "handoff": {
+    "parasut_token_exchange_refresh_readiness": true,
+    "real_provider_api_status": "CLOSED_UNTIL_APPROVALS_AND_PROVIDER_LIVE_MODULE",
+    "faz_7_9_hold_until_integration_family_done": true
+  }
+}

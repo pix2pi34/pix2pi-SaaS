@@ -1,0 +1,18 @@
+gate	status	note
+previous_17_final	PASS	reporting api prerequisite
+18.1_readiness	PASS	ready=READY
+18.2_service_entry_plan	PASS	target_kind=API_GATEWAY
+18.3_apply_gate	PASS	apply_gate_ready=YES
+18.4_controlled_apply	PASS	code patch applied
+18.5_live_http_smoke	PASS	auth-protected live route evidence
+target_code_patch	PASS	import=1 call=1
+live_gateway_reachable	YES	base_url=http://127.0.0.1:9010
+live_route_security	AUTH_PROTECTED	auth_mode=NO_VALID_TOKEN_PROVIDED
+query_text_leak	PASS	no query text leak
+reporting_go_test_suite	PASS	final verification
+api_gateway_go_test	PASS	final verification
+runtime_restart_executed	NO	final closure only
+gateway_config_changed	NO	final closure only
+nginx_config_changed	NO	final closure only
+db_mutation	NO	final closure only
+reporting_live_route_final_closure	PASS	failures=0 warnings=0

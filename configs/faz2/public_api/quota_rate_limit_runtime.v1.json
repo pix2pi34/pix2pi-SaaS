@@ -1,0 +1,46 @@
+{
+  "phase": "FAZ 2-7.8.4",
+  "runtime": "quota_rate_limit",
+  "require_tenant": true,
+  "default_window_seconds": 60,
+  "policy_statuses": [
+    "ACTIVE",
+    "SUSPENDED",
+    "REVOKED"
+  ],
+  "decision_values": [
+    "ALLOW",
+    "DENY"
+  ],
+  "supported_dimensions": [
+    "tenant_id",
+    "app_id",
+    "key_id",
+    "environment",
+    "scope",
+    "window"
+  ],
+  "allowed_environments": [
+    "SANDBOX",
+    "PRODUCTION"
+  ],
+  "allowed_scopes": [
+    "read",
+    "write",
+    "webhook:read",
+    "webhook:write",
+    "report:read",
+    "admin:limited"
+  ],
+  "guards": [
+    "tenant_required",
+    "app_required",
+    "api_key_required",
+    "scope_required",
+    "environment_required",
+    "active_policy_required",
+    "cross_tenant_policy_access_denied",
+    "limit_exceeded_denied"
+  ],
+  "next_ready": "FAZ_2_7_8_5_SANDBOX_ENVIRONMENT_RUNTIME"
+}

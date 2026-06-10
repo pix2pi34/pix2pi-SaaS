@@ -1,0 +1,62 @@
+{
+  "phase": "FAZ_3_10_5_4_MONTHLY_SUBSCRIPTION_RUNTIME",
+  "runtime": "monthly_subscription_runtime",
+  "runtime_enabled": true,
+  "default_currency_code": "TRY",
+  "require_tenant_scope": true,
+  "require_billing_profile": true,
+  "require_monthly_cycle": true,
+  "require_firm_limit": true,
+  "require_audit_actor": true,
+  "allow_trial": true,
+  "allow_plan_change": true,
+  "allow_resume_suspended": true,
+  "default_trial_days": 14,
+  "max_assigned_firm_limit": 100,
+  "allowed_plan_codes": [
+    "ACCOUNTANT_STARTER",
+    "ACCOUNTANT_PRO",
+    "ACCOUNTANT_ENTERPRISE"
+  ],
+  "allowed_statuses": [
+    "DRAFT",
+    "TRIALING",
+    "ACTIVE",
+    "SUSPENDED",
+    "CANCELED",
+    "EXPIRED"
+  ],
+  "supported_actions": [
+    "START_TRIAL",
+    "ACTIVATE_MONTHLY",
+    "RENEW_MONTHLY",
+    "CHANGE_PLAN",
+    "SUSPEND",
+    "RESUME",
+    "CANCEL",
+    "CHECK_ACCESS"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "command_id_required": true,
+    "subscription_id_required": true,
+    "accountant_firm_id_required": true,
+    "billing_profile_id_required": true,
+    "actor_id_required": true,
+    "effective_at_required": true,
+    "plan_code_allowed_required": true,
+    "billing_cycle_monthly_required": true,
+    "currency_try_required": true,
+    "firm_limit_required": true,
+    "current_subscription_tenant_scope_required": true,
+    "assigned_firm_count_limit_required": true,
+    "suspend_reason_required": true,
+    "cancel_reason_required": true,
+    "access_active_or_trialing_required": true,
+    "access_firm_limit_required": true
+  },
+  "next_gate": "FAZ_3_10_5_5_COMPANY_VISIBILITY_RUNTIME"
+}

@@ -1,0 +1,60 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "358",
+  "name": "Controlled pilot monitoring / first day watch",
+  "surface": "controlled_pilot_monitoring",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/controlled-pilot-monitoring/",
+  "runtime_path": "/assets/controlled-pilot-monitoring/controlled-pilot-monitoring-runtime.js",
+  "depends_on": [
+    "357 - Controlled customer access activation"
+  ],
+  "backend_contract": {
+    "monitoring_snapshot_endpoint": "/api/customer-access/pilot-monitoring/snapshot",
+    "incident_watch_endpoint": "/api/customer-access/pilot-monitoring/incidents",
+    "daily_report_endpoint": "/api/customer-access/pilot-monitoring/daily-report",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "user_session_header": "X-User-Session",
+    "monitoring_scope_header": "X-Pilot-Monitoring-Scope",
+    "correlation_header": "X-Correlation-ID"
+  },
+  "runtime_contract": {
+    "real_customer_data_mutation_enabled": false,
+    "real_sale_enabled": false,
+    "real_payment_enabled": false,
+    "real_invoice_issue_enabled": false,
+    "real_stock_decrement_enabled": false,
+    "pilot_monitoring_preview_enabled": true,
+    "incident_watch_preview_enabled": true,
+    "daily_report_preview_enabled": true,
+    "rollback_trigger_preview_enabled": true,
+    "fallback_monitoring_snapshot_enabled": true,
+    "ready_for_step_359": true
+  },
+  "required_capabilities": [
+    "controlled_pilot_monitoring_app_shell",
+    "pilot_tenant_customer_watch_context",
+    "first_day_watch_timeline",
+    "pilot_health_dashboard_preview",
+    "panel_pos_market_route_health",
+    "auth_permission_tenant_isolation_watch",
+    "runtime_error_dashboard_preview",
+    "incident_watch_queue_preview",
+    "support_handoff_customer_contact_watch",
+    "customer_activity_session_watch",
+    "transaction_mutation_guard_watch",
+    "billing_payment_disabled_watch",
+    "localization_watch",
+    "slo_early_warning_thresholds",
+    "rollback_trigger_checklist",
+    "daily_pilot_report_preview",
+    "monitoring_audit_timeline",
+    "monitoring_runtime_data_contract",
+    "i18n_ready_monitoring_marker",
+    "seo_opengraph_monitoring_placeholder",
+    "controlled_pilot_monitoring_smoke_test"
+  ],
+  "next_step": "359 - Pilot feedback / issue triage"
+}

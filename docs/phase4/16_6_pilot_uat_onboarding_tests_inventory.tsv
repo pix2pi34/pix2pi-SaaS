@@ -1,0 +1,6 @@
+block	status	domain_key	report_file	artifact_expected	artifact_existing	metric_hit_count	metric_expected	metric_sum	gate_failures
+16.1	PASS	PILOT_UAT_ONBOARDING_BASELINE	docs/phase4/16_1_pilot_uat_onboarding_baseline_report.md	11	11	6	6	64	0
+16.2	PASS	PILOT_TENANT_READINESS_CONTRACT	docs/phase4/16_2_pilot_tenant_readiness_contract_report.md	12	12	8	8	83	0
+16.3	PASS	UAT_SCENARIO_EXECUTION_CONTRACT	docs/phase4/16_3_uat_scenario_execution_contract_report.md	11	11	8	8	104	0
+16.4	PASS	PILOT_DATA_READINESS_CONTRACT	docs/phase4/16_4_pilot_data_readiness_contract_report.md	12	12	7	7	73	0
+16.5	PASS	GO_NO_GO_ROLLOUT_GATE	docs/phase4/16_5_go_no_go_rollout_gate_report.md	12	12	7	7	81	0

@@ -1,0 +1,55 @@
+{
+  "phase": "FAZ_1_5_6",
+  "module": "WEB_L2_AUTH_TENANT_EXPERIENCE",
+  "component": "auth_tenant_state_persistence",
+  "status": "READY",
+  "required_capabilities": [
+    "session_state",
+    "tenant_state",
+    "refresh_behavior",
+    "logout_cleanup",
+    "multi_tab_behavior"
+  ],
+  "storage_keys": {
+    "session": "pix2pi.session",
+    "auth_token": "pix2pi.authToken",
+    "refresh_token": "pix2pi.refreshToken",
+    "active_tenant": "pix2pi.activeTenant",
+    "tenant_context": "pix2pi.tenantContext",
+    "last_refresh": "pix2pi.lastRefresh",
+    "logout_signal": "pix2pi.logoutSignal",
+    "state_revision": "pix2pi.stateRevision"
+  },
+  "state_contract": {
+    "session_required_fields": [
+      "user_id",
+      "display_name",
+      "roles",
+      "permissions",
+      "issued_at",
+      "expires_at"
+    ],
+    "tenant_required_fields": [
+      "tenant_id",
+      "tenant_uuid",
+      "tenant_name",
+      "tenant_code",
+      "selected_at"
+    ],
+    "refresh_policy": "REFRESH_BEFORE_EXPIRY",
+    "logout_policy": "CLEAR_SESSION_TENANT_AND_TOKEN_STATE",
+    "multi_tab_policy": "SYNC_BY_STORAGE_EVENT_AND_BROADCAST_CHANNEL"
+  },
+  "events": {
+    "state_changed": "pix2pi:auth-state-changed",
+    "session_refreshed": "pix2pi:session-refreshed",
+    "logout": "pix2pi:logout",
+    "tenant_state_changed": "pix2pi:tenant-state-changed"
+  },
+  "guard_policy": {
+    "expired_session": "REQUIRE_RELOGIN",
+    "missing_tenant": "REQUIRE_TENANT_SELECTION",
+    "refresh_failed": "CLEAR_AUTH_STATE",
+    "multi_tab_logout": "PROPAGATE_LOGOUT_TO_ALL_TABS"
+  }
+}

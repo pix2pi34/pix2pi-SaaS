@@ -1,0 +1,65 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "337",
+  "name": "Marketplace keşif ekranı",
+  "surface": "marketplace",
+  "domain": "market.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/market",
+  "path": "/discover/",
+  "runtime_path": "/assets/discover/market-discovery-runtime.js",
+  "depends_on": [
+    "335 - İşletme mağaza vitrini",
+    "336 - Ürün listeleme ekranı"
+  ],
+  "backend_contract": {
+    "discovery_snapshot_endpoint": "/api/market/discovery/snapshot",
+    "store_search_endpoint": "/api/market/stores/search",
+    "campaign_preview_endpoint": "/api/market/campaigns/preview",
+    "method": "GET",
+    "region_header": "X-Market-Region",
+    "customer_session_header": "X-Market-Customer-Session"
+  },
+  "runtime_contract": {
+    "real_customer_login_enabled": false,
+    "real_order_enabled": false,
+    "real_payment_enabled": false,
+    "real_stock_reservation_enabled": false,
+    "discovery_snapshot_enabled": true,
+    "fallback_discovery_enabled": true,
+    "ready_for_step_338": true
+  },
+  "filter_contract": {
+    "store_search_enabled": true,
+    "category_filter_enabled": true,
+    "delivery_filter_enabled": true,
+    "pickup_filter_enabled": true,
+    "open_now_filter_enabled": true,
+    "sort_enabled": true,
+    "region_context_enabled": true
+  },
+  "default_region": {
+    "city": "İstanbul",
+    "district": "Pilot",
+    "neighborhood": "Demo Mahalle",
+    "region_code": "TR-34-PILOT"
+  },
+  "required_capabilities": [
+    "marketplace_discovery_app_shell",
+    "location_neighborhood_context",
+    "store_search_box",
+    "category_discovery_cards",
+    "nearby_store_grid",
+    "campaign_deal_strips",
+    "delivery_pickup_open_store_filters",
+    "sort_options",
+    "store_card_quick_preview",
+    "storefront_products_deeplink_contract",
+    "customer_session_placeholder",
+    "tenant_market_region_scope_guard",
+    "discovery_runtime_data_contract",
+    "i18n_ready_discovery_markers",
+    "seo_opengraph_discovery_placeholder",
+    "marketplace_discovery_smoke_test"
+  ],
+  "next_step": "338 - Sipariş ekranı"
+}

@@ -1,0 +1,26 @@
+{
+  "step": "FAZ 7-R / 354",
+  "name": "Localization customer smoke real final",
+  "localeDir": "/var/www/pix2pi/panel/i18n/locales",
+  "runtimeFile": "/var/www/pix2pi/panel/assets/i18n/i18n-runtime.js",
+  "runtimeUrl": "https://panel.pix2pi.com.tr/assets/i18n/i18n-runtime.js",
+  "requiredLocales": ["tr-TR", "ota", "ar", "fa", "en"],
+  "expectedDirection": {
+    "tr-TR": "ltr",
+    "ota": "rtl",
+    "ar": "rtl",
+    "fa": "rtl",
+    "en": "ltr"
+  },
+  "dbPreferenceTable": "tenant_onboarding.tenant_configs.default_language",
+  "defaultLanguage": "tr-TR",
+  "evidenceRequired": [
+    "real file read",
+    "json valid",
+    "key count >= 10",
+    "direction smoke",
+    "runtime HTTP 200",
+    "DB SELECT",
+    "fallback tr-TR"
+  ]
+}

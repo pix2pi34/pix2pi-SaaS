@@ -1,0 +1,38 @@
+{
+  "phase": "FAZ_5_18_7_1",
+  "title": "MRR / ARR Raporu",
+  "status": "READY",
+  "control_surface": "MRR_ARR_REPORT",
+  "inputs": [
+    "FAZ_5_18_6_4_SALES_OPS_RAPORU",
+    "FAZ_5_18_2_2_FATURALAMA_AKISI",
+    "FAZ_5_18_2_3_TAHSILAT_BASARISIZ_ODEME_AKISI",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "SUBSCRIPTION_BASE_SNAPSHOT",
+    "MRR_SUMMARY",
+    "ARR_SUMMARY",
+    "NEW_MRR_SUMMARY",
+    "EXPANSION_MRR_SUMMARY",
+    "CONTRACTION_MRR_SUMMARY",
+    "COLLECTION_STATUS_SUMMARY",
+    "AUDIT_EVIDENCE_SUMMARY",
+    "CHURN_EXPANSION_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_mrr_arr_report_ready": true,
+    "production_revenue_report_enabled": false,
+    "real_customer_revenue_enabled": false,
+    "external_finance_export_enabled": false,
+    "auto_investor_email_enabled": false,
+    "churn_expansion_report_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

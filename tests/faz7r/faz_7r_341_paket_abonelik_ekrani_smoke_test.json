@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "341",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "panel_plans_screen",
+      "path": "/plans/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_341_PLAN_SUBSCRIPTION_APP_SHELL_START",
+        "PIX2PI_341_PLAN_CARDS_START",
+        "PIX2PI_341_PLAN_COMPARISON_RUNTIME_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "panel_plans_runtime",
+      "path": "/assets/plans/panel-plans-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_341_PANEL_PLANS_RUNTIME_START",
+        "commercialScopeHeaders",
+        "buildPlanRuntimeContract"
+      ]
+    }
+  ]
+}

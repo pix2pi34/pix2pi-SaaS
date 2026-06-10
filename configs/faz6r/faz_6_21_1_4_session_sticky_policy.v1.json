@@ -1,0 +1,200 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "304",
+  "code": "FAZ_6_21_1_4",
+  "name": "Session / sticky policy",
+  "depends_on": [
+    "FAZ_6_21_1_2"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "gateway_session_mutation_allowed": false,
+  "load_balancer_sticky_mutation_allowed": false,
+  "nginx_mutation_allowed": false,
+  "redis_session_mutation_allowed": false,
+  "cookie_policy_mutation_allowed": false,
+  "deployment_rollout_allowed": false,
+  "required_controls": [
+    "service_discovery_dependency_gate",
+    "session_surface_inventory",
+    "sticky_affinity_policy",
+    "tenant_aware_affinity_guard",
+    "stateless_fallback_policy",
+    "session_store_health_policy",
+    "cookie_security_policy",
+    "failover_affinity_policy",
+    "websocket_sse_affinity_policy",
+    "pos_offline_session_policy",
+    "gateway_lb_alignment_guard",
+    "dry_run_session_policy_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "session_surfaces": [
+    {
+      "surface": "api_gateway_http",
+      "risk_level": "critical",
+      "sticky_required": false,
+      "stateless_fallback_required": true,
+      "tenant_aware_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "panel_session",
+      "risk_level": "high",
+      "sticky_required": "review_only",
+      "stateless_fallback_required": true,
+      "tenant_aware_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "pos_session",
+      "risk_level": "high",
+      "sticky_required": false,
+      "stateless_fallback_required": true,
+      "offline_safe_required": true,
+      "tenant_aware_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "websocket_sse",
+      "risk_level": "medium",
+      "sticky_required": "review_only",
+      "stateless_fallback_required": true,
+      "tenant_aware_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "public_web",
+      "risk_level": "low",
+      "sticky_required": false,
+      "stateless_fallback_required": true,
+      "tenant_aware_required": false,
+      "mutation_allowed": false
+    }
+  ],
+  "metric_model": {
+    "required_metrics": [
+      "session_store_health_status",
+      "session_store_latency_ms",
+      "session_error_ratio",
+      "sticky_route_success_ratio",
+      "sticky_route_error_ratio",
+      "tenant_header_preservation_ratio",
+      "cookie_secure_flag_coverage",
+      "cookie_http_only_flag_coverage",
+      "cookie_same_site_policy_coverage",
+      "websocket_reconnect_count",
+      "sse_reconnect_count",
+      "pos_offline_recovery_success_ratio",
+      "stateless_fallback_success_ratio",
+      "node_failover_session_loss_candidate_count"
+    ],
+    "minimum_observation_days": 7,
+    "requires_per_surface_breakdown": true,
+    "requires_per_tenant_breakdown": true
+  },
+  "policy_model": {
+    "mode": "recommendation_only",
+    "sticky_affinity_review_enabled": true,
+    "tenant_aware_affinity_required": true,
+    "stateless_fallback_required": true,
+    "cookie_security_review_enabled": true,
+    "session_store_health_required": true,
+    "failover_affinity_review_enabled": true,
+    "websocket_sse_affinity_review_enabled": true,
+    "pos_offline_session_review_enabled": true
+  },
+  "guards": {
+    "tenant_aware_affinity_guard": {
+      "enabled": true,
+      "block_if_x_tenant_id_not_preserved": true,
+      "block_if_cross_tenant_session_risk": true
+    },
+    "stateless_fallback_policy": {
+      "enabled": true,
+      "block_if_surface_has_no_fallback": true,
+      "requires_fallback_success_metric": true
+    },
+    "session_store_health_policy": {
+      "enabled": true,
+      "block_if_session_store_unhealthy": true,
+      "requires_latency_and_error_metrics": true
+    },
+    "cookie_security_policy": {
+      "enabled": true,
+      "requires_secure": true,
+      "requires_http_only": true,
+      "requires_same_site_policy": true
+    },
+    "failover_affinity_policy": {
+      "enabled": true,
+      "block_if_node_failover_loses_session": true,
+      "requires_reconnect_policy": true
+    },
+    "gateway_lb_alignment_guard": {
+      "enabled": true,
+      "block_if_gateway_and_lb_affinity_conflict": true
+    }
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "gateway_session_policy_change_execute",
+      "load_balancer_sticky_change_execute",
+      "nginx_sticky_change_execute",
+      "redis_session_policy_change_execute",
+      "cookie_policy_change_execute",
+      "deployment_rollout_execute",
+      "websocket_sse_affinity_change_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "security_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "gateway_session_mutation_allowed": false,
+    "load_balancer_sticky_mutation_allowed": false,
+    "nginx_mutation_allowed": false,
+    "redis_session_mutation_allowed": false,
+    "cookie_policy_mutation_allowed": false,
+    "deployment_rollout_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "policy_id",
+      "surface",
+      "current_signal",
+      "recommended_action",
+      "risk_level",
+      "tenant_aware_guard_status",
+      "stateless_fallback_status",
+      "session_store_health_status",
+      "cookie_security_status",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_service_discovery_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_gateway_or_lb_mutation_allowed": true,
+    "block_if_session_store_mutation_allowed": true,
+    "block_if_missing_tenant_aware_guard": true,
+    "block_if_missing_stateless_fallback": true,
+    "block_if_missing_session_store_health": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_1_4_SESSION_STICKY_POLICY_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

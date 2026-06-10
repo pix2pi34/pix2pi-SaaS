@@ -1,0 +1,11 @@
+artifact	path	status
+standard	docs/phase4/17_1_reporting_runtime_wiring_plan_standard.md	CREATED
+runtime_plan	docs/phase4/17_1_reporting_runtime_wiring_plan.md	CREATED
+service_entry_contract	docs/phase4/17_1_reporting_service_entry_contract.md	CREATED
+gateway_premanifest	docs/phase4/17_1_reporting_gateway_route_premanifest.md	CREATED
+route	GET /api/v1/reporting/operational/summary	PLANNED
+route	GET /api/v1/reporting/operational/daily-metrics	PLANNED
+route	GET /api/v1/reporting/inventory/status	PLANNED
+route	GET /api/v1/reporting/documents/work-queue	PLANNED
+route	GET /api/v1/reporting/reconciliation/status	PLANNED
+route	GET /api/v1/reporting/projections/state	PLANNED

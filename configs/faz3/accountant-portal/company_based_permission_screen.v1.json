@@ -1,0 +1,84 @@
+{
+  "phase": "FAZ_3_12_3_COMPANY_BASED_PERMISSION_SCREEN",
+  "screen": "company_based_permission_screen",
+  "screen_enabled": true,
+  "route": "/faz3/accountant-portal/company-permissions/",
+  "static_file": "web/faz3/accountant-portal/company-permissions/index.html",
+  "scope": {
+    "company_permission_matrix_visibility": true,
+    "firm_based_role_visibility": true,
+    "view_permission_visibility": true,
+    "export_permission_visibility": true,
+    "manage_permission_visibility": true,
+    "read_only_permission_visibility": true,
+    "access_decision_visibility": true,
+    "allowed_resources_visibility": true,
+    "denied_resources_visibility": true,
+    "tenant_boundary_visibility": true,
+    "firm_scope_visibility": true,
+    "subscription_status_visibility": true,
+    "permission_hash_visibility": true,
+    "decision_hash_visibility": true,
+    "audit_timeline_visibility": true
+  },
+  "guard_policy": {
+    "tenant_indicator_required": true,
+    "accountant_indicator_required": true,
+    "firm_indicator_required": true,
+    "firm_id_required": true,
+    "tenant_id_required": true,
+    "tax_no_required": true,
+    "accountant_id_required": true,
+    "role_set_required": true,
+    "permission_required": true,
+    "action_scope_required": true,
+    "decision_required": true,
+    "subscription_status_required": true,
+    "access_reason_required": true,
+    "allowed_resources_required": true,
+    "denied_resources_required": true,
+    "tenant_boundary_hash_required": true,
+    "firm_scope_hash_required": true,
+    "role_hash_required": true,
+    "permission_hash_required": true,
+    "decision_hash_required": true,
+    "audit_hash_required": true,
+    "evidence_file_required": true
+  },
+  "permission_coverage": {
+    "permission_view": true,
+    "permission_export": true,
+    "permission_manage": true,
+    "permission_read_only": true
+  },
+  "decision_coverage": {
+    "decision_allow": true,
+    "decision_review_required": true,
+    "decision_deny": true,
+    "decision_read_only_allow": true
+  },
+  "role_coverage": {
+    "role_accountant_manager": true,
+    "role_accountant_exporter": true,
+    "role_accountant_viewer": true,
+    "role_accountant_read_only": true
+  },
+  "live_policy": {
+    "production_approved": false,
+    "cross_tenant_access_allowed": false,
+    "tenant_boundary_required": true,
+    "firm_scope_required": true,
+    "subscription_status_required": true,
+    "permission_hash_required": true,
+    "audit_required": true,
+    "ui_actions_are_validate_scope_review_audit_only": true
+  },
+  "covered_backend_gates": [
+    "FAZ_3_12_1_MULTI_COMPANY_WORKSPACE",
+    "FAZ_3_12_2_COMPANY_SWITCHER",
+    "FAZ_3_12_4_ACCOUNTANT_EXPORT_WORKSPACE",
+    "FAZ_3_11_10_ERP_UI_TESTS"
+  ],
+  "previous_gate": "FAZ_3_12_2_COMPANY_SWITCHER",
+  "next_gate": "FAZ_3_12_5_SUBSCRIPTION_STATUS_VIEW"
+}

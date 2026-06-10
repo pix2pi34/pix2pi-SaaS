@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="tr-TR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pix2pi Offline POS</title>
+  <style>
+    body{margin:0;background:#07090d;color:#f8fafc;font-family:system-ui}
+    .wrap{max-width:960px;margin:auto;padding:40px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .card{border:1px solid rgba(255,214,10,.28);background:rgba(255,255,255,.06);border-radius:22px;padding:22px}
+    code{color:#ffd60a}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <h1>Offline POS</h1>
+      <p>Offline satış kuyruğu, ödeme placeholder, online sync, idempotency ve stok conflict kontrolü.</p>
+      <code>PIX2PI_333_OFFLINE_POS_SCREEN_START</code>
+    </section>
+    <section class="grid">
+      <div class="card">Offline queue</div>
+      <div class="card">Offline satış taslağı</div>
+      <div class="card">Sync</div>
+      <div class="card">Duplicate guard</div>
+      <div class="card">Stok conflict</div>
+      <div class="card">Tenant / register guard</div>
+    </section>
+  </main>
+</body>
+</html>

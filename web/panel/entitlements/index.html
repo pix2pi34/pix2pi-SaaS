@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi plan enforcement ve entitlement UI guard ekranı" />
+  <meta property="og:title" content="Pix2pi Entitlement UI Guard" />
+  <meta property="og:description" content="Plan enforcement, entitlement decision ve frontend guard yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Entitlement UI Guard</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --blue: #2563eb;
+      --ok: #16a34a;
+      --warn: #f59e0b;
+      --danger: #dc2626;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(245,158,11,.13), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1360px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    button:disabled {
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .entitlement-card, .entitlement-row {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .entitlement-row {
+      grid-template-columns: minmax(0, 1.5fr) auto auto;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .entitlement-row span,
+    .entitlement-row em,
+    .entitlement-card span {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 950;
+      font-size: 12px;
+      font-style: normal;
+    }
+
+    .entitlement-row[data-decision="ALLOW"] span,
+    .entitlement-card[data-decision="ALLOW"] span {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .entitlement-row[data-decision="DISABLE"] span,
+    .entitlement-card[data-decision="DISABLE"] span {
+      background: #fffbeb;
+      color: #92400e;
+    }
+
+    .entitlement-row[data-decision="UPGRADE_REQUIRED"] span,
+    .entitlement-card[data-decision="UPGRADE_REQUIRED"] span {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .entitlement-row { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_346_ENTITLEMENT_UI_GUARD_APP_SHELL_START -->
+  <main class="shell" data-step="346" data-surface="panel-entitlements">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 346</span>
+      <h1 data-i18n="panel_entitlements.title">Plan enforcement / entitlement UI guard</h1>
+      <p data-i18n="panel_entitlements.description">Plan yetkileri, route guard, disabled action ve dry-run enforcement yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_346_TENANT_USER_ROLE_PLAN_CONTEXT_START -->
+    <section class="card guard" data-widget="tenant_user_role_plan_context">
+      <h2>Tenant / user / role / plan context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="entitlements-tenant">controlled-pilot</strong></p>
+        <p>User session: <strong id="entitlements-user-session">USER_DEMO_SESSION</strong></p>
+        <p>Role: <strong id="entitlements-user-role">OWNER</strong></p>
+        <p>Plan: <strong id="entitlements-current-plan">Pilot Free / pilot_free</strong></p>
+        <p>Scope: <strong id="entitlements-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_346_TENANT_USER_ROLE_PLAN_CONTEXT_END -->
+
+    <!-- PIX2PI_346_FEATURE_ENTITLEMENT_MATRIX_START -->
+    <section class="card" data-widget="feature_entitlement_matrix">
+      <h2>Feature entitlement matrix</h2>
+      <div id="entitlements-feature-matrix">
+        <article class="entitlement-row" data-feature-code="merchant_panel" data-decision="ALLOW">
+          <div>
+            <strong>Merchant Panel</strong>
+            <p>panel / PLAN_FEATURE_INCLUDED</p>
+          </div>
+          <span>ALLOW</span>
+          <em>entitled=true</em>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_346_FEATURE_ENTITLEMENT_MATRIX_END -->
+
+    <!-- PIX2PI_346_UI_ROUTE_ACCESS_GUARD_PREVIEW_START -->
+    <section class="card" data-widget="ui_route_access_guard_preview">
+      <h2>UI route access guard preview</h2>
+      <div id="entitlements-route-guards" class="grid-3">
+        <article class="entitlement-card" data-route="/dashboard/" data-decision="ALLOW">
+          <strong>/dashboard/</strong>
+          <p>Feature: merchant_panel / Decision: ALLOW</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_346_UI_ROUTE_ACCESS_GUARD_PREVIEW_END -->
+
+    <!-- PIX2PI_346_POS_ENTITLEMENT_GUARD_START -->
+    <section class="card guard" data-widget="pos_entitlement_guard">
+      <h2>POS entitlement guard</h2>
+      <p>POS route/action access `pos_surface` entitlement ile UI seviyesinde kontrol edilir.</p>
+    </section>
+    <!-- PIX2PI_346_POS_ENTITLEMENT_GUARD_END -->
+
+    <!-- PIX2PI_346_MARKETPLACE_ENTITLEMENT_GUARD_START -->
+    <section class="card guard" data-widget="marketplace_entitlement_guard">
+      <h2>Marketplace entitlement guard</h2>
+      <p>Marketplace route/action access `marketplace_surface` entitlement ile UI seviyesinde kontrol edilir.</p>
+    </section>
+    <!-- PIX2PI_346_MARKETPLACE_ENTITLEMENT_GUARD_END -->
+
+    <!-- PIX2PI_346_PRODUCT_USER_STORE_QUOTA_GUARD_BRIDGE_START -->
+    <section class="card" data-widget="product_user_store_quota_guard_bridge">
+      <h2>Product / user / store quota guard bridge</h2>
+      <div id="entitlements-quota-bridge" class="grid-4">
+        <article class="entitlement-card" data-quota-code="stores" data-decision="DISABLE">
+          <strong>stores</strong>
+          <p>1 / 1 / %100</p>
+          <span>DISABLE</span>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_346_PRODUCT_USER_STORE_QUOTA_GUARD_BRIDGE_END -->
+
+    <!-- PIX2PI_346_DISABLED_ACTION_BUTTONS_BY_ENTITLEMENT_START -->
+    <section class="card locked" data-widget="disabled_action_buttons_by_entitlement">
+      <h2>Disabled action buttons by entitlement</h2>
+      <div id="entitlements-disabled-actions" class="grid-3">
+        <article class="entitlement-card" data-action="CREATE_SECOND_STORE" data-decision="DISABLE">
+          <strong>İkinci mağaza oluşturma</strong>
+          <p>CREATE_SECOND_STORE / QUOTA_LIMIT_REACHED</p>
+          <button type="button" disabled>DISABLE</button>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_346_DISABLED_ACTION_BUTTONS_BY_ENTITLEMENT_END -->
+
+    <!-- PIX2PI_346_UPGRADE_REQUIRED_BANNER_START -->
+    <section class="card locked" data-widget="upgrade_required_banner">
+      <h2>Upgrade required banner</h2>
+      <p>UPGRADE_REQUIRED kararlarında kullanıcı `/plans/` ekranına yönlendirilir. Gerçek plan değişikliği bu adımda kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_346_UPGRADE_REQUIRED_BANNER_END -->
+
+    <!-- PIX2PI_346_PLAN_ENFORCEMENT_DRY_RUN_MODE_START -->
+    <section class="card guard" data-widget="plan_enforcement_dry_run_mode">
+      <h2>Plan enforcement dry-run mode</h2>
+      <p>dry_run_enforcement_enabled=true / real_backend_enforcement_enabled=false. Bu adımda yalnız UI guard uygulanır.</p>
+    </section>
+    <!-- PIX2PI_346_PLAN_ENFORCEMENT_DRY_RUN_MODE_END -->
+
+    <!-- PIX2PI_346_ENFORCEMENT_AUDIT_EVENT_PREVIEW_START -->
+    <section class="card" data-widget="enforcement_audit_event_preview">
+      <h2>Enforcement audit event preview</h2>
+      <div id="entitlements-audit-preview" class="grid-3">
+        <article class="entitlement-card" data-audit-action="CREATE_SECOND_STORE">
+          <strong>ENTITLEMENT_UI_GUARD_DECISION</strong>
+          <p>CREATE_SECOND_STORE / DISABLE / QUOTA_LIMIT_REACHED</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_346_ENFORCEMENT_AUDIT_EVENT_PREVIEW_END -->
+
+    <!-- PIX2PI_346_PERMISSION_ENTITLEMENT_DECISION_CONTRACT_START -->
+    <section class="card guard" data-widget="permission_entitlement_decision_contract">
+      <h2>Permission + entitlement decision contract</h2>
+      <p>Karar değerleri: ALLOW / DISABLE / UPGRADE_REQUIRED / DENY. Permission + entitlement birleşik karar kontratı runtime içinde üretilir.</p>
+    </section>
+    <!-- PIX2PI_346_PERMISSION_ENTITLEMENT_DECISION_CONTRACT_END -->
+
+    <!-- PIX2PI_346_TENANT_USER_ACTION_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="tenant_user_action_scope_guard">
+      <h2>Tenant / user / action scope guard</h2>
+      <p>Entitlement endpointleri `X-Tenant-ID`, `X-User-Session`, `X-Entitlement-Scope` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_346_TENANT_USER_ACTION_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_346_FRONTEND_GUARD_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="frontend_guard_runtime_data_contract">
+      <h2>Frontend guard runtime data contract</h2>
+      <p id="entitlements-runtime-contract">ui_guard_enabled=true / dry_run_enforcement_enabled=true / ready_for_step_347=true</p>
+    </section>
+    <!-- PIX2PI_346_FRONTEND_GUARD_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_346_SEO_OPENGRAPH_ENTITLEMENT_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_entitlement_placeholder">
+      <h2>SEO / OpenGraph entitlement placeholder</h2>
+      <p>Title, description ve og:* metadata entitlement UI guard yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_346_SEO_OPENGRAPH_ENTITLEMENT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_346_I18N_READY_ENTITLEMENT_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_entitlement_marker">
+      <h2 data-i18n="panel_entitlements.i18n_ready">i18n-ready entitlement screen</h2>
+      <p data-i18n="panel_entitlements.surface_ready">Entitlement UI guard ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_346_I18N_READY_ENTITLEMENT_MARKER_END -->
+  </main>
+  <!-- PIX2PI_346_ENTITLEMENT_UI_GUARD_APP_SHELL_END -->
+
+  <script src="/assets/entitlements/panel-entitlements-runtime.js"></script>
+  <script>
+    Pix2piPanelEntitlements.bootEntitlementScreen().then(function (contract) {
+      console.log("PIX2PI_346_ENTITLEMENT_GUARD_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

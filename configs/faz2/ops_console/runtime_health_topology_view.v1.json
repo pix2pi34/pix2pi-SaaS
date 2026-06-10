@@ -1,0 +1,33 @@
+{
+  "phase": "FAZ 2-8.7",
+  "screen": "runtime_health_topology_view",
+  "web_path": "web/ops-console/runtime-health-topology/index.html",
+  "runtime_package": "./internal/platform/ops/console",
+  "require_tenant": true,
+  "allow_platform_viewer": true,
+  "max_visible_nodes": 100,
+  "max_visible_edges": 200,
+  "node_stale_seconds": 120,
+  "guards": [
+    "tenant_required",
+    "cross_tenant_viewer_denied",
+    "valid_node_kind_required",
+    "valid_node_status_required",
+    "valid_edge_status_required",
+    "node_stale_detection",
+    "kind_filter_supported",
+    "status_filter_supported",
+    "edge_visibility_toggle"
+  ],
+  "screen_sections": [
+    "healthy_nodes_metric",
+    "degraded_metric",
+    "down_metric",
+    "broken_edges_metric",
+    "topology_map",
+    "topology_edges_table",
+    "tenant_indicator",
+    "responsive_shell"
+  ],
+  "next_ready": "FAZ_2_8_8_OPS_CONSOLE_TESTS"
+}

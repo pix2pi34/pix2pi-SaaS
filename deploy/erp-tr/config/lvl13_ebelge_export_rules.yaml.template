@@ -1,0 +1,19 @@
+version: v1
+ebelge_rules:
+  efatura_enabled: __EBELGE_EFATURA_ENABLED__
+  earsiv_enabled: __EBELGE_EARSIV_ENABLED__
+  eadisyon_enabled: __EBELGE_EADISYON_ENABLED__
+  status_sync_mode: __EBELGE_STATUS_SYNC_MODE__
+  retry_max: __EBELGE_RETRY_MAX__
+  cancel_flow: __EBELGE_CANCEL_FLOW__
+  error_mode: __EBELGE_ERROR_MODE__
+  test_profile: __EBELGE_TEST_PROFILE__
+
+export_rules:
+  logo_enabled: __EXPORT_LOGO_ENABLED__
+  mikro_enabled: __EXPORT_MIKRO_ENABLED__
+  zirve_enabled: __EXPORT_ZIRVE_ENABLED__
+  eta_enabled: __EXPORT_ETA_ENABLED__
+  validation_mode: __EXPORT_VALIDATION_MODE__
+  batch_limit: __EXPORT_BATCH_LIMIT__
+  test_profile: __EXPORT_TEST_PROFILE__

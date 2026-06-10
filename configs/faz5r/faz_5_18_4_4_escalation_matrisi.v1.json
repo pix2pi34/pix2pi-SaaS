@@ -1,0 +1,32 @@
+{
+  "phase": "FAZ_5_18_4_4",
+  "title": "Escalation Matrisi",
+  "status": "READY",
+  "control_surface": "SUPPORT_ESCALATION_MATRIX",
+  "inputs": [
+    "FAZ_5_18_4_1_SLA_SEVIYELERI",
+    "FAZ_5_18_4_2_DESTEK_KANAL_YAPISI",
+    "FAZ_5_18_4_5_MUSTERI_ILETISIM_SABLONLARI"
+  ],
+  "outputs": [
+    "ESCALATION_RULE_MATRIX",
+    "OWNER_MAPPING",
+    "SLA_BREACH_ESCALATION",
+    "P0_INCIDENT_ESCALATION",
+    "KVKK_SECURITY_ESCALATION",
+    "BILLING_DISPUTE_ESCALATION"
+  ],
+  "gates": {
+    "internal_matrix_ready": true,
+    "production_auto_escalation_enabled": false,
+    "customer_notification_enabled": false,
+    "incident_classification_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

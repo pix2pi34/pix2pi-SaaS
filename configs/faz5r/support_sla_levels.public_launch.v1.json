@@ -1,0 +1,100 @@
+{
+  "schema_version": "v1",
+  "phase": "FAZ_5_18_4_1",
+  "name": "support_sla_levels_public_launch",
+  "target": "FAZ_5_R_SUPPORT_OPS_READINESS",
+  "internal_sla_ready": true,
+  "production_sla_published": false,
+  "required_controls": {
+    "require_tenant_scope": true,
+    "require_ops_owner": true,
+    "require_business_owner": true,
+    "require_escalation_rule": true,
+    "require_breach_policy": true,
+    "require_update_interval": true,
+    "production_sla_publication_must_remain_disabled": true
+  },
+  "required_priorities": [
+    "P0_CRITICAL",
+    "P1_HIGH",
+    "P2_NORMAL",
+    "P3_LOW"
+  ],
+  "sla_levels": [
+    {
+      "key": "sla_p0_critical",
+      "priority": "P0_CRITICAL",
+      "title": "P0 Critical SLA",
+      "status": "READY",
+      "required": true,
+      "response_sla_hours": 1,
+      "resolution_sla_hours": 4,
+      "escalation_sla_hours": 1,
+      "update_interval_hours": 1,
+      "tenant_scoped": true,
+      "has_ops_owner": true,
+      "has_business_owner": true,
+      "has_escalation_rule": true,
+      "has_breach_policy": true,
+      "public_visible": false
+    },
+    {
+      "key": "sla_p1_high",
+      "priority": "P1_HIGH",
+      "title": "P1 High SLA",
+      "status": "READY",
+      "required": true,
+      "response_sla_hours": 4,
+      "resolution_sla_hours": 24,
+      "escalation_sla_hours": 4,
+      "update_interval_hours": 4,
+      "tenant_scoped": true,
+      "has_ops_owner": true,
+      "has_business_owner": true,
+      "has_escalation_rule": true,
+      "has_breach_policy": true,
+      "public_visible": false
+    },
+    {
+      "key": "sla_p2_normal",
+      "priority": "P2_NORMAL",
+      "title": "P2 Normal SLA",
+      "status": "READY",
+      "required": true,
+      "response_sla_hours": 24,
+      "resolution_sla_hours": 72,
+      "escalation_sla_hours": 24,
+      "update_interval_hours": 24,
+      "tenant_scoped": true,
+      "has_ops_owner": true,
+      "has_business_owner": true,
+      "has_escalation_rule": true,
+      "has_breach_policy": true,
+      "public_visible": false
+    },
+    {
+      "key": "sla_p3_low",
+      "priority": "P3_LOW",
+      "title": "P3 Low SLA",
+      "status": "READY",
+      "required": true,
+      "response_sla_hours": 48,
+      "resolution_sla_hours": 168,
+      "escalation_sla_hours": 48,
+      "update_interval_hours": 48,
+      "tenant_scoped": true,
+      "has_ops_owner": true,
+      "has_business_owner": true,
+      "has_escalation_rule": true,
+      "has_breach_policy": true,
+      "public_visible": false
+    }
+  ],
+  "final_policy": {
+    "internal_sla_ready": true,
+    "production_sla_published": false,
+    "public_sla_page_enabled": false,
+    "support_channel_structure_required_next": true,
+    "next_gate": "FAZ_5_18_4_2_DESTEK_KANAL_YAPISI"
+  }
+}

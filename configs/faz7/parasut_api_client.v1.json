@@ -1,0 +1,83 @@
+{
+  "module": "FAZ_7_8P_6_PARASUT_API_CLIENT_OPERATION_RUNTIME_READINESS",
+  "version": "v1",
+  "provider_key": "parasut",
+  "runtime_status": "api_client_operation_dry_run_ready",
+  "real_provider_api_enabled": false,
+  "real_http_client_enabled": false,
+  "access_token_plaintext_resolve_enabled": false,
+  "depends_on": [
+    "FAZ_7_8I_INTEGRATION_RUNTIME_FOUNDATION",
+    "FAZ_7_8P_PARASUT_CONNECTOR_MODULE",
+    "FAZ_7_8P_1_PARASUT_LIVE_CONTRACT_READINESS",
+    "FAZ_7_8P_2_PARASUT_TOKEN_VAULT_READINESS",
+    "FAZ_7_8P_3_PARASUT_CREDENTIAL_UI_READINESS",
+    "FAZ_7_8P_4_PARASUT_OAUTH_CALLBACK_READINESS",
+    "FAZ_7_8P_5_PARASUT_TOKEN_EXCHANGE_REFRESH_READINESS"
+  ],
+  "api_client_contract": {
+    "tenant_id_required": true,
+    "app_key_required": true,
+    "access_token_ref_required": true,
+    "correlation_id_required": true,
+    "requested_by_required": true,
+    "tenant_safe_access_token_ref_required": true,
+    "real_api_enabled_must_remain_false": true,
+    "provider_live_module_required_for_real_api": true
+  },
+  "operation_contracts": {
+    "PULL_INVOICE": {
+      "enabled": true,
+      "dry_run_only": true,
+      "endpoint_contract_required": true
+    },
+    "PUSH_INVOICE": {
+      "enabled": true,
+      "dry_run_only": true,
+      "endpoint_contract_required": true
+    },
+    "SYNC_CUSTOMER": {
+      "enabled": true,
+      "dry_run_only": true,
+      "endpoint_contract_required": true
+    },
+    "SYNC_PRODUCT": {
+      "enabled": true,
+      "dry_run_only": true,
+      "endpoint_contract_required": true
+    },
+    "VERIFY_WEBHOOK": {
+      "enabled": true,
+      "dry_run_only": true,
+      "endpoint_contract_required": true
+    }
+  },
+  "dry_run_provider_response": {
+    "real_http_call": false,
+    "simulated_http_status": 200,
+    "provider_transaction_id_required": true,
+    "provider_object_id_required": true,
+    "plaintext_token_usage_allowed": false
+  },
+  "policy_bridge": {
+    "timeout_policy_required": true,
+    "rate_limit_policy_required": true,
+    "retry_policy_required": true,
+    "provider_timeout_retryable": true,
+    "rate_limit_retryable": true,
+    "unknown_error_dlq": true
+  },
+  "observability": {
+    "connector_audit_event_required": true,
+    "tenant_audit_trail_required": true,
+    "operation_metrics_required": true,
+    "failed_operation_metrics_required": true,
+    "correlation_trace_required": true,
+    "provider_transaction_trace_required": true
+  },
+  "handoff": {
+    "parasut_api_client_operation_runtime_readiness": true,
+    "real_provider_api_status": "CLOSED_UNTIL_APPROVALS_AND_PROVIDER_LIVE_MODULE",
+    "faz_7_9_hold_until_integration_family_done": true
+  }
+}

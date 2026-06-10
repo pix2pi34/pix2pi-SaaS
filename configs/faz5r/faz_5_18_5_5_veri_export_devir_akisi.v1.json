@@ -1,0 +1,39 @@
+{
+  "phase": "FAZ_5_18_5_5",
+  "title": "Veri Export / Devir Akışı",
+  "status": "READY",
+  "control_surface": "TENANT_DATA_EXPORT_HANDOVER_FLOW",
+  "inputs": [
+    "FAZ_5_18_5_4_TENANT_KAPATMA",
+    "FAZ_5_18_3_3_LOG_RETENTION_IMHA_POLITIKASI",
+    "FAZ_5_18_8_2_HUKUKI_CHECKLIST",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "EXPORT_REQUEST_INTAKE",
+    "OWNER_VERIFICATION",
+    "LEGAL_HOLD_CHECK",
+    "DATA_SCOPE_SELECTION",
+    "KVKK_MASKING_POLICY",
+    "EXPORT_BUNDLE_PREPARE",
+    "CHECKSUM_MANIFEST_CREATE",
+    "SECURE_DOWNLOAD_PACKAGE",
+    "HANDOVER_ACCEPTANCE_RECORD",
+    "DATA_DELETION_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_data_export_flow_ready": true,
+    "production_export_enabled": false,
+    "real_customer_export_enabled": false,
+    "data_deletion_enabled": false,
+    "auto_transfer_enabled": false,
+    "tenant_upgrade_downgrade_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

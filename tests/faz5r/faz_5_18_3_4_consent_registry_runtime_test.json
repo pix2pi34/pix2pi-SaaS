@@ -1,0 +1,17 @@
+{
+  "phase": "FAZ 5-R",
+  "step_no": 244,
+  "step_code": "FAZ_5_18_3_4",
+  "test_name": "consent_registry_runtime_test",
+  "expected": {
+    "core_product_allowed_without_consent": true,
+    "data_supported_plan_blocked_without_consent": true,
+    "restricted_paid_route_when_declined": true,
+    "feature_gate_integration": true,
+    "evidence_hash_required": true,
+    "tenant_scoped": true,
+    "user_scoped": true,
+    "revocation_blocks_feature": true,
+    "required_scope_count": 7
+  }
+}

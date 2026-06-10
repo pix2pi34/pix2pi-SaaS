@@ -1,0 +1,177 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "306",
+  "code": "FAZ_6_20_2",
+  "name": "Replica routing / read pool stratejisi",
+  "depends_on": [
+    "FAZ_6_21_1_5"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "dsn_mutation_allowed": false,
+  "application_route_mutation_allowed": false,
+  "read_pool_attach_allowed": false,
+  "read_pool_detach_allowed": false,
+  "replica_promotion_allowed": false,
+  "db_role_mutation_allowed": false,
+  "dns_mutation_allowed": false,
+  "load_balancer_mutation_allowed": false,
+  "required_controls": [
+    "node_health_fencing_dependency_gate",
+    "read_write_split_policy",
+    "primary_write_only_guard",
+    "replica_read_pool_model",
+    "replica_health_scoring_policy",
+    "lag_aware_routing_policy",
+    "stale_read_guard",
+    "read_after_write_consistency_guard",
+    "tenant_safe_read_routing_guard",
+    "reporting_read_pool_policy",
+    "operational_read_pool_policy",
+    "failover_candidate_exclusion_policy",
+    "dry_run_read_pool_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "routing_surfaces": [
+    {
+      "surface": "operational_api_reads",
+      "risk_level": "high",
+      "read_after_write_sensitive": true,
+      "tenant_scope_required": true,
+      "replica_allowed": "conditional",
+      "mutation_allowed": false
+    },
+    {
+      "surface": "reporting_reads",
+      "risk_level": "medium",
+      "read_after_write_sensitive": false,
+      "tenant_scope_required": true,
+      "replica_allowed": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "dashboard_reads",
+      "risk_level": "medium",
+      "read_after_write_sensitive": "route_based",
+      "tenant_scope_required": true,
+      "replica_allowed": "conditional",
+      "mutation_allowed": false
+    },
+    {
+      "surface": "background_export_reads",
+      "risk_level": "medium",
+      "read_after_write_sensitive": false,
+      "tenant_scope_required": true,
+      "replica_allowed": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "billing_finance_reads",
+      "risk_level": "critical",
+      "read_after_write_sensitive": true,
+      "tenant_scope_required": true,
+      "replica_allowed": "strict_consistency_only",
+      "mutation_allowed": false
+    }
+  ],
+  "read_pool_model": {
+    "enabled": true,
+    "write_target": "primary_only",
+    "read_targets": [
+      "sync_replica_candidate_read_pool_eligible_if_lag_ok",
+      "async_read_replica_reporting_only_if_lag_ok"
+    ],
+    "excluded_targets": [
+      "primary_for_default_reads",
+      "backup_pitr_chain",
+      "unhealthy_replica",
+      "lagging_replica",
+      "split_brain_unknown_replica"
+    ],
+    "requires_health_score": true,
+    "requires_lag_score": true,
+    "requires_tenant_scope_validation": true
+  },
+  "replica_health_scoring_policy": {
+    "enabled": true,
+    "minimum_health_score": 0.95,
+    "max_lag_seconds_operational": 5,
+    "max_lag_seconds_reporting": 60,
+    "block_if_wal_receiver_unhealthy": true,
+    "block_if_replication_slot_unhealthy": true,
+    "block_if_backup_pitr_chain_unhealthy": true
+  },
+  "consistency_policy": {
+    "enabled": true,
+    "read_after_write_guard_required": true,
+    "strict_consistency_routes_use_primary": true,
+    "stale_read_guard_required": true,
+    "tenant_safe_read_routing_required": true,
+    "block_if_tenant_scope_unknown": true,
+    "block_if_route_consistency_unknown": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "dsn_switch_execute",
+      "application_route_change_execute",
+      "read_pool_attach_execute",
+      "read_pool_detach_execute",
+      "replica_promotion_execute",
+      "db_role_mutation_execute",
+      "dns_mutation_execute",
+      "load_balancer_mutation_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "data_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "dsn_mutation_allowed": false,
+    "application_route_mutation_allowed": false,
+    "read_pool_attach_allowed": false,
+    "read_pool_detach_allowed": false,
+    "replica_promotion_allowed": false,
+    "db_role_mutation_allowed": false,
+    "dns_mutation_allowed": false,
+    "load_balancer_mutation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "routing_id",
+      "surface",
+      "target_decision",
+      "health_score_status",
+      "lag_guard_status",
+      "consistency_guard_status",
+      "tenant_scope_guard_status",
+      "risk_level",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_node_health_fencing_dependency_missing": true,
+    "block_if_write_target_not_primary_only": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_dsn_or_route_mutation_allowed": true,
+    "block_if_replica_mutation_allowed": true,
+    "block_if_missing_lag_guard": true,
+    "block_if_missing_consistency_guard": true,
+    "block_if_missing_tenant_scope_guard": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_20_2_REPLICA_ROUTING_READ_POOL_STRATEJISI_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

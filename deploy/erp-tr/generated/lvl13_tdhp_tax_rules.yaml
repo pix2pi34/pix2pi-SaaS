@@ -1,0 +1,18 @@
+version: v1
+tdhp_rules:
+  version: 2026-v1
+  default_currency: TRY
+  reconciliation_mode: strict
+  audit_trace_enabled: true
+  document_rule_mode: document_scoped
+  validation_profile: turkiye-core
+
+tax_rules:
+  kdv_default_percent: 20
+  kdv_reduced_percent: 10
+  kdv_super_reduced_percent: 1
+  withholding_enabled: true
+  withholding_default_percent: 10
+  exemption_mode: rule_based
+  rule_version: 2026-v1
+  tax_audit_enabled: true

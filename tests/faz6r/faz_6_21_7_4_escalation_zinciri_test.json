@@ -1,0 +1,54 @@
+{
+  "expected_dependency": "FAZ_6_21_7_3",
+  "expected_runtime_mutation_allowed": false,
+  "expected_notification_provider_enabled": false,
+  "expected_real_sms_enabled": false,
+  "expected_real_email_enabled": false,
+  "expected_real_phone_call_enabled": false,
+  "expected_real_pager_enabled": false,
+  "expected_required_controls": [
+    "on_call_dependency_gate",
+    "escalation_level_model",
+    "severity_to_escalation_mapping",
+    "ack_timeout_policy",
+    "p0_escalation_chain",
+    "p1_escalation_chain",
+    "p2_escalation_chain",
+    "p3_escalation_chain",
+    "business_owner_notification_policy",
+    "security_owner_notification_policy",
+    "technical_owner_notification_policy",
+    "manual_approval_policy",
+    "provider_closed_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_escalation_levels": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5"
+  ],
+  "expected_severities": [
+    "P0",
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "expected_p0_required_levels": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5"
+  ],
+  "expected_p1_required_levels": [
+    "L1",
+    "L2",
+    "L3",
+    "L4"
+  ],
+  "expected_provider_mode": "record_only_no_real_send",
+  "expected_next_step": "FAZ_6_21_7_5"
+}

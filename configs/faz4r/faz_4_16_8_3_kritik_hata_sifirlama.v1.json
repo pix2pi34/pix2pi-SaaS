@@ -1,0 +1,62 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 233,
+  "step": "FAZ_4_16_8_3",
+  "title": "Kritik hata sıfırlama",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "232_FAZ_4_16_8_2_UAT_BASARI_ESIGI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "critical_reset_policy": {
+    "critical_issue_reset_status_required": "READY",
+    "critical_issue_reset_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "p0_issue_count_required": 0,
+    "p1_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "open_incident_count_required": 0,
+    "regression_fail_count_required": 0,
+    "exception_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "uat_threshold_status_required": "PASS",
+    "resolution_evidence_status_required": "READY",
+    "regression_evidence_status_required": "READY",
+    "owner_signoff_status_required": "READY",
+    "support_confirmation_status_required": "READY",
+    "tenant_confirmation_status_required": "READY",
+    "no_go_no_go_decision_required": true,
+    "no_production_launch_required": true,
+    "no_live_external_provider_activation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_reset_items": [
+    "CRITICAL_RESET_KICKOFF",
+    "UAT_THRESHOLD_LINK",
+    "CRITICAL_ISSUE_INVENTORY",
+    "SEVERITY_CLASSIFICATION",
+    "P0_P1_ZERO_TARGET",
+    "RESOLUTION_EVIDENCE_INDEX",
+    "REGRESSION_TEST_EVIDENCE",
+    "OWNER_SIGNOFF",
+    "SUPPORT_CONFIRMATION",
+    "PILOT_TENANT_CONFIRMATION",
+    "INCIDENT_BACKLOG_ZERO",
+    "OPEN_BLOCKER_ZERO",
+    "EXCEPTION_POLICY_CLOSED",
+    "EXTERNAL_POLICY_CLOSED_GATE",
+    "FINAL_CRITICAL_RESET_REPORT"
+  ],
+  "critical_reset_artifact": "configs/faz4r/critical_issue_reset.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "234_FAZ_4_16_8_4_GO_NO_GO_KARARI"
+  ]
+}

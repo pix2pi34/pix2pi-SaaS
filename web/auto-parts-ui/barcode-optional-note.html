@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi Barkod Opsiyonel UI Notu</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --card: #101d31;
+      --text: #eef6ff;
+      --muted: #a8b8cc;
+      --line: rgba(255, 255, 255, 0.12);
+      --accent: #41b8ff;
+      --ok: #38d996;
+      --warn: #ffcf5a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, #173e63, var(--bg) 54%);
+    }
+
+    .page {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 30px 0 38px;
+    }
+
+    .hero {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255, 207, 90, 0.14), rgba(16, 29, 49, 0.94));
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .eyebrow {
+      color: var(--warn);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 14px;
+    }
+
+    .pill strong {
+      color: var(--ok);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(16, 29, 49, 0.9);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 19px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .note {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(65, 184, 255, 0.3);
+      background: rgba(65, 184, 255, 0.08);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        width: min(100% - 22px, 980px);
+        padding-top: 16px;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Pix2pi FAZ 4D-8</div>
+      <h1>Barkod Opsiyonel UI Notu</h1>
+      <p class="subtitle">
+        Barkod pilot akışı için zorunlu değildir. Ürün veya oto yedek parça; SKU, OEM numarası,
+        parça adı, eşdeğer parça veya araç uyum bilgisiyle bulunabilir.
+      </p>
+
+      <div class="status">
+        <span class="pill">Barkod Durumu: <strong>OPSİYONEL</strong></span>
+        <span class="pill">Barkodsuz Satış: <strong>İZİNLİ</strong></span>
+        <span class="pill">OEM Arama: <strong>ÖNCELİKLİ</strong></span>
+        <span class="pill">Scanner: <strong>SONRAKİ FAZ</strong></span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>SKU ile Arama</h2>
+        <p>Kullanıcı barkod olmadan SKU ile ürün veya parça bulabilir. Pilot akış barkoda bağlı kalmaz.</p>
+      </article>
+
+      <article class="card">
+        <h2>OEM Numarası</h2>
+        <p>Oto yedek parçada OEM numarası çoğu zaman barkoddan daha kritik arama anahtarıdır.</p>
+      </article>
+
+      <article class="card">
+        <h2>EAN / GTIN</h2>
+        <p>EAN veya GTIN alanları staging/extension notu olarak tutulur. Core product için zorunlu değildir.</p>
+      </article>
+
+      <article class="card">
+        <h2>Gelecek Scanner Desteği</h2>
+        <p>Kamera, USB veya bluetooth barkod okuyucu desteği production kapsamda sonraki fazlarda değerlendirilir.</p>
+      </article>
+    </section>
+
+    <section class="note">
+      Pilot karar notu: Barkod olmadığı için ürün girişi, satış, stok veya oto yedek parça araması bloke edilmez.
+      Barkod eşleşmesi ileride aktifleşirse tenant-safe olmak zorundadır.
+      Mobile-ready PWA uyumu korunur, ancak bu adımda kamera ile barkod okutma yapılmaz.
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — App Shell / Navigation</title>
+  <link rel="stylesheet" href="./app_shell.css">
+</head>
+<body>
+  <div class="pix2pi-app-shell" id="pix2piAppShell">
+    <aside class="pix2pi-sidebar" id="pix2piSidebar">
+      <div class="pix2pi-brand">
+        <span class="pix2pi-brand-mark">P</span>
+        <span>Pix2pi</span>
+      </div>
+
+      <nav class="pix2pi-nav" id="pix2piNavigation" aria-label="Pix2pi ana navigasyon"></nav>
+    </aside>
+
+    <header class="pix2pi-topbar" id="pix2piTopbar">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="pix2pi-sidebar-toggle" id="pix2piSidebarToggle" type="button">☰</button>
+        <div class="pix2pi-breadcrumb" id="pix2piBreadcrumb" aria-label="Breadcrumb"></div>
+      </div>
+
+      <div class="pix2pi-topbar-actions">
+        <span class="pix2pi-badge ok">WEB-L1 READY</span>
+        <div class="pix2pi-tenant-indicator" id="pix2piTenantIndicator">
+          <span class="pix2pi-tenant-name" id="pix2piTenantName">Tenant yükleniyor</span>
+          <span class="pix2pi-tenant-code" id="pix2piTenantCode">TENANT_CODE</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="pix2pi-main-content" id="pix2piMainContent">
+      <section class="pix2pi-page-header">
+        <div>
+          <h1 class="pix2pi-page-title" id="pix2piPageTitle">App Shell</h1>
+          <p class="pix2pi-page-subtitle" id="pix2piPageSubtitle">Navigation iskeleti yükleniyor</p>
+        </div>
+      </section>
+
+      <section class="pix2pi-content-grid" id="pix2piPageContent"></section>
+    </main>
+  </div>
+
+  <script src="./app_shell.js"></script>
+</body>
+</html>

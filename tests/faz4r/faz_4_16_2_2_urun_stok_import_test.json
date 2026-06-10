@@ -1,0 +1,143 @@
+{
+  "valid_fixture": {
+    "import_batch": {
+      "tenant_id": "pilot_tenant_001",
+      "batch_id": "product_stock_import_batch_199_001",
+      "import_type": "PRODUCT_STOCK",
+      "import_mode": "DRY_RUN",
+      "commit_requested": false,
+      "source_format": "JSON",
+      "total_product_rows": 3,
+      "total_stock_rows": 2
+    },
+    "products": [
+      {
+        "tenant_id": "pilot_tenant_001",
+        "product_code": "URUN-001",
+        "product_name": "Motor Yağı 5W30",
+        "product_type": "PHYSICAL",
+        "unit_code": "ADET",
+        "barcode": "8690000000011",
+        "sku": "SKU-URUN-001",
+        "tax_rate": 20,
+        "sales_price": 1250.50,
+        "purchase_price": 950.25,
+        "track_stock": true
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "product_code": "URUN-002",
+        "product_name": "Hava Filtresi",
+        "product_type": "PHYSICAL",
+        "unit_code": "ADET",
+        "barcode": "8690000000028",
+        "sku": "SKU-URUN-002",
+        "tax_rate": 20,
+        "sales_price": 350,
+        "purchase_price": 210,
+        "track_stock": true
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "product_code": "HZM-001",
+        "product_name": "Montaj Hizmeti",
+        "product_type": "SERVICE",
+        "unit_code": "SAAT",
+        "tax_rate": 20,
+        "sales_price": 500,
+        "purchase_price": 0,
+        "track_stock": false
+      }
+    ],
+    "stock_entries": [
+      {
+        "tenant_id": "pilot_tenant_001",
+        "product_code": "URUN-001",
+        "warehouse_code": "DEPO-ANA",
+        "quantity": 100,
+        "reserved_quantity": 5,
+        "min_stock_quantity": 10
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "product_code": "URUN-002",
+        "warehouse_code": "DEPO-ANA",
+        "quantity": 50,
+        "reserved_quantity": 0,
+        "min_stock_quantity": 5
+      }
+    ],
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "import_batch": {
+      "tenant_id": "pilot_tenant_001",
+      "batch_id": "",
+      "import_type": "CUSTOMER",
+      "import_mode": "COMMIT",
+      "commit_requested": true,
+      "source_format": "TXT",
+      "total_product_rows": 2,
+      "total_stock_rows": 2
+    },
+    "products": [
+      {
+        "tenant_id": "other_tenant",
+        "product_code": "URUN-DUP",
+        "product_name": "",
+        "product_type": "BAD_TYPE",
+        "unit_code": "BAD_UNIT",
+        "barcode": "8690000000099",
+        "sku": "SKU-DUP",
+        "tax_rate": -1,
+        "sales_price": -10,
+        "purchase_price": -5,
+        "track_stock": "yes"
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "product_code": "URUN-DUP",
+        "product_name": "Duplicate Product",
+        "product_type": "PHYSICAL",
+        "unit_code": "ADET",
+        "barcode": "8690000000099",
+        "sku": "SKU-DUP",
+        "tax_rate": 20,
+        "sales_price": 100,
+        "purchase_price": 50,
+        "track_stock": true
+      }
+    ],
+    "stock_entries": [
+      {
+        "tenant_id": "pilot_tenant_001",
+        "product_code": "UNKNOWN-PRODUCT",
+        "warehouse_code": "DEPO-ANA",
+        "quantity": -1,
+        "reserved_quantity": 0,
+        "min_stock_quantity": 0
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "product_code": "URUN-DUP",
+        "warehouse_code": "DEPO-ANA",
+        "quantity": 5,
+        "reserved_quantity": 10,
+        "min_stock_quantity": -1
+      }
+    ],
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

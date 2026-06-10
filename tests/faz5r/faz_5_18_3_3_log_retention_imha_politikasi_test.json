@@ -1,0 +1,33 @@
+{
+  "test_name": "faz_5_18_3_3_log_retention_imha_politikasi_test",
+  "phase": "FAZ_5_18_3_3",
+  "expected": {
+    "required_policy_count": 5,
+    "internal_policy_ready": true,
+    "production_deletion_allowed": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_policy_keys": [
+    "audit_event_log_retention",
+    "consent_decision_log_retention",
+    "contract_document_retention",
+    "security_access_log_retention",
+    "commercial_operation_log_retention"
+  ],
+  "must_have_scopes": [
+    "AUDIT_LOG",
+    "CONSENT_LOG",
+    "CONTRACT_DOCUMENT",
+    "SECURITY_LOG",
+    "COMMERCIAL_OPERATION_LOG"
+  ],
+  "must_have_flags": [
+    "tenant_scoped",
+    "has_legal_hold",
+    "has_audit_evidence",
+    "has_kvkk_basis",
+    "has_restore_guard",
+    "production_delete_enabled"
+  ]
+}

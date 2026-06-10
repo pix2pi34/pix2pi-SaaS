@@ -1,0 +1,44 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "320",
+  "name": "Merchant dashboard",
+  "surface": "merchant_panel",
+  "domain": "panel.pix2pi.com.tr",
+  "path": "/dashboard/",
+  "runtime_path": "/assets/dashboard/merchant-dashboard-runtime.js",
+  "depends_on": [
+    "316 - panel.pix2pi.com.tr altyapısı",
+    "317 - Login / tenant seçimi",
+    "318 - Dil Modülü / i18n / Alfabe Altyapısı",
+    "319 - İşletme onboarding ekranı"
+  ],
+  "backend_contract": {
+    "snapshot_endpoint": "/api/panel/dashboard/snapshot",
+    "method": "GET",
+    "auth": "Bearer JWT",
+    "tenant_header": "X-Tenant-ID"
+  },
+  "required_widgets": [
+    "tenant_summary",
+    "onboarding_progress",
+    "kpi_cards",
+    "quick_actions",
+    "pos_status",
+    "erp_status",
+    "marketplace_status",
+    "alert_preview"
+  ],
+  "required_capabilities": [
+    "dashboard_app_shell",
+    "tenant_summary_card",
+    "onboarding_progress_widget",
+    "kpi_cards",
+    "quick_actions",
+    "pos_erp_marketplace_status_cards",
+    "alert_notification_preview",
+    "i18n_ready_dashboard_text_markers",
+    "dashboard_runtime_data_contract",
+    "dashboard_smoke_test"
+  ],
+  "next_step": "321 - Kullanıcı / rol / personel ekranı"
+}

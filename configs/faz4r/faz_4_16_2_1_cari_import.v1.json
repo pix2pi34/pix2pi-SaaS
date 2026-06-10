@@ -1,0 +1,60 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 198,
+  "step": "FAZ_4_16_2_1",
+  "title": "Cari import",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "180_FAZ_4_14_3_IMPORT_STAGING_TABLES",
+    "192_FAZ_4_16_1_4_PILOT_VERI_SINIRLARI_TANIMI",
+    "193_FAZ_4_16_1_5_TENANT_ACCEPTANCE_CHECKLIST",
+    "194_FAZ_4_16_1_6_ONBOARDING_SMOKE",
+    "195_FAZ_4_16_1_1_PILOT_TENANT_ACILIS_AKISI",
+    "196_FAZ_4_16_1_2_TENANT_CONFIG_SABLONLARI",
+    "197_FAZ_4_16_1_3_KULLANICI_ROL_ILK_KURULUMU"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "import_policy": {
+    "import_mode_required": "DRY_RUN",
+    "commit_allowed": false,
+    "tenant_id_required": true,
+    "batch_id_required": true,
+    "max_customer_count": 500,
+    "max_rows_per_batch": 500,
+    "duplicate_customer_code_forbidden": true,
+    "duplicate_tax_no_forbidden": true,
+    "company_tax_no_required": true,
+    "company_tax_office_required": true,
+    "company_address_required": true,
+    "mersis_no_required": false,
+    "email_format_required_when_present": true,
+    "phone_format_required_when_present": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_customer_fields": [
+    "customer_code",
+    "customer_name",
+    "customer_type",
+    "customer_kind",
+    "address.full_address",
+    "address.city"
+  ],
+  "required_company_fields": [
+    "tax_no",
+    "tax_office"
+  ],
+  "optional_company_fields": [
+    "mersis_no",
+    "phone",
+    "email"
+  ],
+  "mapping_artifact": "configs/faz4r/customer_import_mapping.controlled_pilot.v1.json",
+  "target_staging_table": "import_staging_customers",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "199_FAZ_4_16_2_2_URUN_STOK_IMPORT"
+  ]
+}

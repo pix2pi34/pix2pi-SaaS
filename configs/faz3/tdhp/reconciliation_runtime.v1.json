@@ -1,0 +1,53 @@
+{
+  "phase": "FAZ_3_10_1_5_RECONCILIATION_RUNTIME",
+  "runtime": "tdhp_reconciliation_runtime",
+  "runtime_enabled": true,
+  "default_currency_code": "TRY",
+  "idempotency_required": true,
+  "append_only_result": true,
+  "require_balanced_posting": true,
+  "require_audit_trace": true,
+  "manual_review_enabled": true,
+  "tolerance_kurus": 0,
+  "allowed_actions": [
+    "POSTING_VS_DOCUMENT",
+    "POSTING_VS_AUDIT_TRACE",
+    "REVERSAL_VS_POSTING",
+    "PERIOD_BALANCE",
+    "MANUAL_REVIEW_REGISTER"
+  ],
+  "repository_contract": [
+    "Append",
+    "FindByReconciliationID",
+    "FindByIdempotencyKey",
+    "ListByTenant",
+    "ListByDocument",
+    "ListByPosting"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "reconciliation_id_required": true,
+    "action_allowed": true,
+    "expected_document_required": true,
+    "expected_currency_must_be_TRY": true,
+    "expected_amounts_non_negative": true,
+    "expected_posting_id_required": true,
+    "expected_voucher_id_required": true,
+    "posting_balanced_required": true,
+    "posting_debit_credit_totals_must_match": true,
+    "posting_hash_required": true,
+    "audit_trace_required": true,
+    "audit_trace_posting_hash_required": true,
+    "append_only_result_required": true,
+    "duplicate_reconciliation_id_rejected": true,
+    "duplicate_idempotency_key_rejected": true,
+    "tenant_scoped_lookup": true,
+    "tenant_scoped_document_listing": true,
+    "tenant_scoped_posting_listing": true,
+    "manual_review_reason_required": true
+  },
+  "next_gate": "FAZ_3_10_1_6_TDHP_LIVE_TESTS"
+}

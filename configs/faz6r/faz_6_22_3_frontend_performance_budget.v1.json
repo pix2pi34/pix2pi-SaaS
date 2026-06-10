@@ -1,0 +1,181 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "309",
+  "code": "FAZ_6_22_3",
+  "name": "Frontend performance budget",
+  "depends_on": [
+    "FAZ_6_22_2"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "frontend_deploy_allowed": false,
+  "build_publish_allowed": false,
+  "bundle_mutation_allowed": false,
+  "cdn_invalidation_allowed": false,
+  "route_mutation_allowed": false,
+  "asset_pipeline_mutation_allowed": false,
+  "compression_mutation_allowed": false,
+  "required_controls": [
+    "accessibility_dependency_gate",
+    "core_web_vitals_budget_policy",
+    "route_level_budget_policy",
+    "js_bundle_budget_policy",
+    "css_budget_policy",
+    "image_asset_budget_policy",
+    "font_budget_policy",
+    "third_party_script_budget_policy",
+    "cache_budget_policy",
+    "public_landing_budget_policy",
+    "panel_runtime_budget_policy",
+    "workflow_ui_budget_policy",
+    "dry_run_performance_budget_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "core_web_vitals_budget_policy": {
+    "enabled": true,
+    "lcp_ms_target": 2500,
+    "inp_ms_target": 200,
+    "cls_target": 0.1,
+    "ttfb_ms_target": 800,
+    "block_if_lcp_above_target": true,
+    "block_if_inp_above_target": true,
+    "block_if_cls_above_target": true
+  },
+  "route_budgets": [
+    {
+      "route": "public_landing",
+      "risk_level": "medium",
+      "js_kb_max": 180,
+      "css_kb_max": 80,
+      "image_kb_max": 900,
+      "lcp_ms_target": 2500,
+      "mutation_allowed": false
+    },
+    {
+      "route": "auth_login",
+      "risk_level": "critical",
+      "js_kb_max": 140,
+      "css_kb_max": 60,
+      "image_kb_max": 250,
+      "lcp_ms_target": 2200,
+      "mutation_allowed": false
+    },
+    {
+      "route": "tenant_panel_shell",
+      "risk_level": "critical",
+      "js_kb_max": 280,
+      "css_kb_max": 100,
+      "image_kb_max": 300,
+      "lcp_ms_target": 2500,
+      "mutation_allowed": false
+    },
+    {
+      "route": "approval_inbox",
+      "risk_level": "high",
+      "js_kb_max": 260,
+      "css_kb_max": 90,
+      "image_kb_max": 250,
+      "lcp_ms_target": 2500,
+      "mutation_allowed": false
+    },
+    {
+      "route": "workflow_monitor",
+      "risk_level": "high",
+      "js_kb_max": 300,
+      "css_kb_max": 100,
+      "image_kb_max": 250,
+      "lcp_ms_target": 2800,
+      "mutation_allowed": false
+    },
+    {
+      "route": "reporting_tables",
+      "risk_level": "high",
+      "js_kb_max": 320,
+      "css_kb_max": 100,
+      "image_kb_max": 200,
+      "lcp_ms_target": 2800,
+      "mutation_allowed": false
+    }
+  ],
+  "asset_budget_policy": {
+    "enabled": true,
+    "total_js_kb_max": 350,
+    "total_css_kb_max": 120,
+    "total_image_kb_max": 1000,
+    "font_kb_max": 120,
+    "third_party_script_kb_max": 120,
+    "block_if_unknown_third_party_script": true,
+    "block_if_uncompressed_assets": true
+  },
+  "cache_budget_policy": {
+    "enabled": true,
+    "static_asset_cache_required": true,
+    "html_no_cache_policy_required": true,
+    "hashed_asset_policy_required": true,
+    "service_worker_policy_review_required": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "frontend_deploy_execute",
+      "build_publish_execute",
+      "bundle_mutation_execute",
+      "cdn_invalidation_execute",
+      "route_mutation_execute",
+      "asset_pipeline_mutation_execute",
+      "compression_mutation_execute"
+    ],
+    "approval_roles": [
+      "frontend_owner",
+      "ux_owner",
+      "sre_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "frontend_deploy_allowed": false,
+    "build_publish_allowed": false,
+    "bundle_mutation_allowed": false,
+    "cdn_invalidation_allowed": false,
+    "route_mutation_allowed": false,
+    "asset_pipeline_mutation_allowed": false,
+    "compression_mutation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "budget_id",
+      "route",
+      "lcp_status",
+      "inp_status",
+      "cls_status",
+      "js_budget_status",
+      "css_budget_status",
+      "image_budget_status",
+      "cache_status",
+      "risk_level",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_accessibility_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_frontend_deploy_allowed": true,
+    "block_if_build_publish_allowed": true,
+    "block_if_bundle_mutation_allowed": true,
+    "block_if_missing_core_web_vitals": true,
+    "block_if_missing_route_budget": true,
+    "block_if_missing_asset_budget": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_22_3_FRONTEND_PERFORMANCE_BUDGET_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

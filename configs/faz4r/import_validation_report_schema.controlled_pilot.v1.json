@@ -1,0 +1,52 @@
+{
+  "schema_id": "import_validation_report_schema.controlled_pilot.v1",
+  "schema_status": "READY",
+  "validation_mode": "DRY_RUN",
+  "commit_allowed": false,
+  "supported_import_types": [
+    "CUSTOMER",
+    "PRODUCT_STOCK",
+    "RECEIPT_MOVEMENT"
+  ],
+  "required_summary_fields": [
+    "tenant_id",
+    "batch_id",
+    "import_type",
+    "report_id",
+    "report_status",
+    "report_result",
+    "validation_mode",
+    "total_rows",
+    "valid_rows",
+    "invalid_rows",
+    "warning_count",
+    "error_count",
+    "evidence_ref"
+  ],
+  "required_error_fields": [
+    "row_no",
+    "field",
+    "code",
+    "severity",
+    "message"
+  ],
+  "required_warning_fields": [
+    "row_no",
+    "field",
+    "code",
+    "severity",
+    "message"
+  ],
+  "rules": {
+    "total_rows_must_equal_valid_plus_invalid": true,
+    "error_count_must_match_errors_length": true,
+    "warning_count_must_match_warnings_length": true,
+    "invalid_rows_zero_requires_pass": true,
+    "invalid_rows_positive_requires_fail": true,
+    "evidence_ref_required": true,
+    "dry_run_required": true,
+    "real_commit_forbidden": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

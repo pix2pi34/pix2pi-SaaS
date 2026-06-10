@@ -1,0 +1,46 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 201,
+  "step": "FAZ_4_16_2_4",
+  "title": "Mapping / transform kuralları",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "198_FAZ_4_16_2_1_CARI_IMPORT",
+    "199_FAZ_4_16_2_2_URUN_STOK_IMPORT",
+    "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "transform_policy": {
+    "transform_mode_required": "DRY_RUN",
+    "commit_allowed": false,
+    "mapping_rule_set_status_required": "READY",
+    "unknown_source_field_forbidden": true,
+    "duplicate_target_field_forbidden": true,
+    "required_transform_missing_forbidden": true,
+    "preview_output_required": true,
+    "audit_safe_output_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "supported_import_types": [
+    "CUSTOMER",
+    "PRODUCT_STOCK",
+    "RECEIPT_MOVEMENT"
+  ],
+  "required_common_transforms": [
+    "trim_string",
+    "uppercase_code",
+    "normalize_enum",
+    "normalize_date",
+    "parse_decimal",
+    "normalize_currency",
+    "normalize_boolean"
+  ],
+  "rules_artifact": "configs/faz4r/mapping_transform_rules.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "202_FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU"
+  ]
+}

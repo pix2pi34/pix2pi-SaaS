@@ -1,0 +1,53 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "334",
+  "domain": "pos.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "pos_pwa_screen",
+      "path": "/pwa/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_334_MOBILE_READY_PWA_APP_SHELL_START",
+        "PIX2PI_334_PWA_MANIFEST_START",
+        "PIX2PI_334_SERVICE_WORKER_PLACEHOLDER_START"
+      ]
+    },
+    {
+      "name": "pos_pwa_runtime",
+      "path": "/assets/pwa/pos-pwa-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_334_POS_PWA_RUNTIME_START",
+        "registerServiceWorker",
+        "buildSessionPreservationSnapshot"
+      ]
+    },
+    {
+      "name": "pos_manifest",
+      "path": "/manifest.json",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "\"name\": \"Pix2pi POS\"",
+        "\"display\": \"standalone\""
+      ]
+    },
+    {
+      "name": "pos_service_worker",
+      "path": "/sw.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_334_POS_SERVICE_WORKER_START",
+        "PIX2PI_PWA_CACHE_ALLOWLIST"
+      ]
+    },
+    {
+      "name": "pos_offline_fallback",
+      "path": "/offline-fallback.html",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_334_OFFLINE_FALLBACK_PAGE_START"
+      ]
+    }
+  ]
+}

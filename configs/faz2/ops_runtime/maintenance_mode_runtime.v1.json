@@ -1,0 +1,35 @@
+{
+  "phase": "FAZ 2-7.2.4",
+  "runtime": "maintenance_mode_runtime",
+  "require_tenant": true,
+  "allowed_operator_roles": [
+    "PLATFORM_ADMIN",
+    "OPS_ADMIN",
+    "SRE"
+  ],
+  "allowed_actions": [
+    "ENABLE_MAINTENANCE",
+    "DISABLE_MAINTENANCE"
+  ],
+  "metadata_bridge_enabled": true,
+  "metadata_visibility": "INTERNAL",
+  "guards": [
+    "tenant_required",
+    "registry_required",
+    "instance_required",
+    "operator_required",
+    "operator_role_required",
+    "authorized_operator_role_required",
+    "valid_action_required",
+    "cross_tenant_instance_denied",
+    "tenant_safe_maintenance_record_access",
+    "audit_log_bridge"
+  ],
+  "bridges": [
+    "instance_metadata_runtime",
+    "maintenance_mode_metadata",
+    "mission_control_maintenance_state",
+    "audit_event_log"
+  ],
+  "next_ready": "FAZ_2_7_2_5_INCIDENT_NOTE_ACTION_LOG_RUNTIME"
+}

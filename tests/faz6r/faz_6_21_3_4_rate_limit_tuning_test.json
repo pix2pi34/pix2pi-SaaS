@@ -1,0 +1,39 @@
+{
+  "expected_dependency": "FAZ_6_21_3_3",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_gateway_rate_limit_mutation_allowed": false,
+  "expected_redis_rate_limit_mutation_allowed": false,
+  "expected_edge_waf_mutation_allowed": false,
+  "expected_nginx_mutation_allowed": false,
+  "expected_required_controls": [
+    "cache_hit_miss_dependency_gate",
+    "rate_limit_surface_inventory",
+    "tenant_rate_limit_model",
+    "route_rate_limit_model",
+    "auth_bruteforce_guard",
+    "api_abuse_guard",
+    "webhook_rate_limit_guard",
+    "public_web_rate_limit_guard",
+    "burst_policy_review",
+    "false_positive_guard",
+    "redis_namespace_guard",
+    "edge_waf_alignment_guard",
+    "dry_run_tuning_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_surfaces": [
+    "api_gateway",
+    "auth",
+    "panel",
+    "pos",
+    "webhook",
+    "public_web"
+  ],
+  "expected_min_recommendation_count": 5,
+  "expected_status": "dry_run_only_no_rate_limit_mutation",
+  "expected_next_step": "FAZ_6_21_2_1"
+}

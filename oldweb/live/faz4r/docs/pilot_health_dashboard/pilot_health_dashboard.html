@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Pix2pi FAZ 4-R Pilot Health Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #0f172a; color: #e5e7eb; }
+    header { padding: 24px; background: #111827; border-bottom: 1px solid #334155; }
+    main { padding: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 16px; }
+    .ok { color: #86efac; font-weight: 700; }
+    .policy { color: #facc15; font-weight: 700; }
+    .muted { color: #94a3b8; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pix2pi FAZ 4-R Pilot Health Dashboard</h1>
+    <p class="muted">CONTROLLED_PILOT_ONLY — CLOSED_POLICY_GATE_REFERENCE_ONLY</p>
+  </header>
+  <main>
+    <section class="card" id="pilot-tenant-health-summary"><h2>Pilot Tenant Health Summary</h2><p class="ok">READY / GREEN</p></section>
+    <section class="card" id="service-health-widget"><h2>Service Health Widget</h2><p class="ok">READY / GREEN</p></section>
+    <section class="card" id="import-pipeline-health-widget"><h2>Import Pipeline Health Widget</h2><p class="ok">READY / GREEN</p></section>
+    <section class="card" id="readmodel-reporting-health-widget"><h2>Readmodel / Reporting Health Widget</h2><p class="ok">READY / GREEN</p></section>
+    <section class="card" id="uat-status-widget"><h2>UAT Status Widget</h2><p class="ok">READY / GREEN</p></section>
+    <section class="card" id="training-support-health-widget"><h2>Training / Support Health Widget</h2><p class="ok">READY / GREEN</p></section>
+    <section class="card" id="support-triage-health-widget"><h2>Support Triage Health Widget</h2><p class="ok">READY / GREEN</p></section>
+    <section class="card" id="issue-escalation-health-widget"><h2>Issue Escalation Health Widget</h2><p class="ok">READY / GREEN</p></section>
+    <section class="card" id="rollback-signal-health-widget"><h2>Rollback Signal Health Widget</h2><p class="ok">CLEAR / GREEN</p></section>
+    <section class="card" id="kpi-snapshot-widget"><h2>KPI Snapshot Widget</h2><p class="ok">READY / GREEN</p></section>
+    <section class="card" id="open-blocker-critical-issue-widget"><h2>Open Blocker / Critical Issue Widget</h2><p class="ok">0 BLOCKER / 0 CRITICAL</p></section>
+    <section class="card" id="closed-provider-policy-widget"><h2>Closed Provider Policy Widget</h2><p class="policy">GIB / BANK / POS / PAYMENT / PROVIDER CLOSED</p></section>
+    <section class="card" id="operations-handoff-widget"><h2>Operations Handoff Widget</h2><p class="ok">YES</p></section>
+    <section class="card" id="last-review-timestamp-widget"><h2>Last Review Timestamp Widget</h2><p class="ok">READY</p></section>
+  </main>
+</body>
+</html>

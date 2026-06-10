@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "status": "ok",
+  "route": "/owner-panel/register-approvals/",
+  "owner_only": true,
+  "customer_visible": false,
+  "marker": "OWNER_REGISTER_APPROVALS_ADMIN_MARKER",
+  "companies_marker": "OWNER_REGISTER_COMPANIES_LIST_MARKER",
+  "runtime_marker": "PIX2PI_OWNER_APPROVAL_RUNTIME",
+  "handoff_marker": "REGISTER_APPROVAL_HANDOFF_MARKER",
+  "features": [
+    "pending applications",
+    "all registered companies",
+    "email-separated records",
+    "logout button"
+  ],
+  "tenant_create_real_create": false,
+  "built_at": "20260517_002531"
+}

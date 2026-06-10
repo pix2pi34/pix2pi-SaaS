@@ -1,0 +1,43 @@
+version: v1
+correlation:
+  chains:
+    - id: service_to_service
+      label: Service-to-service correlation
+      required_fields:
+        - trace_id
+        - request_id
+        - source_service
+        - target_service
+
+    - id: request_chain
+      label: Request / correlation id zinciri
+      required_fields:
+        - request_id
+        - correlation_id
+        - tenant_id
+        - route
+
+  incident_grouping:
+    strategy: fingerprint_window
+    fingerprint_fields:
+      - signal_id
+      - service
+      - tenant_id
+      - severity
+    window_seconds: 300
+
+  noisy_alert_suppression:
+    strategy: dedupe_and_cooldown
+    cooldown_seconds: 600
+    max_repeat_before_suppress: 3
+
+  root_cause_hints:
+    - id: db_bottleneck_hint
+      when_signal: db.connection.usage
+      hint: Database bottleneck veya yavas sorgu olasiligi yuksek.
+    - id: event_backlog_hint
+      when_signal: event.backlog.size
+      hint: Event consumer lag veya yetersiz consumer sayisi olasiligi yuksek.
+    - id: reporting_impact_hint
+      when_signal: reporting.query.latency
+      hint: Reporting sorgulari canli islemleri yavaslatiyor olabilir.

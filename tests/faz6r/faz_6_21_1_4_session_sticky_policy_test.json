@@ -1,0 +1,39 @@
+{
+  "expected_dependency": "FAZ_6_21_1_2",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_gateway_session_mutation_allowed": false,
+  "expected_load_balancer_sticky_mutation_allowed": false,
+  "expected_nginx_mutation_allowed": false,
+  "expected_redis_session_mutation_allowed": false,
+  "expected_cookie_policy_mutation_allowed": false,
+  "expected_deployment_rollout_allowed": false,
+  "expected_required_controls": [
+    "service_discovery_dependency_gate",
+    "session_surface_inventory",
+    "sticky_affinity_policy",
+    "tenant_aware_affinity_guard",
+    "stateless_fallback_policy",
+    "session_store_health_policy",
+    "cookie_security_policy",
+    "failover_affinity_policy",
+    "websocket_sse_affinity_policy",
+    "pos_offline_session_policy",
+    "gateway_lb_alignment_guard",
+    "dry_run_session_policy_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_surfaces": [
+    "api_gateway_http",
+    "panel_session",
+    "pos_session",
+    "websocket_sse",
+    "public_web"
+  ],
+  "expected_min_recommendation_count": 5,
+  "expected_status": "dry_run_only_no_session_sticky_mutation",
+  "expected_next_step": "FAZ_6_21_1_5"
+}

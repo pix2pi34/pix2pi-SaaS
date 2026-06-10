@@ -1,0 +1,17 @@
+{
+  "step": "FAZ 7-R / 350",
+  "name": "Panel erişim testi real final",
+  "dependencies": ["317 login routes", "319/347 tenant opening", "348 invite acceptance", "321 RBAC"],
+  "apis": [
+    "POST /api/panel/access/session-create",
+    "POST /api/panel/access/check"
+  ],
+  "evidenceRequired": [
+    "curl session create",
+    "DB SELECT session/audit",
+    "allowed panel access",
+    "forbidden panel access",
+    "invalid session",
+    "rollback no partial write"
+  ]
+}

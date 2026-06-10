@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+
+<!-- PIX2PI_FAVICON_PATCH_START -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo/ana_logo_favicon_20260511_175833.png">
+<link rel="shortcut icon" type="image/png" href="/assets/images/logo/ana_logo_favicon_20260511_175833.png">
+<link rel="apple-touch-icon" href="/assets/images/logo/ana_logo_favicon_20260511_175833.png">
+<meta name="theme-color" content="#050505">
+<!-- PIX2PI_FAVICON_PATCH_END -->
+
+
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#07090d" />
+  <meta name="description" content="pix2pi Ticaret Operasyon Sistemi; işletmeler için ERP, POS, stok, sipariş, raporlama ve dijital mağaza altyapısıdır." />
+  <meta property="og:title" content="pix2pi Ticaret Operasyon Sistemi" />
+  <meta property="og:description" content="Ticaretinizi akıllı yönetin, geleceğe güvenle büyütün." />
+  <meta property="og:type" content="website" />
+  <title>pix2pi Ticaret Operasyon Sistemi</title>
+
+  <!-- PIX2PI_PUBLIC_HOME_ANA_LOGO_FIXED_LAYOUT_20260511_173419 -->
+  <!-- PIX2PI_PUBLIC_HOME_ANA_LOGO_FIXED_LAYOUT_START -->
+
+  <style>
+    :root {
+      --base-width: 1180px;
+      --bg: #07090d;
+      --bg2: #0b0f16;
+      --panel: rgba(8, 12, 18, .86);
+      --line: rgba(255, 214, 10, .22);
+      --line-soft: rgba(255, 255, 255, .10);
+      --text: #f8fafc;
+      --muted: #a8b0bf;
+      --yellow: #ffd60a;
+      --yellow2: #f5b800;
+      --shadow: 0 28px 90px rgba(0, 0, 0, .48);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 14% 18%, rgba(255, 214, 10, .12), transparent 34rem),
+        radial-gradient(circle at 65% 40%, rgba(255, 214, 10, .06), transparent 34rem),
+        linear-gradient(180deg, #05070a 0%, #0b0f16 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .scale-viewport {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow: hidden;
+    }
+
+    .site-frame {
+      width: var(--base-width);
+      min-height: 760px;
+      transform-origin: top center;
+      will-change: transform;
+    }
+
+    .page {
+      width: var(--base-width);
+      min-height: 760px;
+      display: grid;
+      grid-template-rows: 64px 1fr 56px;
+    }
+
+    .topbar {
+      border-bottom: 1px solid rgba(255, 214, 10, .18);
+      background: rgba(5, 7, 10, .92);
+      backdrop-filter: blur(18px);
+      display: flex;
+      align-items: center;
+    }
+
+    .top-inner {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 0 22px;
+    }
+
+    .top-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .top-logo img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .top-logo strong {
+      font-size: 18px;
+      letter-spacing: -.04em;
+      font-weight: 950;
+    }
+
+    .top-logo strong span {
+      color: var(--yellow);
+    }
+
+    .title {
+      font-weight: 900;
+      letter-spacing: -.035em;
+      text-align: center;
+      white-space: nowrap;
+      font-size: 18px;
+    }
+
+    .title span { color: var(--yellow); }
+
+    .lang {
+      justify-self: end;
+      position: relative;
+    }
+
+    .lang select {
+      appearance: none;
+      width: 150px;
+      border: 1px solid rgba(255, 214, 10, .55);
+      background: #10151d;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 9px 32px 9px 12px;
+      font-size: 13px;
+      font-weight: 750;
+      outline: none;
+    }
+
+    .lang::after {
+      content: "⌄";
+      position: absolute;
+      right: 11px;
+      top: 50%;
+      transform: translateY(-55%);
+      color: var(--yellow);
+      pointer-events: none;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
+      gap: 44px;
+      align-items: center;
+      padding: 38px 22px;
+    }
+
+    .hero {
+      height: 620px;
+      position: relative;
+      border: 1px solid rgba(255, 214, 10, .12);
+      border-radius: 28px;
+      overflow: hidden;
+      padding: 48px 44px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(135deg, rgba(255, 214, 10, .16) 0%, rgba(255, 214, 10, .02) 24%, transparent 48%),
+        radial-gradient(circle at 63% 28%, rgba(255, 214, 10, .10), transparent 18rem),
+        rgba(255, 255, 255, .025);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at 55% 38%, black, transparent 70%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 90px;
+      left: -80px;
+      bottom: 84px;
+      background: linear-gradient(90deg, transparent, rgba(255,214,10,.35), transparent);
+      transform: rotate(-48deg);
+      filter: blur(1px);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .brand-main {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 30px;
+    }
+
+    .brand-main img {
+      width: 210px;
+      height: 170px;
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 18px 34px rgba(0,0,0,.50));
+      flex: 0 0 auto;
+    }
+
+    .brand-word {
+      font-size: 88px;
+      line-height: .82;
+      font-weight: 950;
+      letter-spacing: -.085em;
+      color: #fff;
+    }
+
+    .brand-word span {
+      color: var(--yellow);
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      max-width: 620px;
+      font-size: 44px;
+      line-height: 1.03;
+      letter-spacing: -.055em;
+    }
+
+    h1 span {
+      color: var(--yellow);
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.62;
+    }
+
+    .accent-line {
+      width: 48px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--yellow);
+      margin: 26px 0 26px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 520px;
+    }
+
+    .metric {
+      min-height: 94px;
+      border: 1px solid var(--line-soft);
+      background: rgba(255,255,255,.055);
+      border-radius: 16px;
+      padding: 13px;
+      display: grid;
+      align-content: center;
+      gap: 8px;
+    }
+
+    .metric-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,214,10,.12);
+      color: var(--yellow);
+      border-radius: 12px;
+      font-size: 20px;
+    }
+
+    .metric strong {
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .trust {
+      margin-top: 22px;
+      max-width: 520px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      border: 1px solid var(--line-soft);
+      background: rgba(255,255,255,.05);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .shield {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: var(--yellow);
+      border: 1px solid rgba(255,214,10,.22);
+      background: rgba(255,214,10,.10);
+      border-radius: 14px;
+      flex: 0 0 auto;
+      font-size: 22px;
+    }
+
+    .trust strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .trust p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .auth-card {
+      border: 1px solid rgba(255, 214, 10, .18);
+      background: rgba(8, 12, 18, .82);
+      box-shadow: var(--shadow);
+      border-radius: 18px;
+      overflow: hidden;
+      width: 520px;
+      justify-self: end;
+    }
+
+    .auth-inner {
+      padding: 30px 28px;
+    }
+
+    .auth-head {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .auth-icon {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      color: var(--yellow);
+      background: rgba(255,214,10,.10);
+      border: 1px solid rgba(255,214,10,.18);
+      font-size: 24px;
+    }
+
+    .auth-head h2 {
+      margin: 0 0 5px;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+
+    .auth-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field input {
+      width: 100%;
+      height: 54px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.055);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 0 15px;
+      font: inherit;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: rgba(255,214,10,.70);
+      box-shadow: 0 0 0 4px rgba(255,214,10,.08);
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      margin: 6px 0 16px;
+    }
+
+    .row a {
+      color: var(--yellow);
+      font-weight: 800;
+    }
+
+    .remember {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      height: 54px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--yellow), #f5b800);
+      color: #07090d;
+      font-weight: 950;
+      cursor: pointer;
+      font: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--yellow);
+      border: 1px solid rgba(255,214,10,.72);
+    }
+
+    .divider {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      margin: 24px 0;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      background: rgba(255,255,255,.10);
+    }
+
+    .signup {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 26px;
+    }
+
+    .benefits {
+      display: grid;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: #dbe3ef;
+      font-size: 13px;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .check {
+      width: 20px;
+      height: 20px;
+      display: grid;
+      place-items: center;
+      color: #07090d;
+      background: var(--yellow);
+      border-radius: 999px;
+      font-weight: 950;
+      font-size: 12px;
+      flex: 0 0 auto;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      background: rgba(5,7,10,.82);
+    }
+
+    .footer-inner {
+      width: 100%;
+      padding: 0 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    .footer-links a {
+      color: var(--yellow);
+      font-weight: 750;
+    }
+  
+/* PIX2PI_LOGO_UI_PATCH_START */
+.site-brand-text,
+.hero-brand-text,
+.brand-wordmark,
+.wordmark,
+.logo-text,
+.pix2pi-text,
+.header-brand-text,
+.nav-brand-text {
+  display: none !important;
+}
+
+.site-brand,
+.hero-brand,
+.logo-wrap,
+.hero-logo-area,
+.header-logo-area,
+.nav-brand {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.site-brand img,
+.hero-brand img,
+.logo-wrap img,
+.hero-logo-area img,
+.header-logo-area img,
+.nav-brand img,
+img.pix2pi-main-logo {
+  display: block !important;
+  width: clamp(120px, 15vw, 190px) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .site-brand img,
+  .hero-brand img,
+  .logo-wrap img,
+  .hero-logo-area img,
+  .header-logo-area img,
+  .nav-brand img,
+  img.pix2pi-main-logo {
+    width: clamp(92px, 28vw, 130px) !important;
+  }
+}
+/* PIX2PI_LOGO_UI_PATCH_END */
+
+
+/* PIX2PI_EKALEM_OTA_AR_FA_FONT_BIND_START */
+@font-face {
+  font-family: "Pix2piEKalemDuz";
+  src: url("/assets/fonts/husrev/eKalemDuz-Regular_150.ttf?v=20260511_182019") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pix2piEKalemTezyinat";
+  src: url("/assets/fonts/husrev/eKalemTezyinat-Regular_2.ttf?v=20260511_182019") format("truetype");
+  font-display: swap;
+}
+
+/* Osmanlıca + Arapça + Farsça genel metin */
+html[lang="ota"] body,
+html[lang="ar"] body,
+html[lang="fa"] body,
+html[lang="ota"] p,
+html[lang="ar"] p,
+html[lang="fa"] p,
+html[lang="ota"] .lead,
+html[lang="ar"] .lead,
+html[lang="fa"] .lead,
+html[lang="ota"] .metric strong,
+html[lang="ar"] .metric strong,
+html[lang="fa"] .metric strong,
+html[lang="ota"] .trust,
+html[lang="ar"] .trust,
+html[lang="fa"] .trust,
+html[lang="ota"] .auth-card,
+html[lang="ar"] .auth-card,
+html[lang="fa"] .auth-card,
+html[lang="ota"] .footer,
+html[lang="ar"] .footer,
+html[lang="fa"] .footer,
+html[lang="ota"] input,
+html[lang="ar"] input,
+html[lang="fa"] input,
+html[lang="ota"] button,
+html[lang="ar"] button,
+html[lang="fa"] button,
+html[lang="ota"] select,
+html[lang="ar"] select,
+html[lang="fa"] select,
+html[lang="ota"] a,
+html[lang="ar"] a,
+html[lang="fa"] a,
+html[lang="ota"] label,
+html[lang="ar"] label,
+html[lang="fa"] label,
+html[lang="ota"] span,
+html[lang="ar"] span,
+html[lang="fa"] span {
+  font-family: "Pix2piEKalemDuz", "Noto Naskh Arabic", "Noto Nastaliq Urdu", "Amiri", "Scheherazade New", Tahoma, serif !important;
+  letter-spacing: 0 !important;
+}
+
+/* Osmanlıca + Arapça + Farsça başlık/vurgu */
+html[lang="ota"] h1,
+html[lang="ar"] h1,
+html[lang="fa"] h1,
+html[lang="ota"] .title,
+html[lang="ar"] .title,
+html[lang="fa"] .title,
+html[lang="ota"] .auth-head h2,
+html[lang="ar"] .auth-head h2,
+html[lang="fa"] .auth-head h2 {
+  font-family: "Pix2piEKalemTezyinat", "Pix2piEKalemDuz", "Noto Naskh Arabic", serif !important;
+  letter-spacing: 0 !important;
+}
+
+/* RTL hizalama */
+html[lang="ota"],
+html[lang="ar"],
+html[lang="fa"] {
+  direction: rtl;
+}
+
+html[lang="ota"] h1,
+html[lang="ar"] h1,
+html[lang="fa"] h1 {
+  line-height: 1.28 !important;
+  text-align: right !important;
+}
+
+html[lang="ota"] .lead,
+html[lang="ar"] .lead,
+html[lang="fa"] .lead {
+  line-height: 1.95 !important;
+  text-align: right !important;
+}
+
+html[lang="ota"] input::placeholder,
+html[lang="ar"] input::placeholder,
+html[lang="fa"] input::placeholder {
+  font-family: "Pix2piEKalemDuz", "Noto Naskh Arabic", serif !important;
+}
+
+/* Marka yazısı Latin kalsın */
+html[lang="ota"] .brand-word,
+html[lang="ar"] .brand-word,
+html[lang="fa"] .brand-word,
+html[lang="ota"] .top-logo strong,
+html[lang="ar"] .top-logo strong,
+html[lang="fa"] .top-logo strong {
+  font-family: Georgia, "Times New Roman", serif !important;
+  direction: ltr !important;
+}
+/* PIX2PI_EKALEM_OTA_AR_FA_FONT_BIND_END */
+
+</style>
+</head>
+
+<body>
+  <div class="scale-viewport" id="scale-viewport">
+    <div class="site-frame" id="site-frame">
+      <div class="page">
+        <header class="topbar">
+          <div class="top-inner">
+            <a class="top-logo" href="https://pix2pi.com.tr/" aria-label="pix2pi">
+              <img src="/assets/images/logo/ana_logo.png" alt="Pix2pi Ana Logo" class="pix2pi-main-logo" />
+              <strong>pix<span>2</span>pi</strong>
+            </a>
+
+            <div class="title"><span>pix2pi</span> Ticaret Operasyon Sistemi</div>
+
+            <div class="lang">
+              <select id="language-select" aria-label="Dil seçimi">
+                <option value="tr-TR" selected>Türkçe</option>
+                <option value="ota">Osmanlıca Türkçesi</option>
+                <option value="ar">العربية</option>
+                <option value="fa">فارسی</option>
+                <option value="en">English</option>
+              </select>
+            </div>
+          </div>
+        </header>
+
+        <main class="main">
+          <section class="hero" aria-label="pix2pi tanıtım">
+            <div class="hero-content">
+              <div class="brand-main">
+                <img src="/assets/images/logo/ana_logo.png" alt="Pix2pi Ana Logo" class="pix2pi-main-logo" />
+                <div class="brand-word">pix<span>2</span>pi</div>
+              </div>
+
+              <h1>Ticaretinizi Akıllı Yönetin, Geleceğe <span>Güvenle Büyüyün.</span></h1>
+
+              <p class="lead">
+                pix2pi, işletmenizin tüm ticaret süreçlerini tek platformda yönetmenizi sağlar.
+                Stok, sipariş, müşteri, tedarik ve analiz modülleriyle uçtan uca kontrol sizde.
+              </p>
+
+              <div class="accent-line"></div>
+
+              <div class="metric-grid">
+                <div class="metric">
+                  <div class="metric-icon">📈</div>
+                  <strong>Performans Takibi</strong>
+                </div>
+
+                <div class="metric">
+                  <div class="metric-icon">📦</div>
+                  <strong>Stok ve Sipariş Yönetimi</strong>
+                </div>
+
+                <div class="metric">
+                  <div class="metric-icon">👥</div>
+                  <strong>Müşteri ve Tedarikçi Yönetimi</strong>
+                </div>
+
+                <div class="metric">
+                  <div class="metric-icon">◔</div>
+                  <strong>Raporlama ve Analiz</strong>
+                </div>
+              </div>
+
+              <div class="trust">
+                <div class="shield">🛡</div>
+                <div>
+                  <strong>Verileriniz Güvende</strong>
+                  <p>Yüksek güvenlik standartları ve düzenli yedekleme ile iş süreçleriniz koruma altında.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <aside class="auth-card" aria-label="Giriş ve kayıt">
+            <div class="auth-inner">
+              <section>
+                <div class="auth-head">
+                  <div class="auth-icon">🔒</div>
+                  <div>
+                    <h2>Hesabınıza Giriş Yapın</h2>
+                    <p>Devam etmek için bilgilerinizi girin.</p>
+                  </div>
+                </div>
+
+                <form onsubmit="window.location.href='https://panel.pix2pi.com.tr/password-login/'; return false;">
+                  <div class="field">
+                    <input type="text" autocomplete="username" placeholder="E-posta adresi veya telefon numarası" />
+                  </div>
+
+                  <div class="field">
+                    <input type="password" autocomplete="current-password" placeholder="Şifre" />
+                  </div>
+
+                  <div class="row">
+                    <label class="remember">
+                      <input type="checkbox" />
+                      <span>Beni hatırla</span>
+                    </label>
+                    <a href="https://panel.pix2pi.com.tr/password-login/">Şifrenizi mi unuttunuz?</a>
+                  </div>
+
+                  <button class="btn" type="submit">Giriş Yap <span>→</span></button>
+                </form>
+
+                <div class="divider">veya</div>
+              </section>
+
+              <section class="signup">
+                <div class="auth-head">
+                  <div class="auth-icon">👤</div>
+                  <div>
+                    <h2>Yeni Hesap Oluşturun</h2>
+                    <p>pix2pi ile ticaret operasyonlarınızı kolaylaştırın.</p>
+                  </div>
+                </div>
+
+                <div class="benefits">
+                  <div class="benefit"><span class="check">✓</span><span>Hızlı ve kolay kayıt</span></div>
+                  <div class="benefit"><span class="check">✓</span><span>Panel, POS ve market yüzeyleri</span></div>
+                  <div class="benefit"><span class="check">✓</span><span>Türkçe, Osmanlıca, Arapça, Farsça, İngilizce dil sırası</span></div>
+                </div>
+
+                <a class="btn btn-outline" href="https://panel.pix2pi.com.tr/onboarding/">Hesap Oluştur <span>→</span></a>
+              </section>
+            </div>
+          </aside>
+        </main>
+
+        <footer class="footer">
+          <div class="footer-inner">
+            <span>© 2026 pix2pi. Tüm hakları saklıdır.</span>
+            <div class="footer-links">
+              <a href="https://panel.pix2pi.com.tr/password-login/">Panel</a>
+              <a href="https://pos.pix2pi.com.tr/">POS</a>
+              <a href="https://market.pix2pi.com.tr/">Market</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const frame = document.getElementById("site-frame");
+      const viewport = document.getElementById("scale-viewport");
+      const baseWidth = 1180;
+
+      function scalePage() {
+        const available = Math.max(320, window.innerWidth - 16);
+        const scale = Math.min(1, available / baseWidth);
+        frame.style.transform = "scale(" + scale + ")";
+        viewport.style.height = Math.ceil(frame.offsetHeight * scale) + "px";
+      }
+
+      window.addEventListener("resize", scalePage);
+      window.addEventListener("orientationchange", scalePage);
+      window.addEventListener("load", scalePage);
+      scalePage();
+
+      const select = document.getElementById("language-select");
+      select.addEventListener("change", function () {
+        const value = select.value;
+        document.documentElement.setAttribute("lang", value);
+        document.documentElement.setAttribute(
+          "dir",
+          value === "ar" || value === "fa" || value === "ota" ? "rtl" : "ltr"
+        );
+      });
+    })();
+  </script>
+
+  <!-- PIX2PI_PUBLIC_HOME_ANA_LOGO_FIXED_LAYOUT_END -->
+
+<!-- PIX2PI_HOME_I18N_PATCH_START -->
+<style>
+  html[dir="rtl"] body {
+    font-family: "Noto Naskh Arabic", "Noto Nastaliq Urdu", "Amiri", "Scheherazade New", Tahoma, Arial, sans-serif;
+  }
+
+  html[dir="rtl"] .title,
+  html[dir="rtl"] h1,
+  html[dir="rtl"] .lead,
+  html[dir="rtl"] .metric strong,
+  html[dir="rtl"] .trust,
+  html[dir="rtl"] .auth-card,
+  html[dir="rtl"] .footer {
+    direction: rtl;
+    text-align: right;
+  }
+
+  html[dir="rtl"] .brand-main,
+  html[dir="rtl"] .auth-head,
+  html[dir="rtl"] .trust,
+  html[dir="rtl"] .benefit,
+  html[dir="rtl"] .row {
+    flex-direction: row-reverse;
+  }
+
+  html[dir="rtl"] .brand-main {
+    justify-content: flex-end;
+  }
+
+  html[dir="rtl"] .metric-grid {
+    direction: rtl;
+  }
+</style>
+
+<script>
+(function () {
+  const I18N = {
+    "tr-TR": {
+      title: '<span>pix2pi</span> Ticaret Operasyon Sistemi',
+      hero: 'Ticaretinizi Akıllı Yönetin, Geleceğe <span>Güvenle Büyüyün.</span>',
+      lead: 'pix2pi, işletmenizin tüm ticaret süreçlerini tek platformda yönetmenizi sağlar. Stok, sipariş, müşteri, tedarik ve analiz modülleriyle uçtan uca kontrol sizde.',
+      m1: 'Performans Takibi',
+      m2: 'Stok ve Sipariş Yönetimi',
+      m3: 'Müşteri ve Tedarikçi Yönetimi',
+      m4: 'Raporlama ve Analiz',
+      trustTitle: 'Verileriniz Güvende',
+      trustText: 'Yüksek güvenlik standartları ve düzenli yedekleme ile iş süreçleriniz koruma altında.',
+      loginTitle: 'Hesabınıza Giriş Yapın',
+      loginText: 'Devam etmek için bilgilerinizi girin.',
+      userPlaceholder: 'E-posta adresi veya telefon numarası',
+      passPlaceholder: 'Şifre',
+      remember: 'Beni hatırla',
+      forgot: 'Şifrenizi mi unuttunuz?',
+      loginButton: 'Giriş Yap <span>→</span>',
+      or: 'veya',
+      signupTitle: 'Yeni Hesap Oluşturun',
+      signupText: 'pix2pi ile ticaret operasyonlarınızı kolaylaştırın.',
+      b1: 'Hızlı ve kolay kayıt',
+      b2: 'Panel, POS ve market yüzeyleri',
+      b3: 'Türkçe, Osmanlıca, Arapça, Farsça, İngilizce dil sırası',
+      signupButton: 'Hesap Oluştur <span>→</span>',
+      footer: '© 2026 pix2pi. Tüm hakları saklıdır.'
+    },
+
+    "ota": {
+      title: '<span>پیکس۲پی</span> تجارت عملیات نظامی',
+      hero: 'تجارتڭزی عاقلانه اداره ایدڭ، آینده‌یه <span>گُوَنله بویویڭ.</span>',
+      lead: 'پیکس۲پی، ایشلتمنڭزڭ تمام تجارت جریانلرینی تک مرکزده اداره ایتمنگه یاردم ایدر. ستوک، سفارش، مشتری، تدارک و تحلیل مدوللریله اوجتان اوجا کنترل سزده‌در.',
+      m1: 'عملکرد تعقیبی',
+      m2: 'ستوک و سفارش اداره‌سی',
+      m3: 'مشتری و تدارکچی اداره‌سی',
+      m4: 'راپورلامه و تحلیل',
+      trustTitle: 'معلوماتڭز امانتده‌در',
+      trustText: 'یوکسک امنیت معیارلری و منتظم یدکلر ایله ایش جریانلرڭز محافظه آلتینده‌در.',
+      loginTitle: 'حسابڭزا داخل اولڭ',
+      loginText: 'دوام اتمک ایچون معلوماتڭزی یازڭ.',
+      userPlaceholder: 'ای-پوسته آدرسی یا تلفون نومره‌سی',
+      passPlaceholder: 'شفره',
+      remember: 'بنی خاطرله',
+      forgot: 'شفره‌ڭزی اونوتدڭزمی؟',
+      loginButton: 'داخل اول <span>←</span>',
+      or: 'یا',
+      signupTitle: 'یڭی حساب آچڭ',
+      signupText: 'پیکس۲پی ایله تجارت عملیاتلرڭزی آسانلشدیرڭ.',
+      b1: 'تیز و آسان قید',
+      b2: 'پنل، پوز و بازار یوزلری',
+      b3: 'تورکچه، عثمانلیجه، عربچه، فارسی و انگلیزجه دیل ترتیبی',
+      signupButton: 'حساب آچ <span>←</span>',
+      footer: '© ۲۰۲۶ پیکس۲پی. تمام حقوق محفوظدر.'
+    },
+
+    "ar": {
+      title: '<span>pix2pi</span> نظام عمليات التجارة',
+      hero: 'أدر تجارتك بذكاء، وانمُ إلى المستقبل <span>بثقة.</span>',
+      lead: 'تساعدك pix2pi على إدارة جميع عمليات التجارة في منصة واحدة. المخزون، الطلبات، العملاء، الموردون والتحليلات تحت سيطرتك من البداية إلى النهاية.',
+      m1: 'متابعة الأداء',
+      m2: 'إدارة المخزون والطلبات',
+      m3: 'إدارة العملاء والموردين',
+      m4: 'التقارير والتحليلات',
+      trustTitle: 'بياناتك آمنة',
+      trustText: 'عملياتك محمية بمعايير أمان عالية ونسخ احتياطي منتظم.',
+      loginTitle: 'تسجيل الدخول',
+      loginText: 'أدخل بياناتك للمتابعة.',
+      userPlaceholder: 'البريد الإلكتروني أو رقم الهاتف',
+      passPlaceholder: 'كلمة المرور',
+      remember: 'تذكرني',
+      forgot: 'هل نسيت كلمة المرور؟',
+      loginButton: 'دخول <span>←</span>',
+      or: 'أو',
+      signupTitle: 'إنشاء حساب جديد',
+      signupText: 'سهّل عملياتك التجارية مع pix2pi.',
+      b1: 'تسجيل سريع وسهل',
+      b2: 'لوحة، POS وسوق',
+      b3: 'تركية، عثمانية، عربية، فارسية، إنجليزية',
+      signupButton: 'إنشاء حساب <span>←</span>',
+      footer: '© 2026 pix2pi. جميع الحقوق محفوظة.'
+    },
+
+    "fa": {
+      title: '<span>pix2pi</span> سامانه عملیات تجارت',
+      hero: 'تجارت خود را هوشمندانه مدیریت کنید و با <span>اطمینان رشد کنید.</span>',
+      lead: 'pix2pi به شما کمک می‌کند همه فرایندهای تجاری خود را در یک پلتفرم مدیریت کنید. موجودی، سفارش، مشتری، تأمین‌کننده و تحلیل‌ها در کنترل شماست.',
+      m1: 'پیگیری عملکرد',
+      m2: 'مدیریت موجودی و سفارش',
+      m3: 'مدیریت مشتری و تأمین‌کننده',
+      m4: 'گزارش‌گیری و تحلیل',
+      trustTitle: 'داده‌های شما امن است',
+      trustText: 'فرایندهای کاری شما با استانداردهای امنیتی بالا و پشتیبان‌گیری منظم محافظت می‌شود.',
+      loginTitle: 'ورود به حساب',
+      loginText: 'برای ادامه اطلاعات خود را وارد کنید.',
+      userPlaceholder: 'ایمیل یا شماره تلفن',
+      passPlaceholder: 'رمز عبور',
+      remember: 'مرا به خاطر بسپار',
+      forgot: 'رمز عبور را فراموش کرده‌اید؟',
+      loginButton: 'ورود <span>←</span>',
+      or: 'یا',
+      signupTitle: 'ایجاد حساب جدید',
+      signupText: 'با pix2pi عملیات تجاری خود را ساده‌تر کنید.',
+      b1: 'ثبت‌نام سریع و آسان',
+      b2: 'پنل، POS و بازار',
+      b3: 'ترکی، عثمانی، عربی، فارسی، انگلیسی',
+      signupButton: 'ایجاد حساب <span>←</span>',
+      footer: '© 2026 pix2pi. همه حقوق محفوظ است.'
+    },
+
+    "en": {
+      title: '<span>pix2pi</span> Commerce Operations System',
+      hero: 'Run your commerce intelligently and grow with <span>confidence.</span>',
+      lead: 'pix2pi helps you manage all commerce operations on one platform. Inventory, orders, customers, suppliers and analytics stay under your control end to end.',
+      m1: 'Performance Tracking',
+      m2: 'Stock and Order Management',
+      m3: 'Customer and Supplier Management',
+      m4: 'Reporting and Analytics',
+      trustTitle: 'Your Data Is Secure',
+      trustText: 'Your business operations are protected with high security standards and regular backups.',
+      loginTitle: 'Sign in to your account',
+      loginText: 'Enter your details to continue.',
+      userPlaceholder: 'Email address or phone number',
+      passPlaceholder: 'Password',
+      remember: 'Remember me',
+      forgot: 'Forgot password?',
+      loginButton: 'Sign In <span>→</span>',
+      or: 'or',
+      signupTitle: 'Create a new account',
+      signupText: 'Simplify your commerce operations with pix2pi.',
+      b1: 'Fast and easy registration',
+      b2: 'Panel, POS and marketplace surfaces',
+      b3: 'Turkish, Ottoman Turkish, Arabic, Persian and English language order',
+      signupButton: 'Create Account <span>→</span>',
+      footer: '© 2026 pix2pi. All rights reserved.'
+    }
+  };
+
+  function setHtml(selector, value, index) {
+    const list = document.querySelectorAll(selector);
+    const el = typeof index === "number" ? list[index] : list[0];
+    if (el) el.innerHTML = value;
+  }
+
+  function setText(selector, value, index) {
+    const list = document.querySelectorAll(selector);
+    const el = typeof index === "number" ? list[index] : list[0];
+    if (el) el.textContent = value;
+  }
+
+  function applyLanguage(lang) {
+    const t = I18N[lang] || I18N["tr-TR"];
+    const rtl = lang === "ota" || lang === "ar" || lang === "fa";
+
+    document.documentElement.setAttribute("lang", lang);
+    document.documentElement.setAttribute("dir", rtl ? "rtl" : "ltr");
+
+    setHtml(".title", t.title);
+    setHtml("h1", t.hero);
+    setText(".lead", t.lead);
+
+    setText(".metric strong", t.m1, 0);
+    setText(".metric strong", t.m2, 1);
+    setText(".metric strong", t.m3, 2);
+    setText(".metric strong", t.m4, 3);
+
+    setText(".trust strong", t.trustTitle);
+    setText(".trust p", t.trustText);
+
+    setText(".auth-head h2", t.loginTitle, 0);
+    setText(".auth-head p", t.loginText, 0);
+
+    const inputs = document.querySelectorAll(".field input");
+    if (inputs[0]) inputs[0].setAttribute("placeholder", t.userPlaceholder);
+    if (inputs[1]) inputs[1].setAttribute("placeholder", t.passPlaceholder);
+
+    setText(".remember span", t.remember);
+    setText(".row a", t.forgot);
+    setHtml("button.btn", t.loginButton);
+    setText(".divider", t.or);
+
+    setText(".signup .auth-head h2", t.signupTitle);
+    setText(".signup .auth-head p", t.signupText);
+
+    setText(".benefit span:last-child", t.b1, 0);
+    setText(".benefit span:last-child", t.b2, 1);
+    setText(".benefit span:last-child", t.b3, 2);
+
+    setHtml(".signup .btn-outline", t.signupButton);
+    setText(".footer-inner > span", t.footer);
+
+    localStorage.setItem("pix2pi-language", lang);
+  }
+
+  window.pix2piApplyLanguage = applyLanguage;
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const select = document.getElementById("language-select");
+    const saved = localStorage.getItem("pix2pi-language") || "tr-TR";
+
+    if (select) {
+      select.value = saved;
+      applyLanguage(select.value);
+
+      select.addEventListener("change", function () {
+        applyLanguage(select.value);
+      });
+    } else {
+      applyLanguage(saved);
+    }
+  });
+})();
+</script>
+<!-- PIX2PI_HOME_I18N_PATCH_END -->
+
+</body>
+</html>

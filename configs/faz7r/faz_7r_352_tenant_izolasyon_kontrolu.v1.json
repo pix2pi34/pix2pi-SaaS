@@ -1,0 +1,66 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "352",
+  "name": "Tenant izolasyon kontrolü",
+  "surface": "merchant_panel_controlled_access",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/tenant-isolation-check/",
+  "runtime_path": "/assets/tenant-isolation-check/tenant-isolation-check-runtime.js",
+  "depends_on": [
+    "351 - POS erişim testi"
+  ],
+  "backend_contract": {
+    "tenant_isolation_snapshot_endpoint": "/api/security/tenant-isolation/snapshot",
+    "tenant_isolation_decision_endpoint": "/api/security/tenant-isolation/decision",
+    "tenant_isolation_audit_endpoint": "/api/security/tenant-isolation/audit",
+    "method": "GET/POST",
+    "source_tenant_header": "X-Source-Tenant-ID",
+    "target_tenant_header": "X-Target-Tenant-ID",
+    "user_session_header": "X-User-Session",
+    "isolation_scope_header": "X-Isolation-Scope",
+    "correlation_header": "X-Correlation-ID"
+  },
+  "runtime_contract": {
+    "real_cross_tenant_query_enabled": false,
+    "real_break_glass_enabled": false,
+    "real_export_enabled": false,
+    "real_customer_access_enabled": false,
+    "tenant_isolation_preview_enabled": true,
+    "cross_tenant_denial_preview_enabled": true,
+    "rls_readiness_preview_enabled": true,
+    "fallback_isolation_snapshot_enabled": true,
+    "ready_for_step_353": true
+  },
+  "decision_contract": {
+    "allowed_decisions": [
+      "ALLOW_SAME_TENANT",
+      "DENY_CROSS_TENANT",
+      "DENY_BREAK_GLASS_DISABLED",
+      "DENY_EXPORT_SCOPE"
+    ],
+    "expected_cross_tenant_decision": "DENY_CROSS_TENANT",
+    "audit_event_type": "TENANT_ISOLATION_DECISION"
+  },
+  "required_capabilities": [
+    "tenant_isolation_app_shell",
+    "source_tenant_target_tenant_context",
+    "cross_tenant_access_denial_preview",
+    "rls_readiness_checklist",
+    "tenant_scoped_route_guard",
+    "tenant_scoped_panel_data_guard",
+    "tenant_scoped_pos_data_guard",
+    "tenant_scoped_marketplace_data_guard",
+    "audit_export_isolation_preview",
+    "break_glass_disabled_preview",
+    "tenant_isolation_regression_checklist",
+    "isolation_incident_preview",
+    "isolation_audit_timeline",
+    "isolation_decision_contract",
+    "tenant_isolation_runtime_data_contract",
+    "i18n_ready_isolation_marker",
+    "seo_opengraph_isolation_placeholder",
+    "tenant_isolation_smoke_test"
+  ],
+  "next_step": "353 - Kullanıcı yetki kontrolü"
+}

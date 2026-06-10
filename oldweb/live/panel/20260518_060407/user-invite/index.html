@@ -1,0 +1,12 @@
+<!doctype html><html lang="tr-TR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pix2pi Kullanıcı Daveti</title>
+<style>body{margin:0;background:#07090d;color:#f8fafc;font-family:system-ui}.wrap{max-width:920px;margin:auto;padding:40px}.card{border:1px solid rgba(255,214,10,.25);background:rgba(255,255,255,.06);border-radius:22px;padding:24px;margin:14px 0}input,select,button{width:100%;height:46px;margin:7px 0 14px;border-radius:12px;padding:0 12px}button{background:#ffd60a;font-weight:900}.status[data-status=ok]{color:#34d399}.status[data-status=error]{color:#fb7185}pre{background:#0005;padding:14px;border-radius:14px;white-space:pre-wrap}</style></head><body>
+<main class="wrap"><section class="card"><h1>İlk işletme kullanıcı daveti</h1><p>Gerçek API, token ve SMTP mail gönderimi.</p></section>
+<form class="card" data-user-invite-form>
+<label>Tenant ID</label><input name="tenant_id" value="tenant-api-e2e-success">
+<label>İşletme adı</label><input name="business_name" value="Pix2pi Pilot Market">
+<label>E-posta</label><input name="email" type="email" value="">
+<label>Ad Soyad</label><input name="display_name" value="Test Kullanıcı">
+<label>Rol</label><select name="role_code"><option value="owner">Owner</option><option value="manager">Manager</option><option value="cashier">Kasiyer</option><option value="accountant">Muhasebeci</option></select>
+<button>Davet gönder</button></form>
+<section class="card"><div class="status" data-invite-status>Bekleniyor.</div><pre data-invite-payload>{}</pre></section></main>
+<script src="/user-invite/user-invite-runtime.js"></script></body></html>

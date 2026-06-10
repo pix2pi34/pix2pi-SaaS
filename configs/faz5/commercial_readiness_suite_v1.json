@@ -1,0 +1,161 @@
+{
+  "catalog_code": "pix2pi_commercial_readiness_suite_v1",
+  "phase": "FAZ_5",
+  "step": "5-11",
+  "depends_on": [
+    "pix2pi_packages_pricing_v1",
+    "pix2pi_entitlement_matrix_v1",
+    "pix2pi_subscription_billing_policy_v1",
+    "pix2pi_tenant_lifecycle_policy_v1",
+    "pix2pi_legal_compliance_policy_v1",
+    "pix2pi_support_sla_incident_policy_v1",
+    "pix2pi_sales_demo_crm_policy_v1",
+    "pix2pi_revenue_metrics_policy_v1",
+    "pix2pi_public_pricing_developer_surface_v1"
+  ],
+  "readiness_groups": [
+    {
+      "code": "package_readiness",
+      "required": true,
+      "checks": [
+        "package_catalog",
+        "pricing_catalog",
+        "package_codes",
+        "annual_monthly_consistency"
+      ]
+    },
+    {
+      "code": "entitlement_readiness",
+      "required": true,
+      "checks": [
+        "demo_rights",
+        "starter_rights",
+        "pro_rights",
+        "enterprise_rights",
+        "accountant_rights",
+        "subscription_states",
+        "freeze_policy"
+      ]
+    },
+    {
+      "code": "billing_readiness",
+      "required": true,
+      "checks": [
+        "subscription_lifecycle",
+        "payment_states",
+        "past_due_policy",
+        "suspended_policy",
+        "cancelled_policy",
+        "accountant_company_billing"
+      ]
+    },
+    {
+      "code": "tenant_lifecycle_readiness",
+      "required": true,
+      "checks": [
+        "tenant_open",
+        "tenant_upgrade",
+        "tenant_downgrade",
+        "tenant_freeze",
+        "tenant_close",
+        "data_handoff"
+      ]
+    },
+    {
+      "code": "legal_support_sales_readiness",
+      "required": true,
+      "checks": [
+        "legal_checklist",
+        "support_sla",
+        "incident_classes",
+        "sales_crm",
+        "demo_flow"
+      ]
+    },
+    {
+      "code": "public_readiness",
+      "required": true,
+      "checks": [
+        "pricing_page",
+        "developer_surface",
+        "legal_links",
+        "mobile_responsive",
+        "public_publish_readiness"
+      ]
+    },
+    {
+      "code": "commercial_runner",
+      "required": true,
+      "checks": [
+        "reports",
+        "json_catalogs",
+        "doc_seals",
+        "blocker_count",
+        "final_readiness_report",
+        "faz_5_12_ready"
+      ]
+    }
+  ],
+  "required_docs": [
+    "docs/faz5/5_1_commercial_master_plan_scope_freeze.md",
+    "docs/faz5/5_2_packages_pricing_architecture.md",
+    "docs/faz5/5_3_entitlement_matrix_module_rights.md",
+    "docs/faz5/5_4_subscription_billing_payment_ops.md",
+    "docs/faz5/5_5_tenant_lifecycle_commercial_ops.md",
+    "docs/faz5/5_6_legal_compliance_kvkk_terms.md",
+    "docs/faz5/5_7_support_sla_incident_escalation.md",
+    "docs/faz5/5_8_sales_demo_crm_operations.md",
+    "docs/faz5/5_9_revenue_metrics_mrr_arr_churn.md",
+    "docs/faz5/5_10_public_pricing_developer_surfaces.md"
+  ],
+  "required_json_catalogs": [
+    "configs/faz5/packages_pricing_v1.json",
+    "configs/faz5/entitlement_matrix_v1.json",
+    "configs/faz5/subscription_billing_policy_v1.json",
+    "configs/faz5/tenant_lifecycle_policy_v1.json",
+    "configs/faz5/legal_compliance_policy_v1.json",
+    "configs/faz5/support_sla_incident_policy_v1.json",
+    "configs/faz5/sales_demo_crm_policy_v1.json",
+    "configs/faz5/revenue_metrics_policy_v1.json",
+    "configs/faz5/public_pricing_developer_surface_v1.json"
+  ],
+  "required_reports": [
+    "reports/faz5/FAZ_5_3_ENTITLEMENT_MATRIX_REPORT.txt",
+    "reports/faz5/FAZ_5_4_SUBSCRIPTION_BILLING_PAYMENT_OPS_REPORT.txt",
+    "reports/faz5/FAZ_5_5_TENANT_LIFECYCLE_COMMERCIAL_OPS_REPORT.txt",
+    "reports/faz5/FAZ_5_6_LEGAL_COMPLIANCE_KVKK_TERMS_REPORT.txt",
+    "reports/faz5/FAZ_5_7_SUPPORT_SLA_INCIDENT_ESCALATION_REPORT.txt",
+    "reports/faz5/FAZ_5_8_SALES_DEMO_CRM_OPERATIONS_REPORT.txt",
+    "reports/faz5/FAZ_5_9_REVENUE_METRICS_MRR_ARR_CHURN_REPORT.txt",
+    "reports/faz5/FAZ_5_10_PUBLIC_PRICING_DEVELOPER_SURFACES_REPORT.txt",
+    "reports/faz5/FAZ_5_10_PUBLIC_EXACT_ROUTE_FIX_REPORT.txt"
+  ],
+  "public_urls": [
+    "https://pix2pi.com.tr/faz5/",
+    "https://pix2pi.com.tr/faz5/pricing/",
+    "https://pix2pi.com.tr/faz5/developer/"
+  ],
+  "required_html": [
+    "web/faz5/pricing/index.html",
+    "web/faz5/developer/index.html",
+    "/var/www/pix2pi/faz5/index.html",
+    "/var/www/pix2pi/faz5/pricing/index.html",
+    "/var/www/pix2pi/faz5/developer/index.html"
+  ],
+  "commercial_blocker_count_required": 0,
+  "final_readiness_decision": "GO_TO_5_12",
+  "out_of_scope": [
+    "faz_5_final_seal",
+    "faz_6_start",
+    "production_public_launch",
+    "live_payment_integration",
+    "real_crm_system",
+    "real_support_ticket_system",
+    "legal_final_approval"
+  ],
+  "seal": {
+    "FAZ_5_11_COMMERCIAL_READINESS_STATUS": "PASS",
+    "FAZ_5_11_COMMERCIAL_READINESS_SEAL_STATUS": "SEALED",
+    "FAZ_5_12_READY": "YES"
+  }
+}

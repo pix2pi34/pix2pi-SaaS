@@ -1,0 +1,36 @@
+gate	status	note
+previous_20	PASS	infra production hardening prerequisite
+previous_21	PASS	security/rbac/audit prerequisite
+signal_inventory	PASS	signals=15
+target_inventory	PASS	targets=41
+endpoint_probe	PASS	probes=12 reachable=9 review=5
+alert_readiness	PASS	alerts=14 critical=5 high=6
+public_observability_risk	PASS	previous_public_obs_risk_count=24
+service_risk_evidence	PASS	previous_high_risk_service_count=22
+container_risk_evidence	PASS	previous_high_risk_container_count=13
+no_restart	PASS	service/container not restarted
+no_deploy	PASS	deploy/config not changed
+secret_safe	PASS	no log/metric/trace/secret body printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+dashboard_changed	NO	evidence only
+alert_rule_changed	NO	evidence only
+prometheus_config_changed	NO	evidence only
+grafana_config_changed	NO	evidence only
+loki_config_changed	NO	evidence only
+tempo_config_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+log_content_printed	NO	secret-safe report
+metric_body_printed	NO	secret-safe report
+trace_body_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

@@ -1,0 +1,168 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "315",
+  "code": "FAZ_6_22_7",
+  "name": "Release build doğrulaması",
+  "depends_on": [
+    "FAZ_6_22_6"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "build_publish_allowed": false,
+  "frontend_deploy_allowed": false,
+  "container_image_push_allowed": false,
+  "artifact_upload_allowed": false,
+  "cdn_invalidation_allowed": false,
+  "route_mutation_allowed": false,
+  "migration_apply_allowed": false,
+  "production_release_execute_allowed": false,
+  "required_controls": [
+    "release_checklist_ui_dependency_gate",
+    "release_candidate_manifest_policy",
+    "build_artifact_inventory_policy",
+    "checksum_signature_policy",
+    "secret_scan_policy",
+    "dependency_lock_policy",
+    "source_freeze_policy",
+    "environment_config_policy",
+    "migration_bundle_policy",
+    "rollback_manifest_policy",
+    "container_image_metadata_policy",
+    "static_asset_manifest_policy",
+    "dry_run_release_build_verification_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "release_candidate_policy": {
+    "enabled": true,
+    "mode": "dry_run_verification_only",
+    "requires_manifest": true,
+    "requires_artifact_inventory": true,
+    "requires_checksums": true,
+    "requires_secret_scan": true,
+    "requires_dependency_lock": true,
+    "requires_rollback_manifest": true,
+    "block_if_untracked_release_artifact": true,
+    "block_if_secret_scan_missing": true,
+    "block_if_dependency_lock_missing": true,
+    "block_if_rollback_manifest_missing": true
+  },
+  "build_surfaces": [
+    {
+      "surface": "frontend_static_assets",
+      "risk_level": "critical",
+      "manifest_required": true,
+      "checksum_required": true,
+      "secret_scan_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "web_release_manifest",
+      "risk_level": "critical",
+      "manifest_required": true,
+      "checksum_required": true,
+      "secret_scan_required": false,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "container_image_metadata",
+      "risk_level": "high",
+      "manifest_required": true,
+      "checksum_required": true,
+      "secret_scan_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "environment_config_bundle",
+      "risk_level": "critical",
+      "manifest_required": true,
+      "checksum_required": true,
+      "secret_scan_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "migration_bundle",
+      "risk_level": "critical",
+      "manifest_required": true,
+      "checksum_required": true,
+      "secret_scan_required": false,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "rollback_manifest",
+      "risk_level": "critical",
+      "manifest_required": true,
+      "checksum_required": true,
+      "secret_scan_required": false,
+      "mutation_allowed": false
+    }
+  ],
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "build_publish_execute",
+      "frontend_deploy_execute",
+      "container_image_push_execute",
+      "artifact_upload_execute",
+      "cdn_invalidation_execute",
+      "route_mutation_execute",
+      "migration_apply_execute",
+      "production_release_execute"
+    ],
+    "approval_roles": [
+      "release_owner",
+      "sre_owner",
+      "security_owner",
+      "backend_owner",
+      "frontend_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "build_publish_allowed": false,
+    "frontend_deploy_allowed": false,
+    "container_image_push_allowed": false,
+    "artifact_upload_allowed": false,
+    "cdn_invalidation_allowed": false,
+    "route_mutation_allowed": false,
+    "migration_apply_allowed": false,
+    "production_release_execute_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "build_check_id",
+      "surface",
+      "manifest_status",
+      "checksum_status",
+      "secret_scan_status",
+      "dependency_lock_status",
+      "rollback_status",
+      "release_blocker_status",
+      "risk_level",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_release_checklist_ui_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_build_or_deploy_allowed": true,
+    "block_if_artifact_or_image_push_allowed": true,
+    "block_if_migration_apply_allowed": true,
+    "block_if_production_release_execute_allowed": true,
+    "block_if_manifest_missing": true,
+    "block_if_checksum_missing": true,
+    "block_if_secret_scan_missing": true,
+    "block_if_rollback_manifest_missing": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_22_7_RELEASE_BUILD_DOGRULAMASI_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

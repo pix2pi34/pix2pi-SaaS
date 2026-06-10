@@ -1,0 +1,181 @@
+{
+  "template_id": "user_role_initial_setup.controlled_pilot.v1",
+  "setup_status": "READY",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT"
+  },
+  "users": [
+    {
+      "user_id": "pilot_admin_001",
+      "email": "pilot.admin@example.local",
+      "display_name": "Pilot Admin",
+      "user_type": "TENANT_ADMIN",
+      "status": "INVITE_READY",
+      "mfa_required": true,
+      "tenant_id": "pilot_tenant_001"
+    },
+    {
+      "user_id": "pilot_operator_001",
+      "email": "pilot.operator@example.local",
+      "display_name": "Pilot Operator",
+      "user_type": "OPERATOR",
+      "status": "INVITE_READY",
+      "mfa_required": true,
+      "tenant_id": "pilot_tenant_001"
+    },
+    {
+      "user_id": "pilot_accountant_001",
+      "email": "pilot.accountant@example.local",
+      "display_name": "Pilot Accountant",
+      "user_type": "ACCOUNTANT",
+      "status": "INVITE_READY",
+      "mfa_required": true,
+      "tenant_id": "pilot_tenant_001"
+    },
+    {
+      "user_id": "pilot_support_001",
+      "email": "pilot.support@example.local",
+      "display_name": "Pilot Support Observer",
+      "user_type": "SUPPORT",
+      "status": "INVITE_READY",
+      "mfa_required": true,
+      "tenant_id": "pilot_tenant_001"
+    }
+  ],
+  "roles": [
+    {
+      "role_code": "TENANT_ADMIN",
+      "role_name": "Tenant Admin",
+      "scope": "TENANT",
+      "is_system_role": true
+    },
+    {
+      "role_code": "PILOT_OPERATOR",
+      "role_name": "Pilot Operator",
+      "scope": "TENANT",
+      "is_system_role": true
+    },
+    {
+      "role_code": "ACCOUNTANT",
+      "role_name": "Accountant",
+      "scope": "TENANT",
+      "is_system_role": true
+    },
+    {
+      "role_code": "SUPPORT_OBSERVER",
+      "role_name": "Support Observer",
+      "scope": "TENANT",
+      "is_system_role": true
+    }
+  ],
+  "permissions": [
+    "TENANT_READ",
+    "TENANT_CONFIG_READ",
+    "USER_INVITE_MANAGE",
+    "ROLE_ASSIGN_MANAGE",
+    "IMPORT_DRY_RUN_RUN",
+    "IMPORT_REPORT_READ",
+    "UAT_CASE_READ",
+    "UAT_CASE_UPDATE",
+    "REPORTING_READ",
+    "OPERATIONAL_READMODEL_READ",
+    "SUPPORT_ISSUE_READ",
+    "SUPPORT_ISSUE_UPDATE",
+    "AUDIT_EVIDENCE_READ"
+  ],
+  "role_permissions": {
+    "TENANT_ADMIN": [
+      "TENANT_READ",
+      "TENANT_CONFIG_READ",
+      "USER_INVITE_MANAGE",
+      "ROLE_ASSIGN_MANAGE",
+      "IMPORT_DRY_RUN_RUN",
+      "IMPORT_REPORT_READ",
+      "UAT_CASE_READ",
+      "UAT_CASE_UPDATE",
+      "REPORTING_READ",
+      "OPERATIONAL_READMODEL_READ",
+      "SUPPORT_ISSUE_READ",
+      "SUPPORT_ISSUE_UPDATE",
+      "AUDIT_EVIDENCE_READ"
+    ],
+    "PILOT_OPERATOR": [
+      "TENANT_READ",
+      "IMPORT_DRY_RUN_RUN",
+      "IMPORT_REPORT_READ",
+      "UAT_CASE_READ",
+      "UAT_CASE_UPDATE",
+      "REPORTING_READ",
+      "OPERATIONAL_READMODEL_READ",
+      "SUPPORT_ISSUE_READ"
+    ],
+    "ACCOUNTANT": [
+      "TENANT_READ",
+      "IMPORT_REPORT_READ",
+      "REPORTING_READ",
+      "AUDIT_EVIDENCE_READ"
+    ],
+    "SUPPORT_OBSERVER": [
+      "TENANT_READ",
+      "OPERATIONAL_READMODEL_READ",
+      "SUPPORT_ISSUE_READ",
+      "AUDIT_EVIDENCE_READ"
+    ]
+  },
+  "assignments": [
+    {
+      "user_id": "pilot_admin_001",
+      "role_code": "TENANT_ADMIN",
+      "tenant_id": "pilot_tenant_001",
+      "status": "ACTIVE"
+    },
+    {
+      "user_id": "pilot_operator_001",
+      "role_code": "PILOT_OPERATOR",
+      "tenant_id": "pilot_tenant_001",
+      "status": "ACTIVE"
+    },
+    {
+      "user_id": "pilot_accountant_001",
+      "role_code": "ACCOUNTANT",
+      "tenant_id": "pilot_tenant_001",
+      "status": "ACTIVE"
+    },
+    {
+      "user_id": "pilot_support_001",
+      "role_code": "SUPPORT_OBSERVER",
+      "tenant_id": "pilot_tenant_001",
+      "status": "ACTIVE"
+    }
+  ],
+  "invite_policy": {
+    "status": "READY",
+    "send_real_email": false,
+    "invite_token_required": true,
+    "invite_expiry_hours": 72,
+    "manual_review_required": true
+  },
+  "mfa_policy": {
+    "status": "READY",
+    "mfa_required_for_admin": true,
+    "mfa_required_for_all_pilot_users": true
+  },
+  "summary": {
+    "admin_user_count": 1,
+    "operator_user_count": 1,
+    "accountant_user_count": 1,
+    "support_user_count": 1,
+    "critical_issue_count": 0,
+    "audit_evidence_status": "READY",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

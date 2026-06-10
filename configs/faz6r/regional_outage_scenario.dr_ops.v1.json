@@ -1,0 +1,78 @@
+{
+  "version": "dr_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_6_3",
+  "status": "dry_run_only_no_live_failover",
+  "scenarios": [
+    {
+      "scenario_id": "regional-outage-edge-dns",
+      "title": "Edge/DNS regional disruption",
+      "severity": "P1",
+      "affected_region": "primary_edge_region",
+      "affected_surfaces": [
+        "edge_dns",
+        "public_web",
+        "api_gateway"
+      ],
+      "rto_minutes": 60,
+      "rpo_minutes": 15,
+      "decision": "prepare_failover_without_execute",
+      "manual_approval_required": true,
+      "provider_mutation_allowed": false,
+      "communication_handoff_required": true
+    },
+    {
+      "scenario_id": "regional-outage-db-primary",
+      "title": "Primary database regional disruption",
+      "severity": "P0",
+      "affected_region": "primary_compute_region",
+      "affected_surfaces": [
+        "database_primary",
+        "api_gateway",
+        "auth",
+        "panel",
+        "pos"
+      ],
+      "rto_minutes": 30,
+      "rpo_minutes": 5,
+      "decision": "degrade_to_read_only",
+      "manual_approval_required": true,
+      "provider_mutation_allowed": false,
+      "communication_handoff_required": true
+    },
+    {
+      "scenario_id": "regional-outage-event-queue",
+      "title": "Event queue regional disruption",
+      "severity": "P1",
+      "affected_region": "primary_queue_region",
+      "affected_surfaces": [
+        "event_queue",
+        "api_gateway",
+        "pos"
+      ],
+      "rto_minutes": 60,
+      "rpo_minutes": 15,
+      "decision": "pause_noncritical_writes",
+      "manual_approval_required": true,
+      "provider_mutation_allowed": false,
+      "communication_handoff_required": true
+    },
+    {
+      "scenario_id": "regional-outage-storage",
+      "title": "File/object storage regional disruption",
+      "severity": "P2",
+      "affected_region": "primary_storage_region",
+      "affected_surfaces": [
+        "file_storage",
+        "panel",
+        "public_web"
+      ],
+      "rto_minutes": 120,
+      "rpo_minutes": 30,
+      "decision": "freeze_release",
+      "manual_approval_required": true,
+      "provider_mutation_allowed": false,
+      "communication_handoff_required": true
+    }
+  ]
+}

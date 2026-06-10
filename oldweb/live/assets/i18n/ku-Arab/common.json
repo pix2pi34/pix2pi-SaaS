@@ -1,0 +1,36 @@
+{
+  "locale": "ku-Arab",
+  "languageName": "Kürtçe / İslami harfler",
+  "nativeName": "کوردی",
+  "script": "Arab",
+  "direction": "rtl",
+  "calligraphyRenderer": "ekalem-husrev-duz-tezyinat",
+  "calligraphyCssClass": "pix2pi-husrev-rtl",
+  "calligraphyTitleCssClass": "pix2pi-husrev-title",
+  "calligraphySource": "https://oku.risale.online/osm",
+  "fontBinding": {
+    "bodyFontFamily": "Pix2piHusrevDuz",
+    "titleFontFamily": "Pix2piHusrevTezyinat",
+    "bodyAssetPath": "/assets/fonts/husrev/eKalemDuz-Regular_150.ttf",
+    "titleAssetPath": "/assets/fonts/husrev/eKalemTezyinat-Regular_2.ttf",
+    "cssPath": "/assets/fonts/husrev/husrev-ekalem.css"
+  },
+  "messages": {
+    "app.name": "پیکس٢پی",
+    "auth.login": "تێکەوە",
+    "nav.dashboard": "پانێل",
+    "nav.pos": "POS",
+    "tenant.create": "کارەکە دروست بکە",
+    "customer.add": "کڕیار زیاد بکە",
+    "product.add": "بەرهەم زیاد بکە",
+    "pos.sale": "فرۆشتنی POS",
+    "reports.view": "ڕاپۆرتەکان ببینە",
+    "language.change": "زمان بگۆڕە",
+    "support.title": "یارمەتی و پشتگیری",
+    "upgrade.required": "نوێکردنەوە پێویستە",
+    "quota.exceeded": "سنوور تێپەڕا",
+    "localization.ek2.title": "کوردی و زازاکی زیاد کران",
+    "localization.ek2.subtitle": "لاتینی و پیتی ئیسلامی ئامادەن",
+    "nav.marketplace": "بازارگە"
+  }
+}

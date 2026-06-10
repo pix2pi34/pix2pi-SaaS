@@ -1,0 +1,10 @@
+compose_path	service_count	ports_count	expose_count	env_marker_count	secret_key_name_count	volume_marker_count	network_marker_count	privileged_count	host_network_count	restart_marker_count	healthcheck_marker_count	user_marker_count	cap_add_count	cap_drop_count	read_only_count	risk	note
+deploy/api-gateway/docker-compose.yml	1	0	0	1	0	1	0	0	0	1	0	0	0	0	0	LOW	healthcheck_marker_missing
+deploy/dev/docker-compose.pg.yml	2	1	0	1	1	2	0	0	0	1	0	0	0	0	0	MEDIUM	published_ports_review,secret_like_key_names_detected_values_not_printed,healthcheck_marker_missing
+deploy/docker-compose.yml	2	1	0	1	2	2	0	0	0	0	0	0	0	0	0	MEDIUM	published_ports_review,secret_like_key_names_detected_values_not_printed,healthcheck_marker_missing,restart_marker_missing
+deploy/event-bus/docker-compose.yml	2	2	0	0	0	2	0	0	0	0	0	0	0	0	0	MEDIUM	published_ports_review,healthcheck_marker_missing,restart_marker_missing
+deploy/nats/docker-compose.yml	2	2	0	0	0	2	0	0	0	1	0	0	0	0	0	MEDIUM	published_ports_review,healthcheck_marker_missing
+deploy/observability/docker-compose.yml	9	7	0	1	1	6	7	0	0	6	0	0	0	0	0	MEDIUM	published_ports_review,secret_like_key_names_detected_values_not_printed,healthcheck_marker_missing
+deploy/redis/docker-compose.yml	2	1	0	0	0	2	0	0	0	1	0	0	0	0	0	MEDIUM	published_ports_review,healthcheck_marker_missing
+infra/observability/docker-compose.override.yml	1	0	0	0	0	0	0	0	0	0	0	1	0	0	0	LOW	healthcheck_marker_missing,restart_marker_missing
+infra/observability/docker-compose.yml	6	4	0	1	1	5	6	0	0	5	0	0	0	0	0	MEDIUM	published_ports_review,secret_like_key_names_detected_values_not_printed,healthcheck_marker_missing

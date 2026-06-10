@@ -1,0 +1,61 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 231,
+  "step": "FAZ_4_16_8_1",
+  "title": "Pilot KPI değerlendirmesi",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "230_FAZ_4_16_7_5_REHEARSAL_RAPORU"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "pilot_kpi_policy": {
+    "pilot_kpi_status_required": "READY",
+    "pilot_kpi_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "rehearsal_report_status_required": "PASS",
+    "import_success_status_required": "PASS",
+    "uat_pass_status_required": "PASS",
+    "support_response_status_required": "READY",
+    "feedback_closure_status_required": "PASS",
+    "runtime_health_status_required": "READY",
+    "incident_count_status_required": "READY",
+    "rollback_readiness_status_required": "READY",
+    "communication_readiness_status_required": "READY",
+    "kpi_evidence_index_status_required": "READY",
+    "no_go_no_go_decision_required": true,
+    "no_production_launch_required": true,
+    "no_live_external_provider_activation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_kpi_items": [
+    "KPI_EVALUATION_KICKOFF",
+    "REHEARSAL_REPORT_LINK",
+    "TENANT_READINESS_KPI",
+    "IMPORT_SUCCESS_KPI",
+    "UAT_PASS_KPI",
+    "SUPPORT_RESPONSE_KPI",
+    "FEEDBACK_CLOSURE_KPI",
+    "RUNTIME_HEALTH_KPI",
+    "INCIDENT_COUNT_KPI",
+    "CRITICAL_ISSUE_ZERO_KPI",
+    "ROLLBACK_READINESS_KPI",
+    "COMMUNICATION_READINESS_KPI",
+    "EXTERNAL_POLICY_CLOSED_KPI",
+    "KPI_EVIDENCE_INDEX",
+    "FINAL_KPI_EVALUATION_REPORT"
+  ],
+  "pilot_kpi_artifact": "configs/faz4r/pilot_kpi_evaluation.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "232_FAZ_4_16_8_2_UAT_BASARI_ESIGI"
+  ]
+}

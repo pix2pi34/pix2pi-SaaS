@@ -1,0 +1,39 @@
+{
+  "test_name": "faz_5_18_5_6_tenant_lifecycle_testleri_test",
+  "phase": "FAZ_5_18_5_6",
+  "expected": {
+    "required_test_count": 7,
+    "required_domain_count": 6,
+    "internal_lifecycle_tests_ready": true,
+    "production_lifecycle_live_enabled": false,
+    "real_customer_ops_open": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_test_keys": [
+    "tenant_shutdown_contract_test",
+    "tenant_data_export_contract_test",
+    "tenant_plan_change_contract_test",
+    "tenant_freeze_contract_test",
+    "cross_flow_billing_guard_test",
+    "cross_flow_audit_evidence_test",
+    "crm_stage_deferred_marker"
+  ],
+  "must_have_domains": [
+    "TENANT_SHUTDOWN",
+    "DATA_EXPORT",
+    "PLAN_CHANGE",
+    "TENANT_FREEZE",
+    "CROSS_FLOW",
+    "NEXT_PRIORITY"
+  ],
+  "must_have_flags": [
+    "has_evidence",
+    "has_counter_based_audit",
+    "requires_tenant_id",
+    "requires_audit_trail",
+    "requires_rollback_coverage",
+    "requires_cross_flow_coverage",
+    "blocks_production_live"
+  ]
+}

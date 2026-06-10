@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "363",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "controlled_rollout_cohort_approval_screen",
+      "path": "/controlled-rollout-cohort-approval/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_363_CONTROLLED_ROLLOUT_APPROVAL_APP_SHELL_START",
+        "PIX2PI_363_APPROVAL_DECISION_MATRIX_START",
+        "PIX2PI_363_APPROVAL_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "controlled_rollout_cohort_approval_runtime",
+      "path": "/assets/controlled-rollout-cohort-approval/controlled-rollout-cohort-approval-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_363_CONTROLLED_ROLLOUT_COHORT_APPROVAL_RUNTIME_START",
+        "approvalGateHeaders",
+        "buildApprovalRuntimeContract"
+      ]
+    }
+  ]
+}

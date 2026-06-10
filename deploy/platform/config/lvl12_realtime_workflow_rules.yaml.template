@@ -1,0 +1,18 @@
+version: v1
+realtime_rules:
+  core_enabled: __REALTIME_CORE_ENABLED__
+  websocket_enabled: __REALTIME_WEBSOCKET_ENABLED__
+  sse_enabled: __REALTIME_SSE_ENABLED__
+  channel_mode: __REALTIME_CHANNEL_MODE__
+  heartbeat_seconds: __REALTIME_HEARTBEAT_SECONDS__
+  max_connections_per_tenant: __REALTIME_MAX_CONNECTIONS_PER_TENANT__
+  default_topic: __REALTIME_DEFAULT_TOPIC__
+
+workflow_rules:
+  engine_enabled: __WORKFLOW_ENGINE_ENABLED__
+  default_timeout_seconds: __WORKFLOW_DEFAULT_TIMEOUT_SECONDS__
+  retry_max: __WORKFLOW_RETRY_MAX__
+  compensation_enabled: __WORKFLOW_COMPENSATION_ENABLED__
+  approval_enabled: __WORKFLOW_APPROVAL_ENABLED__
+  observability_enabled: __WORKFLOW_OBSERVABILITY_ENABLED__
+  default_queue: __WORKFLOW_DEFAULT_QUEUE__

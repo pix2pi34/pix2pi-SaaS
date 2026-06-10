@@ -1,0 +1,18 @@
+{
+  "step": "FAZ 7-R / 352",
+  "name": "Tenant izolasyon kontrolü real final",
+  "dependencies": ["319/347", "348", "321", "350", "351"],
+  "apis": [
+    "POST /api/panel/tenant-isolation/read",
+    "POST /api/panel/tenant-isolation/write"
+  ],
+  "evidenceRequired": [
+    "same tenant read allow",
+    "cross tenant read deny",
+    "same tenant write allow",
+    "cross tenant write no DB row",
+    "no-role deny",
+    "rollback no partial write",
+    "audit allow/deny select"
+  ]
+}

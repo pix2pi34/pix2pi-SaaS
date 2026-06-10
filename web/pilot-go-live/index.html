@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi Controlled Pilot Go-Live</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --card: #101d31;
+      --card-2: #152640;
+      --text: #eef6ff;
+      --muted: #a8b8cc;
+      --line: rgba(255, 255, 255, 0.12);
+      --accent: #41b8ff;
+      --ok: #38d996;
+      --warn: #ffcf5a;
+      --danger: #ff7d7d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, #193f66, var(--bg) 54%);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 38px;
+    }
+
+    .hero {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(56, 217, 150, 0.16), rgba(16, 29, 49, 0.94));
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .eyebrow {
+      color: var(--ok);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.06;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      color: var(--muted);
+      max-width: 900px;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 14px;
+    }
+
+    .pill strong {
+      color: var(--ok);
+    }
+
+    .pill.warn strong {
+      color: var(--warn);
+    }
+
+    .pill.danger strong {
+      color: var(--danger);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      min-height: 178px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--card), var(--card-2));
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 19px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(65, 184, 255, 0.12);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .model {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      background: rgba(16, 29, 49, 0.82);
+    }
+
+    .model h2 {
+      margin: 0 0 14px;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .column {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+    }
+
+    .column h3 {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .column ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 207, 90, 0.35);
+      background: rgba(255, 207, 90, 0.08);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        width: min(100% - 22px, 1180px);
+        padding-top: 16px;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Pix2pi FAZ 4D-11</div>
+      <h1>Controlled Pilot Go-Live</h1>
+      <p class="subtitle">
+        Bu yüzey Pix2pi pilot açılışının geniş public launch değil, sınırlı tenant ve sınırlı kullanıcı ile kontrollü pilot olduğunu gösterir.
+        Marketplace ve Paraşüt production kapalıdır; monitoring, support ve rollback kapıları sonraki adımlarda kapatılır.
+      </p>
+
+      <div class="status">
+        <span class="pill">Go-Live Tipi: <strong>CONTROLLED PILOT</strong></span>
+        <span class="pill">Tenant Kapsamı: <strong>SINIRLI</strong></span>
+        <span class="pill">Kullanıcı Kapsamı: <strong>SINIRLI</strong></span>
+        <span class="pill warn">Public Launch: <strong>KAPALI</strong></span>
+        <span class="pill danger">No-Go: <strong>AKTİF</strong></span>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Controlled pilot go-live kartları">
+      <article class="card">
+        <span class="tag">01</span>
+        <h2>Pilot Tenant</h2>
+        <p>İlk açılış sınırlı tenant ile yapılır. Tenant isolation bozulursa pilot genişletilmez.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">02</span>
+        <h2>Pilot Kullanıcı</h2>
+        <p>Yetkili pilot kullanıcılar dışında erişim açılmaz. Role ve access boundary korunur.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">03</span>
+        <h2>Business UI</h2>
+        <p>Pilot kullanıcı web/pilot-business-ui yüzeyi üzerinden ana iş zincirini görür.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">04</span>
+        <h2>Oto Yedek Parça</h2>
+        <p>OEM, eşdeğer parça ve araç uyum yüzeyi kontrollü pilot kapsamında gösterilebilir.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">05</span>
+        <h2>Marketplace Kapalı</h2>
+        <p>Marketplace gerçek sipariş, ödeme veya komisyon almaz. Discovery olarak kalır.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">06</span>
+        <h2>Paraşüt Kapalı</h2>
+        <p>Paraşüt gerçek API çağrısı yapmaz, credential tutmaz ve canlı fatura üretmez.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">07</span>
+        <h2>No-Go Tetikleyicileri</h2>
+        <p>Cross-tenant sızıntı, auth bypass, veri bozulması veya secret sızıntısı pilotu durdurur.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">08</span>
+        <h2>Monitoring</h2>
+        <p>4D-12 altında pilot monitoring ve stabilizasyon kapısı ayrıca mühürlenir.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">09</span>
+        <h2>Rollback</h2>
+        <p>4D-15 altında release, rollback ve backup gate final PASS vermeden genişleme yapılmaz.</p>
+      </article>
+    </section>
+
+    <section class="model">
+      <h2>Kontrollü Pilot Kapıları</h2>
+      <div class="columns">
+        <div class="column">
+          <h3>Go</h3>
+          <ul>
+            <li>4D-1 / 4D-10 PASS</li>
+            <li>tenant isolation PASS</li>
+            <li>access PASS</li>
+            <li>business UI PASS</li>
+            <li>controlled scope ACCEPTED</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <h3>No-Go</h3>
+          <ul>
+            <li>cross-tenant sızıntı</li>
+            <li>auth bypass</li>
+            <li>role bypass</li>
+            <li>veri bozulması</li>
+            <li>secret sızıntısı</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <h3>Next Gates</h3>
+          <ul>
+            <li>4D-12 monitoring</li>
+            <li>4D-13 support feedback</li>
+            <li>4D-14 mobile-ready PWA</li>
+            <li>4D-15 rollback backup</li>
+            <li>4D-16 final closure</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-note">
+      Pilot karar notu: Bu adım geniş public launch değildir.
+      Controlled pilot açılışı sınırlı tenant, sınırlı kullanıcı, aktif no-go tetikleyicileri ve sonraki monitoring/support/rollback kapılarına bağlıdır.
+    </section>
+  </main>
+</body>
+</html>

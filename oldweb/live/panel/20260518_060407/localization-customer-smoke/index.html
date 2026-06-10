@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi localization customer smoke ekranı" />
+  <meta property="og:title" content="Pix2pi Localization Customer Smoke" />
+  <meta property="og:description" content="Kontrollü müşteri açılışı öncesi dil, alfabe, yön ve format smoke yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Localization Customer Smoke</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(5,150,105,.12), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1360px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .loc-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+      min-height: 96px;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    [dir="rtl"] {
+      text-align: right;
+      font-family: "Noto Naskh Arabic", "Amiri", "Scheherazade New", serif;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-5, .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_354_LOCALIZATION_CUSTOMER_SMOKE_APP_SHELL_START -->
+  <main class="shell" data-step="354" data-surface="localization-customer-smoke">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 354</span>
+      <h1 data-i18n="localization_customer_smoke.title">Localization customer smoke</h1>
+      <p data-i18n="localization_customer_smoke.description">Dil, alfabe, yön, format ve müşteri yüzeyi çeviri smoke testi.</p>
+    </section>
+
+    <!-- PIX2PI_354_TENANT_DEFAULT_LANGUAGE_CONTEXT_START -->
+    <section class="card guard" data-widget="tenant_default_language_context">
+      <h2>Tenant / user localization context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="localization-tenant-id">controlled-pilot</strong></p>
+        <p>Tenant default language: <strong id="tenant-default-language">tr-TR</strong></p>
+        <!-- PIX2PI_354_USER_LANGUAGE_PREFERENCE_CONTEXT_START -->
+        <p>User language: <strong id="user-language-preference">tr-TR</strong></p>
+        <!-- PIX2PI_354_USER_LANGUAGE_PREFERENCE_CONTEXT_END -->
+        <p>Session: <strong id="localization-user-session">USER_DEMO_SESSION</strong></p>
+        <p>Scope: <strong id="localization-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_354_TENANT_DEFAULT_LANGUAGE_CONTEXT_END -->
+
+    <!-- PIX2PI_354_LANGUAGE_REGISTRY_SMOKE_START -->
+    <section class="card" data-widget="language_registry_smoke">
+      <h2>Language registry smoke</h2>
+      <div id="language-registry-smoke-list" class="grid-5">
+        <!-- PIX2PI_354_LATIN_TURKISH_SMOKE_TR_TR_START -->
+        <article class="loc-card" data-language-code="tr-TR" data-direction="ltr" dir="ltr">
+          <strong>Latin Türkçe / tr-TR</strong>
+          <p>Pix2pi panel erişim testi hazır.</p>
+          <small>direction=ltr / complete=true</small>
+        </article>
+        <!-- PIX2PI_354_LATIN_TURKISH_SMOKE_TR_TR_END -->
+
+        <!-- PIX2PI_354_OTTOMAN_TURKISH_ARABIC_SCRIPT_SMOKE_OTA_TR_ARAB_START -->
+        <article class="loc-card" data-language-code="ota" data-direction="rtl" dir="rtl">
+          <strong>Osmanlıca Türkçesi / ota</strong>
+          <p>پیكستۇپی پانل حاضردر</p>
+          <small>direction=rtl / complete=true</small>
+        </article>
+        <!-- PIX2PI_354_OTTOMAN_TURKISH_ARABIC_SCRIPT_SMOKE_OTA_TR_ARAB_END -->
+
+        <!-- PIX2PI_354_ARABIC_SMOKE_AR_START -->
+        <article class="loc-card" data-language-code="ar" data-direction="rtl" dir="rtl">
+          <strong>العربية / ar</strong>
+          <p>لوحة بيكس تو بي جاهزة</p>
+          <small>direction=rtl / complete=true</small>
+        </article>
+        <!-- PIX2PI_354_ARABIC_SMOKE_AR_END -->
+
+        <!-- PIX2PI_354_FARSI_SMOKE_FA_START -->
+        <article class="loc-card" data-language-code="fa" data-direction="rtl" dir="rtl">
+          <strong>فارسی / fa</strong>
+          <p>پنل پیکس تو پی آماده است</p>
+          <small>direction=rtl / complete=true</small>
+        </article>
+        <!-- PIX2PI_354_FARSI_SMOKE_FA_END -->
+
+        <!-- PIX2PI_354_ENGLISH_SMOKE_EN_START -->
+        <article class="loc-card" data-language-code="en" data-direction="ltr" dir="ltr">
+          <strong>English / en</strong>
+          <p>Pix2pi panel access test is ready.</p>
+          <small>direction=ltr / complete=true</small>
+        </article>
+        <!-- PIX2PI_354_ENGLISH_SMOKE_EN_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_354_LANGUAGE_REGISTRY_SMOKE_END -->
+
+    <!-- PIX2PI_354_AHMED_HUSREV_CALLIGRAPHY_REFERENCE_BINDING_CHECK_START -->
+    <section class="card guard" data-widget="ahmed_husrev_calligraphy_reference_binding_check">
+      <h2>Ahmed Hüsrev Altınbaşak hat referansı binding check</h2>
+      <p>primary_reference_name=Ahmed Hüsrev Altınbaşak / primary_reference_url=https://oku.risale.online/osm / other_reference_sources_allowed=false / applies_to=ota,tr-Arab,ar,fa</p>
+    </section>
+    <!-- PIX2PI_354_AHMED_HUSREV_CALLIGRAPHY_REFERENCE_BINDING_CHECK_END -->
+
+    <!-- PIX2PI_354_RTL_LTR_LAYOUT_SMOKE_START -->
+    <section class="card" data-widget="rtl_ltr_layout_smoke">
+      <h2>RTL / LTR layout smoke</h2>
+      <p>tr-TR/en LTR; ota/tr-Arab/ar/fa RTL layout preview hazır.</p>
+    </section>
+    <!-- PIX2PI_354_RTL_LTR_LAYOUT_SMOKE_END -->
+
+    <!-- PIX2PI_354_DATE_TIME_NUMBER_CURRENCY_FORMAT_SMOKE_START -->
+    <section class="card" data-widget="date_time_number_currency_format_smoke">
+      <h2>Date / time / number / currency format smoke</h2>
+      <div id="localization-format-preview" class="grid-4">
+        <article class="loc-card" data-locale="tr-TR">
+          <strong>tr-TR</strong>
+          <p>11.05.2026 / 14:30 / 1.234,56 / ₺1.234,56</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_354_DATE_TIME_NUMBER_CURRENCY_FORMAT_SMOKE_END -->
+
+    <!-- PIX2PI_354_PANEL_POS_MARKETPLACE_LOCALIZATION_READINESS_START -->
+    <section class="card" data-widget="panel_pos_marketplace_localization_readiness">
+      <h2>Panel / POS / Marketplace localization readiness</h2>
+      <div id="localization-readiness-list" class="grid-4">
+        <article class="loc-card" data-readiness-surface="panel">
+          <strong>panel</strong>
+          <p>routes/errors/forms / READY_PREVIEW</p>
+        </article>
+        <article class="loc-card" data-readiness-surface="pos">
+          <strong>pos</strong>
+          <p>cashier/sales/payment / READY_PREVIEW</p>
+        </article>
+        <article class="loc-card" data-readiness-surface="marketplace">
+          <strong>marketplace</strong>
+          <p>storefront/products/orders / READY_PREVIEW</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_354_PANEL_POS_MARKETPLACE_LOCALIZATION_READINESS_END -->
+
+    <!-- PIX2PI_354_NOTIFICATION_EMAIL_ERROR_LOCALIZATION_READINESS_START -->
+    <section class="card guard" data-widget="notification_email_error_localization_readiness">
+      <h2>Notification / email / error localization readiness</h2>
+      <p>email/sms/whatsapp/errors translation preview hazır. real_notification_send_enabled=false.</p>
+    </section>
+    <!-- PIX2PI_354_NOTIFICATION_EMAIL_ERROR_LOCALIZATION_READINESS_END -->
+
+    <!-- PIX2PI_354_MISSING_TRANSLATION_FALLBACK_PREVIEW_START -->
+    <section class="card locked" data-widget="missing_translation_fallback_preview">
+      <h2>Missing translation fallback preview</h2>
+      <div id="localization-fallback-preview" class="grid-3">
+        <article class="loc-card" data-fallback-key="dashboard.unknown">
+          <strong>dashboard.unknown</strong>
+          <p>ota → tr-TR / FALLBACK_TO_DEFAULT</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_354_MISSING_TRANSLATION_FALLBACK_PREVIEW_END -->
+
+    <!-- PIX2PI_354_HARDCODED_UI_TEXT_GUARD_PREVIEW_START -->
+    <section class="card guard" data-widget="hardcoded_ui_text_guard_preview">
+      <h2>Hardcoded UI text guard preview</h2>
+      <p>panel/pos/marketplace hardcoded_text_found=false / PASS_PREVIEW.</p>
+    </section>
+    <!-- PIX2PI_354_HARDCODED_UI_TEXT_GUARD_PREVIEW_END -->
+
+    <!-- PIX2PI_354_TRANSLATION_COMPLETENESS_CUSTOMER_SMOKE_START -->
+    <section class="card" data-widget="translation_completeness_customer_smoke">
+      <h2>Translation completeness customer smoke</h2>
+      <div id="translation-completeness-list" class="grid-5">
+        <article class="loc-card" data-completeness-language="tr-TR">
+          <strong>tr-TR</strong>
+          <p>42/42 / COMPLETE</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_354_TRANSLATION_COMPLETENESS_CUSTOMER_SMOKE_END -->
+
+    <!-- PIX2PI_354_LOCALIZATION_AUDIT_TIMELINE_START -->
+    <section class="card" data-widget="localization_audit_timeline">
+      <h2>Localization audit timeline</h2>
+      <div id="localization-audit-timeline" class="grid-3">
+        <article class="loc-card" data-audit-action="LOCALIZATION_CUSTOMER_SMOKE_READY">
+          <strong>LOCALIZATION_CUSTOMER_SMOKE_READY</strong>
+          <p>2026-05-demo / system / DRY_RUN</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_354_LOCALIZATION_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_354_LOCALIZATION_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="localization_runtime_data_contract">
+      <h2>Localization runtime data contract</h2>
+      <p id="localization-runtime-contract">localization_preview_enabled=true / translation_completeness_preview_enabled=true / ready_for_step_355=true</p>
+    </section>
+    <!-- PIX2PI_354_LOCALIZATION_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_354_SEO_OPENGRAPH_LOCALIZATION_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_localization_placeholder">
+      <h2>SEO / OpenGraph localization placeholder</h2>
+      <p>Title, description ve og:* metadata localization customer smoke yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_354_SEO_OPENGRAPH_LOCALIZATION_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_354_I18N_READY_SMOKE_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_smoke_marker">
+      <h2 data-i18n="localization_customer_smoke.i18n_ready">i18n-ready localization smoke screen</h2>
+      <p data-i18n="localization_customer_smoke.surface_ready">Localization customer smoke ekranı çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_354_I18N_READY_SMOKE_MARKER_END -->
+  </main>
+  <!-- PIX2PI_354_LOCALIZATION_CUSTOMER_SMOKE_APP_SHELL_END -->
+
+  <script src="/assets/localization-customer-smoke/localization-customer-smoke-runtime.js"></script>
+  <script>
+    Pix2piLocalizationCustomerSmoke.bootLocalizationSmokeScreen().then(function (contract) {
+      console.log("PIX2PI_354_LOCALIZATION_CUSTOMER_SMOKE_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

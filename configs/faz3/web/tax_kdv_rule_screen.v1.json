@@ -1,0 +1,60 @@
+{
+  "phase": "FAZ_3_11_5_TAX_KDV_RULE_SCREEN",
+  "screen": "tax_kdv_rule_screen",
+  "screen_enabled": true,
+  "route": "/faz3/erp-ui/tax-kdv-rules/",
+  "static_file": "web/faz3/erp-ui/tax-kdv-rules/index.html",
+  "scope": {
+    "kdv_rule_visibility": true,
+    "kdv_20_visibility": true,
+    "kdv_10_visibility": true,
+    "kdv_0_visibility": true,
+    "stopaj_rule_visibility": true,
+    "tax_exemption_visibility": true,
+    "rule_version_rollout_visibility": true,
+    "canary_rollout_visibility": true,
+    "rollback_visibility": true,
+    "audit_persistence_visibility": true,
+    "tdhp_account_visibility": true,
+    "legal_reference_visibility": true,
+    "effective_date_visibility": true,
+    "approval_status_visibility": true
+  },
+  "guard_policy": {
+    "tenant_indicator_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "rule_id_required": true,
+    "rule_code_required": true,
+    "active_rule_version_required": true,
+    "effective_date_required": true,
+    "legal_reference_required": true,
+    "approved_by_required_for_activation": true,
+    "audit_hash_required": true,
+    "rule_artifact_hash_required": true,
+    "config_artifact_hash_required": true,
+    "tdhp_output_kdv_account_required": true,
+    "tdhp_input_kdv_account_required": true,
+    "tdhp_stopaj_account_required": true
+  },
+  "live_policy": {
+    "production_approved": false,
+    "real_external_tax_provider_gate_status": "CLOSED",
+    "real_external_provider_calls_allowed": false,
+    "legal_review_required": true,
+    "financial_advisor_review_required": true,
+    "ui_actions_are_dry_run_until_legal_approval": true
+  },
+  "covered_backend_gates": [
+    "FAZ_3_10_2_1_KDV_RUNTIME_EXECUTION",
+    "FAZ_3_10_2_2_STOPAJ_RUNTIME_EXECUTION",
+    "FAZ_3_10_2_3_TAX_EXEMPTION_RUNTIME_EXECUTION",
+    "FAZ_3_10_2_4_TAX_RULE_VERSION_ROLLOUT",
+    "FAZ_3_10_2_5_TAX_AUDIT_PERSISTENCE",
+    "FAZ_3_10_2_6_TAX_RUNTIME_TESTS",
+    "FAZ_3_10_8_2_TAX_SMOKE"
+  ],
+  "previous_gate": "FAZ_3_11_6_RECONCILIATION_SCREEN",
+  "next_gate": "FAZ_3_11_3_JOURNAL_LEDGER_SCREEN"
+}

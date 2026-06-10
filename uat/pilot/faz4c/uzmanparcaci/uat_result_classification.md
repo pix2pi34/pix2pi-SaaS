@@ -1,0 +1,62 @@
+# uzmanparcaci — UAT Result Classification
+
+## Pilot
+
+PILOT_BUSINESS_NAME=uzmanparcaci
+TENANT_BUSINESS_CODE=UZMANPARCACI
+PILOT_USER_EMAIL=uzmanparcaci1@gmail.com
+PILOT_ROLE_CODE=PILOT_ADMIN
+
+---
+
+## Teknik UAT özeti
+
+UAT_01_STATUS=PASS
+UAT_02_STATUS=PASS
+UAT_03_STATUS=PASS
+UAT_04_STATUS=PASS
+UAT_05_STATUS=PASS
+UAT_06_STATUS=PASS
+UAT_07_STATUS=PASS
+UAT_08_STATUS=PASS
+UAT_09_STATUS=PASS
+UAT_10_STATUS=PASS
+UAT_11_STATUS=PASS
+
+TECHNICAL_UAT_STATUS=PASS
+TECHNICAL_FAIL_COUNT=0
+CRITICAL_BLOCKER_COUNT=0
+
+---
+
+## Bekleyen UAT alanları
+
+UAT_12_STATUS=PENDING_BUSINESS_ACCEPTANCE
+UAT_13_STATUS=PENDING_CLASSIFICATION
+UAT_14_STATUS=PENDING_GO_NO_GO
+
+---
+
+## Warning sınıflandırması
+
+WARNING_COUNT=2
+
+| Kod | Açıklama | Blocker |
+|-----|----------|---------|
+| WARN-01 | Barkod boşluğu | NO |
+| WARN-02 | İşletme kabulü bekliyor | NO |
+
+---
+
+## Classification
+
+UAT_RESULT_CLASSIFICATION=TECHNICAL_PASS_BUSINESS_ACCEPTANCE_PENDING
+
+Bu sonuç UAT'in teknik olarak geçtiğini, ancak final işletme kabulü alınmadan 4C-6'nın tamamen kapanmayacağını belirtir.
+
+---
+
+## Next
+
+NEXT_STEP=4C_6F_UAT_BUG_BLOCKER_REGISTER
+4C_6F_READY=YES

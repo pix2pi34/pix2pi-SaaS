@@ -1,0 +1,56 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "342",
+  "name": "Kullanım hakkı / kota ekranı",
+  "surface": "merchant_panel_commercial",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/quota/",
+  "runtime_path": "/assets/quota/panel-quota-runtime.js",
+  "depends_on": [
+    "341 - Paket / abonelik ekranı"
+  ],
+  "backend_contract": {
+    "quota_snapshot_endpoint": "/api/commercial/quota/snapshot",
+    "entitlement_preview_endpoint": "/api/commercial/entitlements/preview",
+    "quota_alert_endpoint": "/api/commercial/quota/alerts",
+    "method": "GET",
+    "tenant_header": "X-Tenant-ID",
+    "merchant_session_header": "X-Merchant-Session"
+  },
+  "runtime_contract": {
+    "real_quota_enforcement_enabled": false,
+    "real_plan_change_enabled": false,
+    "real_payment_collection_enabled": false,
+    "quota_snapshot_enabled": true,
+    "fallback_quota_snapshot_enabled": true,
+    "ready_for_step_343": true
+  },
+  "quota_contract": {
+    "current_plan_code": "pilot_free",
+    "currency": "TRY",
+    "threshold_warn_percent": 80,
+    "threshold_block_percent": 100
+  },
+  "required_capabilities": [
+    "quota_app_shell",
+    "tenant_merchant_plan_context",
+    "entitlement_summary_cards",
+    "product_limit_quota_card",
+    "user_limit_quota_card",
+    "store_branch_limit_quota_card",
+    "pos_device_cashier_quota_card",
+    "marketplace_visible_product_quota_card",
+    "api_event_import_quota_placeholder",
+    "usage_progress_bars",
+    "quota_overage_warning_panel",
+    "plan_upgrade_handoff",
+    "enforcement_disabled_gate",
+    "tenant_plan_quota_scope_guard",
+    "quota_runtime_data_contract",
+    "i18n_ready_quota_marker",
+    "seo_opengraph_quota_placeholder",
+    "quota_smoke_test"
+  ],
+  "next_step": "343 - Ödeme / billing ekranı"
+}

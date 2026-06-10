@@ -1,0 +1,38 @@
+gate	status	note
+previous_20_3	PASS	runtime service hardening prerequisite
+config_inventory	PASS	nginx_config_files=6
+proxy_surface_manifest	PASS	proxy_targets=7
+public_port_policy	PASS	public_ports=55 high_risk=49
+allowed_public_ports	PASS	allowed=2
+management_public_ports	PASS	management=4
+internal_should_not_public	PASS	count=30
+unknown_public_review	PASS	count=19
+security_header_markers	PASS	count=0
+ssl_markers	PASS	count=17
+rate_limit_markers	PASS	count=12
+auth_markers	PASS	count=0
+hardening_matrix	PASS	evidence only
+no_reload	PASS	nginx not reloaded
+no_firewall_change	PASS	firewall not changed
+no_deploy	PASS	deploy not executed
+secret_safe	PASS	no config body or secret values printed
+nginx_config_changed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+nginx_restarted	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+docker_port_changed	NO	evidence only
+docker_compose_executed	NO	evidence only
+service_restarted	NO	evidence only
+deploy_executed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+file_permission_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+log_content_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

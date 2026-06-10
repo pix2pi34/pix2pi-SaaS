@@ -1,0 +1,66 @@
+{
+  "marker": "CUSTOMER_REGISTER_PENDING_APPLICATION_MARKER",
+  "application_id": "CR-20260517-FE0BA3CA",
+  "status": "APPROVED",
+  "application_status": "APPROVED",
+  "source": "customer-register-live-submit-api",
+  "created_at": "2026-05-16T21:18:56.823Z",
+  "updated_at": "2026-05-16T21:31:55.537Z",
+  "company_name": "Pix2pi Panel External Recovery Smoke",
+  "tax_office": "",
+  "tax_number": "",
+  "owner_name": "Panel External Recovery User",
+  "email": "register-submit-external-recovery-20260517_001853@pix2pi.local",
+  "phone": "",
+  "password_setup": {
+    "provided": true,
+    "algorithm": "sha256-demo-salted",
+    "salt": "89eab469a5dd732884c3ae5f30b57449",
+    "hash": "f1d25e0d2328c3758beea0d8690cb3ec5fee923f1811b484f2622574ba0ad863",
+    "storage_policy": "RAW_PASSWORD_NOT_STORED"
+  },
+  "approval_flow": {
+    "owner_admin_required": true,
+    "owner_admin_marker": "OWNER_REGISTER_APPROVALS_ADMIN_MARKER",
+    "tenant_create_real_create": false,
+    "tenant_create_status": "WAITING_OWNER_APPROVAL",
+    "note": "Başvuru PENDING olarak kaydedildi. Tenant sadece Pix2pi owner admin onayı ve sonraki aktivasyon adımıyla açılır."
+  },
+  "audit_trail": [
+    {
+      "at": "2026-05-16T21:18:56.823Z",
+      "actor": "CUSTOMER_REGISTER_FORM",
+      "action": "CREATE_PENDING_APPLICATION",
+      "to_status": "PENDING",
+      "tenant_created": false
+    },
+    {
+      "at": "2026-05-16T21:31:55.537Z",
+      "actor": "PIX2PI_OWNER_ADMIN",
+      "action": "APPROVE_REGISTER_APPLICATION",
+      "from_status": "PENDING",
+      "to_status": "APPROVED",
+      "tenant_created": false,
+      "handoff_marker": "REGISTER_APPROVAL_HANDOFF_MARKER"
+    }
+  ],
+  "raw_client_payload_keys": [
+    "company_name",
+    "email",
+    "owner_name",
+    "password"
+  ],
+  "previous_status": "PENDING",
+  "owner_admin_action": "APPROVE",
+  "owner_admin_action_at": "2026-05-16T21:31:55.537Z",
+  "owner_admin_actor": "PIX2PI_OWNER_ADMIN",
+  "approved_at": "2026-05-16T21:31:55.537Z",
+  "approved_by": "PIX2PI_OWNER_ADMIN",
+  "approval_handoff": {
+    "marker": "REGISTER_APPROVAL_HANDOFF_MARKER",
+    "tenant_create_real_create": false,
+    "tenant_create_status": "PENDING_MANUAL_HANDOFF",
+    "tenant_create_note": "Tenant bu adımda otomatik açılmaz. Pix2pi owner admin onayı sonrası aktivasyon ayrı kontrollü handoff olarak ilerler.",
+    "handoff_at": "2026-05-16T21:31:55.537Z"
+  }
+}

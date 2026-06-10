@@ -1,0 +1,42 @@
+{
+  "phase": "FAZ_5_19_5",
+  "title": "Sandbox Kullanım Yüzeyi",
+  "status": "READY",
+  "control_surface": "SANDBOX_USAGE_SURFACE",
+  "inputs": [
+    "FAZ_5_19_3_DEVELOPER_DOCS_PORTALI",
+    "FAZ_5_19_4_API_KEY_YONETIM_EKRANI",
+    "FAZ_5_R_PRIORITY_4_WEB_L8_PUBLIC_DEVELOPER_SURFACES"
+  ],
+  "outputs": [
+    "SANDBOX_OVERVIEW",
+    "MOCK_CREDENTIALS_PANEL",
+    "SAMPLE_REQUESTS_PANEL",
+    "SAMPLE_RESPONSES_PANEL",
+    "WEBHOOK_MOCK_PANEL",
+    "TENANT_SCOPE_PANEL",
+    "DATA_RESET_POLICY_PANEL",
+    "SECURITY_NOTICE_PANEL",
+    "PRICING_PAGES_DEFERRED_MARKER"
+  ],
+  "web_artifact": "web/faz5r/sandbox-surface/index.html",
+  "gates": {
+    "internal_sandbox_surface_ready": true,
+    "static_html_ready": true,
+    "production_sandbox_published": false,
+    "real_developer_access_enabled": false,
+    "live_api_call_enabled": false,
+    "live_data_mutation_enabled": false,
+    "payment_simulation_live_enabled": false,
+    "api_key_creation_enabled": false,
+    "pricing_pages_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "web_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

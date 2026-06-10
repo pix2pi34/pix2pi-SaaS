@@ -1,0 +1,73 @@
+{
+  "version": "web_release.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_22_8",
+  "status": "dry_run_only_no_final_web_release_mutation",
+  "closure_records": [
+    {
+      "closure_id": "web-closure-public-landing",
+      "surface": "public_landing",
+      "accessibility_gate_status": "PASS_REQUIRED",
+      "performance_gate_status": "PASS_REQUIRED",
+      "visual_regression_gate_status": "PASS_REQUIRED",
+      "release_blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "rollback_readiness_status": "REQUIRED",
+      "risk_level": "medium",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "closure_id": "web-closure-auth-surface",
+      "surface": "auth_surface",
+      "accessibility_gate_status": "PASS_REQUIRED",
+      "performance_gate_status": "PASS_REQUIRED",
+      "visual_regression_gate_status": "PASS_REQUIRED",
+      "release_blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "rollback_readiness_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "closure_id": "web-closure-tenant-panel-shell",
+      "surface": "tenant_panel_shell",
+      "accessibility_gate_status": "PASS_REQUIRED",
+      "performance_gate_status": "PASS_REQUIRED",
+      "visual_regression_gate_status": "PASS_REQUIRED",
+      "release_blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "rollback_readiness_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "closure_id": "web-closure-workflow-ui",
+      "surface": "workflow_ui",
+      "accessibility_gate_status": "PASS_REQUIRED",
+      "performance_gate_status": "PASS_REQUIRED",
+      "visual_regression_gate_status": "PASS_REQUIRED",
+      "release_blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "rollback_readiness_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "closure_id": "web-closure-reporting-ui",
+      "surface": "reporting_ui",
+      "accessibility_gate_status": "PASS_REQUIRED",
+      "performance_gate_status": "PASS_REQUIRED",
+      "visual_regression_gate_status": "PASS_REQUIRED",
+      "release_blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "rollback_readiness_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_22_1",
+    "name": "Responsive finalizasyon",
+    "runtime_mutation_allowed_now": false
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "359",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "pilot_feedback_triage_screen",
+      "path": "/pilot-feedback-triage/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_359_PILOT_FEEDBACK_TRIAGE_APP_SHELL_START",
+        "PIX2PI_359_ISSUE_TRIAGE_QUEUE_PREVIEW_START",
+        "PIX2PI_359_FEEDBACK_TRIAGE_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "pilot_feedback_triage_runtime",
+      "path": "/assets/pilot-feedback-triage/pilot-feedback-triage-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_359_PILOT_FEEDBACK_TRIAGE_RUNTIME_START",
+        "feedbackScopeHeaders",
+        "buildFeedbackTriageRuntimeContract"
+      ]
+    }
+  ]
+}

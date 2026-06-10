@@ -1,0 +1,53 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "318",
+  "fix": "V2",
+  "name": "Dil Modülü / i18n / Alfabe Altyapısı",
+  "surface": ["panel", "pos", "marketplace"],
+  "domain": "panel.pix2pi.com.tr",
+  "default_language": "tr-TR",
+  "fallback_language": "tr-TR",
+  "language_order": ["tr-TR", "ota", "ar", "fa", "en"],
+  "rtl_languages": ["ota", "ar", "fa"],
+  "ltr_languages": ["tr-TR", "en"],
+  "tenant_default_language_key": "pix2pi.tenant.default_language",
+  "user_language_preference_key": "pix2pi.user.language.preference",
+  "translation_key_standard": "dot_notation",
+  "hardcoded_ui_text_policy": "data_i18n_required_for_localized_surfaces",
+  "calligraphy_reference": {
+    "primary_reference_name": "Ahmed Hüsrev Altınbaşak hattı",
+    "primary_reference_url": "https://oku.risale.online/osm",
+    "applies_to": ["ota", "ar", "fa"],
+    "reference_policy": "Use this direct reference source for Ottoman Turkish and Arabic calligraphic styling. Do not use alternative style references unless explicitly approved."
+  },
+  "font_fallback": {
+    "ltr": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+    "rtl": "Noto Naskh Arabic, Noto Sans Arabic, Vazirmatn, Tahoma, Arial, sans-serif"
+  },
+  "required_capabilities": [
+    "language_module",
+    "translation_key_standard",
+    "separate_language_files",
+    "default_latin_turkish",
+    "language_order",
+    "language_file_registry",
+    "tenant_default_language",
+    "user_language_preference",
+    "panel_language_switcher",
+    "pos_language_support",
+    "marketplace_language_support",
+    "notification_email_error_translations",
+    "date_time_number_currency_format",
+    "rtl_ltr_layout_engine",
+    "font_fallback_standard",
+    "language_fallback_mechanism",
+    "hardcoded_ui_text_ban",
+    "translation_completeness_audit",
+    "localization_smoke_test",
+    "rtl_layout_regression_test",
+    "ahmed_husrev_altinbasak_calligraphy_reference",
+    "ottoman_arabic_calligraphy_registry_binding"
+  ],
+  "depends_on": "317 - Login / tenant seçimi",
+  "next_step": "319 - İşletme onboarding ekranı"
+}

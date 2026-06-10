@@ -1,0 +1,68 @@
+{
+  "version": "sre_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_1_2",
+  "status": "dry_run_only_no_service_discovery_mutation",
+  "recommendations": [
+    {
+      "tuning_id": "sd-tune-api-gateway-health-ttl",
+      "service": "api_gateway",
+      "current_signal": "health_latency_and_route_error_ratio",
+      "recommended_action": "review_health_ttl_no_registry_mutation",
+      "risk_level": "critical",
+      "route_confidence_status": "REQUIRED",
+      "stale_endpoint_guard_status": "REQUIRED",
+      "tenant_aware_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "sd-tune-identity-api-route-confidence",
+      "service": "identity_api",
+      "current_signal": "auth_route_success_ratio_and_health_status",
+      "recommended_action": "review_route_confidence_no_gateway_mutation",
+      "risk_level": "critical",
+      "route_confidence_status": "REQUIRED",
+      "stale_endpoint_guard_status": "REQUIRED",
+      "tenant_aware_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "sd-tune-pos-stale-endpoint-review",
+      "service": "pos",
+      "current_signal": "stale_endpoint_count_and_route_error_ratio",
+      "recommended_action": "review_stale_endpoint_candidates_no_deregistration",
+      "risk_level": "high",
+      "route_confidence_status": "REQUIRED",
+      "stale_endpoint_guard_status": "REQUIRED",
+      "tenant_aware_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "sd-tune-event-consumer-dependency-graph",
+      "service": "event_consumer",
+      "current_signal": "dependency_graph_missing_edges",
+      "recommended_action": "review_dependency_graph_no_restart_no_rollout",
+      "risk_level": "high",
+      "route_confidence_status": "NOT_APPLICABLE_FOR_BACKGROUND_CONSUMER",
+      "stale_endpoint_guard_status": "REQUIRED",
+      "tenant_aware_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "sd-tune-reporting-readmodel-dns-lb-alignment",
+      "service": "reporting_readmodel",
+      "current_signal": "dns_lb_alignment_status_and_route_success_ratio",
+      "recommended_action": "review_dns_lb_alignment_no_mutation",
+      "risk_level": "medium",
+      "route_confidence_status": "REQUIRED",
+      "stale_endpoint_guard_status": "REQUIRED",
+      "tenant_aware_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ]
+}

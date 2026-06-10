@@ -1,0 +1,15 @@
+gate	status	note
+previous_14_1	PASS	migration chain prerequisite
+previous_14_2	PASS	reference seed prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=9
+tenant_safety	PASS	tenant_id=9 import_batch_id=8
+payload_lifecycle	PASS	payload=5 validation=5 apply=5
+indexes	PASS	index_count=16
+down_migration	PASS	drop_table_count=9
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=24
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+query_text_printed	NO	secret-safe report

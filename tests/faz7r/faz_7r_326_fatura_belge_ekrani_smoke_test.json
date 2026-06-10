@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "326",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "documents_screen",
+      "path": "/documents/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_326_DOCUMENTS_APP_SHELL_START",
+        "PIX2PI_326_DOCUMENT_LIST_START",
+        "PIX2PI_326_DOCUMENT_VALIDATION_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "documents_runtime",
+      "path": "/assets/documents/documents-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_326_DOCUMENTS_RUNTIME_START",
+        "tenantScopedHeaders",
+        "buildDocumentPayload"
+      ]
+    }
+  ]
+}

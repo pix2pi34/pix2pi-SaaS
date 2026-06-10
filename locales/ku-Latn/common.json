@@ -1,0 +1,35 @@
+{
+  "locale": "ku-Latn",
+  "languageName": "Kürtçe / Kurmancî Latin",
+  "nativeName": "Kurdî / Kurmancî",
+  "script": "Latn",
+  "direction": "ltr",
+  "calligraphyRenderer": null,
+  "calligraphyCssClass": "pix2pi-no-husrev",
+  "calligraphyTitleCssClass": "pix2pi-no-husrev",
+  "fontBinding": {
+    "bodyFontFamily": "system-ui",
+    "titleFontFamily": "system-ui",
+    "bodyAssetPath": null,
+    "titleAssetPath": null,
+    "cssPath": null
+  },
+  "messages": {
+    "app.name": "Pix2pi",
+    "auth.login": "Têkeve",
+    "nav.dashboard": "Panel",
+    "nav.pos": "POS",
+    "tenant.create": "Karsaziyê ava bike",
+    "customer.add": "Mişterî lê zêde bike",
+    "product.add": "Berhem lê zêde bike",
+    "pos.sale": "Firotina POS",
+    "reports.view": "Raporan bibîne",
+    "language.change": "Ziman biguherîne",
+    "support.title": "Alîkarî û piştgirî",
+    "upgrade.required": "Bilindkirin pêwîst e",
+    "quota.exceeded": "Sînor têper bû",
+    "localization.ek2.title": "Kurdî û Zazakî hatin zêdekirin",
+    "localization.ek2.subtitle": "Latin û tîpên îslamî amade ne",
+    "nav.marketplace": "Bazargeh"
+  }
+}

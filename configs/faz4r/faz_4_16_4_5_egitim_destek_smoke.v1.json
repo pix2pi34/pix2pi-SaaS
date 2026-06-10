@@ -1,0 +1,52 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 214,
+  "step": "FAZ_4_16_4_5",
+  "title": "Eğitim / destek smoke",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "210_FAZ_4_16_4_1_KULLANICI_EGITIM_SETI",
+    "211_FAZ_4_16_4_2_YARDIM_MERKEZI_ICERIGI",
+    "212_FAZ_4_16_4_3_ILK_DESTEK_TRIAGE_AKISI",
+    "213_FAZ_4_16_4_4_PILOT_ISSUE_ESCALATION"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "smoke_policy": {
+    "smoke_status_required": "READY",
+    "smoke_mode_required": "CONTROLLED_PILOT",
+    "required_check_status_required": "PASS",
+    "fail_check_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "training_set_status_required": "PASS",
+    "help_center_status_required": "PASS",
+    "triage_status_required": "PASS",
+    "escalation_status_required": "PASS",
+    "no_real_external_dispatch_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_smoke_checks": [
+    "TRAINING_SET_ACCESS_SMOKE",
+    "HELP_CENTER_ACCESS_SMOKE",
+    "SUPPORT_INTAKE_SMOKE",
+    "TRIAGE_CLASSIFICATION_SMOKE",
+    "ESCALATION_ROUTING_SMOKE",
+    "EVIDENCE_ATTACHMENT_SMOKE",
+    "OWNER_MATRIX_SMOKE",
+    "SLA_MATRIX_SMOKE",
+    "CLOSED_PROVIDER_POLICY_SMOKE",
+    "FIRST_RESPONSE_TEMPLATE_SMOKE",
+    "COMPLETION_CHECKLIST_SMOKE",
+    "TRAINING_SUPPORT_HANDOFF_SMOKE"
+  ],
+  "smoke_artifact": "configs/faz4r/training_support_smoke.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "215_FAZ_4_16_5_2_GUNLUK_PILOT_REVIEW"
+  ]
+}

@@ -1,0 +1,13 @@
+test_name	category	target	expected_result	tenant_check	rbac_check	audit_check	realtime_check	implementation_status	note
+ui_workflow_dashboard_contract	ui	workflow_dashboard	widgets/data/realtime mapping exists	YES	YES	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+ui_approval_center_contract	ui	approval_center	approval actions mapped	YES	YES	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+ui_task_center_contract	ui	task_center	task stream mapped	YES	YES	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+api_workflow_read_contract	api	GET /api/v1/workflow-instances	tenant scoped list envelope	YES	YES	NO	YES	READY_FOR_IMPLEMENTATION	plan_only
+api_workflow_action_contract	api	POST /api/v1/workflow-instances/{id}/actions	idempotent audited mutation	YES	YES	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+api_approval_approve_contract	api	POST /api/v1/approvals/{id}/approve	approval write enforced	YES	YES	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+api_approval_reject_contract	api	POST /api/v1/approvals/{id}/reject	reject reason enforced	YES	YES	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+api_realtime_sse_contract	api	GET /api/v1/realtime/events	SSE metadata-only envelope	YES	YES	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+api_realtime_ws_contract	api	GET /api/v1/realtime/ws	WebSocket subscribe envelope	YES	YES	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+ops_workflow_contract	ops	GET /ops/v1/workflow	platform scoped ops envelope	YES	YES	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+security_tenant_isolation_contract	security	GET /ops/v1/security/tenant-isolation	security scoped only	YES	YES	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+secret_payload_guard	security	all UI/API/realtime outputs	no raw secret/raw payload	YES	YES	YES	YES	READY_FOR_IMPLEMENTATION	plan_only

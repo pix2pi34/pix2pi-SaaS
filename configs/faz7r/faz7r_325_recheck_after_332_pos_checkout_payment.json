@@ -1,0 +1,19 @@
+{
+  "step": "FAZ 7-R / 325-RC",
+  "name": "Sales / POS management recheck after 332 POS checkout payment",
+  "runId": "sales-pos-management-325-recheck-after-332-20260513_231343",
+  "dependencies": [
+    "FAZ_7R_325_SALES_POS_MANAGEMENT_REAL_FINAL_AUDIT.md",
+    "FAZ_7R_332_POS_CHECKOUT_PAYMENT_REAL_FINAL_AUDIT.md",
+    "FAZ_7R_331_POS_SALE_REAL_FINAL_AUDIT.md"
+  ],
+  "requiredEvidence": [
+    "325 evidence remains PASS",
+    "332 checkout paid cart/payment exists",
+    "332 failed payment placeholder exists",
+    "332 no-role and rollback remain blocked",
+    "sales/POS DB surface exists",
+    "sales/POS management route remains reachable",
+    "compatibility evidence written"
+  ]
+}

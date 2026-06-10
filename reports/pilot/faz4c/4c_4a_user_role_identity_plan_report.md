@@ -1,0 +1,26 @@
+# FAZ 4C — 4C-4A User Role Identity Plan Report
+
+Step: 4C-4A
+Blok: User / Role Identity Plan Freeze
+Test tarihi: 2026-05-01 07:34:37
+
+## Test sonucu
+
+4C_4A_USER_ROLE_IDENTITY_PLAN_STATUS=PASS
+4C_4A_PREVIOUS_BLOCK_STATUS=PASS
+4C_4A_TENANT_BUSINESS_CODE=UZMANPARCACI
+4C_4A_TENANT_SCHEMA=tenant_uzmanparcaci
+4C_4A_PILOT_USER_FULL_NAME=mert_omur
+4C_4A_PILOT_USER_EMAIL=uzmanparcaci1@gmail.com
+4C_4A_PILOT_USER_PHONE=5377457536
+4C_4A_PILOT_ROLE_CODE=PILOT_ADMIN
+4C_4A_SUPER_ADMIN_PERMISSION=NO
+4C_4A_USER_ROLE_SETUP_APPLY_STATUS=NOT_APPLIED
+4C_4A_DB_WRITE_APPLIED=NO
+4C_4B_READY=YES
+
+## Sonuc
+
+User/role identity plan donduruldu.
+Bu adimda DB apply yapilmadi.
+Sonraki adim: 4C-4B Identity User / Role DB Precheck.

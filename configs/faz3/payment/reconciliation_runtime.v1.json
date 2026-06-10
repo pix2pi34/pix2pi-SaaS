@@ -1,0 +1,51 @@
+{
+  "phase": "FAZ_3_10_7_3_RECONCILIATION_RUNTIME",
+  "runtime": "payment_reconciliation_runtime",
+  "runtime_enabled": true,
+  "default_currency_code": "TRY",
+  "reconciliation_tolerance_kurus": 100,
+  "idempotency_required": true,
+  "statement_hash_required": true,
+  "provider_payload_hash_required": true,
+  "manual_review_enabled": true,
+  "allowed_channels": [
+    "POS",
+    "VIRTUAL_POS",
+    "BANK_TRANSFER",
+    "BANK_COLLECTION",
+    "MARKETPLACE_SETTLEMENT"
+  ],
+  "allowed_provider_codes": [
+    "SIM_BANK_POS",
+    "SIM_BANK",
+    "SIM_MARKETPLACE"
+  ],
+  "operations": [
+    "PAYMENT_CAPTURE_RECONCILIATION",
+    "BANK_STATEMENT_RECONCILIATION",
+    "MARKETPLACE_SETTLEMENT_RECONCILIATION",
+    "REFUND_REVERSAL_RECONCILIATION",
+    "MANUAL_REVIEW_REGISTER"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "reconciliation_id_required": true,
+    "payment_transaction_id_required": true,
+    "provider_transaction_id_required_for_pos": true,
+    "provider_payload_hash_required": true,
+    "bank_account_id_required_for_bank": true,
+    "bank_reference_no_required_for_bank": true,
+    "statement_line_id_required_for_bank": true,
+    "statement_payload_hash_required_for_bank": true,
+    "marketplace_settlement_id_required": true,
+    "expected_amount_positive_required": true,
+    "actual_amount_positive_required": true,
+    "fee_amount_non_negative": true,
+    "commission_amount_non_negative": true,
+    "currency_code_must_be_TRY": true
+  },
+  "next_gate": "FAZ_3_10_7_4_REFUND_CANCEL_RUNTIME"
+}

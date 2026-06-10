@@ -1,0 +1,110 @@
+{
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_R_FINAL_CLOSURE",
+  "name": "FAZ 6-R Final Review / Closure",
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "production_release_execute_allowed": false,
+  "deploy_execute_allowed": false,
+  "dns_mutation_allowed": false,
+  "cdn_invalidation_allowed": false,
+  "db_mutation_allowed": false,
+  "build_publish_allowed": false,
+  "failover_execute_allowed": false,
+  "remediation_execute_allowed": false,
+  "required_evidence_files": [
+    "docs/faz6r/evidence/FAZ_6_21_4_1_WAF_TUNING_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_4_2_ABUSE_BOT_TUNING_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_4_3_EDGE_RULE_REVIEW_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_4_4_TLS_CERT_CONTINUOUS_CHECKS_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_4_5_SECURITY_EDGE_AUDIT_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_7_1_RUNBOOK_SETI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_7_2_OTOMATIK_REMEDIATION_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_7_3_ON_CALL_PLANI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_7_4_ESCALATION_ZINCIRI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_7_5_SRE_METRIC_REVIEW_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_6_3_BOLGESEL_KESINTI_SENARYOSU_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_6_4_OPERASYONEL_ILETISIM_PLANI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_6_5_DR_REHEARSAL_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_5_1_COMPUTE_MALIYET_OPTIMIZASYONU_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_5_2_DB_MALIYET_OPTIMIZASYONU_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_5_3_STORAGE_LOG_MALIYET_OPTIMIZASYONU_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_5_4_CACHE_QUEUE_MALIYET_OPTIMIZASYONU_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_5_5_COST_PERFORMANCE_RAPORU_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_3_3_CACHE_HIT_MISS_TUNING_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_3_4_RATE_LIMIT_TUNING_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_2_1_DB_HA_TOPOLOJISI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_2_2_REPLICA_FAILOVER_PROVASI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_2_5_POINT_IN_TIME_RECOVERY_PROVASI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_1_2_SERVICE_DISCOVERY_RUNTIME_TUNING_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_1_4_SESSION_STICKY_POLICY_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_21_1_5_NODE_HEALTH_FENCING_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_20_2_REPLICA_ROUTING_READ_POOL_STRATEJISI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_20_6_PARTITION_SHARD_READINESS_MODELI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_22_2_ACCESSIBILITY_FINALIZASYON_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_22_3_FRONTEND_PERFORMANCE_BUDGET_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_22_4_VISUAL_REGRESSION_SETI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_22_8_FINAL_WEB_CLOSURE_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_22_1_RESPONSIVE_FINALIZASYON_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_22_5_PERMISSION_REGRESSION_SETI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_22_6_RELEASE_CHECKLIST_UI_REAL_IMPLEMENTATION_AUDIT.md",
+    "docs/faz6r/evidence/FAZ_6_22_7_RELEASE_BUILD_DOGRULAMASI_REAL_IMPLEMENTATION_AUDIT.md"
+  ],
+  "priority_blocks": [
+    {
+      "priority": "priority_1",
+      "name": "LVL19 Edge / Security / SRE Ops",
+      "items": "280-289",
+      "status": "PASS",
+      "required_fail": 0,
+      "optional_warn": 0
+    },
+    {
+      "priority": "priority_2",
+      "name": "LVL19 DR / Cost / Tuning",
+      "items": "290-305",
+      "status": "PASS",
+      "required_fail": 0,
+      "optional_warn": 0
+    },
+    {
+      "priority": "priority_3",
+      "name": "DB-L8 Scale Readiness Remaining",
+      "items": "306-307",
+      "status": "PASS",
+      "required_fail": 0,
+      "optional_warn": 0
+    },
+    {
+      "priority": "priority_4",
+      "name": "WEB-L9 Final Release Polish",
+      "items": "308-315",
+      "status": "PASS",
+      "required_fail": 0,
+      "optional_warn": 0
+    }
+  ],
+  "closure_policy": {
+    "all_required_evidence_must_exist": true,
+    "all_required_evidence_must_have_final_pass": true,
+    "all_priority_blocks_must_pass": true,
+    "required_fail_must_be_zero": true,
+    "optional_warn_must_be_zero": true,
+    "production_mutation_must_remain_closed": true,
+    "ready_for_next_phase_if_pass": true
+  },
+  "final_status_policy": {
+    "block_if_required_evidence_missing": true,
+    "block_if_any_evidence_not_pass": true,
+    "block_if_any_priority_not_pass": true,
+    "block_if_runtime_mutation_allowed": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_production_release_allowed": true,
+    "block_if_deploy_or_build_allowed": true,
+    "block_if_db_or_dns_mutation_allowed": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_R_FINAL_REVIEW_CLOSURE_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

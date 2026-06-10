@@ -1,0 +1,36 @@
+version: v1
+contract_gates:
+  api_contract_gate:
+    required_fields:
+      - route_id
+      - contract_version
+      - validation_status
+      - checked_at
+
+  event_contract_gate:
+    required_fields:
+      - event_name
+      - schema_version
+      - validation_status
+      - checked_at
+
+  envelope_error_gate:
+    required_fields:
+      - envelope_type
+      - error_standard_version
+      - validation_status
+      - checked_at
+
+  integration_dependency_gate:
+    required_fields:
+      - dependency_name
+      - dependency_contract
+      - validation_status
+      - checked_at
+
+  backward_compatibility_gate:
+    required_fields:
+      - contract_name
+      - previous_version
+      - current_version
+      - compatibility_status

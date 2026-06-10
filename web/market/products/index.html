@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi Market ürün listeleme ekranı" />
+  <meta property="og:title" content="Pix2pi Market Ürün Listeleme" />
+  <meta property="og:description" content="Kategori, marka, stok ve fiyat filtreleriyle ürün listeleme yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Market Ürün Listeleme</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --brand: #16a34a;
+      --brand2: #2563eb;
+      --warn: #f59e0b;
+      --danger: #dc2626;
+      --shadow: 0 16px 42px rgba(15, 23, 42, .08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.12), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.12), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1320px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 62px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .scope-grid, .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      border-radius: 16px;
+      padding: 13px 14px;
+      font: inherit;
+      outline: none;
+    }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      background: #eff6ff;
+      color: #1d4ed8;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      background: #f1f5f9;
+      color: #64748b;
+    }
+
+    .product-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+      min-height: 260px;
+    }
+
+    .product-card .emoji {
+      font-size: 42px;
+    }
+
+    .product-card strong {
+      font-size: 18px;
+    }
+
+    .product-card em {
+      font-style: normal;
+      font-size: 23px;
+      font-weight: 950;
+      color: #166534;
+      letter-spacing: -0.04em;
+    }
+
+    .product-card small {
+      color: var(--muted);
+    }
+
+    .stock {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 950;
+      background: #e0f2fe;
+      color: #075985;
+    }
+
+    .stock.out_of_stock {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .stock.limited {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .quick-preview {
+      display: grid;
+      gap: 8px;
+      border: 1px dashed #86efac;
+      background: #f0fdf4;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    @media (max-width: 1080px) {
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .scope-grid, .filter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .product-grid, .scope-grid, .filter-grid { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_336_PRODUCT_LISTING_APP_SHELL_START -->
+  <main class="shell" data-step="336" data-surface="market-products">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 336</span>
+      <h1 data-i18n="market_products.title">Ürün listeleme</h1>
+      <p data-i18n="market_products.description">Kategori, marka, stok ve fiyat filtreleriyle mağaza ürünlerini listele.</p>
+    </section>
+
+    <!-- PIX2PI_336_STOREFRONT_STORE_SLUG_CONTEXT_START -->
+    <section class="card guard" data-widget="storefront_store_slug_context">
+      <h2>Store context</h2>
+      <div class="scope-grid">
+        <p>Tenant: <strong id="products-tenant">controlled-pilot</strong></p>
+        <p>Store: <strong id="products-store-slug">demo-market</strong></p>
+        <p>Total: <strong id="products-total-count">0</strong></p>
+        <p>Visible: <strong id="products-visible-count">0</strong></p>
+      </div>
+      <p>Scope validation: <strong id="products-scope-validation" data-validation-status="valid">VALID</strong></p>
+    </section>
+    <!-- PIX2PI_336_STOREFRONT_STORE_SLUG_CONTEXT_END -->
+
+    <section class="card">
+      <h2>Filtreler</h2>
+      <form id="product-filter-form" class="filter-grid">
+        <!-- PIX2PI_336_PRODUCT_SEARCH_BOX_START -->
+        <label>
+          Ürün ara
+          <input name="search" id="product-search-input" placeholder="Ürün adı, SKU veya barkod" autocomplete="off" />
+        </label>
+        <!-- PIX2PI_336_PRODUCT_SEARCH_BOX_END -->
+
+        <!-- PIX2PI_336_CATEGORY_FILTER_START -->
+        <label>
+          Kategori
+          <select name="category_id" id="product-category-filter">
+            <option value="all">Tümü</option>
+          </select>
+        </label>
+        <!-- PIX2PI_336_CATEGORY_FILTER_END -->
+
+        <!-- PIX2PI_336_BRAND_STOCK_PRICE_FILTERS_START -->
+        <label>
+          Marka
+          <select name="brand" id="product-brand-filter">
+            <option value="all">Tüm markalar</option>
+          </select>
+        </label>
+
+        <label>
+          Stok
+          <select name="stock_status" id="product-stock-filter">
+            <option value="all">Tüm stok durumları</option>
+            <option value="AVAILABLE">Stokta</option>
+            <option value="LIMITED">Az kaldı</option>
+            <option value="OUT_OF_STOCK">Stok yok</option>
+          </select>
+        </label>
+
+        <label>
+          Min fiyat
+          <input name="min_price" id="product-min-price" type="number" min="0" step="0.01" placeholder="0" />
+        </label>
+
+        <label>
+          Max fiyat
+          <input name="max_price" id="product-max-price" type="number" min="0" step="0.01" placeholder="9999" />
+        </label>
+        <!-- PIX2PI_336_BRAND_STOCK_PRICE_FILTERS_END -->
+
+        <!-- PIX2PI_336_SORT_OPTIONS_START -->
+        <label>
+          Sıralama
+          <select name="sort_by" id="product-sort">
+            <option value="recommended">Önerilen</option>
+            <option value="price_asc">Fiyat artan</option>
+            <option value="price_desc">Fiyat azalan</option>
+            <option value="name_asc">İsim A-Z</option>
+            <option value="stock_first">Stokta olanlar</option>
+          </select>
+        </label>
+        <!-- PIX2PI_336_SORT_OPTIONS_END -->
+      </form>
+    </section>
+
+    <!-- PIX2PI_336_PRODUCT_CARD_GRID_START -->
+    <section class="card" data-widget="product_card_grid">
+      <h2>Ürünler</h2>
+      <div id="market-product-grid" class="product-grid">
+        <article class="product-card" data-product-id="mkt-prd-001" data-stock-status="AVAILABLE">
+          <span class="emoji">🥛</span>
+          <span class="stock">AVAILABLE</span>
+          <strong>Demo Süt 1L</strong>
+          <p>Kahvaltılık / Taze / ADET</p>
+          <em>₺35,00</em>
+          <small>KDV %10 / SKU MKT-SUT-001</small>
+          <button type="button">Quick preview</button>
+          <button type="button" disabled>Sepete ekleme 340 sonrası</button>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_336_PRODUCT_CARD_GRID_END -->
+
+    <!-- PIX2PI_336_PRODUCT_QUICK_PREVIEW_PLACEHOLDER_START -->
+    <section class="card" data-widget="product_quick_preview_placeholder">
+      <h2>Quick preview</h2>
+      <div id="product-quick-preview" class="quick-preview" data-preview-product-id="">
+        <strong>Ürün seçilmedi</strong>
+        <p>Quick preview placeholder ürün kartından doldurulur.</p>
+      </div>
+    </section>
+    <!-- PIX2PI_336_PRODUCT_QUICK_PREVIEW_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_336_ADD_TO_BASKET_DISABLED_GATE_START -->
+    <section class="card guard" data-widget="add_to_basket_disabled_gate">
+      <h2>Sepete ekle disabled gate</h2>
+      <p>real_basket_enabled=false / real_order_enabled=false / real_stock_reservation_enabled=false. Son müşteri sepet akışı 340 sonrası açılacak.</p>
+    </section>
+    <!-- PIX2PI_336_ADD_TO_BASKET_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_336_PAGINATION_LOAD_MORE_PLACEHOLDER_START -->
+    <section class="card" data-widget="pagination_load_more_placeholder">
+      <h2>Pagination / load-more placeholder</h2>
+      <p>Sayfalama ve devamını yükle contract hazır; bu adımda fallback katalog tek sayfa olarak gösterilir.</p>
+    </section>
+    <!-- PIX2PI_336_PAGINATION_LOAD_MORE_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_336_TENANT_STORE_PRODUCT_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="tenant_store_product_scope_guard">
+      <h2>Tenant / store / product scope guard</h2>
+      <p>Ürün listeleme `X-Tenant-ID`, `X-Store-Slug` ve product scope validation ile korunur.</p>
+    </section>
+    <!-- PIX2PI_336_TENANT_STORE_PRODUCT_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_336_PRODUCT_LISTING_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="product_listing_runtime_data_contract">
+      <h2>Product listing runtime data contract</h2>
+      <p>product_listing_snapshot_enabled=true / fallback_catalog_enabled=true / ready_for_step_337=true</p>
+    </section>
+    <!-- PIX2PI_336_PRODUCT_LISTING_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_336_SEO_OPENGRAPH_PRODUCT_LISTING_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_product_listing_placeholder">
+      <h2>SEO / OpenGraph product listing placeholder</h2>
+      <p>Title, description ve og:* metadata ürün listeleme yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_336_SEO_OPENGRAPH_PRODUCT_LISTING_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_336_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_product_listing_markers">
+      <h2 data-i18n="market_products.i18n_ready">i18n-ready product listing</h2>
+      <p data-i18n="market_products.surface_ready">Ürün listeleme metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_336_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_336_PRODUCT_LISTING_APP_SHELL_END -->
+
+  <script src="/assets/products/market-products-runtime.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById("product-filter-form");
+
+      Pix2piMarketProducts.bootProductListingScreen().then(function (contract) {
+        console.log("PIX2PI_336_PRODUCT_LISTING_CONTRACT", contract);
+      });
+
+      form.addEventListener("input", function () {
+        Pix2piMarketProducts.applyFiltersFromForm(form).then(function (contract) {
+          console.log("PIX2PI_336_PRODUCT_FILTER_CONTRACT", contract);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

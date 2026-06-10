@@ -1,0 +1,61 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "336",
+  "name": "Ürün listeleme ekranı",
+  "surface": "marketplace",
+  "domain": "market.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/market",
+  "path": "/products/",
+  "runtime_path": "/assets/products/market-products-runtime.js",
+  "depends_on": [
+    "335 - İşletme mağaza vitrini"
+  ],
+  "backend_contract": {
+    "product_listing_endpoint": "/api/market/products/list",
+    "product_filter_endpoint": "/api/market/products/filter",
+    "product_preview_endpoint": "/api/market/products/preview",
+    "method": "GET",
+    "tenant_header": "X-Tenant-ID",
+    "store_slug_header": "X-Store-Slug"
+  },
+  "runtime_contract": {
+    "real_basket_enabled": false,
+    "real_order_enabled": false,
+    "real_payment_enabled": false,
+    "real_stock_reservation_enabled": false,
+    "product_listing_snapshot_enabled": true,
+    "fallback_catalog_enabled": true,
+    "ready_for_step_337": true
+  },
+  "filter_contract": {
+    "search_enabled": true,
+    "category_filter_enabled": true,
+    "brand_filter_enabled": true,
+    "stock_filter_enabled": true,
+    "price_filter_enabled": true,
+    "sort_enabled": true,
+    "pagination_placeholder_enabled": true
+  },
+  "store_scope": {
+    "tenant_id": "controlled-pilot",
+    "store_slug": "demo-market"
+  },
+  "required_capabilities": [
+    "product_listing_app_shell",
+    "storefront_store_slug_context",
+    "product_search_box",
+    "category_filter",
+    "brand_stock_price_filters",
+    "sort_options",
+    "product_card_grid",
+    "product_quick_preview_placeholder",
+    "add_to_basket_disabled_gate",
+    "pagination_load_more_placeholder",
+    "tenant_store_product_scope_guard",
+    "product_listing_runtime_data_contract",
+    "i18n_ready_product_listing_markers",
+    "seo_opengraph_product_listing_placeholder",
+    "product_listing_smoke_test"
+  ],
+  "next_step": "337 - Marketplace keşif ekranı"
+}

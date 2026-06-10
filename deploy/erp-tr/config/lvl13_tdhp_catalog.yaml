@@ -1,0 +1,43 @@
+version: v1
+tdhp:
+  advanced_mapping:
+    required_fields:
+      - document_type
+      - debit_account
+      - credit_account
+      - tax_account
+      - tenant_id
+
+  chart_versioning:
+    required_fields:
+      - chart_version
+      - effective_from
+      - effective_to
+      - status
+
+  document_scoped_rules:
+    required_fields:
+      - document_type
+      - rule_id
+      - posting_strategy
+      - account_scope
+
+  audit_trace:
+    required_fields:
+      - trace_id
+      - journal_id
+      - source_document_id
+      - recorded_at
+
+  reconciliation:
+    required_fields:
+      - reconciliation_id
+      - matched_amount
+      - unmatched_amount
+      - status
+
+  validation_suite:
+    required_fields:
+      - validation_profile
+      - validation_status
+      - validated_at

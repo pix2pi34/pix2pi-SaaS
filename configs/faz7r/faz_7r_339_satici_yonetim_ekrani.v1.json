@@ -1,0 +1,65 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "339",
+  "name": "Satıcı yönetim ekranı",
+  "surface": "marketplace_seller",
+  "domain": "market.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/market",
+  "path": "/seller/",
+  "runtime_path": "/assets/seller/market-seller-runtime.js",
+  "depends_on": [
+    "335 - İşletme mağaza vitrini",
+    "336 - Ürün listeleme ekranı",
+    "337 - Marketplace keşif ekranı",
+    "338 - Sipariş ekranı"
+  ],
+  "backend_contract": {
+    "seller_dashboard_endpoint": "/api/market/seller/dashboard",
+    "seller_orders_endpoint": "/api/market/seller/orders",
+    "seller_store_endpoint": "/api/market/seller/store",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "store_slug_header": "X-Store-Slug",
+    "seller_session_header": "X-Market-Seller-Session"
+  },
+  "runtime_contract": {
+    "real_order_action_enabled": false,
+    "real_stock_update_enabled": false,
+    "real_campaign_publish_enabled": false,
+    "real_delivery_ops_enabled": false,
+    "seller_dashboard_enabled": true,
+    "fallback_seller_snapshot_enabled": true,
+    "ready_for_step_340": true
+  },
+  "seller_contract": {
+    "allowed_disabled_actions": [
+      "ACCEPT_ORDER",
+      "REJECT_ORDER",
+      "MARK_PREPARING",
+      "UPDATE_STOCK",
+      "PUBLISH_CAMPAIGN",
+      "UPDATE_DELIVERY_STATUS"
+    ],
+    "store_slug": "demo-market",
+    "tenant_id": "controlled-pilot"
+  },
+  "required_capabilities": [
+    "seller_management_app_shell",
+    "store_seller_session_context",
+    "store_profile_management_placeholder",
+    "product_management_quick_actions",
+    "order_management_preview",
+    "order_status_actions_disabled_gate",
+    "stock_availability_management_placeholder",
+    "delivery_pickup_ops_card",
+    "campaign_storefront_management_placeholder",
+    "seller_performance_kpi_cards",
+    "seller_notification_alert_panel",
+    "tenant_seller_store_scope_guard",
+    "seller_runtime_data_contract",
+    "i18n_ready_seller_markers",
+    "seo_opengraph_seller_placeholder",
+    "seller_management_smoke_test"
+  ],
+  "next_step": "340 - Son müşteri alışveriş yüzeyi"
+}

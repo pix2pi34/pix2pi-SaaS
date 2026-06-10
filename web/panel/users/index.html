@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Kullanıcı / Rol / Personel</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #687287;
+      --border: #e6e9f0;
+      --brand: #1f6feb;
+      --brand-soft: #eaf2ff;
+      --ok: #0f8b4c;
+      --warn: #a16207;
+      --danger: #b42318;
+      --shadow: 0 14px 34px rgba(18, 27, 46, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 28px;
+    }
+
+    .shell {
+      width: min(100%, 1220px);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #344054;
+    }
+
+    input, select {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 13px;
+      font: inherit;
+      outline: none;
+      background: #fff;
+    }
+
+    button {
+      border: none;
+      border-radius: 15px;
+      padding: 12px 16px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .user-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .user-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .pill {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .pill[data-status="ACTIVE"] { background: #f0fdf4; color: var(--ok); }
+    .pill[data-status="INVITED"] { background: #fffbeb; color: var(--warn); }
+    .pill[data-status="SUSPENDED"], .pill[data-status="DISABLED"] { background: #fff1f2; color: var(--danger); }
+
+    .matrix {
+      min-height: 54px;
+      border: 1px dashed var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      color: var(--muted);
+      background: #fff;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 920px) {
+      body { padding: 18px; }
+      .grid, .field-grid, .user-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_321_USERS_APP_SHELL_START -->
+  <main class="shell" data-step="321" data-surface="users-roles-personnel">
+    <section class="hero">
+      <span class="pill">FAZ 7-R / 321</span>
+      <h1 data-i18n="users.title">Kullanıcı / rol / personel</h1>
+      <p data-i18n="users.description">Tenant kapsamlı kullanıcı daveti, rol atama ve personel durum yönetimi yüzeyi.</p>
+    </section>
+
+    <section class="grid">
+      <!-- PIX2PI_321_USER_LIST_START -->
+      <article class="card" data-widget="user_list">
+        <h2>Kullanıcı listesi</h2>
+        <div id="users-list" class="user-list">
+          <article class="user-row" data-user-id="usr_owner_demo" data-user-role="OWNER_ADMIN" data-user-status="ACTIVE">
+            <div>
+              <strong>Demo Owner</strong>
+              <p>owner@pix2pi.test</p>
+            </div>
+            <span class="pill">OWNER_ADMIN</span>
+            <span class="pill" data-status="ACTIVE">ACTIVE</span>
+          </article>
+        </div>
+      </article>
+      <!-- PIX2PI_321_USER_LIST_END -->
+
+      <!-- PIX2PI_321_INVITE_USER_FORM_START -->
+      <article class="card" data-widget="invite_user_form">
+        <h2>Kullanıcı davet et</h2>
+        <form id="invite-user-form">
+          <div class="field-grid">
+            <label>
+              Ad Soyad
+              <input name="name" required placeholder="Personel adı" />
+            </label>
+
+            <label>
+              E-posta
+              <input name="email" type="email" required placeholder="personel@example.com" />
+            </label>
+
+            <!-- PIX2PI_321_ROLE_ASSIGNMENT_SURFACE_START -->
+            <label>
+              Rol
+              <select name="role" required>
+                <option value="OWNER_ADMIN">OWNER_ADMIN</option>
+                <option value="MANAGER">MANAGER</option>
+                <option value="ACCOUNTANT">ACCOUNTANT</option>
+                <option value="CASHIER">CASHIER</option>
+                <option value="STAFF">STAFF</option>
+                <option value="READONLY">READONLY</option>
+              </select>
+            </label>
+            <!-- PIX2PI_321_ROLE_ASSIGNMENT_SURFACE_END -->
+
+            <!-- PIX2PI_321_PERSONNEL_PROFILE_CARD_START -->
+            <label>
+              Personel tipi
+              <select name="personnel_type">
+                <option value="staff">Personel</option>
+                <option value="owner">Owner</option>
+                <option value="accounting">Muhasebe</option>
+                <option value="cashier">Kasiyer</option>
+              </select>
+            </label>
+            <!-- PIX2PI_321_PERSONNEL_PROFILE_CARD_END -->
+          </div>
+
+          <button type="submit">Davet payload hazırla</button>
+        </form>
+      </article>
+      <!-- PIX2PI_321_INVITE_USER_FORM_END -->
+    </section>
+
+    <section class="grid">
+      <!-- PIX2PI_321_PERMISSION_MATRIX_PREVIEW_START -->
+      <article class="card" data-widget="permission_matrix_preview">
+        <h2>Permission matrix preview</h2>
+        <div id="permission-matrix-preview" class="matrix">
+          users:manage, billing:manage, erp:manage, pos:manage, reports:view
+        </div>
+      </article>
+      <!-- PIX2PI_321_PERMISSION_MATRIX_PREVIEW_END -->
+
+      <!-- PIX2PI_321_TENANT_SCOPED_USER_GUARD_START -->
+      <article class="card" data-widget="tenant_scoped_user_guard">
+        <h2>Tenant scoped guard</h2>
+        <p>Her user/role/personel işlemi `X-Tenant-ID` ve JWT ile tenant kapsamına alınır.</p>
+      </article>
+      <!-- PIX2PI_321_TENANT_SCOPED_USER_GUARD_END -->
+    </section>
+
+    <!-- PIX2PI_321_ACTIVATION_SUSPEND_BEHAVIOR_START -->
+    <section class="card" data-widget="activation_suspend_behavior">
+      <h2>Aktif / pasif / askıya alma</h2>
+      <p>Status contract: ACTIVE, INVITED, SUSPENDED, DISABLED</p>
+    </section>
+    <!-- PIX2PI_321_ACTIVATION_SUSPEND_BEHAVIOR_END -->
+
+    <!-- PIX2PI_321_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_markers">
+      <h2 data-i18n="users.i18n_ready">i18n-ready user management</h2>
+      <p data-i18n="users.roles_personnel_surface">Rol ve personel ekran metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_321_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_321_USERS_APP_SHELL_END -->
+
+  <script src="/assets/users/users-runtime.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById("invite-user-form");
+
+      Pix2piUsers.bootUsersScreen();
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const payload = {};
+        new FormData(form).forEach(function (value, key) {
+          payload[key] = String(value || "").trim();
+        });
+
+        const result = await Pix2piUsers.inviteUser(payload);
+        console.log("PIX2PI_321_INVITE_RESULT", result);
+      });
+    })();
+  </script>
+</body>
+</html>

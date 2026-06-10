@@ -1,0 +1,25 @@
+alert_name	category	signal_source	severity	channel	escalation_level	widget_ref	api_endpoint	runbook_ref	implementation_status	note
+service_down	runtime	service_health	CRITICAL	ops_console,sms_or_phone	L1_immediate	service_grid	GET /ops/v1/alerts	runbooks/service_down.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+container_down	runtime	container_health	CRITICAL	ops_console,sms_or_phone	L1_immediate	service_grid	GET /ops/v1/alerts	runbooks/container_down.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+prometheus_target_down	metrics	prometheus_targets	HIGH	ops_console,chat,email	L2_fast	observability_panel	GET /ops/v1/alerts	runbooks/prometheus_target_down.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+loki_not_ready	logs	loki_ready	HIGH	ops_console,chat,email	L2_fast	observability_panel	GET /ops/v1/alerts	runbooks/loki_not_ready.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+tempo_not_ready	traces	tempo_ready	HIGH	ops_console,chat,email	L2_fast	observability_panel	GET /ops/v1/alerts	runbooks/tempo_not_ready.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+otel_unreachable	traces	otel_reachability	HIGH	ops_console,chat,email	L2_fast	observability_panel	GET /ops/v1/alerts	runbooks/otel_unreachable.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+public_surface_risk	security	public_surface_policy	CRITICAL	ops_console,sms_or_phone	L1_immediate	security_risk_panel	GET /ops/v1/alerts	runbooks/public_surface_risk.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+db_connection_error	database	db_health	CRITICAL	ops_console,sms_or_phone	L1_immediate	database_panel	GET /ops/v1/alerts	runbooks/db_connection_error.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+event_bus_backlog_high	event_bus	queue_backlog	HIGH	ops_console,chat,email	L2_fast	event_bus_panel	GET /ops/v1/alerts	runbooks/event_bus_backlog_high.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+dlq_growth	event_bus	dlq_signal	HIGH	ops_console,chat,email	L2_fast	event_bus_panel	GET /ops/v1/alerts	runbooks/dlq_growth.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+api_error_rate_high	api	api_gateway_health	HIGH	ops_console,chat,email	L2_fast	api_gateway_card	GET /ops/v1/alerts	runbooks/api_error_rate_high.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+latency_high	api	latency_signal	MEDIUM	ops_console,chat	L3_watch	api_gateway_card	GET /ops/v1/alerts	runbooks/latency_high.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+disk_usage_high	infra	host_metrics	HIGH	ops_console,chat,email	L2_fast	infra_panel	GET /ops/v1/alerts	runbooks/disk_usage_high.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+memory_high	infra	host_metrics	MEDIUM	ops_console,chat	L3_watch	infra_panel	GET /ops/v1/alerts	runbooks/memory_high.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+cpu_high	infra	host_metrics	MEDIUM	ops_console,chat	L3_watch	infra_panel	GET /ops/v1/alerts	runbooks/cpu_high.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+backup_stale	backup	backup_archive	HIGH	ops_console,chat,email	L2_fast	backup_panel	GET /ops/v1/alerts	runbooks/backup_stale.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+secret_leak_attempt	security	tenant_security_observability	CRITICAL	ops_console,sms_or_phone	L1_immediate	security_risk_panel	GET /ops/v1/alerts	runbooks/secret_leak_attempt.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+audit_gap	security	audit_signal	HIGH	ops_console,chat,email	L2_fast	security_risk_panel	GET /ops/v1/alerts	runbooks/audit_gap.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+tenant_isolation_violation	security	tenant_security_observability	CRITICAL	ops_console,sms_or_phone	L1_immediate	security_risk_panel	GET /ops/v1/alerts	runbooks/tenant_isolation_violation.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+rate_limit_anomaly	api	gateway_rate_limit	MEDIUM	ops_console,chat	L3_watch	api_gateway_card	GET /ops/v1/alerts	runbooks/rate_limit_anomaly.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+redis_unreachable	cache	redis_health	HIGH	ops_console,chat,email	L2_fast	alert_timeline	GET /ops/v1/alerts	runbooks/redis_unreachable.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+postgres_replica_lag	database	db_replica_health	HIGH	ops_console,chat,email	L2_fast	database_panel	GET /ops/v1/alerts	runbooks/postgres_replica_lag.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+nats_unreachable	event_bus	event_bus_health	HIGH	ops_console,chat,email	L2_fast	event_bus_panel	GET /ops/v1/alerts	runbooks/nats_unreachable.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only
+health_endpoint_down	service	service_health	HIGH	ops_console,chat,email	L2_fast	service_grid	GET /ops/v1/alerts	runbooks/health_endpoint_down.md	READY_FOR_IMPLEMENTATION	alert_binding_contract_only

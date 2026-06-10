@@ -1,0 +1,11 @@
+state_name	state_category	is_initial	is_terminal	allowed_actor	audit_required	realtime_signal	tenant_scope	implementation_status	note
+draft	pre_runtime	YES	NO	workflow_admin_or_owner	YES	workflow.instance.created	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+active	ready	NO	NO	workflow_admin_or_owner	YES	workflow.instance.updated	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+running	runtime	NO	NO	system_or_authorized_user	YES	workflow.step.started	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+paused	runtime_hold	NO	NO	workflow_admin_or_owner	YES	workflow.instance.updated	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+waiting_approval	human_gate	NO	NO	approver	YES	approval.requested	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+waiting_external	external_gate	NO	NO	system	YES	workflow.instance.updated	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+completed	terminal_success	NO	YES	system	YES	workflow.step.completed	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+failed	terminal_or_retryable_error	NO	NO	system_or_workflow_admin	YES	workflow.step.failed	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+cancelled	terminal_cancel	NO	YES	workflow_admin_or_owner	YES	workflow.instance.updated	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+archived	terminal_archive	NO	YES	workflow_admin	YES	workflow.instance.updated	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only

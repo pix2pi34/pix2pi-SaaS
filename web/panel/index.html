@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Merchant Panel</title>
+
+  <!-- PIX2PI_PANEL_RESPONSIVE_SHELL_CSS_START -->
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #687287;
+      --border: #e6e9f0;
+      --brand: #1f6feb;
+      --brand-soft: #eaf2ff;
+      --ok: #0f8b4c;
+      --warn: #a16207;
+      --danger: #b42318;
+      --shadow: 0 14px 34px rgba(18, 27, 46, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      background: #0f172a;
+      color: #eef4ff;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 22px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #38bdf8, #1f6feb);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .nav-group-title {
+      color: #94a3b8;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      margin: 10px 0 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 12px;
+      border-radius: 14px;
+      color: #dbeafe;
+    }
+
+    .nav-item.active,
+    .nav-item:hover {
+      background: rgba(255,255,255,.10);
+    }
+
+    .main {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      min-height: 72px;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 28px;
+      position: sticky;
+      top: 0;
+      z-index: 3;
+    }
+
+    .topbar-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    .page-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tenant-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      border: 1px solid #cfe1ff;
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .health-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--warn);
+    }
+
+    .dot.ok { background: var(--ok); }
+    .dot.fail { background: var(--danger); }
+
+    .content {
+      padding: 28px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff, #edf5ff);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 42px);
+      letter-spacing: -0.05em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 820px;
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      min-height: 142px;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    @media (max-width: 980px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 18px;
+      }
+
+      .content {
+        padding: 18px;
+      }
+    }
+  </style>
+  <!-- PIX2PI_PANEL_RESPONSIVE_SHELL_CSS_END -->
+</head>
+
+<body>
+  <!-- PIX2PI_PANEL_APP_SHELL_START -->
+  <div class="app-shell" data-surface="merchant-panel" data-phase="7-R" data-step="316">
+
+    <!-- PIX2PI_PANEL_SIDEBAR_START -->
+    <aside class="sidebar" aria-label="Pix2pi panel menüsü">
+      <div class="brand">
+        <div class="brand-mark">P</div>
+        <div>Pix2pi</div>
+      </div>
+
+      <nav>
+        <div class="nav-group-title">İşletme</div>
+        <a class="nav-item active" href="/">
+          <span>Dashboard</span>
+          <span>›</span>
+        </a>
+        <a class="nav-item" href="/customers">
+          <span>Cari</span>
+          <span>›</span>
+        </a>
+        <a class="nav-item" href="/products">
+          <span>Ürün / Stok</span>
+          <span>›</span>
+        </a>
+        <a class="nav-item" href="/reports">
+          <span>Raporlar</span>
+          <span>›</span>
+        </a>
+
+        <div class="nav-group-title">Platform</div>
+        <a class="nav-item" href="/settings">
+          <span>Ayarlar</span>
+          <span>›</span>
+        </a>
+      </nav>
+    </aside>
+    <!-- PIX2PI_PANEL_SIDEBAR_END -->
+
+    <main class="main">
+      <!-- PIX2PI_PANEL_TOPBAR_START -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <!-- PIX2PI_PANEL_BREADCRUMB_START -->
+          <div class="breadcrumb" aria-label="Breadcrumb">
+            <span>Pix2pi</span>
+            <span>/</span>
+            <span>Merchant Panel</span>
+            <span>/</span>
+            <strong>Başlangıç</strong>
+          </div>
+          <!-- PIX2PI_PANEL_BREADCRUMB_END -->
+
+          <div class="page-title">İşletme Paneli</div>
+        </div>
+
+        <div class="topbar-right">
+          <!-- PIX2PI_PANEL_TENANT_INDICATOR_START -->
+          <div id="tenant-indicator" class="tenant-indicator">
+            Tenant: controlled-pilot
+          </div>
+          <!-- PIX2PI_PANEL_TENANT_INDICATOR_END -->
+
+          <div class="health-pill" aria-live="polite">
+            <span id="panel-health-dot" class="dot"></span>
+            <span id="panel-health-status">Panel Health kontrol ediliyor</span>
+          </div>
+        </div>
+      </header>
+      <!-- PIX2PI_PANEL_TOPBAR_END -->
+
+      <section class="content">
+        <div class="hero">
+          <span class="badge">FAZ 7-R / 316</span>
+          <h1>Pix2pi Merchant Panel hazır.</h1>
+          <p>
+            Bu yüzey müşteri işletmelerinin kullanacağı ana panel altyapısıdır.
+            Login, tenant seçimi, ERP ekranları, POS bağlantısı ve marketplace yönetimi sonraki adımlarda bağlanacaktır.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <span class="badge">Panel</span>
+            <h2>Müşteri Kullanım Yüzeyi</h2>
+            <p>panel.pix2pi.com.tr üzerinden işletme yönetimi için shell hazırlandı.</p>
+          </article>
+
+          <article class="card">
+            <span class="badge">Tenant</span>
+            <h2>Tenant Indicator</h2>
+            <p>Çok tenant yapısında hangi işletme bağlamında çalışıldığı görünür hale getirildi.</p>
+          </article>
+
+          <article class="card">
+            <span class="badge">Smoke</span>
+            <h2>Health Check</h2>
+            <p>/health endpointi üzerinden route ve panel erişilebilirlik kontrolü yapılır.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <!-- PIX2PI_PANEL_APP_SHELL_END -->
+
+  <!-- PIX2PI_PANEL_HEALTH_CHECK_CLIENT_START -->
+  <script>
+    (function () {
+      const dot = document.getElementById("panel-health-dot");
+      const status = document.getElementById("panel-health-status");
+
+      fetch("/health", { cache: "no-store" })
+        .then((response) => {
+          if (!response.ok) throw new Error("health failed");
+          return response.json();
+        })
+        .then((data) => {
+          dot.classList.add("ok");
+          status.textContent = `Panel Health: ${data.status} / ${data.surface}`;
+        })
+        .catch(() => {
+          dot.classList.add("fail");
+          status.textContent = "Panel Health: unavailable";
+        });
+    })();
+  </script>
+  <!-- PIX2PI_PANEL_HEALTH_CHECK_CLIENT_END -->
+</body>
+</html>

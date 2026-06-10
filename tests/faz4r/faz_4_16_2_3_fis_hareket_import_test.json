@@ -1,0 +1,173 @@
+{
+  "valid_fixture": {
+    "import_batch": {
+      "tenant_id": "pilot_tenant_001",
+      "batch_id": "receipt_movement_import_batch_200_001",
+      "import_type": "RECEIPT_MOVEMENT",
+      "import_mode": "DRY_RUN",
+      "commit_requested": false,
+      "source_format": "JSON",
+      "total_receipt_rows": 2,
+      "total_movement_rows": 3
+    },
+    "known_customers": ["CARI-001", "CARI-002"],
+    "known_products": ["URUN-001", "URUN-002"],
+    "receipts": [
+      {
+        "tenant_id": "pilot_tenant_001",
+        "receipt_no": "FIS-001",
+        "receipt_type": "SALE",
+        "receipt_date": "2026-05-09",
+        "customer_code": "CARI-001",
+        "currency_code": "TRY",
+        "net_total": 1000,
+        "tax_total": 200,
+        "gross_total": 1200,
+        "lines": [
+          {
+            "line_no": 1,
+            "product_code": "URUN-001",
+            "quantity": 2,
+            "unit_price": 500,
+            "tax_rate": 20,
+            "net_amount": 1000,
+            "tax_amount": 200,
+            "gross_amount": 1200
+          }
+        ]
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "receipt_no": "FIS-002",
+        "receipt_type": "PURCHASE",
+        "receipt_date": "2026-05-09",
+        "customer_code": "CARI-002",
+        "currency_code": "TRY",
+        "net_total": 500,
+        "tax_total": 100,
+        "gross_total": 600,
+        "lines": [
+          {
+            "line_no": 1,
+            "product_code": "URUN-002",
+            "quantity": 3,
+            "unit_price": 166.6667,
+            "tax_rate": 20,
+            "net_amount": 500,
+            "tax_amount": 100,
+            "gross_amount": 600
+          }
+        ]
+      }
+    ],
+    "movements": [
+      {
+        "tenant_id": "pilot_tenant_001",
+        "movement_id": "MOV-001",
+        "movement_type": "SALE",
+        "receipt_no": "FIS-001",
+        "product_code": "URUN-001",
+        "quantity": -2
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "movement_id": "MOV-002",
+        "movement_type": "PURCHASE",
+        "receipt_no": "FIS-002",
+        "product_code": "URUN-002",
+        "quantity": 3
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "movement_id": "MOV-003",
+        "movement_type": "COLLECTION",
+        "receipt_no": "FIS-001",
+        "customer_code": "CARI-001",
+        "amount": 1200
+      }
+    ],
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "import_batch": {
+      "tenant_id": "pilot_tenant_001",
+      "batch_id": "",
+      "import_type": "CUSTOMER",
+      "import_mode": "COMMIT",
+      "commit_requested": true,
+      "source_format": "TXT",
+      "total_receipt_rows": 2,
+      "total_movement_rows": 2
+    },
+    "known_customers": ["CARI-001"],
+    "known_products": ["URUN-001"],
+    "receipts": [
+      {
+        "tenant_id": "other_tenant",
+        "receipt_no": "FIS-DUP",
+        "receipt_type": "SALE",
+        "receipt_date": "2026-05-09",
+        "customer_code": "UNKNOWN-CARI",
+        "currency_code": "TRY",
+        "net_total": 100,
+        "tax_total": 20,
+        "gross_total": 999,
+        "lines": [
+          {
+            "line_no": 1,
+            "product_code": "UNKNOWN-URUN",
+            "quantity": -1,
+            "unit_price": -10,
+            "tax_rate": 120,
+            "net_amount": 100,
+            "tax_amount": 20,
+            "gross_amount": 120
+          }
+        ]
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "receipt_no": "FIS-DUP",
+        "receipt_type": "BAD_TYPE",
+        "receipt_date": "",
+        "customer_code": "CARI-001",
+        "currency_code": "TRY",
+        "net_total": 100,
+        "tax_total": 20,
+        "gross_total": 120,
+        "lines": []
+      }
+    ],
+    "movements": [
+      {
+        "tenant_id": "pilot_tenant_001",
+        "movement_id": "MOV-DUP",
+        "movement_type": "PAYMENT",
+        "receipt_no": "UNKNOWN-FIS",
+        "customer_code": "UNKNOWN-CARI",
+        "amount": -1
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "movement_id": "MOV-DUP",
+        "movement_type": "STOCK_OUT",
+        "receipt_no": "FIS-DUP",
+        "product_code": "UNKNOWN-URUN",
+        "quantity": 0
+      }
+    ],
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

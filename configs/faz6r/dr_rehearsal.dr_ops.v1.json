@@ -1,0 +1,56 @@
+{
+  "version": "dr_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_6_5",
+  "status": "dry_run_only_no_live_failover",
+  "rehearsals": [
+    {
+      "rehearsal_id": "dr-rehearsal-edge-dns",
+      "scenario_id": "regional-outage-edge-dns",
+      "surface": "edge_dns",
+      "preflight_status": "READY",
+      "rto_target_minutes": 60,
+      "rpo_target_minutes": 15,
+      "measured_rto_status": "DRY_RUN_WITHIN_TARGET",
+      "measured_rpo_status": "DRY_RUN_WITHIN_TARGET",
+      "mutation_allowed": false,
+      "decision": "prepare_failover_without_execute"
+    },
+    {
+      "rehearsal_id": "dr-rehearsal-db-primary",
+      "scenario_id": "regional-outage-db-primary",
+      "surface": "database_primary",
+      "preflight_status": "READY",
+      "rto_target_minutes": 30,
+      "rpo_target_minutes": 5,
+      "measured_rto_status": "DRY_RUN_WITHIN_TARGET",
+      "measured_rpo_status": "DRY_RUN_WITHIN_TARGET",
+      "mutation_allowed": false,
+      "decision": "degrade_to_read_only_without_execute"
+    },
+    {
+      "rehearsal_id": "dr-rehearsal-event-queue",
+      "scenario_id": "regional-outage-event-queue",
+      "surface": "event_queue",
+      "preflight_status": "READY",
+      "rto_target_minutes": 60,
+      "rpo_target_minutes": 15,
+      "measured_rto_status": "DRY_RUN_WITHIN_TARGET",
+      "measured_rpo_status": "DRY_RUN_WITHIN_TARGET",
+      "mutation_allowed": false,
+      "decision": "pause_noncritical_writes_without_execute"
+    },
+    {
+      "rehearsal_id": "dr-rehearsal-storage",
+      "scenario_id": "regional-outage-storage",
+      "surface": "file_storage",
+      "preflight_status": "READY",
+      "rto_target_minutes": 120,
+      "rpo_target_minutes": 30,
+      "measured_rto_status": "DRY_RUN_WITHIN_TARGET",
+      "measured_rpo_status": "DRY_RUN_WITHIN_TARGET",
+      "mutation_allowed": false,
+      "decision": "freeze_release_without_execute"
+    }
+  ]
+}

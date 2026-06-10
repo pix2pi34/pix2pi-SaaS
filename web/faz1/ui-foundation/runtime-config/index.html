@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Runtime Config / Environment</title>
+  <link rel="stylesheet" href="./runtime_config.css">
+</head>
+<body>
+  <main class="pix2pi-page">
+    <header class="pix2pi-page-header">
+      <div>
+        <h1 class="pix2pi-page-title">Pix2pi Runtime Config / Environment Yüzeyleri</h1>
+        <p class="pix2pi-page-subtitle">FAZ 1-4.7 — WEB-L1 UI Foundation / Design System</p>
+      </div>
+      <span class="pix2pi-badge staging" id="pix2piEnvironmentIndicator">ENV: STAGING</span>
+    </header>
+
+    <section class="pix2pi-grid">
+      <aside class="pix2pi-card">
+        <h2 class="pix2pi-card-title">Kontroller</h2>
+
+        <div class="pix2pi-actions">
+          <label>
+            Environment
+            <select class="pix2pi-select" id="pix2piEnvironmentSelect">
+              <option value="LOCAL">LOCAL</option>
+              <option value="DEV">DEV</option>
+              <option value="STAGING" selected>STAGING</option>
+              <option value="PRODUCTION">PRODUCTION</option>
+            </select>
+          </label>
+
+          <label>
+            Role mode
+            <select class="pix2pi-select" id="pix2piRoleModeSelect">
+              <option value="admin" selected>TENANT_ADMIN / config:read</option>
+              <option value="ops">OPS_ADMIN / config:read</option>
+              <option value="denied">VIEWER / denied</option>
+            </select>
+          </label>
+
+          <button class="pix2pi-button primary" id="runRuntimeConfigTestsButton" type="button">Runtime config testlerini çalıştır</button>
+        </div>
+
+        <pre class="pix2pi-log" id="pix2piRuntimeConfigTestOutput">RUNTIME_CONFIG_TEST_LOADING</pre>
+      </aside>
+
+      <section class="pix2pi-card pix2pi-config-surface" id="pix2piRuntimeConfigSurface">
+        <h2 class="pix2pi-card-title">Read-only runtime config view</h2>
+        <p class="pix2pi-card-text">Bu yüzey config değerlerini sadece okuma amaçlı gösterir. Secret değerler render edilmez.</p>
+
+        <div class="pix2pi-config-guard allowed" id="pix2piConfigPermissionGuard">
+          Config permission guard hazırlanıyor...
+        </div>
+
+        <div class="pix2pi-readonly-banner">
+          READ_ONLY_CONFIG_VIEW — Bu ekranda config düzenleme yoktur, sadece güvenli public/runtime değerleri görünür.
+        </div>
+
+        <div class="pix2pi-table-scroll">
+          <table class="pix2pi-config-table" id="pix2piRuntimeConfigTable">
+            <thead>
+              <tr>
+                <th>Key</th>
+                <th>Scope</th>
+                <th>Mode</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody id="pix2piRuntimeConfigTableBody"></tbody>
+          </table>
+        </div>
+
+        <pre class="pix2pi-log" id="pix2piRuntimeConfigOutput">RUNTIME_CONFIG_OUTPUT_LOADING</pre>
+      </section>
+    </section>
+  </main>
+
+  <script src="./runtime_config.js"></script>
+</body>
+</html>

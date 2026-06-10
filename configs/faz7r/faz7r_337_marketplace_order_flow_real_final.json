@@ -1,0 +1,28 @@
+{
+  "step": "FAZ 7-R / 337",
+  "name": "Marketplace sipariş / talep akışı real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "marketplace-order-337-20260513_223431",
+  "sellerId": "seller-335-main",
+  "catalogProductId": "catalog-product-335-main",
+  "mainOrderId": "market-order-337-main-20260513_223431",
+  "rejectOrderId": "market-order-337-reject-20260513_223431",
+  "routes": [
+    "/orders/",
+    "POST /api/market/orders/create-from-intent",
+    "POST /api/market/orders/seller-list",
+    "POST /api/market/orders/status-update"
+  ],
+  "requiredEvidence": [
+    "checkout intent to order request",
+    "marketplace order DB tables",
+    "seller order list",
+    "order accept/reject/preparing status",
+    "tenant-safe order guard",
+    "controlled marketplace order guard",
+    "no-role denied",
+    "rollback no partial write",
+    "route smoke",
+    "order audit evidence"
+  ]
+}

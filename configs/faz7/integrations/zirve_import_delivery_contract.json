@@ -1,0 +1,53 @@
+{
+  "module_code": "FAZ_7_8Z_3",
+  "module_name": "Zirve Import Package / Delivery Contract Readiness",
+  "provider_id": "zirve",
+  "provider_display_name": "Zirve",
+  "contract_mode": "IMPORT_PACKAGE_DELIVERY_CONTRACT_DRY_RUN_ONLY",
+  "contract_status": "READY_DRY_RUN_ONLY",
+  "direction": "PIX2PI_TO_ZIRVE",
+  "target_system": "ZIRVE_ACCOUNTING_IMPORT_DRY_RUN",
+  "delivery_channel": "LOCAL_PACKAGE_PLACEHOLDER",
+  "delivery_channel_status": "PLACEHOLDER_ONLY",
+  "dry_run_delivery_policy": "NO_EXTERNAL_DELIVERY_IN_THIS_PHASE",
+  "required_upstream_package": {
+    "module_code": "FAZ_7_8Z_2",
+    "file_generation_mode": "EXPORT_PACKAGE_BUILDER_DRY_RUN_ONLY",
+    "target_system": "ZIRVE_ACCOUNTING_IMPORT_DRY_RUN",
+    "required_artifacts": [
+      "manifest.json",
+      "objects.ndjson",
+      "validation_report.json",
+      "audit_decision.json"
+    ]
+  },
+  "delivery_contract_artifacts": [
+    "delivery_manifest.json",
+    "delivery_handoff.json",
+    "delivery_audit_decision.json"
+  ],
+  "required_request_fields": [
+    "tenant_id",
+    "export_run_id",
+    "delivery_run_id",
+    "correlation_id",
+    "requested_by",
+    "package"
+  ],
+  "tenant_safety_mode": "TENANT_CONTEXT_REQUIRED",
+  "audit_policy": "AUDIT_DECISION_REQUIRED_FOR_EVERY_OPERATION",
+  "secret_policy": "FORBIDDEN_IN_CODE_CONFIG_DOCS",
+  "real_operation_policy": {
+    "real_zirve_api": false,
+    "real_file_delivery": false,
+    "real_delivery_channel": false,
+    "real_erp_write": false,
+    "real_operator_provider_action": false,
+    "external_delivery_attempted": false
+  },
+  "handoff": {
+    "zirve_provider_live_module_status": "NOT_STARTED",
+    "zirve_provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+    "next_step": "FAZ 7-8Z.4 Zirve Validation / Error Mapping / Retry-DLQ"
+  }
+}

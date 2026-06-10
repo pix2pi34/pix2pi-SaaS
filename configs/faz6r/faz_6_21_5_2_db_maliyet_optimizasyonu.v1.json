@@ -1,0 +1,182 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "294",
+  "code": "FAZ_6_21_5_2",
+  "name": "DB maliyet optimizasyonu",
+  "depends_on": [
+    "FAZ_6_21_5_1"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "db_resize_allowed": false,
+  "replica_delete_allowed": false,
+  "index_drop_allowed": false,
+  "partition_drop_allowed": false,
+  "retention_delete_allowed": false,
+  "backup_delete_allowed": false,
+  "required_controls": [
+    "compute_cost_dependency_gate",
+    "db_inventory_model",
+    "db_workload_classification_policy",
+    "connection_pool_review_policy",
+    "query_cost_review_policy",
+    "index_cost_review_policy",
+    "replica_cost_review_policy",
+    "retention_cost_review_policy",
+    "storage_growth_review_policy",
+    "backup_cost_review_policy",
+    "performance_slo_guard",
+    "data_safety_guard",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "dry_run_cost_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "db_workload_classes": [
+    {
+      "class": "primary_oltp",
+      "examples": [
+        "postgres_primary",
+        "tenant_runtime_db"
+      ],
+      "scale_down_allowed": false,
+      "requires_slo_guard": true,
+      "requires_data_safety_guard": true
+    },
+    {
+      "class": "read_replica",
+      "examples": [
+        "postgres_read_replica",
+        "reporting_replica"
+      ],
+      "scale_down_allowed": "review_only",
+      "requires_slo_guard": true,
+      "requires_data_safety_guard": true
+    },
+    {
+      "class": "reporting_mart",
+      "examples": [
+        "finance_reporting_mart",
+        "operational_readmodel"
+      ],
+      "scale_down_allowed": "review_only",
+      "requires_slo_guard": true,
+      "requires_data_safety_guard": true
+    },
+    {
+      "class": "backup_archive",
+      "examples": [
+        "logical_backups",
+        "basebackups",
+        "wal_archive"
+      ],
+      "scale_down_allowed": "retention_policy_only",
+      "requires_slo_guard": false,
+      "requires_data_safety_guard": true
+    }
+  ],
+  "signals": [
+    "db_cpu_avg_24h",
+    "db_cpu_p95_24h",
+    "db_memory_avg_24h",
+    "db_connection_pool_usage",
+    "db_active_connections",
+    "db_idle_connections",
+    "query_p95_latency_ms",
+    "slow_query_count",
+    "table_bloat_estimate",
+    "index_bloat_estimate",
+    "unused_index_candidates",
+    "replica_lag_seconds",
+    "wal_growth_rate",
+    "backup_storage_growth_rate",
+    "database_size_growth_rate"
+  ],
+  "recommendation_policy": {
+    "rightsizing_enabled": true,
+    "query_cost_review_enabled": true,
+    "index_cost_review_enabled": true,
+    "replica_cost_review_enabled": true,
+    "retention_cost_review_enabled": true,
+    "storage_growth_review_enabled": true,
+    "recommendation_only": true,
+    "minimum_observation_days": 7,
+    "requires_slo_confirmation": true,
+    "requires_data_safety_confirmation": true,
+    "requires_dr_readiness_confirmation": true
+  },
+  "slo_guard": {
+    "enabled": true,
+    "block_if_query_latency_regression_risk": true,
+    "block_if_connection_pool_exhaustion_risk": true,
+    "block_if_replica_lag_risk": true,
+    "block_if_p0_p1_recent_incident": true
+  },
+  "data_safety_guard": {
+    "enabled": true,
+    "block_if_rpo_rto_risk": true,
+    "block_if_backup_chain_risk": true,
+    "block_if_restore_evidence_missing": true,
+    "block_if_tenant_data_isolation_risk": true,
+    "block_if_destructive_sql_required": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "db_resize_execute",
+      "replica_delete_execute",
+      "index_drop_execute",
+      "partition_drop_execute",
+      "retention_delete_execute",
+      "backup_delete_execute",
+      "connection_pool_change_execute",
+      "vacuum_aggressive_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "data_owner"
+    ]
+  },
+  "provider_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "db_resize_allowed": false,
+    "replica_delete_allowed": false,
+    "index_drop_allowed": false,
+    "partition_drop_allowed": false,
+    "retention_delete_allowed": false,
+    "backup_delete_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "recommendation_id",
+      "db_surface",
+      "workload_class",
+      "current_cost_driver",
+      "recommended_action",
+      "estimated_savings_level",
+      "risk_level",
+      "slo_guard_status",
+      "data_safety_guard_status",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_provider_mutation_allowed": true,
+    "block_if_db_resize_allowed": true,
+    "block_if_destructive_action_allowed": true,
+    "block_if_missing_slo_guard": true,
+    "block_if_missing_data_safety_guard": true,
+    "block_if_missing_manual_approval": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_5_2_DB_MALIYET_OPTIMIZASYONU_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

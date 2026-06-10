@@ -1,0 +1,73 @@
+{
+  "phase": "FAZ_3_12_1_MULTI_COMPANY_WORKSPACE",
+  "screen": "multi_company_workspace",
+  "screen_enabled": true,
+  "route": "/faz3/accountant-portal/multi-company-workspace/",
+  "static_file": "web/faz3/accountant-portal/multi-company-workspace/index.html",
+  "scope": {
+    "accountant_portfolio_visibility": true,
+    "authorized_firm_list_visibility": true,
+    "selected_firm_context_visibility": true,
+    "tenant_boundary_visibility": true,
+    "firm_scope_visibility": true,
+    "tax_no_visibility": true,
+    "tax_office_visibility": true,
+    "sector_visibility": true,
+    "subscription_status_visibility": true,
+    "permission_visibility": true,
+    "role_set_visibility": true,
+    "access_decision_visibility": true,
+    "period_filter_visibility": true,
+    "firm_status_filter_visibility": true,
+    "export_workspace_route_visibility": true,
+    "finance_summary_route_visibility": true,
+    "open_task_visibility": true,
+    "audit_timeline_visibility": true
+  },
+  "guard_policy": {
+    "tenant_indicator_required": true,
+    "accountant_indicator_required": true,
+    "firm_indicator_required": true,
+    "firm_id_required": true,
+    "tenant_id_required": true,
+    "tax_no_required": true,
+    "permission_required": true,
+    "role_set_required": true,
+    "subscription_status_required": true,
+    "access_decision_required": true,
+    "period_required": true,
+    "tenant_boundary_hash_required": true,
+    "firm_scope_hash_required": true,
+    "permission_hash_required": true,
+    "audit_hash_required": true,
+    "evidence_file_required": true
+  },
+  "permission_coverage": {
+    "permission_view": true,
+    "permission_export": true,
+    "permission_manage": true,
+    "permission_read_only": true
+  },
+  "firm_status_coverage": {
+    "status_active": true,
+    "status_trial": true,
+    "status_review_required": true,
+    "status_blocked": true
+  },
+  "live_policy": {
+    "production_approved": false,
+    "cross_tenant_access_allowed": false,
+    "accountant_authorization_required": true,
+    "firm_scope_required": true,
+    "subscription_status_required": true,
+    "ui_actions_are_select_export_permission_audit_only": true
+  },
+  "covered_backend_gates": [
+    "FAZ_3_12_4_ACCOUNTANT_EXPORT_WORKSPACE",
+    "FAZ_3_11_2_FINANCE_SUMMARY_SCREEN",
+    "FAZ_3_11_7_EXPORT_CENTER_SCREEN",
+    "FAZ_3_11_10_ERP_UI_TESTS"
+  ],
+  "previous_gate": "FAZ_3_12_4_ACCOUNTANT_EXPORT_WORKSPACE",
+  "next_gate": "FAZ_3_12_2_COMPANY_SWITCHER_SCREEN"
+}

@@ -1,0 +1,43 @@
+{
+  "expected_dependency": "FAZ_6_21_7_4",
+  "expected_runtime_mutation_allowed": false,
+  "expected_alert_provider_enabled": false,
+  "expected_grafana_mutation_allowed": false,
+  "expected_prometheus_rule_mutation_allowed": false,
+  "expected_required_controls": [
+    "escalation_dependency_gate",
+    "sli_slo_metric_catalog",
+    "golden_signals_policy",
+    "edge_security_metrics",
+    "api_gateway_metrics",
+    "db_metrics",
+    "event_queue_metrics",
+    "cache_metrics",
+    "release_health_metrics",
+    "incident_readiness_metrics",
+    "alert_threshold_policy",
+    "dashboard_mapping_policy",
+    "dry_run_metric_snapshot",
+    "provider_closed_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_golden_signals": [
+    "latency",
+    "traffic",
+    "errors",
+    "saturation"
+  ],
+  "expected_metric_groups": [
+    "edge_security_metrics",
+    "api_gateway_metrics",
+    "db_metrics",
+    "event_queue_metrics",
+    "cache_metrics",
+    "release_health_metrics",
+    "incident_readiness_metrics"
+  ],
+  "expected_min_metric_count": 15,
+  "expected_provider_mode": "review_only_no_real_send",
+  "expected_next_step": "FAZ_6_21_6_3"
+}

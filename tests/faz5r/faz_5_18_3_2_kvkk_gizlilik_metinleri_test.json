@@ -1,0 +1,19 @@
+{
+  "phase": "FAZ 5-R",
+  "step_no": 243,
+  "step_code": "FAZ_5_18_3_2",
+  "test_name": "kvkk_gizlilik_metinleri_runtime_contract_test",
+  "expected": {
+    "public_publish_allowed": false,
+    "public_core_product_allowed": true,
+    "data_monetization_public_allowed": false,
+    "legal_approval_required": true,
+    "kvkk_approval_required": true,
+    "production_ready": false,
+    "privacy_document_count": 8,
+    "required_consent_scope_count": 7,
+    "privacy_notice_separate_from_explicit_consent": true,
+    "commercial_electronic_message_consent_separate": true,
+    "runtime_contract_required": true
+  }
+}

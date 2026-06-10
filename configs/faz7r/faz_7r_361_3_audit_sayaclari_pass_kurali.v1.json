@@ -1,0 +1,38 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "361.3",
+  "name": "Tüm audit sayaçları / PASS kuralı düzeltmesi",
+  "purpose": "Partial/dry-run/disabled PASS evidence reclassification",
+  "partial_work_pass_allowed": false,
+  "placeholder_allowed_for_final_pass": false,
+  "dry_run_allowed_for_final_pass": false,
+  "preview_allowed_for_final_pass": false,
+  "disabled_gate_allowed_for_final_pass": false,
+  "forbidden_markers_for_final_pass": [
+    "disabled",
+    "placeholder",
+    "preview",
+    "dry-run",
+    "dry run",
+    "real_*_enabled=false",
+    "backend disabled",
+    "provider closed",
+    "closed_until",
+    "not_started",
+    "mutation disabled",
+    "activation disabled",
+    "send disabled",
+    "issue disabled",
+    "enforcement disabled"
+  ],
+  "classification": {
+    "old_pass_with_forbidden_marker": "INVALID_PARTIAL_PASS",
+    "old_pass_without_forbidden_marker": "OLD_PASS_NO_FORBIDDEN_MARKER_FOUND",
+    "partial_marker_without_pass": "PARTIAL_MARKER_NO_PASS"
+  },
+  "closure_rule": {
+    "invalid_partial_pass_count_must_be_zero": true,
+    "faz7r_final_closure_allowed_when_invalid_partial_pass_exists": false
+  },
+  "next_step": "317.3 - Tenant selection screen gerçek tenant akışı"
+}

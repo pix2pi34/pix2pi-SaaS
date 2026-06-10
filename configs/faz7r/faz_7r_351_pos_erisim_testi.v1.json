@@ -1,0 +1,74 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "351",
+  "name": "POS erişim testi",
+  "surface": "pos_controlled_access",
+  "domain": "pos.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/pos",
+  "path": "/pos-access-test/",
+  "runtime_path": "/assets/pos-access-test/pos-access-test-runtime.js",
+  "depends_on": [
+    "350 - Panel erişim testi"
+  ],
+  "backend_contract": {
+    "pos_access_snapshot_endpoint": "/api/access/pos/snapshot",
+    "pos_route_check_endpoint": "/api/access/pos/routes/check",
+    "pos_access_audit_endpoint": "/api/access/pos/audit",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "store_header": "X-Store-ID",
+    "register_header": "X-Register-ID",
+    "user_session_header": "X-User-Session",
+    "role_header": "X-User-Role",
+    "pos_scope_header": "X-POS-Scope",
+    "correlation_header": "X-Correlation-ID"
+  },
+  "runtime_contract": {
+    "real_pos_login_enabled": false,
+    "real_sale_enabled": false,
+    "real_payment_enabled": false,
+    "real_stock_decrement_enabled": false,
+    "real_offline_queue_enabled": false,
+    "pos_access_preview_enabled": true,
+    "route_smoke_preview_enabled": true,
+    "mobile_ready_preview_enabled": true,
+    "fallback_pos_access_snapshot_enabled": true,
+    "ready_for_step_352": true
+  },
+  "route_contract": {
+    "required_routes": [
+      "/",
+      "/cashier-login/",
+      "/sales/",
+      "/cart-payment/",
+      "/offline-ready/",
+      "/pos-access-test/"
+    ],
+    "expected_role": "OWNER_ADMIN",
+    "expected_tenant": "controlled-pilot",
+    "expected_store": "demo-market-main",
+    "expected_register": "register-001"
+  },
+  "required_capabilities": [
+    "pos_access_test_app_shell",
+    "pos_auth_session_simulation_context",
+    "tenant_store_register_context",
+    "cashier_owner_role_access_preview",
+    "pos_route_availability_checklist",
+    "cashier_login_access_check",
+    "pos_sales_screen_access_check",
+    "cart_payment_flow_access_check",
+    "offline_ready_pwa_asset_access_check",
+    "mobile_viewport_touch_readiness_check",
+    "unauthorized_forbidden_preview",
+    "pos_session_timeout_preview",
+    "pos_navigation_handoff",
+    "pos_access_audit_timeline",
+    "tenant_user_store_register_scope_guard",
+    "pos_access_runtime_data_contract",
+    "i18n_ready_pos_access_marker",
+    "seo_opengraph_pos_access_placeholder",
+    "pos_access_smoke_test"
+  ],
+  "next_step": "352 - Tenant izolasyon kontrolü"
+}

@@ -1,0 +1,166 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "282",
+  "code": "FAZ_6_21_4_3",
+  "name": "Edge rule review",
+  "depends_on": [
+    "FAZ_6_21_4_1",
+    "FAZ_6_21_4_2"
+  ],
+  "provider_neutral": true,
+  "live_provider_api_mutation_allowed": false,
+  "required_controls": [
+    "waf_dependency_gate",
+    "abuse_bot_dependency_gate",
+    "public_private_route_boundary",
+    "api_route_policy_review",
+    "auth_route_policy_review",
+    "panel_route_policy_review",
+    "health_route_policy_review",
+    "static_asset_cache_policy_review",
+    "redirect_canonical_policy_review",
+    "security_header_policy_review",
+    "origin_lockdown_policy_review",
+    "edge_cache_bypass_policy_review",
+    "webhook_route_exception_review",
+    "tenant_header_edge_observability_review",
+    "rollback_policy",
+    "evidence_audit_policy"
+  ],
+  "route_classes": [
+    {
+      "class": "public_web",
+      "routes": [
+        "/",
+        "/faz4r/*",
+        "/faz5r/*",
+        "/assets/*"
+      ],
+      "access": "public",
+      "cache_policy": "static_assets_cache_allowed",
+      "waf_policy": "observe_or_challenge_only",
+      "must_not_require_auth": true
+    },
+    {
+      "class": "api",
+      "routes": [
+        "/api/*"
+      ],
+      "access": "private_or_authenticated",
+      "cache_policy": "no_edge_cache",
+      "waf_policy": "waf_and_bot_policy_required",
+      "must_require_auth_or_service_policy": true
+    },
+    {
+      "class": "auth",
+      "routes": [
+        "/auth/*",
+        "/api/auth/*",
+        "/login"
+      ],
+      "access": "public_entry_but_protected",
+      "cache_policy": "no_edge_cache",
+      "waf_policy": "waf_bot_and_rate_anomaly_required",
+      "credential_stuffing_guard_required": true
+    },
+    {
+      "class": "panel",
+      "routes": [
+        "/panel/*",
+        "/admin/*"
+      ],
+      "access": "authenticated_private",
+      "cache_policy": "no_edge_cache",
+      "waf_policy": "managed_challenge_allowed",
+      "strict_security_headers_required": true
+    },
+    {
+      "class": "health",
+      "routes": [
+        "/health",
+        "/api/health",
+        "/ready",
+        "/live"
+      ],
+      "access": "ops_observable",
+      "cache_policy": "no_edge_cache",
+      "waf_policy": "observe_only",
+      "must_not_hard_block": true
+    },
+    {
+      "class": "webhook",
+      "routes": [
+        "/api/webhooks/*",
+        "/webhooks/*"
+      ],
+      "access": "external_provider_callback",
+      "cache_policy": "no_edge_cache",
+      "waf_policy": "safe_exception_review_required",
+      "signature_validation_layer": "application"
+    }
+  ],
+  "edge_policies": {
+    "redirect_canonical_policy_review": {
+      "enabled": true,
+      "preferred_host": "www.pix2pi.com.tr",
+      "force_https": true,
+      "http_to_https_redirect_required": true
+    },
+    "security_header_policy_review": {
+      "enabled": true,
+      "required_headers": [
+        "Strict-Transport-Security",
+        "X-Content-Type-Options",
+        "X-Frame-Options",
+        "Referrer-Policy",
+        "Permissions-Policy"
+      ]
+    },
+    "origin_lockdown_policy_review": {
+      "enabled": true,
+      "mode": "review_ready",
+      "live_origin_firewall_mutation_allowed": false,
+      "future_controls": [
+        "allow_cloudflare_ranges_only",
+        "deny_direct_origin_ip_access",
+        "origin_tls_required"
+      ]
+    },
+    "edge_cache_bypass_policy_review": {
+      "enabled": true,
+      "must_bypass": [
+        "/api/*",
+        "/auth/*",
+        "/api/auth/*",
+        "/panel/*",
+        "/admin/*",
+        "/api/webhooks/*"
+      ],
+      "cache_allowed": [
+        "/assets/*"
+      ]
+    },
+    "tenant_header_edge_observability_review": {
+      "enabled": true,
+      "required_header": "X-Tenant-ID",
+      "observe_routes": [
+        "/api/tenant/*",
+        "/api/query/*",
+        "/api/erp/*"
+      ],
+      "action": "log"
+    }
+  },
+  "rollback": {
+    "control": "rollback_policy",
+    "required": true,
+    "strategy": "return_to_previous_stable_edge_rule_set",
+    "owner": "sre",
+    "evidence_required": true
+  },
+  "audit": {
+    "control": "evidence_audit_policy",
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_4_3_EDGE_RULE_REVIEW_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

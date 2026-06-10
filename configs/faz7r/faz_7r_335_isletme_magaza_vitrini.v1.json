@@ -1,0 +1,53 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "335",
+  "name": "İşletme mağaza vitrini",
+  "surface": "marketplace",
+  "domain": "market.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/market",
+  "path": "/storefront/",
+  "runtime_path": "/assets/storefront/market-storefront-runtime.js",
+  "health_path": "/health",
+  "depends_on": [
+    "334 - Mobile-ready PWA yüzeyi"
+  ],
+  "backend_contract": {
+    "storefront_snapshot_endpoint": "/api/market/storefront/snapshot",
+    "store_status_endpoint": "/api/market/storefront/status",
+    "product_preview_endpoint": "/api/market/products/preview",
+    "method": "GET",
+    "tenant_header": "X-Tenant-ID",
+    "store_slug_header": "X-Store-Slug"
+  },
+  "runtime_contract": {
+    "real_order_enabled": false,
+    "real_payment_enabled": false,
+    "real_stock_reservation_enabled": false,
+    "storefront_snapshot_enabled": true,
+    "fallback_snapshot_enabled": true,
+    "ready_for_step_336": true
+  },
+  "storefront_capabilities": [
+    "marketplace_storefront_subdomain_route",
+    "storefront_app_shell",
+    "business_profile_hero",
+    "store_status_working_hours",
+    "category_preview",
+    "featured_product_grid",
+    "delivery_pickup_placeholder",
+    "campaign_announcement_banner",
+    "tenant_store_slug_guard",
+    "storefront_runtime_data_contract",
+    "i18n_ready_storefront_markers",
+    "seo_opengraph_placeholder",
+    "storefront_smoke_test"
+  ],
+  "default_store": {
+    "tenant_id": "controlled-pilot",
+    "store_slug": "demo-market",
+    "business_name": "Demo Market",
+    "city": "İstanbul",
+    "district": "Pilot"
+  },
+  "next_step": "336 - Ürün listeleme ekranı"
+}

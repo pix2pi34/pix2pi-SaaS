@@ -1,0 +1,73 @@
+{
+  "version": "cost_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_5_2",
+  "status": "dry_run_only_no_db_mutation",
+  "recommendations": [
+    {
+      "recommendation_id": "db-rec-connection-pool-review",
+      "db_surface": "postgres_primary",
+      "workload_class": "primary_oltp",
+      "current_cost_driver": "connection_pool_overprovision_or_idle_connections",
+      "recommended_action": "review_pool_limits_after_7d_metrics",
+      "estimated_savings_level": "low",
+      "risk_level": "medium",
+      "slo_guard_status": "REQUIRED",
+      "data_safety_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "db-rec-slow-query-optimization",
+      "db_surface": "postgres_primary",
+      "workload_class": "primary_oltp",
+      "current_cost_driver": "slow_queries_increase_cpu_and_io",
+      "recommended_action": "identify_top_queries_and_prepare_index_or_query_review",
+      "estimated_savings_level": "medium",
+      "risk_level": "medium",
+      "slo_guard_status": "REQUIRED",
+      "data_safety_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "db-rec-unused-index-review",
+      "db_surface": "postgres_primary",
+      "workload_class": "primary_oltp",
+      "current_cost_driver": "unused_or_duplicate_indexes_increase_write_cost",
+      "recommended_action": "review_unused_index_candidates_no_drop",
+      "estimated_savings_level": "medium",
+      "risk_level": "high",
+      "slo_guard_status": "REQUIRED",
+      "data_safety_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "db-rec-replica-cost-review",
+      "db_surface": "postgres_read_replica",
+      "workload_class": "read_replica",
+      "current_cost_driver": "replica_capacity_or_lag_vs_usage",
+      "recommended_action": "review_replica_shape_and_read_pool_usage_no_resize",
+      "estimated_savings_level": "medium",
+      "risk_level": "medium",
+      "slo_guard_status": "REQUIRED",
+      "data_safety_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "db-rec-backup-retention-review",
+      "db_surface": "backup_archive",
+      "workload_class": "backup_archive",
+      "current_cost_driver": "backup_and_wal_archive_growth",
+      "recommended_action": "review_retention_policy_no_delete",
+      "estimated_savings_level": "medium",
+      "risk_level": "high",
+      "slo_guard_status": "NOT_REQUIRED_FOR_ARCHIVE",
+      "data_safety_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ]
+}

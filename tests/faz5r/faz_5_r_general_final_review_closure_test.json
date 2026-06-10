@@ -1,0 +1,43 @@
+{
+  "test_name": "faz_5_r_general_final_review_closure_test",
+  "phase": "FAZ_5_R_FINAL_REVIEW_CLOSURE",
+  "expected": {
+    "required_item_count": 8,
+    "required_domain_count": 8,
+    "general_final_review_ready": true,
+    "final_closure_seal_requested": true,
+    "production_launch_allowed": false,
+    "real_customer_collection_open": false,
+    "real_billing_enabled": false,
+    "payment_collection_enabled": false,
+    "public_developer_access_open": false,
+    "checkout_enabled": false,
+    "sandbox_live_enabled": false,
+    "partial_remaining": false,
+    "pending_remaining": false,
+    "fail_remaining": false,
+    "ready_for_next_phase": true,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_item_keys": [
+    "compliance_contract_consent",
+    "support_ops",
+    "commercial_gate",
+    "billing_tenant_lifecycle_sales_ops",
+    "pricing",
+    "public_developer_surfaces",
+    "public_launch_safety",
+    "next_phase_handoff"
+  ],
+  "must_have_domains": [
+    "COMPLIANCE_KVKK_CONTRACT_CONSENT",
+    "SUPPORT_OPS",
+    "COMMERCIAL_GATE",
+    "BILLING_TENANT_LIFECYCLE_SALES_OPS",
+    "PRICING",
+    "PUBLIC_DEVELOPER_SURFACES",
+    "PUBLIC_LAUNCH_SAFETY",
+    "NEXT_PHASE_HANDOFF"
+  ]
+}

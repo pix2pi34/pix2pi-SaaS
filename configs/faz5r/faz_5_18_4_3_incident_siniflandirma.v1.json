@@ -1,0 +1,33 @@
+{
+  "phase": "FAZ_5_18_4_3",
+  "title": "Incident Sınıflandırma",
+  "status": "READY",
+  "control_surface": "SUPPORT_INCIDENT_CLASSIFICATION",
+  "inputs": [
+    "FAZ_5_18_4_1_SLA_SEVIYELERI",
+    "FAZ_5_18_4_2_DESTEK_KANAL_YAPISI",
+    "FAZ_5_18_4_4_ESCALATION_MATRISI",
+    "FAZ_5_18_4_5_MUSTERI_ILETISIM_SABLONLARI"
+  ],
+  "outputs": [
+    "INCIDENT_CLASSIFICATION_RULES",
+    "SEVERITY_MAPPING",
+    "CATEGORY_MAPPING",
+    "SLA_BINDING",
+    "ESCALATION_BINDING",
+    "CUSTOMER_TEMPLATE_BINDING"
+  ],
+  "gates": {
+    "internal_classification_ready": true,
+    "production_auto_classification_enabled": false,
+    "customer_notification_enabled": false,
+    "support_ops_tests_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

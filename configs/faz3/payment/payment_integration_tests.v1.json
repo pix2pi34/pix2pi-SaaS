@@ -1,0 +1,37 @@
+{
+  "phase": "FAZ_3_10_7_6_PAYMENT_INTEGRATION_TESTS",
+  "runtime": "payment_integration_e2e_tests",
+  "test_mode": "SIMULATION",
+  "real_payment_gate_open": false,
+  "real_bank_gate_open": false,
+  "production_approved": false,
+  "covered_modules": [
+    "POS_PROVIDER_RUNTIME",
+    "BANK_COLLECTION_RUNTIME",
+    "RECONCILIATION_RUNTIME",
+    "REFUND_CANCEL_RUNTIME",
+    "PAYMENT_STATUS_SYNC",
+    "PAYMENT_ERROR_RETRY_RUNTIME",
+    "INTEGRATION_AUDIT_RUNTIME"
+  ],
+  "test_scenarios": [
+    "POS_SALE_STATUS_REFUND_RECONCILIATION_AUDIT_E2E",
+    "BANK_COLLECTION_STATEMENT_RECONCILIATION_STATUS_SYNC_E2E",
+    "FAILURE_PATHS_PROTECT_CLOSURE_E2E"
+  ],
+  "guard_policy": {
+    "real_payment_gate_must_remain_closed": true,
+    "real_bank_gate_must_remain_closed": true,
+    "production_approved_must_remain_false": true,
+    "pos_invalid_card_mask_rejected": true,
+    "reconciliation_difference_requires_manual_review": true,
+    "audit_missing_scope_blocks_closure": true,
+    "audit_bundle_ready_requires_all_scopes": true
+  },
+  "live_policy": {
+    "real_provider_status": "CLOSED_UNTIL_PROVIDER_APPROVALS",
+    "production_payment_status": "DENIED_BY_DEFAULT",
+    "secret_policy": "CREDENTIAL_REF_ONLY_NO_RAW_SECRET"
+  },
+  "next_gate": "FAZ_3_10_7_PAYMENT_RUNTIME_FINAL_CLOSURE_RECHECK"
+}

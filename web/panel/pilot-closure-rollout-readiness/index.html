@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi pilot closure controlled rollout readiness ekranı" />
+  <meta property="og:title" content="Pix2pi Pilot Closure Rollout Readiness" />
+  <meta property="og:description" content="Controlled pilot closure ve controlled rollout readiness karar yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Pilot Closure Rollout Readiness</title>
+  <style>
+    :root { --bg:#f6f8fb; --text:#172033; --muted:#64748b; --border:#e5e7eb; --shadow:0 16px 42px rgba(15,23,42,.08); --radius:24px; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(circle at top left,rgba(37,99,235,.15),transparent 34rem),radial-gradient(circle at bottom right,rgba(168,85,247,.14),transparent 32rem),var(--bg); color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; padding:18px 16px; }
+    .shell { width:min(100%,1360px); margin:0 auto; display:grid; gap:16px; }
+    .hero,.card { background:rgba(255,255,255,.94); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; }
+    h1 { margin:0 0 8px; font-size:clamp(34px,7vw,64px); line-height:.95; letter-spacing:-.07em; }
+    h2 { margin:0 0 12px; font-size:19px; letter-spacing:-.03em; }
+    p { margin:0; color:var(--muted); line-height:1.55; }
+    .badge { display:inline-flex; width:fit-content; border-radius:999px; padding:7px 11px; background:#eff6ff; color:#1d4ed8; font-weight:900; font-size:12px; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .closure-card { border:1px solid var(--border); border-radius:20px; padding:16px; background:#fff; display:grid; gap:8px; min-height:96px; overflow-wrap:anywhere; }
+    .guard { border:1px dashed #93c5fd; background:#eff6ff; }
+    .locked { border:1px dashed #f59e0b; background:#fffbeb; }
+    @media (max-width:1080px) { .grid-4,.grid-3 { grid-template-columns:1fr; } .hero,.card { border-radius:20px; } }
+  </style>
+</head>
+<body>
+  <!-- PIX2PI_361_PILOT_CLOSURE_APP_SHELL_START -->
+  <main class="shell" data-step="361" data-surface="pilot-closure-rollout-readiness">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 361</span>
+      <h1 data-i18n="pilot_closure_rollout.title">Pilot closure / controlled rollout readiness</h1>
+      <p data-i18n="pilot_closure_rollout.description">Pilot closure, evidence package ve controlled rollout readiness preview yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_361_PILOT_COMPLETION_SUMMARY_CONTEXT_START -->
+    <section class="card guard">
+      <h2>Pilot completion summary context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="closure-tenant-id">controlled-pilot</strong></p>
+        <p>Customer: <strong id="closure-customer-name">Demo Market</strong></p>
+        <p>Scope: <strong id="closure-scope-validation">VALID</strong></p>
+        <p id="closure-completion-summary">pilot_status=STABILIZED_PREVIEW / p1_blockers=0 / acceptance=PREVIEW_ACCEPTED</p>
+      </div>
+    </section>
+    <!-- PIX2PI_361_PILOT_COMPLETION_SUMMARY_CONTEXT_END -->
+
+    <!-- PIX2PI_361_EVIDENCE_PACKAGE_CHECKLIST_START -->
+    <section class="card">
+      <h2>Evidence package checklist</h2>
+      <div id="closure-evidence-package" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_361_EVIDENCE_PACKAGE_CHECKLIST_END -->
+
+    <!-- PIX2PI_361_PILOT_KPIS_CLOSURE_BOARD_START -->
+    <section class="card">
+      <h2>Pilot KPIs closure board</h2>
+      <div id="closure-kpi-board" class="grid-4"></div>
+    </section>
+    <!-- PIX2PI_361_PILOT_KPIS_CLOSURE_BOARD_END -->
+
+    <!-- PIX2PI_361_CUSTOMER_ACCEPTANCE_PREVIEW_START -->
+    <section class="card guard">
+      <h2>Customer acceptance preview</h2>
+      <p>customer_acceptance=PREVIEW_ACCEPTED / real_signature_required_later=true</p>
+    </section>
+    <!-- PIX2PI_361_CUSTOMER_ACCEPTANCE_PREVIEW_END -->
+
+    <!-- PIX2PI_361_OPEN_ISSUE_CLOSURE_STATE_START -->
+    <section class="card">
+      <h2>Open issue closure state</h2>
+      <p>p1_blockers=0 / p2_blockers=0 / non_blockers_backlog=true</p>
+    </section>
+    <!-- PIX2PI_361_OPEN_ISSUE_CLOSURE_STATE_END -->
+
+    <!-- PIX2PI_361_ROLLOUT_COHORT_READINESS_PREVIEW_START -->
+    <section class="card">
+      <h2>Rollout cohort readiness preview</h2>
+      <div id="closure-rollout-cohort" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_361_ROLLOUT_COHORT_READINESS_PREVIEW_END -->
+
+    <section class="card">
+      <h2>Readiness gates</h2>
+      <div id="closure-gates" class="grid-3">
+        <!-- PIX2PI_361_COMMERCIAL_READINESS_GATE_START --><article class="closure-card"><strong>COMMERCIAL_READINESS</strong><p>READY_PREVIEW</p></article><!-- PIX2PI_361_COMMERCIAL_READINESS_GATE_END -->
+        <!-- PIX2PI_361_SUPPORT_READINESS_GATE_START --><article class="closure-card"><strong>SUPPORT_READINESS</strong><p>READY_PREVIEW</p></article><!-- PIX2PI_361_SUPPORT_READINESS_GATE_END -->
+        <!-- PIX2PI_361_MONITORING_READINESS_GATE_START --><article class="closure-card"><strong>MONITORING_READINESS</strong><p>READY_PREVIEW</p></article><!-- PIX2PI_361_MONITORING_READINESS_GATE_END -->
+        <!-- PIX2PI_361_LEGAL_KVKK_APPROVAL_PLACEHOLDER_START --><article class="closure-card"><strong>LEGAL_KVKK_APPROVAL</strong><p>PENDING_FINAL_APPROVAL</p></article><!-- PIX2PI_361_LEGAL_KVKK_APPROVAL_PLACEHOLDER_END -->
+        <!-- PIX2PI_361_BILLING_PAYMENT_LIVE_DISABLED_GATE_START --><article class="closure-card"><strong>BILLING_PAYMENT_LIVE</strong><p>DISABLED_EXPECTED</p></article><!-- PIX2PI_361_BILLING_PAYMENT_LIVE_DISABLED_GATE_END -->
+      </div>
+    </section>
+
+    <!-- PIX2PI_361_DATA_MUTATION_SAFETY_GUARD_START -->
+    <section class="card locked">
+      <h2>Data mutation safety guard</h2>
+      <div id="closure-safety-guards" class="grid-4"></div>
+    </section>
+    <!-- PIX2PI_361_DATA_MUTATION_SAFETY_GUARD_END -->
+
+    <!-- PIX2PI_361_ROLLOUT_RISK_REGISTER_START -->
+    <section class="card locked">
+      <h2>Rollout risk register</h2>
+      <div id="closure-risk-register" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_361_ROLLOUT_RISK_REGISTER_END -->
+
+    <!-- PIX2PI_361_GO_HOLD_ROLLOUT_DECISION_PREVIEW_START -->
+    <section class="card guard">
+      <h2>Go / hold rollout decision preview</h2>
+      <p>decision=CONTROLLED_ROLLOUT_READY_PREVIEW / production_public_rollout_enabled=false / ready_for_step_362=true</p>
+    </section>
+    <!-- PIX2PI_361_GO_HOLD_ROLLOUT_DECISION_PREVIEW_END -->
+
+    <!-- PIX2PI_361_PILOT_CLOSURE_AUDIT_TIMELINE_START -->
+    <section class="card">
+      <h2>Pilot closure audit timeline</h2>
+      <div id="closure-audit-timeline" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_361_PILOT_CLOSURE_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_361_ROLLOUT_READINESS_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card">
+      <h2>Rollout readiness runtime data contract</h2>
+      <p id="closure-runtime-contract">controlled_rollout_preview_enabled=true / production_public_rollout_enabled=false / ready_for_step_362=true</p>
+    </section>
+    <!-- PIX2PI_361_ROLLOUT_READINESS_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_361_SEO_OPENGRAPH_ROLLOUT_PLACEHOLDER_START -->
+    <section class="card">
+      <h2>SEO / OpenGraph rollout placeholder</h2>
+      <p>Title, description ve og:* metadata pilot closure rollout readiness yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_361_SEO_OPENGRAPH_ROLLOUT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_361_I18N_READY_ROLLOUT_MARKER_START -->
+    <section class="card">
+      <h2 data-i18n="pilot_closure_rollout.i18n_ready">i18n-ready rollout readiness screen</h2>
+      <p data-i18n="pilot_closure_rollout.surface_ready">Pilot closure rollout readiness ekranı çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_361_I18N_READY_ROLLOUT_MARKER_END -->
+  </main>
+  <!-- PIX2PI_361_PILOT_CLOSURE_APP_SHELL_END -->
+
+  <script src="/assets/pilot-closure-rollout-readiness/pilot-closure-rollout-readiness-runtime.js"></script>
+  <script>
+    Pix2piPilotClosureRolloutReadiness.bootRolloutReadinessScreen().then(function (contract) {
+      console.log("PIX2PI_361_PILOT_CLOSURE_ROLLOUT_READINESS_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

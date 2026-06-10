@@ -1,0 +1,32 @@
+{
+  "phase": "FAZ 2-8.4",
+  "screen": "notification_webhook_monitor",
+  "web_path": "web/ops-console/notification-webhook-monitor/index.html",
+  "runtime_package": "./internal/platform/ops/console",
+  "require_tenant": true,
+  "allow_platform_viewer": true,
+  "max_visible_deliveries": 100,
+  "guards": [
+    "tenant_required",
+    "cross_tenant_viewer_denied",
+    "valid_channel_required",
+    "valid_state_required",
+    "destination_required",
+    "channel_filter_supported",
+    "state_filter_supported",
+    "failed_dlq_visibility_toggle",
+    "webhook_only_filter"
+  ],
+  "screen_sections": [
+    "delivered_metric",
+    "webhook_metric",
+    "retry_scheduled_metric",
+    "failed_metric",
+    "dlq_metric",
+    "delivery_stream_table",
+    "webhook_detail_panel",
+    "tenant_indicator",
+    "responsive_shell"
+  ],
+  "next_ready": "FAZ_2_8_6_INCIDENT_AUDIT_CENTER"
+}

@@ -1,0 +1,118 @@
+{
+  "catalog_code": "pix2pi_subscription_billing_policy_v1",
+  "phase": "FAZ_5",
+  "step": "5-4",
+  "depends_on": [
+    "pix2pi_packages_pricing_v1",
+    "pix2pi_entitlement_matrix_v1"
+  ],
+  "currency": "TRY",
+  "tax_policy": "vat_excluded_internal_catalog",
+  "subscription_states": [
+    "trialing",
+    "active",
+    "past_due",
+    "suspended",
+    "cancelled",
+    "enterprise_hold"
+  ],
+  "billing_cycles": [
+    {
+      "code": "monthly",
+      "name_tr": "Aylık",
+      "period_months": 1
+    },
+    {
+      "code": "annual",
+      "name_tr": "Yıllık",
+      "period_months": 12,
+      "discount_policy": "ten_month_price_for_twelve_months"
+    },
+    {
+      "code": "custom_enterprise",
+      "name_tr": "Enterprise özel",
+      "period_months": null,
+      "custom_contract": true
+    }
+  ],
+  "payment_states": [
+    "pending",
+    "paid",
+    "failed",
+    "retrying",
+    "refunded",
+    "manual_review",
+    "cancelled"
+  ],
+  "retry_policy": {
+    "enabled": true,
+    "retry_days": [0, 3, 7],
+    "after_last_retry": "candidate_for_suspension"
+  },
+  "grace_period_days": {
+    "demo": 0,
+    "starter": 3,
+    "pro": 7,
+    "enterprise": "contract_based",
+    "accountant": 7
+  },
+  "subscription_to_entitlement_effect": {
+    "trialing": "trial_or_demo_limits",
+    "active": "full_package_rights",
+    "past_due": "restricted_write_possible",
+    "suspended": "commercial_access_restricted",
+    "cancelled": "commercial_access_closed",
+    "enterprise_hold": "contract_based_decision"
+  },
+  "package_transition_rules": {
+    "upgrade": {
+      "activation": "immediate",
+      "entitlement_effect": "apply_new_package_rights",
+      "billing_effect": "price_difference_or_next_invoice"
+    },
+    "downgrade": {
+      "activation": "period_end_preferred",
+      "requires_limit_check": true,
+      "entitlement_effect": "apply_after_usage_within_new_limits"
+    },
+    "reactivation": {
+      "requires_payment_or_manual_approval": true,
+      "entitlement_effect": "restore_package_rights"
+    }
+  },
+  "accountant_billing": {
+    "workspace_monthly_try": 999,
+    "workspace_annual_try": 9990,
+    "included_company_limit": 10,
+    "per_company_monthly_try": 149,
+    "company_based_billing": true
+  },
+  "manual_payment": {
+    "enabled": true,
+    "methods": [
+      "bank_transfer",
+      "manual_approval",
+      "enterprise_contract"
+    ]
+  },
+  "invoice_period_fields": [
+    "start_at",
+    "end_at",
+    "due_at",
+    "paid_at"
+  ],
+  "out_of_scope": [
+    "live_payment_gateway_integration",
+    "virtual_pos_live_connection",
+    "real_invoice_pdf_generation",
+    "gib_e_document_integration",
+    "runtime_subscription_middleware",
+    "tenant_freeze_runtime",
+    "bank_reconciliation_integration"
+  ],
+  "seal": {
+    "FAZ_5_4_SUBSCRIPTION_BILLING_STATUS": "PASS",
+    "FAZ_5_4_SUBSCRIPTION_BILLING_SEAL_STATUS": "SEALED",
+    "FAZ_5_5_READY": "YES"
+  }
+}

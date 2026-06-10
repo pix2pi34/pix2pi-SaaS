@@ -1,0 +1,141 @@
+{
+  "valid_fixture": {
+    "rollback_decision_id": "pilot_rollback_decision.valid_fixture",
+    "rollback_decision_status": "READY",
+    "rollback_decision_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT"
+    },
+    "chain_dependencies": {
+      "215_FAZ_4_16_5_2_GUNLUK_PILOT_REVIEW": "PASS"
+    },
+    "decision_rules": [
+      {"code": "ROLLBACK_SIGNAL_INTAKE", "required": true, "status": "READY", "owner": "TECH_OWNER", "decision_area": "SIGNAL", "evidence_ref": "docs/faz4r/pilot_rollback_decision/rollback_signal_intake.md"},
+      {"code": "P0_P1_TRIGGER_MATRIX", "required": true, "status": "READY", "owner": "TECH_OWNER", "decision_area": "SEVERITY", "evidence_ref": "docs/faz4r/pilot_rollback_decision/p0_p1_trigger_matrix.md"},
+      {"code": "OPEN_BLOCKER_ASSESSMENT", "required": true, "status": "READY", "owner": "TECH_OWNER", "decision_area": "BLOCKER", "evidence_ref": "docs/faz4r/pilot_rollback_decision/open_blocker_assessment.md"},
+      {"code": "DATA_SAFETY_PRECHECK", "required": true, "status": "READY", "owner": "TECH_OWNER", "decision_area": "DATA_SAFETY", "evidence_ref": "docs/faz4r/pilot_rollback_decision/data_safety_precheck.md"},
+      {"code": "TENANT_IMPACT_ASSESSMENT", "required": true, "status": "READY", "owner": "PRODUCT_OWNER", "decision_area": "TENANT_IMPACT", "evidence_ref": "docs/faz4r/pilot_rollback_decision/tenant_impact_assessment.md"},
+      {"code": "OWNER_APPROVAL_MATRIX", "required": true, "status": "READY", "owner": "BUSINESS_OWNER", "decision_area": "APPROVAL", "evidence_ref": "docs/faz4r/pilot_rollback_decision/owner_approval_matrix.md"},
+      {"code": "NO_ROLLBACK_DECISION_PATH", "required": true, "status": "READY", "owner": "PRODUCT_OWNER", "decision_area": "DECISION", "evidence_ref": "docs/faz4r/pilot_rollback_decision/no_rollback_decision_path.md"},
+      {"code": "ROLLBACK_CANDIDATE_DECISION_PATH", "required": true, "status": "READY", "owner": "TECH_OWNER", "decision_area": "DECISION", "evidence_ref": "docs/faz4r/pilot_rollback_decision/rollback_candidate_decision_path.md"},
+      {"code": "COMMUNICATION_PRECHECK", "required": true, "status": "READY", "owner": "SUPPORT_OWNER", "decision_area": "COMMUNICATION", "evidence_ref": "docs/faz4r/pilot_rollback_decision/communication_precheck.md"},
+      {"code": "RECOVERY_VALIDATION_PLAN", "required": true, "status": "READY", "owner": "TECH_OWNER", "decision_area": "RECOVERY", "evidence_ref": "docs/faz4r/pilot_rollback_decision/recovery_validation_plan.md"},
+      {"code": "EVIDENCE_ATTACHMENT_RULE", "required": true, "status": "READY", "owner": "SUPPORT_OWNER", "decision_area": "EVIDENCE", "evidence_ref": "docs/faz4r/pilot_rollback_decision/evidence_attachment_rule.md"},
+      {"code": "DECISION_LOG_LINK", "required": true, "status": "READY", "owner": "PRODUCT_OWNER", "decision_area": "DECISION_LOG", "evidence_ref": "docs/faz4r/pilot_rollback_decision/decision_log_link.md"},
+      {"code": "CLOSED_PROVIDER_POLICY_REVIEW", "required": true, "status": "READY", "owner": "SUPPORT_OWNER", "decision_area": "POLICY", "evidence_ref": "docs/faz4r/pilot_rollback_decision/closed_provider_policy_review.md"},
+      {"code": "REAL_ROLLBACK_EXECUTION_CLOSED_GATE", "required": true, "status": "READY", "owner": "TECH_OWNER", "decision_area": "ROLLBACK_EXECUTION", "evidence_ref": "docs/faz4r/pilot_rollback_decision/real_rollback_execution_closed_gate.md"}
+    ],
+    "decision_controls": {
+      "daily_pilot_review_status": "PASS",
+      "rollback_signal_status": "CLEAR",
+      "rollback_decision_result": "NO_ROLLBACK_REQUIRED",
+      "owner_approval_matrix_status": "READY",
+      "recovery_validation_plan_status": "READY",
+      "communication_precheck_status": "READY",
+      "decision_log_status": "READY",
+      "no_real_rollback_execution": true,
+      "no_hotfix_deploy": true
+    },
+    "decision_metrics": {
+      "open_blocker_count": 0,
+      "critical_issue_count": 0,
+      "required_fail_count": 0,
+      "rollback_signal_count": 0,
+      "rollback_execution_count": 0
+    },
+    "summary": {
+      "total_rule_count": 14,
+      "ready_rule_count": 14,
+      "missing_rule_count": 0,
+      "required_fail_count": 0,
+      "critical_issue_count": 0,
+      "open_blocker_count": 0,
+      "daily_pilot_review_status": "PASS",
+      "rollback_signal_status": "CLEAR",
+      "rollback_decision_result": "NO_ROLLBACK_REQUIRED",
+      "owner_approval_matrix_status": "READY",
+      "recovery_validation_plan_status": "READY",
+      "communication_precheck_status": "READY",
+      "decision_log_status": "READY",
+      "rollback_decision_flow_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "production_launch": "CLOSED",
+      "hotfix_deploy": "CLOSED",
+      "real_rollback_execution": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "rollback_decision_id": "pilot_rollback_decision.invalid_fixture",
+    "rollback_decision_status": "DRAFT",
+    "rollback_decision_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED"
+    },
+    "chain_dependencies": {
+      "215_FAZ_4_16_5_2_GUNLUK_PILOT_REVIEW": "FAIL"
+    },
+    "decision_rules": [
+      {"code": "ROLLBACK_SIGNAL_INTAKE", "required": true, "status": "MISSING", "owner": "", "decision_area": "", "evidence_ref": ""},
+      {"code": "P0_P1_TRIGGER_MATRIX", "required": true, "status": "READY", "owner": "TECH_OWNER", "decision_area": "SEVERITY", "evidence_ref": "x"},
+      {"code": "P0_P1_TRIGGER_MATRIX", "required": true, "status": "READY", "owner": "TECH_OWNER", "decision_area": "SEVERITY", "evidence_ref": "x"}
+    ],
+    "decision_controls": {
+      "daily_pilot_review_status": "FAIL",
+      "rollback_signal_status": "TRIGGERED",
+      "rollback_decision_result": "ROLLBACK_REQUIRED",
+      "owner_approval_matrix_status": "DRAFT",
+      "recovery_validation_plan_status": "DRAFT",
+      "communication_precheck_status": "DRAFT",
+      "decision_log_status": "DRAFT",
+      "no_real_rollback_execution": false,
+      "no_hotfix_deploy": false
+    },
+    "decision_metrics": {
+      "open_blocker_count": 1,
+      "critical_issue_count": 1,
+      "required_fail_count": 1,
+      "rollback_signal_count": 1,
+      "rollback_execution_count": 1
+    },
+    "summary": {
+      "total_rule_count": 99,
+      "ready_rule_count": 99,
+      "missing_rule_count": 99,
+      "required_fail_count": 99,
+      "critical_issue_count": 1,
+      "open_blocker_count": 1,
+      "daily_pilot_review_status": "FAIL",
+      "rollback_signal_status": "TRIGGERED",
+      "rollback_decision_result": "ROLLBACK_REQUIRED",
+      "owner_approval_matrix_status": "DRAFT",
+      "recovery_validation_plan_status": "DRAFT",
+      "communication_precheck_status": "DRAFT",
+      "decision_log_status": "DRAFT",
+      "rollback_decision_flow_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "production_launch": "OPEN",
+      "hotfix_deploy": "OPEN",
+      "real_rollback_execution": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

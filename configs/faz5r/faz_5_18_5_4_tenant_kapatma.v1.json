@@ -1,0 +1,39 @@
+{
+  "phase": "FAZ_5_18_5_4",
+  "title": "Tenant Kapatma",
+  "status": "READY",
+  "control_surface": "TENANT_SHUTDOWN_FLOW",
+  "inputs": [
+    "FAZ_5_18_2_2_FATURALAMA_AKISI",
+    "FAZ_5_18_2_3_TAHSILAT_BASARISIZ_ODEME_AKISI",
+    "FAZ_5_18_2_5_IADE_IPTAL_TICARI_AKISI",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "SHUTDOWN_REQUEST_INTAKE",
+    "BILLING_STATUS_VALIDATION",
+    "UNPAID_INVOICE_CHECK",
+    "DATA_EXPORT_OFFER",
+    "LEGAL_HOLD_CHECK",
+    "OWNER_APPROVAL_QUEUE",
+    "TENANT_ACCESS_FREEZE_PLAN",
+    "BILLING_STOP_PLAN",
+    "FINAL_SHUTDOWN_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_tenant_shutdown_ready": true,
+    "production_shutdown_enabled": false,
+    "real_tenant_closure_enabled": false,
+    "data_deletion_enabled": false,
+    "auto_access_cutoff_enabled": false,
+    "data_export_flow_required_next": true,
+    "final_shutdown_deferred_to_production_approval": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

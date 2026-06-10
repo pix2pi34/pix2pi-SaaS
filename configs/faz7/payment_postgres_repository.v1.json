@@ -1,0 +1,50 @@
+{
+  "module_code": "7-5P.4",
+  "module_name": "Payment DB Migration / PostgreSQL Repository",
+  "parent_module": "7-5P",
+  "depends_on": [
+    "7-5P",
+    "7-5P.1",
+    "7-5P.2",
+    "7-5P.3"
+  ],
+  "postgres_repository_version": "payment_postgres_repository.v1",
+  "tables": [
+    "payment_attempts",
+    "payment_attempt_events"
+  ],
+  "constraints": [
+    "payment_attempts_pkey_tenant_id_attempt_id",
+    "payment_attempts_tenant_idempotency_unique",
+    "payment_attempt_events_attempt_fk"
+  ],
+  "indexes": [
+    "idx_payment_attempts_tenant_provider_transaction",
+    "idx_payment_attempts_tenant_status",
+    "idx_payment_attempt_events_tenant_attempt_event"
+  ],
+  "repository_operations": [
+    "Save",
+    "Update",
+    "FindByAttemptID",
+    "FindByIdempotencyKey",
+    "AppendEvent",
+    "ListEvents"
+  ],
+  "db_guards": {
+    "tenant_safe_primary_key": true,
+    "idempotency_unique_per_tenant": true,
+    "provider_transaction_index": true,
+    "event_history_fk": true,
+    "status_check_constraint": true,
+    "positive_amount_check_constraint": true
+  },
+  "test_strategy": {
+    "compile_repository": true,
+    "migration_file_audit": true,
+    "sql_statement_audit": true,
+    "no_live_db_required_in_this_step": true,
+    "hardcoded_final_ok_forbidden": true,
+    "final_status_from_counters_required": true
+  }
+}

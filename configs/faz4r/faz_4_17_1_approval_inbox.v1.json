@@ -1,0 +1,57 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 236,
+  "step": "FAZ_4_17_1",
+  "title": "Approval inbox",
+  "priority_group": "WEB-L7 Workflow / Realtime UI",
+  "depends_on": [
+    "235_FAZ_4_16_8_5_PILOT_CLOSURE_REPORT"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "approval_inbox_policy": {
+    "approval_inbox_status_required": "READY",
+    "approval_inbox_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "tenant_scope_required": "SINGLE_TENANT",
+    "role_visibility_status_required": "READY",
+    "action_state_status_required": "READY",
+    "web_checkpoint_status_required": "READY",
+    "pilot_closure_status_required": "PASS",
+    "no_workflow_mutation_required": true,
+    "no_real_approval_execution_required": true,
+    "no_realtime_socket_connection_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_inbox_items": [
+    "APPROVAL_INBOX_SHELL",
+    "TENANT_SCOPED_INBOX",
+    "PENDING_APPROVAL_LIST",
+    "APPROVAL_ITEM_METADATA",
+    "PRIORITY_SLA_INDICATOR",
+    "STATUS_BADGE_MODEL",
+    "ACTOR_ROLE_VISIBILITY",
+    "ACTION_BUTTON_STATE_MODEL",
+    "APPROVAL_DETAIL_LINK_PLACEHOLDER",
+    "EMPTY_STATE",
+    "ERROR_STATE",
+    "REALTIME_PLACEHOLDER",
+    "AUDIT_TRACE_PLACEHOLDER",
+    "NO_MUTATION_GUARD",
+    "EXTERNAL_POLICY_CLOSED_GATE",
+    "UI_CHECKPOINT_HTML",
+    "FINAL_APPROVAL_INBOX_REPORT"
+  ],
+  "approval_inbox_artifact": "configs/faz4r/approval_inbox.controlled_pilot.v1.json",
+  "web_checkpoint": "web/faz4r/approval-inbox/index.html",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "237_FAZ_4_17_2_WORKFLOW_MONITOR"
+  ]
+}

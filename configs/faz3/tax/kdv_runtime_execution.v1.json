@@ -1,0 +1,93 @@
+{
+  "phase": "FAZ_3_10_2_1_KDV_RUNTIME_EXECUTION",
+  "runtime": "kdv_runtime_execution",
+  "runtime_enabled": true,
+  "active_rule_version": "TR_KDV_2026_V1",
+  "default_currency_code": "TRY",
+  "audit_required": true,
+  "idempotency_required": true,
+  "min_rate_bps": 0,
+  "max_rate_bps": 2000,
+  "allowed_document_types": [
+    "SALES_INVOICE",
+    "PURCHASE_INVOICE",
+    "SALES_RETURN",
+    "PURCHASE_RETURN",
+    "E_BELGE_DOCUMENT",
+    "CUSTOM"
+  ],
+  "allowed_directions": [
+    "OUTPUT_KDV",
+    "INPUT_KDV",
+    "RETURN_KDV"
+  ],
+  "allowed_rate_codes": [
+    "KDV_0",
+    "KDV_1",
+    "KDV_10",
+    "KDV_20",
+    "CUSTOM"
+  ],
+  "rule_examples": [
+    {
+      "rule_id": "KDV-OUTPUT-20-2026",
+      "rule_version": "TR_KDV_2026_V1",
+      "rate_code": "KDV_20",
+      "rate_bps": 2000,
+      "direction": "OUTPUT_KDV",
+      "account_code": "391.01.20",
+      "declaration_code": "KDV_OUTPUT_20",
+      "exemption_allowed": true
+    },
+    {
+      "rule_id": "KDV-INPUT-20-2026",
+      "rule_version": "TR_KDV_2026_V1",
+      "rate_code": "KDV_20",
+      "rate_bps": 2000,
+      "direction": "INPUT_KDV",
+      "account_code": "191.01.20",
+      "declaration_code": "KDV_INPUT_20",
+      "reverse_charge_allowed": true
+    },
+    {
+      "rule_id": "KDV-OUTPUT-10-2026",
+      "rule_version": "TR_KDV_2026_V1",
+      "rate_code": "KDV_10",
+      "rate_bps": 1000,
+      "direction": "OUTPUT_KDV",
+      "account_code": "391.01.10",
+      "declaration_code": "KDV_OUTPUT_10"
+    },
+    {
+      "rule_id": "KDV-OUTPUT-0-2026",
+      "rule_version": "TR_KDV_2026_V1",
+      "rate_code": "KDV_0",
+      "rate_bps": 0,
+      "direction": "OUTPUT_KDV",
+      "account_code": "391.00",
+      "declaration_code": "KDV_ZERO_RATE"
+    }
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "document_id_required": true,
+    "document_no_required": true,
+    "party_id_required": true,
+    "party_tax_no_required": true,
+    "direction_required": true,
+    "rate_code_required": true,
+    "gross_amount_positive_required": true,
+    "net_amount_positive_required": true,
+    "tax_base_positive_required": true,
+    "tax_base_cannot_exceed_net": true,
+    "net_cannot_exceed_gross": true,
+    "currency_code_must_be_TRY": true,
+    "document_date_required": true,
+    "active_rule_version_required": true,
+    "exemption_reason_required_when_exemption_code_present": true
+  },
+  "next_gate": "FAZ_3_10_2_4_TAX_RULE_VERSION_ROLLOUT"
+}

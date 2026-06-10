@@ -1,0 +1,23 @@
+gate	status	note
+previous_21_2	PASS	permission guard prerequisite
+previous_21_1	PASS	role matrix prerequisite
+previous_19	PASS	panel/admin prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=6
+tenant_safety	PASS	tenant_id=6
+actor	PASS	actor_refs=17
+resource	PASS	resource_refs=21
+decision	PASS	decision_refs=7 deny_reason=3
+trace	PASS	request=1 correlation=1
+immutable	PASS	event_hash=3 previous_hash=2 chain_hash=2
+boundary	PASS	boundary_refs=8
+indexes	PASS	index_count=17
+down_migration	PASS	drop_table_count=6
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=38
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+audit_log_write_executed	NO	audit runtime later
+permission_guard_executed	NO	permission guard runtime later
+query_text_printed	NO	secret-safe report

@@ -1,0 +1,16 @@
+gate_name	category	priority	required_status	blocker_if_failed	decision_if_failed	evidence_source	owner_role	implementation_status	note
+foundation_closed	foundation	P0	PASS	YES	NO_GO	16.1-16.4 + 17/20/21/22 reports	project_owner	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+pilot_tenant_ready	tenant	P0	PASS	YES	NO_GO	16.2 tenant readiness report	platform_admin	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+uat_execution_contract_ready	uat	P0	PASS	YES	NO_GO	16.3 UAT execution contract	project_owner	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+pilot_data_ready	data	P0	PASS	YES	NO_GO	16.4 pilot data readiness report	tenant_operator	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+security_rbac_checked	security	P0	PASS	YES	NO_GO	21 security / 16.3 RBAC UAT evidence	security_admin	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+tenant_isolation_checked	tenant_security	P0	PASS	YES	NO_GO	tenant access / isolation evidence	security_admin	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+secret_safety_checked	security	P0	PASS	YES	NO_GO	no raw secret / payload evidence	security_admin	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+sales_stock_accounting_chain_ready	business	P0	PASS	YES	NO_GO	sale + stock + TDHP chain evidence	project_owner	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+audit_evidence_ready	audit	P0	PASS	YES	NO_GO	actor/request/tenant audit evidence	tenant_admin	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+support_loop_ready	support	P0	PASS	YES	NO_GO	support channel + owner evidence	support	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+incident_feedback_loop_ready	ops	P0	PASS	YES	NO_GO	incident template / feedback loop evidence	ops_admin	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+training_completion_ready	training	P1	PASS	NO	CONDITIONAL_GO	training attendance evidence	trainer	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+backup_restore_readiness_noted	ops	P1	PASS	NO	CONDITIONAL_GO	backup/restore readiness note	ops_admin	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+reporting_snapshot_ready	reporting	P1	PASS	NO	CONDITIONAL_GO	reporting snapshot evidence	tenant_admin	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed
+final_go_no_go_signed	rollout	P0	PASS	YES	NO_GO	signed final decision note	project_owner	READY_FOR_IMPLEMENTATION	contract_only_no_rollout_executed

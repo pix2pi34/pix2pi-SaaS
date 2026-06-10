@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pix2pi İşletme Kaydı Vue3</title>
+    <meta name="pix2pi-marker" content="PIX2PI_REGISTER_VUE3_APP_VUE_INDEX_MARKER" />
+    <script type="module" crossorigin src="/customer-register/vue3/assets/index-BFVdzxD2.js"></script>
+    <link rel="stylesheet" crossorigin href="/customer-register/vue3/assets/index-DfGcJ8bP.css">
+  </head>
+  <body>
+    <div id="app"></div>
+  
+<script id="pix2pi-customer-register-live-submit-bridge">
+(function () {
+  "use strict";
+
+  var MARKER = "CUSTOMER_REGISTER_LIVE_SUBMIT_FRONTEND_BRIDGE_MARKER";
+  var API_URL = "/customer-register/application-api/submit";
+  var busy = false;
+
+  function norm(value) {
+    return String(value || "").trim();
+  }
+
+  function lower(value) {
+    return norm(value).toLocaleLowerCase("tr-TR");
+  }
+
+  function allFields(form) {
+    return Array.prototype.slice.call(form.querySelectorAll("input,textarea,select"));
+  }
+
+  function fieldMeta(el) {
+    var label = "";
+    if (el.id) {
+      var direct = document.querySelector('label[for="' + CSS.escape(el.id) + '"]');
+      if (direct) label += " " + direct.textContent;
+    }
+
+    var parentLabel = el.closest("label");
+    if (parentLabel) label += " " + parentLabel.textContent;
+
+    return lower([
+      el.name,
+      el.id,
+      el.type,
+      el.placeholder,
+      el.getAttribute("aria-label"),
+      el.getAttribute("autocomplete"),
+      label
+    ].join(" "));
+  }
+
+  function findByHints(form, hints) {
+    var fields = allFields(form);
+
+    for (var i = 0; i < fields.length; i++) {
+      var el = fields[i];
+      var meta = fieldMeta(el);
+
+      for (var j = 0; j < hints.length; j++) {
+        if (meta.indexOf(hints[j]) !== -1) {
+          return el;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  function getEmail(form) {
+    var el = form.querySelector('input[type="email"]') ||
+      findByHints(form, ["email", "e-posta", "eposta", "mail"]);
+
+    return norm(el && el.value).toLowerCase();
+  }
+
+  function collectPayload(form) {
+    var email = getEmail(form);
+
+    var company = findByHints(form, ["firma", "şirket", "sirket", "company", "unvan", "ünvan"]);
+    var owner = findByHints(form, ["yetkili", "ad soyad", "ad-soyad", "isim", "name", "owner"]);
+    var phone = form.querySelector('input[type="tel"]') || findByHints(form, ["telefon", "phone", "gsm"]);
+    var taxOffice = findByHints(form, ["vergi dairesi", "tax office"]);
+    var taxNumber = findByHints(form, ["vkn", "tckn", "vergi no", "vergi numarası", "tax number"]);
+    var password = form.querySelector('input[type="password"]');
+
+    var payload = {
+      email: email,
+      company_name: norm(company && company.value),
+      owner_name: norm(owner && owner.value),
+      phone: norm(phone && phone.value),
+      tax_office: norm(taxOffice && taxOffice.value),
+      tax_number: norm(taxNumber && taxNumber.value),
+      password: norm(password && password.value),
+      source_frontend_marker: MARKER
+    };
+
+    allFields(form).forEach(function (el) {
+      var key = norm(el.name || el.id);
+      if (!key) return;
+      if (String(el.type || "").toLowerCase() === "password") return;
+      payload["field_" + key] = norm(el.value);
+    });
+
+    return payload;
+  }
+
+  function boxAfter(form) {
+    var box = document.getElementById("pix2pi-register-submit-box");
+
+    if (!box) {
+      box = document.createElement("div");
+      box.id = "pix2pi-register-submit-box";
+      box.setAttribute("data-marker", MARKER);
+      box.style.margin = "14px 0";
+      box.style.padding = "14px 16px";
+      box.style.borderRadius = "14px";
+      box.style.fontWeight = "800";
+      box.style.lineHeight = "1.45";
+
+      if (form && form.parentNode) {
+        form.parentNode.insertBefore(box, form.nextSibling);
+      } else {
+        document.body.insertBefore(box, document.body.firstChild);
+      }
+    }
+
+    return box;
+  }
+
+  function paint(form, message, type) {
+    var box = boxAfter(form);
+    box.textContent = message;
+    box.style.display = "block";
+
+    if (type === "ok") {
+      box.style.background = "#ecfdf3";
+      box.style.border = "1px solid #abefc6";
+      box.style.color = "#067647";
+    } else if (type === "warn") {
+      box.style.background = "#fffaeb";
+      box.style.border = "1px solid #fedf89";
+      box.style.color = "#92400e";
+    } else {
+      box.style.background = "#fef3f2";
+      box.style.border = "1px solid #fecdca";
+      box.style.color = "#b42318";
+    }
+  }
+
+  function submitForm(form, event) {
+    if (busy) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      return;
+    }
+
+    var payload = collectPayload(form);
+
+    if (!payload.email || payload.email.indexOf("@") === -1) {
+      return;
+    }
+
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    busy = true;
+    paint(form, "Başvurunuz kaydediliyor…", "warn");
+
+    fetch(API_URL, {
+      method: "POST",
+      credentials: "same-origin",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data && data.ok && data.created) {
+          paint(form, "Başvurunuz alındı. Pix2pi onayı bekleniyor.", "ok");
+          window.PIX2PI_CUSTOMER_REGISTER_LAST_APPLICATION = data;
+          return;
+        }
+
+        if (data && data.ok && data.duplicate) {
+          paint(form, data.message || "Bu e-posta için başvuru zaten mevcut.", "warn");
+          window.PIX2PI_CUSTOMER_REGISTER_LAST_APPLICATION = data;
+          return;
+        }
+
+        paint(form, (data && data.message) || "Başvuru kaydedilemedi.", "error");
+      })
+      .catch(function () {
+        paint(form, "Başvuru kaydedilemedi. Lütfen tekrar deneyin.", "error");
+      })
+      .finally(function () {
+        busy = false;
+      });
+  }
+
+  function isRegisterForm(form) {
+    var text = lower(form.textContent);
+    var html = lower(form.innerHTML);
+
+    return (
+      text.indexOf("kayıt") !== -1 ||
+      text.indexOf("kayit") !== -1 ||
+      html.indexOf("customer-register") !== -1 ||
+      !!getEmail(form)
+    );
+  }
+
+  function bind() {
+    var forms = document.querySelectorAll("form");
+
+    for (var i = 0; i < forms.length; i++) {
+      var form = forms[i];
+      if (form.getAttribute("data-pix2pi-register-submit-bound")) continue;
+      if (!isRegisterForm(form)) continue;
+
+      form.setAttribute("data-pix2pi-register-submit-bound", MARKER);
+      form.addEventListener("submit", function (event) {
+        submitForm(event.currentTarget, event);
+      }, true);
+    }
+
+    var buttons = document.querySelectorAll("button");
+
+    for (var j = 0; j < buttons.length; j++) {
+      var btn = buttons[j];
+      if (btn.getAttribute("data-pix2pi-register-submit-bound")) continue;
+
+      var txt = lower(btn.textContent);
+      var looksRegister =
+        txt.indexOf("kayıt") !== -1 ||
+        txt.indexOf("kayit") !== -1 ||
+        txt.indexOf("başvur") !== -1 ||
+        txt.indexOf("basvur") !== -1;
+
+      if (!looksRegister) continue;
+
+      btn.setAttribute("data-pix2pi-register-submit-bound", MARKER);
+      btn.addEventListener("click", function (event) {
+        var form = event.currentTarget.closest("form") || document.querySelector("form");
+        if (!form) return;
+        submitForm(form, event);
+      }, true);
+    }
+  }
+
+  var observer = new MutationObserver(bind);
+
+  function start() {
+    bind();
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.PIX2PI_CUSTOMER_REGISTER_LIVE_SUBMIT_FRONTEND_BRIDGE_MARKER = MARKER;
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
+})();
+</script>
+
+
+<script id="pix2pi-customer-auth-nav-bar">
+(function () {
+  "use strict";
+
+  var MARKER = "PIX2PI_CUSTOMER_AUTH_NAV_BAR_MARKER";
+
+  function isRegisterPage() {
+    return window.location.pathname.indexOf("/customer-register/") !== -1;
+  }
+
+  function isLoginPage() {
+    return window.location.pathname.indexOf("/customer-login/") !== -1;
+  }
+
+  function addStyles() {
+    if (document.getElementById("pix2pi-customer-auth-nav-style")) return;
+
+    var style = document.createElement("style");
+    style.id = "pix2pi-customer-auth-nav-style";
+    style.textContent = [
+      ".pix2pi-auth-nav{position:sticky;top:0;z-index:99999;display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 18px;background:#0f172a;color:#fff;box-shadow:0 12px 30px rgba(15,23,42,.16);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}",
+      ".pix2pi-auth-nav strong{font-size:14px;letter-spacing:.02em}",
+      ".pix2pi-auth-nav-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}",
+      ".pix2pi-auth-nav a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:999px;padding:9px 13px;font-size:13px;font-weight:800;background:#fff;color:#0f172a;border:1px solid rgba(255,255,255,.22)}",
+      ".pix2pi-auth-nav a.primary{background:#2563eb;color:#fff;border-color:#2563eb}",
+      ".pix2pi-auth-nav a.warn{background:#16a34a;color:#fff;border-color:#16a34a}",
+      "@media(max-width:640px){.pix2pi-auth-nav{align-items:flex-start;flex-direction:column}.pix2pi-auth-nav-actions{justify-content:flex-start}}"
+    ].join("\\n");
+
+    document.head.appendChild(style);
+  }
+
+  function createNav() {
+    if (document.getElementById("pix2pi-customer-auth-nav")) return;
+
+    addStyles();
+
+    var nav = document.createElement("div");
+    nav.id = "pix2pi-customer-auth-nav";
+    nav.className = "pix2pi-auth-nav";
+    nav.setAttribute("data-marker", MARKER);
+
+    var title = document.createElement("strong");
+    title.textContent = isRegisterPage() ? "Pix2pi Müşteri Kayıt" : "Pix2pi Müşteri Giriş";
+
+    var actions = document.createElement("div");
+    actions.className = "pix2pi-auth-nav-actions";
+
+    var home = document.createElement("a");
+    home.href = "https://pix2pi.com.tr/";
+    home.textContent = "Ana Sayfa";
+
+    var login = document.createElement("a");
+    login.href = "/customer-login/react/";
+    login.textContent = "Giriş Yap";
+    login.className = isLoginPage() ? "primary" : "";
+
+    var register = document.createElement("a");
+    register.href = "/customer-register/react/";
+    register.textContent = "Kayıt Ol";
+    register.className = isRegisterPage() ? "warn" : "";
+
+    actions.appendChild(home);
+
+    if (isRegisterPage()) {
+      actions.appendChild(login);
+    } else if (isLoginPage()) {
+      actions.appendChild(register);
+    } else {
+      actions.appendChild(login);
+      actions.appendChild(register);
+    }
+
+    nav.appendChild(title);
+    nav.appendChild(actions);
+
+    if (document.body.firstChild) {
+      document.body.insertBefore(nav, document.body.firstChild);
+    } else {
+      document.body.appendChild(nav);
+    }
+
+    window.PIX2PI_CUSTOMER_AUTH_NAV_BAR_MARKER = MARKER;
+  }
+
+  function start() {
+    createNav();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
+})();
+</script>
+
+</body>
+</html>

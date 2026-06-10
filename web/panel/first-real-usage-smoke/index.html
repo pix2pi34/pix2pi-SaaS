@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi ilk gerçek kullanım smoke testi ekranı" />
+  <meta property="og:title" content="Pix2pi İlk Gerçek Kullanım Smoke Testi" />
+  <meta property="og:description" content="Controlled customer access öncesi ilk gerçek kullanım zinciri smoke yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi İlk Gerçek Kullanım Smoke Testi</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.13), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1360px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .usage-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+      min-height: 96px;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_355_FIRST_REAL_USAGE_SMOKE_APP_SHELL_START -->
+  <main class="shell" data-step="355" data-surface="first-real-usage-smoke">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 355</span>
+      <h1 data-i18n="first_real_usage_smoke.title">İlk gerçek kullanım smoke testi</h1>
+      <p data-i18n="first_real_usage_smoke.description">Panel, POS, market, yetki, izolasyon ve localization zinciri için controlled kullanım provası.</p>
+    </section>
+
+    <!-- PIX2PI_355_PILOT_TENANT_OWNER_STORE_REGISTER_SCENARIO_CONTEXT_START -->
+    <section class="card guard" data-widget="pilot_tenant_owner_store_register_scenario_context">
+      <h2>Pilot tenant / owner / store / register scenario context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="first-usage-tenant-id">controlled-pilot</strong></p>
+        <p>Owner: <strong id="first-usage-owner-user">owner@example.invalid</strong></p>
+        <p>Store: <strong id="first-usage-store-id">demo-market-main</strong></p>
+        <p>Register: <strong id="first-usage-register-id">register-001</strong></p>
+        <p>Scope: <strong id="first-usage-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_355_PILOT_TENANT_OWNER_STORE_REGISTER_SCENARIO_CONTEXT_END -->
+
+    <section class="card" data-widget="dependency_gate">
+      <h2>Dependency gate</h2>
+      <div id="first-usage-dependency-list" class="grid-3">
+        <article class="usage-card" data-dependency-step="354" data-dependency-status="PASS">
+          <strong>354 / localization_customer_smoke</strong>
+          <p>PASS</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PIX2PI_355_CUSTOMER_JOURNEY_CHECKLIST_START -->
+    <section class="card" data-widget="customer_journey_checklist">
+      <h2>Customer journey checklist</h2>
+      <div id="first-usage-journey-list" class="grid-3">
+        <!-- PIX2PI_355_PANEL_LOGIN_ACCESS_CHAIN_SMOKE_START -->
+        <article class="usage-card" data-journey-code="PANEL_LOGIN_ACCESS" data-journey-surface="panel" data-decision="PASS_PREVIEW">
+          <strong>Panel login + access chain</strong>
+          <p>panel / PASS_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_355_PANEL_LOGIN_ACCESS_CHAIN_SMOKE_END -->
+
+        <!-- PIX2PI_355_TENANT_ISOLATION_GATE_SMOKE_START -->
+        <article class="usage-card" data-journey-code="TENANT_ISOLATION_GATE" data-journey-surface="panel" data-decision="PASS_PREVIEW">
+          <strong>Tenant isolation gate</strong>
+          <p>panel / PASS_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_355_TENANT_ISOLATION_GATE_SMOKE_END -->
+
+        <!-- PIX2PI_355_USER_PERMISSION_GATE_SMOKE_START -->
+        <article class="usage-card" data-journey-code="USER_PERMISSION_GATE" data-journey-surface="panel" data-decision="PASS_PREVIEW">
+          <strong>User permission gate</strong>
+          <p>panel / PASS_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_355_USER_PERMISSION_GATE_SMOKE_END -->
+
+        <!-- PIX2PI_355_LOCALIZATION_CUSTOMER_SMOKE_DEPENDENCY_CHECK_START -->
+        <article class="usage-card" data-journey-code="LOCALIZATION_GATE" data-journey-surface="panel" data-decision="PASS_PREVIEW">
+          <strong>Localization customer smoke</strong>
+          <p>panel / PASS_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_355_LOCALIZATION_CUSTOMER_SMOKE_DEPENDENCY_CHECK_END -->
+
+        <!-- PIX2PI_355_POS_ACCESS_CHAIN_SMOKE_START -->
+        <article class="usage-card" data-journey-code="POS_ACCESS_CHAIN" data-journey-surface="pos" data-decision="PASS_PREVIEW">
+          <strong>POS access chain</strong>
+          <p>pos / PASS_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_355_POS_ACCESS_CHAIN_SMOKE_END -->
+
+        <!-- PIX2PI_355_MARKETPLACE_STOREFRONT_AVAILABILITY_SMOKE_START -->
+        <article class="usage-card" data-journey-code="MARKET_STOREFRONT" data-journey-surface="market" data-decision="PASS_PREVIEW">
+          <strong>Marketplace/storefront availability</strong>
+          <p>market / PASS_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_355_MARKETPLACE_STOREFRONT_AVAILABILITY_SMOKE_END -->
+
+        <!-- PIX2PI_355_PRODUCT_STOCK_READ_SMOKE_START -->
+        <article class="usage-card" data-journey-code="PRODUCT_STOCK_READ" data-journey-surface="panel" data-decision="PASS_PREVIEW">
+          <strong>Product / stock read smoke</strong>
+          <p>panel / PASS_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_355_PRODUCT_STOCK_READ_SMOKE_END -->
+
+        <!-- PIX2PI_355_CART_PAYMENT_DRY_RUN_SMOKE_START -->
+        <article class="usage-card" data-journey-code="CART_PAYMENT_DRY_RUN" data-journey-surface="pos" data-decision="DRY_RUN_ONLY">
+          <strong>Cart / payment dry-run</strong>
+          <p>pos / DRY_RUN_ONLY</p>
+        </article>
+        <!-- PIX2PI_355_CART_PAYMENT_DRY_RUN_SMOKE_END -->
+
+        <!-- PIX2PI_355_INVOICE_BILLING_DISABLED_GATE_SMOKE_START -->
+        <article class="usage-card" data-journey-code="INVOICE_BILLING_DISABLED" data-journey-surface="panel" data-decision="DISABLED_EXPECTED">
+          <strong>Invoice / billing disabled gate</strong>
+          <p>panel / DISABLED_EXPECTED</p>
+        </article>
+        <!-- PIX2PI_355_INVOICE_BILLING_DISABLED_GATE_SMOKE_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_355_CUSTOMER_JOURNEY_CHECKLIST_END -->
+
+    <!-- PIX2PI_355_DATA_MUTATION_DISABLED_SAFETY_GUARD_START -->
+    <section class="card locked" data-widget="data_mutation_disabled_safety_guard">
+      <h2>Data mutation disabled safety guard</h2>
+      <div id="first-usage-safety-guards" class="grid-3">
+        <article class="usage-card" data-safety-code="REAL_DATA_MUTATION_DISABLED" data-safety-status="ENFORCED">
+          <strong>REAL_DATA_MUTATION_DISABLED</strong>
+          <p>ENFORCED / value=false</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_355_DATA_MUTATION_DISABLED_SAFETY_GUARD_END -->
+
+    <!-- PIX2PI_355_ROLLBACK_STOP_CRITERIA_PREVIEW_START -->
+    <section class="card locked" data-widget="rollback_stop_criteria_preview">
+      <h2>Rollback / stop criteria preview</h2>
+      <div id="first-usage-stop-criteria" class="grid-4">
+        <article class="usage-card" data-stop-code="TENANT_ISOLATION_FAIL" data-stop-action="STOP_GO_LIVE">
+          <strong>P1 / TENANT_ISOLATION_FAIL</strong>
+          <p>STOP_GO_LIVE / READY</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_355_ROLLBACK_STOP_CRITERIA_PREVIEW_END -->
+
+    <!-- PIX2PI_355_AUDIT_CORRELATION_TIMELINE_START -->
+    <section class="card" data-widget="audit_correlation_timeline">
+      <h2>Audit / correlation timeline</h2>
+      <div id="first-usage-audit-timeline" class="grid-3">
+        <article class="usage-card" data-audit-action="FIRST_REAL_USAGE_SMOKE_READY">
+          <strong>FIRST_REAL_USAGE_SMOKE_READY</strong>
+          <p>2026-05-demo / system / DRY_RUN</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_355_AUDIT_CORRELATION_TIMELINE_END -->
+
+    <!-- PIX2PI_355_FIRST_USAGE_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="first_usage_runtime_data_contract">
+      <h2>First usage runtime data contract</h2>
+      <p id="first-usage-runtime-contract">first_usage_smoke_preview_enabled=true / real_data_mutation_enabled=false / ready_for_step_356=true</p>
+    </section>
+    <!-- PIX2PI_355_FIRST_USAGE_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_355_SEO_OPENGRAPH_FIRST_USAGE_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_first_usage_placeholder">
+      <h2>SEO / OpenGraph first usage placeholder</h2>
+      <p>Title, description ve og:* metadata ilk gerçek kullanım smoke yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_355_SEO_OPENGRAPH_FIRST_USAGE_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_355_I18N_READY_FIRST_USAGE_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_first_usage_marker">
+      <h2 data-i18n="first_real_usage_smoke.i18n_ready">i18n-ready first usage smoke screen</h2>
+      <p data-i18n="first_real_usage_smoke.surface_ready">İlk gerçek kullanım smoke ekranı çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_355_I18N_READY_FIRST_USAGE_MARKER_END -->
+  </main>
+  <!-- PIX2PI_355_FIRST_REAL_USAGE_SMOKE_APP_SHELL_END -->
+
+  <script src="/assets/first-real-usage-smoke/first-real-usage-smoke-runtime.js"></script>
+  <script>
+    Pix2piFirstRealUsageSmoke.bootFirstUsageSmokeScreen().then(function (contract) {
+      console.log("PIX2PI_355_FIRST_REAL_USAGE_SMOKE_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

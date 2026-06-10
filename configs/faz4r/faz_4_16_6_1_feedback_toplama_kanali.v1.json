@@ -1,0 +1,55 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 221,
+  "step": "FAZ_4_16_6_1",
+  "title": "Feedback toplama kanalı",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "220_FAZ_4_16_5_5_TENANT_BAZLI_DURUM_RAPORU"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "feedback_policy": {
+    "feedback_channel_status_required": "READY",
+    "feedback_channel_mode_required": "CONTROLLED_PILOT",
+    "required_channel_status_required": "READY",
+    "missing_channel_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "tenant_status_report_status_required": "PASS",
+    "feedback_privacy_policy_status_required": "READY",
+    "feedback_category_mapping_status_required": "READY",
+    "feedback_priority_mapping_status_required": "READY",
+    "feedback_owner_routing_status_required": "READY",
+    "no_real_crm_system_required": true,
+    "no_real_ticket_system_required": true,
+    "no_real_email_dispatch_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_feedback_channels": [
+    "PILOT_USER_FEEDBACK_FORM",
+    "IN_APP_FEEDBACK_ENTRY",
+    "SUPPORT_TRIAGE_FEEDBACK_CAPTURE",
+    "UAT_FEEDBACK_CAPTURE",
+    "TRAINING_HELP_FEEDBACK_CAPTURE",
+    "INCIDENT_FEEDBACK_LINK",
+    "DAILY_REVIEW_FEEDBACK_LINK",
+    "FEEDBACK_CATEGORY_MAPPING",
+    "FEEDBACK_PRIORITY_MAPPING",
+    "FEEDBACK_EVIDENCE_ATTACHMENT",
+    "FEEDBACK_OWNER_ROUTING",
+    "FEEDBACK_PRIVACY_POLICY_GUARD",
+    "CLOSED_PROVIDER_POLICY_ROUTE",
+    "FEEDBACK_CLOSURE_INTAKE_CHECKLIST"
+  ],
+  "feedback_artifact": "configs/faz4r/feedback_collection_channel.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "222_FAZ_4_16_6_2_DEGISIKLIK_SINIFLANDIRMA"
+  ]
+}

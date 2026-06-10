@@ -1,0 +1,39 @@
+gate	status	note
+previous_17_2	PASS	workflow state machine prerequisite
+action_catalog	PASS	actions=16 approval_actions=4
+approval_rule_catalog	PASS	rules=10 critical=7
+permission_matrix	PASS	permissions=14 audit_permissions=11
+audit_realtime_binding	PASS	bindings=16 event_bindings=16 notifications=10
+idempotency_coverage	PASS	idempotency_required=16
+reason_policy	PASS	reason_required=6
+tenant_scope	PASS	tenant_scoped_actions=16
+no_runtime_change	PASS	no workflow/action/approval runtime changed
+no_config_change	PASS	no config/env/nginx/firewall changed
+secret_safe	PASS	no secrets printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+ui_code_changed	NO	contract only
+api_route_created	NO	contract only
+api_implementation_changed	NO	contract only
+websocket_server_started	NO	contract only
+sse_server_started	NO	contract only
+workflow_runtime_changed	NO	contract only
+workflow_engine_code_changed	NO	contract only
+approval_runtime_changed	NO	contract only
+action_runtime_created	NO	contract only
+event_published	NO	contract only
+event_consumed	NO	contract only
+notification_sent	NO	contract only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report

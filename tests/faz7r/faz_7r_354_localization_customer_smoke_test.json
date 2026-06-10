@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "354",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "localization_customer_smoke_screen",
+      "path": "/localization-customer-smoke/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_354_LOCALIZATION_CUSTOMER_SMOKE_APP_SHELL_START",
+        "PIX2PI_354_LANGUAGE_REGISTRY_SMOKE_START",
+        "PIX2PI_354_LOCALIZATION_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "localization_customer_smoke_runtime",
+      "path": "/assets/localization-customer-smoke/localization-customer-smoke-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_354_LOCALIZATION_CUSTOMER_SMOKE_RUNTIME_START",
+        "localizationScopeHeaders",
+        "buildLocalizationRuntimeContract"
+      ]
+    }
+  ]
+}

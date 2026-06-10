@@ -1,0 +1,48 @@
+gate	status	note
+baseline	PASS	22.1 observability baseline final
+metrics	PASS	22.2 metrics scrape readiness final
+logs	PASS	22.3 logs/loki readiness final
+traces	PASS	22.4 traces/tempo readiness final
+alerts	PASS	22.5 alert rule catalog final
+ops_console	PASS	22.6 ops console signal contract final
+observability_tests	PASS	22.7 observability ops console tests final
+artifact_coverage	PASS	missing=0
+no_runtime_change	PASS	failures=0
+no_config_change	PASS	failures=0
+body_not_printed	PASS	failures=0
+secret_safe	PASS	failures=0
+metric_evidence	PASS	total=2064 missing=0
+service_restarted	NO	final evidence only
+container_restarted	NO	final evidence only
+docker_compose_executed	NO	final evidence only
+nginx_reload_executed	NO	final evidence only
+firewall_changed	NO	final evidence only
+port_changed	NO	final evidence only
+config_changed	NO	final evidence only
+env_changed	NO	final evidence only
+ops_console_code_changed	NO	final contract only
+ops_console_api_implemented	NO	final contract only
+ops_console_ui_changed	NO	final contract only
+prometheus_config_changed	NO	final evidence only
+prometheus_reload_executed	NO	final evidence only
+prometheus_restarted	NO	final evidence only
+alertmanager_config_changed	NO	final evidence only
+alertmanager_reload_executed	NO	final evidence only
+alertmanager_restarted	NO	final evidence only
+grafana_dashboard_changed	NO	final evidence only
+grafana_alert_changed	NO	final evidence only
+alert_rule_changed	NO	final evidence only
+loki_config_changed	NO	final evidence only
+tempo_config_changed	NO	final evidence only
+otel_config_changed	NO	final evidence only
+db_mutation	NO	final evidence only
+db_apply_executed	NO	final evidence only
+migration_created	NO	final evidence only
+migration_apply_executed	NO	final evidence only
+metric_body_printed	NO	secret-safe report
+log_content_printed	NO	secret-safe report
+trace_body_printed	NO	secret-safe report
+query_body_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

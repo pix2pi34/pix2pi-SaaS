@@ -1,0 +1,156 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "302",
+  "code": "FAZ_6_21_2_5",
+  "name": "Point-in-time recovery provası",
+  "depends_on": [
+    "FAZ_6_21_2_2"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "restore_execution_allowed": false,
+  "primary_overwrite_allowed": false,
+  "replica_rebuild_allowed": false,
+  "wal_replay_execution_allowed": false,
+  "backup_delete_allowed": false,
+  "dns_mutation_allowed": false,
+  "dsn_mutation_allowed": false,
+  "application_route_mutation_allowed": false,
+  "required_controls": [
+    "replica_failover_dependency_gate",
+    "backup_chain_inventory",
+    "wal_archive_inventory",
+    "recovery_target_time_policy",
+    "isolated_restore_target_policy",
+    "restore_preflight_policy",
+    "wal_replay_validation_policy",
+    "data_integrity_validation_policy",
+    "tenant_scope_validation_policy",
+    "rto_rpo_measurement_policy",
+    "restore_execution_closed_policy",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "dry_run_pitr_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "backup_chain_policy": {
+    "enabled": true,
+    "required_records": [
+      "base_backup_reference",
+      "wal_archive_reference",
+      "backup_manifest_reference",
+      "restore_procedure_reference",
+      "last_successful_backup_time",
+      "retention_policy_reference"
+    ],
+    "block_if_missing_base_backup": true,
+    "block_if_missing_wal_archive": true,
+    "block_if_backup_manifest_missing": true
+  },
+  "recovery_target_time_policy": {
+    "enabled": true,
+    "mode": "dry_run_target_time_selection",
+    "requires_explicit_target_time": true,
+    "target_time_must_be_inside_pitr_window": true,
+    "target_time_must_be_after_last_base_backup": true
+  },
+  "isolated_restore_target_policy": {
+    "enabled": true,
+    "restore_target": "isolated_restore_environment_only",
+    "production_restore_allowed": false,
+    "primary_overwrite_allowed": false,
+    "network_isolation_required": true,
+    "read_only_validation_required": true
+  },
+  "restore_preflight_policy": {
+    "enabled": true,
+    "required_checks": [
+      "replica_failover_evidence_pass",
+      "base_backup_available",
+      "wal_archive_available",
+      "target_time_inside_window",
+      "isolated_restore_target_ready",
+      "restore_user_is_not_production_writer",
+      "tenant_scope_validation_ready",
+      "data_integrity_validation_ready",
+      "manual_approval_model_present"
+    ]
+  },
+  "validation_policy": {
+    "wal_replay_validation_required": true,
+    "data_integrity_validation_required": true,
+    "tenant_scope_validation_required": true,
+    "sample_query_validation_required": true,
+    "checksum_or_manifest_validation_required": true
+  },
+  "rto_rpo_measurement_policy": {
+    "enabled": true,
+    "dry_run_measurement_only": true,
+    "target_rto_minutes": 120,
+    "target_rpo_minutes": 15,
+    "record_actual_measurement_placeholder": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "restore_execute",
+      "primary_overwrite_execute",
+      "replica_rebuild_execute",
+      "wal_replay_execute",
+      "dns_switch_execute",
+      "dsn_switch_execute",
+      "application_route_switch_execute",
+      "backup_delete_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "data_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "restore_execution_allowed": false,
+    "primary_overwrite_allowed": false,
+    "replica_rebuild_allowed": false,
+    "wal_replay_execution_allowed": false,
+    "backup_delete_allowed": false,
+    "dns_mutation_allowed": false,
+    "dsn_mutation_allowed": false,
+    "application_route_mutation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "rehearsal_id",
+      "restore_target",
+      "recovery_target_time_status",
+      "backup_chain_status",
+      "wal_archive_status",
+      "restore_preflight_status",
+      "wal_replay_validation_status",
+      "data_integrity_validation_status",
+      "tenant_scope_validation_status",
+      "rto_minutes",
+      "rpo_minutes",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_replica_failover_dependency_missing": true,
+    "block_if_restore_execution_allowed": true,
+    "block_if_primary_overwrite_allowed": true,
+    "block_if_missing_backup_chain": true,
+    "block_if_missing_wal_archive": true,
+    "block_if_missing_isolated_restore_target": true,
+    "block_if_missing_tenant_scope_validation": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_2_5_POINT_IN_TIME_RECOVERY_PROVASI_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

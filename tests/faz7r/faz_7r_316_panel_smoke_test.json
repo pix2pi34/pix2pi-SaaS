@@ -1,0 +1,31 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "316",
+  "fix": "V3",
+  "domain": "panel.pix2pi.com.tr",
+  "http_301_guard": true,
+  "smoke_tests": [
+    {
+      "name": "panel_health_endpoint",
+      "url": "http://127.0.0.1/health",
+      "host_header": "panel.pix2pi.com.tr",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "\"status\":\"ok\"",
+        "\"surface\":\"panel\"",
+        "\"service\":\"pix2pi-panel\""
+      ]
+    },
+    {
+      "name": "panel_index_shell",
+      "url": "http://127.0.0.1/",
+      "host_header": "panel.pix2pi.com.tr",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "Pix2pi Merchant Panel",
+        "PIX2PI_PANEL_APP_SHELL_START",
+        "tenant-indicator"
+      ]
+    }
+  ]
+}

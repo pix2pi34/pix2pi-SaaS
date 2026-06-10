@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <title>Pix2pi POS Offline Ready</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: rgba(17,24,39,.92);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --border: rgba(255,255,255,.12);
+      --brand: #60a5fa;
+      --brand2: #22c55e;
+      --danger: #fb7185;
+      --warn: #f59e0b;
+      --shadow: 0 20px 52px rgba(0,0,0,.28);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(96,165,250,.22), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(245,158,11,.12), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(16px);
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(30px, 7vw, 56px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 30px;
+      color: #bbf7d0;
+      letter-spacing: -0.05em;
+    }
+
+    .offline-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .offline-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(15,23,42,.65);
+    }
+
+    button {
+      border: none;
+      border-radius: 18px;
+      padding: 14px 16px;
+      font: inherit;
+      font-weight: 950;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color: #06101f;
+      width: 100%;
+    }
+
+    .secondary {
+      background: rgba(96,165,250,.14);
+      color: #bfdbfe;
+      border: 1px solid rgba(147,197,253,.24);
+      width: 100%;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: rgba(96,165,250,.14);
+      color: #bfdbfe;
+      border: 1px solid rgba(147,197,253,.26);
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .locked {
+      border: 1px dashed rgba(245,158,11,.55);
+      background: rgba(245,158,11,.08);
+    }
+
+    @media (max-width: 980px) {
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+      .offline-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_333_OFFLINE_READY_POS_APP_SHELL_START -->
+  <main class="shell" data-step="333" data-surface="pos-offline-ready">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 333</span>
+      <h1 data-i18n="pos_offline.title">Offline-ready POS hazırlığı</h1>
+      <p data-i18n="pos_offline.description">Local queue, idempotency, replay ve conflict policy hazırlığını yönet.</p>
+    </section>
+
+    <section class="grid-3">
+      <!-- PIX2PI_333_NETWORK_STATUS_INDICATOR_START -->
+      <article class="card metric" data-widget="network_status_indicator">
+        <h2>Network</h2>
+        <strong id="offline-network-status" data-network-online="true">CHECKING</strong>
+      </article>
+      <!-- PIX2PI_333_NETWORK_STATUS_INDICATOR_END -->
+
+      <!-- PIX2PI_333_LOCAL_QUEUE_STORAGE_CONTRACT_START -->
+      <article class="card metric" data-widget="local_offline_queue_storage_contract">
+        <h2>Queue</h2>
+        <strong id="offline-queue-count">0</strong>
+        <p>Storage key: pix2pi.pos.offline.queue</p>
+      </article>
+      <!-- PIX2PI_333_LOCAL_QUEUE_STORAGE_CONTRACT_END -->
+
+      <!-- PIX2PI_333_OFFLINE_RUNTIME_HEALTH_CONTRACT_START -->
+      <article class="card metric" data-widget="offline_runtime_health_contract">
+        <h2>Validation</h2>
+        <strong id="offline-validation-status">READY</strong>
+      </article>
+      <!-- PIX2PI_333_OFFLINE_RUNTIME_HEALTH_CONTRACT_END -->
+    </section>
+
+    <!-- PIX2PI_333_OFFLINE_SALE_DRAFT_QUEUE_START -->
+    <section class="card" data-widget="offline_sale_draft_queue">
+      <h2>Offline sale draft queue</h2>
+      <div id="offline-queue-list" class="offline-list">
+        <article class="offline-row" data-empty-queue="true">
+          <strong>Queue boş</strong>
+          <span>LOCAL_READY</span>
+        </article>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;">
+        <button type="button" id="offline-enqueue-demo" class="primary">Demo checkout draft queue'ya ekle</button>
+        <button type="button" id="offline-sync-dry-run" class="secondary">Sync dry-run hazırla</button>
+      </div>
+    </section>
+    <!-- PIX2PI_333_OFFLINE_SALE_DRAFT_QUEUE_END -->
+
+    <section class="grid-2">
+      <!-- PIX2PI_333_IDEMPOTENCY_KEY_GENERATION_START -->
+      <article class="card" data-widget="idempotency_key_generation">
+        <h2>Idempotency key generation</h2>
+        <p>Her offline sale draft için tenant/device/cashier scoped idempotency key üretilir.</p>
+      </article>
+      <!-- PIX2PI_333_IDEMPOTENCY_KEY_GENERATION_END -->
+
+      <!-- PIX2PI_333_SYNC_REPLAY_POLICY_PLACEHOLDER_START -->
+      <article class="card locked" data-widget="sync_replay_policy_placeholder">
+        <h2>Sync / replay policy placeholder</h2>
+        <p>real_offline_replay_enabled=false. Production replay gate ileride açılacak.</p>
+      </article>
+      <!-- PIX2PI_333_SYNC_REPLAY_POLICY_PLACEHOLDER_END -->
+    </section>
+
+    <!-- PIX2PI_333_CONFLICT_RESOLUTION_PREVIEW_START -->
+    <section class="card" data-widget="conflict_resolution_preview">
+      <h2>Conflict resolution preview</h2>
+      <p id="offline-conflict-status">pending=0 duplicate=0</p>
+      <p>stockConflict=REQUIRE_REVIEW / paymentConflict=DO_NOT_REPLAY_PAYMENT_WITHOUT_PROVIDER_CONFIRMATION / duplicateIdempotencyKey=SKIP_DUPLICATE</p>
+    </section>
+    <!-- PIX2PI_333_CONFLICT_RESOLUTION_PREVIEW_END -->
+
+    <!-- PIX2PI_333_QUEUE_RETENTION_CLEAR_GUARD_START -->
+    <section class="card locked" data-widget="queue_retention_clear_guard">
+      <h2>Queue retention / clear guard</h2>
+      <p>maxQueueItems=500 / maxAgeDays=7 / clearRequiresSupervisor=true</p>
+    </section>
+    <!-- PIX2PI_333_QUEUE_RETENTION_CLEAR_GUARD_END -->
+
+    <!-- PIX2PI_333_TENANT_DEVICE_CASHIER_OFFLINE_GUARD_START -->
+    <section class="card" data-widget="tenant_device_cashier_scoped_offline_guard">
+      <h2>Tenant / device / cashier scoped offline guard</h2>
+      <p>Offline queue işlemleri `X-Tenant-ID`, `X-POS-Device-ID`, `X-POS-Cashier-Code` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_333_TENANT_DEVICE_CASHIER_OFFLINE_GUARD_END -->
+
+    <!-- PIX2PI_333_SERVICE_WORKER_PWA_HANDOFF_PLACEHOLDER_START -->
+    <section class="card locked" data-widget="service_worker_pwa_handoff_placeholder">
+      <h2>Service worker / PWA handoff placeholder</h2>
+      <p>Service worker ve manifest genişletmesi 334 Mobile-ready PWA yüzeyinde yapılacak.</p>
+    </section>
+    <!-- PIX2PI_333_SERVICE_WORKER_PWA_HANDOFF_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_333_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_offline_markers">
+      <h2 data-i18n="pos_offline.i18n_ready">i18n-ready offline POS</h2>
+      <p data-i18n="pos_offline.surface_ready">Offline POS ekran metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_333_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_333_OFFLINE_READY_POS_APP_SHELL_END -->
+
+  <script src="/assets/offline/pos-offline-runtime.js"></script>
+  <script>
+    (function () {
+      const enqueueButton = document.getElementById("offline-enqueue-demo");
+      const syncButton = document.getElementById("offline-sync-dry-run");
+
+      Pix2piPOSOffline.bootPOSOfflineScreen();
+
+      enqueueButton.addEventListener("click", function () {
+        const result = Pix2piPOSOffline.enqueueOfflineSaleDraft();
+        Pix2piPOSOffline.renderOfflineSummary();
+        console.log("PIX2PI_333_OFFLINE_ENQUEUE_RESULT", result);
+      });
+
+      syncButton.addEventListener("click", async function () {
+        const result = await Pix2piPOSOffline.syncOfflineQueueDryRun();
+        Pix2piPOSOffline.renderOfflineSummary();
+        console.log("PIX2PI_333_OFFLINE_SYNC_DRY_RUN_RESULT", result);
+      });
+
+      window.addEventListener("online", function () {
+        Pix2piPOSOffline.bootPOSOfflineScreen();
+      });
+
+      window.addEventListener("offline", function () {
+        Pix2piPOSOffline.bootPOSOfflineScreen();
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+{
+  "module": "FAZ_7_8L",
+  "step": "FAZ_7_8L.1",
+  "name": "Logo Connector Foundation / Provider Identity",
+  "provider": {
+    "provider_code": "LOGO",
+    "provider_name": "Logo",
+    "connector_code": "logo_connector",
+    "connector_family": "accounting_export_connector",
+    "provider_directory": "internal/platform/integrations/providers/logo",
+    "runtime_file": "internal/platform/integrations/providers/logo/logo_foundation.go",
+    "test_file": "internal/platform/integrations/providers/logo/logo_foundation_test.go"
+  },
+  "runtime": {
+    "mode": "DRY_RUN",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE"
+  },
+  "capabilities": [
+    "EXPORT_MAPPING_CONTRACT",
+    "FILE_GENERATION_DRY_RUN",
+    "IMPORT_PACKAGE_PREPARATION",
+    "VALIDATION_ERROR_MAPPING",
+    "RETRY_DLQ_READINESS",
+    "ADMIN_OPS_MANUAL_REVIEW",
+    "E2E_DRY_RUN_FLOW",
+    "PROVIDER_LIVE_HANDOFF_GATE"
+  ],
+  "operations": [
+    {
+      "name": "BUILD_EXPORT_MODEL",
+      "mode": "DRY_RUN_ONLY",
+      "external_call_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "GENERATE_LOGO_DRY_RUN_FILE",
+      "mode": "DRY_RUN_ONLY",
+      "external_call_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_IMPORT_PACKAGE",
+      "mode": "DRY_RUN_ONLY",
+      "external_call_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_IMPORT_PACKAGE",
+      "mode": "DRY_RUN_ONLY",
+      "external_call_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "MAP_LOGO_ERROR",
+      "mode": "DRY_RUN_ONLY",
+      "external_call_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "CREATE_MANUAL_REVIEW_ITEM",
+      "mode": "DRY_RUN_ONLY",
+      "external_call_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "RUN_E2E_DRY_RUN",
+      "mode": "DRY_RUN_ONLY",
+      "external_call_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_PROVIDER_LIVE_HANDOFF",
+      "mode": "DRY_RUN_ONLY",
+      "external_call_allowed": false,
+      "erp_write_allowed": false
+    }
+  ],
+  "handoff_gates": {
+    "logo_live_contract_gate": "PENDING_7_8L_2",
+    "logo_credential_secret_gate": "PENDING_7_8L_3",
+    "logo_export_mapping_gate": "PENDING_7_8L_4",
+    "logo_file_generation_gate": "PENDING_7_8L_5",
+    "logo_import_delivery_gate": "PENDING_7_8L_6",
+    "logo_validation_retry_dlq_gate": "PENDING_7_8L_7",
+    "logo_admin_ops_gate": "PENDING_7_8L_8",
+    "logo_e2e_dry_run_gate": "PENDING_7_8L_9",
+    "logo_final_closure_gate": "PENDING_7_8L_10"
+  },
+  "audit": {
+    "real_implementation_audit_required": true,
+    "real_provider_api_must_remain_closed": true,
+    "real_file_delivery_must_remain_closed": true,
+    "real_erp_write_must_remain_closed": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "331",
+  "name": "POS satış ekranı",
+  "surface": "pos",
+  "domain": "pos.pix2pi.com.tr",
+  "path": "/sale/",
+  "runtime_path": "/assets/sale/pos-sale-runtime.js",
+  "depends_on": [
+    "329 - pos.pix2pi.com.tr altyapısı",
+    "330 - Kasiyer giriş ekranı"
+  ],
+  "backend_contract": {
+    "product_search_endpoint": "/api/pos/products/search",
+    "sale_draft_endpoint": "/api/pos/sales/draft",
+    "session_verify_endpoint": "/api/pos/auth/session",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "device_header": "X-POS-Device-ID",
+    "cashier_header": "X-POS-Cashier-Code"
+  },
+  "runtime_contract": {
+    "real_sale_enabled": false,
+    "real_payment_enabled": false,
+    "real_stock_decrement_enabled": false,
+    "sale_draft_enabled": true,
+    "fallback_catalog_enabled": true,
+    "offline_queue_enabled": false,
+    "ready_for_step_332": true
+  },
+  "session_storage": {
+    "tenant_key": "pix2pi.pos.tenant.preference",
+    "device_key": "pix2pi.pos.device.id",
+    "cashier_session_key": "pix2pi.pos.cashier.session",
+    "sale_draft_key": "pix2pi.pos.sale.draft"
+  },
+  "required_capabilities": [
+    "pos_sale_app_shell",
+    "cashier_session_guard",
+    "product_search_barcode_input",
+    "quick_product_grid",
+    "cart_preview",
+    "cart_quantity_remove_behavior",
+    "vat_total_calculation_contract",
+    "sale_draft_payload_contract",
+    "payment_step_redirect_placeholder",
+    "offline_queue_placeholder",
+    "tenant_device_cashier_scoped_guard",
+    "i18n_ready_pos_sale_markers",
+    "pos_sale_smoke_test"
+  ],
+  "next_step": "332 - Sepet / ödeme akışı"
+}

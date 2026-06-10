@@ -1,0 +1,52 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "321",
+  "name": "Kullanıcı / rol / personel ekranı",
+  "surface": "merchant_panel",
+  "domain": "panel.pix2pi.com.tr",
+  "path": "/users/",
+  "runtime_path": "/assets/users/users-runtime.js",
+  "depends_on": [
+    "316 - panel.pix2pi.com.tr altyapısı",
+    "317 - Login / tenant seçimi",
+    "318 - Dil Modülü / i18n / Alfabe Altyapısı",
+    "319 - İşletme onboarding ekranı",
+    "320 - Merchant dashboard"
+  ],
+  "backend_contract": {
+    "list_endpoint": "/api/panel/users",
+    "invite_endpoint": "/api/panel/users/invite",
+    "assign_role_endpoint": "/api/panel/users/assign-role",
+    "status_endpoint": "/api/panel/users/status",
+    "method": "GET/POST",
+    "auth": "Bearer JWT",
+    "tenant_header": "X-Tenant-ID"
+  },
+  "roles": [
+    "OWNER_ADMIN",
+    "MANAGER",
+    "ACCOUNTANT",
+    "CASHIER",
+    "STAFF",
+    "READONLY"
+  ],
+  "personnel_statuses": [
+    "ACTIVE",
+    "INVITED",
+    "SUSPENDED",
+    "DISABLED"
+  ],
+  "required_capabilities": [
+    "user_personnel_app_shell",
+    "user_list",
+    "invite_user_form",
+    "role_assignment_surface",
+    "personnel_profile_card",
+    "permission_matrix_preview",
+    "tenant_scoped_user_guard",
+    "activation_suspend_behavior",
+    "i18n_ready_text_markers",
+    "users_smoke_test"
+  ],
+  "next_step": "322 - İşletme ayarları / profil ekranı"
+}

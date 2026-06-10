@@ -1,0 +1,11 @@
+invariant_name	description	severity	expected_status	category	note
+single_initial_state	exactly one state must have is_initial=YES	CRITICAL	PASS_EXPECTED	contract_rule	contract_only
+terminal_archived_locked	archived must not have outgoing transition	CRITICAL	PASS_EXPECTED	contract_rule	contract_only
+terminal_completed_archive_only	completed can only transition to archived	HIGH	PASS_EXPECTED	contract_rule	contract_only
+terminal_cancelled_archive_only	cancelled can only transition to archived	HIGH	PASS_EXPECTED	contract_rule	contract_only
+tenant_scope_required	all states and transitions must be tenant scoped	CRITICAL	PASS_EXPECTED	tenant_isolation	contract_only
+audit_required_for_mutation	all non-read transitions require audit	CRITICAL	PASS_EXPECTED	audit	contract_only
+approval_transition_permission	approval transitions require approval permission	CRITICAL	PASS_EXPECTED	rbac	contract_only
+failure_retry_or_cancel	failed state must allow retry or cancel	HIGH	PASS_EXPECTED	resilience	contract_only
+no_secret_payload	realtime state payload must be metadata-only	CRITICAL	PASS_EXPECTED	security	contract_only
+event_binding_ready	each transition must have event binding placeholder	HIGH	PASS_EXPECTED	event_bus	contract_only

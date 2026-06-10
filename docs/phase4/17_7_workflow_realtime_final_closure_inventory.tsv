@@ -1,0 +1,7 @@
+block	status	domain_key	report_file	artifact_expected	artifact_existing	metric_hit_count	metric_expected	metric_sum	gate_failures
+17.1	PASS	WORKFLOW_REALTIME_BASELINE	docs/phase4/17_1_workflow_realtime_baseline_report.md	11	11	5	5	67	0
+17.2	PASS	WORKFLOW_STATE_MACHINE_CONTRACT	docs/phase4/17_2_workflow_state_machine_contract_report.md	11	11	7	7	85	0
+17.3	PASS	WORKFLOW_ACTION_APPROVAL_CONTRACT	docs/phase4/17_3_workflow_action_approval_contract_report.md	11	11	7	7	94	0
+17.4	PASS	REALTIME_CHANNEL_CONTRACT	docs/phase4/17_4_realtime_channel_contract_report.md	12	12	9	9	102	0
+17.5	PASS	UI_API_IMPLEMENTATION_PLAN	docs/phase4/17_5_ui_api_implementation_plan_report.md	12	12	8	8	111	0
+17.6	PASS	WORKFLOW_REALTIME_TESTS	docs/phase4/17_6_workflow_realtime_tests_report.md	7	7	5	5	459	0

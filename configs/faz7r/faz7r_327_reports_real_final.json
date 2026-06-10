@@ -1,0 +1,32 @@
+{
+  "step": "FAZ 7-R / 327",
+  "name": "Rapor ekranları real final",
+  "tenantId": "tenant-api-e2e-success",
+  "reportRunId": "reports-327-20260513_194400",
+  "routes": [
+    "/reports/",
+    "POST /api/panel/reports/generate"
+  ],
+  "reports": [
+    "daily_sales_report",
+    "product_sales_report",
+    "stock_report",
+    "party_balance_report",
+    "vat_report",
+    "marketplace_report",
+    "subscription_usage_report"
+  ],
+  "requiredEvidence": [
+    "daily sales report from pos_sales.sales",
+    "product sales report from pos_sales.sale_lines",
+    "stock report from erp_inventory.products",
+    "party balance report from erp_party.parties",
+    "VAT report from pos_sales.sale_lines",
+    "marketplace report from controlled_release",
+    "subscription usage report from tenant_onboarding",
+    "tenant-safe report test",
+    "no-role denied",
+    "rollback no partial write",
+    "route smoke"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 206,
+  "step": "FAZ_4_16_3_3",
+  "title": "Muhasebe UAT",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "186_FAZ_4_15_2_FINANCE_REPORTING_MART",
+    "187_FAZ_4_15_4_PAYMENT_RECONCILIATION_REPORTING_MART",
+    "190_FAZ_4_15_7_READMODEL_REPORTING_TEST_SET",
+    "198_FAZ_4_16_2_1_CARI_IMPORT",
+    "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT",
+    "202_FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU",
+    "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT",
+    "205_FAZ_4_16_3_2_POS_UAT"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "uat_policy": {
+    "uat_status_required": "READY",
+    "uat_mode_required": "CONTROLLED_PILOT",
+    "accounting_mode_required": "PREVIEW",
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "tenant_context_status_required": "PASS",
+    "journal_preview_status_required": "PASS",
+    "debit_credit_balance_status_required": "PASS",
+    "tax_summary_status_required": "PASS",
+    "real_ledger_posting_status_required": "CLOSED",
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_uat_cases": [
+    "ACCOUNTING_ACCESS",
+    "ACCOUNTING_TENANT_CONTEXT_VISIBLE",
+    "TDHP_CHART_VIEW",
+    "CUSTOMER_LEDGER_MOVEMENT_VIEW",
+    "SALE_ACCOUNTING_PREVIEW",
+    "PURCHASE_ACCOUNTING_PREVIEW",
+    "VAT_TAX_SUMMARY_VIEW",
+    "JOURNAL_DRAFT_PREVIEW",
+    "DEBIT_CREDIT_BALANCE_CHECK",
+    "FINANCE_REPORTING_MART_LINK",
+    "PAYMENT_RECONCILIATION_MART_LINK",
+    "IMPORT_VALIDATION_EVIDENCE_LINK",
+    "POS_DRY_RUN_SALE_EVIDENCE_LINK",
+    "ACCOUNTING_AUDIT_EVIDENCE_LINK_VIEW",
+    "REAL_LEDGER_POSTING_CLOSED_GATE",
+    "CLOSED_EXTERNAL_POLICY_GATE"
+  ],
+  "uat_artifact": "configs/faz4r/accounting_uat.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "207_FAZ_4_16_3_4_MUHASEBECI_PORTALI_UAT"
+  ]
+}

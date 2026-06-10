@@ -1,0 +1,38 @@
+{
+  "phase": "FAZ_5_18_7_3",
+  "title": "Tahsilat Başarı Raporu",
+  "status": "READY",
+  "control_surface": "COLLECTION_SUCCESS_REPORT",
+  "inputs": [
+    "FAZ_5_18_7_1_MRR_ARR_RAPORU",
+    "FAZ_5_18_7_2_CHURN_EXPANSION_RAPORU",
+    "FAZ_5_18_2_3_TAHSILAT_BASARISIZ_ODEME_AKISI",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "BILLING_BASE_SNAPSHOT",
+    "INVOICE_COLLECTION_SUMMARY",
+    "COLLECTION_SUCCESS_SUMMARY",
+    "FAILED_PAYMENT_SUMMARY",
+    "RECOVERY_SUMMARY",
+    "AGING_BUCKET_SUMMARY",
+    "COLLECTION_RISK_SUMMARY",
+    "AUDIT_EVIDENCE_SUMMARY",
+    "INTERNAL_FINANCE_DASHBOARD_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_collection_success_report_ready": true,
+    "production_collection_report_enabled": false,
+    "real_customer_collection_enabled": false,
+    "external_finance_export_enabled": false,
+    "auto_dunning_enabled": false,
+    "internal_finance_dashboard_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

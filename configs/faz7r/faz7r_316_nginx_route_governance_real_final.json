@@ -1,0 +1,24 @@
+{
+  "step": "FAZ 7-R / 316",
+  "name": "Nginx route governance audit real final",
+  "runId": "nginx-governance-316-20260513_220729",
+  "domains": [
+    "panel.pix2pi.com.tr",
+    "pos.pix2pi.com.tr",
+    "market.pix2pi.com.tr"
+  ],
+  "requiredEvidence": [
+    "active nginx config inventory",
+    "duplicate/conflicting server_name cleanup",
+    "nginx -T before/after",
+    "nginx -t after cleanup",
+    "nginx reload",
+    "snippet include governance",
+    "exact location conflict audit",
+    "panel/POS API route conflict tests",
+    "static route smoke tests",
+    "PWA exact route governance",
+    "DB audit write",
+    "rollback no partial write"
+  ]
+}

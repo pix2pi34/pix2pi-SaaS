@@ -1,0 +1,106 @@
+{
+  "mapping_id": "customer_import_mapping.controlled_pilot.v1",
+  "mapping_status": "READY",
+  "target_staging_table": "import_staging_customers",
+  "import_mode": "DRY_RUN",
+  "commit_allowed": false,
+  "tenant_guard_required": true,
+  "batch_guard_required": true,
+  "fields": [
+    {
+      "source": "customer_code",
+      "target": "customer_code",
+      "required": true,
+      "type": "string",
+      "max_length": 64
+    },
+    {
+      "source": "customer_name",
+      "target": "customer_name",
+      "required": true,
+      "type": "string",
+      "max_length": 255
+    },
+    {
+      "source": "customer_type",
+      "target": "customer_type",
+      "required": true,
+      "type": "enum",
+      "allowed_values": ["COMPANY", "INDIVIDUAL"]
+    },
+    {
+      "source": "customer_kind",
+      "target": "customer_kind",
+      "required": true,
+      "type": "enum",
+      "allowed_values": ["CUSTOMER", "SUPPLIER", "BOTH"]
+    },
+    {
+      "source": "tax_no",
+      "target": "tax_no",
+      "required_for": ["COMPANY"],
+      "type": "string",
+      "pattern": "^[0-9]{10}$"
+    },
+    {
+      "source": "national_id",
+      "target": "national_id",
+      "required_for": ["INDIVIDUAL_OR_TAX_NO"],
+      "type": "string",
+      "pattern": "^[0-9]{11}$"
+    },
+    {
+      "source": "tax_office",
+      "target": "tax_office",
+      "required_for": ["COMPANY"],
+      "type": "string",
+      "max_length": 128
+    },
+    {
+      "source": "mersis_no",
+      "target": "mersis_no",
+      "required": false,
+      "type": "string",
+      "max_length": 32
+    },
+    {
+      "source": "phone",
+      "target": "phone",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "source": "email",
+      "target": "email",
+      "required": false,
+      "type": "email"
+    },
+    {
+      "source": "address.full_address",
+      "target": "address_full",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "source": "address.city",
+      "target": "address_city",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "source": "address.district",
+      "target": "address_district",
+      "required": false,
+      "type": "string"
+    }
+  ],
+  "guards": {
+    "duplicate_customer_code_forbidden": true,
+    "duplicate_tax_no_forbidden": true,
+    "company_tax_fields_required": true,
+    "dry_run_required": true,
+    "real_commit_forbidden": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

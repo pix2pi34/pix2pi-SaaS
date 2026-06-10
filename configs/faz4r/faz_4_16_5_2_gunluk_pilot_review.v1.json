@@ -1,0 +1,51 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 215,
+  "step": "FAZ_4_16_5_2",
+  "title": "Günlük pilot review",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "214_FAZ_4_16_4_5_EGITIM_DESTEK_SMOKE"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "review_policy": {
+    "review_status_required": "READY",
+    "review_mode_required": "CONTROLLED_PILOT",
+    "required_review_item_status_required": "PASS",
+    "fail_review_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "training_support_smoke_status_required": "PASS",
+    "support_triage_status_required": "PASS",
+    "issue_escalation_status_required": "PASS",
+    "rollback_signal_status_required": "CLEAR",
+    "daily_decision_log_status_required": "READY",
+    "no_real_rollback_execution_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_review_items": [
+    "PILOT_HEALTH_REVIEW",
+    "UAT_STATUS_REVIEW",
+    "IMPORT_STATUS_REVIEW",
+    "READMODEL_REPORTING_REVIEW",
+    "TRAINING_SUPPORT_REVIEW",
+    "SUPPORT_TRIAGE_REVIEW",
+    "ISSUE_ESCALATION_REVIEW",
+    "KPI_SNAPSHOT_REVIEW",
+    "OPEN_BLOCKER_REVIEW",
+    "ROLLBACK_SIGNAL_REVIEW",
+    "CLOSED_PROVIDER_POLICY_REVIEW",
+    "DAILY_DECISION_LOG_REVIEW"
+  ],
+  "review_artifact": "configs/faz4r/daily_pilot_review.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "216_FAZ_4_16_5_4_PILOT_ROLLBACK_KARARI_AKISI"
+  ]
+}

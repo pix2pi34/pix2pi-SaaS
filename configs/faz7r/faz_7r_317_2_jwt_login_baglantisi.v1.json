@@ -1,0 +1,45 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "317.2",
+  "name": "JWT login bağlantısı",
+  "real_implementation_required": true,
+  "component": "internal/auth/jwtlogin",
+  "token": {
+    "algorithm": "HS256",
+    "issuer": "pix2pi-auth",
+    "audience": "pix2pi-panel",
+    "access_token_ttl_minutes": 60,
+    "refresh_token_ttl_hours": 720
+  },
+  "database_contract": {
+    "schema": "auth",
+    "tables": [
+      "auth.login_sessions",
+      "auth.user_tenant_memberships"
+    ],
+    "session_columns": [
+      "id",
+      "tenant_id",
+      "user_id",
+      "session_id",
+      "access_token_id",
+      "refresh_token_id",
+      "issued_at",
+      "access_expires_at",
+      "refresh_expires_at",
+      "revoked_at",
+      "ip_address",
+      "user_agent"
+    ]
+  },
+  "required_checks": [
+    "jwt_signing",
+    "jwt_verification",
+    "expired_token_rejection",
+    "password_verification",
+    "tenant_membership_enforcement",
+    "session_record_contract",
+    "go_test"
+  ],
+  "next_step": "317.3 - Tenant selection screen gerçek tenant akışı"
+}

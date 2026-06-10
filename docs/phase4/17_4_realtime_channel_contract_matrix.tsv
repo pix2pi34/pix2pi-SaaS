@@ -1,0 +1,41 @@
+gate	status	note
+previous_17_3	PASS	workflow action approval prerequisite
+channel_catalog	PASS	channels=13 tenant=7 platform=6
+payload_envelope	PASS	fields=18 required=9
+delivery_policy	PASS	policies=6
+rbac_tenant_matrix	PASS	rbac_rows=13
+reconnect_heartbeat_policy	PASS	policies=4
+transport_coverage	PASS	sse=13 websocket=6
+metadata_only_payload	PASS	metadata_only_channels=13
+auth_audit_coverage	PASS	auth=13 audit=13
+no_runtime_change	PASS	no realtime/server/runtime changed
+no_config_change	PASS	no config/env/nginx/firewall changed
+secret_safe	PASS	no secrets printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+ui_code_changed	NO	contract only
+api_route_created	NO	contract only
+api_implementation_changed	NO	contract only
+websocket_server_started	NO	contract only
+sse_server_started	NO	contract only
+realtime_runtime_changed	NO	contract only
+realtime_server_started	NO	contract only
+workflow_runtime_changed	NO	contract only
+approval_runtime_changed	NO	contract only
+event_published	NO	contract only
+event_consumed	NO	contract only
+notification_sent	NO	contract only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+raw_payload_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report

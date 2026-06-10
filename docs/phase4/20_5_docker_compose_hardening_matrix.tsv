@@ -1,0 +1,42 @@
+gate	status	note
+previous_20_4	PASS	nginx/reverse proxy prerequisite
+container_inventory	PASS	containers=15 running=15
+compose_inventory	PASS	compose_files=9 publish_markers=18
+network_inventory	PASS	networks=9 host_network=1
+volume_inventory	PASS	volumes=31 stateful_review=12
+public_port_policy	PASS	public_publishes=26 high_risk=26
+internal_should_not_public	PASS	count=26
+unknown_public_review	PASS	count=0
+container_hardening_candidates	PASS	high=13 medium=0
+restart_policy_candidates	PASS	missing=0
+healthcheck_candidates	PASS	missing=13
+user_candidates	PASS	unspecified=8
+compose_secret_key_names	PASS	count=5 values_not_printed
+hardening_matrix	PASS	evidence only
+no_runtime_change	PASS	no docker mutation
+no_deploy	PASS	no compose up/down or deploy
+secret_safe	PASS	no env/secret values printed
+container_restarted	NO	evidence only
+container_started	NO	evidence only
+container_stopped	NO	evidence only
+container_removed	NO	evidence only
+docker_compose_executed	NO	evidence only
+docker_network_changed	NO	evidence only
+docker_volume_changed	NO	evidence only
+docker_port_changed	NO	evidence only
+docker_prune_executed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+file_permission_changed	NO	evidence only
+firewall_changed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+service_restarted	NO	evidence only
+deploy_executed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+log_content_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

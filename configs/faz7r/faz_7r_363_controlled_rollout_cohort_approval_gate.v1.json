@@ -1,0 +1,47 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "363",
+  "name": "Controlled rollout cohort approval gate",
+  "surface": "controlled_rollout_cohort_approval",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/controlled-rollout-cohort-approval/",
+  "runtime_path": "/assets/controlled-rollout-cohort-approval/controlled-rollout-cohort-approval-runtime.js",
+  "depends_on": [
+    "362 - Controlled rollout cohort setup"
+  ],
+  "runtime_contract": {
+    "real_rollout_approval_enabled": false,
+    "real_rollout_activation_enabled": false,
+    "real_feature_flag_write_enabled": false,
+    "real_customer_notification_send_enabled": false,
+    "real_billing_enabled": false,
+    "real_payment_enabled": false,
+    "real_data_mutation_enabled": false,
+    "approval_preview_enabled": true,
+    "legal_kvkk_hold_required": true,
+    "ready_for_step_364": true
+  },
+  "required_capabilities": [
+    "controlled_rollout_approval_app_shell",
+    "cohort_approval_context",
+    "approver_checklist_preview",
+    "product_approval_gate",
+    "sre_monitoring_approval_gate",
+    "support_approval_gate",
+    "commercial_approval_gate",
+    "legal_kvkk_final_approval_hold_gate",
+    "billing_payment_live_disabled_gate",
+    "customer_communication_approval_preview",
+    "rollout_activation_disabled_gate",
+    "feature_flag_write_disabled_gate",
+    "data_mutation_disabled_safety_guard",
+    "approval_decision_matrix",
+    "approval_audit_timeline",
+    "approval_runtime_data_contract",
+    "i18n_ready_approval_marker",
+    "seo_opengraph_approval_placeholder",
+    "controlled_rollout_approval_smoke_test"
+  ],
+  "next_step": "364 - Controlled rollout activation dry-run"
+}

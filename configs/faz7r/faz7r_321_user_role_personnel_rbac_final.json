@@ -1,0 +1,18 @@
+{
+  "step": "FAZ 7-R / 321",
+  "name": "Kullanıcı rol personel gerçek RBAC enforcement final",
+  "dependencies": ["FAZ 7-R / 348 real invite PASS"],
+  "apis": [
+    "POST /api/panel/users/list",
+    "POST /api/panel/users/role-assign",
+    "POST /api/panel/rbac/check",
+    "POST /api/panel/rbac/protected-action"
+  ],
+  "evidenceRequired": [
+    "curl",
+    "DB SELECT",
+    "RBAC allow",
+    "RBAC deny",
+    "rollback no partial write"
+  ]
+}

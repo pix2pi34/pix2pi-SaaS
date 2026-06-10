@@ -1,0 +1,29 @@
+{
+  "step": "FAZ 7-R / 328",
+  "name": "Import / Export real final",
+  "tenantId": "tenant-api-e2e-success",
+  "importPartyJobId": "import-party-328-20260513_200035",
+  "importProductJobId": "import-product-328-20260513_200035",
+  "importStockJobId": "import-stock-328-20260513_200035",
+  "exportJobId": "export-sales-docs-328-20260513_200035",
+  "routes": [
+    "/import-export/",
+    "POST /api/panel/import-export/import-parties",
+    "POST /api/panel/import-export/import-products",
+    "POST /api/panel/import-export/import-stock",
+    "POST /api/panel/import-export/export-sales-documents"
+  ],
+  "requiredEvidence": [
+    "party import curl + DB SELECT",
+    "product import curl + DB SELECT",
+    "stock import curl + DB SELECT",
+    "sales/document export curl + DB SELECT",
+    "CSV/XLSX placeholder artifacts",
+    "import validation no write",
+    "duplicate import no write",
+    "no-role denied",
+    "tenant-safe export",
+    "rollback no partial write",
+    "route smoke"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 208,
+  "step": "FAZ_4_16_3_5",
+  "title": "e-Belge / export UAT",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "188_FAZ_4_15_3_E_DOCUMENT_EXPORT_REPORTING_MART",
+    "190_FAZ_4_15_7_READMODEL_REPORTING_TEST_SET",
+    "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT",
+    "202_FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU",
+    "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT",
+    "206_FAZ_4_16_3_3_MUHASEBE_UAT",
+    "207_FAZ_4_16_3_4_MUHASEBECI_PORTALI_UAT"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "uat_policy": {
+    "uat_status_required": "READY",
+    "uat_mode_required": "CONTROLLED_PILOT",
+    "export_mode_required": "PREVIEW",
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "tenant_context_status_required": "PASS",
+    "document_preview_status_required": "PASS",
+    "xml_preview_status_required": "PASS",
+    "pdf_preview_status_required": "PASS",
+    "package_export_preview_status_required": "PASS",
+    "gib_live_status_required": "CLOSED",
+    "real_export_status_required": "CLOSED",
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_uat_cases": [
+    "E_DOCUMENT_EXPORT_ACCESS",
+    "E_DOCUMENT_TENANT_CONTEXT_VISIBLE",
+    "E_INVOICE_PREVIEW",
+    "E_ARCHIVE_PREVIEW",
+    "E_ADISYON_EXPORT_PREVIEW",
+    "XML_PREVIEW",
+    "PDF_PREVIEW",
+    "LOGO_EXPORT_PREVIEW",
+    "MIKRO_EXPORT_PREVIEW",
+    "ZIRVE_EXPORT_PREVIEW",
+    "ETA_EXPORT_PREVIEW",
+    "EXPORT_VALIDATION_REPORT_VIEW",
+    "ACCOUNTING_UAT_LINK",
+    "ACCOUNTANT_PORTAL_EXPORT_LINK",
+    "E_DOCUMENT_AUDIT_EVIDENCE_LINK_VIEW",
+    "GIB_LIVE_CLOSED_GATE",
+    "REAL_EXPORT_CLOSED_GATE",
+    "CLOSED_EXTERNAL_POLICY_GATE"
+  ],
+  "uat_artifact": "configs/faz4r/e_document_export_uat.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "209_FAZ_4_16_3_6_UAT_SIGN_OFF"
+  ]
+}

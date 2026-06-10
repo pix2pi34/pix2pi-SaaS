@@ -1,0 +1,33 @@
+{
+  "phase": "FAZ 2-8.2",
+  "screen": "mission_control_screen",
+  "web_path": "web/ops-console/mission-control/index.html",
+  "runtime_package": "./internal/platform/ops/console",
+  "require_tenant": true,
+  "allow_platform_viewer": true,
+  "max_visible_actions": 100,
+  "guards": [
+    "tenant_required",
+    "cross_tenant_viewer_denied",
+    "valid_action_type_required",
+    "valid_action_status_required",
+    "operator_id_required",
+    "operator_role_required",
+    "viewer_cannot_mutate",
+    "message_required",
+    "executed_visibility_toggle",
+    "action_filter_supported",
+    "status_filter_supported"
+  ],
+  "screen_sections": [
+    "requested_actions_metric",
+    "approved_metric",
+    "quarantine_metric",
+    "maintenance_metric",
+    "mission_actions_table",
+    "control_actions_panel",
+    "tenant_indicator",
+    "responsive_shell"
+  ],
+  "next_ready": "FAZ_2_8_5_EARLY_WARNING_ALERT_DASHBOARD"
+}

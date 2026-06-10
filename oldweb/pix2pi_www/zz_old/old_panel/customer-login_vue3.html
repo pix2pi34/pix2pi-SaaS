@@ -1,0 +1,1571 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <!-- PIX2PI_NAMED_HTML_CUSTOMER_LOGIN_VUE3_MARKER -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pix2pi Müşteri Girişi</title>
+  <meta name="pix2pi-marker" content="CUSTOMER_LOGIN_STANDALONE_REAL_OTP_MARKER" />
+  <meta name="pix2pi-real-mail" content="CUSTOMER_LOGIN_REAL_MAIL_CODE_MARKER" />
+  <style>
+    :root {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #172033;
+      background: #eef3f8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(37, 99, 235, .12), transparent 36rem),
+        #eef3f8;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      background: #0f172a;
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, .16);
+    }
+
+    .topbar strong {
+      font-size: 15px;
+      letter-spacing: .01em;
+    }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 850;
+      font-size: 14px;
+      opacity: .92;
+    }
+
+    .page {
+      width: min(960px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 52px 0;
+    }
+
+    .brand {
+      display: grid;
+      justify-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 132px;
+      padding: 14px 24px;
+      border-radius: 14px;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 950;
+      letter-spacing: .08em;
+      box-shadow: 0 18px 36px rgba(37, 99, 235, .24);
+    }
+
+    h1 {
+      margin: 0;
+      color: #111827;
+      font-size: clamp(30px, 4vw, 42px);
+      letter-spacing: -.04em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #667085;
+      font-size: 17px;
+      font-weight: 650;
+    }
+
+    .card {
+      width: min(520px, 100%);
+      margin: 0 auto;
+      padding: 28px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, .94);
+      border: 1px solid rgba(67, 91, 128, .12);
+      box-shadow: 0 26px 70px rgba(16, 24, 40, .10);
+    }
+
+    .step {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #475467;
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .step b {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #2563eb;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 8px;
+      color: #344054;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid #cfd8e3;
+      border-radius: 14px;
+      padding: 15px 16px;
+      background: #fffbcc;
+      color: #101828;
+      font-size: 16px;
+      outline: none;
+      transition: .15s ease;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, .14);
+      background: #fff;
+    }
+
+    #otp {
+      text-align: center;
+      letter-spacing: 6px;
+      font-size: 22px;
+      font-weight: 950;
+      background: #fff;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 14px;
+      padding: 15px 18px;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 950;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 16px 36px rgba(37, 99, 235, .20);
+    }
+
+    button.secondary {
+      color: #2563eb;
+      background: #eef4ff;
+      border: 1px solid #b2ccff;
+      box-shadow: none;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: .58;
+    }
+
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-weight: 850;
+      line-height: 1.45;
+    }
+
+    .message.ok {
+      display: block;
+      color: #067647;
+      background: #ecfdf3;
+      border: 1px solid #abefc6;
+    }
+
+    .message.warn {
+      display: block;
+      color: #92400e;
+      background: #fffaeb;
+      border: 1px solid #fedf89;
+    }
+
+    .message.error {
+      display: block;
+      color: #b42318;
+      background: #fef3f2;
+      border: 1px solid #fecdca;
+    }
+
+    .verify {
+      display: none;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #eaecf0;
+    }
+
+    .verify.active {
+      display: block;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: #667085;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .debug {
+      margin-top: 16px;
+      color: #98a2b3;
+      text-align: center;
+      font-size: 11px;
+      word-break: break-word;
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .card {
+        padding: 22px;
+      }
+    }
+  </style>
+
+<style id="PIX2PI_COMPACT_CUSTOMER_FORM_CSS">
+  html {
+    font-size: 11.5px !important;
+  }
+
+  body {
+    font-size: 11.5px !important;
+  }
+
+  body, input, select, textarea, button {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  }
+
+  h1 {
+    font-size: clamp(22px, 2.9vw, 30px) !important;
+    line-height: 1.06 !important;
+    letter-spacing: -0.038em !important;
+    margin-top: 0 !important;
+    margin-bottom: 6px !important;
+  }
+
+  h2 {
+    font-size: clamp(16px, 2.1vw, 21px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.028em !important;
+  }
+
+  h3 {
+    font-size: 14px !important;
+  }
+
+  p {
+    font-size: 12px !important;
+    line-height: 1.38 !important;
+  }
+
+  label {
+    font-size: 11px !important;
+    line-height: 1.15 !important;
+    font-weight: 700 !important;
+    margin-bottom: 3px !important;
+  }
+
+  input,
+  select,
+  textarea {
+    min-height: 30px !important;
+    height: 30px !important;
+    padding: 5px 9px !important;
+    font-size: 11.5px !important;
+    line-height: 1.15 !important;
+    border-radius: 9px !important;
+  }
+
+  textarea {
+    min-height: 58px !important;
+    height: auto !important;
+  }
+
+  button,
+  .btn,
+  a[class*="btn"],
+  [role="button"] {
+    min-height: 31px !important;
+    padding: 6px 11px !important;
+    font-size: 11.5px !important;
+    border-radius: 9px !important;
+  }
+
+  form {
+    gap: 6px !important;
+  }
+
+  .card,
+  .panel,
+  .form-card,
+  .content,
+  main > section,
+  main > div {
+    border-radius: 14px !important;
+  }
+
+  .note,
+  .alert,
+  [class*="note"],
+  [class*="alert"] {
+    font-size: 11.5px !important;
+    padding: 8px 10px !important;
+    border-radius: 10px !important;
+  }
+
+  [class*="grid"] {
+    gap: 7px !important;
+  }
+
+  [class*="field"],
+  [class*="formGroup"],
+  [class*="form-group"] {
+    gap: 3px !important;
+    margin-bottom: 5px !important;
+  }
+
+  main,
+  section,
+  .container,
+  .wrap {
+    max-width: 980px !important;
+  }
+
+  @media (max-width: 720px) {
+    html {
+      font-size: 11px !important;
+    }
+
+    body {
+      overflow-x: hidden !important;
+    }
+
+    h1 {
+      font-size: 24px !important;
+      line-height: 1.06 !important;
+    }
+
+    h2 {
+      font-size: 18px !important;
+    }
+
+    p {
+      font-size: 11.5px !important;
+    }
+
+    label {
+      font-size: 10.8px !important;
+    }
+
+    input,
+    select,
+    textarea {
+      min-height: 30px !important;
+      height: 30px !important;
+      font-size: 11px !important;
+    }
+
+    button,
+    .btn,
+    a[class*="btn"],
+    [role="button"] {
+      width: 100%;
+      min-height: 31px !important;
+      font-size: 11px !important;
+    }
+
+    main,
+    section,
+    .container,
+    .wrap {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+  }
+</style>
+
+</head>
+<body data-marker="CUSTOMER_LOGIN_STANDALONE_REAL_OTP_MARKER">
+  <header class="topbar">
+    <strong>Pix2pi Müşteri Girişi</strong>
+    <nav class="nav">
+      <a href="https://pix2pi.com.tr/">Ana Sayfa</a>
+      <a href="/customer-register/react/">Kayıt Ol</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="brand">
+      <div class="logo">PIX2PI</div>
+      <h1>Müşteri Girişi</h1>
+      <p class="subtitle">E-posta adresinizle giriş yapın.</p>
+    </section>
+
+    <section class="card">
+      <div id="loginStep">
+        <div class="step"><b>1</b> E-posta ve şifre</div>
+
+        <label for="email">E-posta</label>
+        <input id="email" type="email" autocomplete="email" placeholder="ornek@firma.com" />
+
+        <label for="password">Şifre</label>
+        <input id="password" type="password" autocomplete="current-password" placeholder="Şifreniz" />
+
+        <button id="sendBtn" type="button">Mail Kodu Gönder</button>
+        <a href="/customer-register/react/" style="text-decoration:none">
+          <button class="secondary" type="button">Kayıt Ol</button>
+        </a>
+      </div>
+
+      <div id="verifyStep" class="verify">
+        <div class="step"><b>2</b> Mail kodu doğrulama</div>
+
+        <label for="otp">E-postaya gelen 6 haneli kod</label>
+        <input id="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" />
+
+        <button id="verifyBtn" type="button">Kodu Doğrula ve Giriş Yap</button>
+        <button id="changeEmailBtn" class="secondary" type="button">E-postayı Değiştir</button>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <div class="footer">Gönderen: no-reply@pix2pi.com.tr</div>
+      <div class="debug">CUSTOMER_LOGIN_STANDALONE_REAL_OTP_MARKER</div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var MARKER = "CUSTOMER_LOGIN_STANDALONE_REAL_OTP_MARKER";
+      var STATUS_API = "/customer-login/activation-api/status?email=";
+      var APPLICATION_STATUS_API = "/customer-login/application-status-api/status?email=";
+      var SEND_API = "/customer-login/activation-api/send-mail-code";
+      var VERIFY_API = "/customer-login/activation-api/verify-mail-code";
+
+      var emailInput = document.getElementById("email");
+      var passwordInput = document.getElementById("password");
+      var otpInput = document.getElementById("otp");
+      var sendBtn = document.getElementById("sendBtn");
+      var verifyBtn = document.getElementById("verifyBtn");
+      var changeEmailBtn = document.getElementById("changeEmailBtn");
+      var verifyStep = document.getElementById("verifyStep");
+      var message = document.getElementById("message");
+
+      var lastEmail = "";
+      var sending = false;
+      var verifying = false;
+
+      function normalizeEmail(value) {
+        return String(value || "").trim().toLowerCase();
+      }
+
+      function showMessage(text, type) {
+        message.textContent = text || "";
+        message.className = text ? "message " + (type || "ok") : "message";
+      }
+
+      function showVerifyStep(focus) {
+        verifyStep.classList.add("active");
+        if (focus) otpInput.focus();
+      }
+
+      function hideVerifyStep() {
+        verifyStep.classList.remove("active");
+        otpInput.value = "";
+      }
+
+      function fetchJson(url, options) {
+        return fetch(url, Object.assign({
+          credentials: "same-origin",
+          cache: "no-store"
+        }, options || {})).then(function (res) {
+          return res.json();
+        });
+      }
+
+      function statusMessage(data) {
+        if (!data || !data.code) return null;
+
+        if (data.code === "CUSTOMER_LOGIN_ACTIVE") {
+          return { text: "Hesabınız aktif. Gerçek e-posta kodu gönderilebilir.", type: "ok", active: true };
+        }
+
+        if (data.code === "APPLICATION_PENDING") {
+          return { text: "Başvurunuz alındı. Pix2pi owner onayı bekleniyor.", type: "warn", active: false };
+        }
+
+        if (data.code === "APPROVED_ACTIVATION_REQUIRED" || data.code === "APPROVED_ACTIVATION_PENDING") {
+          return { text: "Başvurunuz onaylandı. Pix2pi aktivasyonu bekleniyor.", type: "warn", active: false };
+        }
+
+        if (data.code === "APPLICATION_REJECTED") {
+          return { text: "Başvurunuz reddedildi. Destek ile iletişime geçiniz.", type: "error", active: false };
+        }
+
+        if (data.code === "NOT_REGISTERED") {
+          return { text: "Bu e-posta için aktif kayıt bulunamadı.", type: "error", active: false };
+        }
+
+        return { text: data.message || "Durum okunamadı.", type: "warn", active: false };
+      }
+
+      function checkStatus(email) {
+        email = normalizeEmail(email);
+
+        if (!email || email.indexOf("@") === -1) {
+          showMessage("Geçerli e-posta adresi girin.", "error");
+          hideVerifyStep();
+          return Promise.resolve(null);
+        }
+
+        return fetchJson(STATUS_API + encodeURIComponent(email))
+          .then(function (activationData) {
+            if (activationData && activationData.code === "CUSTOMER_LOGIN_ACTIVE") {
+              return activationData;
+            }
+
+            return fetchJson(APPLICATION_STATUS_API + encodeURIComponent(email))
+              .then(function (applicationData) {
+                return applicationData || activationData;
+              });
+          });
+      }
+
+      function sendMailCode() {
+        var email = normalizeEmail(emailInput.value);
+
+        if (sending) return;
+
+        sending = true;
+        sendBtn.disabled = true;
+        showMessage("Durum kontrol ediliyor…", "warn");
+        hideVerifyStep();
+
+        checkStatus(email)
+          .then(function (statusData) {
+            var info = statusMessage(statusData);
+
+            if (!info || !info.active) {
+              showMessage(info ? info.text : "Hesap aktif değil.", info ? info.type : "error");
+              return null;
+            }
+
+            showMessage("Gerçek e-posta gönderiliyor…", "warn");
+
+            return fetchJson(SEND_API, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email: email })
+            });
+          })
+          .then(function (data) {
+            if (!data) return;
+
+            if (data.ok && data.code === "MAIL_CODE_SENT_REAL") {
+              lastEmail = email;
+              showMessage("Doğrulama kodu e-posta adresine gönderildi. Gelen kutusu ve spam klasörünü kontrol edin.", "ok");
+              showVerifyStep(true);
+              return;
+            }
+
+            showMessage(data.message || "Gerçek mail gönderilemedi.", "error");
+          })
+          .catch(function () {
+            showMessage("Mail gönderimi sırasında hata oluştu.", "error");
+          })
+          .finally(function () {
+            sending = false;
+            sendBtn.disabled = false;
+          });
+      }
+
+      function verifyCode() {
+        var email = normalizeEmail(lastEmail || emailInput.value);
+        var code = String(otpInput.value || "").trim();
+
+        if (verifying) return;
+
+        if (!/^[0-9]{6}$/.test(code)) {
+          showMessage("6 haneli kodu girin.", "error");
+          showVerifyStep(true);
+          return;
+        }
+
+        verifying = true;
+        verifyBtn.disabled = true;
+        showMessage("Kod doğrulanıyor…", "warn");
+
+        fetchJson(VERIFY_API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email, code: code })
+        })
+          .then(function (data) {
+            if (data && data.ok && data.code === "LOGIN_VERIFIED") {
+              showMessage("Giriş başarılı. Müşteri paneli yönlendirmesi hazırlanıyor.", "ok");
+              hideVerifyStep();
+              window.PIX2PI_CUSTOMER_LOGIN_VERIFIED = data;
+
+              setTimeout(function () {
+                window.location.href = "/customer-panel/";
+              }, 700);
+
+              return;
+            }
+
+            showMessage((data && data.message) || "Kod doğrulanamadı.", "error");
+            showVerifyStep(true);
+          })
+          .catch(function () {
+            showMessage("Kod doğrulanamadı.", "error");
+            showVerifyStep(true);
+          })
+          .finally(function () {
+            verifying = false;
+            verifyBtn.disabled = false;
+          });
+      }
+
+      var statusTimer = null;
+
+      emailInput.addEventListener("input", function () {
+        clearTimeout(statusTimer);
+        statusTimer = setTimeout(function () {
+          var email = normalizeEmail(emailInput.value);
+          if (!email || email.indexOf("@") === -1) return;
+
+          checkStatus(email)
+            .then(function (data) {
+              var info = statusMessage(data);
+              if (info) showMessage(info.text, info.type);
+              if (!info || !info.active) hideVerifyStep();
+            })
+            .catch(function () {});
+        }, 450);
+      });
+
+      sendBtn.addEventListener("click", sendMailCode);
+      verifyBtn.addEventListener("click", verifyCode);
+
+      changeEmailBtn.addEventListener("click", function () {
+        lastEmail = "";
+        hideVerifyStep();
+        showMessage("E-posta adresini değiştirebilirsiniz.", "warn");
+        emailInput.focus();
+      });
+
+      otpInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          verifyCode();
+        }
+      });
+
+      window.PIX2PI_CUSTOMER_LOGIN_STANDALONE_REAL_OTP_MARKER = MARKER;
+    })();
+  </script>
+
+<!-- PIX2PI_EXTRA_COMPACT_CUSTOMER_FORM_MARKER -->
+
+<!-- PIX2PI_ULTRA_COMPACT_CUSTOMER_FORM_MARKER -->
+
+<style id="PIX2PI_FORGOT_PASSWORD_UI_CSS">
+  .pix2pi-forgot-wrap {
+    margin-top: 10px !important;
+    text-align: center !important;
+  }
+
+  .pix2pi-forgot-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    min-height: 28px !important;
+    padding: 6px 10px !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(37, 99, 235, .25) !important;
+    background: rgba(37, 99, 235, .06) !important;
+    color: #1d4ed8 !important;
+    font-size: 11.5px !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+  }
+
+  .pix2pi-forgot-box {
+    display: none;
+    margin-top: 10px !important;
+    padding: 10px 12px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(245, 158, 11, .35) !important;
+    background: rgba(255, 251, 235, .95) !important;
+    color: #78350f !important;
+    font-size: 11.5px !important;
+    line-height: 1.4 !important;
+    text-align: left !important;
+  }
+
+  .pix2pi-forgot-box b {
+    display: block !important;
+    margin-bottom: 4px !important;
+    color: #92400e !important;
+  }
+</style>
+
+<script id="PIX2PI_FORGOT_PASSWORD_UI_SCRIPT">
+(function(){
+  function ready(fn){
+    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+    else fn();
+  }
+
+  ready(function(){
+    if(document.querySelector(".pix2pi-forgot-wrap")) return;
+
+    var candidates = Array.from(document.querySelectorAll("button, a, input[type='submit']"));
+    var anchor = candidates.find(function(el){
+      var t = (el.innerText || el.value || "").toLowerCase();
+      return t.includes("mail kodu") || t.includes("giriş") || t.includes("giris");
+    });
+
+    var wrap = document.createElement("div");
+    wrap.className = "pix2pi-forgot-wrap";
+    wrap.innerHTML = ''
+      + '<button type="button" class="pix2pi-forgot-link">Şifremi unuttum</button>'
+      + '<div class="pix2pi-forgot-box">'
+      + '<b>Şifre sıfırlama</b>'
+      + 'Şifrenizi unuttuysanız Pix2pi yönetimi sizin için yeni geçici şifre oluşturur. '
+      + 'Geçici şifreyle giriş yaptıktan sonra şifrenizi değiştirmeniz gerekir.'
+      + '</div>';
+
+    if(anchor && anchor.parentNode){
+      anchor.parentNode.insertBefore(wrap, anchor.nextSibling);
+    } else {
+      document.body.appendChild(wrap);
+    }
+
+    var btn = wrap.querySelector(".pix2pi-forgot-link");
+    var box = wrap.querySelector(".pix2pi-forgot-box");
+    btn.addEventListener("click", function(){
+      box.style.display = box.style.display === "block" ? "none" : "block";
+    });
+  });
+})();
+</script>
+
+<!-- PIX2PI_FORGOT_PASSWORD_UI_MARKER -->
+
+
+
+
+
+
+
+<style id="PIX2PI_LOGIN_OTP_FLOW_CSS">
+  .pix2pi-login-otp-message {
+    margin-top: 10px !important;
+    padding: 8px 10px !important;
+    border-radius: 10px !important;
+    font-size: 11.5px !important;
+    font-weight: 800 !important;
+    line-height: 1.35 !important;
+    display: none;
+  }
+
+  .pix2pi-login-otp-message.ok {
+    display: block;
+    color: #065f46 !important;
+    background: #ecfdf5 !important;
+    border: 1px solid #a7f3d0 !important;
+  }
+
+  .pix2pi-login-otp-message.warn {
+    display: block;
+    color: #92400e !important;
+    background: #fffbeb !important;
+    border: 1px solid #fcd34d !important;
+  }
+
+  .pix2pi-login-otp-message.err {
+    display: block;
+    color: #991b1b !important;
+    background: #fef2f2 !important;
+    border: 1px solid #fecaca !important;
+  }
+
+  .pix2pi-otp-panel {
+    display: none;
+    margin-top: 10px !important;
+    padding: 10px !important;
+    border-radius: 13px !important;
+    border: 1px solid rgba(37, 99, 235, .22) !important;
+    background: rgba(239, 246, 255, .95) !important;
+  }
+
+  .pix2pi-otp-panel.show {
+    display: block !important;
+  }
+
+  .pix2pi-otp-title {
+    margin: 0 0 6px 0 !important;
+    color: #1e3a8a !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    line-height: 1.25 !important;
+  }
+
+  .pix2pi-otp-help {
+    margin: 0 0 8px 0 !important;
+    color: #475569 !important;
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+  }
+
+  .pix2pi-otp-row {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    gap: 8px !important;
+    align-items: center !important;
+  }
+
+  .pix2pi-otp-input {
+    width: 100% !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    padding: 5px 9px !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(37, 99, 235, .28) !important;
+    background: white !important;
+    color: #0f172a !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+    letter-spacing: .18em !important;
+    text-align: center !important;
+  }
+
+  .pix2pi-otp-button {
+    height: 32px !important;
+    min-height: 32px !important;
+    padding: 5px 12px !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    background: #2563eb !important;
+    color: white !important;
+    font-size: 11.5px !important;
+    font-weight: 900 !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+  }
+
+  .pix2pi-otp-button:disabled {
+    opacity: .55 !important;
+    cursor: not-allowed !important;
+  }
+
+  .pix2pi-forgot-wrap {
+    margin-top: 8px !important;
+    text-align: center !important;
+  }
+
+  .pix2pi-forgot-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 28px !important;
+    padding: 6px 10px !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(37, 99, 235, .24) !important;
+    background: rgba(37, 99, 235, .055) !important;
+    color: #1d4ed8 !important;
+    font-size: 11.5px !important;
+    font-weight: 900 !important;
+    cursor: pointer !important;
+  }
+
+  @media (max-width: 640px) {
+    .pix2pi-otp-row {
+      grid-template-columns: 1fr !important;
+    }
+
+    .pix2pi-otp-button {
+      width: 100% !important;
+    }
+  }
+</style>
+
+<script id="PIX2PI_LOGIN_OTP_FLOW_SCRIPT">
+(function(){
+  var API_BASE = "/customer-login/api";
+  var lastLoginEmail = "";
+  var otpPurpose = "login";
+
+  function ready(fn){
+    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+    else fn();
+  }
+
+  function textOf(el){
+    return ((el && (el.innerText || el.value || el.textContent)) || "").trim();
+  }
+
+  function findEmail(){
+    return document.querySelector('input[type="email"]')
+      || document.querySelector('input[name*="email" i]')
+      || document.querySelector('input[name*="mail" i]')
+      || document.querySelector('input[id*="email" i]')
+      || document.querySelector('input[id*="mail" i]');
+  }
+
+  function findPassword(){
+    return document.querySelector('input[type="password"]')
+      || document.querySelector('input[name*="password" i]')
+      || document.querySelector('input[name*="sifre" i]')
+      || document.querySelector('input[name*="şifre" i]');
+  }
+
+  function findSendCodeButton(){
+    var nodes = Array.from(document.querySelectorAll('button, input[type="submit"], a'));
+    return nodes.find(function(el){
+      var t = textOf(el).toLowerCase();
+      return t.includes("mail kodu") || t.includes("kod gönder") || t.includes("kodu gönder");
+    });
+  }
+
+  function ensureMessage(anchor){
+    var box = document.querySelector(".pix2pi-login-otp-message");
+    if(box) return box;
+
+    box = document.createElement("div");
+    box.className = "pix2pi-login-otp-message";
+
+    if(anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor.nextSibling);
+    else document.body.appendChild(box);
+
+    return box;
+  }
+
+  function showMessage(type, msg){
+    var btn = findSendCodeButton();
+    var box = ensureMessage(btn);
+    box.className = "pix2pi-login-otp-message " + type;
+    box.textContent = msg;
+  }
+
+  function ensureOtpPanel(){
+    var existing = document.querySelector(".pix2pi-otp-panel");
+    if(existing) return existing;
+
+    var btn = findSendCodeButton();
+    var panel = document.createElement("div");
+    panel.className = "pix2pi-otp-panel";
+    panel.innerHTML = ''
+      + '<p class="pix2pi-otp-title">Mail kodunu gir</p>'
+      + '<p class="pix2pi-otp-help">E-posta adresine gelen 6 haneli kodu 60 saniye içinde yaz.</p>'
+      + '<div class="pix2pi-otp-row">'
+      + '<input class="pix2pi-otp-input" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" />'
+      + '<button type="button" class="pix2pi-otp-button">Kodu Doğrula</button>'
+      + '</div>';
+
+    if(btn && btn.parentNode) {
+      var msg = ensureMessage(btn);
+      msg.parentNode.insertBefore(panel, msg.nextSibling);
+    } else {
+      document.body.appendChild(panel);
+    }
+
+    var input = panel.querySelector(".pix2pi-otp-input");
+    var verify = panel.querySelector(".pix2pi-otp-button");
+
+    input.addEventListener("input", function(){
+      input.value = input.value.replace(/\D/g, "").slice(0, 6);
+    });
+
+    input.addEventListener("keydown", function(ev){
+      if(ev.key === "Enter"){
+        ev.preventDefault();
+        verifyCode();
+      }
+    });
+
+    verify.addEventListener("click", verifyCode, true);
+
+    return panel;
+  }
+
+  function showOtpPanel(){
+    var panel = ensureOtpPanel();
+    panel.classList.add("show");
+
+    var input = panel.querySelector(".pix2pi-otp-input");
+    if(input) {
+      input.value = "";
+      setTimeout(function(){ input.focus(); }, 80);
+    }
+  }
+
+  function hideOtpPanel(){
+    var panel = document.querySelector(".pix2pi-otp-panel");
+    if(panel) panel.classList.remove("show");
+  }
+
+  async function postJson(url, payload){
+    var res = await fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify(payload)
+    });
+
+    var data = {};
+    try { data = await res.json(); } catch(e) {}
+
+    return { status: res.status, data: data };
+  }
+
+  async function requestLoginCode(ev){
+    if(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+      if(ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+    }
+
+    hideOtpPanel();
+
+    var emailInput = findEmail();
+    var passwordInput = findPassword();
+
+    var email = emailInput ? emailInput.value.trim() : "";
+    var password = passwordInput ? passwordInput.value : "";
+
+    if(!email){
+      showMessage("err", "E-posta adresinizi girin.");
+      return false;
+    }
+
+    if(!password){
+      showMessage("err", "Şifrenizi girin.");
+      return false;
+    }
+
+    lastLoginEmail = email;
+    otpPurpose = "login";
+
+    showMessage("warn", "Şifre kontrol ediliyor, mail kodu hazırlanıyor...");
+
+    try {
+      var r = await postJson(API_BASE + "/request-login-code", { email: email, password: password });
+
+      if(r.status === 401 || r.data.error === "INVALID_PASSWORD"){
+        showMessage("err", "Şifre hatalı. Mail kodu gönderilmedi.");
+        return false;
+      }
+
+      if(!r.data.ok){
+        showMessage("err", "Kod gönderilemedi: " + (r.data.error || "Bilinmeyen hata"));
+        return false;
+      }
+
+      showOtpPanel();
+
+      if(r.data.mail_sent){
+        showMessage("ok", "Şifre doğru. 6 haneli kod mail adresine gönderildi. Kod 60 saniye geçerli. Kodu aşağıya gir.");
+      } else {
+        showMessage("warn", "Kod üretildi ama mail çıkışı çalışmıyor. Sunucudaki outbox kontrol edilmeli. Kodu aşağıya gir.");
+      }
+
+      return false;
+    } catch(err){
+      showMessage("err", "Bağlantı hatası: " + (err && err.message ? err.message : "API erişilemedi"));
+      return false;
+    }
+  }
+
+  async function forgotPassword(ev){
+    if(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+    }
+
+    hideOtpPanel();
+
+    var emailInput = findEmail();
+    var email = emailInput ? emailInput.value.trim() : "";
+
+    if(!email){
+      showMessage("err", "Şifre sıfırlama kodu için e-posta adresinizi girin.");
+      return false;
+    }
+
+    lastLoginEmail = email;
+    otpPurpose = "forgot-password";
+
+    showMessage("warn", "Şifre sıfırlama kodu hazırlanıyor...");
+
+    try {
+      var r = await postJson(API_BASE + "/forgot-password-code", { email: email });
+
+      if(!r.data.ok){
+        showMessage("err", "Şifre sıfırlama kodu gönderilemedi: " + (r.data.error || "Bilinmeyen hata"));
+        return false;
+      }
+
+      if(r.data.otp_generated){
+        showOtpPanel();
+        showMessage(r.data.mail_sent ? "ok" : "warn", "6 haneli şifre sıfırlama kodu üretildi. Kod 60 saniye geçerli. Kodu aşağıya gir.");
+      } else {
+        showMessage("warn", "Eğer bu e-posta kayıtlıysa şifre sıfırlama kodu gönderilir.");
+      }
+
+      return false;
+    } catch(err){
+      showMessage("err", "Bağlantı hatası: " + (err && err.message ? err.message : "API erişilemedi"));
+      return false;
+    }
+  }
+
+  async function verifyCode(){
+    var emailInput = findEmail();
+    var panel = ensureOtpPanel();
+    var input = panel.querySelector(".pix2pi-otp-input");
+    var verifyBtn = panel.querySelector(".pix2pi-otp-button");
+
+    var email = lastLoginEmail || (emailInput ? emailInput.value.trim() : "");
+    var code = input ? input.value.trim() : "";
+
+    if(!email){
+      showMessage("err", "E-posta adresi bulunamadı.");
+      return false;
+    }
+
+    if(!/^\d{6}$/.test(code)){
+      showMessage("err", "6 haneli kodu eksiksiz girin.");
+      return false;
+    }
+
+    verifyBtn.disabled = true;
+    showMessage("warn", "Kod doğrulanıyor...");
+
+    try {
+      var r = await postJson(API_BASE + "/verify-code", {
+        email: email,
+        code: code,
+        purpose: otpPurpose || "login"
+      });
+
+      if(!r.data.ok){
+        showMessage("err", "Kod hatalı veya süresi doldu.");
+        verifyBtn.disabled = false;
+        return false;
+      }
+
+      showMessage("ok", "Kod doğrulandı. Giriş başarılı.");
+
+      if(otpPurpose === "login"){
+        setTimeout(function(){
+          window.location.href = "/customer-panel.html";
+        }, 650);
+      }
+
+      return false;
+    } catch(err){
+      showMessage("err", "Kod doğrulama bağlantı hatası: " + (err && err.message ? err.message : "API erişilemedi"));
+      verifyBtn.disabled = false;
+      return false;
+    }
+  }
+
+  function ensureForgotButton(){
+    if(document.querySelector(".pix2pi-forgot-link")) return;
+
+    var btn = findSendCodeButton();
+    var wrap = document.createElement("div");
+    wrap.className = "pix2pi-forgot-wrap";
+
+    var forgot = document.createElement("button");
+    forgot.type = "button";
+    forgot.className = "pix2pi-forgot-link";
+    forgot.textContent = "Şifremi unuttum";
+    forgot.addEventListener("click", forgotPassword, true);
+
+    wrap.appendChild(forgot);
+
+    if(btn && btn.parentNode) btn.parentNode.insertBefore(wrap, btn.nextSibling);
+    else document.body.appendChild(wrap);
+  }
+
+  ready(function(){
+    var btn = findSendCodeButton();
+    ensureMessage(btn);
+    ensureOtpPanel();
+    ensureForgotButton();
+
+    document.addEventListener("click", function(ev){
+      var target = ev.target && ev.target.closest ? ev.target.closest('button, input[type="submit"], a') : null;
+      if(!target) return;
+
+      var t = textOf(target).toLowerCase();
+
+      if(t.includes("mail kodu") || t.includes("kod gönder") || t.includes("kodu gönder")){
+        requestLoginCode(ev);
+      }
+    }, true);
+
+    var form = document.querySelector("form");
+    if(form){
+      form.addEventListener("submit", requestLoginCode, true);
+    }
+
+    document.documentElement.setAttribute("data-pix2pi-login-otp-input-screen", "PIX2PI_LOGIN_OTP_INPUT_SCREEN_MARKER");
+  });
+})();
+</script>
+<!-- PIX2PI_LOGIN_OTP_INPUT_SCREEN_MARKER -->
+
+<!-- PIX2PI_OTP_TTL_40_SECONDS_UI_MARKER -->
+
+<style id="PIX2PI_OTP_COUNTDOWN_UI_CSS">
+  .pix2pi-otp-timer {
+    margin: 8px 0 9px 0 !important;
+    padding: 7px 9px !important;
+    border-radius: 10px !important;
+    background: rgba(37, 99, 235, .08) !important;
+    border: 1px solid rgba(37, 99, 235, .18) !important;
+    color: #1e3a8a !important;
+    font-size: 11.5px !important;
+    font-weight: 900 !important;
+    line-height: 1.25 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+  }
+
+  .pix2pi-otp-timer strong {
+    display: inline-flex !important;
+    min-width: 34px !important;
+    height: 22px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 999px !important;
+    background: #2563eb !important;
+    color: #ffffff !important;
+    font-size: 12px !important;
+    font-weight: 950 !important;
+  }
+
+  .pix2pi-otp-timer.warn {
+    background: rgba(245, 158, 11, .10) !important;
+    border-color: rgba(245, 158, 11, .32) !important;
+    color: #92400e !important;
+  }
+
+  .pix2pi-otp-timer.expired {
+    background: rgba(239, 68, 68, .10) !important;
+    border-color: rgba(239, 68, 68, .32) !important;
+    color: #991b1b !important;
+  }
+
+  .pix2pi-otp-timer.expired strong {
+    background: #dc2626 !important;
+  }
+
+  .pix2pi-otp-expired-note {
+    margin-top: 6px !important;
+    color: #991b1b !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    display: none;
+  }
+
+  .pix2pi-otp-expired-note.show {
+    display: block !important;
+  }
+</style>
+
+<script id="PIX2PI_OTP_COUNTDOWN_UI_SCRIPT">
+(function(){
+  var TTL_SECONDS = 60;
+  var timerId = null;
+  var left = TTL_SECONDS;
+  var verified = false;
+
+  function ready(fn){
+    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+    else fn();
+  }
+
+  function textOf(el){
+    return ((el && (el.innerText || el.value || el.textContent)) || "").trim();
+  }
+
+  function findOtpPanel(){
+    return document.querySelector(".pix2pi-otp-panel");
+  }
+
+  function findOtpInput(){
+    return document.querySelector(".pix2pi-otp-input");
+  }
+
+  function findVerifyButton(){
+    return document.querySelector(".pix2pi-otp-button");
+  }
+
+  function findSendCodeButton(){
+    var nodes = Array.from(document.querySelectorAll('button, input[type="submit"], a'));
+    return nodes.find(function(el){
+      var t = textOf(el).toLowerCase();
+      return t.includes("mail kodu") || t.includes("kod gönder") || t.includes("kodu gönder");
+    });
+  }
+
+  function ensureTimer(){
+    var panel = findOtpPanel();
+    if(!panel) return null;
+
+    var existing = panel.querySelector(".pix2pi-otp-timer");
+    if(existing) return existing;
+
+    var timer = document.createElement("div");
+    timer.className = "pix2pi-otp-timer";
+    timer.innerHTML = '<span>Kod süresi 60 saniye</span>';
+
+    var note = document.createElement("div");
+    note.className = "pix2pi-otp-expired-note";
+    note.textContent = "Süre doldu. Yeni kod almak için tekrar Mail Kodu Gönder butonuna basın.";
+
+    var help = panel.querySelector(".pix2pi-otp-help");
+    if(help && help.parentNode){
+      help.parentNode.insertBefore(timer, help.nextSibling);
+      timer.parentNode.insertBefore(note, timer.nextSibling);
+    } else {
+      panel.insertBefore(timer, panel.firstChild);
+      panel.insertBefore(note, timer.nextSibling);
+    }
+
+    return timer;
+  }
+
+  function setMessage(type, msg){
+    var box = document.querySelector(".pix2pi-login-otp-message");
+    if(!box) return;
+    box.className = "pix2pi-login-otp-message " + type;
+    box.textContent = msg;
+  }
+
+  function setDisabled(disabled){
+    var input = findOtpInput();
+    var verify = findVerifyButton();
+
+    if(input){
+      input.disabled = disabled;
+      if(disabled) input.setAttribute("aria-disabled", "true");
+      else input.removeAttribute("aria-disabled");
+    }
+
+    if(verify){
+      verify.disabled = disabled;
+      if(disabled) verify.setAttribute("aria-disabled", "true");
+      else verify.removeAttribute("aria-disabled");
+    }
+  }
+
+  function updateTimer(){
+    var timer = ensureTimer();
+    if(!timer) return;
+
+    var strong = timer.querySelector("strong");
+    var note = document.querySelector(".pix2pi-otp-expired-note");
+
+    if(strong) strong.textContent = String(Math.max(left, 0));
+
+    timer.classList.remove("warn", "expired");
+
+    if(left <= 0){
+      timer.classList.add("expired");
+      if(note) note.classList.add("show");
+      setDisabled(true);
+
+      if(!verified){
+        setMessage("err", "Kod süresi doldu. Yeni kod almak için tekrar Mail Kodu Gönder.");
+      }
+
+      if(timerId) clearInterval(timerId);
+      timerId = null;
+      return;
+    }
+
+    if(left <= 10){
+      timer.classList.add("warn");
+    }
+
+    if(note) note.classList.remove("show");
+  }
+
+  function startCountdown(){
+    verified = false;
+
+    if(timerId) clearInterval(timerId);
+    timerId = null;
+
+    left = TTL_SECONDS;
+    setDisabled(false);
+
+    var panel = findOtpPanel();
+    if(panel) panel.classList.add("show");
+
+    updateTimer();
+
+    timerId = setInterval(function(){
+      left -= 1;
+      updateTimer();
+    }, 1000);
+  }
+
+  function stopCountdownAsVerified(){
+    verified = true;
+
+    if(timerId) clearInterval(timerId);
+    timerId = null;
+
+    var timer = ensureTimer();
+    if(timer){
+      timer.classList.remove("warn", "expired");
+      timer.innerHTML = '<span>Kod doğrulandı</span><strong>OK</strong><span>giriş başarılı</span>';
+    }
+
+    var note = document.querySelector(".pix2pi-otp-expired-note");
+    if(note) note.classList.remove("show");
+
+    setDisabled(false);
+  }
+
+  function hookFetch(){
+    if(window.__PIX2PI_OTP_COUNTDOWN_FETCH_HOOKED__) return;
+    window.__PIX2PI_OTP_COUNTDOWN_FETCH_HOOKED__ = true;
+
+    var originalFetch = window.fetch;
+    if(!originalFetch) return;
+
+    window.fetch = async function(){
+      var url = "";
+      try {
+        url = String(arguments[0] && arguments[0].url ? arguments[0].url : arguments[0]);
+      } catch(e) {}
+
+      var res = await originalFetch.apply(this, arguments);
+
+      try {
+        var cloned = res.clone();
+        cloned.json().then(function(data){
+          if(!data) return;
+
+          if(
+            url.includes("/request-login-code") ||
+            url.includes("/forgot-password-code")
+          ){
+            if(data.ok && data.otp_generated){
+              setTimeout(startCountdown, 80);
+            }
+          }
+
+          if(url.includes("/verify-code")){
+            if(data.ok && data.verified){
+              setTimeout(stopCountdownAsVerified, 80);
+            }
+          }
+        }).catch(function(){});
+      } catch(e) {}
+
+      return res;
+    };
+  }
+
+  function hookButtons(){
+    document.addEventListener("click", function(ev){
+      var target = ev.target && ev.target.closest ? ev.target.closest('button, input[type="submit"], a') : null;
+      if(!target) return;
+
+      var t = textOf(target).toLowerCase();
+
+      if(t.includes("mail kodu") || t.includes("kod gönder") || t.includes("kodu gönder")){
+        setTimeout(function(){
+          var panel = findOtpPanel();
+          if(panel && panel.classList.contains("show")) {
+            startCountdown();
+          }
+        }, 900);
+      }
+
+      if(t.includes("kodu doğrula")){
+        if(left <= 0 && !verified){
+          ev.preventDefault();
+          ev.stopPropagation();
+          if(ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+          setMessage("err", "Kod süresi doldu. Yeni kod alın.");
+          return false;
+        }
+      }
+    }, true);
+  }
+
+  ready(function(){
+    ensureTimer();
+    hookFetch();
+    hookButtons();
+
+    document.documentElement.setAttribute("data-pix2pi-otp-countdown-ui", "PIX2PI_OTP_COUNTDOWN_UI_MARKER");
+  });
+})();
+</script>
+<!-- PIX2PI_OTP_COUNTDOWN_UI_MARKER -->
+
+<!-- PIX2PI_OTP_TTL_60_SECONDS_UI_MARKER -->
+</body>
+</html>

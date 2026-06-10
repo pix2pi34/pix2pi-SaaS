@@ -1,0 +1,19 @@
+version: v1
+accountant_portal_rules:
+  multi_company_enabled: true
+  company_scope_mode: company_scoped
+  export_excel_enabled: true
+  export_pdf_enabled: true
+  export_tdhp_enabled: true
+  subscription_mode: monthly_end_of_month
+  visibility_mode: assigned_companies_only
+  test_profile: turkiye-accountant-core
+
+document_ai_rules:
+  enabled: true
+  flow_mode: ocr_lens
+  tax_fields_required: true
+  contact_fields_enabled: true
+  confidence_threshold: 0.85
+  manual_review_enabled: true
+  test_profile: turkiye-document-ai-core

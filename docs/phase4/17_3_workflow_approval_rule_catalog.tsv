@@ -1,0 +1,11 @@
+rule_name	category	severity	condition_hint	enforcement_hint	required_permission	audit_required	realtime_signal	implementation_status	note
+approver_role_required	rbac	CRITICAL	approval action requires tenant approver role	approval:write enforced	approval:write	YES	approval.requested	READY_FOR_IMPLEMENTATION	contract_only
+cannot_approve_own_request	segregation_of_duty	CRITICAL	actor cannot approve request created by same actor	actor_id != requester_id	approval:write	YES	approval.rejected	READY_FOR_IMPLEMENTATION	contract_only
+tenant_scope_required	tenant_isolation	CRITICAL	approval request must stay in tenant scope	tenant_id must match context	approval:read	YES	approval.requested	READY_FOR_IMPLEMENTATION	contract_only
+approval_reason_optional_on_approve	approval_policy	MEDIUM	approve may include reason but not mandatory	reason optional	approval:write	YES	approval.approved	READY_FOR_IMPLEMENTATION	contract_only
+reject_reason_required	approval_policy	HIGH	reject must include reason	reason required	approval:write	YES	approval.rejected	READY_FOR_IMPLEMENTATION	contract_only
+approval_timeout_escalation	sla	HIGH	waiting approval can escalate after timeout	deadline exceeded triggers escalation	approval:escalate	YES	task.overdue	READY_FOR_IMPLEMENTATION	contract_only
+idempotency_required	safety	CRITICAL	approval action must be idempotent	idempotency_key required	approval:write	YES	workflow.instance.updated	READY_FOR_IMPLEMENTATION	contract_only
+state_match_required	state_machine	CRITICAL	approve/reject only allowed in waiting_approval	state == waiting_approval	approval:write	YES	approval.requested	READY_FOR_IMPLEMENTATION	contract_only
+audit_required	audit	CRITICAL	all approval actions require audit	audit_required=YES	approval:write	YES	approval.approved	READY_FOR_IMPLEMENTATION	contract_only
+metadata_only_realtime	security	CRITICAL	approval realtime signal must not include raw payload	payload_policy=metadata_only	realtime:read	YES	approval.requested	READY_FOR_IMPLEMENTATION	contract_only

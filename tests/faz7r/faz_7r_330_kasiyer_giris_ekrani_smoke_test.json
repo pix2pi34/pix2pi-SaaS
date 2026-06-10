@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "330",
+  "domain": "pos.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "cashier_login_screen",
+      "path": "/login/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_330_CASHIER_LOGIN_APP_SHELL_START",
+        "PIX2PI_330_CASHIER_CODE_PIN_FORM_START",
+        "PIX2PI_330_AUTH_ENDPOINT_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "cashier_login_runtime",
+      "path": "/assets/login/cashier-login-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_330_CASHIER_LOGIN_RUNTIME_START",
+        "tenantDeviceHeaders",
+        "buildLoginPayload"
+      ]
+    }
+  ]
+}

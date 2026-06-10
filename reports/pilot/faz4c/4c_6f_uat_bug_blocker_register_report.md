@@ -1,0 +1,35 @@
+# FAZ 4C — 4C-6F UAT Bug / Blocker Register Report
+
+Step: 4C-6F
+Blok: UAT Bug / Blocker Register
+Test tarihi: 2026-05-01 08:34:58
+
+## Test sonucu
+
+4C_6F_UAT_BUG_BLOCKER_REGISTER_STATUS=PASS
+4C_6F_PREVIOUS_BLOCK_STATUS=PASS
+4C_6F_UAT_RESULT_CLASSIFICATION=TECHNICAL_PASS_BUSINESS_ACCEPTANCE_PENDING
+4C_6F_TECHNICAL_UAT_CLASSIFICATION=PASS
+4C_6F_TECHNICAL_FAIL_COUNT=0
+4C_6F_CRITICAL_BLOCKER_COUNT=0
+4C_6F_WARNING_COUNT=2
+4C_6F_IMPROVEMENT_COUNT=3
+4C_6F_WARN_01=BARKOD_BLANK_NON_BLOCKING
+4C_6F_WARN_02=BUSINESS_ACCEPTANCE_PENDING
+4C_6F_BARKOD_WARNING_IS_BLOCKER=NO
+4C_6F_BUSINESS_ACCEPTANCE_PENDING=YES
+4C_6F_UAT_13_STATUS=PASS
+4C_6F_DB_WRITE_APPLIED=NO
+4C_6G_READY=YES
+
+## Register files
+
+REGISTER_DOC=docs/pilot/faz4c/4c_6f_uat_bug_blocker_register.md
+REGISTER_FILE=uat/pilot/faz4c/uzmanparcaci/uat_bug_blocker_register.md
+
+## Sonuc
+
+UAT bug / blocker register tamamlandı.
+Critical blocker yok.
+İşletme kabulü 4C-6G Business Acceptance Gate adımına taşındı.
+Bu adımda DB yazma işlemi yapılmadı.

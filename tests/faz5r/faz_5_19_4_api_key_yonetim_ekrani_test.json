@@ -1,0 +1,48 @@
+{
+  "test_name": "faz_5_19_4_api_key_yonetim_ekrani_test",
+  "phase": "FAZ_5_19_4",
+  "expected": {
+    "required_section_count": 10,
+    "required_domain_count": 7,
+    "internal_api_key_screen_ready": true,
+    "static_html_ready": true,
+    "production_screen_published": false,
+    "real_developer_access_enabled": false,
+    "api_key_creation_enabled": false,
+    "api_key_reveal_enabled": false,
+    "api_key_rotation_enabled": false,
+    "sandbox_live_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_section_keys": [
+    "key_inventory",
+    "key_create_disabled_panel",
+    "key_masked_secret_panel",
+    "key_rotation_preview",
+    "key_revoke_preview",
+    "permission_scope_panel",
+    "tenant_scope_panel",
+    "audit_trail_panel",
+    "security_policy_panel",
+    "sandbox_surface_deferred_marker"
+  ],
+  "must_have_domains": [
+    "KEY_INVENTORY",
+    "KEY_LIFECYCLE",
+    "PERMISSION",
+    "TENANT_SCOPE",
+    "AUDIT",
+    "SECURITY",
+    "SANDBOX_NEXT"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_developer_account",
+    "requires_role_guard",
+    "requires_permission_scope",
+    "requires_masked_secret_display",
+    "requires_create_disabled_guard",
+    "blocks_api_key_creation"
+  ]
+}

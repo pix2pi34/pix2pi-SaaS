@@ -1,0 +1,29 @@
+{
+  "phase": "FAZ 2-7.2.1",
+  "runtime": "service_status_panel_connection",
+  "require_tenant": true,
+  "default_scope": "INTERNAL",
+  "enable_stale_bridge": true,
+  "include_metadata_summary": true,
+  "include_mission_control_tags": true,
+  "guards": [
+    "tenant_required",
+    "registry_required",
+    "visibility_runtime_required",
+    "valid_scope_required",
+    "cross_tenant_panel_visibility_denied",
+    "tenant_safe_panel_snapshot",
+    "stale_bridge_guard"
+  ],
+  "bridges": [
+    "instance_metadata_runtime",
+    "registry_visibility_runtime",
+    "stale_instance_cleanup_runtime",
+    "runtime_heartbeat_metadata",
+    "restart_action_metadata",
+    "isolate_quarantine_metadata",
+    "maintenance_mode_metadata",
+    "incident_action_log_metadata"
+  ],
+  "next_ready": "FAZ_2_7_3_4_TENANT_AWARE_JOB_DISPATCH_RUNTIME"
+}

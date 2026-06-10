@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Merchant Dashboard</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #687287;
+      --border: #e6e9f0;
+      --brand: #1f6feb;
+      --brand-soft: #eaf2ff;
+      --ok: #0f8b4c;
+      --warn: #a16207;
+      --shadow: 0 14px 34px rgba(18, 27, 46, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 28px;
+    }
+
+    .shell {
+      width: min(100%, 1220px);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .hero {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .badge, .status {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .status[data-module-status*="READY"] {
+      background: #f0fdf4;
+      color: var(--ok);
+    }
+
+    .status[data-module-status*="DRAFT"] {
+      background: #fffbeb;
+      color: var(--warn);
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .kpi-value {
+      font-size: 28px;
+      font-weight: 950;
+      letter-spacing: -0.05em;
+      margin-top: 10px;
+    }
+
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 14px;
+      border-radius: 15px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-weight: 900;
+      text-decoration: none;
+      border: 1px solid #cfe1ff;
+    }
+
+    .alert {
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+
+    @media (max-width: 920px) {
+      body { padding: 18px; }
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_320_DASHBOARD_APP_SHELL_START -->
+  <main class="shell" data-step="320" data-surface="merchant-dashboard">
+    <section class="hero">
+      <div>
+        <span class="badge">FAZ 7-R / 320</span>
+        <h1 data-i18n="panel.dashboard">Merchant dashboard</h1>
+        <p data-i18n="panel.customer_surface">İşletmenin günlük özet, modül durumları ve hızlı aksiyon merkezi.</p>
+      </div>
+
+      <!-- PIX2PI_320_TENANT_SUMMARY_CARD_START -->
+      <article class="card" data-widget="tenant_summary">
+        <h2>Tenant</h2>
+        <strong id="dashboard-tenant-name">Controlled Pilot İşletmesi</strong>
+        <p id="dashboard-tenant-id">controlled-pilot</p>
+        <span id="dashboard-tenant-status" class="status" data-module-status="PANEL_READY">PANEL_READY</span>
+      </article>
+      <!-- PIX2PI_320_TENANT_SUMMARY_CARD_END -->
+    </section>
+
+    <!-- PIX2PI_320_ONBOARDING_PROGRESS_WIDGET_START -->
+    <section class="card" data-widget="onboarding_progress">
+      <h2>Onboarding durumu</h2>
+      <div class="kpi-value" id="dashboard-onboarding-percent">68%</div>
+      <p id="dashboard-onboarding-next-action">İşletme bilgilerini tamamla</p>
+      <span id="dashboard-onboarding-status" class="status" data-module-status="DRAFT_READY">DRAFT_READY</span>
+    </section>
+    <!-- PIX2PI_320_ONBOARDING_PROGRESS_WIDGET_END -->
+
+    <!-- PIX2PI_320_KPI_CARDS_START -->
+    <section class="grid-4" data-widget="kpi_cards">
+      <article class="card">
+        <h2>Bugünkü satış</h2>
+        <div class="kpi-value" id="kpi-today-sales">₺0,00</div>
+      </article>
+
+      <article class="card">
+        <h2>Açık sipariş</h2>
+        <div class="kpi-value" id="kpi-open-orders">0</div>
+      </article>
+
+      <article class="card">
+        <h2>Ürün sayısı</h2>
+        <div class="kpi-value" id="kpi-product-count">0</div>
+      </article>
+
+      <article class="card">
+        <h2>Bekleyen belge</h2>
+        <div class="kpi-value" id="kpi-pending-documents">0</div>
+      </article>
+    </section>
+    <!-- PIX2PI_320_KPI_CARDS_END -->
+
+    <!-- PIX2PI_320_QUICK_ACTIONS_START -->
+    <section class="card" data-widget="quick_actions">
+      <h2>Hızlı işlemler</h2>
+      <div class="quick-actions">
+        <a class="action" href="/onboarding/">Onboarding tamamla</a>
+        <a class="action" href="/products">Ürün ekle</a>
+        <a class="action" href="/customers">Cari ekle</a>
+        <a class="action" href="/reports">Raporlara git</a>
+      </div>
+    </section>
+    <!-- PIX2PI_320_QUICK_ACTIONS_END -->
+
+    <!-- PIX2PI_320_MODULE_STATUS_CARDS_START -->
+    <section class="grid-3" data-widget="module_status_cards">
+      <article class="card" data-module="pos">
+        <h2>POS</h2>
+        <p>Kasiyer ve satış yüzeyi bağlantı durumu.</p>
+        <span id="status-pos" class="status" data-module-status="READY_FOR_BINDING">READY_FOR_BINDING</span>
+      </article>
+
+      <article class="card" data-module="erp">
+        <h2>ERP</h2>
+        <p>Cari, stok, belge ve rapor modülleri bağlantı durumu.</p>
+        <span id="status-erp" class="status" data-module-status="READY_FOR_BINDING">READY_FOR_BINDING</span>
+      </article>
+
+      <article class="card" data-module="marketplace">
+        <h2>Marketplace</h2>
+        <p>Mağaza vitrini ve alışveriş yüzeyi bağlantı durumu.</p>
+        <span id="status-marketplace" class="status" data-module-status="READY_FOR_BINDING">READY_FOR_BINDING</span>
+      </article>
+    </section>
+    <!-- PIX2PI_320_MODULE_STATUS_CARDS_END -->
+
+    <!-- PIX2PI_320_ALERT_NOTIFICATION_PREVIEW_START -->
+    <section id="dashboard-alert-preview" class="card alert" data-widget="alert_preview" data-alert-severity="info">
+      <h2 id="alert-title">Panel hazır</h2>
+      <p id="alert-message">Merchant dashboard yüzeyi aktif.</p>
+    </section>
+    <!-- PIX2PI_320_ALERT_NOTIFICATION_PREVIEW_END -->
+
+    <!-- PIX2PI_320_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card">
+      <h2>Runtime data contract</h2>
+      <p>Snapshot endpoint: <strong>/api/panel/dashboard/snapshot</strong></p>
+      <p>Fallback snapshot: frontend safe mode.</p>
+    </section>
+    <!-- PIX2PI_320_RUNTIME_DATA_CONTRACT_END -->
+  </main>
+  <!-- PIX2PI_320_DASHBOARD_APP_SHELL_END -->
+
+  <script src="/assets/dashboard/merchant-dashboard-runtime.js"></script>
+  <script>
+    Pix2piMerchantDashboard.bootDashboard();
+  </script>
+</body>
+</html>

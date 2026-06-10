@@ -1,0 +1,9 @@
+probe_name	probe_type	category	service_hint	host	port	path	purpose	result	status_code	reachable	body_policy	note
+tempo_ready	http	trace_core	tempo	127.0.0.1	3200	/ready	readiness	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+tempo_metrics	http	trace_core	tempo	127.0.0.1	3200	/metrics	metrics_body_not_printed	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+tempo_search	http	trace_core	tempo	127.0.0.1	3200	/api/search	query_body_not_printed	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+tempo_status	http	trace_core	tempo	127.0.0.1	3200	/status	metadata_body_not_printed	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+otel_http_root	http	otel_collector	otel_http	127.0.0.1	4318	/	http_metadata	READY_OR_AUTH_REQUIRED	404	YES	body_not_printed	metadata_only
+otel_http_traces	http	otel_collector	otel_http	127.0.0.1	4318	/v1/traces	trace_ingest_metadata	READY_OR_AUTH_REQUIRED	405	YES	body_not_printed	metadata_only
+otel_grpc_tcp	tcp	otel_collector	otel_grpc	127.0.0.1	4317	tcp	tcp_reachability	TCP_REACHABLE	000	YES	body_not_printed	metadata_only
+grafana_health_for_traces	http	trace_explore_surface	grafana	127.0.0.1	3001	/api/health	health	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only

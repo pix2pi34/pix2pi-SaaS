@@ -1,0 +1,92 @@
+{
+  "template_id": "tenant_config_template.controlled_pilot.v1",
+  "template_status": "READY",
+  "tenant_identity": {
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT",
+    "tenant_opening_type": "PILOT",
+    "tenant_status": "TRIAL",
+    "tenant_code_prefix": "PILOT"
+  },
+  "locale": {
+    "timezone": "Europe/Istanbul",
+    "language": "tr-TR",
+    "default_currency": "TRY",
+    "country": "TR"
+  },
+  "isolation": {
+    "strategy": "TENANT_ID_REQUIRED",
+    "tenant_id_required": true,
+    "schema_guard_required": true,
+    "rls_ready_required": true,
+    "cross_tenant_access_allowed": false
+  },
+  "module_flags": {
+    "erp_core_enabled": true,
+    "import_enabled": true,
+    "reporting_enabled": true,
+    "operational_readmodel_enabled": true,
+    "uat_enabled": true,
+    "support_enabled": true,
+    "payment_live_enabled": false,
+    "e_document_live_enabled": false,
+    "bank_live_enabled": false,
+    "pos_provider_live_enabled": false
+  },
+  "pilot_limits": {
+    "max_admin_user_count": 3,
+    "max_operator_user_count": 10,
+    "max_accountant_user_count": 5,
+    "max_customer_count": 500,
+    "max_supplier_count": 250,
+    "max_product_count": 5000,
+    "max_stock_entry_count": 20000,
+    "max_finance_document_count": 5000,
+    "max_e_document_export_count": 1000,
+    "max_import_batch_count": 25,
+    "max_uat_case_count": 100,
+    "max_support_ticket_count": 100,
+    "max_open_issue_count": 50,
+    "max_critical_issue_count": 0
+  },
+  "import_policy": {
+    "dry_run_required": true,
+    "commit_requires_approval": true,
+    "rollback_plan_required": true,
+    "validation_report_required": true
+  },
+  "uat_policy": {
+    "uat_scope_required": true,
+    "uat_signoff_required": true,
+    "critical_issue_zero_required": true
+  },
+  "support_policy": {
+    "support_channel_required": true,
+    "issue_escalation_required": true,
+    "triage_required": true
+  },
+  "rollback_policy": {
+    "rollback_guard_required": true,
+    "cutover_guard_required": true,
+    "backup_required": true
+  },
+  "security_policy": {
+    "tenant_admin_required": true,
+    "role_baseline_required": true,
+    "audit_log_required": true,
+    "secret_plaintext_forbidden": true
+  },
+  "audit_policy": {
+    "audit_evidence_required": true,
+    "counter_based_final_status_required": true,
+    "hardcoded_ok_forbidden": true
+  },
+  "external_policy": {
+    "live_external_policy_status": "CLOSED",
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

@@ -1,0 +1,45 @@
+{
+  "test_name": "faz_5_18_6_4_sales_ops_raporu_test",
+  "phase": "FAZ_5_18_6_4",
+  "expected": {
+    "required_section_count": 9,
+    "required_domain_count": 7,
+    "internal_sales_ops_report_ready": true,
+    "production_report_enabled": false,
+    "real_customer_report_enabled": false,
+    "external_bi_export_enabled": false,
+    "auto_executive_email_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_section_keys": [
+    "crm_pipeline_summary",
+    "quote_sales_summary",
+    "conversion_funnel_summary",
+    "activity_sla_summary",
+    "forecast_pipeline_summary",
+    "lost_reason_summary",
+    "owner_performance_summary",
+    "audit_evidence_summary",
+    "mrr_arr_report_deferred_marker"
+  ],
+  "must_have_domains": [
+    "CRM_STAGE",
+    "QUOTE_SALES",
+    "CONVERSION",
+    "ACTIVITY",
+    "FORECAST",
+    "AUDIT_EVIDENCE",
+    "NEXT_PRIORITY"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_date_window",
+    "requires_crm_stage_source",
+    "requires_quote_sales_source",
+    "requires_pipeline_metrics",
+    "requires_conversion_metrics",
+    "requires_forecast_metrics",
+    "blocks_production_report"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 216,
+  "step": "FAZ_4_16_5_4",
+  "title": "Pilot rollback kararı akışı",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "215_FAZ_4_16_5_2_GUNLUK_PILOT_REVIEW"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "rollback_decision_policy": {
+    "rollback_decision_status_required": "READY",
+    "rollback_decision_mode_required": "CONTROLLED_PILOT",
+    "required_rule_status_required": "READY",
+    "missing_rule_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "daily_pilot_review_status_required": "PASS",
+    "rollback_signal_status_required": "CLEAR",
+    "rollback_decision_result_required": "NO_ROLLBACK_REQUIRED",
+    "owner_approval_matrix_status_required": "READY",
+    "recovery_validation_plan_status_required": "READY",
+    "communication_precheck_status_required": "READY",
+    "decision_log_status_required": "READY",
+    "no_real_rollback_execution_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_decision_rules": [
+    "ROLLBACK_SIGNAL_INTAKE",
+    "P0_P1_TRIGGER_MATRIX",
+    "OPEN_BLOCKER_ASSESSMENT",
+    "DATA_SAFETY_PRECHECK",
+    "TENANT_IMPACT_ASSESSMENT",
+    "OWNER_APPROVAL_MATRIX",
+    "NO_ROLLBACK_DECISION_PATH",
+    "ROLLBACK_CANDIDATE_DECISION_PATH",
+    "COMMUNICATION_PRECHECK",
+    "RECOVERY_VALIDATION_PLAN",
+    "EVIDENCE_ATTACHMENT_RULE",
+    "DECISION_LOG_LINK",
+    "CLOSED_PROVIDER_POLICY_REVIEW",
+    "REAL_ROLLBACK_EXECUTION_CLOSED_GATE"
+  ],
+  "rollback_decision_artifact": "configs/faz4r/pilot_rollback_decision_flow.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "217_FAZ_4_16_5_6_PILOT_OPERATIONS_TESTLERI"
+  ]
+}

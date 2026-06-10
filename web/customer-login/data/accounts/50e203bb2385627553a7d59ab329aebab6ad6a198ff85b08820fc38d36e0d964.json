@@ -1,0 +1,20 @@
+{
+  "marker": "CUSTOMER_LOGIN_ACTIVE_ACCOUNT_MARKER",
+  "email": "digibilisim@gmail.com",
+  "status": "ACTIVE",
+  "login_allowed": true,
+  "mail_code_allowed": true,
+  "tenant_id": "tenant_digi-bilisim_50e203bb",
+  "tenant_slug": "digi-bilisim",
+  "tenant_name": "Digi Bilişim",
+  "owner_name": "Digi Bilişim Yetkili",
+  "role": "OWNER_ADMIN",
+  "source_application_file": "CR-20260517-E5B862C2.json",
+  "source_application_id": "CR-20260517-E5B862C2",
+  "source_status": "ACTIVE",
+  "activated_at": "2026-05-16T22:12:36.258Z",
+  "activated_by": "PIX2PI_OWNER_ADMIN",
+  "tenant_create_real_create": false,
+  "tenant_create_mode": "REAL_EMAIL_LOGIN_ACCOUNT_ACTIVATION",
+  "handoff_marker": "REGISTER_APPROVAL_HANDOFF_MARKER"
+}

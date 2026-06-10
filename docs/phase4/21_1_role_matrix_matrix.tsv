@@ -1,0 +1,22 @@
+gate	status	note
+previous_14	PASS	migration lifecycle prerequisite
+previous_15	PASS	readmodel/reporting prerequisite
+previous_18	PASS	inventory prerequisite
+previous_19	PASS	panel/admin prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=6
+tenant_safety	PASS	tenant_id=6
+role	PASS	role_code=4 permission_code=4
+permission	PASS	resource_area=3 action_code=3
+audit_ready	PASS	requires_audit=3 high_risk=2
+boundary	PASS	support=3 super_admin=2 cross_tenant=3
+indexes	PASS	index_count=15
+down_migration	PASS	drop_table_count=6
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=37
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+rbac_enforcement_executed	NO	permission guard later
+audit_log_write_executed	NO	audit runtime later
+query_text_printed	NO	secret-safe report

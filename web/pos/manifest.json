@@ -1,0 +1,51 @@
+{
+  "name": "Pix2pi POS",
+  "short_name": "Pix2pi POS",
+  "description": "Pix2pi mobile-ready POS PWA surface",
+  "start_url": "/pwa/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#111827",
+  "background_color": "#0f172a",
+  "lang": "tr-TR",
+  "dir": "ltr",
+  "categories": [
+    "business",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "/assets/pwa/icon-192-placeholder.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/pwa/icon-512-placeholder.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Satış",
+      "short_name": "Satış",
+      "description": "POS satış ekranı",
+      "url": "/sale/"
+    },
+    {
+      "name": "Checkout",
+      "short_name": "Ödeme",
+      "description": "Sepet / ödeme akışı",
+      "url": "/checkout/"
+    },
+    {
+      "name": "Offline",
+      "short_name": "Offline",
+      "description": "Offline queue hazırlığı",
+      "url": "/offline/"
+    }
+  ]
+}

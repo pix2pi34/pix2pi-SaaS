@@ -1,0 +1,6 @@
+[Unit]
+Description=Pix2pi Certbot Renew Foundation
+
+[Service]
+Type=oneshot
+ExecStart=/root/pix2pi/pix2pi-SaaS/deploy/edge/scripts/certbot_renew.sh /root/pix2pi/pix2pi-SaaS/deploy/edge/env/lvl10_edge_security.env.example

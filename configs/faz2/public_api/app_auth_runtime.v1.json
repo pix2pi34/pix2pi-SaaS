@@ -1,0 +1,42 @@
+{
+  "phase": "FAZ 2-7.8.3",
+  "runtime": "app_auth",
+  "require_tenant": true,
+  "app_statuses": [
+    "ACTIVE",
+    "SUSPENDED",
+    "REVOKED"
+  ],
+  "relation_statuses": [
+    "ACTIVE",
+    "REVOKED"
+  ],
+  "environments": [
+    "SANDBOX",
+    "PRODUCTION"
+  ],
+  "allowed_scopes": [
+    "read",
+    "write",
+    "webhook:read",
+    "webhook:write",
+    "report:read",
+    "admin:limited"
+  ],
+  "guards": [
+    "tenant_required",
+    "app_required",
+    "api_key_required",
+    "cross_tenant_denied",
+    "environment_match_required",
+    "active_app_required",
+    "active_api_key_required",
+    "relation_required",
+    "requested_scope_must_be_effective_scope"
+  ],
+  "bridges": {
+    "api_key_relation": true,
+    "scope_inheritance": "api_key_scopes_must_be_subset_of_app_allowed_scopes"
+  },
+  "next_ready": "FAZ_2_7_8_4_QUOTA_RATE_LIMIT_RUNTIME"
+}

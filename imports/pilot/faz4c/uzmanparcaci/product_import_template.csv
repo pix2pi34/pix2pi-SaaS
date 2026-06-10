@@ -1,0 +1,2 @@
+product_name,sku,category,unit,initial_stock_qty,sale_price,purchase_price,currency,oem_code,equivalent_code,vehicle_fitment_note,brand,part_group,barcode,notes
+Ornek Fren Balatasi,SKU-0001,Fren Sistemi,ADET,10,1000,700,TRY,OEM-ORNEK-001,EQ-ORNEK-001,Renault Megane / Clio uyum notu,Ornek Marka,Fren,,Pilot ornek satir

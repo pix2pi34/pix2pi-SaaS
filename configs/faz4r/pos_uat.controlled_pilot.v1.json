@@ -1,0 +1,140 @@
+{
+  "uat_id": "pos_uat.controlled_pilot.v1",
+  "uat_status": "READY",
+  "uat_mode": "CONTROLLED_PILOT",
+  "pos_mode": "DRY_RUN",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT"
+  },
+  "chain_dependencies": {
+    "198_FAZ_4_16_2_1_CARI_IMPORT": "PASS",
+    "199_FAZ_4_16_2_2_URUN_STOK_IMPORT": "PASS",
+    "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT": "PASS",
+    "203_FAZ_4_16_2_6_IMPORT_TESTLERI": "PASS",
+    "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT": "PASS"
+  },
+  "uat_cases": [
+    {
+      "code": "POS_LOGIN_ACCESS",
+      "required": true,
+      "status": "PASS",
+      "area": "ACCESS",
+      "evidence_ref": "docs/faz4r/evidence/pos_login_access.md"
+    },
+    {
+      "code": "POS_TENANT_CONTEXT_VISIBLE",
+      "required": true,
+      "status": "PASS",
+      "area": "TENANT",
+      "evidence_ref": "docs/faz4r/evidence/pos_tenant_context_visible.md"
+    },
+    {
+      "code": "POS_CASHIER_SESSION_OPEN",
+      "required": true,
+      "status": "PASS",
+      "area": "SESSION",
+      "evidence_ref": "docs/faz4r/evidence/pos_cashier_session_open.md"
+    },
+    {
+      "code": "POS_PRODUCT_SEARCH_SCAN",
+      "required": true,
+      "status": "PASS",
+      "area": "PRODUCT",
+      "evidence_ref": "docs/faz4r/evidence/pos_product_search_scan.md"
+    },
+    {
+      "code": "POS_CART_OPERATION",
+      "required": true,
+      "status": "PASS",
+      "area": "CART",
+      "evidence_ref": "docs/faz4r/evidence/pos_cart_operation.md"
+    },
+    {
+      "code": "POS_SALE_DRY_RUN",
+      "required": true,
+      "status": "PASS",
+      "area": "SALE",
+      "evidence_ref": "docs/faz4r/evidence/pos_sale_dry_run.md"
+    },
+    {
+      "code": "POS_RETURN_DRY_RUN",
+      "required": true,
+      "status": "PASS",
+      "area": "RETURN",
+      "evidence_ref": "docs/faz4r/evidence/pos_return_dry_run.md"
+    },
+    {
+      "code": "POS_PAYMENT_PROVIDER_CLOSED_GATE",
+      "required": true,
+      "status": "PASS",
+      "area": "PAYMENT",
+      "evidence_ref": "docs/faz4r/evidence/pos_payment_provider_closed_gate.md"
+    },
+    {
+      "code": "POS_STOCK_MOVEMENT_PREVIEW",
+      "required": true,
+      "status": "PASS",
+      "area": "STOCK",
+      "evidence_ref": "docs/faz4r/evidence/pos_stock_movement_preview.md"
+    },
+    {
+      "code": "POS_OFFLINE_QUEUE_PREVIEW",
+      "required": true,
+      "status": "PASS",
+      "area": "OFFLINE",
+      "evidence_ref": "docs/faz4r/evidence/pos_offline_queue_preview.md"
+    },
+    {
+      "code": "POS_RECEIPT_PREVIEW",
+      "required": true,
+      "status": "PASS",
+      "area": "RECEIPT",
+      "evidence_ref": "docs/faz4r/evidence/pos_receipt_preview.md"
+    },
+    {
+      "code": "POS_IMPORT_REFERENCE_VISIBLE",
+      "required": true,
+      "status": "PASS",
+      "area": "IMPORT",
+      "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_6_IMPORT_TESTLERI_REAL_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "code": "POS_AUDIT_EVIDENCE_LINK_VIEW",
+      "required": true,
+      "status": "PASS",
+      "area": "AUDIT",
+      "evidence_ref": "docs/faz4r/evidence/pos_audit_evidence_link_view.md"
+    },
+    {
+      "code": "CLOSED_EXTERNAL_POLICY_GATE",
+      "required": true,
+      "status": "PASS",
+      "area": "POLICY",
+      "evidence_ref": "docs/faz4r/evidence/closed_external_policy_gate.md"
+    }
+  ],
+  "summary": {
+    "total_case_count": 14,
+    "pass_count": 14,
+    "fail_count": 0,
+    "required_fail_count": 0,
+    "optional_warn_count": 0,
+    "critical_issue_count": 0,
+    "tenant_context_status": "PASS",
+    "cashier_session_status": "PASS",
+    "sale_dry_run_status": "PASS",
+    "payment_provider_status": "CLOSED",
+    "uat_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

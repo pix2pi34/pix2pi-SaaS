@@ -1,0 +1,12 @@
+gate	status	note
+previous_14_1	PASS	migration chain prerequisite
+manifest_file	PASS	rows=12
+scope_coverage	PASS	global=4 tenant_default=4 tenant_specific=4
+required_seed_keys	PASS	missing=0
+idempotency	PASS	missing=0
+rollback	PASS	missing=0
+tenant_safety	PASS	fail=0
+apply_gate_required	PASS	not_required=0
+db_mutation	NO	standard only
+seed_apply_executed	NO	standard only
+query_text_printed	NO	secret-safe report

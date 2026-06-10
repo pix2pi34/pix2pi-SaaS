@@ -1,0 +1,73 @@
+# FAZ 7-8P.6 Paraşüt API Client Real Implementation Audit
+
+Generated at: 2026-05-02T04:07:41Z
+
+- 7-8P.6.0.1 Documentation artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.0.2 Config artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.0.3 API client code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.0.4 API client test code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.0.5 Scope document title IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.1.0 Scope doc API client contract IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.0 Scope doc operation builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.3.0 Scope doc dry-run response IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.0 Scope doc policy bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.5.0 Scope doc observability bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.6.0 Scope doc final closure IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.0.6 Config provider key IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.0.7 Config real provider API disabled IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.0.8 Config real HTTP client disabled IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.0.9 Config plaintext token resolve disabled IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.0.10 Config dependency on token exchange IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.1.1 Config access token ref required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.1.2 Config tenant-safe access token ref IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.1.3 Config real API closed IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.1 Config pull invoice operation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.2 Config push invoice operation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.3 Config sync customer operation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.4 Config sync product operation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.5 Config verify webhook operation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.3.1 Config real HTTP call false IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.3.2 Config simulated HTTP status IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.3.3 Config plaintext token usage denied IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.1 Config timeout policy IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.2 Config rate limit policy IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.3 Config retry policy IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.4 Config unknown error DLQ IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.5.1 Config audit event required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.5.2 Config operation metrics required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.5.3 Config provider transaction trace IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.1.4 Code API client contract request IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.1.5 Code API client contract builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.1.6 Code access token ref field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.1.7 Code real API blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.6 Code operation request model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.7 Code operation request builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.8 Code endpoint contract bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.9 Code idempotency key field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.10 Code payload guard IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.3.4 Code dry-run provider response IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.3.5 Code dry-run executor IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.3.6 Code real HTTP call flag IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.3.7 Code plaintext token used flag IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.3.8 Code provider transaction trace IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.5 Code policy bridge model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.6 Code policy bridge builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.7 Code rate limit field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.8 Code retry policy bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.9 Code operation failure evaluator IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.10 Code provider error mapping bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.11 Code retry decision bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.5.4 Code operation audit recorder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.5.5 Code connector audit event bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.5.6 Code observability record operation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.6.1 Code final readiness gate IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.6.2 Code final readiness decision IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.6.3 Code real API blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.6.4 Code real HTTP blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.6.5 Code plaintext token blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.1.9 Test API client contract IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2.11 Test operation request builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.3.9 Test dry-run provider response IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4.12 Test policy bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.5.7 Test observability bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.6.6 Test final closure IMPLEMENTED_OR_PRESENT / OK

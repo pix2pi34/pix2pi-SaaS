@@ -1,0 +1,22 @@
+gate	status	note
+previous_21_4	PASS	tenant access checks prerequisite
+contract	PASS	inputs=25 outputs=20 decisions=16
+rule_manifest	PASS	rule_count=13
+reason_manifest	PASS	reason_count=10
+decision_manifest	PASS	decision_count=16
+tenant_safety	PASS	tenant_refs=39 deny_refs=78
+boundary	PASS	support=109 super_admin=67 boundary=46
+break_glass	PASS	break_glass=28 approval=18 timebox=24
+audit_ready	PASS	audit_refs=29 high_risk=14
+no_apply	PASS	contract only
+secret_safety	PASS	secret_hits=0
+db_mutation	NO	contract only
+db_apply_executed	NO	contract only
+migration_created	NO	contract only
+support_access_executed	NO	contract only
+super_admin_access_executed	NO	contract only
+break_glass_executed	NO	contract only
+permission_guard_executed	NO	contract only
+rbac_enforcement_executed	NO	contract only
+audit_log_write_executed	NO	contract only
+query_text_printed	NO	secret-safe report

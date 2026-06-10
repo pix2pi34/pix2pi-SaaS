@@ -1,0 +1,203 @@
+{
+  "catalog_code": "pix2pi_support_sla_incident_policy_v1",
+  "phase": "FAZ_5",
+  "step": "5-7",
+  "depends_on": [
+    "pix2pi_packages_pricing_v1",
+    "pix2pi_entitlement_matrix_v1",
+    "pix2pi_subscription_billing_policy_v1",
+    "pix2pi_tenant_lifecycle_policy_v1",
+    "pix2pi_legal_compliance_policy_v1"
+  ],
+  "support_channels": [
+    {
+      "code": "email_support",
+      "name_tr": "E-posta destek",
+      "enabled": true,
+      "available_for": ["starter", "pro", "enterprise", "accountant"]
+    },
+    {
+      "code": "whatsapp_phone_limited",
+      "name_tr": "WhatsApp / telefon sınırlı destek",
+      "enabled": true,
+      "available_for": ["pro", "enterprise", "accountant"],
+      "starter_default": false
+    },
+    {
+      "code": "in_panel_ticket",
+      "name_tr": "Panel içi destek talebi",
+      "enabled_future": true,
+      "must_include_tenant": true,
+      "must_include_user": true,
+      "must_include_package": true
+    },
+    {
+      "code": "enterprise_private_channel",
+      "name_tr": "Enterprise özel kanal",
+      "enabled": true,
+      "contract_based": true
+    },
+    {
+      "code": "accountant_support_channel",
+      "name_tr": "Muhasebeci destek kanalı",
+      "enabled": true,
+      "company_based_support": true
+    }
+  ],
+  "sla_levels": {
+    "demo": {
+      "level": "best_effort",
+      "guaranteed_sla": false
+    },
+    "starter": {
+      "level": "standard",
+      "guaranteed_sla": false,
+      "first_response_target_hours": 48
+    },
+    "pro": {
+      "level": "priority",
+      "guaranteed_sla": false,
+      "first_response_target_hours": 24
+    },
+    "enterprise": {
+      "level": "contract_sla",
+      "guaranteed_sla": true,
+      "first_response_target_hours": "contract_based",
+      "resolution_target": "contract_based"
+    },
+    "accountant": {
+      "level": "accountant_operations",
+      "guaranteed_sla": false,
+      "first_response_target_hours": 24
+    }
+  },
+  "incident_classes": [
+    {
+      "code": "P0",
+      "name_tr": "Kritik sistem kesintisi",
+      "severity": "critical",
+      "customer_impact": "system_wide_or_multi_tenant",
+      "requires_immediate_escalation": true
+    },
+    {
+      "code": "P1",
+      "name_tr": "Finansal / veri riski",
+      "severity": "high",
+      "customer_impact": "financial_or_data_integrity_risk",
+      "requires_immediate_escalation": true
+    },
+    {
+      "code": "P2",
+      "name_tr": "İş akışı bozulması",
+      "severity": "medium",
+      "customer_impact": "business_workflow_affected",
+      "requires_immediate_escalation": false
+    },
+    {
+      "code": "P3",
+      "name_tr": "Düşük öncelikli hata",
+      "severity": "low",
+      "customer_impact": "minor_issue",
+      "requires_immediate_escalation": false
+    },
+    {
+      "code": "P4",
+      "name_tr": "Soru / istek",
+      "severity": "request",
+      "customer_impact": "question_or_feature_request",
+      "requires_immediate_escalation": false
+    }
+  ],
+  "escalation_matrix": {
+    "first_triage": {
+      "required_fields": [
+        "tenant_id",
+        "user_id",
+        "package_code",
+        "incident_class",
+        "impact_area"
+      ]
+    },
+    "technical_review": {
+      "enabled": true,
+      "applies_to": ["P0", "P1", "P2"]
+    },
+    "security_escalation": {
+      "enabled": true,
+      "triggers": [
+        "auth_bypass",
+        "tenant_isolation_risk",
+        "secret_leak",
+        "suspicious_access"
+      ]
+    },
+    "financial_escalation": {
+      "enabled": true,
+      "triggers": [
+        "wrong_accounting_record",
+        "invoice_issue",
+        "payment_issue",
+        "tdhp_export_issue"
+      ]
+    },
+    "customer_communication": {
+      "enabled": true,
+      "required_for": ["P0", "P1"],
+      "includes_resolution_notice": true
+    },
+    "closure_postmortem": {
+      "enabled": true,
+      "required_for": ["P0", "P1"],
+      "root_cause_required": true,
+      "prevention_note_required": true
+    }
+  },
+  "support_templates": [
+    {
+      "code": "ticket_received",
+      "name_tr": "Talep alındı mesajı",
+      "required": true
+    },
+    {
+      "code": "outage_notice",
+      "name_tr": "Kesinti bildirimi",
+      "required_for": ["P0", "P1"]
+    },
+    {
+      "code": "resolution_notice",
+      "name_tr": "Çözüm bildirimi",
+      "required": true
+    },
+    {
+      "code": "planned_maintenance_notice",
+      "name_tr": "Planlı bakım bildirimi",
+      "required": true
+    },
+    {
+      "code": "delay_notice",
+      "name_tr": "Gecikme bildirimi",
+      "required": true
+    }
+  ],
+  "package_support_map": {
+    "demo": "best_effort",
+    "starter": "standard",
+    "pro": "priority",
+    "enterprise": "contract_sla",
+    "accountant": "accountant_operations"
+  },
+  "out_of_scope": [
+    "real_ticket_system_setup",
+    "live_call_center_setup",
+    "runtime_incident_dashboard",
+    "public_status_page_publish",
+    "automatic_sla_timer_worker",
+    "automatic_customer_notification_service",
+    "postmortem_portal"
+  ],
+  "seal": {
+    "FAZ_5_7_SUPPORT_SLA_STATUS": "PASS",
+    "FAZ_5_7_SUPPORT_SLA_SEAL_STATUS": "SEALED",
+    "FAZ_5_8_READY": "YES"
+  }
+}

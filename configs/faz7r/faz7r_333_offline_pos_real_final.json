@@ -1,0 +1,24 @@
+{
+  "step": "FAZ 7-R / 333",
+  "name": "Offline POS real final",
+  "tenantId": "tenant-api-e2e-success",
+  "offlineQueueId": "offline-queue-333-20260513_202008",
+  "syncSaleId": "sale-333-sync-20260513_202008",
+  "routes": [
+    "/offline-pos/",
+    "POST /api/pos/offline/queue-sale",
+    "POST /api/pos/offline/sync",
+    "POST /api/pos/offline/status"
+  ],
+  "requiredEvidence": [
+    "offline queue DB table",
+    "offline sale draft DB write",
+    "offline payment placeholder",
+    "online sync to pos_sales",
+    "idempotency guard",
+    "stock conflict",
+    "tenant/user/register guard",
+    "rollback no partial write",
+    "offline POS route smoke"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "phase": "FAZ_5_18_2_5",
+  "title": "İade / İptal Ticari Akışı",
+  "status": "READY",
+  "control_surface": "REFUND_CANCEL_COMMERCIAL_FLOW",
+  "inputs": [
+    "FAZ_5_18_2_2_FATURALAMA_AKISI",
+    "FAZ_5_18_2_3_TAHSILAT_BASARISIZ_ODEME_AKISI",
+    "FAZ_7_5P_PAYMENT_MODULE_PROVIDER_ADAPTER_HANDOFF",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "REFUND_REQUEST_VALIDATION",
+    "REFUND_ELIGIBILITY_POLICY",
+    "REFUND_AMOUNT_CALCULATION",
+    "CANCEL_REQUEST_VALIDATION",
+    "CREDIT_NOTE_DEFERRED_MARKER",
+    "PAYMENT_REFUND_PROVIDER_DEFERRED_MARKER",
+    "TENANT_ENTITLEMENT_ADJUSTMENT_POLICY",
+    "MANUAL_APPROVAL_QUEUE",
+    "ACCOUNTING_REVERSAL_HANDOFF",
+    "CUSTOMER_NOTIFICATION_BLOCK_POLICY"
+  ],
+  "gates": {
+    "internal_refund_cancel_flow_ready": true,
+    "production_refund_enabled": false,
+    "real_money_refund_enabled": false,
+    "auto_cancel_enabled": false,
+    "auto_customer_notification_enabled": false,
+    "provider_live_refund_deferred": true,
+    "e_document_refund_cancel_deferred": true,
+    "tenant_shutdown_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

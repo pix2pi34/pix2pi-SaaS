@@ -1,0 +1,59 @@
+{
+  "schema_version": "entitlement_feature_gate.v1",
+  "phase": "FAZ_7",
+  "step": "7-3",
+  "runtime_status": "READY",
+  "source_catalog": "configs/faz7/product_plan_catalog.v1.json",
+  "next_step": "7-4 Commercial Account / Subscription Runtime",
+  "required_context": {
+    "tenant_id_required": true,
+    "user_id_required": true,
+    "plan_code_required": true
+  },
+  "decision_model": {
+    "allow_status": "ALLOW",
+    "deny_status": "DENY",
+    "reason_codes": [
+      "ALLOW_FEATURE_INCLUDED",
+      "ALLOW_LIMIT_AVAILABLE",
+      "DENY_TENANT_REQUIRED",
+      "DENY_USER_REQUIRED",
+      "DENY_PLAN_REQUIRED",
+      "DENY_PLAN_UNKNOWN",
+      "DENY_FEATURE_NOT_INCLUDED",
+      "DENY_LIMIT_UNKNOWN",
+      "DENY_LIMIT_EXCEEDED"
+    ]
+  },
+  "gated_features": [
+    "erp_core",
+    "pos_ready",
+    "reporting_basic",
+    "reporting_advanced",
+    "api_access_basic",
+    "api_access_advanced",
+    "marketplace_discovery",
+    "accountant_portal",
+    "integration_catalog",
+    "webhook_access",
+    "commercial_ops"
+  ],
+  "gated_limits": [
+    "users",
+    "tenants",
+    "api_monthly_requests",
+    "monthly_exports",
+    "accountant_firms",
+    "integrations"
+  ],
+  "audit_fields": [
+    "tenant_id",
+    "user_id",
+    "plan_code",
+    "feature_code",
+    "limit_code",
+    "decision",
+    "reason_code",
+    "reason_message"
+  ]
+}

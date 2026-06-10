@@ -1,0 +1,36 @@
+gate	status	note
+previous_16_1	PASS	pilot baseline prerequisite
+tenant_readiness_catalog	PASS	items=14 critical=6
+role_permission_matrix	PASS	roles=10 audit=10
+onboarding_owner_matrix	PASS	owners=12 blockers=12
+evidence_acceptance_matrix	PASS	evidence=13 blockers=12
+training_support_plan	PASS	training=8 attendance=8
+no_runtime_change	PASS	no tenant/user/db/api/ui/event changed
+no_config_change	PASS	no config/env/nginx/firewall changed
+secret_safe	PASS	no secrets/customer private data printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+tenant_created	NO	contract only
+user_created	NO	contract only
+password_created	NO	contract only
+token_created	NO	contract only
+ui_code_changed	NO	contract only
+api_route_created	NO	contract only
+api_implementation_changed	NO	contract only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+event_published	NO	contract only
+event_consumed	NO	contract only
+notification_sent	NO	contract only
+customer_private_data_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report

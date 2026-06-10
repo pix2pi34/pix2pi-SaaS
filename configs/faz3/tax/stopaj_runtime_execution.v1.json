@@ -1,0 +1,63 @@
+{
+  "phase": "FAZ_3_10_2_2_STOPAJ_RUNTIME_EXECUTION",
+  "runtime": "stopaj_runtime_execution",
+  "runtime_enabled": true,
+  "active_rule_version": "TR_STOPAJ_2026_V1",
+  "default_currency_code": "TRY",
+  "min_rate_bps": 0,
+  "max_rate_bps": 4000,
+  "audit_required": true,
+  "idempotency_required": true,
+  "allowed_document_types": [
+    "PURCHASE_INVOICE",
+    "EXPENSE_VOUCHER",
+    "SELF_EMPLOYMENT_RECEIPT",
+    "RENT_ACCRUAL",
+    "CUSTOM"
+  ],
+  "allowed_subjects": [
+    "RENT",
+    "PROFESSIONAL_SERVICE",
+    "SELF_EMPLOYMENT",
+    "FREELANCE",
+    "CONSTRUCTION",
+    "DIVIDEND",
+    "CUSTOM"
+  ],
+  "rule_examples": [
+    {
+      "rule_id": "STOPAJ-RENT-2026",
+      "rule_version": "TR_STOPAJ_2026_V1",
+      "subject": "RENT",
+      "rate_bps": 2000,
+      "account_code": "360.01",
+      "declaration_code": "STOPAJ_RENT",
+      "exemption_allowed": true
+    },
+    {
+      "rule_id": "STOPAJ-PROF-2026",
+      "rule_version": "TR_STOPAJ_2026_V1",
+      "subject": "PROFESSIONAL_SERVICE",
+      "rate_bps": 2000,
+      "account_code": "360.02",
+      "declaration_code": "STOPAJ_PROFESSIONAL_SERVICE",
+      "exemption_allowed": false
+    }
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "document_id_required": true,
+    "document_no_required": true,
+    "party_id_required": true,
+    "party_tax_no_required": true,
+    "gross_amount_positive_required": true,
+    "tax_base_positive_required": true,
+    "tax_base_cannot_exceed_gross": true,
+    "document_date_required": true,
+    "active_rule_version_required": true
+  },
+  "next_gate": "FAZ_3_10_2_3_TAX_EXEMPTION_RUNTIME_EXECUTION"
+}

@@ -1,0 +1,198 @@
+{
+  "valid_fixture": {
+    "approval_inbox_id": "approval_inbox.valid_fixture",
+    "approval_inbox_status": "READY",
+    "approval_inbox_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT",
+      "tenant_status": "PILOT_CLOSED"
+    },
+    "chain_dependencies": {
+      "235_FAZ_4_16_8_5_PILOT_CLOSURE_REPORT": "PASS"
+    },
+    "inbox_items": [
+      {"code": "APPROVAL_INBOX_SHELL", "required": true, "status": "READY", "area": "UI", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/approval-inbox/index.html"},
+      {"code": "TENANT_SCOPED_INBOX", "required": true, "status": "READY", "area": "TENANCY", "owner": "WEB_OWNER", "evidence_ref": "docs/faz4r/FAZ_4_17_1_APPROVAL_INBOX.md"},
+      {"code": "PENDING_APPROVAL_LIST", "required": true, "status": "READY", "area": "LIST", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/approval_inbox.controlled_pilot.v1.json"},
+      {"code": "APPROVAL_ITEM_METADATA", "required": true, "status": "READY", "area": "DATA", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/approval_inbox.controlled_pilot.v1.json"},
+      {"code": "PRIORITY_SLA_INDICATOR", "required": true, "status": "READY", "area": "SLA", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/approval-inbox/index.html"},
+      {"code": "STATUS_BADGE_MODEL", "required": true, "status": "READY", "area": "STATUS", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/approval-inbox/index.html"},
+      {"code": "ACTOR_ROLE_VISIBILITY", "required": true, "status": "READY", "area": "ROLE", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/approval_inbox.controlled_pilot.v1.json"},
+      {"code": "ACTION_BUTTON_STATE_MODEL", "required": true, "status": "READY", "area": "ACTION", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/approval-inbox/index.html"},
+      {"code": "APPROVAL_DETAIL_LINK_PLACEHOLDER", "required": true, "status": "READY", "area": "DETAIL", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/approval-inbox/index.html"},
+      {"code": "EMPTY_STATE", "required": true, "status": "READY", "area": "STATE", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/approval-inbox/index.html"},
+      {"code": "ERROR_STATE", "required": true, "status": "READY", "area": "STATE", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/approval-inbox/index.html"},
+      {"code": "REALTIME_PLACEHOLDER", "required": true, "status": "READY", "area": "REALTIME", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/approval-inbox/index.html"},
+      {"code": "AUDIT_TRACE_PLACEHOLDER", "required": true, "status": "READY", "area": "AUDIT", "owner": "SECURITY_OWNER", "evidence_ref": "web/faz4r/approval-inbox/index.html"},
+      {"code": "NO_MUTATION_GUARD", "required": true, "status": "READY", "area": "SAFETY", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/approval_inbox.controlled_pilot.v1.json"},
+      {"code": "EXTERNAL_POLICY_CLOSED_GATE", "required": true, "status": "READY", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "configs/faz4r/approval_inbox.controlled_pilot.v1.json"},
+      {"code": "UI_CHECKPOINT_HTML", "required": true, "status": "READY", "area": "WEB", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/approval-inbox/index.html"},
+      {"code": "FINAL_APPROVAL_INBOX_REPORT", "required": true, "status": "READY", "area": "REPORT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/evidence/FAZ_4_17_1_APPROVAL_INBOX_REAL_IMPLEMENTATION_AUDIT.md"}
+    ],
+    "approval_samples": [
+      {
+        "approval_id": "APPROVAL-PILOT-001",
+        "tenant_id": "pilot_tenant_001",
+        "title": "Pilot import validation approval",
+        "domain": "IMPORT",
+        "priority": "HIGH",
+        "status": "PENDING",
+        "sla_status": "ON_TRACK",
+        "requester_role": "OPERATIONS",
+        "approver_role": "TENANT_ADMIN",
+        "action_state": "DISABLED_PREVIEW_ONLY",
+        "detail_link": "#approval-detail-placeholder"
+      }
+    ],
+    "inbox_controls": {
+      "pilot_closure_status": "PASS",
+      "tenant_scope": "SINGLE_TENANT",
+      "role_visibility_status": "READY",
+      "action_state_status": "READY",
+      "filter_model_status": "READY",
+      "sort_model_status": "READY",
+      "empty_state_status": "READY",
+      "error_state_status": "READY",
+      "realtime_placeholder_status": "READY",
+      "audit_trace_placeholder_status": "READY",
+      "web_checkpoint_status": "READY",
+      "no_workflow_mutation": true,
+      "no_real_approval_execution": true,
+      "no_realtime_socket_connection": true,
+      "no_production_launch": true,
+      "no_live_external_provider_activation": true
+    },
+    "inbox_metrics": {
+      "total_item_count": 17,
+      "ready_item_count": 17,
+      "missing_item_count": 0,
+      "required_fail_count": 0,
+      "sample_approval_count": 1,
+      "enabled_action_count": 0,
+      "workflow_mutation_count": 0,
+      "real_approval_execution_count": 0,
+      "realtime_socket_connection_count": 0,
+      "production_launch_count": 0,
+      "live_external_provider_activation_count": 0,
+      "live_external_policy_status": "CLOSED"
+    },
+    "summary": {
+      "total_item_count": 17,
+      "ready_item_count": 17,
+      "missing_item_count": 0,
+      "required_fail_count": 0,
+      "tenant_scope": "SINGLE_TENANT",
+      "role_visibility_status": "READY",
+      "action_state_status": "READY",
+      "web_checkpoint_status": "READY",
+      "pilot_closure_status": "PASS",
+      "approval_inbox_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "production_launch": "CLOSED",
+      "workflow_mutation": "CLOSED",
+      "real_approval_execution": "CLOSED",
+      "realtime_socket_connection": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "approval_inbox_id": "approval_inbox.invalid_fixture",
+    "approval_inbox_status": "DRAFT",
+    "approval_inbox_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED",
+      "tenant_status": "UNKNOWN"
+    },
+    "chain_dependencies": {
+      "235_FAZ_4_16_8_5_PILOT_CLOSURE_REPORT": "FAIL"
+    },
+    "inbox_items": [
+      {"code": "APPROVAL_INBOX_SHELL", "required": true, "status": "MISSING", "area": "", "owner": "", "evidence_ref": ""},
+      {"code": "TENANT_SCOPED_INBOX", "required": true, "status": "READY", "area": "TENANCY", "owner": "WEB_OWNER", "evidence_ref": "x"},
+      {"code": "TENANT_SCOPED_INBOX", "required": true, "status": "READY", "area": "TENANCY", "owner": "WEB_OWNER", "evidence_ref": "x"}
+    ],
+    "approval_samples": [
+      {
+        "approval_id": "",
+        "tenant_id": "other_tenant",
+        "title": "Bad approval",
+        "domain": "IMPORT",
+        "priority": "HIGH",
+        "status": "APPROVED",
+        "sla_status": "BREACHED",
+        "requester_role": "",
+        "approver_role": "",
+        "action_state": "ENABLED",
+        "detail_link": ""
+      }
+    ],
+    "inbox_controls": {
+      "pilot_closure_status": "FAIL",
+      "tenant_scope": "MULTI_TENANT",
+      "role_visibility_status": "DRAFT",
+      "action_state_status": "DRAFT",
+      "filter_model_status": "DRAFT",
+      "sort_model_status": "DRAFT",
+      "empty_state_status": "DRAFT",
+      "error_state_status": "DRAFT",
+      "realtime_placeholder_status": "DRAFT",
+      "audit_trace_placeholder_status": "DRAFT",
+      "web_checkpoint_status": "DRAFT",
+      "no_workflow_mutation": false,
+      "no_real_approval_execution": false,
+      "no_realtime_socket_connection": false,
+      "no_production_launch": false,
+      "no_live_external_provider_activation": false
+    },
+    "inbox_metrics": {
+      "total_item_count": 99,
+      "ready_item_count": 99,
+      "missing_item_count": 1,
+      "required_fail_count": 1,
+      "sample_approval_count": 1,
+      "enabled_action_count": 1,
+      "workflow_mutation_count": 1,
+      "real_approval_execution_count": 1,
+      "realtime_socket_connection_count": 1,
+      "production_launch_count": 1,
+      "live_external_provider_activation_count": 1,
+      "live_external_policy_status": "OPEN"
+    },
+    "summary": {
+      "total_item_count": 99,
+      "ready_item_count": 99,
+      "missing_item_count": 99,
+      "required_fail_count": 99,
+      "tenant_scope": "MULTI_TENANT",
+      "role_visibility_status": "DRAFT",
+      "action_state_status": "DRAFT",
+      "web_checkpoint_status": "DRAFT",
+      "pilot_closure_status": "FAIL",
+      "approval_inbox_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "production_launch": "OPEN",
+      "workflow_mutation": "OPEN",
+      "real_approval_execution": "OPEN",
+      "realtime_socket_connection": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

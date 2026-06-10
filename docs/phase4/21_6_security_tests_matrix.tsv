@@ -1,0 +1,19 @@
+gate	status	note
+role_matrix	PASS	21.1 role matrix gates
+permission_guard	PASS	21.2 permission guard gates
+audit_event_model	PASS	21.3 audit event model gates
+tenant_access_checks	PASS	21.4 tenant access checks gates
+support_super_admin_boundary	PASS	21.5 support/super-admin boundary gates
+artifact_coverage	PASS	missing_artifacts=0
+no_apply	PASS	no_apply_failures=0
+secret_safety	PASS	secret_hits=0 query_hits=0
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_apply_executed	NO	evidence only
+permission_guard_executed	NO	evidence only
+tenant_access_check_executed	NO	evidence only
+support_access_executed	NO	evidence only
+super_admin_access_executed	NO	evidence only
+break_glass_executed	NO	evidence only
+audit_log_write_executed	NO	evidence only
+query_text_printed	NO	secret-safe report

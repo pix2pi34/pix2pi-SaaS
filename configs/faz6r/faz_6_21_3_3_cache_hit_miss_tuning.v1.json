@@ -1,0 +1,177 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "298",
+  "code": "FAZ_6_21_3_3",
+  "name": "Cache hit/miss tuning",
+  "depends_on": [
+    "FAZ_6_21_5_5"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "redis_mutation_allowed": false,
+  "cache_flush_allowed": false,
+  "cache_key_delete_allowed": false,
+  "cache_ttl_mutation_allowed": false,
+  "namespace_mutation_allowed": false,
+  "required_controls": [
+    "cost_performance_dependency_gate",
+    "cache_surface_inventory",
+    "hit_miss_metric_model",
+    "tenant_namespace_guard",
+    "ttl_tuning_policy",
+    "hot_key_review_policy",
+    "cache_bypass_review_policy",
+    "fallback_safety_policy",
+    "stale_data_guard",
+    "rate_limit_cache_guard",
+    "dry_run_tuning_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "cache_surfaces": [
+    {
+      "surface": "tenant_data_cache",
+      "risk_level": "medium",
+      "tenant_namespace_required": true,
+      "ttl_review_allowed": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "rate_limit_cache",
+      "risk_level": "high",
+      "tenant_namespace_required": true,
+      "ttl_review_allowed": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "session_cache",
+      "risk_level": "high",
+      "tenant_namespace_required": true,
+      "ttl_review_allowed": false,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "readmodel_cache",
+      "risk_level": "medium",
+      "tenant_namespace_required": true,
+      "ttl_review_allowed": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "public_asset_cache",
+      "risk_level": "low",
+      "tenant_namespace_required": false,
+      "ttl_review_allowed": true,
+      "mutation_allowed": false
+    }
+  ],
+  "metric_model": {
+    "required_metrics": [
+      "cache_hit_ratio",
+      "cache_miss_ratio",
+      "cache_eviction_count",
+      "cache_memory_usage",
+      "hot_key_candidates",
+      "ttl_missing_key_count",
+      "stale_read_warning_count",
+      "db_fallback_rate",
+      "tenant_namespace_distribution",
+      "rate_limit_cache_error_count"
+    ],
+    "minimum_observation_days": 7,
+    "requires_per_tenant_breakdown": true
+  },
+  "tuning_policy": {
+    "ttl_tuning_mode": "recommendation_only",
+    "hot_key_action_mode": "review_only",
+    "cache_bypass_action_mode": "review_only",
+    "fallback_safety_required": true,
+    "stale_data_guard_required": true,
+    "rate_limit_cache_guard_required": true
+  },
+  "guards": {
+    "tenant_namespace_guard": {
+      "enabled": true,
+      "block_if_key_without_tenant_namespace": true,
+      "required_for": [
+        "tenant_data_cache",
+        "rate_limit_cache",
+        "session_cache",
+        "readmodel_cache"
+      ]
+    },
+    "fallback_safety_policy": {
+      "enabled": true,
+      "block_if_db_load_risk_high": true,
+      "requires_db_cost_context": true
+    },
+    "stale_data_guard": {
+      "enabled": true,
+      "block_if_stale_data_risk_high": true,
+      "requires_domain_owner_review": true
+    },
+    "rate_limit_cache_guard": {
+      "enabled": true,
+      "block_if_rate_limit_bypass_risk": true,
+      "requires_security_owner_review": true
+    }
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "cache_flush_execute",
+      "cache_key_delete_execute",
+      "cache_ttl_change_execute",
+      "namespace_change_execute",
+      "rate_limit_cache_policy_change_execute",
+      "session_cache_policy_change_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "security_owner",
+      "data_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "redis_mutation_allowed": false,
+    "cache_flush_allowed": false,
+    "cache_key_delete_allowed": false,
+    "cache_ttl_mutation_allowed": false,
+    "namespace_mutation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "tuning_id",
+      "cache_surface",
+      "current_signal",
+      "recommended_action",
+      "expected_hit_ratio_impact",
+      "risk_level",
+      "tenant_namespace_guard_status",
+      "fallback_safety_status",
+      "stale_data_guard_status",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_cost_performance_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_redis_mutation_allowed": true,
+    "block_if_cache_flush_allowed": true,
+    "block_if_missing_tenant_namespace_guard": true,
+    "block_if_missing_fallback_safety": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_3_3_CACHE_HIT_MISS_TUNING_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="tr" data-phase="FAZ_3_13_6" data-screen="DOCUMENT_INTEGRATION_UI_TESTS_REPORT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi — Belge / Entegrasyon UI Testleri</title>
+  <style>
+    body{margin:0;background:#f8fafc;color:#0f172a;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{max-width:1180px;margin:0 auto;padding:28px}
+    .card{background:white;border:1px solid #e2e8f0;border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 18px 50px rgba(15,23,42,.12)}
+    h1{margin:0 0 8px;font-size:36px;letter-spacing:-.04em}
+    p{color:#64748b;line-height:1.5}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .pill{display:inline-flex;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800;background:#ecfdf5;color:#059669;border:1px solid rgba(5,150,105,.24)}
+    .info{background:#eff6ff;color:#2563eb;border-color:rgba(37,99,235,.24)}
+    .warn{background:#fff7ed;color:#d97706;border-color:rgba(217,119,6,.24)}
+    .fail{background:#fef2f2;color:#dc2626;border-color:rgba(220,38,38,.24)}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;border-bottom:1px solid #e2e8f0;padding:12px;font-size:14px}
+    th{color:#64748b;font-size:12px}
+    @media(max-width:820px){.grid{grid-template-columns:1fr}main{padding:14px}}
+  </style>
+</head>
+<body>
+<main>
+  <section class="card">
+    <span class="pill info">FAZ 3-13.6</span>
+    <h1>Belge / Entegrasyon UI Testleri</h1>
+    <p>174–175 belge entegrasyon yüzeyleri için static/read-only UI test raporu. Bu ekran production aktivasyonu yapmaz.</p>
+    <p data-tenant-guard="required">Tenant Guard: required</p>
+    <p data-firm-guard="required">Firm Guard: required</p>
+    <p data-correlation-guard="required">Correlation / Review Guard: required</p>
+    <p data-production-approved="false">Production: FALSE</p>
+  </section>
+
+  <section class="grid">
+    <div class="card"><span class="pill">Screens</span><h2>2/2</h2><p>174–175 kapsamı</p></div>
+    <div class="card"><span class="pill">Policy</span><h2>READ-ONLY</h2><p>Canlı aksiyon yok</p></div>
+    <div class="card"><span class="pill">Audit</span><h2>HASH</h2><p>Evidence izleri zorunlu</p></div>
+    <div class="card"><span class="pill warn">Next</span><h2>177</h2><p>Retry / Cancel / Resend</p></div>
+  </section>
+
+  <section class="card">
+    <h2>Document Integration Screen Coverage</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Ekran</th>
+          <th>Route</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>174</td>
+          <td>e-Belge Durum Merkezi</td>
+          <td>/faz3/document-integration/ebelge-status-center/</td>
+          <td><span class="pill">READY</span></td>
+        </tr>
+        <tr>
+          <td>175</td>
+          <td>OCR / Belge Okuma Review Ekranı</td>
+          <td>/faz3/document-integration/ocr-review/</td>
+          <td><span class="pill">READY</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Planned Next Screens</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Ekran</th>
+          <th>Gate</th>
+          <th>Bu testte zorunlu mu?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>177</td>
+          <td>Retry / Cancel / Resend Aksiyon Yüzeyi</td>
+          <td>FAZ_3_13_2_RETRY_CANCEL_RESEND_ACTION_SURFACE</td>
+          <td><span class="pill warn">NEXT</span></td>
+        </tr>
+        <tr>
+          <td>178</td>
+          <td>Provider Hata Görünümü</td>
+          <td>FAZ_3_13_3_PROVIDER_ERROR_VIEW</td>
+          <td><span class="pill warn">PLANNED</span></td>
+        </tr>
+        <tr>
+          <td>179</td>
+          <td>Manuel Düzeltme Kuyruğu</td>
+          <td>FAZ_3_13_5_MANUAL_CORRECTION_QUEUE</td>
+          <td><span class="pill warn">PLANNED</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Live Policy</h2>
+    <p>Real GİB: CLOSED · Real provider: CLOSED · Real external delivery: CLOSED · Auto commit: CLOSED · Customer card write: CLOSED · Raw image storage: CLOSED · Audit delete/mutation: CLOSED</p>
+  </section>
+</main>
+</body>
+</html>

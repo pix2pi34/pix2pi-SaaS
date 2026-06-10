@@ -1,0 +1,71 @@
+{
+  "version": "sre_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_7_3",
+  "status": "review_ready_no_real_paging",
+  "timezone": "Europe/Istanbul",
+  "rotation": {
+    "model": "weekly_rotation_template",
+    "primary_required": true,
+    "secondary_required": true,
+    "incident_commander_for_p0_p1": true,
+    "real_calendar_invite_enabled": false,
+    "real_pager_enabled": false
+  },
+  "sample_roster": [
+    {
+      "week": "WEEK_TEMPLATE_A",
+      "primary_on_call": "sre_owner",
+      "secondary_on_call": "ops_owner",
+      "incident_commander_pool": [
+        "sre_owner",
+        "ops_owner"
+      ],
+      "coverage": "business_hours_plus_critical_after_hours"
+    },
+    {
+      "week": "WEEK_TEMPLATE_B",
+      "primary_on_call": "ops_owner",
+      "secondary_on_call": "sre_owner",
+      "incident_commander_pool": [
+        "sre_owner",
+        "ops_owner"
+      ],
+      "coverage": "business_hours_plus_critical_after_hours"
+    }
+  ],
+  "handoff_checklist": [
+    "active_incidents_reviewed",
+    "open_release_windows_reviewed",
+    "edge_security_status_reviewed",
+    "db_and_queue_health_reviewed",
+    "known_risks_documented",
+    "primary_secondary_acknowledged"
+  ],
+  "incident_assignment_rules": [
+    {
+      "severity": "P0",
+      "primary_required": true,
+      "secondary_required": true,
+      "incident_commander_required": true
+    },
+    {
+      "severity": "P1",
+      "primary_required": true,
+      "secondary_required": true,
+      "incident_commander_required": true
+    },
+    {
+      "severity": "P2",
+      "primary_required": true,
+      "secondary_required": true,
+      "incident_commander_required": false
+    },
+    {
+      "severity": "P3",
+      "primary_required": true,
+      "secondary_required": false,
+      "incident_commander_required": false
+    }
+  ]
+}

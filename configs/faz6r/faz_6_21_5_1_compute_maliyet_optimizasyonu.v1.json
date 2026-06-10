@@ -1,0 +1,163 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "293",
+  "code": "FAZ_6_21_5_1",
+  "name": "Compute maliyet optimizasyonu",
+  "depends_on": [
+    "FAZ_6_21_6_5"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "production_resize_allowed": false,
+  "instance_shutdown_allowed": false,
+  "autoscaling_policy_mutation_allowed": false,
+  "required_controls": [
+    "dr_rehearsal_dependency_gate",
+    "compute_inventory_model",
+    "workload_classification_policy",
+    "rightsizing_recommendation_policy",
+    "idle_capacity_detection_policy",
+    "scale_down_guard_policy",
+    "reservation_commitment_review_policy",
+    "burst_capacity_policy",
+    "performance_slo_guard",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "dry_run_cost_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "workload_classes": [
+    {
+      "class": "critical_runtime",
+      "examples": [
+        "api_gateway",
+        "identity_api",
+        "postgres_primary",
+        "event_bus"
+      ],
+      "scale_down_allowed": false,
+      "requires_slo_guard": true
+    },
+    {
+      "class": "important_runtime",
+      "examples": [
+        "panel",
+        "pos",
+        "reporting_readmodel",
+        "cache"
+      ],
+      "scale_down_allowed": "review_only",
+      "requires_slo_guard": true
+    },
+    {
+      "class": "batch_or_background",
+      "examples": [
+        "report_export",
+        "scheduled_jobs",
+        "maintenance_jobs"
+      ],
+      "scale_down_allowed": "review_only",
+      "requires_slo_guard": true
+    },
+    {
+      "class": "dev_or_staging",
+      "examples": [
+        "preview",
+        "staging",
+        "test_runtime"
+      ],
+      "scale_down_allowed": "review_only",
+      "requires_slo_guard": false
+    }
+  ],
+  "signals": [
+    "cpu_avg_24h",
+    "cpu_p95_24h",
+    "memory_avg_24h",
+    "memory_p95_24h",
+    "disk_io_p95_24h",
+    "network_p95_24h",
+    "request_rate_p95_24h",
+    "error_rate_24h",
+    "latency_p95_24h"
+  ],
+  "recommendation_policy": {
+    "rightsizing_enabled": true,
+    "idle_capacity_detection_enabled": true,
+    "scale_down_recommendation_only": true,
+    "minimum_observation_days": 7,
+    "requires_slo_confirmation": true,
+    "requires_dr_capacity_confirmation": true
+  },
+  "slo_guard": {
+    "enabled": true,
+    "block_scale_down_if_p95_latency_regression_risk": true,
+    "block_scale_down_if_error_rate_regression_risk": true,
+    "block_scale_down_if_dr_capacity_below_minimum": true,
+    "block_scale_down_if_p0_p1_recent_incident": true
+  },
+  "reservation_commitment_review": {
+    "enabled": true,
+    "mode": "review_only_no_purchase",
+    "minimum_stability_days": 30,
+    "requires_business_approval": true
+  },
+  "burst_capacity_policy": {
+    "enabled": true,
+    "minimum_headroom_percent": 30,
+    "critical_runtime_headroom_percent": 50
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "production_resize_execute",
+      "instance_shutdown_execute",
+      "autoscaling_policy_change_execute",
+      "reserved_commitment_purchase",
+      "capacity_floor_change_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "business_owner"
+    ]
+  },
+  "provider_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "production_resize_allowed": false,
+    "instance_shutdown_allowed": false,
+    "autoscaling_policy_mutation_allowed": false,
+    "reserved_commitment_purchase_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "recommendation_id",
+      "service",
+      "workload_class",
+      "current_shape",
+      "recommended_shape",
+      "estimated_savings_level",
+      "risk_level",
+      "slo_guard_status",
+      "dr_capacity_guard_status",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_provider_mutation_allowed": true,
+    "block_if_production_resize_allowed": true,
+    "block_if_missing_slo_guard": true,
+    "block_if_missing_dr_capacity_guard": true,
+    "block_if_missing_manual_approval": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_5_1_COMPUTE_MALIYET_OPTIMIZASYONU_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

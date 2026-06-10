@@ -1,0 +1,45 @@
+{
+  "module": "FAZ_7_8I_INTEGRATION_RUNTIME_FOUNDATION",
+  "version": "v1",
+  "runtime_status": "foundation_ready",
+  "production_real_provider_enabled": false,
+  "provider_specific_modules_required": true,
+  "scope": {
+    "tenant_install_enablement": true,
+    "connector_adapter_sdk": true,
+    "webhook_external_event_intake": true,
+    "connector_operation_audit_observability": true,
+    "failure_retry_dlq": true,
+    "provider_module_handoff_gate": true
+  },
+  "required_guards": {
+    "tenant_id_required": true,
+    "provider_key_required": true,
+    "app_key_required": true,
+    "operation_required": true,
+    "idempotency_key_required_for_operations": true,
+    "correlation_id_required": true,
+    "webhook_signature_required": true,
+    "webhook_timestamp_skew_guard": true,
+    "raw_payload_required": true,
+    "real_provider_production_gate_closed": true
+  },
+  "default_retry_policy": {
+    "max_attempts": 3,
+    "dlq_enabled": true,
+    "poison_message_to_dlq": true,
+    "non_retryable_to_dlq": false
+  },
+  "handoff": {
+    "next_provider_modules": [
+      "parasut_connector_module",
+      "logo_connector_module",
+      "mikro_connector_module",
+      "zirve_connector_module",
+      "eta_connector_module",
+      "e_belge_connector_module",
+      "marketplace_connector_modules"
+    ],
+    "faz_7_9_hold_until_integration_family_done": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "marker": "CUSTOMER_LOGIN_REAL_MAIL_CODE_MARKER",
+  "email": "digibilisim@gmail.com",
+  "status": "VERIFIED",
+  "provider": "resend",
+  "provider_status_code": 200,
+  "provider_id": "fd669693-c861-469c-99a4-379259d4188c",
+  "provider_error": null,
+  "code_hash": "cca22777ada9cf4cc48ca05bec00341fb29544ff0d9e005b55925c0c74480336",
+  "salt": "1198491b7d5c16d24f9e081003f81c1b",
+  "raw_code_stored": false,
+  "attempts": 1,
+  "max_attempts": 5,
+  "sent_at": "2026-05-16T22:21:38.567Z",
+  "expires_at": "2026-05-16T22:31:38.301Z",
+  "sender": "Pix2pi <no-reply@pix2pi.com.tr>",
+  "tenant_id": "tenant_digi-bilisim_50e203bb",
+  "account_marker": "CUSTOMER_LOGIN_ACTIVE_ACCOUNT_MARKER",
+  "verified_at": "2026-05-16T22:21:55.409Z"
+}

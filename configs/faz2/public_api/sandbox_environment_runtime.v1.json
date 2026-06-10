@@ -1,0 +1,30 @@
+{
+  "phase": "FAZ 2-7.8.5",
+  "runtime": "sandbox_environment",
+  "require_tenant": true,
+  "deny_production_by_default": true,
+  "require_sandbox_environment": true,
+  "enable_quota_bridge": true,
+  "environment": "SANDBOX",
+  "data_boundary": {
+    "namespace_format": "sandbox:{tenant_id}:{app_id}",
+    "production_data_access": "DENIED"
+  },
+  "guards": [
+    "tenant_required",
+    "app_required",
+    "api_key_required",
+    "scope_required",
+    "path_required",
+    "production_denied",
+    "sandbox_environment_required",
+    "app_auth_boundary_required",
+    "quota_bridge_required",
+    "tenant_namespace_isolation"
+  ],
+  "bridges": {
+    "app_auth": true,
+    "quota_rate_limit": true
+  },
+  "next_ready": "FAZ_2_7_8_6_DEVELOPER_DOCS_PUBLISH_PIPELINE"
+}

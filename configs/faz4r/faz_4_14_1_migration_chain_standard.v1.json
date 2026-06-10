@@ -1,0 +1,28 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 183,
+  "step": "FAZ_4_14_1",
+  "title": "Migration chain standardı",
+  "depends_on": [
+    "180_FAZ_4_14_3_IMPORT_STAGING_TABLES",
+    "181_FAZ_4_14_7_MIGRATION_LIFECYCLE_IMPORT_TESTS",
+    "182_FAZ_4_14_4_BACKFILL_REBUILD_SCRIPT_STANDARD"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "migration_standard": {
+    "directory": "db/migrations/faz4",
+    "filename_pattern": "YYYYMMDD_HHMMSS_faz_x_y_z_description.sql",
+    "ordering": "lexicographic_timestamp_order",
+    "duplicate_timestamp_allowed": false,
+    "empty_file_allowed": false,
+    "temporary_schema_apply_required": true
+  },
+  "runtime_script": "scripts/faz4r/validate_faz4_migration_chain.sh",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "184_FAZ_4_14_2_REFERENCE_DATA_SEED_STANDARD"
+  ]
+}

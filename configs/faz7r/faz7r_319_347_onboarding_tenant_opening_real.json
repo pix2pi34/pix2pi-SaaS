@@ -1,0 +1,41 @@
+{
+  "stepGroup": "FAZ 7-R / 319 + 347",
+  "name": "İşletme onboarding ve pilot tenant açılışı gerçek kayıt akışı",
+  "status": "real_implementation",
+  "routes": {
+    "onboardingScreen": "/onboarding/",
+    "onboardingRuntime": "/onboarding/onboarding-runtime.js",
+    "nextAfterOpening": "/user-invite/"
+  },
+  "319": {
+    "businessName": true,
+    "taxIdentity": true,
+    "address": true,
+    "sector": true,
+    "branch": true,
+    "currency": true,
+    "defaultLanguage": true,
+    "initialRole": true,
+    "completedFlag": true
+  },
+  "347": {
+    "tenantConfig": true,
+    "defaultLanguageTrTR": true,
+    "defaultPlan": true,
+    "branchAndRegisterSetup": true,
+    "tenantOpeningSmoke": true
+  },
+  "allowedLanguages": ["tr-TR", "ota", "ar", "fa", "en"],
+  "allowedCurrencies": ["TRY", "USD", "EUR"],
+  "allowedInitialRoles": ["owner", "manager", "cashier", "accountant"],
+  "completionPolicy": {
+    "databaseWriteContractRequired": true,
+    "tenantConfigRequired": true,
+    "branchRequired": true,
+    "registerRequired": true,
+    "initialRoleRequired": true,
+    "auditRequired": true,
+    "goTestRequired": true,
+    "panelSmokeRequired": true
+  }
+}

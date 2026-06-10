@@ -1,0 +1,15 @@
+gate	status	note
+previous_18_3_gate	PASS	apply_gate_ready=YES
+previous_17_final	PASS	reporting api closure
+target_file	FOUND	cmd/api-gateway/api_gateway_main.go
+backup_created	YES	backups/faz4_18_4_runtime_apply_file_backup_20260427_201753/cmd/api-gateway/api_gateway_main.go
+patch_applied	NOOP_ALREADY_APPLIED	mode=NOOP_ALREADY_APPLIED
+reporting_import_after	1	expected=1
+reporting_register_call_after	1	expected=1
+gofmt	PASS	go format target
+reporting_go_test_suite	PASS	internal reporting tests
+api_gateway_go_test	PASS	api gateway tests
+runtime_started	NO	no live runtime start in 18.4
+gateway_config_changed	NO	code only, no nginx/gateway config
+db_mutation	NO	no database mutation
+controlled_apply	PASS	failures=0 warnings=0

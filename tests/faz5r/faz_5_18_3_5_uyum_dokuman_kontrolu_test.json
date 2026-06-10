@@ -1,0 +1,25 @@
+{
+  "test_name": "faz_5_18_3_5_uyum_dokuman_kontrolu_test",
+  "phase": "FAZ_5_18_3_5",
+  "expected": {
+    "required_document_count": 6,
+    "required_approval_gate_count": 3,
+    "public_launch_allowed": false,
+    "real_customer_collection_allowed": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_document_keys": [
+    "contract_set",
+    "kvkk_privacy_notice",
+    "explicit_consent_text",
+    "commercial_use_terms",
+    "consent_registry_policy",
+    "log_retention_destruction_policy"
+  ],
+  "must_have_approval_gates": [
+    "legal_counsel_approval",
+    "kvkk_consultant_approval",
+    "founder_go_no_go"
+  ]
+}

@@ -1,0 +1,12 @@
+gate	status	note
+previous_16_final	PASS	reporting query layer closure
+previous_17_final	PASS	reporting api runtime closure
+route_registration	PASS	RegisterReportingRoutes available
+gateway_manifest	PASS	gateway dry-run manifest
+auth_tenant_gate	PASS	bearer and tenant gate
+runtime_smoke	PASS	in-process httptest
+go_test_suite	PASS	internal platform reporting
+runtime_started	NO	no runtime start in 18.1
+gateway_config_changed	NO	read-only discovery
+db_mutation	NO	read-only discovery
+apply_readiness	READY	blockers=0 warnings=0

@@ -1,0 +1,139 @@
+{
+  "valid_fixture": {
+    "uat_id": "accountant_portal_uat.valid_fixture",
+    "uat_status": "READY",
+    "uat_mode": "CONTROLLED_PILOT",
+    "portal_mode": "READ_ONLY_PREVIEW",
+    "accountant_context": {
+      "accountant_user_id": "pilot_accountant_001",
+      "accountant_role": "ACCOUNTANT",
+      "assigned_tenant_ids": ["pilot_tenant_001"],
+      "tenant_scope": "ASSIGNED_TENANTS_ONLY",
+      "cross_tenant_access": "DENIED"
+    },
+    "chain_dependencies": {
+      "186_FAZ_4_15_2_FINANCE_REPORTING_MART": "PASS",
+      "187_FAZ_4_15_4_PAYMENT_RECONCILIATION_REPORTING_MART": "PASS",
+      "188_FAZ_4_15_3_E_DOCUMENT_EXPORT_REPORTING_MART": "PASS",
+      "190_FAZ_4_15_7_READMODEL_REPORTING_TEST_SET": "PASS",
+      "197_FAZ_4_16_1_3_KULLANICI_ROL_ILK_KURULUMU": "PASS",
+      "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT": "PASS",
+      "206_FAZ_4_16_3_3_MUHASEBE_UAT": "PASS"
+    },
+    "uat_cases": [
+      {"code": "ACCOUNTANT_PORTAL_ACCESS", "required": true, "status": "PASS", "area": "ACCESS", "evidence_ref": "docs/faz4r/evidence/accountant_portal_access.md"},
+      {"code": "ACCOUNTANT_CONTEXT_VISIBLE", "required": true, "status": "PASS", "area": "ACCOUNTANT_CONTEXT", "evidence_ref": "docs/faz4r/evidence/accountant_context_visible.md"},
+      {"code": "ASSIGNED_TENANT_LIST_VIEW", "required": true, "status": "PASS", "area": "TENANT_SCOPE", "evidence_ref": "docs/faz4r/evidence/assigned_tenant_list_view.md"},
+      {"code": "ASSIGNED_TENANT_DETAIL_VIEW", "required": true, "status": "PASS", "area": "TENANT_SCOPE", "evidence_ref": "docs/faz4r/evidence/assigned_tenant_detail_view.md"},
+      {"code": "CROSS_TENANT_ACCESS_DENIED", "required": true, "status": "PASS", "area": "SECURITY", "evidence_ref": "docs/faz4r/evidence/cross_tenant_access_denied.md"},
+      {"code": "FINANCE_REPORTING_VIEW", "required": true, "status": "PASS", "area": "REPORTING", "evidence_ref": "docs/faz4r/evidence/FAZ_4_15_2_FINANCE_REPORTING_MART_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "CUSTOMER_LEDGER_VIEW", "required": true, "status": "PASS", "area": "LEDGER", "evidence_ref": "docs/faz4r/evidence/customer_ledger_view.md"},
+      {"code": "TDHP_JOURNAL_PREVIEW_VIEW", "required": true, "status": "PASS", "area": "ACCOUNTING", "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_3_3_MUHASEBE_UAT_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "VAT_TAX_SUMMARY_VIEW", "required": true, "status": "PASS", "area": "TAX", "evidence_ref": "docs/faz4r/evidence/vat_tax_summary_view.md"},
+      {"code": "PAYMENT_RECONCILIATION_VIEW", "required": true, "status": "PASS", "area": "RECONCILIATION", "evidence_ref": "docs/faz4r/evidence/FAZ_4_15_4_PAYMENT_RECONCILIATION_REPORTING_MART_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "E_DOCUMENT_EXPORT_PREVIEW_LINK", "required": true, "status": "PASS", "area": "EXPORT", "evidence_ref": "docs/faz4r/evidence/FAZ_4_15_3_E_DOCUMENT_EXPORT_REPORTING_MART_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "FILE_EXPORT_PREVIEW", "required": true, "status": "PASS", "area": "EXPORT", "evidence_ref": "docs/faz4r/evidence/accountant_file_export_preview.md"},
+      {"code": "READ_ONLY_ACTION_GUARD", "required": true, "status": "PASS", "area": "SECURITY", "evidence_ref": "docs/faz4r/evidence/accountant_read_only_action_guard.md"},
+      {"code": "ACCOUNTANT_AUDIT_EVIDENCE_LINK_VIEW", "required": true, "status": "PASS", "area": "AUDIT", "evidence_ref": "docs/faz4r/evidence/accountant_audit_evidence_link_view.md"},
+      {"code": "REAL_EXPORT_CLOSED_GATE", "required": true, "status": "PASS", "area": "POLICY", "evidence_ref": "docs/faz4r/evidence/real_export_closed_gate.md"},
+      {"code": "CLOSED_EXTERNAL_POLICY_GATE", "required": true, "status": "PASS", "area": "POLICY", "evidence_ref": "docs/faz4r/evidence/closed_external_policy_gate.md"}
+    ],
+    "portal_permissions": {
+      "read_only": true,
+      "can_view_assigned_tenants": true,
+      "can_view_finance_reports": true,
+      "can_view_tax_summary": true,
+      "can_preview_exports": true,
+      "can_create_or_modify_records": false,
+      "can_access_unassigned_tenant": false,
+      "can_run_real_export": false
+    },
+    "summary": {
+      "total_case_count": 16,
+      "pass_count": 16,
+      "fail_count": 0,
+      "required_fail_count": 0,
+      "optional_warn_count": 0,
+      "critical_issue_count": 0,
+      "accountant_context_status": "PASS",
+      "assigned_tenant_scope_status": "PASS",
+      "cross_tenant_guard_status": "PASS",
+      "read_only_guard_status": "PASS",
+      "export_preview_status": "PASS",
+      "real_export_status": "CLOSED",
+      "uat_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "real_export": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "uat_id": "accountant_portal_uat.invalid_fixture",
+    "uat_status": "DRAFT",
+    "uat_mode": "PRODUCTION",
+    "portal_mode": "WRITE_ENABLED",
+    "accountant_context": {
+      "accountant_user_id": "",
+      "accountant_role": "ADMIN",
+      "assigned_tenant_ids": [],
+      "tenant_scope": "ALL_TENANTS",
+      "cross_tenant_access": "ALLOWED"
+    },
+    "chain_dependencies": {
+      "186_FAZ_4_15_2_FINANCE_REPORTING_MART": "PASS",
+      "187_FAZ_4_15_4_PAYMENT_RECONCILIATION_REPORTING_MART": "PASS",
+      "188_FAZ_4_15_3_E_DOCUMENT_EXPORT_REPORTING_MART": "PASS",
+      "190_FAZ_4_15_7_READMODEL_REPORTING_TEST_SET": "PASS",
+      "197_FAZ_4_16_1_3_KULLANICI_ROL_ILK_KURULUMU": "PASS",
+      "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT": "PASS",
+      "206_FAZ_4_16_3_3_MUHASEBE_UAT": "FAIL"
+    },
+    "uat_cases": [
+      {"code": "ACCOUNTANT_PORTAL_ACCESS", "required": true, "status": "FAIL", "area": "ACCESS", "evidence_ref": ""},
+      {"code": "ACCOUNTANT_CONTEXT_VISIBLE", "required": true, "status": "WARN", "area": "ACCOUNTANT_CONTEXT", "evidence_ref": "x"},
+      {"code": "ACCOUNTANT_CONTEXT_VISIBLE", "required": true, "status": "PASS", "area": "ACCOUNTANT_CONTEXT", "evidence_ref": "x"}
+    ],
+    "portal_permissions": {
+      "read_only": false,
+      "can_view_assigned_tenants": false,
+      "can_view_finance_reports": true,
+      "can_view_tax_summary": true,
+      "can_preview_exports": true,
+      "can_create_or_modify_records": true,
+      "can_access_unassigned_tenant": true,
+      "can_run_real_export": true
+    },
+    "summary": {
+      "total_case_count": 99,
+      "pass_count": 99,
+      "fail_count": 99,
+      "required_fail_count": 99,
+      "optional_warn_count": 99,
+      "critical_issue_count": 1,
+      "accountant_context_status": "FAIL",
+      "assigned_tenant_scope_status": "FAIL",
+      "cross_tenant_guard_status": "FAIL",
+      "read_only_guard_status": "FAIL",
+      "export_preview_status": "FAIL",
+      "real_export_status": "OPEN",
+      "uat_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "real_export": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

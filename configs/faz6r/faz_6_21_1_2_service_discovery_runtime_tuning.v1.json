@@ -1,0 +1,196 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "303",
+  "code": "FAZ_6_21_1_2",
+  "name": "Service discovery runtime tuning",
+  "depends_on": [
+    "FAZ_6_21_2_5"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "service_registry_mutation_allowed": false,
+  "dns_mutation_allowed": false,
+  "load_balancer_mutation_allowed": false,
+  "gateway_route_mutation_allowed": false,
+  "deployment_rollout_allowed": false,
+  "container_restart_allowed": false,
+  "required_controls": [
+    "pitr_dependency_gate",
+    "service_inventory_model",
+    "registry_health_ttl_policy",
+    "stale_endpoint_guard",
+    "deregistration_guard",
+    "health_based_routing_guard",
+    "service_route_confidence_policy",
+    "dependency_graph_policy",
+    "dns_lb_alignment_guard",
+    "tenant_aware_service_guard",
+    "dry_run_discovery_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "service_surfaces": [
+    {
+      "service": "api_gateway",
+      "risk_level": "critical",
+      "tenant_aware_required": true,
+      "health_based_routing_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "service": "identity_api",
+      "risk_level": "critical",
+      "tenant_aware_required": true,
+      "health_based_routing_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "service": "panel",
+      "risk_level": "medium",
+      "tenant_aware_required": true,
+      "health_based_routing_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "service": "pos",
+      "risk_level": "high",
+      "tenant_aware_required": true,
+      "health_based_routing_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "service": "event_consumer",
+      "risk_level": "high",
+      "tenant_aware_required": true,
+      "health_based_routing_required": false,
+      "mutation_allowed": false
+    },
+    {
+      "service": "reporting_readmodel",
+      "risk_level": "medium",
+      "tenant_aware_required": true,
+      "health_based_routing_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "metric_model": {
+    "required_metrics": [
+      "service_health_status",
+      "service_health_latency_ms",
+      "registry_last_seen_age_seconds",
+      "registry_endpoint_count",
+      "stale_endpoint_count",
+      "deregistration_candidate_count",
+      "route_success_ratio",
+      "route_error_ratio",
+      "tenant_header_preservation_ratio",
+      "dependency_graph_missing_edges",
+      "dns_lb_alignment_status",
+      "gateway_route_confidence_score"
+    ],
+    "minimum_observation_days": 7,
+    "requires_per_service_breakdown": true,
+    "requires_per_tenant_route_validation": true
+  },
+  "tuning_policy": {
+    "mode": "recommendation_only",
+    "health_ttl_review_enabled": true,
+    "stale_endpoint_review_enabled": true,
+    "deregistration_review_enabled": true,
+    "route_confidence_review_enabled": true,
+    "dependency_graph_review_enabled": true,
+    "dns_lb_alignment_required": true,
+    "tenant_aware_guard_required": true
+  },
+  "guards": {
+    "stale_endpoint_guard": {
+      "enabled": true,
+      "block_if_endpoint_status_unknown": true,
+      "requires_observation_window": true
+    },
+    "deregistration_guard": {
+      "enabled": true,
+      "block_if_single_instance_service": true,
+      "block_if_recent_successful_traffic": true
+    },
+    "health_based_routing_guard": {
+      "enabled": true,
+      "block_if_health_signal_unstable": true,
+      "requires_route_confidence_threshold": true
+    },
+    "service_route_confidence_policy": {
+      "enabled": true,
+      "minimum_confidence_score": 0.95,
+      "block_if_below_threshold": true
+    },
+    "tenant_aware_service_guard": {
+      "enabled": true,
+      "block_if_x_tenant_id_not_preserved": true,
+      "block_if_cross_tenant_route_risk": true
+    },
+    "dns_lb_alignment_guard": {
+      "enabled": true,
+      "block_if_dns_and_lb_targets_mismatch": true
+    }
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "service_registry_mutation_execute",
+      "dns_mutation_execute",
+      "load_balancer_mutation_execute",
+      "gateway_route_mutation_execute",
+      "deployment_rollout_execute",
+      "container_restart_execute",
+      "service_deregistration_execute",
+      "health_ttl_change_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "security_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "service_registry_mutation_allowed": false,
+    "dns_mutation_allowed": false,
+    "load_balancer_mutation_allowed": false,
+    "gateway_route_mutation_allowed": false,
+    "deployment_rollout_allowed": false,
+    "container_restart_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "tuning_id",
+      "service",
+      "current_signal",
+      "recommended_action",
+      "risk_level",
+      "route_confidence_status",
+      "stale_endpoint_guard_status",
+      "tenant_aware_guard_status",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_pitr_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_registry_mutation_allowed": true,
+    "block_if_dns_or_lb_mutation_allowed": true,
+    "block_if_gateway_route_mutation_allowed": true,
+    "block_if_missing_tenant_aware_guard": true,
+    "block_if_missing_route_confidence": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_1_2_SERVICE_DISCOVERY_RUNTIME_TUNING_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

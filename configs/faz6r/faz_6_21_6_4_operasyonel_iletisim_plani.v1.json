@@ -1,0 +1,175 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "291",
+  "code": "FAZ_6_21_6_4",
+  "name": "Operasyonel iletişim planı",
+  "depends_on": [
+    "FAZ_6_21_6_3"
+  ],
+  "runtime_mutation_allowed": false,
+  "real_customer_notification_enabled": false,
+  "real_status_page_enabled": false,
+  "real_email_enabled": false,
+  "real_sms_enabled": false,
+  "real_phone_call_enabled": false,
+  "provider_mutation_allowed": false,
+  "required_controls": [
+    "regional_outage_dependency_gate",
+    "stakeholder_matrix",
+    "severity_communication_mapping",
+    "internal_update_policy",
+    "customer_update_policy",
+    "status_page_policy",
+    "business_owner_approval_policy",
+    "security_owner_approval_policy",
+    "next_update_cadence_policy",
+    "message_template_catalog",
+    "channel_provider_closed_policy",
+    "dry_run_communication_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "stakeholders": [
+    {
+      "role": "incident_commander",
+      "audience": "internal",
+      "required_for": [
+        "P0",
+        "P1"
+      ]
+    },
+    {
+      "role": "sre_owner",
+      "audience": "internal",
+      "required_for": [
+        "P0",
+        "P1",
+        "P2"
+      ]
+    },
+    {
+      "role": "ops_owner",
+      "audience": "internal",
+      "required_for": [
+        "P0",
+        "P1",
+        "P2"
+      ]
+    },
+    {
+      "role": "business_owner",
+      "audience": "business",
+      "required_for": [
+        "P0",
+        "customer_impact"
+      ]
+    },
+    {
+      "role": "security_owner",
+      "audience": "security",
+      "required_for": [
+        "P0",
+        "P1",
+        "security_impact"
+      ]
+    },
+    {
+      "role": "support_owner",
+      "audience": "customer_support",
+      "required_for": [
+        "P0",
+        "P1",
+        "P2"
+      ]
+    },
+    {
+      "role": "customer",
+      "audience": "external",
+      "required_for": [
+        "customer_impact"
+      ]
+    }
+  ],
+  "severity_communication_mapping": [
+    {
+      "severity": "P0",
+      "internal_update_required": true,
+      "customer_update_required_if_customer_impact": true,
+      "status_page_update_required_if_public_impact": true,
+      "business_owner_approval_required": true,
+      "security_owner_approval_required_if_security_impact": true,
+      "next_update_minutes": 30
+    },
+    {
+      "severity": "P1",
+      "internal_update_required": true,
+      "customer_update_required_if_customer_impact": true,
+      "status_page_update_required_if_public_impact": true,
+      "business_owner_approval_required": true,
+      "security_owner_approval_required_if_security_impact": true,
+      "next_update_minutes": 60
+    },
+    {
+      "severity": "P2",
+      "internal_update_required": true,
+      "customer_update_required_if_customer_impact": false,
+      "status_page_update_required_if_public_impact": false,
+      "business_owner_approval_required": false,
+      "security_owner_approval_required_if_security_impact": true,
+      "next_update_minutes": 120
+    },
+    {
+      "severity": "P3",
+      "internal_update_required": true,
+      "customer_update_required_if_customer_impact": false,
+      "status_page_update_required_if_public_impact": false,
+      "business_owner_approval_required": false,
+      "security_owner_approval_required_if_security_impact": false,
+      "next_update_minutes": 240
+    }
+  ],
+  "channel_provider_closed_policy": {
+    "enabled": true,
+    "mode": "record_only_no_real_send",
+    "real_customer_notification_enabled": false,
+    "real_status_page_enabled": false,
+    "real_email_enabled": false,
+    "real_sms_enabled": false,
+    "real_phone_call_enabled": false,
+    "provider_mutation_allowed": false
+  },
+  "approval_policy": {
+    "business_owner_approval_required_for_customer_facing": true,
+    "security_owner_approval_required_for_security_incident": true,
+    "incident_commander_approval_required_for_p0_p1": true
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "communication_id",
+      "incident_id",
+      "severity",
+      "audience",
+      "channel",
+      "message_template",
+      "approval_required",
+      "approval_owner",
+      "send_mode",
+      "next_update_minutes",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_provider_enabled": true,
+    "block_if_missing_stakeholder_matrix": true,
+    "block_if_missing_severity_mapping": true,
+    "block_if_missing_templates": true,
+    "block_if_customer_facing_without_business_approval": true,
+    "block_if_security_incident_without_security_approval": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_6_4_OPERASYONEL_ILETISIM_PLANI_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

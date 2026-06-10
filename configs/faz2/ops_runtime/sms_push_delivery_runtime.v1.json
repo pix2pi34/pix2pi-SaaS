@@ -1,0 +1,39 @@
+{
+  "phase": "FAZ 2-7.4.3",
+  "runtime": "sms_push_delivery_runtime",
+  "require_tenant": true,
+  "allowed_channels": [
+    "SMS",
+    "PUSH"
+  ],
+  "allowed_providers": [
+    "SIMULATION",
+    "SMS_GATEWAY",
+    "PUSH_GATEWAY"
+  ],
+  "default_provider": "SIMULATION",
+  "max_recipients": 25,
+  "require_message": true,
+  "enable_idempotency": true,
+  "dry_run_only": true,
+  "guards": [
+    "tenant_required",
+    "valid_channel_required",
+    "valid_provider_required",
+    "recipient_required",
+    "valid_phone_required",
+    "valid_device_token_required",
+    "max_recipient_limit",
+    "message_required",
+    "tenant_channel_scoped_idempotency",
+    "tenant_safe_delivery_access",
+    "tenant_channel_delivery_list"
+  ],
+  "delivery_policy": {
+    "real_sms_send": "DISABLED_IN_THIS_PHASE",
+    "real_push_send": "DISABLED_IN_THIS_PHASE",
+    "simulation_delivery": "ENABLED",
+    "gateway_delivery": "QUEUED_ONLY_WHEN_DRY_RUN_FALSE"
+  },
+  "next_ready": "FAZ_2_7_4_4_WEBHOOK_SIGNING_DELIVERY_RUNTIME"
+}

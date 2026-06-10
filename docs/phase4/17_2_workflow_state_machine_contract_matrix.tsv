@@ -1,0 +1,37 @@
+gate	status	note
+previous_17_1	PASS	workflow realtime baseline prerequisite
+state_catalog	PASS	states=10 initial=1 terminal=3
+transition_catalog	PASS	transitions=15 event_bindings=15
+permission_matrix	PASS	permissions=10
+invariant_catalog	PASS	invariants=10 critical=6
+audit_coverage	PASS	state_audit=10 transition_audit=15
+approval_coverage	PASS	approval_transitions=3
+tenant_scope	PASS	tenant_scoped_states=10
+no_runtime_change	PASS	no workflow runtime/code/server changed
+no_config_change	PASS	no config/env/nginx/firewall changed
+secret_safe	PASS	no secrets printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+ui_code_changed	NO	contract only
+api_route_created	NO	contract only
+api_implementation_changed	NO	contract only
+websocket_server_started	NO	contract only
+sse_server_started	NO	contract only
+workflow_runtime_changed	NO	contract only
+workflow_engine_code_changed	NO	contract only
+state_machine_runtime_created	NO	contract only
+event_published	NO	contract only
+event_consumed	NO	contract only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report

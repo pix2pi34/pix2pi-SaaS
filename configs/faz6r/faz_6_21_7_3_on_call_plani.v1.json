@@ -1,0 +1,159 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "287",
+  "code": "FAZ_6_21_7_3",
+  "name": "On-call planı",
+  "depends_on": [
+    "FAZ_6_21_7_2"
+  ],
+  "runtime_mutation_allowed": false,
+  "notification_provider_enabled": false,
+  "real_paging_enabled": false,
+  "required_controls": [
+    "auto_remediation_dependency_gate",
+    "on_call_role_model",
+    "primary_secondary_coverage_policy",
+    "severity_response_target_policy",
+    "handoff_policy",
+    "override_policy",
+    "fatigue_management_policy",
+    "incident_commander_policy",
+    "notification_provider_closed_policy",
+    "escalation_placeholder_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "roles": [
+    {
+      "role": "primary_on_call",
+      "required": true,
+      "responsibility": "first_response_and_initial_triage"
+    },
+    {
+      "role": "secondary_on_call",
+      "required": true,
+      "responsibility": "backup_response_and_secondary_review"
+    },
+    {
+      "role": "incident_commander",
+      "required_for": [
+        "P0",
+        "P1"
+      ],
+      "responsibility": "incident_coordination_and_decision_tracking"
+    },
+    {
+      "role": "sre_owner",
+      "required": true,
+      "responsibility": "final_technical_ownership"
+    },
+    {
+      "role": "ops_owner",
+      "required": true,
+      "responsibility": "business_communication_and_operational_decision"
+    }
+  ],
+  "coverage_policy": {
+    "timezone": "Europe/Istanbul",
+    "coverage_model": "business_hours_plus_critical_after_hours",
+    "primary_required": true,
+    "secondary_required": true,
+    "handoff_required": true,
+    "minimum_handoff_fields": [
+      "from_owner",
+      "to_owner",
+      "handoff_time",
+      "active_incidents",
+      "known_risks",
+      "current_release_window",
+      "acknowledgement"
+    ]
+  },
+  "severity_response_targets": [
+    {
+      "severity": "P0",
+      "ack_target_minutes": 5,
+      "triage_target_minutes": 15,
+      "incident_commander_required": true,
+      "manual_approval_required_for_mutation": true
+    },
+    {
+      "severity": "P1",
+      "ack_target_minutes": 15,
+      "triage_target_minutes": 30,
+      "incident_commander_required": true,
+      "manual_approval_required_for_mutation": true
+    },
+    {
+      "severity": "P2",
+      "ack_target_minutes": 60,
+      "triage_target_minutes": 120,
+      "incident_commander_required": false,
+      "manual_approval_required_for_mutation": true
+    },
+    {
+      "severity": "P3",
+      "ack_target_minutes": 240,
+      "triage_target_minutes": 480,
+      "incident_commander_required": false,
+      "manual_approval_required_for_mutation": false
+    }
+  ],
+  "override_policy": {
+    "enabled": true,
+    "requires_reason": true,
+    "requires_start_end_time": true,
+    "requires_replacement_owner": true,
+    "max_override_hours": 24
+  },
+  "fatigue_management_policy": {
+    "enabled": true,
+    "max_continuous_on_call_hours": 24,
+    "min_rest_hours_after_p0_p1": 8,
+    "requires_secondary_backup": true
+  },
+  "notification_provider_policy": {
+    "enabled": false,
+    "real_sms_enabled": false,
+    "real_email_enabled": false,
+    "real_phone_call_enabled": false,
+    "provider_mutation_allowed": false,
+    "note": "Notification provider integration remains closed in this step."
+  },
+  "escalation_placeholder_policy": {
+    "enabled": true,
+    "detailed_step": "FAZ_6_21_7_4",
+    "temporary_escalation_roles": [
+      "primary_on_call",
+      "secondary_on_call",
+      "sre_owner",
+      "ops_owner"
+    ]
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "incident_id",
+      "severity",
+      "primary_on_call",
+      "secondary_on_call",
+      "ack_time",
+      "triage_time",
+      "incident_commander",
+      "handoff_status",
+      "actions_taken",
+      "final_status"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_missing_primary": true,
+    "block_if_missing_secondary": true,
+    "block_if_p0_p1_without_incident_commander": true,
+    "block_if_notification_provider_enabled": true,
+    "block_if_missing_handoff_policy": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_7_3_ON_CALL_PLANI_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

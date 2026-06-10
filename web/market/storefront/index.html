@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi Market işletme mağaza vitrini" />
+  <meta property="og:title" content="Pix2pi Market İşletme Vitrini" />
+  <meta property="og:description" content="İşletme mağaza vitrini, ürün önizleme ve teslimat seçenekleri." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Market İşletme Vitrini</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --brand: #16a34a;
+      --brand2: #2563eb;
+      --warn: #f59e0b;
+      --shadow: 0 16px 42px rgba(15, 23, 42, .08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.12), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.12), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1240px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.92);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .category-card, .product-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .category-card strong, .product-card strong {
+      font-size: 17px;
+    }
+
+    .product-card em {
+      font-style: normal;
+      font-size: 22px;
+      font-weight: 950;
+      color: #166534;
+      letter-spacing: -0.04em;
+    }
+
+    .product-card button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      background: #f1f5f9;
+      color: #64748b;
+    }
+
+    .product-badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .campaign {
+      background: linear-gradient(135deg, #14532d, #1d4ed8);
+      color: #fff;
+      border: none;
+    }
+
+    .campaign p {
+      color: rgba(255,255,255,.82);
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid, .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_335_STOREFRONT_APP_SHELL_START -->
+  <main class="shell" data-step="335" data-surface="market-storefront">
+    <!-- PIX2PI_335_BUSINESS_PROFILE_HERO_START -->
+    <section class="hero" data-widget="business_profile_hero">
+      <div class="hero-grid">
+        <div>
+          <span class="badge">FAZ 7-R / 335</span>
+          <h1 id="storefront-business-name" data-i18n="market_storefront.business_name">Demo Market</h1>
+          <p id="storefront-business-tagline" data-i18n="market_storefront.tagline">Mahalle marketi vitrini</p>
+          <p id="storefront-business-location">İstanbul / Pilot</p>
+        </div>
+        <strong id="storefront-business-rating">★ 4.8 (128)</strong>
+      </div>
+    </section>
+    <!-- PIX2PI_335_BUSINESS_PROFILE_HERO_END -->
+
+    <!-- PIX2PI_335_CAMPAIGN_ANNOUNCEMENT_BANNER_START -->
+    <section id="storefront-campaign-banner" class="card campaign" data-widget="campaign_announcement_banner">
+      <strong>Pilot açılış kampanyası</strong>
+      <p>Seçili ürünlerde vitrinde demo indirim etiketi.</p>
+    </section>
+    <!-- PIX2PI_335_CAMPAIGN_ANNOUNCEMENT_BANNER_END -->
+
+    <section class="grid-4">
+      <!-- PIX2PI_335_STORE_STATUS_WORKING_HOURS_START -->
+      <article class="card metric" data-widget="store_status_working_hours">
+        <h2>Mağaza durumu</h2>
+        <strong id="storefront-status" data-store-status="OPEN">OPEN</strong>
+        <p id="storefront-working-hours">09:00 - 22:00</p>
+      </article>
+      <!-- PIX2PI_335_STORE_STATUS_WORKING_HOURS_END -->
+
+      <!-- PIX2PI_335_DELIVERY_PICKUP_PLACEHOLDER_START -->
+      <article class="card metric" data-widget="delivery_pickup_placeholder">
+        <h2>Teslimat</h2>
+        <strong id="storefront-delivery-status">Teslimat hazır</strong>
+        <p>ETA: <span id="storefront-delivery-eta">35 dk</span></p>
+      </article>
+
+      <article class="card metric">
+        <h2>Gel-al</h2>
+        <strong id="storefront-pickup-status">Gel-al hazır</strong>
+        <p>Minimum sepet: <span id="storefront-min-basket">₺150,00</span></p>
+      </article>
+      <!-- PIX2PI_335_DELIVERY_PICKUP_PLACEHOLDER_END -->
+
+      <!-- PIX2PI_335_TENANT_STORE_SLUG_GUARD_START -->
+      <article class="card metric guard" data-widget="tenant_store_slug_guard">
+        <h2>Scope</h2>
+        <p>Tenant: <strong id="storefront-tenant">controlled-pilot</strong></p>
+        <p>Store: <strong id="storefront-slug">demo-market</strong></p>
+        <p>Validation: <strong id="storefront-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </article>
+      <!-- PIX2PI_335_TENANT_STORE_SLUG_GUARD_END -->
+    </section>
+
+    <!-- PIX2PI_335_CATEGORY_PREVIEW_START -->
+    <section class="card" data-widget="category_preview">
+      <h2>Kategoriler</h2>
+      <div id="storefront-category-list" class="grid-4">
+        <article class="category-card" data-category-id="cat-001"><strong>Temel gıda</strong><span>42 ürün</span></article>
+      </div>
+    </section>
+    <!-- PIX2PI_335_CATEGORY_PREVIEW_END -->
+
+    <!-- PIX2PI_335_FEATURED_PRODUCT_GRID_START -->
+    <section class="card" data-widget="featured_product_grid">
+      <h2>Öne çıkan ürünler</h2>
+      <div id="storefront-featured-products" class="grid-4">
+        <article class="product-card" data-product-id="prd-001" data-stock-status="AVAILABLE">
+          <span class="product-badge">Vitrin</span>
+          <strong>Demo Süt 1L</strong>
+          <p>MKT-SUT-001 / ADET</p>
+          <em>₺35,00</em>
+          <button type="button" disabled>Sepete ekleme 340 sonrası</button>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_335_FEATURED_PRODUCT_GRID_END -->
+
+    <!-- PIX2PI_335_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card guard" data-widget="storefront_runtime_data_contract">
+      <h2>Storefront runtime data contract</h2>
+      <p>real_order_enabled=false / real_payment_enabled=false / real_stock_reservation_enabled=false / fallback_snapshot_enabled=true</p>
+    </section>
+    <!-- PIX2PI_335_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_335_SEO_OPENGRAPH_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_placeholder">
+      <h2>SEO / OpenGraph placeholder</h2>
+      <p>Title, description ve og:* metadata runtime ile işletme adına göre güncellenir.</p>
+    </section>
+    <!-- PIX2PI_335_SEO_OPENGRAPH_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_335_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_storefront_markers">
+      <h2 data-i18n="market_storefront.i18n_ready">i18n-ready storefront</h2>
+      <p data-i18n="market_storefront.surface_ready">Mağaza vitrini metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_335_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_335_STOREFRONT_APP_SHELL_END -->
+
+  <script src="/assets/storefront/market-storefront-runtime.js"></script>
+  <script>
+    Pix2piMarketStorefront.bootStorefrontScreen().then(function (contract) {
+      console.log("PIX2PI_335_STOREFRONT_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

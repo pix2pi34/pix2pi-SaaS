@@ -1,0 +1,52 @@
+{
+  "test_name": "faz_5_18_2_5_iade_iptal_ticari_akisi_test",
+  "phase": "FAZ_5_18_2_5",
+  "expected": {
+    "required_step_count": 10,
+    "required_event_count": 10,
+    "internal_refund_cancel_flow_ready": true,
+    "production_refund_enabled": false,
+    "real_money_refund_enabled": false,
+    "auto_cancel_enabled": false,
+    "auto_customer_notification_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_step_keys": [
+    "refund_request_validate",
+    "refund_eligibility_validate",
+    "refund_amount_calculate",
+    "cancel_request_validate",
+    "credit_note_deferred_marker",
+    "payment_refund_provider_deferred_marker",
+    "tenant_entitlement_adjustment_policy",
+    "manual_approval_queue",
+    "accounting_reversal_handoff",
+    "customer_notification_block_policy"
+  ],
+  "must_have_events": [
+    "REFUND_REQUEST_RECEIVED",
+    "REFUND_ELIGIBILITY_VALIDATED",
+    "REFUND_AMOUNT_CALCULATED",
+    "CANCEL_REQUEST_VALIDATED",
+    "CREDIT_NOTE_DEFERRED",
+    "PAYMENT_REFUND_DEFERRED",
+    "TENANT_ENTITLEMENT_ADJUSTED",
+    "MANUAL_APPROVAL_QUEUED",
+    "ACCOUNTING_REVERSAL_READY",
+    "CUSTOMER_NOTIFICATION_BLOCKED"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_invoice_id",
+    "requires_payment_attempt_id",
+    "requires_refund_request_id",
+    "requires_idempotency_key",
+    "requires_audit_trail",
+    "requires_eligibility_policy",
+    "requires_manual_approval",
+    "blocks_production_refund",
+    "blocks_real_money_movement",
+    "blocks_auto_cancel"
+  ]
+}

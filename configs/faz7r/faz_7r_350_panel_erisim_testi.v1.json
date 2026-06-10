@@ -1,0 +1,67 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "350",
+  "name": "Panel erişim testi",
+  "surface": "merchant_panel_controlled_access",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/panel-access-test/",
+  "runtime_path": "/assets/panel-access-test/panel-access-test-runtime.js",
+  "depends_on": [
+    "349 - Kullanıcı şifre / giriş akışı"
+  ],
+  "backend_contract": {
+    "panel_access_snapshot_endpoint": "/api/access/panel/snapshot",
+    "panel_route_check_endpoint": "/api/access/panel/routes/check",
+    "panel_access_audit_endpoint": "/api/access/panel/audit",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "user_session_header": "X-User-Session",
+    "role_header": "X-User-Role",
+    "route_scope_header": "X-Route-Scope",
+    "correlation_header": "X-Correlation-ID"
+  },
+  "runtime_contract": {
+    "real_jwt_verify_enabled": false,
+    "real_session_create_enabled": false,
+    "real_rbac_backend_enforcement_enabled": false,
+    "real_customer_login_enabled": false,
+    "panel_access_preview_enabled": true,
+    "route_smoke_preview_enabled": true,
+    "fallback_panel_access_snapshot_enabled": true,
+    "ready_for_step_351": true
+  },
+  "route_contract": {
+    "required_routes": [
+      "/",
+      "/dashboard/",
+      "/users/",
+      "/products/",
+      "/billing/",
+      "/entitlements/"
+    ],
+    "expected_role": "OWNER_ADMIN",
+    "expected_tenant": "controlled-pilot"
+  },
+  "required_capabilities": [
+    "panel_access_test_app_shell",
+    "auth_session_simulation_context",
+    "tenant_selected_context",
+    "owner_admin_role_access_preview",
+    "panel_route_availability_checklist",
+    "dashboard_access_check",
+    "users_roles_access_check",
+    "products_stock_access_check",
+    "billing_entitlements_access_check",
+    "unauthorized_forbidden_preview",
+    "session_timeout_preview",
+    "panel_navigation_handoff",
+    "access_audit_timeline",
+    "tenant_user_role_route_scope_guard",
+    "panel_access_runtime_data_contract",
+    "i18n_ready_panel_access_marker",
+    "seo_opengraph_panel_access_placeholder",
+    "panel_access_smoke_test"
+  ],
+  "next_step": "351 - POS erişim testi"
+}

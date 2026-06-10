@@ -1,0 +1,257 @@
+server {
+    location = / {
+        add_header X-Pix2pi-Public-Root "PIX2PI_PUBLIC_HOME_ALIAS_ROOT_MARKER" always;
+        default_type text/html;
+        alias /var/www/pix2pi/live/pix2pi_home.html;
+    }
+
+    location = /pix2pi_home.html {
+        add_header X-Pix2pi-Public-Home "PIX2PI_PUBLIC_HOME_ALIAS_FILE_MARKER" always;
+        default_type text/html;
+        alias /var/www/pix2pi/live/pix2pi_home.html;
+    }
+
+
+
+
+    listen 80;
+    server_name pix2pi.com.tr www.pix2pi.com.tr;
+    include /etc/nginx/snippets/pix2pi_home_image_assets_locations.conf;
+    include /etc/nginx/snippets/pix2pi_public_home_named_pages.conf;
+    location /faz4d/ {
+        return 301 https://$host$request_uri;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+
+}
+
+
+
+server {
+    location = / {
+        add_header X-Pix2pi-Public-Root "PIX2PI_PUBLIC_HOME_ALIAS_ROOT_MARKER" always;
+        default_type text/html;
+        alias /var/www/pix2pi/live/pix2pi_home.html;
+    }
+
+    location = /pix2pi_home.html {
+        add_header X-Pix2pi-Public-Home "PIX2PI_PUBLIC_HOME_ALIAS_FILE_MARKER" always;
+        default_type text/html;
+        alias /var/www/pix2pi/live/pix2pi_home.html;
+    }
+
+
+
+    include /etc/nginx/snippets/pix2pi_faz7r_ek2_i18n_route.conf;
+
+    include /etc/nginx/snippets/pix2pi_faz7r_ek2_husrev_route.conf;
+
+    include /etc/nginx/snippets/pix2pi_347_pilot_tenant_opening_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_346_plan_enforcement_ui_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_345_commercial_account_console_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_344_entitlement_quota_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_343_billing_invoice_payment_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_332_pos_checkout_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_342_subscription_lifecycle_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_341_commercial_plan_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_339_marketplace_customer_order_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_338_marketplace_payment_delivery_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_337_marketplace_order_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_336_marketplace_management_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_335_marketplace_catalog_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_333_offline_pos_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_328_import_export_api_route.conf;
+
+
+
+
+    include /etc/nginx/snippets/pix2pi_326_document_screen_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_322_business_settings_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_327_reports_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_320_merchant_dashboard_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_355_first_real_usage_smoke_route.conf;
+
+    include /etc/nginx/snippets/pix2pi_325_sales_pos_management_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_331_pos_sale_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_324_product_stock_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_323_party_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_357_help_center_route.conf;
+
+    include /etc/nginx/snippets/pix2pi_357_customer_access_activation_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_353_user_permission_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_352_tenant_isolation_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_351_pos_access_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_350_panel_access_api_route.conf;
+
+
+
+
+    include /etc/nginx/snippets/pix2pi_321_user_role_rbac_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_348_user_invite_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_319_347_onboarding_api_route.conf;
+
+    listen 443 ssl http2;
+    server_name pix2pi.com.tr www.pix2pi.com.tr;
+    include /etc/nginx/snippets/pix2pi_home_image_assets_locations.conf;
+    include /etc/nginx/snippets/pix2pi_public_home_named_pages.conf;
+    ssl_certificate /etc/letsencrypt/live/pix2pi.com.tr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/pix2pi.com.tr/privkey.pem;
+
+    location = /faz4d/pilot-go-live {
+        return 301 /faz4d/pilot-go-live/;
+    }
+
+
+    location = /faz5 {
+        return 301 /faz5/;
+    }
+
+    location = /faz5/ {
+        root /var/www/pix2pi;
+        index index.html;
+        try_files /faz5/index.html =404;
+        add_header Cache-Control "no-store, no-cache, must-revalidate, max-age=0" always;
+    }
+
+    location = /faz5/pricing {
+        return 301 /faz5/pricing/;
+    }
+
+    location = /faz5/pricing/ {
+        root /var/www/pix2pi;
+        index index.html;
+        try_files /faz5/pricing/index.html =404;
+        add_header Cache-Control "no-store, no-cache, must-revalidate, max-age=0" always;
+    }
+
+    location ^~ /faz5/pricing/ {
+        root /var/www/pix2pi;
+        index index.html;
+        try_files $uri /faz5/pricing/index.html =404;
+        add_header Cache-Control "no-store, no-cache, must-revalidate, max-age=0" always;
+    }
+
+    location = /faz5/developer {
+        return 301 /faz5/developer/;
+    }
+
+    location = /faz5/developer/ {
+        root /var/www/pix2pi;
+        index index.html;
+        try_files /faz5/developer/index.html =404;
+        add_header Cache-Control "no-store, no-cache, must-revalidate, max-age=0" always;
+    }
+
+    location ^~ /faz5/developer/ {
+        root /var/www/pix2pi;
+        index index.html;
+        try_files $uri /faz5/developer/index.html =404;
+        add_header Cache-Control "no-store, no-cache, must-revalidate, max-age=0" always;
+    }
+
+    location /faz4d/pilot-go-live/ {
+        alias /var/www/pix2pi/faz4d/pilot-go-live/;
+        index index.html;
+        try_files $uri $uri/ /faz4d/pilot-go-live/index.html;
+    }
+
+
+    location ^~ /assets/ {
+        alias /opt/pix2pi/nginx/assets/;
+        try_files $uri =404;
+        expires 7d;
+        add_header Cache-Control "public, max-age=604800";
+        include /etc/nginx/snippets/pix2pi_edge_security_headers.conf;
+    }
+
+
+
+    location = /index.html {
+        root /var/www/pix2pi/live;
+        try_files /index.html =404;
+        include /etc/nginx/snippets/pix2pi_edge_security_headers.conf;
+    }
+
+    location / {
+        root /var/www/pix2pi/live;
+        index index.html;
+        try_files $uri $uri/ /index.html;
+        include /etc/nginx/snippets/pix2pi_edge_security_headers.conf;
+    }
+
+    include /etc/nginx/snippets/pix2pi_customer_register_https_exact_locations.conf;
+
+}
+
+

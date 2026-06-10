@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "344",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "panel_invoices_screen",
+      "path": "/invoices/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_344_INVOICE_HISTORY_APP_SHELL_START",
+        "PIX2PI_344_INVOICE_LIST_TABLE_START",
+        "PIX2PI_344_INVOICE_HISTORY_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "panel_invoices_runtime",
+      "path": "/assets/invoices/panel-invoices-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_344_PANEL_INVOICES_RUNTIME_START",
+        "invoiceScopeHeaders",
+        "buildInvoiceRuntimeContract"
+      ]
+    }
+  ]
+}

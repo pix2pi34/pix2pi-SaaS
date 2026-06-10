@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi ilk işletme kullanıcı daveti ekranı" />
+  <meta property="og:title" content="Pix2pi İlk Kullanıcı Daveti" />
+  <meta property="og:description" content="İlk işletme kullanıcısı / owner admin davet yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi İlk Kullanıcı Daveti</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --blue: #2563eb;
+      --ok: #16a34a;
+      --warn: #f59e0b;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.13), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1360px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    label {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 13px 14px;
+      font: inherit;
+      background: #fff;
+      color: var(--text);
+    }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    button:disabled {
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .invite-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_348_FIRST_USER_INVITE_APP_SHELL_START -->
+  <main class="shell" data-step="348" data-surface="panel-user-invite">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 348</span>
+      <h1 data-i18n="user_invite.title">İlk işletme kullanıcı daveti</h1>
+      <p data-i18n="user_invite.description">Owner admin daveti, rol seçimi, davet kanalı ve şifre kurulum handoff yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_348_PILOT_TENANT_OWNER_INVITE_CONTEXT_START -->
+    <section class="card guard" data-widget="pilot_tenant_owner_invite_context">
+      <h2>Pilot tenant / owner invite context</h2>
+      <div class="grid-4">
+        <p>Tenant ID: <strong id="invite-tenant-id">controlled-pilot</strong></p>
+        <p>Tenant slug: <strong id="invite-tenant-slug">demo-market</strong></p>
+        <p>Invite ID: <strong id="invite-id">INVITE-DRAFT-348-DEMO</strong></p>
+        <p>Status: <strong id="invite-status">DRAFT_NOT_SENT</strong></p>
+        <p>Scope: <strong id="invite-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_348_PILOT_TENANT_OWNER_INVITE_CONTEXT_END -->
+
+    <!-- PIX2PI_348_INVITE_USER_IDENTITY_FORM_START -->
+    <section class="card" data-widget="invite_user_identity_form">
+      <h2>Davet edilecek kullanıcı kimlik formu</h2>
+      <div class="grid-4">
+        <label>E-posta <input id="invite-email" value="owner@example.invalid" autocomplete="off" /></label>
+        <label>Ad soyad <input id="invite-full-name" value="Pilot Owner Admin" autocomplete="off" /></label>
+        <label>Telefon placeholder <input id="invite-phone" value="+90-000-000-0000" autocomplete="off" /></label>
+        <!-- PIX2PI_348_OWNER_ADMIN_ROLE_SELECTION_START -->
+        <label>Rol
+          <select id="invite-role">
+            <option value="OWNER_ADMIN" selected>Owner Admin</option>
+            <option value="MANAGER">Manager</option>
+            <option value="CASHIER">Cashier</option>
+            <option value="ACCOUNTANT_READONLY">Accountant Readonly</option>
+          </select>
+        </label>
+        <!-- PIX2PI_348_OWNER_ADMIN_ROLE_SELECTION_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_348_INVITE_USER_IDENTITY_FORM_END -->
+
+    <!-- PIX2PI_348_TENANT_SCOPE_VALIDATION_START -->
+    <section class="card guard" data-widget="tenant_scope_validation">
+      <h2>Tenant scope validation</h2>
+      <p>Davet endpointleri `X-Admin-Session`, `X-Tenant-ID`, `X-Invite-Scope`, `X-Correlation-ID` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_348_TENANT_SCOPE_VALIDATION_END -->
+
+    <!-- PIX2PI_348_EMAIL_INVITE_CHANNEL_PLACEHOLDER_START -->
+    <section class="card" data-widget="email_invite_channel_placeholder">
+      <h2>Davet kanalları</h2>
+      <div id="invite-channels" class="grid-3">
+        <article class="invite-card" data-channel-code="EMAIL_PLACEHOLDER" data-channel-enabled="false">
+          <strong>E-posta</strong>
+          <p>EMAIL_PLACEHOLDER / enabled=false</p>
+        </article>
+        <!-- PIX2PI_348_SMS_WHATSAPP_INVITE_CHANNEL_PLACEHOLDER_START -->
+        <article class="invite-card" data-channel-code="SMS_PLACEHOLDER" data-channel-enabled="false">
+          <strong>SMS</strong>
+          <p>SMS_PLACEHOLDER / enabled=false</p>
+        </article>
+        <article class="invite-card" data-channel-code="WHATSAPP_PLACEHOLDER" data-channel-enabled="false">
+          <strong>WhatsApp</strong>
+          <p>WHATSAPP_PLACEHOLDER / enabled=false</p>
+        </article>
+        <!-- PIX2PI_348_SMS_WHATSAPP_INVITE_CHANNEL_PLACEHOLDER_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_348_EMAIL_INVITE_CHANNEL_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_348_INVITE_TOKEN_PREVIEW_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="invite_token_preview_disabled_gate">
+      <h2>Invite token preview disabled gate</h2>
+      <p>real_invite_token_enabled=false. Gerçek invite token üretimi bu adımda kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_348_INVITE_TOKEN_PREVIEW_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_348_PASSWORD_SETUP_FLOW_HANDOFF_START -->
+    <section class="card guard" data-widget="password_setup_flow_handoff">
+      <h2>Şifre kurulum akışı handoff</h2>
+      <p>password_setup_status=HANDOFF_TO_STEP_349. Şifre / giriş akışı 349 adımında açılacak.</p>
+    </section>
+    <!-- PIX2PI_348_PASSWORD_SETUP_FLOW_HANDOFF_END -->
+
+    <!-- PIX2PI_348_INVITE_SEND_DISABLED_GUARD_START -->
+    <section class="card locked" data-widget="invite_send_disabled_guard">
+      <h2>Davet gönder disabled guard</h2>
+      <p>real_user_create_enabled=false / real_email_send_enabled=false / real_sms_send_enabled=false.</p>
+      <button type="button" disabled>Davet gönder kapalı</button>
+    </section>
+    <!-- PIX2PI_348_INVITE_SEND_DISABLED_GUARD_END -->
+
+    <!-- PIX2PI_348_DUPLICATE_INVITATION_GUARD_START -->
+    <section class="card guard" data-widget="duplicate_invitation_guard">
+      <h2>Duplicate invitation guard</h2>
+      <p>duplicate_invitation_guard_enabled=true / checked_fields=tenant_id,email,role / duplicate_found=false.</p>
+    </section>
+    <!-- PIX2PI_348_DUPLICATE_INVITATION_GUARD_END -->
+
+    <!-- PIX2PI_348_USER_ACTIVATION_STATUS_PREVIEW_START -->
+    <section class="card" data-widget="user_activation_status_preview">
+      <h2>User activation status preview</h2>
+      <div id="invite-activation-preview" class="grid-4">
+        <article class="invite-card" data-activation-step="INVITE_DRAFT">
+          <strong>INVITE_DRAFT</strong>
+          <p>Status: READY</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_348_USER_ACTIVATION_STATUS_PREVIEW_END -->
+
+    <!-- PIX2PI_348_INVITATION_AUDIT_TIMELINE_START -->
+    <section class="card" data-widget="invitation_audit_timeline">
+      <h2>Invitation audit timeline</h2>
+      <div id="invite-audit-timeline" class="grid-3">
+        <article class="invite-card" data-audit-action="FIRST_USER_INVITE_DRAFT_CREATED">
+          <strong>FIRST_USER_INVITE_DRAFT_CREATED</strong>
+          <p>2026-05-demo / system / DRY_RUN</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_348_INVITATION_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_348_INVITE_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="invite_runtime_data_contract">
+      <h2>Invite runtime data contract</h2>
+      <p id="invite-runtime-contract">invite_draft_enabled=true / duplicate_invitation_guard_enabled=true / ready_for_step_349=true</p>
+    </section>
+    <!-- PIX2PI_348_INVITE_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_348_SEO_OPENGRAPH_INVITE_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_invite_placeholder">
+      <h2>SEO / OpenGraph invite placeholder</h2>
+      <p>Title, description ve og:* metadata ilk kullanıcı daveti yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_348_SEO_OPENGRAPH_INVITE_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_348_I18N_READY_INVITE_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_invite_marker">
+      <h2 data-i18n="user_invite.i18n_ready">i18n-ready invite screen</h2>
+      <p data-i18n="user_invite.surface_ready">İlk kullanıcı daveti ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_348_I18N_READY_INVITE_MARKER_END -->
+  </main>
+  <!-- PIX2PI_348_FIRST_USER_INVITE_APP_SHELL_END -->
+
+  <script src="/assets/user-invite/panel-user-invite-runtime.js"></script>
+  <script>
+    Pix2piPanelUserInvite.bootInviteScreen().then(function (contract) {
+      console.log("PIX2PI_348_FIRST_USER_INVITE_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

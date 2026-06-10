@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Panel Giriş</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #687287;
+      --border: #e6e9f0;
+      --brand: #1f6feb;
+      --danger: #b42318;
+      --shadow: 0 14px 34px rgba(18, 27, 46, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at top left, #eaf2ff, var(--bg) 44%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 24px;
+    }
+
+    .login-shell {
+      width: min(100%, 1040px);
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .intro {
+      padding: 44px;
+      background: linear-gradient(135deg, #0f172a, #173569);
+      color: #eef4ff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #38bdf8, #1f6feb);
+      display: grid;
+      place-items: center;
+    }
+
+    .intro h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+    }
+
+    .intro p {
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin: 14px 0 0;
+    }
+
+    .form-panel {
+      padding: 44px;
+      display: grid;
+      align-content: center;
+      gap: 22px;
+    }
+
+    .form-panel h2 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.04em;
+    }
+
+    .muted {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #344054;
+    }
+
+    input {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 13px 14px;
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px rgba(31, 111, 235, .12);
+    }
+
+    button {
+      border: none;
+      border-radius: 15px;
+      padding: 13px 16px;
+      font: inherit;
+      font-weight: 900;
+      background: var(--brand);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .error {
+      border: 1px solid #fecaca;
+      background: #fff1f2;
+      color: var(--danger);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .contract {
+      background: #f8fafc;
+      border: 1px dashed var(--border);
+      border-radius: 16px;
+      padding: 13px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 860px) {
+      .login-shell { grid-template-columns: 1fr; }
+      .intro, .form-panel { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- PIX2PI_317_LOGIN_SCREEN_START -->
+  <main class="login-shell" data-step="317" data-auth-api-login="/api/auth/login">
+    <section class="intro">
+      <div class="brand">
+        <div class="brand-mark">P</div>
+        <div>Pix2pi</div>
+      </div>
+
+      <div>
+        <h1>İşletme paneline güvenli giriş.</h1>
+        <p>Tek kullanıcı birden fazla işletmeye bağlı olabilir. Girişten sonra tenant seçim ekranı açılır.</p>
+      </div>
+
+      <div class="contract">
+        JWT login bağlantısı: <strong>/api/auth/login</strong><br />
+        Surface: <strong>panel.pix2pi.com.tr</strong>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <div>
+        <h2>Giriş yap</h2>
+        <p class="muted">E-posta ve şifre ile Pix2pi müşteri paneline bağlan.</p>
+      </div>
+
+      <!-- PIX2PI_317_LOGIN_ERROR_MESSAGES_START -->
+      <div id="login-error" class="error" hidden data-error-code="">Giriş işlemi tamamlanamadı.</div>
+      <!-- PIX2PI_317_LOGIN_ERROR_MESSAGES_END -->
+
+      <form id="login-form">
+        <label>
+          E-posta
+          <input id="email" name="email" type="email" autocomplete="username" required />
+        </label>
+
+        <label>
+          Şifre
+          <input id="password" name="password" type="password" autocomplete="current-password" required />
+        </label>
+
+        <button type="submit">Giriş yap</button>
+      </form>
+
+      <!-- PIX2PI_317_JWT_LOGIN_CONNECTION_START -->
+      <div class="contract">
+        Bu ekran Pix2piAuth.loginWithJwtConnection() ile JWT login adapter sözleşmesine bağlıdır.
+      </div>
+      <!-- PIX2PI_317_JWT_LOGIN_CONNECTION_END -->
+    </section>
+  </main>
+  <!-- PIX2PI_317_LOGIN_SCREEN_END -->
+
+  <script src="/assets/auth/auth-runtime.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById("login-form");
+      const errorBox = document.getElementById("login-error");
+
+      Pix2piAuth.bootSessionTimeoutWatcher();
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const credentials = {
+          email: document.getElementById("email").value,
+          password: document.getElementById("password").value
+        };
+
+        try {
+          const result = await Pix2piAuth.loginWithJwtConnection(credentials);
+
+          if (result.tenants.length === 1 && result.tenants[0].id) {
+            Pix2piAuth.saveTenantPreference(result.tenants[0].id);
+          }
+
+          window.location.href = Pix2piAuth.CONFIG.paths.tenantSelect;
+        } catch (error) {
+          Pix2piAuth.renderLoginError(errorBox, error.message || "UNKNOWN");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

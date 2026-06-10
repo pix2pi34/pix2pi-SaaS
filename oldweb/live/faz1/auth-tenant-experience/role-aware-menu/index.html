@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Role-aware Menu</title>
+  <link rel="stylesheet" href="./role_aware_menu.css">
+</head>
+<body>
+  <main class="pix2pi-shell">
+    <header class="pix2pi-header">
+      <div>
+        <h1 class="pix2pi-title">Pix2pi Role-aware Menu</h1>
+        <p class="pix2pi-subtitle">FAZ 1-5.4 — Auth / Tenant Experience</p>
+      </div>
+      <span class="pix2pi-badge ok">WEB-L2 READY</span>
+    </header>
+
+    <section class="pix2pi-grid">
+      <aside class="pix2pi-card pix2pi-profile">
+        <label class="pix2pi-label" for="roleProfileSelect">Aktif Rol Profili</label>
+        <select class="pix2pi-select" id="roleProfileSelect"></select>
+
+        <div>
+          <div class="pix2pi-label">Roller</div>
+          <div class="pix2pi-badge" id="activeRoles">ROLES</div>
+        </div>
+
+        <div>
+          <div class="pix2pi-label">Permissions</div>
+          <div class="pix2pi-badge" id="activePermissions">PERMISSIONS</div>
+        </div>
+
+        <div>
+          <div class="pix2pi-label">Entitlements</div>
+          <div class="pix2pi-badge" id="activeEntitlements">ENTITLEMENTS</div>
+        </div>
+
+        <div>
+          <div class="pix2pi-label">Surface</div>
+          <div class="pix2pi-badge ok" id="activeSurface">SURFACE</div>
+        </div>
+      </aside>
+
+      <section class="pix2pi-card">
+        <div class="pix2pi-surface-warning" id="surfaceWarning" role="status"></div>
+        <nav class="pix2pi-menu" id="roleAwareMenu" aria-label="Role-aware Pix2pi menu"></nav>
+        <div class="pix2pi-log" id="roleAwareMenuLog">Role-aware menu event log...</div>
+      </section>
+    </section>
+  </main>
+
+  <script src="./role_aware_menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+version: v1
+payment_rules:
+  pos_backbone_enabled: __PAYMENT_POS_BACKBONE_ENABLED__
+  pos_provider_mode: __PAYMENT_POS_PROVIDER_MODE__
+  bank_collection_enabled: __PAYMENT_BANK_COLLECTION_ENABLED__
+  bank_settlement_mode: __PAYMENT_BANK_SETTLEMENT_MODE__
+  reconciliation_bridge_mode: __PAYMENT_RECONCILIATION_BRIDGE_MODE__
+  refund_flow_enabled: __PAYMENT_REFUND_FLOW_ENABLED__
+  cancel_flow_enabled: __PAYMENT_CANCEL_FLOW_ENABLED__
+  audit_enabled: __PAYMENT_AUDIT_ENABLED__
+  test_profile: __PAYMENT_TEST_PROFILE__
+
+turkiye_compliance:
+  accounting_smoke_required: __TURKIYE_ACCOUNTING_SMOKE_REQUIRED__
+  ebelge_smoke_required: __TURKIYE_EBELGE_SMOKE_REQUIRED__
+  export_smoke_required: __TURKIYE_EXPORT_SMOKE_REQUIRED__
+  accountant_portal_smoke_required: __TURKIYE_ACCOUNTANT_PORTAL_SMOKE_REQUIRED__
+  payment_smoke_required: __TURKIYE_PAYMENT_SMOKE_REQUIRED__
+  closure_mode: __TURKIYE_CLOSURE_MODE__

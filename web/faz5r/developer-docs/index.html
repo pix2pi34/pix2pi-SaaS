@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pix2pi Developer Docs Portalı — Internal Preview</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root { color-scheme: dark; font-family: Inter, Arial, sans-serif; background:#0f172a; color:#e5e7eb; }
+    body { margin:0; }
+    .wrap { max-width:1120px; margin:0 auto; padding:40px 20px; }
+    .hero { border:1px solid #334155; border-radius:24px; padding:28px; background:linear-gradient(135deg,#111827,#1e293b); }
+    .badge { display:inline-block; padding:6px 10px; border:1px solid #475569; border-radius:999px; font-size:12px; color:#cbd5e1; }
+    h1 { margin:18px 0 10px; font-size:36px; line-height:1.1; }
+    p { color:#cbd5e1; line-height:1.65; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:22px; }
+    .card { border:1px solid #334155; border-radius:18px; padding:18px; background:#111827; }
+    .card h2 { margin:0 0 8px; font-size:18px; }
+    code { background:#020617; border:1px solid #334155; border-radius:8px; padding:2px 6px; color:#93c5fd; }
+    .guard { margin-top:24px; border:1px solid #7f1d1d; background:#450a0a; border-radius:18px; padding:18px; color:#fecaca; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <!-- PIX2PI_DEVELOPER_DOCS_PORTAL_START -->
+    <section class="hero">
+      <span class="badge">FAZ 5-19.3 / Internal Preview / Production Publish Disabled</span>
+      <h1>Pix2pi Developer Docs Portalı</h1>
+      <p>
+        Bu yüzey developer portal dokümantasyon iskeletidir. Production docs yayını, gerçek developer erişimi,
+        API key oluşturma ve canlı sandbox erişimi bu fazda kapalıdır.
+      </p>
+      <p>
+        Zorunlu header standardı: <code>Authorization: Bearer &lt;token&gt;</code> ve <code>X-Tenant-ID</code>.
+        API key yönetim ekranı sonraki adımda açılacaktır.
+      </p>
+    </section>
+
+    <section class="grid" aria-label="Developer documentation sections">
+      <article class="card" data-doc-section="developer_overview">
+        <h2>Developer Overview</h2>
+        <p>API kullanım modeli, tenant-safe yaklaşım ve public launch öncesi erişim sınırları.</p>
+      </article>
+      <article class="card" data-doc-section="authentication_docs">
+        <h2>Authentication Docs</h2>
+        <p>Bearer token, API key lifecycle ve erişim güvenliği için hazırlık notları.</p>
+      </article>
+      <article class="card" data-doc-section="tenant_context_docs">
+        <h2>Tenant Context Docs</h2>
+        <p>Her request için tenant context ve <code>X-Tenant-ID</code> zorunluluğu.</p>
+      </article>
+      <article class="card" data-doc-section="api_reference_docs">
+        <h2>API Reference Docs</h2>
+        <p>Endpoint katalog standardı, versiyonlama ve rate limit notları.</p>
+      </article>
+      <article class="card" data-doc-section="webhook_docs">
+        <h2>Webhook Docs</h2>
+        <p>Webhook teslimat, imza, retry ve audit trail hazırlık iskeleti.</p>
+      </article>
+      <article class="card" data-doc-section="sandbox_usage_docs">
+        <h2>Sandbox Usage Docs</h2>
+        <p>Sandbox kullanım yüzeyi açılmadan önce güvenli test akışı açıklamaları.</p>
+      </article>
+      <article class="card" data-doc-section="security_compliance_docs">
+        <h2>Security / Compliance</h2>
+        <p>KVKK, güvenlik, privacy guard ve destek kanalı yönlendirmeleri.</p>
+      </article>
+      <article class="card" data-doc-section="support_sla_docs">
+        <h2>Support / SLA</h2>
+        <p>Developer destek kanalı, SLA beklentisi ve escalation bağlantısı.</p>
+      </article>
+    </section>
+
+    <section class="guard">
+      <strong>Launch Guard:</strong>
+      production_docs_published=false,
+      real_developer_access_enabled=false,
+      api_key_creation_enabled=false,
+      sandbox_live_enabled=false.
+    </section>
+    <!-- PIX2PI_DEVELOPER_DOCS_PORTAL_END -->
+  </main>
+</body>
+</html>

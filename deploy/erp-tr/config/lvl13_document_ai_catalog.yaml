@@ -1,0 +1,35 @@
+version: v1
+document_ai:
+  ocr_lens_flow:
+    required_fields:
+      - document_id
+      - flow_mode
+      - source_type
+      - processed_at
+
+  tax_field_extraction:
+    required_fields:
+      - tax_number
+      - tax_office
+      - extraction_status
+      - extracted_at
+
+  contact_field_extraction:
+    required_fields:
+      - address
+      - phone
+      - email
+      - extracted_at
+
+  confidence_and_review:
+    required_fields:
+      - confidence_score
+      - review_required
+      - review_status
+      - reviewed_at
+
+  test_suite:
+    required_fields:
+      - test_profile
+      - test_status
+      - tested_at

@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "358",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "controlled_pilot_monitoring_screen",
+      "path": "/controlled-pilot-monitoring/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_358_CONTROLLED_PILOT_MONITORING_APP_SHELL_START",
+        "PIX2PI_358_PILOT_HEALTH_DASHBOARD_PREVIEW_START",
+        "PIX2PI_358_MONITORING_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "controlled_pilot_monitoring_runtime",
+      "path": "/assets/controlled-pilot-monitoring/controlled-pilot-monitoring-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_358_CONTROLLED_PILOT_MONITORING_RUNTIME_START",
+        "monitoringScopeHeaders",
+        "buildMonitoringRuntimeContract"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+gate	status	note
+previous_20_2	PASS	config/env hardening prerequisite
+systemd_inventory	PASS	services=30 pix2pi=26 critical=4
+port_inventory	PASS	ports=61 public=55 high_risk=51
+container_inventory	PASS	containers=15 running=15
+service_hardening_candidates	PASS	high=22 medium=4
+port_hardening_candidates	PASS	high=51
+container_hardening_candidates	PASS	high=12 medium=0
+hardening_matrix	PASS	evidence only
+no_restart	PASS	no service/container restart
+no_deploy	PASS	no deploy/nginx reload
+secret_safe	PASS	no env/log/secret values printed
+service_restarted	NO	evidence only
+service_started	NO	evidence only
+service_stopped	NO	evidence only
+systemd_unit_changed	NO	evidence only
+systemd_enable_changed	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+deploy_executed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+file_permission_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+log_content_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

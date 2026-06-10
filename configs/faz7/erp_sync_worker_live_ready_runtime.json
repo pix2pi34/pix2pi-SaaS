@@ -1,0 +1,69 @@
+{
+  "module_code": "FAZ_7_18_ERP_SYNC_WORKER_LIVE_READY_RUNTIME",
+  "mode": "ERP_SYNC_WORKER_LIVE_READY_WITH_REAL_ERP_WRITE_DISABLED",
+  "status": "ERP_SYNC_WORKER_LIVE_READY_RUNTIME_READY",
+  "depends_on": {
+    "faz_7_17_export_live_ready_pipeline_final_status": "PASS",
+    "export_live_ready_pipeline_gate": "EXPORT_LIVE_READY_PIPELINE_READY"
+  },
+  "erp_sync_worker_live_ready_gate": {
+    "production_erp_sync_allowed": false,
+    "real_erp_write_allowed": false,
+    "real_ledger_posting_allowed": false,
+    "real_provider_api_call_allowed": false,
+    "real_customer_payload_allowed": false,
+    "real_reconciliation_commit_allowed": false,
+    "real_operator_erp_sync_action_allowed": false,
+    "sync_worker_live_module_status": "ERP_SYNC_WORKER_LIVE_READY_RUNTIME_READY",
+    "provider_live_module_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "approval_matrix_status": "CLOSED_UNTIL_APPROVAL_MATRIX_PASS",
+    "ledger_posting_live_module_status": "CLOSED_UNTIL_LEDGER_POSTING_LIVE_MODULE",
+    "reconciliation_live_module_status": "CLOSED_UNTIL_RECONCILIATION_LIVE_MODULE",
+    "customer_consent_gate_status": "CLOSED_UNTIL_CUSTOMER_DATA_CONSENT_GATE",
+    "production_erp_sync_lock": "PRODUCTION_ERP_SYNC_LOCKED_IN_FAZ_7_18",
+    "provider_dry_run_set": "PARASUT_LOGO_MIKRO_ZIRVE"
+  },
+  "supported_providers": [
+    "PARASUT",
+    "LOGO",
+    "MIKRO",
+    "ZIRVE"
+  ],
+  "supported_objects": [
+    "INVOICE",
+    "CUSTOMER",
+    "LEDGER_ENTRY",
+    "STOCK_ITEM"
+  ],
+  "supported_directions": [
+    "PIX2PI_TO_PROVIDER",
+    "PROVIDER_TO_PIX2PI"
+  ],
+  "required_erp_sync_live_ready_matrix": [
+    "export_live_ready",
+    "provider_live_adapter_ready",
+    "erp_write_contract_ready",
+    "erp_object_mapping_ready",
+    "tenant_boundary_ready",
+    "event_mapping_ready",
+    "erp_sync_idempotency_ready",
+    "erp_sync_retry_dlq_ready",
+    "erp_reconciliation_ready",
+    "ledger_posting_guard_ready",
+    "erp_sync_audit_ready",
+    "erp_sync_rollback_ready",
+    "legal_approval_gate_ready",
+    "finance_approval_gate_ready",
+    "security_gate_ready",
+    "erp_sync_observability_ready"
+  ],
+  "live_operation_policy": {
+    "erp_write": "NO_REAL_ERP_WRITE_IN_FAZ_7_18",
+    "ledger_posting": "NO_REAL_LEDGER_POSTING_IN_FAZ_7_18",
+    "provider_api": "NO_REAL_PROVIDER_API_CALL_IN_FAZ_7_18",
+    "customer_payload": "NO_REAL_CUSTOMER_DATA_PAYLOAD_IN_FAZ_7_18",
+    "reconciliation_commit": "NO_REAL_RECONCILIATION_COMMIT_IN_FAZ_7_18",
+    "operator_action": "NO_REAL_OPERATOR_ERP_SYNC_ACTION_IN_FAZ_7_18"
+  },
+  "next_module": "FAZ_7_19_LIVE_ACTIVATION_GUARD_APPROVAL_MATRIX"
+}

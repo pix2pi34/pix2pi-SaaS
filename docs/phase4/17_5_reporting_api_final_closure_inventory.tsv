@@ -1,0 +1,10 @@
+block	status	evidence
+17.1_reporting_runtime_wiring_plan	PASS	service_entry_and_gateway_premanifest_ready
+17.2_reporting_api_route_registration	PASS	6_routes_registered
+17.3_gateway_route_manifest_auth_tenant_gate	PASS	6_routes_auth_tenant_gate_ready
+17.4_reporting_runtime_smoke_test	PASS	in_process_httptest_pass
+go_test_suite	PASS	go_test_internal_platform_reporting
+runtime_start	NO	no_port_no_listen
+gateway_config_changed	NO	dry_run_only
+db_mutation	NO	evidence_only
+query_text_printed	NO	no_sql_leak

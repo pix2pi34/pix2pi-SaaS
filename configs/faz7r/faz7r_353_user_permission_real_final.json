@@ -1,0 +1,20 @@
+{
+  "step": "FAZ 7-R / 353",
+  "name": "Kullanıcı yetki kontrolü real final",
+  "dependencies": ["321 RBAC", "350 panel access", "351 POS access", "352 tenant isolation"],
+  "apis": [
+    "POST /api/panel/permission/check",
+    "POST /api/panel/permission/protected-action"
+  ],
+  "evidenceRequired": [
+    "owner wildcard allow",
+    "manager allow deny",
+    "cashier allow deny",
+    "accountant allow deny",
+    "no-role deny",
+    "protected action DB row",
+    "forbidden no DB row",
+    "rollback no partial write",
+    "audit allow deny select"
+  ]
+}

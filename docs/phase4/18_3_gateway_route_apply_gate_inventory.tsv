@@ -1,0 +1,14 @@
+item	status	note
+selected_entry_target	FOUND	cmd/api-gateway/api_gateway_main.go
+selected_entry_kind	API_GATEWAY	api gateway target enforced
+target_sha256	CAPTURED	9bf59d57ae0d2f15c927fd2a9e58779db9ee7a6721e396e9498dcde035bec7ac
+runtime_registration	FOUND	internal/platform/reporting/runtime/registration.go
+register_function	FOUND	count=1
+routes_function	FOUND	count=1
+route_constants	FOUND	count=6
+target_package_main	CHECKED	count=1
+target_main_func	CHECKED	count=1
+target_mux_pattern	CHECKED	count=25
+reporting_already_applied	NO	import_count=0 call_count=0
+candidate_execution	YES	blocked_by_default=YES
+apply_gate_ready	YES	failures=0 warnings=0

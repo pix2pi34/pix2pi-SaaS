@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi pilot müşteri tenant açılışı ekranı" />
+  <meta property="og:title" content="Pix2pi Pilot Tenant Açılışı" />
+  <meta property="og:description" content="Kontrollü pilot müşteri tenant açılış ve approval gate yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Pilot Tenant Açılışı</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --blue: #2563eb;
+      --ok: #16a34a;
+      --warn: #f59e0b;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.13), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1360px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    button:disabled {
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .pilot-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_347_PILOT_TENANT_OPENING_APP_SHELL_START -->
+  <main class="shell" data-step="347" data-surface="panel-pilot-tenant">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 347</span>
+      <h1 data-i18n="pilot_tenant.title">Pilot müşteri tenant açılışı</h1>
+      <p data-i18n="pilot_tenant.description">Kontrollü pilot müşteri tenant draft, approval gate ve erişim hazırlık yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_347_PILOT_TENANT_REQUEST_DRAFT_CONTEXT_START -->
+    <section class="card guard" data-widget="pilot_tenant_request_draft_context">
+      <h2>Pilot tenant request / draft context</h2>
+      <div class="grid-4">
+        <p>Tenant ID: <strong id="pilot-tenant-id">controlled-pilot</strong></p>
+        <p>Slug: <strong id="pilot-tenant-slug">demo-market</strong></p>
+        <p>Environment: <strong id="pilot-tenant-environment">CONTROLLED_PILOT</strong></p>
+        <p>Status: <strong id="pilot-tenant-status">DRAFT_NOT_PROVISIONED</strong></p>
+        <p>Scope: <strong id="pilot-tenant-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_347_PILOT_TENANT_REQUEST_DRAFT_CONTEXT_END -->
+
+    <!-- PIX2PI_347_TENANT_SLUG_DOMAIN_ENVIRONMENT_CONTEXT_START -->
+    <section class="card" data-widget="tenant_slug_domain_environment_context">
+      <h2>Tenant slug / domain / environment context</h2>
+      <p>tenant_slug=demo-market / domain_hint=demo-market.panel.pix2pi.local / environment=CONTROLLED_PILOT</p>
+    </section>
+    <!-- PIX2PI_347_TENANT_SLUG_DOMAIN_ENVIRONMENT_CONTEXT_END -->
+
+    <!-- PIX2PI_347_BUSINESS_BASIC_INFO_CHECKLIST_START -->
+    <section class="card" data-widget="business_basic_info_checklist">
+      <h2>İşletme temel bilgi checklist</h2>
+      <div id="pilot-tenant-business-checklist" class="grid-3">
+        <article class="pilot-card" data-check-code="BUSINESS_NAME" data-check-status="READY">
+          <strong>İşletme adı</strong>
+          <p>Status: READY</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_347_BUSINESS_BASIC_INFO_CHECKLIST_END -->
+
+    <!-- PIX2PI_347_LEGAL_ENTITY_BRANCH_PLACEHOLDER_START -->
+    <section class="card guard" data-widget="legal_entity_branch_placeholder">
+      <h2>Legal entity / branch placeholder</h2>
+      <p>legal_entity_status=PLACEHOLDER / branch_status=PLACEHOLDER. Gerçek kayıt production gate olmadan açılmaz.</p>
+    </section>
+    <!-- PIX2PI_347_LEGAL_ENTITY_BRANCH_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_347_DEFAULT_PLAN_BINDING_START -->
+    <section class="card guard" data-widget="default_plan_binding">
+      <h2>Default plan binding</h2>
+      <p>default_plan_code=pilot_free. İlk müşteri tenant kontrollü pilot paketiyle başlar.</p>
+    </section>
+    <!-- PIX2PI_347_DEFAULT_PLAN_BINDING_END -->
+
+    <!-- PIX2PI_347_DEFAULT_LANGUAGE_TIMEZONE_CURRENCY_BINDING_START -->
+    <section class="card guard" data-widget="default_language_timezone_currency_binding">
+      <h2>Default language / timezone / currency binding</h2>
+      <p>default_language=tr-TR / timezone=Europe/Istanbul / currency=TRY.</p>
+    </section>
+    <!-- PIX2PI_347_DEFAULT_LANGUAGE_TIMEZONE_CURRENCY_BINDING_END -->
+
+    <!-- PIX2PI_347_OWNER_ADMIN_ASSIGNMENT_PLACEHOLDER_START -->
+    <section class="card guard" data-widget="owner_admin_assignment_placeholder">
+      <h2>Owner admin assignment placeholder</h2>
+      <p>owner_admin_email_placeholder=owner@example.invalid. Gerçek davet 348 adımında açılacak.</p>
+    </section>
+    <!-- PIX2PI_347_OWNER_ADMIN_ASSIGNMENT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_347_KVKK_LEGAL_COMMERCIAL_APPROVAL_GATE_START -->
+    <section class="card locked" data-widget="kvkk_legal_commercial_approval_gate">
+      <h2>KVKK / legal / commercial approval gate</h2>
+      <div id="pilot-tenant-approval-gates" class="grid-4">
+        <article class="pilot-card" data-gate-code="KVKK_APPROVAL" data-gate-status="REQUIRED">
+          <strong>KVKK onayı</strong>
+          <p>Status: REQUIRED</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_347_KVKK_LEGAL_COMMERCIAL_APPROVAL_GATE_END -->
+
+    <!-- PIX2PI_347_DATA_ISOLATION_RLS_READINESS_GATE_START -->
+    <section class="card locked" data-widget="data_isolation_rls_readiness_gate">
+      <h2>Data isolation / RLS readiness gate</h2>
+      <p>rls_isolation_check_required=true. Tenant DB kayıtları gerçek açılış öncesi izolasyon kontrolünden geçmelidir.</p>
+    </section>
+    <!-- PIX2PI_347_DATA_ISOLATION_RLS_READINESS_GATE_END -->
+
+    <!-- PIX2PI_347_PANEL_POS_MARKET_ACCESS_PREPARATION_START -->
+    <section class="card" data-widget="panel_pos_market_access_preparation">
+      <h2>Panel / POS / Market access preparation</h2>
+      <div id="pilot-tenant-access-preparation" class="grid-3">
+        <article class="pilot-card" data-surface="panel">
+          <strong>panel</strong>
+          <p>https://panel.pix2pi.com.tr/ / PREPARED</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_347_PANEL_POS_MARKET_ACCESS_PREPARATION_END -->
+
+    <!-- PIX2PI_347_TENANT_PROVISIONING_DISABLED_GUARD_START -->
+    <section class="card locked" data-widget="tenant_provisioning_disabled_guard">
+      <h2>Tenant provisioning disabled guard</h2>
+      <p>real_tenant_insert_enabled=false. Gerçek tenant insert bu adımda kapalıdır.</p>
+      <button type="button" disabled>Tenant provision kapalı</button>
+    </section>
+    <!-- PIX2PI_347_TENANT_PROVISIONING_DISABLED_GUARD_END -->
+
+    <!-- PIX2PI_347_TENANT_ACTIVATION_DISABLED_GUARD_START -->
+    <section class="card locked" data-widget="tenant_activation_disabled_guard">
+      <h2>Tenant activation disabled guard</h2>
+      <p>real_tenant_activation_enabled=false / real_customer_access_enabled=false. Müşteri erişimi controlled gate sonrası açılır.</p>
+      <button type="button" disabled>Tenant activate kapalı</button>
+    </section>
+    <!-- PIX2PI_347_TENANT_ACTIVATION_DISABLED_GUARD_END -->
+
+    <!-- PIX2PI_347_TENANT_OPENING_AUDIT_TIMELINE_START -->
+    <section class="card" data-widget="tenant_opening_audit_timeline">
+      <h2>Tenant opening audit timeline</h2>
+      <div id="pilot-tenant-audit-timeline" class="grid-3">
+        <article class="pilot-card" data-audit-action="PILOT_TENANT_DRAFT_CREATED">
+          <strong>PILOT_TENANT_DRAFT_CREATED</strong>
+          <p>2026-05-demo / system / DRY_RUN</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_347_TENANT_OPENING_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_347_TENANT_OPENING_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="tenant_opening_runtime_data_contract">
+      <h2>Tenant opening runtime data contract</h2>
+      <p id="pilot-tenant-runtime-contract">pilot_tenant_draft_enabled=true / controlled_opening_gate_enabled=true / ready_for_step_348=true</p>
+    </section>
+    <!-- PIX2PI_347_TENANT_OPENING_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_347_SEO_OPENGRAPH_PILOT_TENANT_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_pilot_tenant_placeholder">
+      <h2>SEO / OpenGraph pilot tenant placeholder</h2>
+      <p>Title, description ve og:* metadata pilot tenant açılışı yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_347_SEO_OPENGRAPH_PILOT_TENANT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_347_I18N_READY_PILOT_TENANT_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_pilot_tenant_marker">
+      <h2 data-i18n="pilot_tenant.i18n_ready">i18n-ready pilot tenant screen</h2>
+      <p data-i18n="pilot_tenant.surface_ready">Pilot tenant açılışı ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_347_I18N_READY_PILOT_TENANT_MARKER_END -->
+  </main>
+  <!-- PIX2PI_347_PILOT_TENANT_OPENING_APP_SHELL_END -->
+
+  <script src="/assets/pilot-tenant/panel-pilot-tenant-runtime.js"></script>
+  <script>
+    Pix2piPanelPilotTenant.bootPilotTenantScreen().then(function (contract) {
+      console.log("PIX2PI_347_PILOT_TENANT_OPENING_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

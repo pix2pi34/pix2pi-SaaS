@@ -1,0 +1,102 @@
+{
+  "phase": "FAZ_3_13_4_OCR_DOCUMENT_REVIEW_SCREEN",
+  "screen": "ocr_document_review_screen",
+  "screen_enabled": true,
+  "route": "/faz3/document-integration/ocr-review/",
+  "static_file": "web/faz3/document-integration/ocr-review/index.html",
+  "scope": {
+    "ocr_review_queue_visibility": true,
+    "lens_like_document_reading_visibility": true,
+    "tax_no_extraction_visibility": true,
+    "tax_office_extraction_visibility": true,
+    "address_extraction_visibility": true,
+    "phone_extraction_visibility": true,
+    "email_extraction_visibility": true,
+    "confidence_score_visibility": true,
+    "confidence_bucket_visibility": true,
+    "missing_field_visibility": true,
+    "manual_correction_visibility": true,
+    "review_decision_visibility": true,
+    "target_entity_visibility": true,
+    "source_image_hash_visibility": true,
+    "ocr_payload_hash_visibility": true,
+    "extracted_fields_hash_visibility": true,
+    "correction_hash_visibility": true,
+    "pii_mask_hash_visibility": true,
+    "audit_timeline_visibility": true
+  },
+  "guard_policy": {
+    "tenant_indicator_required": true,
+    "firm_indicator_required": true,
+    "review_id_required": true,
+    "document_no_required": true,
+    "document_type_required": true,
+    "tax_no_required": true,
+    "tax_office_required": true,
+    "address_required": true,
+    "phone_required": true,
+    "email_required": true,
+    "confidence_score_required": true,
+    "confidence_bucket_required": true,
+    "review_decision_required": true,
+    "source_image_hash_required": true,
+    "ocr_payload_hash_required": true,
+    "extracted_fields_hash_required": true,
+    "correction_hash_required": true,
+    "pii_mask_hash_required": true,
+    "audit_hash_required": true,
+    "evidence_file_required": true
+  },
+  "document_type_coverage": {
+    "tax_certificate": true,
+    "business_card": true,
+    "invoice_image": true,
+    "contact_form": true
+  },
+  "extraction_field_coverage": {
+    "tax_no": true,
+    "tax_office": true,
+    "address": true,
+    "phone": true,
+    "email": true
+  },
+  "review_status_coverage": {
+    "ready_for_review": true,
+    "low_confidence": true,
+    "correction_required": true,
+    "approved_dry_run": true
+  },
+  "confidence_coverage": {
+    "high": true,
+    "medium": true,
+    "low": true
+  },
+  "operation_coverage": {
+    "preview_extraction": true,
+    "validate_fields": true,
+    "manual_correction": true,
+    "approve_dry_run": true,
+    "audit_evidence": true
+  },
+  "live_policy": {
+    "production_approved": false,
+    "auto_commit_allowed": false,
+    "human_review_required": true,
+    "raw_image_storage_allowed": false,
+    "pii_masking_required": true,
+    "confidence_gate_required": true,
+    "correction_audit_required": true,
+    "customer_card_write_allowed": false,
+    "ui_actions_are_preview_validate_correct_audit_only": true
+  },
+  "covered_backend_gates": [
+    "FAZ_3_10_6_1_OCR_LENS_PROCESSING_RUNTIME",
+    "FAZ_3_10_6_2_TAX_FIELD_EXTRACTION_RUNTIME",
+    "FAZ_3_10_6_3_CONTACT_FIELD_EXTRACTION_RUNTIME",
+    "FAZ_3_10_6_4_CONFIDENCE_REVIEW_QUEUE_RUNTIME",
+    "FAZ_3_10_6_5_DOCUMENT_AI_RUNTIME_TESTS",
+    "FAZ_3_13_1_EBELGE_STATUS_CENTER"
+  ],
+  "previous_gate": "FAZ_3_13_1_EBELGE_STATUS_CENTER",
+  "next_gate": "FAZ_3_13_6_DOCUMENT_INTEGRATION_UI_TESTS"
+}

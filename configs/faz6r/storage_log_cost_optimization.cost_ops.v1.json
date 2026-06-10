@@ -1,0 +1,73 @@
+{
+  "version": "cost_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_5_3",
+  "status": "dry_run_only_no_storage_log_mutation",
+  "recommendations": [
+    {
+      "recommendation_id": "storage-rec-runtime-log-volume-review",
+      "storage_surface": "runtime_logs",
+      "storage_class": "runtime_logs",
+      "current_cost_driver": "high_runtime_log_volume",
+      "recommended_action": "review_log_sampling_and_level_policy_no_delete",
+      "estimated_savings_level": "medium",
+      "risk_level": "medium",
+      "retention_guard_status": "REQUIRED",
+      "tenant_scope_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "storage-rec-audit-log-retention-guard",
+      "storage_surface": "audit_logs",
+      "storage_class": "audit_logs",
+      "current_cost_driver": "audit_log_growth",
+      "recommended_action": "review_archive_tier_no_delete",
+      "estimated_savings_level": "low",
+      "risk_level": "high",
+      "retention_guard_status": "REQUIRED",
+      "tenant_scope_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "storage-rec-evidence-artifact-compression",
+      "storage_surface": "evidence_artifacts",
+      "storage_class": "evidence_artifacts",
+      "current_cost_driver": "faz_evidence_artifact_growth",
+      "recommended_action": "review_compression_archive_no_delete",
+      "estimated_savings_level": "medium",
+      "risk_level": "medium",
+      "retention_guard_status": "REQUIRED",
+      "tenant_scope_guard_status": "NOT_TENANT_DATA",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "storage-rec-backup-archive-tier-review",
+      "storage_surface": "backup_archive",
+      "storage_class": "backup_archive",
+      "current_cost_driver": "backup_and_wal_archive_growth",
+      "recommended_action": "review_cold_tier_transition_no_delete",
+      "estimated_savings_level": "medium",
+      "risk_level": "high",
+      "retention_guard_status": "REQUIRED",
+      "tenant_scope_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "storage-rec-static-asset-dedup-review",
+      "storage_surface": "static_assets",
+      "storage_class": "static_assets",
+      "current_cost_driver": "duplicate_static_asset_candidates",
+      "recommended_action": "review_duplicate_assets_no_delete",
+      "estimated_savings_level": "low",
+      "risk_level": "low",
+      "retention_guard_status": "REVIEW_ONLY",
+      "tenant_scope_guard_status": "NOT_TENANT_DATA",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ]
+}

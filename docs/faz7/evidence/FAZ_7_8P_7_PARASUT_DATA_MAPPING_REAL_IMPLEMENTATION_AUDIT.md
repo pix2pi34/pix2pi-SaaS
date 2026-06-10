@@ -1,0 +1,65 @@
+# FAZ 7-8P.7 Paraşüt Data Mapping Real Implementation Audit
+
+Generated at: 2026-05-02T04:14:32Z
+
+- 7-8P.7.0.1 Documentation artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.0.2 Config artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.0.3 Data mapping code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.0.4 Data mapping test code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.0.5 Scope document title IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.1.0 Scope doc source data IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.2.0 Scope doc customer mapping IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.3.0 Scope doc product mapping IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.4.0 Scope doc invoice mapping IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.5.0 Scope doc conflict IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.0 Scope doc final closure IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.0.6 Config provider key IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.0.7 Config real provider API disabled IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.0.8 Config real ERP write disabled IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.0.9 Config dependency on API client IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.1.1 Config external object ID required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.2.1 Config tax number required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.3.1 Config SKU required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.4.1 Config invoice number required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.4.2 Config idempotent sync key required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.5.1 Config duplicate safe IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.5.2 Config cross tenant rejected IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.1 Config ERP dry-run only IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.2 Config real ERP write closed IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.1.2 Code source base model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.1.3 Code customer source model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.1.4 Code product source model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.1.5 Code invoice source model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.1.6 Code source base validator IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.2.2 Code customer mapping builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.2.3 Code tax number field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.2.4 Code ERP customer key IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.3.2 Code product mapping builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.3.3 Code SKU field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.3.4 Code VAT rate field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.3.5 Code ERP product key IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.4.3 Code invoice mapping builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.4.4 Code invoice number field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.4.5 Code customer external ID field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.4.6 Code amount minor field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.4.7 Code VAT amount minor field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.4.8 Code invoice line validator IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.5.3 Code sync key builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.5.4 Code conflict evaluator IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.5.5 Code duplicate safe reason IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.5.6 Code cross tenant conflict IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.5.7 Code object type conflict IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.3 Code ERP write contract request IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.4 Code ERP write dry-run builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.5 Code real ERP write blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.6 Code mapping audit bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.7 Code final readiness gate IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.8 Code final decision IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.9 Code real provider API blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.10 Code real ERP write blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.1.10 Test source data contract IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.2.8 Test customer mapping IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.3.9 Test product mapping IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.4.11 Test invoice mapping IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.5.8 Test conflict idempotency IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.7.6.11 Test final closure IMPLEMENTED_OR_PRESENT / OK

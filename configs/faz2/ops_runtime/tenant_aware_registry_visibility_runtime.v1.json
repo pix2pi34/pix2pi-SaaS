@@ -1,0 +1,43 @@
+{
+  "phase": "FAZ 2-7.1.5",
+  "runtime": "tenant_aware_registry_visibility",
+  "require_tenant": true,
+  "require_viewer_tenant": true,
+  "deny_cross_tenant_tenant_view": true,
+  "allowed_scopes": [
+    "TENANT",
+    "PLATFORM",
+    "INTERNAL"
+  ],
+  "metadata_scope_matrix": {
+    "TENANT": [
+      "TENANT"
+    ],
+    "PLATFORM": [
+      "TENANT",
+      "PLATFORM"
+    ],
+    "INTERNAL": [
+      "TENANT",
+      "PLATFORM",
+      "INTERNAL"
+    ]
+  },
+  "guards": [
+    "tenant_required",
+    "viewer_tenant_required",
+    "registry_required",
+    "valid_scope_required",
+    "cross_tenant_tenant_scope_denied",
+    "tenant_scoped_instance_filter",
+    "metadata_visibility_filter",
+    "no_other_tenant_leakage",
+    "audit_decision_fields"
+  ],
+  "bridges": [
+    "instance_metadata_runtime",
+    "service_instance_records",
+    "instance_metadata_visibility"
+  ],
+  "next_ready": "FAZ_2_7_1_6_REGISTRY_RUNTIME_INTEGRATION_TESTS"
+}

@@ -1,0 +1,31 @@
+{
+  "step": "FAZ 7-R / 340",
+  "name": "Marketplace final smoke / commercial handoff real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "marketplace-final-smoke-340-20260513_224847",
+  "sellerId": "seller-335-main",
+  "catalogProductId": "catalog-product-335-main",
+  "buyerSessionId": "buyer-340-final-20260513_224847",
+  "checkoutIntentId": "checkout-intent-336-c495b5ba-d876-4e5c-8b4b-c35d92b3221a",
+  "marketplaceOrderId": "market-order-340-final-20260513_224847",
+  "paymentIntentId": "payment-intent-340-final-20260513_224847",
+  "deliveryId": "delivery-340-final-20260513_224847",
+  "routes": [
+    "/catalog/",
+    "/management/",
+    "/orders/",
+    "/payment-delivery/",
+    "/customer-orders/"
+  ],
+  "requiredEvidence": [
+    "catalog to order to payment to delivery end-to-end smoke",
+    "seller management smoke",
+    "customer order tracking smoke",
+    "tenant-safe marketplace final smoke",
+    "controlled marketplace guard final smoke",
+    "commercial handoff readiness",
+    "marketplace final route smoke",
+    "rollback no partial write",
+    "final audit evidence"
+  ]
+}

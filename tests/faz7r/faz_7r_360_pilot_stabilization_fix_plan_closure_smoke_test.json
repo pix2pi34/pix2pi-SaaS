@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "360",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "pilot_stabilization_fix_plan_screen",
+      "path": "/pilot-stabilization-fix-plan/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_360_PILOT_STABILIZATION_APP_SHELL_START",
+        "PIX2PI_360_GO_FORWARD_DECISION_PREVIEW_START",
+        "PIX2PI_360_STABILIZATION_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "pilot_stabilization_fix_plan_runtime",
+      "path": "/assets/pilot-stabilization-fix-plan/pilot-stabilization-fix-plan-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_360_PILOT_STABILIZATION_FIX_PLAN_RUNTIME_START",
+        "stabilizationScopeHeaders",
+        "buildStabilizationRuntimeContract"
+      ]
+    }
+  ]
+}

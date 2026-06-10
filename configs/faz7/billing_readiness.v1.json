@@ -1,0 +1,85 @@
+{
+  "schema_version": "billing_readiness.v1",
+  "phase": "FAZ_7",
+  "step": "7-5",
+  "runtime_status": "READY",
+  "source_catalog": "configs/faz7/product_plan_catalog.v1.json",
+  "source_entitlement": "configs/faz7/entitlement_feature_gate.v1.json",
+  "source_subscription": "configs/faz7/subscription_runtime.v1.json",
+  "next_step": "7-6 Tenant Onboarding / Self-Service Readiness",
+  "currency": "TRY",
+  "money_unit": "kurus",
+  "default_vat_rate_bps": 2000,
+  "real_payment_enabled": false,
+  "billing_simulation_enabled": true,
+  "requires_financial_approval_before_real_payment": true,
+  "requires_tax_advisor_approval_before_real_billing": true,
+  "requires_payment_provider_contract_before_real_payment": true,
+  "invoice_draft_fields": [
+    "tenant_id",
+    "account_id",
+    "plan_code",
+    "billing_period_start",
+    "billing_period_end",
+    "net_amount_kurus",
+    "vat_rate_bps",
+    "vat_amount_kurus",
+    "gross_amount_kurus",
+    "currency",
+    "billing_status",
+    "real_payment_enabled"
+  ],
+  "billing_profile_required_fields": [
+    "tenant_id",
+    "account_id",
+    "legal_name",
+    "tax_number",
+    "tax_office",
+    "billing_email",
+    "billing_address"
+  ],
+  "plan_prices": [
+    {
+      "plan_code": "starter",
+      "monthly_net_amount_kurus": 99000,
+      "currency": "TRY"
+    },
+    {
+      "plan_code": "pro",
+      "monthly_net_amount_kurus": 299000,
+      "currency": "TRY"
+    },
+    {
+      "plan_code": "enterprise",
+      "monthly_net_amount_kurus": 1499000,
+      "currency": "TRY"
+    },
+    {
+      "plan_code": "accountant",
+      "monthly_net_amount_kurus": 499000,
+      "currency": "TRY"
+    },
+    {
+      "plan_code": "marketplace",
+      "monthly_net_amount_kurus": 799000,
+      "currency": "TRY"
+    }
+  ],
+  "decision_model": {
+    "allow_status": "ALLOW",
+    "deny_status": "DENY",
+    "reason_codes": [
+      "ALLOW_INVOICE_DRAFT_READY",
+      "ALLOW_BILLING_SIMULATION_READY",
+      "DENY_TENANT_REQUIRED",
+      "DENY_ACCOUNT_REQUIRED",
+      "DENY_PLAN_REQUIRED",
+      "DENY_PLAN_UNKNOWN",
+      "DENY_BILLING_PROFILE_REQUIRED",
+      "DENY_INVALID_PERIOD",
+      "DENY_SUBSCRIPTION_NOT_BILLABLE",
+      "DENY_REAL_PAYMENT_DISABLED",
+      "DENY_FINANCIAL_APPROVAL_REQUIRED"
+    ]
+  }
+}

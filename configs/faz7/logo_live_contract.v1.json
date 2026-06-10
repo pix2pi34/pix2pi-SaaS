@@ -1,0 +1,133 @@
+{
+  "module": "FAZ_7_8L",
+  "step": "FAZ_7_8L.2",
+  "name": "Logo Live Contract / API-File Contract Readiness",
+  "provider": {
+    "provider_code": "LOGO",
+    "provider_name": "Logo",
+    "connector_code": "logo_connector",
+    "connector_family": "accounting_export_connector",
+    "provider_directory": "internal/platform/integrations/providers/logo",
+    "foundation_runtime_file": "internal/platform/integrations/providers/logo/logo_foundation.go",
+    "runtime_file": "internal/platform/integrations/providers/logo/logo_live_contract.go",
+    "test_file": "internal/platform/integrations/providers/logo/logo_live_contract_test.go"
+  },
+  "runtime": {
+    "mode": "DRY_RUN",
+    "contract_mode": "DRY_RUN_CONTRACT_ONLY",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE"
+  },
+  "api_contract": {
+    "declared": true,
+    "status": "DECLARED_DRY_RUN_ONLY",
+    "base_url_required_for_live_module": true,
+    "auth_reference_required": true,
+    "tenant_scope_required": true,
+    "idempotency_key_required": true,
+    "correlation_id_required": true,
+    "real_call_allowed": false,
+    "endpoints": [
+      {
+        "name": "LOGO_AUTH_CHECK",
+        "method": "GET",
+        "path_template": "/live-module-provider-specific/auth/check",
+        "dry_run_only": true
+      },
+      {
+        "name": "LOGO_IMPORT_PACKAGE_STATUS",
+        "method": "GET",
+        "path_template": "/live-module-provider-specific/import-packages/{package_id}/status",
+        "dry_run_only": true
+      },
+      {
+        "name": "LOGO_IMPORT_PACKAGE_SUBMIT",
+        "method": "POST",
+        "path_template": "/live-module-provider-specific/import-packages",
+        "dry_run_only": true
+      }
+    ]
+  },
+  "file_contract": {
+    "declared": true,
+    "status": "DECLARED_DRY_RUN_ONLY",
+    "import_package_validation_required": true,
+    "tenant_scope_required": true,
+    "idempotency_key_required": true,
+    "correlation_id_required": true,
+    "file_checksum_required": true,
+    "real_file_delivery_allowed": false,
+    "formats": [
+      "LOGO_ACCOUNTING_EXPORT_DRY_RUN",
+      "LOGO_IMPORT_PACKAGE_DRY_RUN"
+    ],
+    "delivery_channels": [
+      "MANUAL_UPLOAD_PLACEHOLDER",
+      "SFTP_PLACEHOLDER",
+      "PROVIDER_API_PLACEHOLDER"
+    ]
+  },
+  "operations": [
+    {
+      "name": "DECLARE_LOGO_API_CONTRACT",
+      "mode": "DRY_RUN_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "DECLARE_LOGO_FILE_CONTRACT",
+      "mode": "DRY_RUN_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_LIVE_CONTRACT",
+      "mode": "DRY_RUN_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_LOGO_AUTH_REFERENCE_REQUIREMENTS",
+      "mode": "DRY_RUN_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_LOGO_IMPORT_PACKAGE_CONTRACT",
+      "mode": "DRY_RUN_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_LOGO_LIVE_HANDOFF_REQUIREMENTS",
+      "mode": "DRY_RUN_CONTRACT_ONLY",
+      "external_call_allowed": false,
+      "file_delivery_allowed": false,
+      "erp_write_allowed": false
+    }
+  ],
+  "handoff_gates": {
+    "logo_foundation_gate": "READY_FROM_7_8L_1",
+    "logo_live_contract_gate": "READY",
+    "logo_credential_secret_gate": "PENDING_7_8L_3",
+    "logo_export_mapping_gate": "PENDING_7_8L_4",
+    "logo_file_generation_gate": "PENDING_7_8L_5",
+    "logo_import_delivery_gate": "PENDING_7_8L_6",
+    "logo_validation_retry_dlq_gate": "PENDING_7_8L_7",
+    "logo_admin_ops_gate": "PENDING_7_8L_8",
+    "logo_e2e_dry_run_gate": "PENDING_7_8L_9",
+    "logo_final_closure_gate": "PENDING_7_8L_10"
+  },
+  "audit": {
+    "real_implementation_audit_required": true,
+    "real_provider_api_must_remain_closed": true,
+    "real_file_delivery_must_remain_closed": true,
+    "real_erp_write_must_remain_closed": true
+  }
+}

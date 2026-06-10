@@ -1,0 +1,37 @@
+{
+  "expected_dependency": "FAZ_6_21_5_5",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_redis_mutation_allowed": false,
+  "expected_cache_flush_allowed": false,
+  "expected_cache_key_delete_allowed": false,
+  "expected_cache_ttl_mutation_allowed": false,
+  "expected_namespace_mutation_allowed": false,
+  "expected_required_controls": [
+    "cost_performance_dependency_gate",
+    "cache_surface_inventory",
+    "hit_miss_metric_model",
+    "tenant_namespace_guard",
+    "ttl_tuning_policy",
+    "hot_key_review_policy",
+    "cache_bypass_review_policy",
+    "fallback_safety_policy",
+    "stale_data_guard",
+    "rate_limit_cache_guard",
+    "dry_run_tuning_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_cache_surfaces": [
+    "tenant_data_cache",
+    "rate_limit_cache",
+    "session_cache",
+    "readmodel_cache",
+    "public_asset_cache"
+  ],
+  "expected_min_recommendation_count": 5,
+  "expected_status": "dry_run_only_no_cache_mutation",
+  "expected_next_step": "FAZ_6_21_3_4"
+}

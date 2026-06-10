@@ -1,0 +1,13 @@
+gate_name	category	required_status	blocker_if_failed	evidence_hint	owner_role	implementation_status	note
+synthetic_data_only	security	PASS	YES	all sample data must be synthetic/masked	security_admin	READY_FOR_IMPLEMENTATION	contract_only
+no_real_customer_private_data	security	PASS	YES	no real phone/email/tax no	security_admin	READY_FOR_IMPLEMENTATION	contract_only
+tenant_scope_required	tenant	PASS	YES	all data belongs to pilot tenant context	platform_admin	READY_FOR_IMPLEMENTATION	contract_only
+product_minimum_fields_ready	product	PASS	YES	product code/category/unit/vat/barcode policy exists	tenant_operator	READY_FOR_IMPLEMENTATION	contract_only
+stock_opening_balance_ready	inventory	PASS	YES	opening stock cases exist	tenant_operator	READY_FOR_IMPLEMENTATION	contract_only
+sale_stock_accounting_chain_ready	business	PASS	YES	sale to stock to accounting chain covered	project_owner	READY_FOR_IMPLEMENTATION	contract_only
+refund_cancel_chain_ready	business	PASS	YES	refund/cancel chain covered	project_owner	READY_FOR_IMPLEMENTATION	contract_only
+tdhp_accounting_review_ready	accounting	PASS	YES	TDHP expected lines present	accountant	READY_FOR_IMPLEMENTATION	contract_only
+reporting_snapshot_ready	reporting	PASS	NO	reporting sample flows exist	tenant_admin	READY_FOR_IMPLEMENTATION	contract_only
+audit_evidence_ready	audit	PASS	YES	audit sample flow exists	tenant_admin	READY_FOR_IMPLEMENTATION	contract_only
+negative_stock_guard_ready	inventory	PASS	YES	negative stock guard case exists	tenant_operator	READY_FOR_IMPLEMENTATION	contract_only
+go_no_go_data_ready	rollout	PASS	YES	data readiness included in go/no-go	project_owner	READY_FOR_IMPLEMENTATION	contract_only

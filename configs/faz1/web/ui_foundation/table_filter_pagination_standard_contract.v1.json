@@ -1,0 +1,51 @@
+{
+  "phase": "FAZ_1_4_5",
+  "module": "WEB_L1_UI_FOUNDATION_DESIGN_SYSTEM",
+  "component": "table_filter_pagination_standard",
+  "status": "READY",
+  "required_capabilities": [
+    "table_component",
+    "filter_component",
+    "sort",
+    "pagination",
+    "empty_state"
+  ],
+  "table_contract": {
+    "root_id": "pix2piTableStandardRoot",
+    "table_id": "pix2piDataTable",
+    "tbody_id": "pix2piDataTableBody",
+    "filter_input_id": "pix2piTableFilterInput",
+    "status_filter_id": "pix2piStatusFilter",
+    "sort_select_id": "pix2piSortSelect",
+    "pagination_id": "pix2piPagination",
+    "empty_state_id": "pix2piTableEmptyState"
+  },
+  "filter_contract": {
+    "text_filter": "FILTER_BY_NAME_OR_CODE",
+    "status_filter": "FILTER_BY_STATUS",
+    "clear_filter": "RESET_FILTERS"
+  },
+  "sort_contract": {
+    "supported_fields": [
+      "code",
+      "name",
+      "status",
+      "updated_at"
+    ],
+    "default_sort": "updated_at_desc"
+  },
+  "pagination_contract": {
+    "page_size": 5,
+    "page_size_options": [
+      5,
+      10,
+      25
+    ],
+    "policy": "CLIENT_SIDE_PAGINATION_FOR_UI_STANDARD"
+  },
+  "empty_state_contract": {
+    "empty_filter_message": "Filtreye uygun kayıt bulunamadı.",
+    "empty_dataset_message": "Henüz kayıt yok.",
+    "retry_action": "RESET_FILTERS"
+  }
+}

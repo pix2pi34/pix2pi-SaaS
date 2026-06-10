@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi panel paket ve abonelik ekranı" />
+  <meta property="og:title" content="Pix2pi Paket / Abonelik" />
+  <meta property="og:description" content="İşletme müşterisi için paket seçimi, abonelik ve ticari plan yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Paket / Abonelik</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --brand: #2563eb;
+      --ok: #16a34a;
+      --warn: #f59e0b;
+      --shadow: 0 16px 42px rgba(15, 23, 42, .08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.14), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.12), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1320px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+    }
+
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    select, button {
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+    }
+
+    select {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+    }
+
+    button {
+      border: none;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    button:disabled {
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge, .plan-badge, .current {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .plan-badge {
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .current {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .plan-card, .feature-row {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 10px;
+    }
+
+    .plan-card strong {
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .plan-card em {
+      font-style: normal;
+      font-weight: 950;
+      font-size: 30px;
+      letter-spacing: -0.06em;
+      color: #166534;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_341_PLAN_SUBSCRIPTION_APP_SHELL_START -->
+  <main class="shell" data-step="341" data-surface="panel-plans">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 341</span>
+      <h1 data-i18n="panel_plans.title">Paket / abonelik</h1>
+      <p data-i18n="panel_plans.description">İşletme müşterisi için paket seçimi ve abonelik hazırlık yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_341_TENANT_MERCHANT_CONTEXT_START -->
+    <section class="card guard" data-widget="tenant_merchant_context">
+      <h2>Tenant / merchant context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="plans-tenant">controlled-pilot</strong></p>
+        <p>Merchant session: <strong id="plans-merchant-session">MERCHANT_DEMO_SESSION</strong></p>
+        <p>Mevcut plan: <strong id="plans-current-plan">pilot_free</strong></p>
+        <p>Scope: <strong id="plans-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_341_TENANT_MERCHANT_CONTEXT_END -->
+
+    <!-- PIX2PI_341_MONTHLY_ANNUAL_PRICE_VIEW_START -->
+    <section class="card" data-widget="monthly_annual_price_view">
+      <h2>Aylık / yıllık fiyat görünümü</h2>
+      <select id="plans-billing-cycle">
+        <option value="monthly">Aylık</option>
+        <option value="annual">Yıllık</option>
+      </select>
+    </section>
+    <!-- PIX2PI_341_MONTHLY_ANNUAL_PRICE_VIEW_END -->
+
+    <!-- PIX2PI_341_PLAN_CARDS_START -->
+    <section class="card" data-widget="plan_cards">
+      <h2>Paketler</h2>
+      <div id="plans-card-grid" class="grid-4">
+        <!-- PIX2PI_341_CURRENT_PLAN_BADGE_START -->
+        <article class="plan-card" data-plan-code="pilot_free" data-current-plan="true">
+          <span class="plan-badge">Mevcut</span>
+          <strong>Pilot Free</strong>
+          <p>Küçük işletme pilot kullanımı için kapalı tahsilatlı plan.</p>
+          <em>₺0</em>
+          <small>KDV dahil: ₺0</small>
+          <span class="current">Mevcut plan</span>
+        </article>
+        <!-- PIX2PI_341_CURRENT_PLAN_BADGE_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_341_PLAN_CARDS_END -->
+
+    <!-- PIX2PI_341_FEATURE_MATRIX_START -->
+    <section class="card" data-widget="feature_matrix">
+      <h2>Plan özellik matrisi</h2>
+      <div id="plans-feature-matrix" class="grid-3">
+        <article class="feature-row" data-plan-code="pilot_free">
+          <strong>Pilot Free</strong>
+          <p>Ürün: 250 / Kullanıcı: 3 / Mağaza: 1</p>
+          <p>POS: true / Market: true / Destek: community</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_341_FEATURE_MATRIX_END -->
+
+    <!-- PIX2PI_341_UPGRADE_DOWNGRADE_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="upgrade_downgrade_disabled_gate">
+      <h2>Plan yükseltme / düşürme disabled gate</h2>
+      <p>real_plan_change_enabled=false. Paket değişikliği production commercial gate açılmadan çalışmaz.</p>
+    </section>
+    <!-- PIX2PI_341_UPGRADE_DOWNGRADE_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_341_TRIAL_PILOT_PLAN_PLACEHOLDER_START -->
+    <section class="card" data-widget="trial_pilot_plan_placeholder">
+      <h2>Trial / pilot plan placeholder</h2>
+      <p>Pilot Free planı kontrollü müşteri erişimi için tutulur; gerçek tahsilat kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_341_TRIAL_PILOT_PLAN_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_341_TAX_VAT_PRICE_NOTE_START -->
+    <section class="card" data-widget="tax_vat_price_note">
+      <h2>Vergi / KDV fiyat notu</h2>
+      <p>Fiyatlar KDV hariç gösterilir; KDV dahil tutar runtime içinde ayrıca hesaplanır. Varsayılan KDV oranı %20.</p>
+    </section>
+    <!-- PIX2PI_341_TAX_VAT_PRICE_NOTE_END -->
+
+    <!-- PIX2PI_341_COMMERCIAL_POLICY_NOTE_START -->
+    <section class="card" data-widget="commercial_policy_note">
+      <h2>Commercial policy note</h2>
+      <ul id="plans-policy-notes">
+        <li>Gerçek tahsilat kapalıdır.</li>
+        <li>Plan değişikliği production billing gate sonrası açılır.</li>
+      </ul>
+    </section>
+    <!-- PIX2PI_341_COMMERCIAL_POLICY_NOTE_END -->
+
+    <!-- PIX2PI_341_PLAN_COMPARISON_RUNTIME_CONTRACT_START -->
+    <section class="card" data-widget="plan_comparison_runtime_contract">
+      <h2>Plan comparison runtime contract</h2>
+      <p id="plans-runtime-contract">plan_catalog_enabled=true / fallback_plan_catalog_enabled=true / ready_for_step_342=true</p>
+    </section>
+    <!-- PIX2PI_341_PLAN_COMPARISON_RUNTIME_CONTRACT_END -->
+
+    <!-- PIX2PI_341_ENTITLEMENT_PREVIEW_HANDOFF_START -->
+    <section class="card guard" data-widget="entitlement_preview_handoff">
+      <h2>Entitlement preview handoff</h2>
+      <p>Plan limitleri 342 kullanım hakkı / kota ekranına preview olarak devredilecek. real_entitlement_enforcement_enabled=false.</p>
+    </section>
+    <!-- PIX2PI_341_ENTITLEMENT_PREVIEW_HANDOFF_END -->
+
+    <!-- PIX2PI_341_BILLING_HANDOFF_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="billing_handoff_disabled_gate">
+      <h2>Billing handoff disabled gate</h2>
+      <p>real_payment_collection_enabled=false / real_invoice_issue_enabled=false. Gerçek ödeme ve fatura 343 sonrası kontrollü gate ile açılır.</p>
+    </section>
+    <!-- PIX2PI_341_BILLING_HANDOFF_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_341_TENANT_PLAN_SUBSCRIPTION_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="tenant_plan_subscription_scope_guard">
+      <h2>Tenant / plan / subscription scope guard</h2>
+      <p>Paket endpointleri `X-Tenant-ID` ve `X-Merchant-Session` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_341_TENANT_PLAN_SUBSCRIPTION_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_341_SEO_OPENGRAPH_PLAN_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_plan_placeholder">
+      <h2>SEO / OpenGraph plan placeholder</h2>
+      <p>Title, description ve og:* metadata paket/abonelik yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_341_SEO_OPENGRAPH_PLAN_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_341_I18N_READY_PLAN_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_plan_marker">
+      <h2 data-i18n="panel_plans.i18n_ready">i18n-ready plan screen</h2>
+      <p data-i18n="panel_plans.surface_ready">Paket / abonelik ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_341_I18N_READY_PLAN_MARKER_END -->
+  </main>
+  <!-- PIX2PI_341_PLAN_SUBSCRIPTION_APP_SHELL_END -->
+
+  <script src="/assets/plans/panel-plans-runtime.js"></script>
+  <script>
+    (function () {
+      const billingCycle = document.getElementById("plans-billing-cycle");
+
+      Pix2piPanelPlans.bootPlansScreen().then(function (contract) {
+        console.log("PIX2PI_341_PLAN_SUBSCRIPTION_CONTRACT", contract);
+      });
+
+      billingCycle.addEventListener("change", function () {
+        Pix2piPanelPlans.setBillingCycle(billingCycle.value);
+        Pix2piPanelPlans.bootPlansScreen().then(function (contract) {
+          console.log("PIX2PI_341_BILLING_CYCLE_CHANGE", contract);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

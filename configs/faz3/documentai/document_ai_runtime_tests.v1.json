@@ -1,0 +1,40 @@
+{
+  "phase": "FAZ_3_10_6_5_DOCUMENT_AI_RUNTIME_TESTS",
+  "runtime": "document_ai_runtime_test_suite",
+  "runtime_enabled": true,
+  "require_ocr_flow": true,
+  "require_tax_flow": true,
+  "require_contact_flow": true,
+  "require_review_queue_flow": true,
+  "require_all_hashes": true,
+  "require_review_scenario": true,
+  "min_happy_path_pass_count": 4,
+  "min_review_path_pass_count": 7,
+  "covered_modules": [
+    "FAZ_3_10_6_1_OCR_LENS_PROCESSING_RUNTIME",
+    "FAZ_3_10_6_2_TAX_FIELD_EXTRACTION_RUNTIME",
+    "FAZ_3_10_6_3_CONTACT_FIELD_EXTRACTION_RUNTIME",
+    "FAZ_3_10_6_4_CONFIDENCE_REVIEW_QUEUE_RUNTIME"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "suite_id_required": true,
+    "ocr_process_id_required": true,
+    "document_id_required": true,
+    "source_file_hash_required": true,
+    "source_text_required": true,
+    "requested_at_required": true,
+    "happy_path_required": true,
+    "review_required_path_required": true,
+    "ocr_result_hash_required": true,
+    "tax_result_hash_required": true,
+    "contact_result_hash_required": true,
+    "review_decision_hash_required": true,
+    "suite_hash_required": true
+  },
+  "previous_gate": "FAZ_3_10_6_4_CONFIDENCE_REVIEW_QUEUE_RUNTIME",
+  "next_gate": "FAZ_3_10_8_3_EBELGE_SMOKE"
+}

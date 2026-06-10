@@ -1,0 +1,16 @@
+version: v1
+e2e_rules:
+  auth_tenant_scenario_enabled: true
+  dashboard_monitoring_scenario_enabled: true
+  erp_accounting_scenario_enabled: true
+  ebelge_export_scenario_enabled: true
+  payment_reconciliation_scenario_enabled: true
+  smoke_profile: critical-path
+
+security_rules:
+  cross_tenant_regression_enabled: true
+  auth_forbidden_regression_enabled: true
+  rate_limit_abuse_regression_enabled: true
+  secret_config_regression_enabled: true
+  audit_export_isolation_enabled: true
+  regression_profile: tenant-security-core

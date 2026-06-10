@@ -1,0 +1,236 @@
+{
+  "valid_fixture": {
+    "realtime_event_feed_id": "realtime_event_feed.valid_fixture",
+    "realtime_event_feed_status": "READY",
+    "realtime_event_feed_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT",
+      "tenant_status": "PILOT_CLOSED"
+    },
+    "chain_dependencies": {
+      "239_FAZ_4_17_6_WORKFLOW_REALTIME_UI_TESTLERI": "PASS"
+    },
+    "feed_items": [
+      {"code": "REALTIME_EVENT_FEED_SHELL", "required": true, "status": "READY", "area": "UI", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "TENANT_SCOPED_EVENT_FEED", "required": true, "status": "READY", "area": "TENANCY", "owner": "WEB_OWNER", "evidence_ref": "docs/faz4r/FAZ_4_17_3_REALTIME_EVENT_FEED.md"},
+      {"code": "EVENT_TIMELINE_LIST", "required": true, "status": "READY", "area": "TIMELINE", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "EVENT_METADATA_MODEL", "required": true, "status": "READY", "area": "DATA", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/realtime_event_feed.controlled_pilot.v1.json"},
+      {"code": "EVENT_SEVERITY_BADGE_MODEL", "required": true, "status": "READY", "area": "STATUS", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "EVENT_CHANNEL_BADGE_MODEL", "required": true, "status": "READY", "area": "CHANNEL", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "EVENT_SOURCE_LABEL_MODEL", "required": true, "status": "READY", "area": "SOURCE", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "CORRELATION_ID_PLACEHOLDER", "required": true, "status": "READY", "area": "TRACE", "owner": "SECURITY_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "WORKFLOW_MONITOR_LINK", "required": true, "status": "READY", "area": "NAVIGATION", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "REALTIME_HEALTH_LINK", "required": true, "status": "READY", "area": "NAVIGATION", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "NOTIFICATION_CENTER_PLACEHOLDER", "required": true, "status": "READY", "area": "NOTIFICATION", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "EMPTY_STATE", "required": true, "status": "READY", "area": "STATE", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "ERROR_STATE", "required": true, "status": "READY", "area": "STATE", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "NO_EVENT_PUBLISH_GUARD", "required": true, "status": "READY", "area": "SAFETY", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/realtime_event_feed.controlled_pilot.v1.json"},
+      {"code": "NO_EVENT_SUBSCRIBE_GUARD", "required": true, "status": "READY", "area": "SAFETY", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/realtime_event_feed.controlled_pilot.v1.json"},
+      {"code": "NO_LIVE_SOCKET_GUARD", "required": true, "status": "READY", "area": "SAFETY", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/realtime_event_feed.controlled_pilot.v1.json"},
+      {"code": "EXTERNAL_POLICY_CLOSED_GATE", "required": true, "status": "READY", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "configs/faz4r/realtime_event_feed.controlled_pilot.v1.json"},
+      {"code": "UI_CHECKPOINT_HTML", "required": true, "status": "READY", "area": "WEB", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-event-feed/index.html"},
+      {"code": "FINAL_REALTIME_EVENT_FEED_REPORT", "required": true, "status": "READY", "area": "REPORT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/evidence/FAZ_4_17_3_REALTIME_EVENT_FEED_REAL_IMPLEMENTATION_AUDIT.md"}
+    ],
+    "event_samples": [
+      {
+        "event_id": "EVT-PILOT-001",
+        "tenant_id": "pilot_tenant_001",
+        "channel": "workflow.status",
+        "source": "workflow-monitor",
+        "severity": "INFO",
+        "title": "Workflow monitor checkpoint ready",
+        "status": "READ_ONLY_SAMPLE",
+        "correlation_id": "corr-pilot-workflow-001",
+        "event_time": "2026-05-09T06:40:00Z"
+      },
+      {
+        "event_id": "EVT-PILOT-002",
+        "tenant_id": "pilot_tenant_001",
+        "channel": "approval.inbox",
+        "source": "approval-inbox",
+        "severity": "WARN",
+        "title": "Pending approval preview item visible",
+        "status": "READ_ONLY_SAMPLE",
+        "correlation_id": "corr-pilot-approval-002",
+        "event_time": "2026-05-09T06:41:00Z"
+      },
+      {
+        "event_id": "EVT-PILOT-003",
+        "tenant_id": "pilot_tenant_001",
+        "channel": "notification.center",
+        "source": "realtime-health",
+        "severity": "INFO",
+        "title": "Realtime health placeholder ready",
+        "status": "READ_ONLY_SAMPLE",
+        "correlation_id": "corr-pilot-realtime-003",
+        "event_time": "2026-05-09T06:42:00Z"
+      }
+    ],
+    "feed_controls": {
+      "workflow_realtime_ui_test_status": "PASS",
+      "tenant_scope": "SINGLE_TENANT",
+      "event_timeline_status": "READY",
+      "event_metadata_status": "READY",
+      "severity_badge_status": "READY",
+      "channel_badge_status": "READY",
+      "source_label_status": "READY",
+      "correlation_id_placeholder_status": "READY",
+      "workflow_monitor_link_status": "READY",
+      "realtime_health_link_status": "READY",
+      "notification_center_placeholder_status": "READY",
+      "empty_state_status": "READY",
+      "error_state_status": "READY",
+      "web_checkpoint_status": "READY",
+      "no_event_stream_publish": true,
+      "no_event_stream_subscribe": true,
+      "no_live_websocket_connection": true,
+      "no_live_sse_connection": true,
+      "no_workflow_mutation": true,
+      "no_production_launch": true,
+      "no_live_external_provider_activation": true
+    },
+    "feed_metrics": {
+      "total_item_count": 19,
+      "ready_item_count": 19,
+      "missing_item_count": 0,
+      "required_fail_count": 0,
+      "sample_event_count": 3,
+      "event_stream_publish_count": 0,
+      "event_stream_subscribe_count": 0,
+      "active_websocket_connection_count": 0,
+      "active_sse_connection_count": 0,
+      "workflow_mutation_count": 0,
+      "production_launch_count": 0,
+      "live_external_provider_activation_count": 0,
+      "live_external_policy_status": "CLOSED"
+    },
+    "summary": {
+      "total_item_count": 19,
+      "ready_item_count": 19,
+      "missing_item_count": 0,
+      "required_fail_count": 0,
+      "tenant_scope": "SINGLE_TENANT",
+      "workflow_realtime_ui_test_status": "PASS",
+      "event_timeline_status": "READY",
+      "severity_badge_status": "READY",
+      "channel_badge_status": "READY",
+      "web_checkpoint_status": "READY",
+      "realtime_event_feed_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "production_launch": "CLOSED",
+      "workflow_mutation": "CLOSED",
+      "event_stream_publish": "CLOSED",
+      "event_stream_subscribe": "CLOSED",
+      "live_websocket_connection": "CLOSED",
+      "live_sse_connection": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "realtime_event_feed_id": "realtime_event_feed.invalid_fixture",
+    "realtime_event_feed_status": "DRAFT",
+    "realtime_event_feed_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED",
+      "tenant_status": "UNKNOWN"
+    },
+    "chain_dependencies": {
+      "239_FAZ_4_17_6_WORKFLOW_REALTIME_UI_TESTLERI": "FAIL"
+    },
+    "feed_items": [
+      {"code": "REALTIME_EVENT_FEED_SHELL", "required": true, "status": "MISSING", "area": "", "owner": "", "evidence_ref": ""},
+      {"code": "TENANT_SCOPED_EVENT_FEED", "required": true, "status": "READY", "area": "TENANCY", "owner": "WEB_OWNER", "evidence_ref": "x"},
+      {"code": "TENANT_SCOPED_EVENT_FEED", "required": true, "status": "READY", "area": "TENANCY", "owner": "WEB_OWNER", "evidence_ref": "x"}
+    ],
+    "event_samples": [
+      {
+        "event_id": "",
+        "tenant_id": "other_tenant",
+        "channel": "unknown.channel",
+        "source": "",
+        "severity": "CRITICAL",
+        "title": "Bad event",
+        "status": "PUBLISHED",
+        "correlation_id": "",
+        "event_time": ""
+      }
+    ],
+    "feed_controls": {
+      "workflow_realtime_ui_test_status": "FAIL",
+      "tenant_scope": "MULTI_TENANT",
+      "event_timeline_status": "DRAFT",
+      "event_metadata_status": "DRAFT",
+      "severity_badge_status": "DRAFT",
+      "channel_badge_status": "DRAFT",
+      "source_label_status": "DRAFT",
+      "correlation_id_placeholder_status": "DRAFT",
+      "workflow_monitor_link_status": "DRAFT",
+      "realtime_health_link_status": "DRAFT",
+      "notification_center_placeholder_status": "DRAFT",
+      "empty_state_status": "DRAFT",
+      "error_state_status": "DRAFT",
+      "web_checkpoint_status": "DRAFT",
+      "no_event_stream_publish": false,
+      "no_event_stream_subscribe": false,
+      "no_live_websocket_connection": false,
+      "no_live_sse_connection": false,
+      "no_workflow_mutation": false,
+      "no_production_launch": false,
+      "no_live_external_provider_activation": false
+    },
+    "feed_metrics": {
+      "total_item_count": 99,
+      "ready_item_count": 99,
+      "missing_item_count": 1,
+      "required_fail_count": 1,
+      "sample_event_count": 99,
+      "event_stream_publish_count": 1,
+      "event_stream_subscribe_count": 1,
+      "active_websocket_connection_count": 1,
+      "active_sse_connection_count": 1,
+      "workflow_mutation_count": 1,
+      "production_launch_count": 1,
+      "live_external_provider_activation_count": 1,
+      "live_external_policy_status": "OPEN"
+    },
+    "summary": {
+      "total_item_count": 99,
+      "ready_item_count": 99,
+      "missing_item_count": 99,
+      "required_fail_count": 99,
+      "tenant_scope": "MULTI_TENANT",
+      "workflow_realtime_ui_test_status": "FAIL",
+      "event_timeline_status": "DRAFT",
+      "severity_badge_status": "DRAFT",
+      "channel_badge_status": "DRAFT",
+      "web_checkpoint_status": "DRAFT",
+      "realtime_event_feed_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "production_launch": "OPEN",
+      "workflow_mutation": "OPEN",
+      "event_stream_publish": "OPEN",
+      "event_stream_subscribe": "OPEN",
+      "live_websocket_connection": "OPEN",
+      "live_sse_connection": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

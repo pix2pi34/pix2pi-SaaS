@@ -1,0 +1,8 @@
+table	status	tenant_id_required	entity_id	search_text	search_keywords	note
+party_search_documents	YES	YES	YES	YES	YES	search_projection.party_search_documents
+product_search_documents	YES	YES	YES	YES	YES	search_projection.product_search_documents
+inventory_search_documents	YES	YES	YES	YES	YES	search_projection.inventory_search_documents
+business_document_search_documents	YES	YES	YES	YES	YES	search_projection.business_document_search_documents
+finance_search_documents	YES	YES	YES	YES	YES	search_projection.finance_search_documents
+global_search_documents	YES	YES	YES	YES	YES	search_projection.global_search_documents
+search_projection_rebuild_state	YES	YES	NO	NO	NO	search_projection.search_projection_rebuild_state

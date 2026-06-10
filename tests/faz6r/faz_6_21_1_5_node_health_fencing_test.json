@@ -1,0 +1,43 @@
+{
+  "expected_dependency": "FAZ_6_21_1_4",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_node_cordon_allowed": false,
+  "expected_node_drain_allowed": false,
+  "expected_node_restart_allowed": false,
+  "expected_node_shutdown_allowed": false,
+  "expected_lb_detach_allowed": false,
+  "expected_dns_mutation_allowed": false,
+  "expected_gateway_route_mutation_allowed": false,
+  "expected_service_registry_mutation_allowed": false,
+  "expected_container_kill_allowed": false,
+  "expected_deployment_rollout_allowed": false,
+  "expected_required_controls": [
+    "session_sticky_dependency_gate",
+    "node_inventory_model",
+    "node_health_signal_model",
+    "fencing_decision_policy",
+    "quorum_safety_guard",
+    "split_brain_guard",
+    "tenant_traffic_isolation_guard",
+    "workload_drain_policy",
+    "lb_detach_policy",
+    "service_discovery_alignment_guard",
+    "session_affinity_safety_guard",
+    "dry_run_fencing_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_node_classes": [
+    "api_gateway_node",
+    "app_runtime_node",
+    "worker_node",
+    "db_facing_node",
+    "observability_node"
+  ],
+  "expected_min_recommendation_count": 5,
+  "expected_status": "dry_run_only_no_node_fencing_mutation",
+  "expected_next_step": "FAZ_6_20_2"
+}

@@ -1,0 +1,42 @@
+{
+  "module_code": "7-5P.8",
+  "module_name": "Payment Provider Sandbox E2E Flow / Webhook Roundtrip",
+  "parent_module": "7-5P",
+  "depends_on": [
+    "7-5P",
+    "7-5P.1",
+    "7-5P.2",
+    "7-5P.3",
+    "7-5P.4",
+    "7-5P.5",
+    "7-5P.6",
+    "7-5P.7"
+  ],
+  "sandbox_e2e_version": "payment_sandbox_e2e_roundtrip.v1",
+  "flow": [
+    "PaymentService.Authorize",
+    "PaymentAttemptRepository.Save",
+    "SimulationPaymentProviderAdapter.BuildWebhookDelivery",
+    "PaymentWebhookIntakeRuntime.VerifyAndRecord",
+    "PaymentAttemptRepository.Update",
+    "PaymentAttemptRepository.FindByAttemptID"
+  ],
+  "guards": {
+    "real_payment_disabled": true,
+    "production_mode_forbidden": true,
+    "hmac_signature_required": true,
+    "timestamp_skew_guard_required": true,
+    "provider_match_required": true,
+    "tenant_attempt_correlation_required": true,
+    "audit_event_roundtrip_required": true,
+    "provider_transaction_continuity_required": true,
+    "final_status_from_counters_required": true,
+    "hardcoded_final_ok_forbidden": true
+  },
+  "test_strategy": {
+    "go_test_required": true,
+    "test_names_verified_from_output": true,
+    "roundtrip_event_count_verified": true,
+    "repository_final_state_verified": true
+  }
+}

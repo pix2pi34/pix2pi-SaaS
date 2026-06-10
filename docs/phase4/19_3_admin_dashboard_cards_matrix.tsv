@@ -1,0 +1,15 @@
+gate	status	note
+previous_19_2	PASS	flow detail page prerequisite
+contract	PASS	routes=7 cards=10 fields=14
+card_manifest	PASS	card_count=10
+metric_manifest	PASS	metric_count=22
+tenant_safety	PASS	tenant_yes=42 tenant_refs=21
+drilldown	PASS	drilldown_count=36
+no_apply	PASS	contract only
+secret_safety	PASS	secret_hits=0
+db_mutation	NO	contract only
+db_apply_executed	NO	contract only
+migration_created	NO	contract only
+panel_route_deployed	NO	contract only
+panel_build_executed	NO	contract only
+query_text_printed	NO	secret-safe report

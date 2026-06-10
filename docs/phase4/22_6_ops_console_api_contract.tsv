@@ -1,0 +1,20 @@
+method	path	category	response_contract	auth_required	rbac_scope	implementation_status	note
+GET	/ops/v1/summary	platform	platform summary envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/services	runtime	service status list	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/containers	runtime	container status list	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/api-gateway	api	api gateway status card	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/database	database	database health envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/database/replication	database	replication / lag envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/cache/redis	cache	redis health envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/event-bus	event_bus	event bus health envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/event-bus/backlog	event_bus	backlog and consumer lag envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/event-bus/dlq	event_bus	dead-letter queue envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/observability/metrics	metrics	prometheus scrape readiness envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/observability/logs	logs	loki log readiness envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/observability/traces	traces	tempo/otel trace readiness envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/alerts	alerts	active alert catalog/status envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/runbooks	runbooks	runbook binding envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/security/public-surface	security	public surface risk envelope	YES	security:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/security/tenant-isolation	security	tenant isolation signal envelope	YES	security:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/security/audit	security	audit gap signal envelope	YES	security:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented
+GET	/ops/v1/backups	backup	backup freshness / restore drill envelope	YES	ops:read	READY_FOR_IMPLEMENTATION	contract_only_no_route_implemented

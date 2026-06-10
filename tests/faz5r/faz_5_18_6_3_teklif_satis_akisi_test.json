@@ -1,0 +1,50 @@
+{
+  "test_name": "faz_5_18_6_3_teklif_satis_akisi_test",
+  "phase": "FAZ_5_18_6_3",
+  "expected": {
+    "required_step_count": 10,
+    "required_event_count": 10,
+    "internal_quote_sales_flow_ready": true,
+    "production_sales_enabled": false,
+    "real_customer_sales_open": false,
+    "auto_quote_send_enabled": false,
+    "auto_contract_activation_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_step_keys": [
+    "quote_request_intake",
+    "crm_stage_verify",
+    "customer_profile_validate",
+    "pricing_snapshot_attach",
+    "discount_approval_queue",
+    "proposal_draft_create",
+    "commercial_terms_review",
+    "quote_approval_record",
+    "sales_won_handoff",
+    "sales_ops_report_deferred_marker"
+  ],
+  "must_have_events": [
+    "QUOTE_REQUEST_RECEIVED",
+    "CRM_STAGE_VERIFIED",
+    "CUSTOMER_PROFILE_VALIDATED",
+    "PRICING_SNAPSHOT_ATTACHED",
+    "DISCOUNT_APPROVAL_QUEUED",
+    "PROPOSAL_DRAFT_CREATED",
+    "COMMERCIAL_TERMS_REVIEWED",
+    "QUOTE_APPROVAL_RECORDED",
+    "SALES_WON_HANDOFF_READY",
+    "SALES_OPS_REPORT_DEFERRED"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_lead_id",
+    "requires_quote_id",
+    "requires_crm_stage",
+    "requires_customer_profile",
+    "requires_pricing_snapshot",
+    "requires_plan_snapshot",
+    "requires_commercial_terms",
+    "blocks_production_sales"
+  ]
+}

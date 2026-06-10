@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi panel fatura geçmişi ekranı" />
+  <meta property="og:title" content="Pix2pi Fatura Geçmişi" />
+  <meta property="og:description" content="İşletme müşterisi için fatura geçmişi, fatura taslakları ve ödeme durum yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Fatura Geçmişi</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --ok: #16a34a;
+      --warn: #f59e0b;
+      --danger: #dc2626;
+      --blue: #2563eb;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.14), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.13), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1320px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    button, select {
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+    }
+
+    select {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      width: 100%;
+    }
+
+    button {
+      border: none;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    button:disabled {
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric, .invoice-row, .preview-box {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .metric strong, .invoice-row em {
+      font-style: normal;
+      font-weight: 950;
+      font-size: 24px;
+      color: #166534;
+      letter-spacing: -0.04em;
+    }
+
+    .invoice-row {
+      grid-template-columns: minmax(0, 1.3fr) auto auto auto auto;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .status, .payment {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 950;
+      font-size: 12px;
+    }
+
+    .payment {
+      background: #fffbeb;
+      color: #92400e;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .invoice-row { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_344_INVOICE_HISTORY_APP_SHELL_START -->
+  <main class="shell" data-step="344" data-surface="panel-invoices">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 344</span>
+      <h1 data-i18n="panel_invoices.title">Fatura geçmişi</h1>
+      <p data-i18n="panel_invoices.description">Fatura taslakları, ödeme durumları ve ticari belge geçmişi yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_344_TENANT_MERCHANT_BILLING_CONTEXT_START -->
+    <section class="card guard" data-widget="tenant_merchant_billing_context">
+      <h2>Tenant / merchant / billing context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="invoices-tenant">controlled-pilot</strong></p>
+        <p>Merchant session: <strong id="invoices-merchant-session">MERCHANT_DEMO_SESSION</strong></p>
+        <p>Dönem: <strong id="invoices-period">2026-05</strong></p>
+        <p>Scope: <strong id="invoices-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_344_TENANT_MERCHANT_BILLING_CONTEXT_END -->
+
+    <section class="grid-4" data-widget="invoice_summary_cards">
+      <article class="metric"><h2>Fatura</h2><strong id="invoices-count">0</strong></article>
+      <article class="metric"><h2>Taslak</h2><strong id="invoices-draft-count">0</strong></article>
+      <!-- PIX2PI_344_AMOUNT_VAT_TOTAL_DISPLAY_START -->
+      <article class="metric"><h2>Ara toplam</h2><strong id="invoices-total-subtotal">₺0,00</strong></article>
+      <article class="metric"><h2>KDV</h2><strong id="invoices-total-vat">₺0,00</strong></article>
+      <article class="metric"><h2>Genel toplam</h2><strong id="invoices-total-grand">₺0,00</strong></article>
+      <!-- PIX2PI_344_AMOUNT_VAT_TOTAL_DISPLAY_END -->
+    </section>
+
+    <!-- PIX2PI_344_INVOICE_STATUS_FILTERS_START -->
+    <section class="card" data-widget="invoice_status_filters">
+      <h2>Fatura filtreleri</h2>
+      <div class="grid-3">
+        <label>
+          Durum
+          <select id="invoice-status-filter">
+            <option value="all">Tümü</option>
+            <option value="DRAFT">DRAFT</option>
+            <option value="ISSUE_DISABLED">ISSUE_DISABLED</option>
+            <option value="PAID_SIMULATION">PAID_SIMULATION</option>
+            <option value="CANCELLED_SIMULATION">CANCELLED_SIMULATION</option>
+          </select>
+        </label>
+
+        <!-- PIX2PI_344_DATE_PERIOD_FILTER_PLACEHOLDER_START -->
+        <label>
+          Dönem
+          <select id="invoice-period-filter">
+            <option value="all">Tüm dönemler</option>
+            <option value="2026-05">2026-05</option>
+            <option value="2026-04">2026-04</option>
+            <option value="2026-03">2026-03</option>
+          </select>
+        </label>
+        <!-- PIX2PI_344_DATE_PERIOD_FILTER_PLACEHOLDER_END -->
+
+        <!-- PIX2PI_344_PAYMENT_STATUS_BADGE_START -->
+        <label>
+          Ödeme durumu
+          <select id="invoice-payment-filter">
+            <option value="all">Tüm ödeme durumları</option>
+            <option value="PAYMENT_PENDING_DISABLED">PAYMENT_PENDING_DISABLED</option>
+            <option value="PAYMENT_DISABLED">PAYMENT_DISABLED</option>
+            <option value="PAID_SIMULATION">PAID_SIMULATION</option>
+          </select>
+        </label>
+        <!-- PIX2PI_344_PAYMENT_STATUS_BADGE_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_344_INVOICE_STATUS_FILTERS_END -->
+
+    <!-- PIX2PI_344_INVOICE_LIST_TABLE_START -->
+    <section class="card" data-widget="invoice_list_table">
+      <h2>Fatura listesi</h2>
+      <div id="invoice-list-table">
+        <article class="invoice-row" data-invoice-id="inv-demo-344-001" data-invoice-status="DRAFT">
+          <div>
+            <strong>INV-DRAFT-343-DEMO</strong>
+            <p>SUBSCRIPTION_INVOICE_DRAFT / 2026-05 / small_business</p>
+          </div>
+          <span class="status">DRAFT</span>
+          <span class="payment">PAYMENT_PENDING_DISABLED</span>
+          <em>₺1.198,80</em>
+          <button type="button">Preview</button>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_344_INVOICE_LIST_TABLE_END -->
+
+    <!-- PIX2PI_344_INVOICE_DETAIL_PREVIEW_START -->
+    <section class="card" data-widget="invoice_detail_preview">
+      <h2>Fatura detay preview</h2>
+      <div id="invoice-detail-preview" class="preview-box" data-preview-invoice-id="">
+        <strong>INV-DRAFT-343-DEMO</strong>
+        <p>Type: SUBSCRIPTION_INVOICE_DRAFT / Status: DRAFT / Payment: PAYMENT_PENDING_DISABLED</p>
+        <p>Ara toplam, KDV ve genel toplam runtime tarafından doldurulur.</p>
+      </div>
+    </section>
+    <!-- PIX2PI_344_INVOICE_DETAIL_PREVIEW_END -->
+
+    <!-- PIX2PI_344_PDF_DOWNLOAD_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="pdf_download_disabled_gate">
+      <h2>PDF indir disabled gate</h2>
+      <p>real_invoice_pdf_enabled=false. Gerçek PDF üretimi bu adımda kapalıdır.</p>
+      <button type="button" disabled>PDF indir kapalı</button>
+    </section>
+    <!-- PIX2PI_344_PDF_DOWNLOAD_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_344_EINVOICE_EARCHIVE_SEND_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="einvoice_earchive_send_disabled_gate">
+      <h2>e-Fatura / e-Arşiv gönderim disabled gate</h2>
+      <p>real_ebelge_send_enabled=false. e-Belge gönderimi production provider gate olmadan açılmaz.</p>
+    </section>
+    <!-- PIX2PI_344_EINVOICE_EARCHIVE_SEND_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_344_ACCOUNTING_EXPORT_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="accounting_export_disabled_gate">
+      <h2>Muhasebe export disabled gate</h2>
+      <p>real_accounting_export_enabled=false. Logo / Mikro / Zirve / ETA export akışı bu adımda kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_344_ACCOUNTING_EXPORT_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_344_PAYMENT_RECEIPT_PLACEHOLDER_START -->
+    <section class="card" data-widget="payment_receipt_placeholder">
+      <h2>Tahsilat makbuzu placeholder</h2>
+      <p>real_receipt_generation_enabled=false. Tahsilat makbuzu üretimi ödeme provider canlı gate sonrası açılır.</p>
+    </section>
+    <!-- PIX2PI_344_PAYMENT_RECEIPT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_344_TENANT_INVOICE_BILLING_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="tenant_invoice_billing_scope_guard">
+      <h2>Tenant / invoice / billing scope guard</h2>
+      <p>Fatura geçmişi endpointleri `X-Tenant-ID`, `X-Merchant-Session`, `X-Invoice-Scope` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_344_TENANT_INVOICE_BILLING_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_344_INVOICE_HISTORY_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="invoice_history_runtime_data_contract">
+      <h2>Invoice history runtime data contract</h2>
+      <p id="invoices-runtime-contract">invoice_history_enabled=true / fallback_invoice_snapshot_enabled=true / ready_for_step_345=true</p>
+    </section>
+    <!-- PIX2PI_344_INVOICE_HISTORY_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_344_SEO_OPENGRAPH_INVOICE_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_invoice_placeholder">
+      <h2>SEO / OpenGraph invoice placeholder</h2>
+      <p>Title, description ve og:* metadata fatura geçmişi yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_344_SEO_OPENGRAPH_INVOICE_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_344_I18N_READY_INVOICE_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_invoice_marker">
+      <h2 data-i18n="panel_invoices.i18n_ready">i18n-ready invoice screen</h2>
+      <p data-i18n="panel_invoices.surface_ready">Fatura geçmişi ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_344_I18N_READY_INVOICE_MARKER_END -->
+  </main>
+  <!-- PIX2PI_344_INVOICE_HISTORY_APP_SHELL_END -->
+
+  <script src="/assets/invoices/panel-invoices-runtime.js"></script>
+  <script>
+    (function () {
+      const filters = [
+        document.getElementById("invoice-status-filter"),
+        document.getElementById("invoice-period-filter"),
+        document.getElementById("invoice-payment-filter")
+      ];
+
+      Pix2piPanelInvoices.bootInvoiceScreen().then(function (contract) {
+        console.log("PIX2PI_344_INVOICE_HISTORY_CONTRACT", contract);
+      });
+
+      filters.forEach(function (el) {
+        el.addEventListener("change", function () {
+          Pix2piPanelInvoices.saveInvoiceFilter(Pix2piPanelInvoices.readFiltersFromDOM());
+          Pix2piPanelInvoices.bootInvoiceScreen().then(function (contract) {
+            console.log("PIX2PI_344_INVOICE_FILTER_CHANGE", contract);
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

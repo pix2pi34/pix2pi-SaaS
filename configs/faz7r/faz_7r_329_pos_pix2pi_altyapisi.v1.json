@@ -1,0 +1,35 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "329",
+  "name": "pos.pix2pi.com.tr altyapısı",
+  "surface": "pos",
+  "domain": "pos.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/pos",
+  "paths": {
+    "home": "/",
+    "health": "/health",
+    "runtime": "/assets/pos-shell-runtime.js"
+  },
+  "depends_on": [
+    "316 - panel.pix2pi.com.tr altyapısı",
+    "325 - Satış / POS yönetim ekranı"
+  ],
+  "next_step": "330 - Kasiyer giriş ekranı",
+  "capabilities": [
+    "pos_subdomain_routing",
+    "nginx_route_standard",
+    "pos_app_shell",
+    "mobile_first_responsive_shell",
+    "pwa_manifest_placeholder",
+    "pos_runtime_shell_contract",
+    "tenant_session_placeholder",
+    "pos_health_check",
+    "pos_smoke_test"
+  ],
+  "runtime_contract": {
+    "real_cashier_login_enabled": false,
+    "real_sale_enabled": false,
+    "offline_queue_enabled": false,
+    "ready_for_cashier_login_step_330": true
+  }
+}

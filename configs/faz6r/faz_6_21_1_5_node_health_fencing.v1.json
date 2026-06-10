@@ -1,0 +1,211 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "305",
+  "code": "FAZ_6_21_1_5",
+  "name": "Node health fencing",
+  "depends_on": [
+    "FAZ_6_21_1_4"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "node_cordon_allowed": false,
+  "node_drain_allowed": false,
+  "node_restart_allowed": false,
+  "node_shutdown_allowed": false,
+  "lb_detach_allowed": false,
+  "dns_mutation_allowed": false,
+  "gateway_route_mutation_allowed": false,
+  "service_registry_mutation_allowed": false,
+  "container_kill_allowed": false,
+  "deployment_rollout_allowed": false,
+  "required_controls": [
+    "session_sticky_dependency_gate",
+    "node_inventory_model",
+    "node_health_signal_model",
+    "fencing_decision_policy",
+    "quorum_safety_guard",
+    "split_brain_guard",
+    "tenant_traffic_isolation_guard",
+    "workload_drain_policy",
+    "lb_detach_policy",
+    "service_discovery_alignment_guard",
+    "session_affinity_safety_guard",
+    "dry_run_fencing_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "node_surfaces": [
+    {
+      "node_class": "api_gateway_node",
+      "risk_level": "critical",
+      "tenant_traffic_sensitive": true,
+      "session_affinity_sensitive": true,
+      "mutation_allowed": false
+    },
+    {
+      "node_class": "app_runtime_node",
+      "risk_level": "high",
+      "tenant_traffic_sensitive": true,
+      "session_affinity_sensitive": true,
+      "mutation_allowed": false
+    },
+    {
+      "node_class": "worker_node",
+      "risk_level": "high",
+      "tenant_traffic_sensitive": true,
+      "session_affinity_sensitive": false,
+      "mutation_allowed": false
+    },
+    {
+      "node_class": "db_facing_node",
+      "risk_level": "critical",
+      "tenant_traffic_sensitive": true,
+      "session_affinity_sensitive": false,
+      "mutation_allowed": false
+    },
+    {
+      "node_class": "observability_node",
+      "risk_level": "medium",
+      "tenant_traffic_sensitive": false,
+      "session_affinity_sensitive": false,
+      "mutation_allowed": false
+    }
+  ],
+  "health_signal_model": {
+    "required_metrics": [
+      "node_cpu_saturation",
+      "node_memory_saturation",
+      "node_disk_pressure",
+      "node_io_wait",
+      "node_network_error_ratio",
+      "node_process_health",
+      "container_restart_count",
+      "service_health_status",
+      "route_error_ratio",
+      "tenant_traffic_error_ratio",
+      "session_affinity_error_ratio",
+      "queue_backlog_contribution",
+      "db_connection_error_ratio",
+      "heartbeat_age_seconds"
+    ],
+    "minimum_observation_minutes": 15,
+    "requires_node_class_breakdown": true,
+    "requires_tenant_impact_breakdown": true
+  },
+  "fencing_decision_policy": {
+    "enabled": true,
+    "mode": "dry_run_decision_only_no_fencing",
+    "decision_values": [
+      "NO_FENCE_HEALTHY",
+      "REVIEW_NODE_DEGRADED",
+      "READY_FOR_MANUAL_FENCE_REHEARSAL",
+      "BLOCKED_QUORUM_RISK",
+      "BLOCKED_SPLIT_BRAIN_RISK",
+      "BLOCKED_TENANT_TRAFFIC_RISK",
+      "BLOCKED_SESSION_AFFINITY_RISK"
+    ],
+    "manual_approval_required": true,
+    "auto_fencing_allowed": false
+  },
+  "guards": {
+    "quorum_safety_guard": {
+      "enabled": true,
+      "block_if_remaining_capacity_below_quorum": true,
+      "block_if_single_node_class_remaining": true
+    },
+    "split_brain_guard": {
+      "enabled": true,
+      "block_if_cluster_membership_uncertain": true,
+      "block_if_db_or_queue_leader_uncertain": true
+    },
+    "tenant_traffic_isolation_guard": {
+      "enabled": true,
+      "block_if_tenant_traffic_would_cross_scope": true,
+      "block_if_tenant_header_preservation_unknown": true
+    },
+    "workload_drain_policy": {
+      "enabled": true,
+      "mode": "dry_run_only",
+      "block_if_jobs_not_idempotent": true,
+      "block_if_pos_or_payment_flow_active": true
+    },
+    "lb_detach_policy": {
+      "enabled": true,
+      "mode": "dry_run_only",
+      "block_if_route_confidence_below_threshold": true,
+      "requires_service_discovery_alignment": true
+    },
+    "session_affinity_safety_guard": {
+      "enabled": true,
+      "block_if_session_sticky_policy_conflict": true,
+      "block_if_stateless_fallback_missing": true
+    }
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "node_cordon_execute",
+      "node_drain_execute",
+      "node_restart_execute",
+      "node_shutdown_execute",
+      "lb_detach_execute",
+      "dns_mutation_execute",
+      "gateway_route_mutation_execute",
+      "service_registry_mutation_execute",
+      "container_kill_execute",
+      "deployment_rollout_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "security_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "node_cordon_allowed": false,
+    "node_drain_allowed": false,
+    "node_restart_allowed": false,
+    "node_shutdown_allowed": false,
+    "lb_detach_allowed": false,
+    "dns_mutation_allowed": false,
+    "gateway_route_mutation_allowed": false,
+    "service_registry_mutation_allowed": false,
+    "container_kill_allowed": false,
+    "deployment_rollout_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "fencing_id",
+      "node_class",
+      "current_signal",
+      "fencing_decision",
+      "risk_level",
+      "quorum_guard_status",
+      "split_brain_guard_status",
+      "tenant_traffic_guard_status",
+      "session_affinity_guard_status",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_session_sticky_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_node_mutation_allowed": true,
+    "block_if_lb_or_dns_mutation_allowed": true,
+    "block_if_missing_quorum_guard": true,
+    "block_if_missing_split_brain_guard": true,
+    "block_if_missing_tenant_traffic_guard": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_1_5_NODE_HEALTH_FENCING_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

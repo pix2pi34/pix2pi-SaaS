@@ -1,0 +1,7 @@
+table	status	tenant_id_required	purpose	note
+runtime_flow_runs	YES	YES	flow_run_header	panel_admin.runtime_flow_runs
+runtime_flow_steps	YES	YES	flow_step_history	panel_admin.runtime_flow_steps
+runtime_flow_events	YES	YES	flow_event_timeline	panel_admin.runtime_flow_events
+runtime_flow_snapshots	YES	YES	flow_progress_snapshot	panel_admin.runtime_flow_snapshots
+runtime_flow_error_links	YES	YES	flow_error_trace_links	panel_admin.runtime_flow_error_links
+runtime_flow_timeline_views	YES	YES	panel_timeline_projection	panel_admin.runtime_flow_timeline_views

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <rect width="1080" height="1920" fill="#07090d"/>
+  <circle cx="540" cy="760" r="180" fill="#ffd60a"/>
+  <text x="540" y="1060" font-size="96" text-anchor="middle" font-family="Arial" font-weight="800" fill="#ffd60a">Pix2pi POS</text>
+  <text x="540" y="1160" font-size="42" text-anchor="middle" font-family="Arial" fill="#f8fafc">Offline ready</text>
+</svg>

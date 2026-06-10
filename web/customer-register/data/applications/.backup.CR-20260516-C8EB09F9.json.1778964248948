@@ -1,0 +1,37 @@
+{
+  "id": "CR-20260516-C8EB09F9",
+  "status": "PENDING",
+  "tenantProvisioned": false,
+  "adminApprovalRequired": true,
+  "mailStatus": "SENT",
+  "source": "customer-register-business-form-live",
+  "submittedAt": "2026-05-16T19:06:23.726Z",
+  "taxNo": "1234567890",
+  "taxOffice": "İstanbul Test Vergi Dairesi",
+  "companyName": "Pix2pi Test Firma 20260516220623",
+  "address": "Test Mahallesi Test Sokak No 1",
+  "district": "Üsküdar",
+  "city": "İstanbul",
+  "phone": "",
+  "website": "",
+  "mersisNo": "012345678900001",
+  "tradeRegistryNo": "",
+  "email": "surucukursu58+register20260516220623@gmail.com",
+  "optionalFields": {
+    "phone": true,
+    "website": true,
+    "tradeRegistryNo": true
+  },
+  "mails": {
+    "applicant": {
+      "ok": true,
+      "statusCode": 200,
+      "providerId": "ad864a2a-d572-405a-83ad-46b36a213ed9"
+    },
+    "admin": {
+      "ok": true,
+      "statusCode": 200,
+      "providerId": "1a541220-9a8c-4bbb-89d9-679e65d383b9"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "325",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "sales_pos_screen",
+      "path": "/sales/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_325_SALES_POS_APP_SHELL_START",
+        "PIX2PI_325_SALES_SUMMARY_RECENT_SALES_START",
+        "PIX2PI_325_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "sales_pos_runtime",
+      "path": "/assets/sales/sales-pos-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_325_SALES_POS_RUNTIME_START",
+        "tenantScopedHeaders",
+        "buildSaleActionPayload"
+      ]
+    }
+  ]
+}

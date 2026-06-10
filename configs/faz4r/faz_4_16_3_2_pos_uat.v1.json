@@ -1,0 +1,53 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 205,
+  "step": "FAZ_4_16_3_2",
+  "title": "POS UAT",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "198_FAZ_4_16_2_1_CARI_IMPORT",
+    "199_FAZ_4_16_2_2_URUN_STOK_IMPORT",
+    "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT",
+    "203_FAZ_4_16_2_6_IMPORT_TESTLERI",
+    "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "uat_policy": {
+    "uat_status_required": "READY",
+    "uat_mode_required": "CONTROLLED_PILOT",
+    "pos_mode_required": "DRY_RUN",
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "tenant_context_status_required": "PASS",
+    "cashier_session_status_required": "PASS",
+    "sale_dry_run_status_required": "PASS",
+    "payment_provider_status_required": "CLOSED",
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_uat_cases": [
+    "POS_LOGIN_ACCESS",
+    "POS_TENANT_CONTEXT_VISIBLE",
+    "POS_CASHIER_SESSION_OPEN",
+    "POS_PRODUCT_SEARCH_SCAN",
+    "POS_CART_OPERATION",
+    "POS_SALE_DRY_RUN",
+    "POS_RETURN_DRY_RUN",
+    "POS_PAYMENT_PROVIDER_CLOSED_GATE",
+    "POS_STOCK_MOVEMENT_PREVIEW",
+    "POS_OFFLINE_QUEUE_PREVIEW",
+    "POS_RECEIPT_PREVIEW",
+    "POS_IMPORT_REFERENCE_VISIBLE",
+    "POS_AUDIT_EVIDENCE_LINK_VIEW",
+    "CLOSED_EXTERNAL_POLICY_GATE"
+  ],
+  "uat_artifact": "configs/faz4r/pos_uat.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "206_FAZ_4_16_3_3_MUHASEBE_UAT"
+  ]
+}

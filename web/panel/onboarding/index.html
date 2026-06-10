@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi işletme onboarding ekranı" />
+  <meta property="og:title" content="Pix2pi Business Onboarding" />
+  <meta property="og:description" content="İşletme adı, vergi, adres, sektör, şube, para birimi, dil ve ilk rol kayıt akışı." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Business Onboarding</title>
+  <style>
+    :root { --bg:#f6f8fb; --text:#172033; --muted:#64748b; --border:#e5e7eb; --shadow:0 16px 42px rgba(15,23,42,.08); --radius:24px; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(circle at top left,rgba(37,99,235,.15),transparent 34rem),var(--bg); color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; padding:18px 16px; }
+    .shell { width:min(100%,1180px); margin:0 auto; display:grid; gap:16px; }
+    .hero,.card { background:rgba(255,255,255,.95); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .badge { display:inline-flex; width:fit-content; border-radius:999px; padding:7px 11px; background:#eff6ff; color:#1d4ed8; font-weight:900; font-size:12px; }
+    h1 { margin:10px 0 8px; font-size:clamp(34px,7vw,64px); line-height:.95; letter-spacing:-.07em; }
+    h2 { margin:0 0 12px; font-size:19px; letter-spacing:-.03em; }
+    p { margin:0; color:var(--muted); line-height:1.55; }
+    label { display:grid; gap:7px; margin:10px 0; color:var(--muted); font-size:13px; font-weight:800; }
+    input,select { width:100%; border:1px solid var(--border); border-radius:14px; padding:12px 13px; color:var(--text); font:inherit; background:#fff; }
+    button { border:0; border-radius:16px; padding:12px 16px; background:#172033; color:#fff; font-weight:900; cursor:pointer; }
+    .status { border:1px dashed #93c5fd; background:#eff6ff; }
+    @media (max-width:860px) { .grid { grid-template-columns:1fr; } .hero,.card { border-radius:20px; } }
+  </style>
+</head>
+<body>
+  <!-- PIX2PI_319_BUSINESS_ONBOARDING_SCREEN_START -->
+  <main class="shell" data-step="319" data-surface="business-onboarding">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 319</span>
+      <h1 data-i18n="business_onboarding.title">İşletme onboarding</h1>
+      <p data-i18n="business_onboarding.description">İşletme temel bilgileri, şube, para birimi, dil ve ilk rol kayıt akışı.</p>
+    </section>
+
+    <!-- PIX2PI_319_ONBOARDING_STATUS_START -->
+    <section class="card status">
+      <h2>Durum</h2>
+      <p id="onboarding-status">İşletme onboarding ekranı yükleniyor.</p>
+    </section>
+    <!-- PIX2PI_319_ONBOARDING_STATUS_END -->
+
+    <section class="grid">
+      <!-- PIX2PI_319_BUSINESS_BASIC_INFO_START -->
+      <article class="card">
+        <h2>İşletme bilgileri</h2>
+        <label>Owner user ID <input id="owner-user-id" autocomplete="off" /></label>
+        <label>İşletme adı <input id="business-name" autocomplete="organization" /></label>
+        <label>Vergi No / TCKN <input id="tax-or-tckn" inputmode="numeric" /></label>
+        <label>Sektör
+          <select id="sector-code">
+            <option value="market">Market</option>
+            <option value="restaurant">Restoran</option>
+            <option value="auto_parts">Oto yedek parça</option>
+            <option value="retail">Perakende</option>
+          </select>
+        </label>
+      </article>
+      <!-- PIX2PI_319_BUSINESS_BASIC_INFO_END -->
+
+      <!-- PIX2PI_319_ADDRESS_BRANCH_START -->
+      <article class="card">
+        <h2>Adres ve şube</h2>
+        <label>Adres <input id="address-line" autocomplete="street-address" /></label>
+        <label>İl <input id="city" autocomplete="address-level1" /></label>
+        <label>İlçe <input id="district" autocomplete="address-level2" /></label>
+        <label>İlk şube adı <input id="branch-name" value="Merkez Şube" /></label>
+      </article>
+      <!-- PIX2PI_319_ADDRESS_BRANCH_END -->
+
+      <!-- PIX2PI_319_DEFAULTS_ROLE_START -->
+      <article class="card">
+        <h2>Varsayılan ayarlar</h2>
+        <label>Para birimi
+          <select id="currency-code">
+            <option value="TRY">TRY</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </label>
+        <label>Dil
+          <select id="language-code">
+            <option value="tr-TR">Latin Türkçe</option>
+            <option value="ota">Osmanlıca Türkçesi</option>
+            <option value="ar">Arapça</option>
+            <option value="fa">Farsça</option>
+            <option value="en">İngilizce</option>
+          </select>
+        </label>
+        <label>İlk rol
+          <select id="first-role-code">
+            <option value="owner">Owner</option>
+            <option value="manager">Manager</option>
+            <option value="cashier">Kasiyer</option>
+            <option value="accountant">Muhasebeci</option>
+          </select>
+        </label>
+      </article>
+      <!-- PIX2PI_319_DEFAULTS_ROLE_END -->
+
+      <!-- PIX2PI_319_ONBOARDING_COMPLETION_START -->
+      <article class="card">
+        <h2>Onboarding tamamla</h2>
+        <p>Tenant, legal entity, branch ve owner role binding kayıtları aynı onboarding sonucu içinde üretilir.</p>
+        <br />
+        <button type="button" onclick="Pix2piBusinessOnboarding.submitOnboarding()">Onboarding’i tamamla</button>
+      </article>
+      <!-- PIX2PI_319_ONBOARDING_COMPLETION_END -->
+    </section>
+  </main>
+  <!-- PIX2PI_319_BUSINESS_ONBOARDING_SCREEN_END -->
+
+  <script src="/assets/onboarding/business-onboarding-runtime.js"></script>
+  <script>Pix2piBusinessOnboarding.bootOnboarding();</script>
+</body>
+</html>

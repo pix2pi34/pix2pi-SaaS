@@ -1,0 +1,16 @@
+blocker_code	priority	failure_area	rollout_decision	escalation_owner	required_action	can_continue_with_workaround	implementation_status	note
+tenant_access_failed	P0	tenant	NO_GO	platform_admin	fix tenant access before rollout	NO	READY_FOR_IMPLEMENTATION	contract_only
+rbac_bypass_or_wrong_access	P0	security	NO_GO	security_admin	fix RBAC before rollout	NO	READY_FOR_IMPLEMENTATION	contract_only
+tenant_isolation_failed	P0	security	NO_GO	security_admin	fix tenant isolation before rollout	NO	READY_FOR_IMPLEMENTATION	contract_only
+secret_or_raw_payload_leak	P0	security	NO_GO	security_admin	remove raw secret/raw payload before rollout	NO	READY_FOR_IMPLEMENTATION	contract_only
+sale_flow_failed	P0	business	NO_GO	project_owner	fix sale flow before rollout	NO	READY_FOR_IMPLEMENTATION	contract_only
+stock_movement_mismatch	P0	inventory	NO_GO	tenant_operator	fix stock movement before rollout	NO	READY_FOR_IMPLEMENTATION	contract_only
+accounting_journal_wrong	P0	accounting	NO_GO	accountant	fix TDHP/journal mapping before rollout	NO	READY_FOR_IMPLEMENTATION	contract_only
+audit_missing	P0	audit	NO_GO	security_admin	fix audit evidence before rollout	NO	READY_FOR_IMPLEMENTATION	contract_only
+support_loop_missing	P0	support	NO_GO	support	define support owner/channel before rollout	NO	READY_FOR_IMPLEMENTATION	contract_only
+incident_feedback_loop_missing	P0	ops	NO_GO	ops_admin	define incident loop before rollout	NO	READY_FOR_IMPLEMENTATION	contract_only
+go_no_go_not_signed	P0	rollout	NO_GO	project_owner	complete final decision	NO	READY_FOR_IMPLEMENTATION	contract_only
+reporting_minor_mismatch	P1	reporting	CONDITIONAL_GO	tenant_admin	document workaround and backlog	YES	READY_FOR_IMPLEMENTATION	contract_only
+training_gap_minor	P1	training	CONDITIONAL_GO	trainer	schedule catch-up training	YES	READY_FOR_IMPLEMENTATION	contract_only
+backup_restore_note_missing	P1	ops	CONDITIONAL_GO	ops_admin	create readiness note before wider rollout	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow_minor_issue	P1	workflow	CONDITIONAL_GO	tenant_admin	document workaround and retry plan	YES	READY_FOR_IMPLEMENTATION	contract_only

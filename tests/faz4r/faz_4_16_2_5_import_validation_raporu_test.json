@@ -1,0 +1,172 @@
+{
+  "valid_pass_fixture": {
+    "summary": {
+      "tenant_id": "pilot_tenant_001",
+      "batch_id": "customer_import_batch_202_pass",
+      "import_type": "CUSTOMER",
+      "report_id": "ivr_202_pass_001",
+      "report_status": "READY",
+      "report_result": "PASS",
+      "validation_mode": "DRY_RUN",
+      "commit_requested": false,
+      "total_rows": 2,
+      "valid_rows": 2,
+      "invalid_rows": 0,
+      "warning_count": 1,
+      "error_count": 0,
+      "evidence_ref": "docs/faz4r/evidence/import_validation_report_pass.md"
+    },
+    "row_results": [
+      {
+        "row_no": 1,
+        "status": "VALID",
+        "error_count": 0,
+        "warning_count": 0
+      },
+      {
+        "row_no": 2,
+        "status": "VALID",
+        "error_count": 0,
+        "warning_count": 1
+      }
+    ],
+    "errors": [],
+    "warnings": [
+      {
+        "row_no": 2,
+        "field": "phone",
+        "code": "PHONE_OPTIONAL_EMPTY",
+        "severity": "WARNING",
+        "message": "Telefon alanı opsiyonel olduğu için boş kabul edildi."
+      }
+    ],
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "valid_fail_fixture": {
+    "summary": {
+      "tenant_id": "pilot_tenant_001",
+      "batch_id": "customer_import_batch_202_fail",
+      "import_type": "CUSTOMER",
+      "report_id": "ivr_202_fail_001",
+      "report_status": "READY",
+      "report_result": "FAIL",
+      "validation_mode": "DRY_RUN",
+      "commit_requested": false,
+      "total_rows": 3,
+      "valid_rows": 2,
+      "invalid_rows": 1,
+      "warning_count": 1,
+      "error_count": 2,
+      "evidence_ref": "docs/faz4r/evidence/import_validation_report_fail.md"
+    },
+    "row_results": [
+      {
+        "row_no": 1,
+        "status": "VALID",
+        "error_count": 0,
+        "warning_count": 0
+      },
+      {
+        "row_no": 2,
+        "status": "VALID",
+        "error_count": 0,
+        "warning_count": 1
+      },
+      {
+        "row_no": 3,
+        "status": "INVALID",
+        "error_count": 2,
+        "warning_count": 0
+      }
+    ],
+    "errors": [
+      {
+        "row_no": 3,
+        "field": "tax_no",
+        "code": "COMPANY_TAX_NO_REQUIRED",
+        "severity": "ERROR",
+        "message": "Şirket cari için vergi no zorunludur."
+      },
+      {
+        "row_no": 3,
+        "field": "tax_office",
+        "code": "COMPANY_TAX_OFFICE_REQUIRED",
+        "severity": "ERROR",
+        "message": "Şirket cari için vergi dairesi zorunludur."
+      }
+    ],
+    "warnings": [
+      {
+        "row_no": 2,
+        "field": "mersis_no",
+        "code": "MERSIS_OPTIONAL_EMPTY",
+        "severity": "WARNING",
+        "message": "MERSIS no opsiyonel olduğu için boş kabul edildi."
+      }
+    ],
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "summary": {
+      "tenant_id": "",
+      "batch_id": "",
+      "import_type": "UNKNOWN",
+      "report_id": "",
+      "report_status": "DRAFT",
+      "report_result": "PASS",
+      "validation_mode": "COMMIT",
+      "commit_requested": true,
+      "total_rows": 5,
+      "valid_rows": 1,
+      "invalid_rows": 1,
+      "warning_count": 9,
+      "error_count": 9,
+      "evidence_ref": ""
+    },
+    "row_results": [
+      {
+        "row_no": 0,
+        "status": "BROKEN",
+        "error_count": -1,
+        "warning_count": -1
+      }
+    ],
+    "errors": [
+      {
+        "row_no": 0,
+        "field": "",
+        "code": "",
+        "severity": "WARNING",
+        "message": ""
+      }
+    ],
+    "warnings": [
+      {
+        "row_no": 0,
+        "field": "",
+        "code": "",
+        "severity": "ERROR",
+        "message": ""
+      }
+    ],
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

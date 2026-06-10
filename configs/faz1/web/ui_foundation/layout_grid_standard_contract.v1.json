@@ -1,0 +1,43 @@
+{
+  "phase": "FAZ_1_4_2",
+  "module": "WEB_L1_UI_FOUNDATION_DESIGN_SYSTEM",
+  "component": "layout_grid_standard",
+  "status": "READY",
+  "required_capabilities": [
+    "page_grid",
+    "card_layout",
+    "form_layout",
+    "table_layout",
+    "responsive_layout"
+  ],
+  "layout_contract": {
+    "page_shell_class": "pix2pi-page",
+    "page_grid_class": "pix2pi-page-grid",
+    "card_grid_class": "pix2pi-card-grid",
+    "form_grid_class": "pix2pi-form-grid",
+    "table_region_class": "pix2pi-table-region",
+    "responsive_breakpoints": {
+      "desktop": "min-width: 1024px",
+      "tablet": "min-width: 768px",
+      "mobile": "max-width: 767px"
+    }
+  },
+  "grid_patterns": {
+    "one_column": "pix2pi-grid-1",
+    "two_column": "pix2pi-grid-2",
+    "three_column": "pix2pi-grid-3",
+    "auto_fit": "pix2pi-grid-auto",
+    "sidebar_content": "pix2pi-grid-sidebar-content"
+  },
+  "spacing_contract": {
+    "page_gap": "24px",
+    "card_gap": "18px",
+    "form_gap": "14px",
+    "table_gap": "12px"
+  },
+  "responsive_policy": {
+    "mobile": "STACK_ALL_COLUMNS",
+    "tablet": "TWO_COLUMN_WHEN_SAFE",
+    "desktop": "FULL_GRID"
+  }
+}

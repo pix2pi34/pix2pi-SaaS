@@ -1,0 +1,67 @@
+{
+  "expected_dependency": "FAZ_6_21_7_1",
+  "expected_mode": "dry_run_guarded",
+  "expected_runtime_mutation_allowed": false,
+  "expected_production_mutation_allowed": false,
+  "expected_destructive_action_default_allowed": false,
+  "expected_required_controls": [
+    "runbook_dependency_gate",
+    "remediation_rule_index",
+    "dry_run_runtime",
+    "manual_approval_gate",
+    "no_destructive_default_policy",
+    "production_mutation_guard",
+    "evidence_capture_policy",
+    "rollback_action_guard",
+    "p0_p1_approval_policy",
+    "safe_action_allowlist",
+    "unsafe_action_denylist",
+    "final_status_policy"
+  ],
+  "expected_rule_count": 7,
+  "expected_safe_actions": [
+    "capture_logs",
+    "capture_metrics",
+    "capture_health_snapshot",
+    "classify_incident",
+    "recommend_runbook",
+    "recommend_rollback",
+    "recommend_restart",
+    "recommend_scale_consumer",
+    "recommend_cache_fallback",
+    "recommend_edge_challenge"
+  ],
+  "expected_unsafe_actions": [
+    "production_restart",
+    "rollback_execute",
+    "database_failover_execute",
+    "data_restore_execute",
+    "firewall_enforce_execute",
+    "edge_block_rule_push",
+    "mass_cache_delete",
+    "destructive_cleanup"
+  ],
+  "sample_incidents": [
+    {
+      "incident_id": "INC-EDGE-001",
+      "severity": "P1",
+      "signal": "edge_attack_spike"
+    },
+    {
+      "incident_id": "INC-API-001",
+      "severity": "P0",
+      "signal": "api_5xx_spike"
+    },
+    {
+      "incident_id": "INC-EVENT-001",
+      "severity": "P2",
+      "signal": "event_queue_backlog"
+    },
+    {
+      "incident_id": "INC-CACHE-001",
+      "severity": "P3",
+      "signal": "cache_degradation"
+    }
+  ],
+  "expected_next_step": "FAZ_6_21_7_3"
+}

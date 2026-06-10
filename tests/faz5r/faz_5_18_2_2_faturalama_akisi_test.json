@@ -1,0 +1,49 @@
+{
+  "test_name": "faz_5_18_2_2_faturalama_akisi_test",
+  "phase": "FAZ_5_18_2_2",
+  "expected": {
+    "required_step_count": 10,
+    "required_event_count": 7,
+    "internal_invoice_flow_ready": true,
+    "production_invoice_enabled": false,
+    "real_customer_invoice_enabled": false,
+    "auto_invoice_delivery_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_step_keys": [
+    "invoice_draft_create",
+    "invoice_billing_profile_validate",
+    "invoice_plan_snapshot_attach",
+    "invoice_line_item_calculate",
+    "invoice_tax_calculate",
+    "invoice_finalize",
+    "invoice_due_schedule",
+    "invoice_delivery_block_policy",
+    "accounting_export_handoff",
+    "e_document_deferred_marker"
+  ],
+  "must_have_events": [
+    "INVOICE_DRAFT_CREATED",
+    "INVOICE_CALCULATED",
+    "INVOICE_FINALIZED",
+    "INVOICE_DUE_SCHEDULED",
+    "INVOICE_DELIVERY_READY",
+    "ACCOUNTING_EXPORT_READY",
+    "E_DOCUMENT_DEFERRED"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_invoice_id",
+    "requires_billing_profile",
+    "requires_plan_snapshot",
+    "requires_line_items",
+    "requires_tax_calculation",
+    "requires_due_date",
+    "requires_currency",
+    "requires_audit_trail",
+    "requires_idempotency_key",
+    "blocks_production_invoice",
+    "blocks_real_customer_delivery"
+  ]
+}

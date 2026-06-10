@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "331",
+  "domain": "pos.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "pos_sale_screen",
+      "path": "/sale/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_331_POS_SALE_APP_SHELL_START",
+        "PIX2PI_331_PRODUCT_SEARCH_BARCODE_INPUT_START",
+        "PIX2PI_331_CART_PREVIEW_START"
+      ]
+    },
+    {
+      "name": "pos_sale_runtime",
+      "path": "/assets/sale/pos-sale-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_331_POS_SALE_RUNTIME_START",
+        "tenantDeviceCashierHeaders",
+        "buildSaleDraftPayload"
+      ]
+    }
+  ]
+}

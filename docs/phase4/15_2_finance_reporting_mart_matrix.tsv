@@ -1,0 +1,14 @@
+gate	status	note
+previous_14	PASS	migration lifecycle prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=4
+tenant_safety	PASS	tenant_id=4
+amount_currency	PASS	numeric=22 currency=4
+indexes	PASS	index_count=8
+down_migration	PASS	drop_table_count=4
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=25
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+query_text_printed	NO	secret-safe report

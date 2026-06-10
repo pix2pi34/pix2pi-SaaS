@@ -1,0 +1,17 @@
+scenario_name	module	actor	precondition	action_flow	expected_result	acceptance_criteria	priority	implementation_status	note
+uat_login_tenant_access	auth_tenant	tenant_user	tenant user exists	login and open panel	tenant scoped panel visible	correct tenant only	P0	READY_FOR_IMPLEMENTATION	baseline_only
+uat_role_permission_denied	rbac	cashier	restricted permission missing	open admin/security page	access denied	no privilege escalation	P0	READY_FOR_IMPLEMENTATION	baseline_only
+uat_product_create_update	product	tenant_operator	tenant ready	create/update product	product listed correctly	tenant scoped product visible	P1	READY_FOR_IMPLEMENTATION	baseline_only
+uat_stock_opening_entry	inventory	tenant_operator	product exists	enter opening stock	stock balance updated	audit/stock evidence exists	P0	READY_FOR_IMPLEMENTATION	baseline_only
+uat_sale_cash_flow	pos_sales	cashier	product and stock exist	complete cash sale	sale created and stock decreases	sale+stock evidence matches	P0	READY_FOR_IMPLEMENTATION	baseline_only
+uat_inventory_movement_validation	inventory	tenant_operator	completed sale exists	verify stock movement after sale	stock movement is created and stock balance decreased	movement quantity matches sale quantity	P0	READY_FOR_IMPLEMENTATION	baseline_only
+uat_sale_cancel_refund	pos_sales	cashier	sale exists	cancel/refund sale	stock and ledger reversal policy visible	no orphan movement	P0	READY_FOR_IMPLEMENTATION	baseline_only
+uat_low_stock_warning	inventory	tenant_operator	stock threshold exists	reduce stock below threshold	warning signal exists	warning evidence visible	P1	READY_FOR_IMPLEMENTATION	baseline_only
+uat_workflow_approval	workflow	tenant_admin	approval workflow exists	request/approve/reject workflow	state transition correct	audit+realtime evidence	P1	READY_FOR_IMPLEMENTATION	baseline_only
+uat_accounting_journal_check	accounting	accountant	sale exists	review journal/ledger	TDHP lines correct	accountant acceptance	P0	READY_FOR_IMPLEMENTATION	baseline_only
+uat_reporting_summary	reporting	tenant_admin	sales/stock data exists	open summary report	totals match source	read model consistency	P1	READY_FOR_IMPLEMENTATION	baseline_only
+uat_audit_trail_check	audit	tenant_admin	mutating actions exist	open audit evidence	audit rows visible	actor/request/tenant visible	P0	READY_FOR_IMPLEMENTATION	baseline_only
+uat_observability_incident_loop	ops	ops_admin	pilot issue recorded	open ops/support evidence	incident feedback loop works	issue traceable	P1	READY_FOR_IMPLEMENTATION	baseline_only
+uat_no_raw_secret_payload	security	security_admin	reports/events exist	inspect exported evidence	no raw secret/payload printed	secret safety passes	P0	READY_FOR_IMPLEMENTATION	baseline_only
+uat_backup_restore_readiness_note	ops	ops_admin	pilot data exists	verify backup/restore drill evidence	restore readiness noted	no destructive test in pilot gate	P1	READY_FOR_IMPLEMENTATION	baseline_only
+uat_go_no_go_decision	rollout	project_owner	all P0 pass	review final gate	go/no-go decision ready	blockers listed	P0	READY_FOR_IMPLEMENTATION	baseline_only

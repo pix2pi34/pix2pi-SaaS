@@ -1,0 +1,14 @@
+decision_code	decision_type	allow_access	deny_reason_required	audit_required	high_risk	tenant_required	boundary_related	status
+ALLOW_TENANT_MATCH	allow	YES	NO	YES	NO	YES	NO	contract_only
+DENY_NO_TENANT	deny	NO	YES	YES	YES	YES	YES	contract_only
+DENY_JWT_TENANT_MISSING	deny	NO	YES	YES	YES	YES	YES	contract_only
+DENY_HEADER_TENANT_MISMATCH	deny	NO	YES	YES	YES	YES	YES	contract_only
+DENY_ACTOR_TENANT_MISMATCH	deny	NO	YES	YES	YES	YES	YES	contract_only
+DENY_RESOURCE_TENANT_MISMATCH	deny	NO	YES	YES	YES	YES	YES	contract_only
+DENY_ROUTE_TENANT_SCOPE	deny	NO	YES	YES	YES	YES	YES	contract_only
+DENY_ROLE_TENANT_SCOPE	deny	NO	YES	YES	YES	YES	YES	contract_only
+DENY_PERMISSION_TENANT_SCOPE	deny	NO	YES	YES	YES	YES	YES	contract_only
+DENY_AUDIT_TENANT_SCOPE	deny	NO	YES	YES	YES	YES	YES	contract_only
+DENY_CROSS_TENANT	deny	NO	YES	YES	YES	YES	YES	contract_only
+DENY_SUPPORT_BOUNDARY_TENANT	deny	NO	YES	YES	YES	YES	YES	contract_only
+DENY_SUPER_ADMIN_BOUNDARY_TENANT	deny	NO	YES	YES	YES	YES	YES	contract_only

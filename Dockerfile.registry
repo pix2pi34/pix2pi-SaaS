@@ -1,0 +1,18 @@
+FROM golang:1.24-alpine AS builder
+
+WORKDIR /app
+
+COPY . .
+
+RUN go mod tidy
+RUN go build -o app ./cmd/service-registry
+
+FROM alpine:3.19
+
+WORKDIR /app
+
+COPY --from=builder /app/app .
+
+EXPOSE 5870
+
+CMD ["./app"]

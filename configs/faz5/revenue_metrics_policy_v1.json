@@ -1,0 +1,174 @@
+{
+  "catalog_code": "pix2pi_revenue_metrics_policy_v1",
+  "phase": "FAZ_5",
+  "step": "5-9",
+  "depends_on": [
+    "pix2pi_packages_pricing_v1",
+    "pix2pi_entitlement_matrix_v1",
+    "pix2pi_subscription_billing_policy_v1",
+    "pix2pi_tenant_lifecycle_policy_v1",
+    "pix2pi_sales_demo_crm_policy_v1"
+  ],
+  "currency": "TRY",
+  "metric_catalog": [
+    {
+      "code": "mrr",
+      "name": "Monthly Recurring Revenue",
+      "name_tr": "Aylık tekrar eden gelir",
+      "category": "revenue"
+    },
+    {
+      "code": "arr",
+      "name": "Annual Recurring Revenue",
+      "name_tr": "Yıllık tekrar eden gelir",
+      "category": "revenue"
+    },
+    {
+      "code": "logo_churn",
+      "name": "Logo Churn",
+      "name_tr": "Müşteri kayıp oranı",
+      "category": "churn"
+    },
+    {
+      "code": "revenue_churn",
+      "name": "Revenue Churn",
+      "name_tr": "Gelir kayıp oranı",
+      "category": "churn"
+    },
+    {
+      "code": "expansion_revenue",
+      "name": "Expansion Revenue",
+      "name_tr": "Mevcut müşteriden ek gelir",
+      "category": "revenue"
+    },
+    {
+      "code": "contraction_revenue",
+      "name": "Contraction Revenue",
+      "name_tr": "Mevcut müşteride gelir azalması",
+      "category": "revenue"
+    },
+    {
+      "code": "net_revenue_retention",
+      "name": "Net Revenue Retention",
+      "name_tr": "Net gelir koruma oranı",
+      "category": "retention"
+    },
+    {
+      "code": "gross_revenue_retention",
+      "name": "Gross Revenue Retention",
+      "name_tr": "Brüt gelir koruma oranı",
+      "category": "retention"
+    },
+    {
+      "code": "average_revenue_per_tenant",
+      "name": "Average Revenue Per Tenant",
+      "name_tr": "Tenant başına ortalama gelir",
+      "category": "revenue"
+    }
+  ],
+  "formula_catalog": {
+    "mrr": "sum(active_monthly_recurring_revenue)",
+    "arr": "mrr * 12",
+    "logo_churn": "cancelled_customers / starting_customers",
+    "revenue_churn": "lost_mrr / starting_mrr",
+    "expansion_revenue": "upgrade_revenue + add_on_revenue + extra_user_revenue + extra_branch_revenue + extra_company_revenue",
+    "contraction_revenue": "downgrade_loss + removed_add_on_loss + reduced_usage_loss",
+    "net_revenue_retention": "(starting_mrr + expansion_revenue - contraction_revenue - churned_mrr) / starting_mrr",
+    "gross_revenue_retention": "(starting_mrr - contraction_revenue - churned_mrr) / starting_mrr",
+    "average_revenue_per_tenant": "active_mrr / active_paid_tenant_count"
+  },
+  "package_metrics": {
+    "demo_count": true,
+    "starter_customer_count": true,
+    "pro_customer_count": true,
+    "enterprise_customer_count": true,
+    "accountant_workspace_count": true,
+    "accountant_company_revenue": true,
+    "package_distribution": true
+  },
+  "collection_metrics": {
+    "successful_payment_rate": true,
+    "failed_payment_rate": true,
+    "past_due_customer_count": true,
+    "suspended_tenant_count": true,
+    "cancelled_subscription_rate": true,
+    "average_revenue_per_tenant": true
+  },
+  "data_source_mapping": {
+    "subscription_data": [
+      "subscription_state",
+      "package_code",
+      "billing_cycle",
+      "started_at",
+      "cancelled_at"
+    ],
+    "billing_data": [
+      "invoice_id",
+      "invoice_amount",
+      "payment_state",
+      "paid_at",
+      "failed_at"
+    ],
+    "tenant_lifecycle_data": [
+      "tenant_state",
+      "tenant_created_at",
+      "tenant_closed_at",
+      "freeze_reason"
+    ],
+    "sales_crm_data": [
+      "lead_state",
+      "proposal_state",
+      "won_reason",
+      "lost_reason",
+      "sales_channel"
+    ],
+    "support_signal_data": [
+      "incident_class",
+      "support_level",
+      "open_ticket_count",
+      "p0_p1_incident_count"
+    ]
+  },
+  "dashboard_readiness": {
+    "revenue_overview_required": true,
+    "package_distribution_required": true,
+    "collection_health_required": true,
+    "churn_view_required": true,
+    "sales_funnel_required": true,
+    "support_churn_signal_required": true
+  },
+  "alert_threshold_readiness": {
+    "mrr_drop_alert": true,
+    "payment_failure_alert": true,
+    "past_due_spike_alert": true,
+    "churn_spike_alert": true,
+    "support_p1_spike_alert": true
+  },
+  "excluded_from_mrr": [
+    "demo",
+    "trial_without_payment",
+    "cancelled",
+    "suspended_without_collectible_revenue"
+  ],
+  "included_in_mrr": [
+    "starter_active",
+    "pro_active",
+    "enterprise_active_normalized",
+    "accountant_workspace_active",
+    "accountant_company_addons"
+  ],
+  "out_of_scope": [
+    "real_revenue_dashboard",
+    "real_bi_system",
+    "real_payment_provider_report",
+    "real_accounting_reconciliation",
+    "runtime_mrr_worker",
+    "automatic_churn_prediction",
+    "live_commercial_alerting"
+  ],
+  "seal": {
+    "FAZ_5_9_REVENUE_METRICS_STATUS": "PASS",
+    "FAZ_5_9_REVENUE_METRICS_SEAL_STATUS": "SEALED",
+    "FAZ_5_10_READY": "YES"
+  }
+}

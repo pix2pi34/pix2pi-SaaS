@@ -1,0 +1,19 @@
+version: v1
+payment_rules:
+  pos_backbone_enabled: true
+  pos_provider_mode: adapter_based
+  bank_collection_enabled: true
+  bank_settlement_mode: daily_batch
+  reconciliation_bridge_mode: strict
+  refund_flow_enabled: true
+  cancel_flow_enabled: true
+  audit_enabled: true
+  test_profile: turkiye-payment-core
+
+turkiye_compliance:
+  accounting_smoke_required: true
+  ebelge_smoke_required: true
+  export_smoke_required: true
+  accountant_portal_smoke_required: true
+  payment_smoke_required: true
+  closure_mode: full

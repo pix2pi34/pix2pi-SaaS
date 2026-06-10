@@ -1,0 +1,20 @@
+gate	status	note
+previous_14_1	PASS	migration chain prerequisite
+previous_14_2	PASS	reference seed prerequisite
+previous_14_3	PASS	import staging prerequisite
+previous_14_4	PASS	backfill rebuild prerequisite
+manifest	PASS	rows=12
+required_targets	PASS	missing=0
+partition_candidate	PASS	candidate_count=9
+tenant_safety	PASS	tenant_scoped=12
+kvkk	PASS	kvkk_count=7
+legal_hold	PASS	legal_hold_count=12
+retention_order	PASS	bad_order=0
+archive_strategy	PASS	bad_archive=0
+apply_gate	PASS	apply_gate_yes=12
+candidate_plan	PASS	blocked_by_default=YES
+db_mutation	NO	standard only
+archive_apply_executed	NO	standard only
+partition_apply_executed	NO	standard only
+retention_purge_executed	NO	standard only
+query_text_printed	NO	secret-safe report

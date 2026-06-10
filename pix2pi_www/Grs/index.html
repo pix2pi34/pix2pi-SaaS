@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Pix2pi Giriş</title>
+  <meta name="description" content="Pix2pi giriş sayfası" />
+  <meta name="pix2pi-marker" content="PIX2PI_GRS_GIRIS_MARKER" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Times New Roman", Times, serif;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url("/assets/images/ana_zemin.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .top-menu {
+      position: fixed;
+      top: 28px;
+      right: 42px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .top-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 22px;
+      line-height: 1;
+      padding: 10px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 999px;
+      background: transparent;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 110px 24px 48px;
+    }
+
+    .login-box {
+      width: min(460px, 100%);
+      padding: 34px 30px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 28px;
+      background: transparent;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+    }
+
+    .login-box h1 {
+      margin: 0 0 26px;
+      text-align: center;
+      font-size: 44px;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin: 18px 0 8px;
+      font-size: 21px;
+    }
+
+    input {
+      width: 100%;
+      height: 48px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 14px;
+      background: transparent;
+      color: #ffffff;
+      font-size: 20px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 26px;
+      height: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 999px;
+      background: transparent;
+      color: #ffffff;
+      font-size: 24px;
+      cursor: pointer;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+    }
+
+    .small-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #ffffff;
+      font-size: 20px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .top-menu {
+        top: 18px;
+        right: 18px;
+        left: 18px;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .top-menu a {
+        font-size: 19px;
+        padding: 9px 13px;
+      }
+
+      .login-box h1 {
+        font-size: 38px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_GRS_GIRIS_MARKER -->
+  <nav class="top-menu" aria-label="Giriş menüsü">
+    <a href="/">Ana Sayfa</a>
+    <a href="/Kyt_ol/">Kayıt Ol</a>
+  </nav>
+
+  <main class="page">
+    <form class="login-box" method="post" action="#">
+      <h1>Giriş</h1>
+
+      <label for="companyId">Şirket ID</label>
+      <input id="companyId" name="companyId" type="text" placeholder="Şirket ID" autocomplete="organization" />
+
+      <label for="username">Kullanıcı Adı</label>
+      <input id="username" name="username" type="text" placeholder="Kullanıcı adı" autocomplete="username" />
+
+      <label for="password">Şifre</label>
+      <input id="password" name="password" type="password" placeholder="Şifre" autocomplete="current-password" />
+
+      <button type="submit">Giriş Yap</button>
+
+      <a class="small-link" href="/Kyt_ol/">Hesabın yoksa Kayıt Ol</a>
+    </form>
+  </main>
+</body>
+</html>

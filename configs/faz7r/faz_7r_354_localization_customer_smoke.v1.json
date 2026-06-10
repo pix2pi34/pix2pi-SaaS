@@ -1,0 +1,80 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "354",
+  "name": "Localization customer smoke",
+  "surface": "merchant_panel_controlled_access",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/localization-customer-smoke/",
+  "runtime_path": "/assets/localization-customer-smoke/localization-customer-smoke-runtime.js",
+  "depends_on": [
+    "318 - Dil Modülü / i18n / Alfabe Altyapısı",
+    "353 - Kullanıcı yetki kontrolü"
+  ],
+  "backend_contract": {
+    "localization_snapshot_endpoint": "/api/i18n/customer-smoke/snapshot",
+    "translation_completeness_endpoint": "/api/i18n/customer-smoke/completeness",
+    "localization_audit_endpoint": "/api/i18n/customer-smoke/audit",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "user_session_header": "X-User-Session",
+    "language_header": "X-Language",
+    "localization_scope_header": "X-Localization-Scope",
+    "correlation_header": "X-Correlation-ID"
+  },
+  "language_order": [
+    "tr-TR",
+    "ota",
+    "ar",
+    "fa",
+    "en"
+  ],
+  "calligraphy_reference_policy": {
+    "applies_to": [
+      "ota",
+      "tr-Arab",
+      "ar",
+      "fa"
+    ],
+    "primary_reference_name": "Ahmed Hüsrev Altınbaşak",
+    "primary_reference_url": "https://oku.risale.online/osm",
+    "other_reference_sources_allowed": false
+  },
+  "runtime_contract": {
+    "real_tenant_language_mutation_enabled": false,
+    "real_user_language_mutation_enabled": false,
+    "real_notification_send_enabled": false,
+    "localization_preview_enabled": true,
+    "rtl_ltr_preview_enabled": true,
+    "format_preview_enabled": true,
+    "translation_completeness_preview_enabled": true,
+    "hardcoded_ui_text_guard_preview_enabled": true,
+    "fallback_localization_snapshot_enabled": true,
+    "ready_for_step_355": true
+  },
+  "required_capabilities": [
+    "localization_customer_smoke_app_shell",
+    "tenant_default_language_context",
+    "user_language_preference_context",
+    "language_registry_smoke",
+    "latin_turkish_smoke_tr_tr",
+    "ottoman_turkish_arabic_script_smoke_ota_tr_arab",
+    "arabic_smoke_ar",
+    "farsi_smoke_fa",
+    "english_smoke_en",
+    "ahmed_husrev_calligraphy_reference_binding_check",
+    "rtl_ltr_layout_smoke",
+    "date_time_number_currency_format_smoke",
+    "panel_pos_marketplace_localization_readiness",
+    "notification_email_error_localization_readiness",
+    "missing_translation_fallback_preview",
+    "hardcoded_ui_text_guard_preview",
+    "translation_completeness_customer_smoke",
+    "localization_audit_timeline",
+    "localization_runtime_data_contract",
+    "i18n_ready_smoke_marker",
+    "seo_opengraph_localization_placeholder",
+    "localization_customer_smoke_test"
+  ],
+  "next_step": "355 - İlk gerçek kullanım smoke testi"
+}

@@ -1,0 +1,135 @@
+method	path	category	description	required_permission	tenant_scope	implementation_status	note
+GET	/api/v1/workflows	workflow	list workflow definitions	workflow:read	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+POST	/api/v1/workflows	workflow	create workflow definition	workflow:write	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+GET	/api/v1/workflow-instances	workflow	list workflow instances	workflow:read	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+POST	/api/v1/workflow-instances	workflow	start workflow instance	workflow:execute	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+GET	/api/v1/workflow-instances/{id}	workflow	get workflow instance detail	workflow:read	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+POST	/api/v1/workflow-instances/{id}/actions	workflow	execute workflow action	workflow:execute	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+GET	/api/v1/approvals	approval	list approval requests	approval:read	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+POST	/api/v1/approvals/{id}/approve	approval	approve request	approval:write	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+POST	/api/v1/approvals/{id}/reject	approval	reject request	approval:write	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+GET	/api/v1/tasks	task	list assigned tasks	task:read	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+POST	/api/v1/tasks/{id}/complete	task	complete task	task:write	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+GET	/api/v1/realtime/events	realtime	SSE event stream candidate	realtime:read	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+GET	/api/v1/realtime/ws	realtime	WebSocket stream candidate	realtime:read	tenant	READY_FOR_IMPLEMENTATION	candidate_only_no_route_created
+source_file	candidate_marker	category	note				
+docs/api/faz3_step12_2_gateway_route_binding.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step12_2_gateway_route_binding_mux_smoke.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step12_2_gateway_route_manifest.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step12_3_gateway_mount_binding.md	/api/v1/erp/runtime	existing_surface_marker	metadata_only				
+docs/api/faz3_step12_3_gateway_mount_binding.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step12_3_gateway_mount_binding_mux_smoke.md	/api/v1/erp/runtime	existing_surface_marker	metadata_only				
+docs/api/faz3_step12_3_gateway_mount_binding_mux_smoke.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step12_3_gateway_mount_plan.md	/api/v1/erp/runtime	existing_surface_marker	metadata_only				
+docs/api/faz3_step12_3_gateway_mount_plan.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1b_gateway_erp_runtime_mount_adapter.md	/api-gateway	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1b_gateway_erp_runtime_mount_adapter.md	/api-gateway/erp_runtime_mount.go	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1b_gateway_erp_runtime_mount_adapter.md	/api-gateway/erp_runtime_mount_test.go	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1b_gateway_erp_runtime_mount_adapter.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1d_gateway_erp_runtime_route_policy_helper.md	/api-gateway/erp_runtime_route_policy.go	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1d_gateway_erp_runtime_route_policy_helper.md	/api-gateway/erp_runtime_route_policy_test.go	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1d_gateway_erp_runtime_route_policy_helper.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1e_gateway_erp_runtime_route_catalog_wiring.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1f_gateway_erp_runtime_service_factory.md	/api-gateway/erp_runtime_service_factory.go	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1f_gateway_erp_runtime_service_factory.md	/api-gateway/erp_runtime_service_factory_test.go	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1g_gateway_erp_runtime_live_mount_wiring.md	/api-gateway/api_gateway_main.go	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1g_gateway_erp_runtime_live_mount_wiring.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1g_gateway_erp_runtime_live_mount_wiring.md	/api/	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_1i_gateway_protected_erp_runtime_endpoint_smoke.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_3a_fix_gateway_route_catalog_visibility.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step13_3a_fix_gateway_route_catalog_visibility.md	/api-gateway/gateway_routes.go	existing_surface_marker	metadata_only				
+docs/api/faz3_step14_1b_erp_runtime_panel_contract.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/faz3_step14_1b_erp_runtime_panel_contract.md	POST /api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	/api/v1/auth/me	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	/api/v1/tenant/current	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	/api/v1/dashboard/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	/api/v1/monitoring/warnings	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	/api/v1/monitoring/alerts	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	/api/v1/erp/event-summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	/api/v1/health/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	GET /api/v1/auth/me	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	GET /api/v1/tenant/current	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	GET /api/v1/dashboard/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	GET /api/v1/monitoring/warnings	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	GET /api/v1/monitoring/alerts	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	GET /api/v1/erp/event-summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_error_standard.md	GET /api/v1/health/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	/api/v1/auth/me	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	/api/v1/tenant/current	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	/api/v1/dashboard/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	/api/v1/monitoring/warnings	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	/api/v1/monitoring/alerts	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	/api/v1/erp/event-summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	/api/v1/health/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	GET /api/v1/auth/me	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	GET /api/v1/tenant/current	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	GET /api/v1/dashboard/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	GET /api/v1/monitoring/warnings	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	GET /api/v1/monitoring/alerts	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	GET /api/v1/erp/event-summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_contracts.md	GET /api/v1/health/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	/api/v1/auth/me	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	/api/v1/tenant/current	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	/api/v1/dashboard/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	/api/v1/monitoring/warnings	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	/api/v1/monitoring/alerts	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	/api/v1/erp/event-summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	/api/v1/health/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	/ops	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	/api/v1	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	GET /api/v1/auth/me	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	GET /api/v1/tenant/current	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	GET /api/v1/dashboard/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	GET /api/v1/monitoring/warnings	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	GET /api/v1/monitoring/alerts	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	GET /api/v1/erp/event-summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_surface_manifest.md	GET /api/v1/health/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	/api/v1/auth/me	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	/api/v1/tenant/current	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	/api/v1/dashboard/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	/api/v1/monitoring/warnings	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	/api/v1/monitoring/alerts	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	/api/v1/erp/event-summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	/api/v1/health/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	GET /api/v1/auth/me	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	GET /api/v1/tenant/current	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	GET /api/v1/dashboard/summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	GET /api/v1/monitoring/warnings	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	GET /api/v1/monitoring/alerts	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	GET /api/v1/erp/event-summary	existing_surface_marker	metadata_only				
+docs/api/lvl7_ui_tenant_auth_matrix.md	GET /api/v1/health/summary	existing_surface_marker	metadata_only				
+docs/erp/faz3_final_muhur_raporu.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/erp/faz3_final_muhur_raporu.md	/api-gateway	existing_surface_marker	metadata_only				
+docs/erp/faz3_final_muhur_raporu.md	POST /api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_1_runtime_api_surface_muhur.md	/apisurface/errors.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_1_runtime_api_surface_muhur.md	/apisurface/model.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_1_runtime_api_surface_muhur.md	/apisurface/service.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_1_runtime_api_surface_muhur.md	/apisurface/http_handler.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_1_runtime_api_surface_muhur.md	/apisurface/model_test.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_1_runtime_api_surface_muhur.md	/apisurface/http_handler_test.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_1_runtime_api_surface_muhur.md	/apisurface/e2e_http_smoke_integration_test.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_1_runtime_api_surface_muhur.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_1_runtime_api_surface_muhur.md	POST /api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_2_gateway_route_muhur.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_2_gateway_route_muhur.md	/apisurface/route_manifest.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_2_gateway_route_muhur.md	/apisurface/route_manifest_test.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_2_gateway_route_muhur.md	/apisurface/route_binding.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_2_gateway_route_muhur.md	/apisurface/route_binding_test.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_2_gateway_route_muhur.md	/apisurface/route_binding_mux_smoke_test.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_2_gateway_route_muhur.md	/api/faz3_step12_2_gateway_route_manifest.md	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_2_gateway_route_muhur.md	/api/faz3_step12_2_gateway_route_binding.md	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_2_gateway_route_muhur.md	/api/faz3_step12_2_gateway_route_binding_mux_smoke.md	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_2_gateway_route_muhur.md	POST /api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_3_gateway_mount_muhur.md	/api/v1/erp/runtime	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_3_gateway_mount_muhur.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_3_gateway_mount_muhur.md	/apisurface/gateway_mount_plan.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_3_gateway_mount_muhur.md	/apisurface/gateway_mount_plan_test.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_3_gateway_mount_muhur.md	/apisurface/gateway_mount_binding.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_3_gateway_mount_muhur.md	/apisurface/gateway_mount_binding_test.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_3_gateway_mount_muhur.md	/apisurface/gateway_mount_binding_mux_smoke_test.go	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_3_gateway_mount_muhur.md	/api/faz3_step12_3_gateway_mount_plan.md	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_3_gateway_mount_muhur.md	/api/faz3_step12_3_gateway_mount_binding.md	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_3_gateway_mount_muhur.md	/api/faz3_step12_3_gateway_mount_binding_mux_smoke.md	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_3_gateway_mount_muhur.md	POST /api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_4a_runtime_api_gateway_final_smoke_raporu.md	/apisurface	existing_surface_marker	metadata_only				
+docs/erp/faz3_step12_4a_runtime_api_gateway_final_smoke_raporu.md	/api/v1/erp/runtime/flows	existing_surface_marker	metadata_only				

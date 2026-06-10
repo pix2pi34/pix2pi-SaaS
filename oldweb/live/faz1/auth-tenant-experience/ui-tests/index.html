@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Auth / Tenant UI Tests</title>
+  <link rel="stylesheet" href="./auth_tenant_ui_tests.css">
+</head>
+<body>
+  <main class="pix2pi-shell">
+    <header class="pix2pi-header">
+      <div>
+        <h1 class="pix2pi-title">Pix2pi Auth / Tenant UI Testleri</h1>
+        <p class="pix2pi-subtitle">FAZ 1-5.7 — WEB-L2 Auth / Tenant Experience final test kapısı</p>
+      </div>
+      <span class="pix2pi-badge ok" id="authTenantUiFinalStatus">FINAL STATUS: CHECKING</span>
+    </header>
+
+    <section class="pix2pi-grid">
+      <article class="pix2pi-card">
+        <div class="pix2pi-actions">
+          <button class="pix2pi-button primary" id="runAuthTenantUiTestsButton" type="button">Auth / tenant UI testlerini çalıştır</button>
+        </div>
+
+        <div class="pix2pi-test-list" id="authTenantUiTestList"></div>
+      </article>
+
+      <aside class="pix2pi-card">
+        <div class="pix2pi-badge ok">WEB-L2 READY</div>
+        <pre class="pix2pi-log" id="authTenantUiTestLog">Test log yükleniyor...</pre>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./auth_tenant_ui_tests.js"></script>
+</body>
+</html>

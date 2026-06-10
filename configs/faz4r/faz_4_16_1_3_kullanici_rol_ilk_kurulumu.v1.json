@@ -1,0 +1,58 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 197,
+  "step": "FAZ_4_16_1_3",
+  "title": "Kullanıcı / rol ilk kurulumu",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "192_FAZ_4_16_1_4_PILOT_VERI_SINIRLARI_TANIMI",
+    "193_FAZ_4_16_1_5_TENANT_ACCEPTANCE_CHECKLIST",
+    "194_FAZ_4_16_1_6_ONBOARDING_SMOKE",
+    "195_FAZ_4_16_1_1_PILOT_TENANT_ACILIS_AKISI",
+    "196_FAZ_4_16_1_2_TENANT_CONFIG_SABLONLARI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "template_artifact": "configs/faz4r/user_role_initial_setup.controlled_pilot.v1.json",
+  "setup_policy": {
+    "setup_status_required": "READY",
+    "tenant_scope_required": "SINGLE_TENANT",
+    "pilot_mode_required": "CONTROLLED_PILOT",
+    "min_tenant_admin_count": 1,
+    "max_admin_user_count": 3,
+    "max_operator_user_count": 10,
+    "max_accountant_user_count": 5,
+    "critical_issue_count_must_be_zero": true,
+    "invite_policy_status_required": "READY",
+    "mfa_policy_allowed_statuses": ["READY", "ENFORCED"],
+    "audit_evidence_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_roles": [
+    "TENANT_ADMIN",
+    "PILOT_OPERATOR",
+    "ACCOUNTANT",
+    "SUPPORT_OBSERVER"
+  ],
+  "required_permissions": [
+    "TENANT_READ",
+    "TENANT_CONFIG_READ",
+    "USER_INVITE_MANAGE",
+    "ROLE_ASSIGN_MANAGE",
+    "IMPORT_DRY_RUN_RUN",
+    "IMPORT_REPORT_READ",
+    "UAT_CASE_READ",
+    "UAT_CASE_UPDATE",
+    "REPORTING_READ",
+    "OPERATIONAL_READMODEL_READ",
+    "SUPPORT_ISSUE_READ",
+    "SUPPORT_ISSUE_UPDATE",
+    "AUDIT_EVIDENCE_READ"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "198_FAZ_4_16_2_1_CARI_IMPORT"
+  ]
+}

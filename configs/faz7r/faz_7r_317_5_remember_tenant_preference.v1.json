@@ -1,0 +1,48 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "317.5",
+  "name": "Remember tenant preference gerçek akış",
+  "component": "internal/auth/tenantpreference",
+  "database_contract": {
+    "schema": "auth",
+    "tables": [
+      "auth.user_tenant_preferences",
+      "auth.user_current_tenant_preferences",
+      "auth.user_tenant_memberships"
+    ],
+    "unique_keys": [
+      "user_id",
+      "user_id, session_id"
+    ]
+  },
+  "runtime_contract": {
+    "requires_user_id": true,
+    "requires_tenant_access_check": true,
+    "records_last_selected_tenant": true,
+    "restores_last_selected_tenant": true,
+    "falls_back_to_first_active_tenant": true,
+    "persists_session_current_tenant": true,
+    "rejects_inaccessible_preference": true
+  },
+  "api_contract": {
+    "get_preference": {
+      "method": "GET",
+      "path": "/api/auth/tenant/preference"
+    },
+    "set_preference": {
+      "method": "PUT",
+      "path": "/api/auth/tenant/preference"
+    }
+  },
+  "required_checks": [
+    "save_persistent_preference",
+    "restore_accessible_preference",
+    "reject_inaccessible_preference",
+    "fallback_first_active_tenant",
+    "save_session_current_tenant",
+    "http_get_preference",
+    "http_set_preference",
+    "go_test"
+  ],
+  "next_step": "317.6 - Session timeout gerçek davranış"
+}

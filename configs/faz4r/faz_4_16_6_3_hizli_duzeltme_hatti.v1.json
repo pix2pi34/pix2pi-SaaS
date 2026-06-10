@@ -1,0 +1,59 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 223,
+  "step": "FAZ_4_16_6_3",
+  "title": "Hızlı düzeltme hattı",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "222_FAZ_4_16_6_2_DEGISIKLIK_SINIFLANDIRMA"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "quick_fix_policy": {
+    "quick_fix_lane_status_required": "READY",
+    "quick_fix_lane_mode_required": "CONTROLLED_PILOT",
+    "required_rule_status_required": "READY",
+    "missing_rule_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "change_classification_status_required": "PASS",
+    "quick_fix_candidate_status_required": "READY",
+    "eligibility_gate_status_required": "READY",
+    "risk_assessment_status_required": "READY",
+    "test_plan_status_required": "READY",
+    "rollback_plan_status_required": "READY",
+    "approval_gate_status_required": "READY",
+    "qa_verification_status_required": "READY",
+    "no_auto_apply_change_required": true,
+    "no_hotfix_deploy_required": true,
+    "no_real_rollback_execution_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_quick_fix_rules": [
+    "QUICK_FIX_INTAKE",
+    "QUICK_FIX_ELIGIBILITY_GATE",
+    "PRIORITY_SEVERITY_GATE",
+    "SCOPE_BOUNDARY_GUARD",
+    "RISK_ASSESSMENT",
+    "OWNER_ASSIGNMENT",
+    "PATCH_PLAN_DRAFT",
+    "TEST_PLAN_GATE",
+    "ROLLBACK_PLAN_GATE",
+    "APPROVAL_GATE",
+    "EVIDENCE_ATTACHMENT",
+    "COMMUNICATION_NOTE",
+    "QA_VERIFICATION_GATE",
+    "CLOSURE_GATE",
+    "CLOSED_PROVIDER_POLICY_GUARD"
+  ],
+  "quick_fix_artifact": "configs/faz4r/quick_fix_lane.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "224_FAZ_4_16_6_4_URUN_KARAR_DEFTERI"
+  ]
+}

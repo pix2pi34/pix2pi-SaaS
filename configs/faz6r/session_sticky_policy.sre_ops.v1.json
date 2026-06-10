@@ -1,0 +1,73 @@
+{
+  "version": "sre_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_1_4",
+  "status": "dry_run_only_no_session_sticky_mutation",
+  "recommendations": [
+    {
+      "policy_id": "session-policy-api-gateway-stateless",
+      "surface": "api_gateway_http",
+      "current_signal": "route_success_ratio_and_session_error_ratio",
+      "recommended_action": "keep_api_gateway_stateless_review_only",
+      "risk_level": "critical",
+      "tenant_aware_guard_status": "REQUIRED",
+      "stateless_fallback_status": "REQUIRED",
+      "session_store_health_status": "REQUIRED",
+      "cookie_security_status": "NOT_APPLICABLE",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "policy_id": "session-policy-panel-sticky-review",
+      "surface": "panel_session",
+      "current_signal": "sticky_route_error_ratio_and_cookie_coverage",
+      "recommended_action": "review_panel_affinity_no_lb_mutation",
+      "risk_level": "high",
+      "tenant_aware_guard_status": "REQUIRED",
+      "stateless_fallback_status": "REQUIRED",
+      "session_store_health_status": "REQUIRED",
+      "cookie_security_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "policy_id": "session-policy-pos-offline-safe",
+      "surface": "pos_session",
+      "current_signal": "pos_offline_recovery_success_ratio",
+      "recommended_action": "keep_pos_offline_safe_no_sticky_dependency",
+      "risk_level": "high",
+      "tenant_aware_guard_status": "REQUIRED",
+      "stateless_fallback_status": "REQUIRED",
+      "session_store_health_status": "REQUIRED",
+      "cookie_security_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "policy_id": "session-policy-websocket-sse-affinity",
+      "surface": "websocket_sse",
+      "current_signal": "websocket_sse_reconnect_count",
+      "recommended_action": "review_ws_sse_affinity_no_route_mutation",
+      "risk_level": "medium",
+      "tenant_aware_guard_status": "REQUIRED",
+      "stateless_fallback_status": "REQUIRED",
+      "session_store_health_status": "REQUIRED",
+      "cookie_security_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "policy_id": "session-policy-public-web-stateless",
+      "surface": "public_web",
+      "current_signal": "public_web_sessionless_route_success_ratio",
+      "recommended_action": "keep_public_web_stateless_no_sticky",
+      "risk_level": "low",
+      "tenant_aware_guard_status": "NOT_REQUIRED",
+      "stateless_fallback_status": "REQUIRED",
+      "session_store_health_status": "NOT_REQUIRED",
+      "cookie_security_status": "REVIEW_ONLY",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ]
+}

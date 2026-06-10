@@ -1,0 +1,90 @@
+{
+  "phase": "FAZ_3_13_3_PROVIDER_ERROR_VIEW",
+  "screen": "provider_error_view",
+  "screen_enabled": true,
+  "route": "/faz3/document-integration/provider-errors/",
+  "static_file": "web/faz3/document-integration/provider-errors/index.html",
+  "scope": {
+    "provider_error_table_visibility": true,
+    "provider_error_code_visibility": true,
+    "provider_error_message_visibility": true,
+    "normalized_error_code_visibility": true,
+    "error_category_visibility": true,
+    "severity_visibility": true,
+    "retryability_visibility": true,
+    "route_decision_visibility": true,
+    "dlq_status_visibility": true,
+    "manual_review_status_visibility": true,
+    "payload_hash_visibility": true,
+    "response_hash_visibility": true,
+    "error_hash_visibility": true,
+    "classification_hash_visibility": true,
+    "audit_timeline_visibility": true
+  },
+  "guard_policy": {
+    "tenant_indicator_required": true,
+    "firm_indicator_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "provider_required": true,
+    "provider_document_id_required": true,
+    "provider_error_code_required": true,
+    "normalized_error_code_required": true,
+    "category_required": true,
+    "severity_required": true,
+    "retryability_required": true,
+    "route_decision_required": true,
+    "payload_hash_required": true,
+    "response_hash_required": true,
+    "error_hash_required": true,
+    "classification_hash_required": true,
+    "audit_hash_required": true,
+    "evidence_file_required": true
+  },
+  "error_category_coverage": {
+    "auth": true,
+    "validation": true,
+    "schema": true,
+    "timeout": true,
+    "rate_limit": true
+  },
+  "severity_coverage": {
+    "info": true,
+    "warn": true,
+    "error": true,
+    "critical": true
+  },
+  "retryability_coverage": {
+    "retryable": true,
+    "non_retryable": true
+  },
+  "operation_coverage": {
+    "classify_error": true,
+    "retry_decision": true,
+    "dlq_route": true,
+    "manual_review": true,
+    "audit_evidence": true,
+    "live_provider_disabled": true
+  },
+  "live_policy": {
+    "production_approved": false,
+    "real_gib_call_allowed": false,
+    "real_provider_call_allowed": false,
+    "raw_secret_visible": false,
+    "raw_credential_visible": false,
+    "error_payload_masked": true,
+    "retry_decision_dry_run_only": true,
+    "manual_review_required_for_critical": true,
+    "audit_hash_required": true,
+    "ui_actions_are_classify_route_audit_only": true
+  },
+  "covered_backend_gates": [
+    "FAZ_3_10_3_6_EBELGE_LIVE_INTEGRATION_TESTS",
+    "FAZ_3_11_8_EBELGE_OPERATIONS_SCREEN",
+    "FAZ_3_13_1_EBELGE_STATUS_CENTER",
+    "FAZ_3_13_2_RETRY_CANCEL_RESEND_ACTION_SURFACE"
+  ],
+  "previous_gate": "FAZ_3_13_2_RETRY_CANCEL_RESEND_ACTION_SURFACE",
+  "next_gate": "FAZ_3_13_5_MANUAL_CORRECTION_QUEUE"
+}

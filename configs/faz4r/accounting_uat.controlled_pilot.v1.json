@@ -1,0 +1,167 @@
+{
+  "uat_id": "accounting_uat.controlled_pilot.v1",
+  "uat_status": "READY",
+  "uat_mode": "CONTROLLED_PILOT",
+  "accounting_mode": "PREVIEW",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT"
+  },
+  "chain_dependencies": {
+    "186_FAZ_4_15_2_FINANCE_REPORTING_MART": "PASS",
+    "187_FAZ_4_15_4_PAYMENT_RECONCILIATION_REPORTING_MART": "PASS",
+    "190_FAZ_4_15_7_READMODEL_REPORTING_TEST_SET": "PASS",
+    "198_FAZ_4_16_2_1_CARI_IMPORT": "PASS",
+    "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT": "PASS",
+    "202_FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU": "PASS",
+    "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT": "PASS",
+    "205_FAZ_4_16_3_2_POS_UAT": "PASS"
+  },
+  "uat_cases": [
+    {
+      "code": "ACCOUNTING_ACCESS",
+      "required": true,
+      "status": "PASS",
+      "area": "ACCESS",
+      "evidence_ref": "docs/faz4r/evidence/accounting_access.md"
+    },
+    {
+      "code": "ACCOUNTING_TENANT_CONTEXT_VISIBLE",
+      "required": true,
+      "status": "PASS",
+      "area": "TENANT",
+      "evidence_ref": "docs/faz4r/evidence/accounting_tenant_context_visible.md"
+    },
+    {
+      "code": "TDHP_CHART_VIEW",
+      "required": true,
+      "status": "PASS",
+      "area": "ACCOUNTING",
+      "evidence_ref": "docs/faz4r/evidence/tdhp_chart_view.md"
+    },
+    {
+      "code": "CUSTOMER_LEDGER_MOVEMENT_VIEW",
+      "required": true,
+      "status": "PASS",
+      "area": "LEDGER",
+      "evidence_ref": "docs/faz4r/evidence/customer_ledger_movement_view.md"
+    },
+    {
+      "code": "SALE_ACCOUNTING_PREVIEW",
+      "required": true,
+      "status": "PASS",
+      "area": "JOURNAL_PREVIEW",
+      "evidence_ref": "docs/faz4r/evidence/sale_accounting_preview.md"
+    },
+    {
+      "code": "PURCHASE_ACCOUNTING_PREVIEW",
+      "required": true,
+      "status": "PASS",
+      "area": "JOURNAL_PREVIEW",
+      "evidence_ref": "docs/faz4r/evidence/purchase_accounting_preview.md"
+    },
+    {
+      "code": "VAT_TAX_SUMMARY_VIEW",
+      "required": true,
+      "status": "PASS",
+      "area": "TAX",
+      "evidence_ref": "docs/faz4r/evidence/vat_tax_summary_view.md"
+    },
+    {
+      "code": "JOURNAL_DRAFT_PREVIEW",
+      "required": true,
+      "status": "PASS",
+      "area": "JOURNAL_PREVIEW",
+      "evidence_ref": "docs/faz4r/evidence/journal_draft_preview.md"
+    },
+    {
+      "code": "DEBIT_CREDIT_BALANCE_CHECK",
+      "required": true,
+      "status": "PASS",
+      "area": "BALANCE",
+      "evidence_ref": "docs/faz4r/evidence/debit_credit_balance_check.md"
+    },
+    {
+      "code": "FINANCE_REPORTING_MART_LINK",
+      "required": true,
+      "status": "PASS",
+      "area": "REPORTING",
+      "evidence_ref": "docs/faz4r/evidence/FAZ_4_15_2_FINANCE_REPORTING_MART_REAL_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "code": "PAYMENT_RECONCILIATION_MART_LINK",
+      "required": true,
+      "status": "PASS",
+      "area": "REPORTING",
+      "evidence_ref": "docs/faz4r/evidence/FAZ_4_15_4_PAYMENT_RECONCILIATION_REPORTING_MART_REAL_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "code": "IMPORT_VALIDATION_EVIDENCE_LINK",
+      "required": true,
+      "status": "PASS",
+      "area": "IMPORT",
+      "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU_REAL_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "code": "POS_DRY_RUN_SALE_EVIDENCE_LINK",
+      "required": true,
+      "status": "PASS",
+      "area": "POS",
+      "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_3_2_POS_UAT_REAL_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "code": "ACCOUNTING_AUDIT_EVIDENCE_LINK_VIEW",
+      "required": true,
+      "status": "PASS",
+      "area": "AUDIT",
+      "evidence_ref": "docs/faz4r/evidence/accounting_audit_evidence_link_view.md"
+    },
+    {
+      "code": "REAL_LEDGER_POSTING_CLOSED_GATE",
+      "required": true,
+      "status": "PASS",
+      "area": "POLICY",
+      "evidence_ref": "docs/faz4r/evidence/real_ledger_posting_closed_gate.md"
+    },
+    {
+      "code": "CLOSED_EXTERNAL_POLICY_GATE",
+      "required": true,
+      "status": "PASS",
+      "area": "POLICY",
+      "evidence_ref": "docs/faz4r/evidence/closed_external_policy_gate.md"
+    }
+  ],
+  "accounting_preview": {
+    "journal_preview_id": "journal_preview_206_001",
+    "debit_total": 1200.00,
+    "credit_total": 1200.00,
+    "currency_code": "TRY",
+    "tax_summary_status": "PASS",
+    "real_ledger_posting_status": "CLOSED"
+  },
+  "summary": {
+    "total_case_count": 16,
+    "pass_count": 16,
+    "fail_count": 0,
+    "required_fail_count": 0,
+    "optional_warn_count": 0,
+    "critical_issue_count": 0,
+    "tenant_context_status": "PASS",
+    "journal_preview_status": "PASS",
+    "debit_credit_balance_status": "PASS",
+    "tax_summary_status": "PASS",
+    "real_ledger_posting_status": "CLOSED",
+    "uat_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "real_ledger_posting": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

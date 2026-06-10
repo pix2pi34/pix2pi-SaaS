@@ -1,0 +1,10 @@
+component	path	status
+types	internal/platform/reporting/repository/types.go	CREATED
+repository	internal/platform/reporting/repository/repository.go	CREATED
+tests	internal/platform/reporting/repository/repository_test.go	CREATED
+method	OperationalSummary	CREATED
+method	DailyMetrics	CREATED
+method	InventoryStatus	CREATED
+method	DocumentWorkQueue	CREATED
+method	ReconciliationStatus	CREATED
+method	ProjectionState	CREATED

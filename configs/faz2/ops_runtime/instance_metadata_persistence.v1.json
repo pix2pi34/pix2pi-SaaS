@@ -1,0 +1,28 @@
+{
+  "phase": "FAZ 2-7.1.3",
+  "runtime": "instance_metadata_persistence",
+  "require_tenant": true,
+  "allowed_statuses": [
+    "REGISTERED",
+    "HEALTHY",
+    "UNHEALTHY",
+    "STALE"
+  ],
+  "allowed_visibilities": [
+    "TENANT",
+    "PLATFORM",
+    "INTERNAL"
+  ],
+  "guards": [
+    "tenant_required",
+    "service_name_required",
+    "instance_id_required_for_metadata",
+    "metadata_key_required",
+    "metadata_value_required",
+    "registered_instance_required",
+    "cross_tenant_metadata_denied",
+    "tenant_visible_metadata_filter",
+    "tenant_instance_list_filter"
+  ],
+  "next_ready": "FAZ_2_7_1_4_STALE_INSTANCE_AUTO_CLEANUP_JOB"
+}

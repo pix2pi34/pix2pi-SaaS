@@ -1,0 +1,28 @@
+# FAZ 4C — 4C-4C User Role Apply Strategy Test Report
+
+Step: 4C-4C
+Blok: User / Role Apply Strategy Decision Test
+Test tarihi: 2026-05-01 07:38:13
+
+## Test sonucu
+
+4C_4C_TEST_STATUS=PASS
+4C_4C_USER_ROLE_APPLY_STRATEGY_STATUS=PASS
+4C_4C_SELECTED_USER_TABLE=auth.users
+4C_4C_SELECTED_ROLE_TABLE=auth.roles
+4C_4C_SELECTED_MAPPING_TABLE=auth.user_role_assignments
+4C_4C_TENANT_ID=6dfe8d22-035a-401f-807c-507408d2e439
+4C_4C_USER_CREATE_NEEDED=YES
+4C_4C_ROLE_CREATE_NEEDED=YES
+4C_4C_ASSIGNMENT_CREATE_NEEDED=YES
+4C_4C_USER_REQUIRED_COLUMN_COUNT=4
+4C_4C_ROLE_REQUIRED_COLUMN_COUNT=3
+4C_4C_MAPPING_REQUIRED_COLUMN_COUNT=3
+4C_4C_DB_WRITE_APPLIED=NO
+4C_4D_READY=YES
+
+## Sonuc
+
+User/role apply strategy test tamamlandi.
+DB yazma islemi yapilmadi.
+Sonraki adim: 4C-4D User / Role SQL Package / Dry Run Plan.

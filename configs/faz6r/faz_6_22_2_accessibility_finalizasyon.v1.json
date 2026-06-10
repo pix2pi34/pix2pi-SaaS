@@ -1,0 +1,183 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "308",
+  "code": "FAZ_6_22_2",
+  "name": "Accessibility finalizasyon",
+  "depends_on": [
+    "FAZ_6_20_6"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "frontend_deploy_allowed": false,
+  "css_mutation_allowed": false,
+  "js_mutation_allowed": false,
+  "design_token_mutation_allowed": false,
+  "route_mutation_allowed": false,
+  "cdn_invalidation_allowed": false,
+  "build_publish_allowed": false,
+  "required_controls": [
+    "partition_shard_dependency_gate",
+    "wcag_target_policy",
+    "keyboard_navigation_policy",
+    "focus_management_policy",
+    "color_contrast_policy",
+    "semantic_html_policy",
+    "aria_usage_policy",
+    "form_error_accessibility_policy",
+    "table_grid_accessibility_policy",
+    "modal_drawer_accessibility_policy",
+    "notification_accessibility_policy",
+    "screen_reader_readiness_policy",
+    "dry_run_accessibility_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "wcag_target_policy": {
+    "enabled": true,
+    "target": "WCAG_2_2_AA",
+    "block_if_critical_flow_not_keyboard_accessible": true,
+    "block_if_focus_indicator_missing": true,
+    "block_if_contrast_below_aa": true,
+    "block_if_form_error_not_announced": true,
+    "block_if_modal_focus_trap_missing": true
+  },
+  "accessibility_surfaces": [
+    {
+      "surface": "auth_login",
+      "risk_level": "critical",
+      "keyboard_required": true,
+      "screen_reader_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "tenant_panel_shell",
+      "risk_level": "critical",
+      "keyboard_required": true,
+      "screen_reader_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "approval_inbox",
+      "risk_level": "high",
+      "keyboard_required": true,
+      "screen_reader_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "workflow_monitor",
+      "risk_level": "high",
+      "keyboard_required": true,
+      "screen_reader_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "reporting_tables",
+      "risk_level": "high",
+      "keyboard_required": true,
+      "screen_reader_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "public_landing",
+      "risk_level": "medium",
+      "keyboard_required": true,
+      "screen_reader_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "policy_model": {
+    "mode": "dry_run_review_only",
+    "keyboard_navigation_required": true,
+    "focus_visible_required": true,
+    "focus_restore_required": true,
+    "modal_focus_trap_required": true,
+    "semantic_landmarks_required": true,
+    "form_error_aria_live_required": true,
+    "toast_notification_aria_live_required": true,
+    "table_header_scope_required": true,
+    "skip_link_required": true,
+    "reduced_motion_policy_required": true
+  },
+  "metric_model": {
+    "required_checks": [
+      "keyboard_tab_order_check",
+      "focus_visible_check",
+      "focus_trap_check",
+      "focus_restore_check",
+      "contrast_ratio_check",
+      "semantic_landmark_check",
+      "aria_label_check",
+      "form_error_announcement_check",
+      "table_header_scope_check",
+      "toast_aria_live_check",
+      "screen_reader_label_check",
+      "reduced_motion_check",
+      "skip_link_check"
+    ],
+    "requires_per_surface_breakdown": true,
+    "requires_critical_flow_breakdown": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "frontend_deploy_execute",
+      "css_mutation_execute",
+      "js_mutation_execute",
+      "design_token_mutation_execute",
+      "route_mutation_execute",
+      "cdn_invalidation_execute",
+      "build_publish_execute"
+    ],
+    "approval_roles": [
+      "frontend_owner",
+      "ux_owner",
+      "sre_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "frontend_deploy_allowed": false,
+    "css_mutation_allowed": false,
+    "js_mutation_allowed": false,
+    "design_token_mutation_allowed": false,
+    "route_mutation_allowed": false,
+    "cdn_invalidation_allowed": false,
+    "build_publish_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "check_id",
+      "surface",
+      "wcag_target",
+      "keyboard_status",
+      "focus_status",
+      "contrast_status",
+      "semantic_status",
+      "aria_status",
+      "screen_reader_status",
+      "risk_level",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_partition_shard_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_frontend_deploy_allowed": true,
+    "block_if_build_publish_allowed": true,
+    "block_if_missing_wcag_target": true,
+    "block_if_missing_keyboard_policy": true,
+    "block_if_missing_focus_policy": true,
+    "block_if_missing_screen_reader_policy": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_22_2_ACCESSIBILITY_FINALIZASYON_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

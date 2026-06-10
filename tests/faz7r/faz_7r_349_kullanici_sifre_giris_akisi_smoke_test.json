@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "349",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "panel_password_login_screen",
+      "path": "/password-login/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_349_PASSWORD_LOGIN_APP_SHELL_START",
+        "PIX2PI_349_PASSWORD_SETUP_FORM_START",
+        "PIX2PI_349_AUTH_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "panel_password_login_runtime",
+      "path": "/assets/password-login/panel-password-login-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_349_PANEL_PASSWORD_LOGIN_RUNTIME_START",
+        "authScopeHeaders",
+        "buildAuthRuntimeContract"
+      ]
+    }
+  ]
+}

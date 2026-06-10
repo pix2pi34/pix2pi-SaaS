@@ -1,0 +1,57 @@
+{
+  "phase": "FAZ_3_10_6_2_TAX_FIELD_EXTRACTION_RUNTIME",
+  "runtime": "tax_field_extraction_runtime",
+  "runtime_enabled": true,
+  "require_tenant_scope": true,
+  "require_ocr_result_hash": true,
+  "require_ocr_ready_or_review": true,
+  "require_tax_no": true,
+  "require_tax_office": true,
+  "require_company_name_candidate": true,
+  "require_confidence": true,
+  "require_audit_hash": true,
+  "min_confidence_bps": 5000,
+  "review_confidence_bps": 8500,
+  "supported_document_types": [
+    "TAX_CERTIFICATE",
+    "INVOICE",
+    "BUSINESS_CARD",
+    "UNKNOWN"
+  ],
+  "supported_field_keys": [
+    "company_name",
+    "tax_no",
+    "tax_office",
+    "mersis_no"
+  ],
+  "normalization_policy": {
+    "tax_no_digits_only": true,
+    "tax_no_valid_length_10_or_11": true,
+    "mersis_digits_only": true,
+    "tax_office_trim_spaces": true,
+    "company_name_trim_spaces": true
+  },
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "extraction_id_required": true,
+    "ocr_result_tenant_scope_required": true,
+    "ocr_result_process_id_required": true,
+    "ocr_result_document_id_required": true,
+    "ocr_result_hash_required": true,
+    "ocr_result_document_type_supported_required": true,
+    "ocr_result_ready_or_review_required": true,
+    "ocr_result_normalized_text_required": true,
+    "ocr_result_confidence_required": true,
+    "tax_no_required": true,
+    "tax_office_required": true,
+    "company_name_candidate_required": true,
+    "review_signal_on_missing_required_fields": true,
+    "review_signal_on_low_confidence": true,
+    "result_hash_required": true
+  },
+  "previous_gate": "FAZ_3_10_6_1_OCR_LENS_PROCESSING_RUNTIME",
+  "next_gate": "FAZ_3_10_6_3_CONTACT_FIELD_EXTRACTION_RUNTIME"
+}

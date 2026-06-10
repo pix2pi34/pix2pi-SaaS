@@ -1,0 +1,157 @@
+{
+  "module": "FAZ_7_8L",
+  "step": "FAZ_7_8L.8",
+  "name": "Logo Admin / Ops / Manual Review",
+  "provider": {
+    "provider_code": "LOGO",
+    "provider_name": "Logo",
+    "connector_code": "logo_connector",
+    "connector_family": "accounting_export_connector",
+    "provider_directory": "internal/platform/integrations/providers/logo",
+    "foundation_runtime_file": "internal/platform/integrations/providers/logo/logo_foundation.go",
+    "live_contract_runtime_file": "internal/platform/integrations/providers/logo/logo_live_contract.go",
+    "credential_runtime_file": "internal/platform/integrations/providers/logo/logo_credential.go",
+    "export_mapping_runtime_file": "internal/platform/integrations/providers/logo/logo_export_mapping.go",
+    "file_generation_runtime_file": "internal/platform/integrations/providers/logo/logo_file_generation.go",
+    "import_delivery_runtime_file": "internal/platform/integrations/providers/logo/logo_import_delivery.go",
+    "validation_retry_dlq_runtime_file": "internal/platform/integrations/providers/logo/logo_validation_retry_dlq.go",
+    "runtime_file": "internal/platform/integrations/providers/logo/logo_admin_ops.go",
+    "test_file": "internal/platform/integrations/providers/logo/logo_admin_ops_test.go"
+  },
+  "runtime": {
+    "mode": "DRY_RUN",
+    "admin_ops_mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+    "target_system": "LOGO_ACCOUNTING_IMPORT_DRY_RUN",
+    "admin_ops_status": "READY",
+    "manual_review_queue_status": "READY",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE"
+  },
+  "manual_review_contract": {
+    "declared": true,
+    "status": "READY",
+    "dry_run_only": true,
+    "tenant_scope_required": true,
+    "correlation_id_required": true,
+    "idempotency_key_required": true,
+    "review_id_required": true,
+    "audit_fields_required": true,
+    "external_call_allowed": false,
+    "real_file_delivery_allowed": false,
+    "erp_write_allowed": false
+  },
+  "review_statuses": [
+    "OPEN",
+    "ASSIGNED",
+    "RESOLVED",
+    "REJECTED"
+  ],
+  "review_reasons": [
+    "CHECKSUM_MISMATCH",
+    "UNKNOWN_PROVIDER_ERROR",
+    "TENANT_BOUNDARY_VIOLATION",
+    "VALIDATION_DLQ",
+    "RETRY_LIMIT_EXCEEDED"
+  ],
+  "tenant_boundary": {
+    "tenant_safe_list_required": true,
+    "tenant_safe_read_required": true,
+    "tenant_safe_update_required": true,
+    "cross_tenant_access_allowed": false
+  },
+  "operations": [
+    {
+      "name": "DECLARE_LOGO_ADMIN_OPS_CONTRACT",
+      "mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+      "dry_run_admin_ops_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "CREATE_LOGO_MANUAL_REVIEW_ITEM",
+      "mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+      "dry_run_admin_ops_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "LIST_LOGO_MANUAL_REVIEWS",
+      "mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+      "dry_run_admin_ops_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "READ_LOGO_MANUAL_REVIEW",
+      "mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+      "dry_run_admin_ops_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "ASSIGN_LOGO_MANUAL_REVIEW",
+      "mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+      "dry_run_admin_ops_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "RESOLVE_LOGO_MANUAL_REVIEW",
+      "mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+      "dry_run_admin_ops_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "REJECT_LOGO_MANUAL_REVIEW",
+      "mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+      "dry_run_admin_ops_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_TENANT_REVIEW_BOUNDARY",
+      "mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+      "dry_run_admin_ops_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_LOGO_E2E_DRY_RUN_HANDOFF",
+      "mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+      "dry_run_admin_ops_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    }
+  ],
+  "handoff_gates": {
+    "logo_foundation_gate": "READY_FROM_7_8L_1",
+    "logo_live_contract_gate": "READY_FROM_7_8L_2",
+    "logo_credential_secret_gate": "READY_FROM_7_8L_3",
+    "logo_export_mapping_gate": "READY_FROM_7_8L_4",
+    "logo_file_generation_gate": "READY_FROM_7_8L_5",
+    "logo_import_delivery_gate": "READY_FROM_7_8L_6",
+    "logo_validation_retry_dlq_gate": "READY_FROM_7_8L_7",
+    "logo_admin_ops_gate": "READY",
+    "logo_e2e_dry_run_gate": "PENDING_7_8L_9",
+    "logo_final_closure_gate": "PENDING_7_8L_10"
+  },
+  "audit": {
+    "real_implementation_audit_required": true,
+    "real_provider_api_must_remain_closed": true,
+    "real_file_delivery_must_remain_closed": true,
+    "real_erp_write_must_remain_closed": true,
+    "manual_review_queue_must_be_present": true,
+    "tenant_safe_review_boundary_must_be_present": true
+  }
+}

@@ -1,0 +1,6 @@
+product_name,sku,category,unit,initial_stock_qty,sale_price,purchase_price,currency,oem_code,equivalent_code,vehicle_fitment_note,brand,part_group,barcode,notes
+Fren Balatasi On Takim,UZP-FREN-0001,Fren Sistemi,ADET,12,1250,850,TRY,OEM-FREN-001,EQ-FREN-001,Renault Megane 3 / Fluence uyumlu,Ornek Marka,Fren,,Pilot sample 1
+Yag Filtresi,UZP-FILTRE-0002,Filtre,ADET,25,320,210,TRY,OEM-FILTRE-002,EQ-FILTRE-002,Renault Clio / Symbol uyumlu,Ornek Marka,Filtre,,Pilot sample 2
+Hava Filtresi,UZP-FILTRE-0003,Filtre,ADET,18,450,300,TRY,OEM-HAVA-003,EQ-HAVA-003,Fiat Egea / Linea uyumlu,Ornek Marka,Filtre,,Pilot sample 3
+Amortisor On Sag,UZP-SUSP-0004,Suspansiyon,ADET,6,2100,1500,TRY,OEM-AMORT-004,EQ-AMORT-004,Ford Focus 3 on sag uyumlu,Ornek Marka,Suspansiyon,,Pilot sample 4
+Triger Seti,UZP-MOTOR-0005,Motor,SET,4,3900,2800,TRY,OEM-TRIGER-005,EQ-TRIGER-005,Volkswagen Golf / Jetta uyumlu,Ornek Marka,Motor,,Pilot sample 5

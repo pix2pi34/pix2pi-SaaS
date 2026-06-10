@@ -1,0 +1,147 @@
+{
+  "valid_fixture": {
+    "phase": "FAZ_4_R",
+    "closure_id": "faz_4_r_general_final_review_closure.valid_fixture",
+    "closure_status": "SEALED",
+    "closure_mode": "GENERAL_FINAL_REVIEW",
+    "title": "FAZ 4-R — Pilot / Import / UAT Final Closure",
+    "priority_groups": [
+      {
+        "priority": 1,
+        "title": "DB-L7 Migration / Import",
+        "status": "SEALED",
+        "item_count": 1,
+        "items": [
+          {"no": 180, "code": "FAZ_4_14_3", "title": "Import / staging tabloları", "status": "SEALED"}
+        ]
+      },
+      {
+        "priority": 2,
+        "title": "DB-L6 Reporting / Readmodel",
+        "status": "SEALED",
+        "item_count": 1,
+        "items": [
+          {"no": 185, "code": "FAZ_4_15_5", "title": "Search / index projection tabloları", "status": "SEALED"}
+        ]
+      },
+      {
+        "priority": 3,
+        "title": "LVL17 Pilot / UAT / Onboarding",
+        "status": "SEALED",
+        "item_count": 1,
+        "items": [
+          {"no": 192, "code": "FAZ_4_16_1_4", "title": "Pilot veri sınırları tanımı", "status": "SEALED"}
+        ]
+      },
+      {
+        "priority": 4,
+        "title": "WEB-L7 Workflow / Realtime UI",
+        "status": "SEALED",
+        "item_count": 1,
+        "items": [
+          {"no": 241, "code": "FAZ_4_17_4", "title": "Canlı bildirim merkezi", "status": "SEALED"}
+        ]
+      }
+    ],
+    "live_html": {
+      "publish_status": "PASS",
+      "html_live_ready": "YES",
+      "required_live_html_count": 5,
+      "published_count": 6
+    },
+    "remaining_work": {
+      "partial_item_count": 0,
+      "pending_item_count": 0,
+      "fail_item_count": 0,
+      "partial_remaining": "NO",
+      "pending_remaining": "NO",
+      "fail_remaining": "NO"
+    },
+    "quality_gates": {
+      "required_fail_count": 0,
+      "optional_warn_count": 0,
+      "priority_1_status": "SEALED",
+      "priority_2_status": "SEALED",
+      "priority_3_status": "SEALED",
+      "priority_4_status": "SEALED"
+    },
+    "closed_policy_gates": {
+      "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+      "production_launch_status": "CLOSED",
+      "live_external_provider_status": "CLOSED",
+      "gib_live_status": "CLOSED",
+      "bank_live_status": "CLOSED",
+      "pos_live_status": "CLOSED",
+      "payment_live_status": "CLOSED"
+    },
+    "summary": {
+      "total_item_count": 62,
+      "sealed_item_count": 62,
+      "partial_item_count": 0,
+      "pending_item_count": 0,
+      "fail_item_count": 0,
+      "faz_4_r_general_final_review_status": "PASS",
+      "faz_4_r_final_closure_status": "SEALED",
+      "faz_4_r_ready_for_next_phase": "YES"
+    }
+  },
+  "invalid_fixture": {
+    "phase": "FAZ_4_R",
+    "closure_id": "faz_4_r_general_final_review_closure.invalid_fixture",
+    "closure_status": "DRAFT",
+    "closure_mode": "GENERAL_FINAL_REVIEW",
+    "title": "Invalid closure",
+    "priority_groups": [
+      {
+        "priority": 1,
+        "title": "DB-L7 Migration / Import",
+        "status": "PARTIAL",
+        "item_count": 1,
+        "items": [
+          {"no": 180, "code": "FAZ_4_14_3", "title": "Import / staging tabloları", "status": "PARTIAL"}
+        ]
+      }
+    ],
+    "live_html": {
+      "publish_status": "FAIL",
+      "html_live_ready": "NO",
+      "required_live_html_count": 0,
+      "published_count": 0
+    },
+    "remaining_work": {
+      "partial_item_count": 1,
+      "pending_item_count": 1,
+      "fail_item_count": 1,
+      "partial_remaining": "YES",
+      "pending_remaining": "YES",
+      "fail_remaining": "YES"
+    },
+    "quality_gates": {
+      "required_fail_count": 1,
+      "optional_warn_count": 1,
+      "priority_1_status": "PARTIAL",
+      "priority_2_status": "DRAFT",
+      "priority_3_status": "DRAFT",
+      "priority_4_status": "DRAFT"
+    },
+    "closed_policy_gates": {
+      "closed_policy_reference": "OPEN",
+      "production_launch_status": "OPEN",
+      "live_external_provider_status": "OPEN",
+      "gib_live_status": "OPEN",
+      "bank_live_status": "OPEN",
+      "pos_live_status": "OPEN",
+      "payment_live_status": "OPEN"
+    },
+    "summary": {
+      "total_item_count": 1,
+      "sealed_item_count": 0,
+      "partial_item_count": 1,
+      "pending_item_count": 1,
+      "fail_item_count": 1,
+      "faz_4_r_general_final_review_status": "FAIL",
+      "faz_4_r_final_closure_status": "DRAFT",
+      "faz_4_r_ready_for_next_phase": "NO"
+    }
+  }
+}

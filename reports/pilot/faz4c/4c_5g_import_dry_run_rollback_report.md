@@ -1,0 +1,52 @@
+# FAZ 4C — 4C-5G Import Dry Run Rollback Report
+
+Step: 4C-5G
+Blok: Import Dry Run / ROLLBACK Verification
+Test tarihi: 2026-05-01 08:09:44
+
+## Test sonucu
+
+4C_5G_IMPORT_DRY_RUN_STATUS=PASS
+4C_5G_SQL_EXECUTION_STATUS=PASS
+4C_5G_SQL_OUTPUT_STAGING_ROW_COUNT=5
+4C_5G_SQL_OUTPUT_DUPLICATE_SKU_COUNT=0
+4C_5G_BEFORE_TABLE_EXISTS=0
+4C_5G_AFTER_TABLE_EXISTS=0
+4C_5G_BEFORE_ROW_COUNT=0
+4C_5G_AFTER_ROW_COUNT=0
+4C_5G_BEFORE_DUPLICATE_SKU_COUNT=0
+4C_5G_AFTER_DUPLICATE_SKU_COUNT=0
+4C_5G_ROLLBACK_VERIFIED=YES
+4C_5G_DB_WRITE_APPLIED=NO
+4C_5G_CRITICAL_BLOCKER_COUNT=0
+4C_5G_WARNING_COUNT=0
+4C_5H_READY=YES
+
+## SQL output
+
+```text
+BEGIN
+DO
+DO
+CREATE TABLE
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+staging_row_count|5
+duplicate_sku_count|0
+ROLLBACK
+```
+
+## SQL error
+
+```text
+
+```
+
+## Sonuc
+
+Import dry-run / rollback verification tamamlandi.
+Kalici DB yazma yapilmadi.
+Sonraki adim: 4C-5H Controlled Sample Data Apply.

@@ -1,0 +1,62 @@
+{
+  "module": "FAZ_7_8P_12_PARASUT_CONNECTOR_FINAL_CLOSURE_HANDOFF_GATE",
+  "version": "v1",
+  "provider_key": "parasut",
+  "runtime_status": "parasut_connector_final_closure_ready",
+  "real_provider_api_enabled": false,
+  "real_webhook_endpoint_enabled": false,
+  "real_erp_write_enabled": false,
+  "real_queue_trigger_enabled": false,
+  "real_token_exchange_enabled": false,
+  "real_token_refresh_enabled": false,
+  "real_retry_job_enabled": false,
+  "required_modules": [
+    "FAZ_7_8I_INTEGRATION_RUNTIME_FOUNDATION",
+    "FAZ_7_8P_PARASUT_CONNECTOR_FOUNDATION",
+    "FAZ_7_8P_1_PARASUT_LIVE_CONTRACT",
+    "FAZ_7_8P_2_PARASUT_TOKEN_VAULT",
+    "FAZ_7_8P_3_PARASUT_CREDENTIAL_UI",
+    "FAZ_7_8P_4_PARASUT_OAUTH_FLOW",
+    "FAZ_7_8P_5_PARASUT_TOKEN_EXCHANGE",
+    "FAZ_7_8P_6_PARASUT_API_CLIENT",
+    "FAZ_7_8P_7_PARASUT_DATA_MAPPING",
+    "FAZ_7_8P_8_PARASUT_SYNC_WORKER",
+    "FAZ_7_8P_9_PARASUT_WEBHOOK_SYNC_TRIGGER",
+    "FAZ_7_8P_10_PARASUT_E2E_DRY_RUN",
+    "FAZ_7_8P_11_PARASUT_ADMIN_OPS"
+  ],
+  "closure_validation": {
+    "module_final_status_pass_required": true,
+    "module_final_seal_status_sealed_required": true,
+    "fail_count_zero_required": true,
+    "required_fail_zero_required": true,
+    "audit_evidence_file_required": true,
+    "counter_aggregation_required": true
+  },
+  "real_gate_safety": {
+    "real_provider_api_enabled": false,
+    "real_webhook_endpoint_enabled": false,
+    "real_erp_write_enabled": false,
+    "real_queue_trigger_enabled": false,
+    "real_token_exchange_enabled": false,
+    "real_token_refresh_enabled": false,
+    "real_retry_job_enabled": false,
+    "provider_live_module_required_for_real_api": true
+  },
+  "provider_live_handoff": {
+    "provider_live_module_handoff_gate": "READY",
+    "approval_required": true,
+    "real_credential_secret_required": true,
+    "sandbox_live_credential_separation_required": true,
+    "real_webhook_endpoint_approval_required": true,
+    "live_sync_worker_approval_required": true,
+    "production_rollout_checklist_required": true,
+    "rollback_safe_disable_required": true
+  },
+  "final_seal": {
+    "parasut_connector_final_status": "PASS_WHEN_TEST_AND_AUDIT_PASS",
+    "parasut_connector_module_final_seal_status": "SEALED_WHEN_TEST_AND_AUDIT_PASS",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "faz_7_9_hold_until_integration_family_done": true
+  }
+}

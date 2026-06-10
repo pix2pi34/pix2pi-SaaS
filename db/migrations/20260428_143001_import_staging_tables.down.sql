@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS import_pipeline.import_row_status_events;
+DROP TABLE IF EXISTS import_pipeline.import_validation_errors;
+DROP TABLE IF EXISTS import_pipeline.import_price_lists_staging;
+DROP TABLE IF EXISTS import_pipeline.import_opening_stocks_staging;
+DROP TABLE IF EXISTS import_pipeline.import_products_staging;
+DROP TABLE IF EXISTS import_pipeline.import_vendors_staging;
+DROP TABLE IF EXISTS import_pipeline.import_customers_staging;
+DROP TABLE IF EXISTS import_pipeline.import_files;
+DROP TABLE IF EXISTS import_pipeline.import_batches;
+DROP SCHEMA IF EXISTS import_pipeline;

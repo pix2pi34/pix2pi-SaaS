@@ -1,0 +1,52 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "317.7",
+  "name": "Login error messages gerçek hata mesajları",
+  "component": "internal/auth/loginerrors",
+  "database_contract": {
+    "schema": "auth",
+    "tables": [
+      "auth.login_error_events"
+    ],
+    "tracked_fields": [
+      "tenant_id",
+      "user_id",
+      "email",
+      "error_code",
+      "http_status",
+      "correlation_id",
+      "ip_address",
+      "user_agent",
+      "occurred_at"
+    ]
+  },
+  "runtime_contract": {
+    "standard_error_codes": true,
+    "localized_messages_tr_tr": true,
+    "localized_messages_en": true,
+    "safe_public_message": true,
+    "internal_error_not_returned_to_user": true,
+    "audit_event_contract": true,
+    "correlation_id_required": true
+  },
+  "error_families": [
+    "validation",
+    "credential",
+    "tenant",
+    "token",
+    "session",
+    "rate_limit",
+    "internal"
+  ],
+  "required_checks": [
+    "error_code_catalog",
+    "http_status_mapping",
+    "localized_tr_message",
+    "localized_en_message",
+    "safe_internal_error_mapping",
+    "audit_event_record",
+    "correlation_id_contract",
+    "go_test"
+  ],
+  "next_step": "317.8 - Unauthorized / forbidden ekranları"
+}

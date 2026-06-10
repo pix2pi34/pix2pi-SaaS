@@ -1,0 +1,31 @@
+{
+  "phase": "FAZ 2-8.3",
+  "screen": "job_queue_worker_monitor",
+  "web_path": "web/ops-console/job-worker-monitor/index.html",
+  "runtime_package": "./internal/platform/ops/console",
+  "require_tenant": true,
+  "allow_platform_viewer": true,
+  "max_visible_jobs": 100,
+  "max_visible_workers": 50,
+  "worker_stale_seconds": 120,
+  "guards": [
+    "tenant_required",
+    "cross_tenant_viewer_denied",
+    "valid_job_state_required",
+    "valid_worker_status_required",
+    "queue_filter_supported",
+    "failed_jobs_visibility_toggle",
+    "stale_worker_detection"
+  ],
+  "screen_sections": [
+    "queued_jobs_metric",
+    "active_workers_metric",
+    "failed_jobs_metric",
+    "dlq_metric",
+    "job_queue_table",
+    "worker_table",
+    "tenant_indicator",
+    "responsive_shell"
+  ],
+  "next_ready": "FAZ_2_8_4_NOTIFICATION_WEBHOOK_MONITOR_SCREEN"
+}

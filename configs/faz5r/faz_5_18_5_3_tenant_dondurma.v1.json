@@ -1,0 +1,39 @@
+{
+  "phase": "FAZ_5_18_5_3",
+  "title": "Tenant Dondurma",
+  "status": "READY",
+  "control_surface": "TENANT_FREEZE_FLOW",
+  "inputs": [
+    "FAZ_5_18_5_2_TENANT_YUKSELTME_DUSURME",
+    "FAZ_5_18_5_4_TENANT_KAPATMA",
+    "FAZ_5_18_5_5_VERI_EXPORT_DEVIR_AKISI",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "FREEZE_REQUEST_INTAKE",
+    "BILLING_STATUS_CHECK",
+    "UNPAID_INVOICE_CHECK",
+    "FREEZE_ELIGIBILITY_CHECK",
+    "OWNER_APPROVAL_QUEUE",
+    "ENTITLEMENT_FREEZE_PLAN",
+    "ACCESS_LIMIT_POLICY",
+    "NOTIFICATION_BLOCK_POLICY",
+    "UNFREEZE_PATH_DEFINE",
+    "PRODUCTION_FREEZE_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_tenant_freeze_ready": true,
+    "production_freeze_enabled": false,
+    "real_tenant_freeze_enabled": false,
+    "auto_access_cutoff_enabled": false,
+    "auto_unfreeze_enabled": false,
+    "tenant_lifecycle_tests_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

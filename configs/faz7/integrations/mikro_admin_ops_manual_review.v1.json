@@ -1,0 +1,73 @@
+{
+  "phase": "FAZ_7_8M_5",
+  "module": "MIKRO_ADMIN_OPS_MANUAL_REVIEW",
+  "module_name": "Mikro Admin / Ops / Manual Review Readiness",
+  "provider": {
+    "provider_id": "mikro",
+    "provider_name": "Mikro",
+    "provider_category": "ACCOUNTING_EXPORT_PROVIDER",
+    "connector_family": "MIKRO_DRY_RUN_CONNECTOR"
+  },
+  "admin_ops": {
+    "admin_ops_mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+    "direction": "PIX2PI_TO_MIKRO",
+    "source_system": "PIX2PI_ERP",
+    "target_system": "MIKRO_ACCOUNTING_IMPORT_DRY_RUN",
+    "admin_ops_gate": "READY_AFTER_TEST_AND_AUDIT_PASS",
+    "manual_review_queue_status": "READY",
+    "tenant_safe_review_boundary_status": "READY",
+    "operator_action_contract_status": "READY",
+    "real_manual_review_queue_write_policy": "NO_REAL_QUEUE_WRITE_IN_THIS_PHASE"
+  },
+  "supported_operator_actions": [
+    "VIEW",
+    "ASSIGN",
+    "MARK_RETRY_DRY_RUN",
+    "MARK_DLQ_DRY_RUN",
+    "RESOLVE_DRY_RUN",
+    "ESCALATE_MANUAL_REVIEW"
+  ],
+  "manual_review_statuses": [
+    "OPEN",
+    "ASSIGNED",
+    "RETRY_DRY_RUN",
+    "DLQ_DRY_RUN",
+    "RESOLVED_DRY_RUN",
+    "ESCALATED_MANUAL_REVIEW"
+  ],
+  "closed_real_operations": {
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "real_delivery_channel_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_operator_provider_action_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE"
+  },
+  "required_context_fields": [
+    "tenant_id",
+    "actor_user_id",
+    "correlation_id",
+    "review_id",
+    "package_id"
+  ],
+  "forbidden_fields": [
+    "client_secret",
+    "access_token",
+    "refresh_token",
+    "password",
+    "real_provider_endpoint",
+    "real_delivery_endpoint",
+    "secret",
+    "token"
+  ],
+  "audit": {
+    "go_test_required": true,
+    "real_implementation_audit_required": true,
+    "hardcoded_final_ok_block_allowed": false,
+    "counter_based_final_status_required": true
+  },
+  "phase_gate": {
+    "faz_7_8m_5_admin_ops_gate": "READY_AFTER_TEST_AND_AUDIT_PASS",
+    "faz_7_8m_6_ready": "YES_AFTER_PASS",
+    "faz_7_9_hold_status": "HOLD_UNTIL_INTEGRATION_FAMILY_DONE"
+  }
+}

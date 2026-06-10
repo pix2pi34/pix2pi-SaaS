@@ -1,0 +1,56 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 212,
+  "step": "FAZ_4_16_4_3",
+  "title": "İlk destek triage akışı",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "210_FAZ_4_16_4_1_KULLANICI_EGITIM_SETI",
+    "211_FAZ_4_16_4_2_YARDIM_MERKEZI_ICERIGI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "triage_policy": {
+    "triage_status_required": "READY",
+    "triage_mode_required": "CONTROLLED_PILOT",
+    "required_flow_status_required": "READY",
+    "missing_flow_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "training_set_status_required": "PASS",
+    "help_center_status_required": "PASS",
+    "intake_channel_status_required": "READY",
+    "severity_matrix_status_required": "READY",
+    "routing_matrix_status_required": "READY",
+    "response_sla_status_required": "READY",
+    "evidence_attachment_status_required": "READY",
+    "no_real_external_dispatch_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_triage_flows": [
+    "SUPPORT_INTAKE_FORM",
+    "ISSUE_CLASSIFICATION",
+    "SEVERITY_P0_BLOCKER",
+    "SEVERITY_P1_CRITICAL",
+    "SEVERITY_P2_NORMAL",
+    "SEVERITY_P3_QUESTION",
+    "ROUTE_TO_PRODUCT_OWNER",
+    "ROUTE_TO_TECH_OWNER",
+    "ROUTE_TO_SUPPORT_OWNER",
+    "RESPONSE_SLA_MATRIX",
+    "EVIDENCE_ATTACHMENT_RULE",
+    "DUPLICATE_ISSUE_GUARD",
+    "CLOSED_PROVIDER_POLICY_ROUTE",
+    "FIRST_RESPONSE_TEMPLATE",
+    "TRIAGE_COMPLETION_CHECKLIST"
+  ],
+  "triage_artifact": "configs/faz4r/initial_support_triage_flow.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "213_FAZ_4_16_4_4_PILOT_ISSUE_ESCALATION"
+  ]
+}

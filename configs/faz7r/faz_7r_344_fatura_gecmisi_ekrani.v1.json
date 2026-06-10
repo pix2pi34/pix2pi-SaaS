@@ -1,0 +1,66 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "344",
+  "name": "Fatura geçmişi ekranı",
+  "surface": "merchant_panel_commercial",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/invoices/",
+  "runtime_path": "/assets/invoices/panel-invoices-runtime.js",
+  "depends_on": [
+    "343 - Ödeme / billing ekranı"
+  ],
+  "backend_contract": {
+    "invoice_history_endpoint": "/api/commercial/invoices/history",
+    "invoice_detail_endpoint": "/api/commercial/invoices/detail",
+    "invoice_export_endpoint": "/api/commercial/invoices/export",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "merchant_session_header": "X-Merchant-Session",
+    "invoice_scope_header": "X-Invoice-Scope"
+  },
+  "runtime_contract": {
+    "real_invoice_issue_enabled": false,
+    "real_invoice_pdf_enabled": false,
+    "real_ebelge_send_enabled": false,
+    "real_accounting_export_enabled": false,
+    "real_receipt_generation_enabled": false,
+    "invoice_history_enabled": true,
+    "fallback_invoice_snapshot_enabled": true,
+    "ready_for_step_345": true
+  },
+  "invoice_contract": {
+    "currency": "TRY",
+    "supported_statuses": [
+      "DRAFT",
+      "ISSUE_DISABLED",
+      "PAYMENT_PENDING_DISABLED",
+      "PAID_SIMULATION",
+      "CANCELLED_SIMULATION"
+    ],
+    "supported_document_types": [
+      "SUBSCRIPTION_INVOICE_DRAFT",
+      "PAYMENT_RECEIPT_PLACEHOLDER"
+    ]
+  },
+  "required_capabilities": [
+    "invoice_history_app_shell",
+    "tenant_merchant_billing_context",
+    "invoice_list_table",
+    "invoice_status_filters",
+    "date_period_filter_placeholder",
+    "invoice_detail_preview",
+    "amount_vat_total_display",
+    "payment_status_badge",
+    "pdf_download_disabled_gate",
+    "einvoice_earchive_send_disabled_gate",
+    "accounting_export_disabled_gate",
+    "payment_receipt_placeholder",
+    "tenant_invoice_billing_scope_guard",
+    "invoice_history_runtime_data_contract",
+    "i18n_ready_invoice_marker",
+    "seo_opengraph_invoice_placeholder",
+    "invoice_history_smoke_test"
+  ],
+  "next_step": "345 - Admin commercial panel"
+}

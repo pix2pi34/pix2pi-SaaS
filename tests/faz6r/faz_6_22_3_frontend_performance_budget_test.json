@@ -1,0 +1,42 @@
+{
+  "expected_dependency": "FAZ_6_22_2",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_frontend_deploy_allowed": false,
+  "expected_build_publish_allowed": false,
+  "expected_bundle_mutation_allowed": false,
+  "expected_cdn_invalidation_allowed": false,
+  "expected_route_mutation_allowed": false,
+  "expected_asset_pipeline_mutation_allowed": false,
+  "expected_compression_mutation_allowed": false,
+  "expected_required_controls": [
+    "accessibility_dependency_gate",
+    "core_web_vitals_budget_policy",
+    "route_level_budget_policy",
+    "js_bundle_budget_policy",
+    "css_budget_policy",
+    "image_asset_budget_policy",
+    "font_budget_policy",
+    "third_party_script_budget_policy",
+    "cache_budget_policy",
+    "public_landing_budget_policy",
+    "panel_runtime_budget_policy",
+    "workflow_ui_budget_policy",
+    "dry_run_performance_budget_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_routes": [
+    "public_landing",
+    "auth_login",
+    "tenant_panel_shell",
+    "approval_inbox",
+    "workflow_monitor",
+    "reporting_tables"
+  ],
+  "expected_min_budget_count": 6,
+  "expected_status": "dry_run_only_no_frontend_performance_mutation",
+  "expected_next_step": "FAZ_6_22_4"
+}

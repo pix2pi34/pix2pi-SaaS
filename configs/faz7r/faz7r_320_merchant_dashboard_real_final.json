@@ -1,0 +1,24 @@
+{
+  "step": "FAZ 7-R / 320",
+  "name": "Merchant dashboard real final",
+  "tenantId": "tenant-api-e2e-success",
+  "dashboardRunId": "merchant-dashboard-320-20260513_193959",
+  "routes": [
+    "/dashboard/",
+    "POST /api/panel/dashboard/snapshot"
+  ],
+  "requiredEvidence": [
+    "daily sales summary from pos_sales.sales",
+    "stock alerts from erp_inventory.products",
+    "order/sales summary from pos_sales.sale_lines",
+    "party balance from erp_party.parties",
+    "collection summary from pos_sales.sale_payments",
+    "marketplace status from controlled_release",
+    "subscription/package from tenant_onboarding.tenant_configs",
+    "quick actions inserted",
+    "no-role denied",
+    "tenant isolation",
+    "rollback no partial write",
+    "route smoke"
+  ]
+}

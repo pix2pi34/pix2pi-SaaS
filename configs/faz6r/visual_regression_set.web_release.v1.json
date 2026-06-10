@@ -1,0 +1,97 @@
+{
+  "version": "web_release.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_22_4",
+  "status": "dry_run_only_no_visual_regression_mutation",
+  "checks": [
+    {
+      "visual_check_id": "visual-public-landing-matrix",
+      "surface": "public_landing",
+      "viewport_status": "DESKTOP_TABLET_MOBILE_REQUIRED",
+      "theme_status": "LIGHT_DARK_REQUIRED",
+      "state_snapshot_status": "STATIC_ROUTE_ONLY",
+      "diff_threshold_status": "MAX_PIXEL_DIFF_1_PERCENT",
+      "a11y_guard_status": "REQUIRED",
+      "performance_guard_status": "REQUIRED",
+      "pii_secret_mask_status": "REQUIRED",
+      "risk_level": "medium",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "visual_check_id": "visual-auth-login-states",
+      "surface": "auth_login",
+      "viewport_status": "DESKTOP_TABLET_MOBILE_REQUIRED",
+      "theme_status": "LIGHT_DARK_REQUIRED",
+      "state_snapshot_status": "EMPTY_ERROR_LOADING_REQUIRED",
+      "diff_threshold_status": "MAX_PIXEL_DIFF_1_PERCENT",
+      "a11y_guard_status": "REQUIRED",
+      "performance_guard_status": "REQUIRED",
+      "pii_secret_mask_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "visual_check_id": "visual-tenant-panel-shell-navigation",
+      "surface": "tenant_panel_shell",
+      "viewport_status": "DESKTOP_TABLET_MOBILE_REQUIRED",
+      "theme_status": "LIGHT_DARK_REQUIRED",
+      "state_snapshot_status": "NAV_COLLAPSED_EXPANDED_REQUIRED",
+      "diff_threshold_status": "MAX_PIXEL_DIFF_1_PERCENT",
+      "a11y_guard_status": "REQUIRED",
+      "performance_guard_status": "REQUIRED",
+      "pii_secret_mask_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "visual_check_id": "visual-approval-inbox-states",
+      "surface": "approval_inbox",
+      "viewport_status": "DESKTOP_TABLET_MOBILE_REQUIRED",
+      "theme_status": "LIGHT_DARK_REQUIRED",
+      "state_snapshot_status": "EMPTY_LIST_ACTION_MODAL_REQUIRED",
+      "diff_threshold_status": "MAX_PIXEL_DIFF_1_PERCENT",
+      "a11y_guard_status": "REQUIRED",
+      "performance_guard_status": "REQUIRED",
+      "pii_secret_mask_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "visual_check_id": "visual-workflow-monitor-status",
+      "surface": "workflow_monitor",
+      "viewport_status": "DESKTOP_TABLET_MOBILE_REQUIRED",
+      "theme_status": "LIGHT_DARK_REQUIRED",
+      "state_snapshot_status": "RUNNING_FAILED_SUCCESS_REQUIRED",
+      "diff_threshold_status": "MAX_PIXEL_DIFF_1_PERCENT",
+      "a11y_guard_status": "REQUIRED",
+      "performance_guard_status": "REQUIRED",
+      "pii_secret_mask_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "visual_check_id": "visual-reporting-tables-density",
+      "surface": "reporting_tables",
+      "viewport_status": "DESKTOP_TABLET_MOBILE_REQUIRED",
+      "theme_status": "LIGHT_DARK_REQUIRED",
+      "state_snapshot_status": "EMPTY_DENSE_SORT_FILTER_REQUIRED",
+      "diff_threshold_status": "MAX_PIXEL_DIFF_1_PERCENT",
+      "a11y_guard_status": "REQUIRED",
+      "performance_guard_status": "REQUIRED",
+      "pii_secret_mask_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_22_8",
+    "name": "Final web closure",
+    "runtime_mutation_allowed_now": false
+  }
+}

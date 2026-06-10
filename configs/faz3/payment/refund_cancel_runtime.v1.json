@@ -1,0 +1,63 @@
+{
+  "phase": "FAZ_3_10_7_4_REFUND_CANCEL_RUNTIME",
+  "runtime": "payment_refund_cancel_runtime",
+  "runtime_mode": "SIMULATION",
+  "real_payment_gate_open": false,
+  "production_approved": false,
+  "default_currency_code": "TRY",
+  "idempotency_required": true,
+  "provider_payload_hash_required": true,
+  "reason_required": true,
+  "partial_refund_allowed": true,
+  "full_refund_allowed": true,
+  "void_allowed_before_settlement": true,
+  "cancel_allowed_before_capture": true,
+  "reversal_allowed_after_settlement": true,
+  "allowed_channels": [
+    "POS",
+    "VIRTUAL_POS",
+    "BANK_TRANSFER",
+    "BANK_COLLECTION",
+    "MARKETPLACE_SETTLEMENT"
+  ],
+  "allowed_provider_codes": [
+    "SIM_BANK_POS",
+    "SIM_BANK",
+    "SIM_MARKETPLACE"
+  ],
+  "operations": [
+    "PREPARE_REFUND",
+    "REGISTER_REFUND_ACCEPTED",
+    "PREPARE_CANCEL",
+    "REGISTER_CANCEL_ACCEPTED",
+    "PREPARE_VOID",
+    "REGISTER_VOID_ACCEPTED",
+    "PREPARE_REVERSAL",
+    "REGISTER_REVERSAL_ACCEPTED",
+    "STATUS_CHECK"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "payment_transaction_id_required": true,
+    "provider_transaction_id_required": true,
+    "provider_payload_hash_required": true,
+    "original_amount_positive_required": true,
+    "requested_amount_positive_required": true,
+    "requested_amount_cannot_exceed_remaining_refundable": true,
+    "refund_requires_captured_payment": true,
+    "cancel_allowed_before_capture_only": true,
+    "void_allowed_before_settlement_only": true,
+    "reversal_requires_settled_payment": true,
+    "reason_code_required": true,
+    "currency_code_must_be_TRY": true
+  },
+  "live_policy": {
+    "real_payment_status": "CLOSED_UNTIL_BANK_PROVIDER_APPROVALS",
+    "production_payment_status": "DENIED_BY_DEFAULT",
+    "secret_policy": "CREDENTIAL_REF_ONLY_NO_RAW_SECRET"
+  },
+  "next_gate": "FAZ_3_10_7_5_INTEGRATION_AUDIT_RUNTIME"
+}

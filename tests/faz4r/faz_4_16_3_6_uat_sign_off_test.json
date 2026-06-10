@@ -1,0 +1,108 @@
+{
+  "valid_fixture": {
+    "signoff_id": "uat_sign_off.valid_fixture",
+    "signoff_status": "READY",
+    "signoff_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT"
+    },
+    "chain_dependencies": {
+      "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT": "PASS",
+      "205_FAZ_4_16_3_2_POS_UAT": "PASS",
+      "206_FAZ_4_16_3_3_MUHASEBE_UAT": "PASS",
+      "207_FAZ_4_16_3_4_MUHASEBECI_PORTALI_UAT": "PASS",
+      "208_FAZ_4_16_3_5_E_BELGE_EXPORT_UAT": "PASS"
+    },
+    "uat_areas": [
+      {"code": "MANAGEMENT_PANEL_UAT", "required": true, "status": "PASS", "required_fail_count": 0, "critical_issue_count": 0, "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_3_1_YONETIM_PANELI_UAT_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "POS_UAT", "required": true, "status": "PASS", "required_fail_count": 0, "critical_issue_count": 0, "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_3_2_POS_UAT_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "ACCOUNTING_UAT", "required": true, "status": "PASS", "required_fail_count": 0, "critical_issue_count": 0, "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_3_3_MUHASEBE_UAT_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "ACCOUNTANT_PORTAL_UAT", "required": true, "status": "PASS", "required_fail_count": 0, "critical_issue_count": 0, "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_3_4_MUHASEBECI_PORTALI_UAT_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "E_DOCUMENT_EXPORT_UAT", "required": true, "status": "PASS", "required_fail_count": 0, "critical_issue_count": 0, "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_3_5_E_BELGE_EXPORT_UAT_REAL_IMPLEMENTATION_AUDIT.md"}
+    ],
+    "owner_signoffs": {
+      "business_owner_signoff": "READY",
+      "technical_owner_signoff": "READY",
+      "product_owner_signoff": "READY",
+      "signoff_mode": "PREVIEW_ONLY",
+      "real_contractual_approval": "NOT_REQUIRED_FOR_THIS_PHASE"
+    },
+    "summary": {
+      "total_uat_area_count": 5,
+      "pass_uat_area_count": 5,
+      "fail_uat_area_count": 0,
+      "required_fail_count": 0,
+      "critical_issue_count": 0,
+      "open_blocker_count": 0,
+      "all_uat_status": "PASS",
+      "support_handoff_ready": "YES",
+      "next_phase_ready": "FAZ_4_16_4_1_READY",
+      "signoff_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "real_export": "CLOSED",
+      "production_launch": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "signoff_id": "uat_sign_off.invalid_fixture",
+    "signoff_status": "DRAFT",
+    "signoff_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED"
+    },
+    "chain_dependencies": {
+      "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT": "PASS",
+      "205_FAZ_4_16_3_2_POS_UAT": "PASS",
+      "206_FAZ_4_16_3_3_MUHASEBE_UAT": "PASS",
+      "207_FAZ_4_16_3_4_MUHASEBECI_PORTALI_UAT": "PASS",
+      "208_FAZ_4_16_3_5_E_BELGE_EXPORT_UAT": "FAIL"
+    },
+    "uat_areas": [
+      {"code": "MANAGEMENT_PANEL_UAT", "required": true, "status": "FAIL", "required_fail_count": 1, "critical_issue_count": 1, "evidence_ref": ""},
+      {"code": "POS_UAT", "required": true, "status": "PASS", "required_fail_count": 0, "critical_issue_count": 0, "evidence_ref": "x"},
+      {"code": "POS_UAT", "required": true, "status": "PASS", "required_fail_count": 0, "critical_issue_count": 0, "evidence_ref": "x"}
+    ],
+    "owner_signoffs": {
+      "business_owner_signoff": "MISSING",
+      "technical_owner_signoff": "MISSING",
+      "product_owner_signoff": "MISSING",
+      "signoff_mode": "REAL_APPROVAL",
+      "real_contractual_approval": "REQUIRED"
+    },
+    "summary": {
+      "total_uat_area_count": 99,
+      "pass_uat_area_count": 99,
+      "fail_uat_area_count": 99,
+      "required_fail_count": 99,
+      "critical_issue_count": 99,
+      "open_blocker_count": 1,
+      "all_uat_status": "FAIL",
+      "support_handoff_ready": "NO",
+      "next_phase_ready": "NO",
+      "signoff_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "real_export": "OPEN",
+      "production_launch": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

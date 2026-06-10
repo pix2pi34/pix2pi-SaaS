@@ -1,0 +1,117 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "289",
+  "code": "FAZ_6_21_7_5",
+  "name": "SRE metric review",
+  "depends_on": [
+    "FAZ_6_21_7_4"
+  ],
+  "runtime_mutation_allowed": false,
+  "alert_provider_enabled": false,
+  "grafana_mutation_allowed": false,
+  "prometheus_rule_mutation_allowed": false,
+  "required_controls": [
+    "escalation_dependency_gate",
+    "sli_slo_metric_catalog",
+    "golden_signals_policy",
+    "edge_security_metrics",
+    "api_gateway_metrics",
+    "db_metrics",
+    "event_queue_metrics",
+    "cache_metrics",
+    "release_health_metrics",
+    "incident_readiness_metrics",
+    "alert_threshold_policy",
+    "dashboard_mapping_policy",
+    "dry_run_metric_snapshot",
+    "provider_closed_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "golden_signals": [
+    {
+      "signal": "latency",
+      "required": true,
+      "review_dimension": [
+        "p50",
+        "p95",
+        "p99"
+      ]
+    },
+    {
+      "signal": "traffic",
+      "required": true,
+      "review_dimension": [
+        "request_rate",
+        "tenant_rate",
+        "route_rate"
+      ]
+    },
+    {
+      "signal": "errors",
+      "required": true,
+      "review_dimension": [
+        "4xx_rate",
+        "5xx_rate",
+        "error_ratio"
+      ]
+    },
+    {
+      "signal": "saturation",
+      "required": true,
+      "review_dimension": [
+        "cpu",
+        "memory",
+        "db_pool",
+        "queue_backlog"
+      ]
+    }
+  ],
+  "threshold_policy": {
+    "enabled": true,
+    "severity_levels": [
+      "P0",
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "p0_requires_escalation": true,
+    "p1_requires_escalation": true,
+    "manual_approval_required_for_auto_action": true,
+    "alert_provider_mode": "review_only_no_real_send"
+  },
+  "provider_closed_policy": {
+    "enabled": true,
+    "alert_provider_enabled": false,
+    "grafana_mutation_allowed": false,
+    "prometheus_rule_mutation_allowed": false,
+    "pager_enabled": false,
+    "sms_enabled": false,
+    "email_enabled": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "metric_id",
+      "surface",
+      "signal",
+      "severity_mapping",
+      "threshold",
+      "dashboard",
+      "owner",
+      "review_status",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_missing_golden_signal": true,
+    "block_if_missing_surface_metric": true,
+    "block_if_alert_provider_enabled": true,
+    "block_if_missing_dashboard_mapping": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_7_5_SRE_METRIC_REVIEW_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

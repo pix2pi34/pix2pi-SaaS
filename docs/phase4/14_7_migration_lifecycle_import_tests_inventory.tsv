@@ -1,0 +1,7 @@
+block	status	report_file	primary_evidence
+14.1	PASS	docs/phase4/14_1_pilot_migration_chain_report.md	MIGRATION_CHAIN_STANDARD=PASS
+14.2	PASS	docs/phase4/14_2_reference_seed_report.md	REFERENCE_SEED_STANDARD=PASS
+14.3	PASS	docs/phase4/14_3_import_staging_tables_report.md	IMPORT_STAGING_TABLES=PASS
+14.4	PASS	docs/phase4/14_4_backfill_rebuild_report.md	BACKFILL_REBUILD_STANDARD=PASS
+14.5	PASS	docs/phase4/14_5_archive_partition_retention_report.md	ARCHIVE_PARTITION_RETENTION_MODEL=PASS
+14.6	PASS	docs/phase4/14_6_backup_restore_verification_report.md	BACKUP_RESTORE_VERIFICATION_SET=PASS

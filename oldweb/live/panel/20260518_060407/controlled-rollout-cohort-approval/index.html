@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi controlled rollout cohort approval gate ekranı" />
+  <meta property="og:title" content="Pix2pi Controlled Rollout Cohort Approval" />
+  <meta property="og:description" content="Controlled rollout cohort approval gate ve real activation disabled yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Controlled Rollout Cohort Approval</title>
+  <style>
+    :root { --bg:#f6f8fb; --text:#172033; --muted:#64748b; --border:#e5e7eb; --shadow:0 16px 42px rgba(15,23,42,.08); --radius:24px; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(circle at top left,rgba(37,99,235,.15),transparent 34rem),radial-gradient(circle at bottom right,rgba(234,179,8,.14),transparent 32rem),var(--bg); color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; padding:18px 16px; }
+    .shell { width:min(100%,1360px); margin:0 auto; display:grid; gap:16px; }
+    .hero,.card { background:rgba(255,255,255,.94); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; }
+    h1 { margin:0 0 8px; font-size:clamp(34px,7vw,64px); line-height:.95; letter-spacing:-.07em; }
+    h2 { margin:0 0 12px; font-size:19px; letter-spacing:-.03em; }
+    p { margin:0; color:var(--muted); line-height:1.55; }
+    .badge { display:inline-flex; width:fit-content; border-radius:999px; padding:7px 11px; background:#eff6ff; color:#1d4ed8; font-weight:900; font-size:12px; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .approval-card { border:1px solid var(--border); border-radius:20px; padding:16px; background:#fff; display:grid; gap:8px; min-height:96px; overflow-wrap:anywhere; }
+    .guard { border:1px dashed #93c5fd; background:#eff6ff; }
+    .locked { border:1px dashed #f59e0b; background:#fffbeb; }
+    @media (max-width:1080px) { .grid-4,.grid-3 { grid-template-columns:1fr; } .hero,.card { border-radius:20px; } }
+  </style>
+</head>
+<body>
+  <!-- PIX2PI_363_CONTROLLED_ROLLOUT_APPROVAL_APP_SHELL_START -->
+  <main class="shell" data-step="363" data-surface="controlled-rollout-cohort-approval">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 363</span>
+      <h1 data-i18n="controlled_rollout_approval.title">Controlled rollout cohort approval gate</h1>
+      <p data-i18n="controlled_rollout_approval.description">Controlled rollout cohort için approval gate, legal hold ve activation disabled preview yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_363_COHORT_APPROVAL_CONTEXT_START -->
+    <section class="card guard">
+      <h2>Cohort approval context</h2>
+      <div class="grid-4">
+        <p>Rollout: <strong id="approval-rollout-id">controlled-rollout-001</strong></p>
+        <p>Cohort: <strong id="approval-cohort-id">cohort_001</strong></p>
+        <p>Scope: <strong id="approval-scope-validation">VALID</strong></p>
+        <p>Real activation: <strong>false</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_363_COHORT_APPROVAL_CONTEXT_END -->
+
+    <!-- PIX2PI_363_APPROVER_CHECKLIST_PREVIEW_START -->
+    <section class="card">
+      <h2>Approver checklist preview</h2>
+      <div id="approval-approver-checklist" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_363_APPROVER_CHECKLIST_PREVIEW_END -->
+
+    <section class="card">
+      <h2>Approval gates</h2>
+      <div id="approval-gates" class="grid-3">
+        <!-- PIX2PI_363_PRODUCT_APPROVAL_GATE_START --><article class="approval-card"><strong>PRODUCT_APPROVAL</strong><p>APPROVED_PREVIEW</p></article><!-- PIX2PI_363_PRODUCT_APPROVAL_GATE_END -->
+        <!-- PIX2PI_363_SRE_MONITORING_APPROVAL_GATE_START --><article class="approval-card"><strong>SRE_MONITORING_APPROVAL</strong><p>APPROVED_PREVIEW</p></article><!-- PIX2PI_363_SRE_MONITORING_APPROVAL_GATE_END -->
+        <!-- PIX2PI_363_SUPPORT_APPROVAL_GATE_START --><article class="approval-card"><strong>SUPPORT_APPROVAL</strong><p>APPROVED_PREVIEW</p></article><!-- PIX2PI_363_SUPPORT_APPROVAL_GATE_END -->
+        <!-- PIX2PI_363_COMMERCIAL_APPROVAL_GATE_START --><article class="approval-card"><strong>COMMERCIAL_APPROVAL</strong><p>APPROVED_PREVIEW</p></article><!-- PIX2PI_363_COMMERCIAL_APPROVAL_GATE_END -->
+        <!-- PIX2PI_363_LEGAL_KVKK_FINAL_APPROVAL_HOLD_GATE_START --><article class="approval-card"><strong>LEGAL_KVKK_FINAL_APPROVAL</strong><p>PENDING_FINAL_APPROVAL</p></article><!-- PIX2PI_363_LEGAL_KVKK_FINAL_APPROVAL_HOLD_GATE_END -->
+        <!-- PIX2PI_363_BILLING_PAYMENT_LIVE_DISABLED_GATE_START --><article class="approval-card"><strong>BILLING_PAYMENT_LIVE</strong><p>DISABLED_EXPECTED</p></article><!-- PIX2PI_363_BILLING_PAYMENT_LIVE_DISABLED_GATE_END -->
+      </div>
+    </section>
+
+    <!-- PIX2PI_363_CUSTOMER_COMMUNICATION_APPROVAL_PREVIEW_START -->
+    <section class="card">
+      <h2>Customer communication approval preview</h2>
+      <div id="approval-communication" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_363_CUSTOMER_COMMUNICATION_APPROVAL_PREVIEW_END -->
+
+    <!-- PIX2PI_363_ROLLOUT_ACTIVATION_DISABLED_GATE_START -->
+    <section class="card locked">
+      <h2>Rollout activation disabled gate</h2>
+      <p>real_rollout_approval_enabled=false / real_rollout_activation_enabled=false</p>
+    </section>
+    <!-- PIX2PI_363_ROLLOUT_ACTIVATION_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_363_FEATURE_FLAG_WRITE_DISABLED_GATE_START -->
+    <section class="card locked">
+      <h2>Feature flag write disabled gate</h2>
+      <p>real_feature_flag_write_enabled=false / real_customer_notification_send_enabled=false</p>
+    </section>
+    <!-- PIX2PI_363_FEATURE_FLAG_WRITE_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_363_DATA_MUTATION_DISABLED_SAFETY_GUARD_START -->
+    <section class="card locked">
+      <h2>Data mutation disabled safety guard</h2>
+      <div id="approval-safety-guards" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_363_DATA_MUTATION_DISABLED_SAFETY_GUARD_END -->
+
+    <!-- PIX2PI_363_APPROVAL_DECISION_MATRIX_START -->
+    <section class="card guard">
+      <h2>Approval decision matrix</h2>
+      <p>preview_decision=CONTROLLED_APPROVAL_PREVIEW_READY / real_rollout_decision=HOLD_REAL_ROLLOUT</p>
+    </section>
+    <!-- PIX2PI_363_APPROVAL_DECISION_MATRIX_END -->
+
+    <!-- PIX2PI_363_APPROVAL_AUDIT_TIMELINE_START -->
+    <section class="card">
+      <h2>Approval audit timeline</h2>
+      <div id="approval-audit-timeline" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_363_APPROVAL_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_363_APPROVAL_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card">
+      <h2>Approval runtime data contract</h2>
+      <p id="approval-runtime-contract">approval_preview_enabled=true / real_rollout_activation_enabled=false / ready_for_step_364=true</p>
+    </section>
+    <!-- PIX2PI_363_APPROVAL_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_363_SEO_OPENGRAPH_APPROVAL_PLACEHOLDER_START -->
+    <section class="card">
+      <h2>SEO / OpenGraph approval placeholder</h2>
+      <p>Title, description ve og:* metadata controlled rollout approval gate yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_363_SEO_OPENGRAPH_APPROVAL_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_363_I18N_READY_APPROVAL_MARKER_START -->
+    <section class="card">
+      <h2 data-i18n="controlled_rollout_approval.i18n_ready">i18n-ready approval gate screen</h2>
+      <p data-i18n="controlled_rollout_approval.surface_ready">Controlled rollout approval gate ekranı çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_363_I18N_READY_APPROVAL_MARKER_END -->
+  </main>
+  <!-- PIX2PI_363_CONTROLLED_ROLLOUT_APPROVAL_APP_SHELL_END -->
+
+  <script src="/assets/controlled-rollout-cohort-approval/controlled-rollout-cohort-approval-runtime.js"></script>
+  <script>
+    Pix2piControlledRolloutCohortApproval.bootApprovalScreen().then(function (contract) {
+      console.log("PIX2PI_363_CONTROLLED_ROLLOUT_COHORT_APPROVAL_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

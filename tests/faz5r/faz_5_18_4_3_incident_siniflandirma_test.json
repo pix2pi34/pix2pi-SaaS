@@ -1,0 +1,47 @@
+{
+  "test_name": "faz_5_18_4_3_incident_siniflandirma_test",
+  "phase": "FAZ_5_18_4_3",
+  "expected": {
+    "required_rule_count": 7,
+    "required_category_count": 7,
+    "internal_classification_ready": true,
+    "production_auto_classification_enabled": false,
+    "customer_notification_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_rule_keys": [
+    "incident_availability_p0",
+    "incident_performance_p2",
+    "incident_security_p0",
+    "incident_kvkk_p1",
+    "incident_billing_p1",
+    "incident_data_integrity_p0",
+    "incident_support_ops_p3"
+  ],
+  "must_have_categories": [
+    "AVAILABILITY",
+    "PERFORMANCE",
+    "SECURITY",
+    "KVKK",
+    "BILLING",
+    "DATA_INTEGRITY",
+    "SUPPORT_OPS"
+  ],
+  "must_have_severities": [
+    "P0_CRITICAL",
+    "P1_HIGH",
+    "P2_NORMAL",
+    "P3_LOW"
+  ],
+  "must_have_fields": [
+    "requires_tenant_id",
+    "requires_ticket_id",
+    "requires_correlation_id",
+    "requires_audit_trail",
+    "requires_root_cause",
+    "requires_customer_impact",
+    "manual_review_allowed",
+    "blocks_auto_close"
+  ]
+}

@@ -1,0 +1,17 @@
+action_name	action_category	from_state	to_state	actor_type	required_permission	approval_required	reason_required	idempotency_required	audit_required	realtime_signal	event_binding	notification_binding	tenant_scope	implementation_status	note
+start	workflow	active	running	manual_or_system	workflow:execute	NO	NO	YES	YES	workflow.step.started	workflow.started	NO	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+pause	workflow	running	paused	manual	workflow:pause	NO	YES	YES	YES	workflow.instance.updated	workflow.paused	NO	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+resume	workflow	paused	running	manual	workflow:execute	NO	NO	YES	YES	workflow.instance.updated	workflow.resumed	NO	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+request_approval	approval	running	waiting_approval	system	approval:request	YES	NO	YES	YES	approval.requested	workflow.approval.requested	YES	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+approve	approval	waiting_approval	running	manual	approval:write	YES	NO	YES	YES	approval.approved	workflow.approval.approved	YES	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+reject	approval	waiting_approval	cancelled	manual	approval:write	YES	YES	YES	YES	approval.rejected	workflow.approval.rejected	YES	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+retry	resilience	failed	running	manual_or_system	workflow:retry	NO	YES	YES	YES	workflow.instance.updated	workflow.retry.requested	NO	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+cancel	workflow	running_or_failed_or_waiting_approval	cancelled	manual	workflow:cancel	NO	YES	YES	YES	workflow.instance.updated	workflow.cancelled	YES	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+complete	workflow	running	completed	system	workflow:execute	NO	NO	YES	YES	workflow.step.completed	workflow.completed	YES	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+fail	workflow	running	failed	system	workflow:execute	NO	YES	YES	YES	workflow.step.failed	workflow.failed	YES	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+assign_task	task	running	running	manual_or_system	task:assign	NO	NO	YES	YES	task.assigned	workflow.task.assigned	YES	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+complete_task	task	running	running	manual	task:write	NO	NO	YES	YES	task.completed	workflow.task.completed	YES	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+notify	notification	any_non_terminal	same_state	system	notification:send	NO	NO	YES	YES	notification.created	workflow.notification.created	YES	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+archive	archive	completed_or_cancelled	archived	manual_or_system	workflow:archive	NO	NO	YES	YES	workflow.instance.updated	workflow.archived	NO	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+external_resume	integration	waiting_external	running	system	workflow:execute	NO	NO	YES	YES	workflow.instance.updated	workflow.external.resumed	NO	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only
+escalate_approval	approval	waiting_approval	waiting_approval	system	approval:escalate	YES	YES	YES	YES	task.overdue	workflow.approval.escalated	YES	tenant_scoped	READY_FOR_IMPLEMENTATION	contract_only

@@ -1,0 +1,20 @@
+{
+  "phase": "FAZ 2-7.7.6",
+  "runtime": "plugin_runtime_tests_final_closure",
+  "test_scope": [
+    "plugin_loader",
+    "plugin_lifecycle",
+    "permission_enforcement",
+    "tenant_safe_plugin_sandbox",
+    "version_compatibility",
+    "cross_tenant_deny",
+    "deny_cases"
+  ],
+  "required_test_package": "./internal/platform/plugin/runtime",
+  "final_gate": {
+    "go_test_status": "PASS",
+    "fail_count": 0,
+    "seal_status": "SEALED"
+  },
+  "next_ready": "PLUGIN_RUNTIME_BLOCK_FINAL_SEAL"
+}

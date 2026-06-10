@@ -1,0 +1,35 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 188,
+  "step": "FAZ_4_15_3",
+  "title": "e-Belge / export reporting mart",
+  "priority_group": "DB-L6 Reporting / Readmodel",
+  "depends_on": [
+    "187_FAZ_4_15_4_PAYMENT_RECONCILIATION_REPORTING_MART"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "tables": [
+    "e_document_report_periods",
+    "e_document_documents_mart",
+    "e_document_export_batches_mart",
+    "e_document_export_files_mart",
+    "e_document_status_summary_mart",
+    "e_document_reporting_projection_offsets",
+    "e_document_reporting_audit_events"
+  ],
+  "readmodel_scope": [
+    "e_document_documents",
+    "export_batches",
+    "export_files",
+    "status_summary",
+    "projection_offsets",
+    "audit_events"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "189_FAZ_4_15_6_MATERIALIZED_VIEW_CACHE_PROJECTION_STANDARD"
+  ]
+}

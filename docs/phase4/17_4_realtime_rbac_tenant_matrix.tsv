@@ -1,0 +1,14 @@
+channel_name	required_permission	minimum_role	tenant_policy	auth_required	platform_only	implementation_status	note
+tenant.workflow.events	workflow:read	tenant_admin_limited	tenant_id_required	YES	NO	READY_FOR_IMPLEMENTATION	contract_only
+tenant.workflow.timeline	workflow:read	tenant_admin_limited	tenant_id_required	YES	NO	READY_FOR_IMPLEMENTATION	contract_only
+tenant.workflow.health	workflow:read	tenant_admin_limited	tenant_id_required	YES	NO	READY_FOR_IMPLEMENTATION	contract_only
+tenant.approval.events	approval:read	tenant_approver	tenant_id_required	YES	NO	READY_FOR_IMPLEMENTATION	contract_only
+tenant.task.events	task:read	tenant_user	tenant_id_required	YES	NO	READY_FOR_IMPLEMENTATION	contract_only
+tenant.notification.events	notification:read	tenant_user	tenant_id_required	YES	NO	READY_FOR_IMPLEMENTATION	contract_only
+tenant.audit.events	audit:read	tenant_admin	tenant_id_required	YES	NO	READY_FOR_IMPLEMENTATION	contract_only
+ops.workflow.events	ops:read	ops_admin	platform_scope_only	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+ops.workflow.backlog	ops:read	ops_admin	platform_scope_only	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+ops.workflow.dlq	ops:read	ops_admin	platform_scope_only	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+security.workflow.events	security:read	security_admin	platform_scope_only	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+security.tenant_isolation.events	security:read	security_admin	platform_scope_only	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+platform.realtime.health	ops:read	platform_admin	platform_scope_only	YES	YES	READY_FOR_IMPLEMENTATION	contract_only

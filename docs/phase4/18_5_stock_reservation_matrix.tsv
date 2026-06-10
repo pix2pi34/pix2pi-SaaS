@@ -1,0 +1,25 @@
+gate	status	note
+previous_14	PASS	migration lifecycle prerequisite
+previous_15	PASS	readmodel/reporting prerequisite
+previous_18_1	PASS	opening stock prerequisite
+previous_18_2	PASS	stock movement prerequisite
+previous_18_3	PASS	sales decrement prerequisite
+previous_18_4	PASS	purchase increment prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=7
+tenant_safety	PASS	tenant_id=7
+reservation_reference	PASS	reservation_id=5 line_id=4
+quantity	PASS	quantity=4 reserved=3 available=3
+delta	PASS	reserved_delta=3 available_delta=3
+expiry	PASS	expires_at=4 expires_before=1
+idempotency	PASS	idempotency_key=4
+lifecycle	PASS	status_code=5 reservation_status=4
+indexes	PASS	index_count=17
+down_migration	PASS	drop_table_count=7
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=33
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+stock_reservation_executed	NO	runtime later
+query_text_printed	NO	secret-safe report

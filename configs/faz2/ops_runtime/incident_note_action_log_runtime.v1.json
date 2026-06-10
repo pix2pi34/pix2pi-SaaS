@@ -1,0 +1,41 @@
+{
+  "phase": "FAZ 2-7.2.5",
+  "runtime": "incident_note_action_log_runtime",
+  "require_tenant": true,
+  "allowed_operator_roles": [
+    "PLATFORM_ADMIN",
+    "OPS_ADMIN",
+    "SRE"
+  ],
+  "allowed_action_types": [
+    "INCIDENT_NOTE",
+    "OPERATOR_ACTION"
+  ],
+  "allowed_severities": [
+    "INFO",
+    "WARNING",
+    "CRITICAL"
+  ],
+  "metadata_bridge_enabled": true,
+  "metadata_visibility": "INTERNAL",
+  "guards": [
+    "tenant_required",
+    "registry_required",
+    "instance_required",
+    "operator_required",
+    "operator_role_required",
+    "authorized_operator_role_required",
+    "message_required",
+    "valid_action_type_required",
+    "valid_severity_required",
+    "cross_tenant_instance_denied",
+    "tenant_safe_log_access"
+  ],
+  "bridges": [
+    "instance_metadata_runtime",
+    "incident_action_metadata",
+    "mission_control_action_log",
+    "incident_note_log"
+  ],
+  "next_ready": "FAZ_2_7_2_6_MISSION_CONTROL_RUNTIME_TESTS"
+}

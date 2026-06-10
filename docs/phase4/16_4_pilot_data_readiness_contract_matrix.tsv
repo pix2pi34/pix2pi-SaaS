@@ -1,0 +1,40 @@
+gate	status	note
+previous_16_3	PASS	UAT scenario execution prerequisite
+product_sample_dataset	PASS	products=12 vat=12 stock_tracked=11
+stock_sample_dataset	PASS	stock_cases=12 blockers=7
+party_sample_dataset	PASS	parties=8 synthetic=8
+sales_accounting_sample_dataset	PASS	flows=12 tdhp=9 blockers=8
+data_quality_gate_matrix	PASS	gates=12 blockers=11
+no_runtime_change	PASS	no real data/import/db/api/ui/event changed
+no_config_change	PASS	no config/env/nginx/firewall changed
+secret_safe	PASS	no secrets/customer private data printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+sample_data_inserted	NO	contract only
+real_customer_data_created	NO	contract only
+real_product_created	NO	contract only
+real_stock_mutated	NO	contract only
+real_sale_created	NO	contract only
+real_accounting_entry_created	NO	contract only
+data_import_executed	NO	contract only
+file_export_executed	NO	contract only
+ui_code_changed	NO	contract only
+api_route_created	NO	contract only
+api_implementation_changed	NO	contract only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+event_published	NO	contract only
+event_consumed	NO	contract only
+notification_sent	NO	contract only
+customer_private_data_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report

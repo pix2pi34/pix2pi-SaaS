@@ -1,0 +1,37 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "317.4",
+  "name": "Multi-tenant user destek gerçek akış",
+  "component": "internal/auth/multitenantuser",
+  "database_contract": {
+    "schema": "auth",
+    "tables": [
+      "auth.user_tenant_memberships",
+      "auth.user_current_tenant_preferences"
+    ],
+    "preference_unique_key": [
+      "user_id",
+      "session_id"
+    ]
+  },
+  "runtime_contract": {
+    "requires_user_id": true,
+    "requires_session_id_for_current_context": true,
+    "requires_active_membership": true,
+    "requires_active_tenant": true,
+    "supports_multiple_tenants_per_user": true,
+    "supports_different_roles_per_tenant": true,
+    "records_current_tenant_preference": true,
+    "rejects_cross_tenant_access": true
+  },
+  "required_checks": [
+    "multi_tenant_membership_list",
+    "active_membership_filter",
+    "active_tenant_filter",
+    "tenant_switch_persists_preference",
+    "cross_tenant_access_rejection",
+    "current_tenant_context_resolution",
+    "go_test"
+  ],
+  "next_step": "317.5 - Remember tenant preference gerçek akış"
+}

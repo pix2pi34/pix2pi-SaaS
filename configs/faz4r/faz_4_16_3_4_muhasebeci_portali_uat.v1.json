@@ -1,0 +1,59 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 207,
+  "step": "FAZ_4_16_3_4",
+  "title": "Muhasebeci portalı UAT",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "186_FAZ_4_15_2_FINANCE_REPORTING_MART",
+    "187_FAZ_4_15_4_PAYMENT_RECONCILIATION_REPORTING_MART",
+    "188_FAZ_4_15_3_E_DOCUMENT_EXPORT_REPORTING_MART",
+    "190_FAZ_4_15_7_READMODEL_REPORTING_TEST_SET",
+    "197_FAZ_4_16_1_3_KULLANICI_ROL_ILK_KURULUMU",
+    "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT",
+    "206_FAZ_4_16_3_3_MUHASEBE_UAT"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "uat_policy": {
+    "uat_status_required": "READY",
+    "uat_mode_required": "CONTROLLED_PILOT",
+    "portal_mode_required": "READ_ONLY_PREVIEW",
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "accountant_context_status_required": "PASS",
+    "assigned_tenant_scope_status_required": "PASS",
+    "cross_tenant_guard_status_required": "PASS",
+    "read_only_guard_status_required": "PASS",
+    "export_preview_status_required": "PASS",
+    "real_export_status_required": "CLOSED",
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_uat_cases": [
+    "ACCOUNTANT_PORTAL_ACCESS",
+    "ACCOUNTANT_CONTEXT_VISIBLE",
+    "ASSIGNED_TENANT_LIST_VIEW",
+    "ASSIGNED_TENANT_DETAIL_VIEW",
+    "CROSS_TENANT_ACCESS_DENIED",
+    "FINANCE_REPORTING_VIEW",
+    "CUSTOMER_LEDGER_VIEW",
+    "TDHP_JOURNAL_PREVIEW_VIEW",
+    "VAT_TAX_SUMMARY_VIEW",
+    "PAYMENT_RECONCILIATION_VIEW",
+    "E_DOCUMENT_EXPORT_PREVIEW_LINK",
+    "FILE_EXPORT_PREVIEW",
+    "READ_ONLY_ACTION_GUARD",
+    "ACCOUNTANT_AUDIT_EVIDENCE_LINK_VIEW",
+    "REAL_EXPORT_CLOSED_GATE",
+    "CLOSED_EXTERNAL_POLICY_GATE"
+  ],
+  "uat_artifact": "configs/faz4r/accountant_portal_uat.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "208_FAZ_4_16_3_5_E_BELGE_EXPORT_UAT"
+  ]
+}

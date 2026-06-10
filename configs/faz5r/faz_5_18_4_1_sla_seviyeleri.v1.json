@@ -1,0 +1,30 @@
+{
+  "phase": "FAZ_5_18_4_1",
+  "title": "SLA Seviyeleri",
+  "status": "READY",
+  "control_surface": "SUPPORT_OPS_SLA_LEVELS",
+  "inputs": [
+    "FAZ_5_18_3_3_LOG_RETENTION_IMHA_POLITIKASI",
+    "FAZ_5_18_3_5_UYUM_DOKUMAN_KONTROLU"
+  ],
+  "outputs": [
+    "P0_P1_P2_P3_SLA_MATRIX",
+    "RESPONSE_SLA_POLICY",
+    "RESOLUTION_SLA_POLICY",
+    "ESCALATION_SLA_POLICY",
+    "BREACH_POLICY_REQUIREMENT"
+  ],
+  "gates": {
+    "internal_sla_ready": true,
+    "production_sla_published": false,
+    "public_sla_page_enabled": false,
+    "support_channel_structure_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

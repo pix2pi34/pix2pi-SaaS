@@ -1,0 +1,155 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "301",
+  "code": "FAZ_6_21_2_2",
+  "name": "Replica failover provası",
+  "depends_on": [
+    "FAZ_6_21_2_1"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "db_promotion_allowed": false,
+  "replica_promotion_allowed": false,
+  "dns_mutation_allowed": false,
+  "dsn_mutation_allowed": false,
+  "application_route_mutation_allowed": false,
+  "replication_slot_mutation_allowed": false,
+  "required_controls": [
+    "db_ha_topology_dependency_gate",
+    "failover_candidate_preflight",
+    "primary_reachability_check",
+    "replica_reachability_check",
+    "replica_lag_guard",
+    "wal_replay_guard",
+    "backup_pitr_guard",
+    "split_brain_guard",
+    "promotion_decision_policy",
+    "dns_dsn_route_switch_guard",
+    "rollback_decision_policy",
+    "rto_rpo_measurement_policy",
+    "dry_run_failover_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "preflight_policy": {
+    "enabled": true,
+    "required_checks": [
+      "db_ha_topology_evidence_pass",
+      "single_write_primary_confirmed",
+      "primary_reachability_known",
+      "replica_reachability_known",
+      "replica_lag_within_threshold",
+      "wal_replay_healthy",
+      "backup_chain_healthy",
+      "pitr_window_available",
+      "split_brain_guard_ready",
+      "manual_approval_model_present"
+    ]
+  },
+  "failover_candidate_policy": {
+    "enabled": true,
+    "candidate_role": "sync_replica_candidate",
+    "candidate_node": "postgres_sync_replica_candidate",
+    "max_replica_lag_seconds": 30,
+    "requires_wal_replay_healthy": true,
+    "requires_backup_chain_healthy": true,
+    "requires_pitr_window_available": true,
+    "requires_primary_status_known": true
+  },
+  "promotion_decision_policy": {
+    "enabled": true,
+    "mode": "dry_run_decision_only_no_promotion",
+    "allow_promotion_execute": false,
+    "decision_values": [
+      "READY_FOR_MANUAL_APPROVED_FAILOVER_REHEARSAL",
+      "BLOCKED_SPLIT_BRAIN_RISK",
+      "BLOCKED_REPLICA_LAG",
+      "BLOCKED_WAL_REPLAY",
+      "BLOCKED_BACKUP_PITR",
+      "BLOCKED_PRIMARY_STATUS_UNKNOWN"
+    ]
+  },
+  "routing_switch_guard": {
+    "enabled": true,
+    "dns_switch_allowed": false,
+    "dsn_switch_allowed": false,
+    "application_route_switch_allowed": false,
+    "read_write_route_switch_allowed": false
+  },
+  "rollback_decision_policy": {
+    "enabled": true,
+    "mode": "decision_only_no_rollback_execute",
+    "requires_previous_primary_quarantine_plan": true,
+    "requires_data_divergence_check": true,
+    "requires_manual_approval": true
+  },
+  "rto_rpo_measurement_policy": {
+    "enabled": true,
+    "dry_run_measurement_only": true,
+    "target_rto_minutes": 30,
+    "target_rpo_minutes": 5,
+    "record_actual_measurement_placeholder": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "db_promotion_execute",
+      "replica_promotion_execute",
+      "dns_switch_execute",
+      "dsn_switch_execute",
+      "application_route_switch_execute",
+      "read_write_route_switch_execute",
+      "replication_slot_change_execute",
+      "rollback_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "data_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "db_promotion_allowed": false,
+    "replica_promotion_allowed": false,
+    "dns_mutation_allowed": false,
+    "dsn_mutation_allowed": false,
+    "application_route_mutation_allowed": false,
+    "replication_slot_mutation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "rehearsal_id",
+      "candidate_node",
+      "preflight_status",
+      "promotion_decision",
+      "primary_reachability_status",
+      "replica_reachability_status",
+      "replica_lag_seconds",
+      "wal_replay_status",
+      "backup_pitr_status",
+      "split_brain_guard_status",
+      "rto_minutes",
+      "rpo_minutes",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_db_ha_topology_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_db_promotion_allowed": true,
+    "block_if_routing_switch_allowed": true,
+    "block_if_missing_split_brain_guard": true,
+    "block_if_missing_backup_pitr_guard": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_2_2_REPLICA_FAILOVER_PROVASI_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

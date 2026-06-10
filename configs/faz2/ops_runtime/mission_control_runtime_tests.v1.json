@@ -1,0 +1,19 @@
+{
+  "phase": "FAZ 2-7.2.6",
+  "runtime": "mission_control_runtime_tests",
+  "test_scope": [
+    "restart_action_runtime",
+    "isolate_quarantine_action_runtime",
+    "maintenance_mode_runtime",
+    "incident_note_action_log_runtime",
+    "cross_tenant_deny_flow",
+    "unauthorized_operator_deny_flow"
+  ],
+  "required_test_package": "./internal/platform/ops/runtime",
+  "final_gate": {
+    "go_test_status": "PASS",
+    "fail_count": 0,
+    "seal_status": "SEALED"
+  },
+  "next_ready": "FAZ_2_7_2_1_SERVICE_STATUS_PANEL_CONNECTION"
+}

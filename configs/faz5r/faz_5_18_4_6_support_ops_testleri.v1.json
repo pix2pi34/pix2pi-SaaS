@@ -1,0 +1,36 @@
+{
+  "phase": "FAZ_5_18_4_6",
+  "title": "Support Ops Testleri",
+  "status": "READY",
+  "control_surface": "SUPPORT_OPS_TEST_SUITE",
+  "inputs": [
+    "FAZ_5_18_4_1_SLA_SEVIYELERI",
+    "FAZ_5_18_4_2_DESTEK_KANAL_YAPISI",
+    "FAZ_5_18_4_3_INCIDENT_SINIFLANDIRMA",
+    "FAZ_5_18_4_4_ESCALATION_MATRISI",
+    "FAZ_5_18_4_5_MUSTERI_ILETISIM_SABLONLARI"
+  ],
+  "outputs": [
+    "SUPPORT_SLA_CONTRACT_TEST",
+    "SUPPORT_CHANNEL_INTAKE_TEST",
+    "SUPPORT_TEMPLATE_CONTRACT_TEST",
+    "SUPPORT_ESCALATION_MATRIX_TEST",
+    "SUPPORT_INCIDENT_CLASSIFICATION_TEST",
+    "SUPPORT_END_TO_END_READINESS_TEST",
+    "SUPPORT_NEGATIVE_GUARD_TEST"
+  ],
+  "gates": {
+    "internal_support_ops_tests_ready": true,
+    "production_support_ops_enabled": false,
+    "real_customer_notification_enabled": false,
+    "support_ops_block_complete": true,
+    "commercial_checklist_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

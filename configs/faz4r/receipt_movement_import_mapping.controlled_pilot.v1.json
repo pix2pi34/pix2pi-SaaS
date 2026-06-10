@@ -1,0 +1,53 @@
+{
+  "mapping_id": "receipt_movement_import_mapping.controlled_pilot.v1",
+  "mapping_status": "READY",
+  "import_mode": "DRY_RUN",
+  "commit_allowed": false,
+  "tenant_guard_required": true,
+  "batch_guard_required": true,
+  "target_staging_tables": [
+    "import_staging_finance_documents",
+    "import_staging_stock_entries"
+  ],
+  "receipt_header_fields": [
+    {"source": "receipt_no", "target": "document_no", "required": true, "type": "string"},
+    {"source": "receipt_type", "target": "document_type", "required": true, "type": "enum", "allowed_values": ["SALE", "PURCHASE", "SALE_RETURN", "PURCHASE_RETURN", "PAYMENT", "COLLECTION", "STOCK_MOVEMENT"]},
+    {"source": "receipt_date", "target": "document_date", "required": true, "type": "date"},
+    {"source": "customer_code", "target": "customer_code", "required": true, "type": "string"},
+    {"source": "currency_code", "target": "currency_code", "required": true, "type": "string"},
+    {"source": "net_total", "target": "net_total", "required": true, "type": "number", "min": 0},
+    {"source": "tax_total", "target": "tax_total", "required": true, "type": "number", "min": 0},
+    {"source": "gross_total", "target": "gross_total", "required": true, "type": "number", "min": 0}
+  ],
+  "receipt_line_fields": [
+    {"source": "line_no", "target": "line_no", "required": true, "type": "integer"},
+    {"source": "product_code", "target": "product_code", "required": true, "type": "string"},
+    {"source": "quantity", "target": "quantity", "required": true, "type": "number", "min": 0},
+    {"source": "unit_price", "target": "unit_price", "required": true, "type": "number", "min": 0},
+    {"source": "tax_rate", "target": "tax_rate", "required": true, "type": "number", "min": 0, "max": 100},
+    {"source": "net_amount", "target": "net_amount", "required": true, "type": "number", "min": 0},
+    {"source": "tax_amount", "target": "tax_amount", "required": true, "type": "number", "min": 0},
+    {"source": "gross_amount", "target": "gross_amount", "required": true, "type": "number", "min": 0}
+  ],
+  "movement_fields": [
+    {"source": "movement_id", "target": "movement_id", "required": true, "type": "string"},
+    {"source": "movement_type", "target": "movement_type", "required": true, "type": "enum", "allowed_values": ["SALE", "PURCHASE", "SALE_RETURN", "PURCHASE_RETURN", "PAYMENT", "COLLECTION", "STOCK_IN", "STOCK_OUT", "STOCK_TRANSFER"]},
+    {"source": "receipt_no", "target": "receipt_no", "required": true, "type": "string"},
+    {"source": "product_code", "target": "product_code", "required": false, "type": "string"},
+    {"source": "customer_code", "target": "customer_code", "required": false, "type": "string"},
+    {"source": "amount", "target": "amount", "required": false, "type": "number", "min": 0},
+    {"source": "quantity", "target": "quantity", "required": false, "type": "number"}
+  ],
+  "guards": {
+    "duplicate_receipt_no_forbidden": true,
+    "duplicate_movement_id_forbidden": true,
+    "unknown_customer_forbidden": true,
+    "unknown_product_forbidden": true,
+    "negative_amount_forbidden": true,
+    "header_line_total_reconciliation_required": true,
+    "dry_run_required": true,
+    "real_commit_forbidden": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

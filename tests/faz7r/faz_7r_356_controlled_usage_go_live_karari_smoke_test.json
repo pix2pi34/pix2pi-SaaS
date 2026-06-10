@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "356",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "controlled_go_live_decision_screen",
+      "path": "/controlled-usage-go-live-decision/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_356_CONTROLLED_GO_LIVE_DECISION_APP_SHELL_START",
+        "PIX2PI_356_PREREQUISITE_EVIDENCE_CHECKLIST_START",
+        "PIX2PI_356_CONTROLLED_GO_LIVE_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "controlled_go_live_decision_runtime",
+      "path": "/assets/controlled-usage-go-live-decision/controlled-usage-go-live-decision-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_356_CONTROLLED_GO_LIVE_DECISION_RUNTIME_START",
+        "goLiveDecisionScopeHeaders",
+        "buildControlledGoLiveRuntimeContract"
+      ]
+    }
+  ]
+}

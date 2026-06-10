@@ -1,0 +1,81 @@
+{
+  "schema_version": "tenant_onboarding.v1",
+  "phase": "FAZ_7",
+  "step": "7-6",
+  "runtime_status": "READY",
+  "source_catalog": "configs/faz7/product_plan_catalog.v1.json",
+  "source_entitlement": "configs/faz7/entitlement_feature_gate.v1.json",
+  "source_subscription": "configs/faz7/subscription_runtime.v1.json",
+  "source_billing": "configs/faz7/billing_readiness.v1.json",
+  "next_step": "7-7 Public Website / Landing / Demo Flow",
+  "required_onboarding_fields": [
+    "tenant_id",
+    "account_id",
+    "business_name",
+    "legal_name",
+    "tax_number",
+    "tax_office",
+    "billing_email",
+    "billing_address",
+    "admin_user_id",
+    "admin_email",
+    "plan_code",
+    "start_mode"
+  ],
+  "tenant_statuses": [
+    "ACTIVE",
+    "PENDING",
+    "BLOCKED"
+  ],
+  "onboarding_statuses": [
+    "READY_FOR_TRIAL",
+    "COMPLETED",
+    "DENIED"
+  ],
+  "admin_roles": [
+    "TENANT_ADMIN"
+  ],
+  "start_modes": [
+    "demo_data",
+    "blank"
+  ],
+  "trial": {
+    "trial_enabled": true,
+    "default_trial_days": 14,
+    "real_payment_enabled": false,
+    "billing_simulation_enabled": true
+  },
+  "audit_fields": [
+    "tenant_id",
+    "account_id",
+    "admin_user_id",
+    "admin_email",
+    "plan_code",
+    "start_mode",
+    "tenant_status",
+    "onboarding_status",
+    "subscription_status",
+    "billing_status",
+    "decision",
+    "reason_code"
+  ],
+  "decision_model": {
+    "allow_status": "ALLOW",
+    "deny_status": "DENY",
+    "reason_codes": [
+      "ALLOW_ONBOARDING_READY",
+      "DENY_TENANT_REQUIRED",
+      "DENY_ACCOUNT_REQUIRED",
+      "DENY_BUSINESS_REQUIRED",
+      "DENY_LEGAL_REQUIRED",
+      "DENY_TAX_PROFILE_REQUIRED",
+      "DENY_BILLING_PROFILE_REQUIRED",
+      "DENY_ADMIN_REQUIRED",
+      "DENY_PLAN_REQUIRED",
+      "DENY_PLAN_UNKNOWN",
+      "DENY_START_MODE_INVALID",
+      "DENY_SUBSCRIPTION_FAILED",
+      "DENY_BILLING_FAILED"
+    ]
+  }
+}

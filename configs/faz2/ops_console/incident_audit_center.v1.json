@@ -1,0 +1,34 @@
+{
+  "phase": "FAZ 2-8.6",
+  "screen": "incident_audit_center",
+  "web_path": "web/ops-console/incident-audit-center/index.html",
+  "runtime_package": "./internal/platform/ops/console",
+  "require_tenant": true,
+  "allow_platform_viewer": true,
+  "max_visible_incidents": 100,
+  "max_visible_audit_logs": 100,
+  "guards": [
+    "tenant_required",
+    "cross_tenant_viewer_denied",
+    "valid_severity_required",
+    "valid_status_required",
+    "valid_action_type_required",
+    "incident_title_required",
+    "incident_message_required",
+    "audit_actor_required",
+    "audit_target_required",
+    "resolved_visibility_toggle",
+    "audit_visibility_toggle"
+  ],
+  "screen_sections": [
+    "open_incidents_metric",
+    "critical_metric",
+    "audit_events_metric",
+    "resolved_metric",
+    "incident_table",
+    "audit_stream_table",
+    "tenant_indicator",
+    "responsive_shell"
+  ],
+  "next_ready": "FAZ_2_8_7_RUNTIME_HEALTH_TOPOLOGY_VIEW"
+}

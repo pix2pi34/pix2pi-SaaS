@@ -1,0 +1,52 @@
+{
+  "phase": "FAZ_1_5_1",
+  "module": "WEB_L2_AUTH_TENANT_EXPERIENCE",
+  "component": "login_session_flow",
+  "status": "READY",
+  "required_capabilities": [
+    "login_ui",
+    "token_persistence",
+    "login_error_states",
+    "session_validation",
+    "login_tests"
+  ],
+  "storage_keys": {
+    "session": "pix2pi.session",
+    "auth_token": "pix2pi.authToken",
+    "refresh_token": "pix2pi.refreshToken",
+    "active_tenant": "pix2pi.activeTenant",
+    "login_attempt": "pix2pi.loginAttempt",
+    "login_error": "pix2pi.loginError"
+  },
+  "login_contract": {
+    "identifier_field": "email",
+    "password_field": "password",
+    "tenant_hint_field": "tenant_hint",
+    "remember_me_field": "remember_me",
+    "success_event": "pix2pi:login-success",
+    "error_event": "pix2pi:login-error",
+    "session_valid_event": "pix2pi:session-valid",
+    "session_invalid_event": "pix2pi:session-invalid"
+  },
+  "error_codes": [
+    "MISSING_CREDENTIALS",
+    "INVALID_CREDENTIALS",
+    "TENANT_REQUIRED",
+    "ACCOUNT_LOCKED",
+    "SESSION_INVALID",
+    "SESSION_EXPIRED"
+  ],
+  "session_contract": {
+    "required_fields": [
+      "user_id",
+      "display_name",
+      "email",
+      "roles",
+      "permissions",
+      "issued_at",
+      "expires_at"
+    ],
+    "token_policy": "STORE_DEMO_TOKEN_FOR_UI_CONTRACT_ONLY",
+    "validation_policy": "REQUIRE_SESSION_AND_UNEXPIRED_TOKEN"
+  }
+}

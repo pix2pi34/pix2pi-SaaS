@@ -1,0 +1,41 @@
+gate	status	note
+previous_22_3	PASS	logs/loki readiness prerequisite
+tempo_endpoint_probe	PASS	probes=8 reachable=8 review=0
+tempo_ready_metadata	PASS	tempo_ready_ok=YES tempo_reachable=4
+otel_reachability	PASS	otel_reachable=3
+trace_pipeline_inventory	PASS	configs=350 trace_id_markers=8 tenant_markers=837
+trace_signal_contract	PASS	signals=14 required=5 recommended=9
+public_surface_policy	PASS	public_trace_rows=6 high_risk=6 tempo_public=2 otel_public=2
+body_not_printed	PASS	trace/tempo/otel body not printed
+no_restart	PASS	service/container not restarted
+no_config_change	PASS	tempo/otel config not changed
+secret_safe	PASS	secret values not printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+tempo_config_changed	NO	evidence only
+tempo_reload_executed	NO	evidence only
+tempo_restarted	NO	evidence only
+otel_config_changed	NO	evidence only
+otel_reload_executed	NO	evidence only
+otel_restarted	NO	evidence only
+grafana_dashboard_changed	NO	evidence only
+alert_rule_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+trace_body_printed	NO	secret-safe report
+tempo_query_body_printed	NO	secret-safe report
+otel_payload_printed	NO	secret-safe report
+span_attribute_printed	NO	secret-safe report
+metric_body_printed	NO	secret-safe report
+log_content_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

@@ -1,0 +1,45 @@
+{
+  "test_name": "faz_5_19_6_public_developer_web_testleri_test",
+  "phase": "FAZ_5_19_6",
+  "expected": {
+    "required_surface_count": 8,
+    "required_domain_count": 8,
+    "internal_web_tests_ready": true,
+    "public_developer_surface_tests_ready": true,
+    "production_publish_allowed": false,
+    "real_customer_access_enabled": false,
+    "real_developer_access_enabled": false,
+    "checkout_enabled": false,
+    "payment_collection_enabled": false,
+    "api_key_creation_enabled": false,
+    "sandbox_live_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_surface_keys": [
+    "developer_docs_web",
+    "api_key_management_web",
+    "sandbox_surface_web",
+    "pricing_pages_web",
+    "launch_guard_matrix",
+    "html_quality_matrix",
+    "security_guard_matrix",
+    "final_closure_deferred_marker"
+  ],
+  "must_have_domains": [
+    "DEVELOPER_DOCS",
+    "API_KEY_SCREEN",
+    "SANDBOX_SURFACE",
+    "PRICING_PAGES",
+    "LAUNCH_GUARD",
+    "HTML_QUALITY",
+    "SECURITY_GUARD",
+    "CLOSURE_NEXT"
+  ],
+  "must_have_web_files": [
+    "web/faz5r/developer-docs/index.html",
+    "web/faz5r/api-key-management/index.html",
+    "web/faz5r/sandbox-surface/index.html",
+    "web/faz5r/pricing-pages/index.html"
+  ]
+}

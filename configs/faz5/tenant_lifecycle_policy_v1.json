@@ -1,0 +1,139 @@
+{
+  "catalog_code": "pix2pi_tenant_lifecycle_policy_v1",
+  "phase": "FAZ_5",
+  "step": "5-5",
+  "depends_on": [
+    "pix2pi_packages_pricing_v1",
+    "pix2pi_entitlement_matrix_v1",
+    "pix2pi_subscription_billing_policy_v1"
+  ],
+  "tenant_states": [
+    "demo",
+    "trialing",
+    "active",
+    "past_due",
+    "suspended",
+    "frozen",
+    "read_only",
+    "closing",
+    "closed",
+    "enterprise_hold"
+  ],
+  "open_flows": {
+    "demo_tenant": {
+      "default_package": "demo",
+      "trial_days": 14,
+      "live_financial_operation": false,
+      "api_access": "disabled",
+      "export_access": "disabled"
+    },
+    "paid_tenant": {
+      "requires_package": true,
+      "requires_owner": true,
+      "requires_subscription": true,
+      "initial_state": "active"
+    },
+    "enterprise_tenant": {
+      "requires_contract": true,
+      "custom_limits": true,
+      "custom_sla": true,
+      "requires_onboarding": true
+    },
+    "accountant_workspace": {
+      "workspace_required": true,
+      "included_company_limit": 10,
+      "company_based_billing": true,
+      "direct_pos_operation": false
+    }
+  },
+  "required_on_open": [
+    "tenant_owner",
+    "first_user",
+    "package_code",
+    "subscription_state",
+    "entitlement_profile"
+  ],
+  "package_transitions": {
+    "starter_to_pro": {
+      "type": "upgrade",
+      "activation": "immediate",
+      "new_user_limit": 10,
+      "new_branch_limit": 3,
+      "opens_reporting_advanced": true,
+      "opens_api_limited": true
+    },
+    "pro_to_enterprise": {
+      "type": "upgrade",
+      "requires_contract": true,
+      "requires_onboarding": true,
+      "opens_sla": true,
+      "opens_advanced_audit": true,
+      "opens_api_enabled": true
+    },
+    "pro_to_starter": {
+      "type": "downgrade",
+      "activation": "period_end_preferred",
+      "requires_limit_check": true,
+      "target_user_limit": 3,
+      "target_branch_limit": 1
+    }
+  },
+  "limit_checks": [
+    "user_limit",
+    "branch_limit",
+    "tenant_limit",
+    "api_access",
+    "export_access",
+    "reporting_level",
+    "accounting_export"
+  ],
+  "freeze_reasons": [
+    "payment_delay",
+    "security_risk",
+    "contract_violation",
+    "manual_admin_decision"
+  ],
+  "freeze_policy": {
+    "delete_data": false,
+    "api_access": "disabled",
+    "write_access": "disabled",
+    "read_only_mode_future": true,
+    "export_access": "contract_or_package_based",
+    "security_freeze_allowed": true
+  },
+  "close_reasons": [
+    "customer_cancellation",
+    "payment_cancellation",
+    "contract_end",
+    "manual_admin_decision"
+  ],
+  "close_policy": {
+    "state_before_close": "closing",
+    "final_state": "closed",
+    "data_retention_policy_source": "FAZ_5_6_LEGAL_COMPLIANCE",
+    "data_delete_policy_source": "FAZ_5_6_LEGAL_COMPLIANCE",
+    "export_before_close": "package_or_contract_based"
+  },
+  "data_handoff": {
+    "excel_export": true,
+    "pdf_export": true,
+    "tdhp_export": true,
+    "accountant_handoff_file": true,
+    "enterprise_custom_handoff": true,
+    "data_ownership_policy_source": "FAZ_5_6_LEGAL_COMPLIANCE"
+  },
+  "out_of_scope": [
+    "runtime_tenant_create_api",
+    "runtime_tenant_freeze_middleware",
+    "runtime_tenant_close_worker",
+    "real_data_export_file_generation",
+    "real_data_deletion",
+    "kvkk_legal_text_finalization",
+    "enterprise_contract_text_finalization"
+  ],
+  "seal": {
+    "FAZ_5_5_TENANT_LIFECYCLE_STATUS": "PASS",
+    "FAZ_5_5_TENANT_LIFECYCLE_SEAL_STATUS": "SEALED",
+    "FAZ_5_6_READY": "YES"
+  }
+}

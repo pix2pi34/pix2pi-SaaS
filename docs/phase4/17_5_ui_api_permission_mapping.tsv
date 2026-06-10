@@ -1,0 +1,19 @@
+permission_name	ui_surfaces	api_targets	tenant_scope	minimum_role	audit_required	rbac_required	implementation_status	note
+workflow:read	workflow_dashboard,workflow_detail	GET workflow endpoints	tenant_scoped	tenant_admin_limited	NO	YES	READY_FOR_IMPLEMENTATION	plan_only
+workflow:write	workflow_definition_editor	POST /api/v1/workflows	tenant_scoped	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+workflow:execute	workflow_action_panel	POST workflow instance/action endpoints	tenant_scoped	tenant_operator	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+workflow:pause	workflow_action_panel	pause action	tenant_scoped	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+workflow:retry	workflow_action_panel	retry action	tenant_scoped	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+workflow:cancel	workflow_action_panel	cancel action	tenant_scoped	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+workflow:archive	workflow_action_panel	archive action	tenant_scoped	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+approval:read	approval_center,approval_detail	GET approval endpoints	tenant_scoped	tenant_approver	NO	YES	READY_FOR_IMPLEMENTATION	plan_only
+approval:write	approval_center,approval_detail	approve/reject endpoints	tenant_scoped	tenant_approver	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+approval:escalate	approval_center	escalation action	tenant_scoped	tenant_admin_or_system	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+task:read	task_center	GET /api/v1/tasks	tenant_scoped	tenant_user	NO	YES	READY_FOR_IMPLEMENTATION	plan_only
+task:write	task_center	POST /api/v1/tasks/{id}/complete	tenant_scoped	tenant_operator	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+notification:read	notification_center	GET /api/v1/notifications	tenant_scoped	tenant_user	NO	YES	READY_FOR_IMPLEMENTATION	plan_only
+notification:send	notification_runtime_future	notification binding future	tenant_scoped	system	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+audit:read	tenant_audit_timeline	GET /api/v1/audit/workflow	tenant_scoped	tenant_admin	NO	YES	READY_FOR_IMPLEMENTATION	plan_only
+realtime:read	realtime stream clients	GET /api/v1/realtime/events,/ws	tenant_scoped	tenant_user	YES	YES	READY_FOR_IMPLEMENTATION	plan_only
+ops:read	ops_workflow_console,ops_realtime_health	GET /ops/v1/*	platform_scoped	ops_admin	NO	YES	READY_FOR_IMPLEMENTATION	plan_only
+security:read	security_workflow_console,security_tenant_isolation_console	GET /ops/v1/security/*	platform_scoped	security_admin	NO	YES	READY_FOR_IMPLEMENTATION	plan_only

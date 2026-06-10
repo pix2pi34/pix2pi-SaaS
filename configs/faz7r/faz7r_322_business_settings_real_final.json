@@ -1,0 +1,25 @@
+{
+  "step": "FAZ 7-R / 322",
+  "name": "İşletme ayarları gerçek update API real final",
+  "tenantId": "tenant-api-e2e-success",
+  "settingsRunId": "settings-322-20260513_194726",
+  "routes": [
+    "/settings/",
+    "POST /api/panel/settings/read",
+    "POST /api/panel/settings/update"
+  ],
+  "requiredEvidence": [
+    "business name update DB SELECT",
+    "tax info update DB SELECT",
+    "address update DB SELECT",
+    "default language update DB SELECT",
+    "default currency update DB SELECT",
+    "branch/register settings view",
+    "settings audit event",
+    "invalid language/currency no write",
+    "no-role denied",
+    "tenant-safe read",
+    "rollback no partial write",
+    "settings route smoke"
+  ]
+}

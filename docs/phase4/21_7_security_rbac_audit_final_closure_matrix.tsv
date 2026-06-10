@@ -1,0 +1,23 @@
+gate	status	note
+role_matrix	PASS	21.1 final gate
+permission_guard	PASS	21.2 final gate
+audit_event_model	PASS	21.3 final gate
+tenant_access_checks	PASS	21.4 final gate
+support_super_admin_boundary	PASS	21.5 final gate
+security_tests	PASS	21.6 final gate
+artifact_coverage	PASS	missing_artifacts=0
+no_apply	PASS	no_apply_failures=0
+migration_chain	PASS	pairs=38
+secret_safety	PASS	secret_hits=0 query_hits=0
+db_mutation	NO	final evidence only
+db_apply_executed	NO	final evidence only
+migration_created	NO	final evidence only
+migration_apply_executed	NO	final evidence only
+permission_guard_executed	NO	final evidence only
+tenant_access_check_executed	NO	final evidence only
+support_access_executed	NO	final evidence only
+super_admin_access_executed	NO	final evidence only
+break_glass_executed	NO	final evidence only
+rbac_enforcement_executed	NO	final evidence only
+audit_log_write_executed	NO	final evidence only
+query_text_printed	NO	secret-safe report

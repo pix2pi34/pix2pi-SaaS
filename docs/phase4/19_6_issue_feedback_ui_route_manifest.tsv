@@ -1,0 +1,10 @@
+route_id	method	path	purpose	auth_required	tenant_required	status
+issue_summary	GET	/api/v1/admin/issues/summary	issue_summary_cards	YES	YES	contract_only
+issue_list	GET	/api/v1/admin/issues	issue_list	YES	YES	contract_only
+issue_create	POST	/api/v1/admin/issues	create_issue_placeholder	YES	YES	contract_only
+issue_detail	GET	/api/v1/admin/issues/:issue_id	issue_detail	YES	YES	contract_only
+issue_comment	POST	/api/v1/admin/issues/:issue_id/comments	comment_placeholder	YES	YES	contract_only
+issue_evidence	POST	/api/v1/admin/issues/:issue_id/evidence	evidence_placeholder	YES	YES	contract_only
+issue_status	POST	/api/v1/admin/issues/:issue_id/status	status_update_placeholder	YES	YES	contract_only
+feedback_list	GET	/api/v1/admin/feedback	feedback_list	YES	YES	contract_only
+feedback_create	POST	/api/v1/admin/feedback	create_feedback_placeholder	YES	YES	contract_only

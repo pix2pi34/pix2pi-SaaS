@@ -1,0 +1,48 @@
+{
+  "test_name": "faz_5_18_7_2_churn_expansion_raporu_test",
+  "phase": "FAZ_5_18_7_2",
+  "expected": {
+    "required_section_count": 11,
+    "required_domain_count": 8,
+    "internal_churn_expansion_report_ready": true,
+    "production_motion_report_enabled": false,
+    "real_customer_motion_enabled": false,
+    "external_finance_export_enabled": false,
+    "auto_executive_email_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_section_keys": [
+    "starting_mrr_base",
+    "churned_tenant_summary",
+    "churned_mrr_summary",
+    "expansion_tenant_summary",
+    "expansion_mrr_summary",
+    "contraction_mrr_summary",
+    "nrr_summary",
+    "grr_summary",
+    "churn_reason_breakdown",
+    "audit_evidence_summary",
+    "collection_success_deferred_marker"
+  ],
+  "must_have_domains": [
+    "REVENUE_BASE",
+    "CHURN",
+    "EXPANSION",
+    "CONTRACTION",
+    "RETENTION",
+    "REASON_BREAKDOWN",
+    "AUDIT_EVIDENCE",
+    "NEXT_PRIORITY"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_period_window",
+    "requires_starting_mrr_base",
+    "requires_churn_metric",
+    "requires_expansion_metric",
+    "requires_nrr_formula",
+    "requires_grr_formula",
+    "blocks_production_motion_report"
+  ]
+}

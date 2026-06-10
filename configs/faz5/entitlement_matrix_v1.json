@@ -1,0 +1,211 @@
+{
+  "catalog_code": "pix2pi_entitlement_matrix_v1",
+  "phase": "FAZ_5",
+  "step": "5-3",
+  "depends_on": "pix2pi_packages_pricing_v1",
+  "default_policy": "deny_unless_allowed",
+  "tenant_safety": "tenant_aware_required",
+  "packages": [
+    {
+      "code": "demo",
+      "status": "active",
+      "limits": {
+        "tenant_limit": 1,
+        "branch_limit": 1,
+        "user_limit": 2,
+        "trial_days": 14,
+        "test_product_limit": 100,
+        "test_sales_limit": 50
+      },
+      "modules": {
+        "identity_core": "enabled",
+        "tenant_core": "enabled",
+        "erp_core": "limited",
+        "pos_core": "sandbox",
+        "inventory_basic": "demo",
+        "inventory_advanced": "disabled",
+        "customer_account_basic": "demo",
+        "reporting_basic": "demo",
+        "reporting_advanced": "disabled",
+        "export_basic": "disabled",
+        "export_advanced": "disabled",
+        "accounting_export": "disabled",
+        "api_access": "disabled",
+        "marketplace_discovery": "disabled",
+        "parasut_discovery": "disabled",
+        "accountant_portal": "disabled",
+        "developer_sandbox": "disabled",
+        "auto_parts_compatibility": "disabled",
+        "audit_compliance": "disabled",
+        "mobile_pwa": "preview",
+        "premium_support": "disabled"
+      },
+      "support_level": "demo_support",
+      "live_financial_operation": false
+    },
+    {
+      "code": "starter",
+      "status": "active",
+      "limits": {
+        "tenant_limit": 1,
+        "branch_limit": 1,
+        "user_limit": 3,
+        "trial_days": 0
+      },
+      "modules": {
+        "identity_core": "enabled",
+        "tenant_core": "enabled",
+        "erp_core": "enabled",
+        "pos_core": "enabled",
+        "inventory_basic": "enabled",
+        "inventory_advanced": "disabled",
+        "customer_account_basic": "enabled",
+        "reporting_basic": "enabled",
+        "reporting_advanced": "disabled",
+        "export_basic": "limited",
+        "export_advanced": "disabled",
+        "accounting_export": "disabled",
+        "api_access": "disabled",
+        "marketplace_discovery": "disabled",
+        "parasut_discovery": "disabled",
+        "accountant_portal": "disabled",
+        "developer_sandbox": "disabled",
+        "auto_parts_compatibility": "disabled",
+        "audit_compliance": "disabled",
+        "mobile_pwa": "basic",
+        "premium_support": "disabled"
+      },
+      "support_level": "standard",
+      "live_financial_operation": true
+    },
+    {
+      "code": "pro",
+      "status": "active",
+      "limits": {
+        "tenant_limit": 1,
+        "branch_limit": 3,
+        "user_limit": 10,
+        "trial_days": 0
+      },
+      "modules": {
+        "identity_core": "enabled",
+        "tenant_core": "enabled",
+        "erp_core": "enabled",
+        "pos_core": "enabled",
+        "inventory_basic": "enabled",
+        "inventory_advanced": "enabled",
+        "customer_account_basic": "enabled",
+        "reporting_basic": "enabled",
+        "reporting_advanced": "enabled",
+        "export_basic": "enabled",
+        "export_advanced": "enabled",
+        "accounting_export": "limited",
+        "api_access": "limited",
+        "marketplace_discovery": "enabled",
+        "parasut_discovery": "enabled",
+        "accountant_portal": "optional",
+        "developer_sandbox": "limited",
+        "auto_parts_compatibility": "optional",
+        "audit_compliance": "basic",
+        "mobile_pwa": "enabled",
+        "premium_support": "disabled"
+      },
+      "support_level": "priority",
+      "live_financial_operation": true
+    },
+    {
+      "code": "enterprise",
+      "status": "active",
+      "limits": {
+        "tenant_limit": "custom",
+        "branch_limit": "custom",
+        "user_limit": "custom",
+        "trial_days": 0
+      },
+      "modules": {
+        "identity_core": "enabled",
+        "tenant_core": "enabled",
+        "erp_core": "enabled",
+        "pos_core": "enabled",
+        "inventory_basic": "enabled",
+        "inventory_advanced": "enabled",
+        "customer_account_basic": "enabled",
+        "reporting_basic": "enabled",
+        "reporting_advanced": "enabled",
+        "export_basic": "enabled",
+        "export_advanced": "enabled",
+        "accounting_export": "enabled",
+        "api_access": "enabled",
+        "marketplace_discovery": "enabled",
+        "parasut_discovery": "enabled",
+        "accountant_portal": "optional",
+        "developer_sandbox": "enabled",
+        "auto_parts_compatibility": "enabled",
+        "audit_compliance": "advanced",
+        "mobile_pwa": "enabled",
+        "premium_support": "enabled"
+      },
+      "support_level": "sla",
+      "live_financial_operation": true,
+      "custom_override_allowed": true
+    },
+    {
+      "code": "accountant",
+      "status": "active",
+      "limits": {
+        "workspace_limit": 1,
+        "included_company_limit": 10,
+        "per_company_monthly_try": 149,
+        "tenant_limit": "company_based",
+        "branch_limit": "company_based",
+        "user_limit": "custom"
+      },
+      "modules": {
+        "identity_core": "enabled",
+        "tenant_core": "enabled",
+        "erp_core": "read_or_shared",
+        "pos_core": "disabled",
+        "inventory_basic": "read_or_shared",
+        "inventory_advanced": "read_or_shared",
+        "customer_account_basic": "read_or_shared",
+        "reporting_basic": "enabled",
+        "reporting_advanced": "enabled",
+        "export_basic": "enabled",
+        "export_advanced": "enabled",
+        "accounting_export": "enabled",
+        "api_access": "limited",
+        "marketplace_discovery": "disabled",
+        "parasut_discovery": "future_or_limited",
+        "accountant_portal": "enabled",
+        "developer_sandbox": "disabled",
+        "auto_parts_compatibility": "disabled",
+        "audit_compliance": "basic",
+        "mobile_pwa": "enabled",
+        "premium_support": "disabled"
+      },
+      "support_level": "accountant_support",
+      "live_financial_operation": false,
+      "company_based_billing": true
+    }
+  ],
+  "subscription_state_policy": {
+    "active": "full_package_rights",
+    "trialing": "trial_or_demo_limits",
+    "past_due": "restricted_write_possible",
+    "suspended": "commercial_access_restricted",
+    "cancelled": "access_closed_with_data_retention_policy",
+    "enterprise_hold": "contract_based_decision"
+  },
+  "freeze_policy": {
+    "delete_data": false,
+    "api_access_on_suspend": "disabled",
+    "write_access_on_suspend": "disabled",
+    "read_only_mode_future": true,
+    "export_access_on_suspend": "contract_or_package_based"
+  },
+  "seal": {
+    "FAZ_5_3_ENTITLEMENT_MATRIX_STATUS": "PASS",
+    "FAZ_5_3_ENTITLEMENT_MATRIX_SEAL_STATUS": "SEALED",
+    "FAZ_5_4_READY": "YES"
+  }
+}

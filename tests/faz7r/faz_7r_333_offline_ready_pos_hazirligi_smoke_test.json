@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "333",
+  "domain": "pos.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "pos_offline_screen",
+      "path": "/offline/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_333_OFFLINE_READY_POS_APP_SHELL_START",
+        "PIX2PI_333_NETWORK_STATUS_INDICATOR_START",
+        "PIX2PI_333_OFFLINE_SALE_DRAFT_QUEUE_START"
+      ]
+    },
+    {
+      "name": "pos_offline_runtime",
+      "path": "/assets/offline/pos-offline-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_333_POS_OFFLINE_RUNTIME_START",
+        "tenantDeviceCashierHeaders",
+        "generateIdempotencyKey"
+      ]
+    }
+  ]
+}

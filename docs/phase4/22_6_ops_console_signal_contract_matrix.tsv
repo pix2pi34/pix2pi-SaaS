@@ -1,0 +1,45 @@
+gate	status	note
+previous_22_5	PASS	alert rule catalog prerequisite
+signal_contract	PASS	signals=22 critical=7 high=12
+widget_contract	PASS	widgets=15
+api_contract	PASS	api_endpoints=19
+alert_binding	PASS	alert_bindings=24
+runbook_binding	PASS	runbook_bindings=24
+contract_coverage	PASS	all core contract artifacts ready
+security_signals	PASS	count=4
+runtime_signals	PASS	count=2
+observability_signals	PASS	count=3
+no_runtime_change	PASS	no service/container/ui/api implementation changed
+no_config_change	PASS	no prometheus/grafana/alertmanager/loki/tempo config changed
+body_not_printed	PASS	metric/log/trace/query body not printed
+secret_safe	PASS	secret values not printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+ops_console_code_changed	NO	contract only
+ops_console_api_implemented	NO	contract only
+ops_console_ui_changed	NO	contract only
+prometheus_config_changed	NO	evidence only
+alertmanager_config_changed	NO	evidence only
+grafana_dashboard_changed	NO	evidence only
+grafana_alert_changed	NO	evidence only
+alert_rule_changed	NO	evidence only
+loki_config_changed	NO	evidence only
+tempo_config_changed	NO	evidence only
+otel_config_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+metric_body_printed	NO	secret-safe report
+log_content_printed	NO	secret-safe report
+trace_body_printed	NO	secret-safe report
+query_body_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

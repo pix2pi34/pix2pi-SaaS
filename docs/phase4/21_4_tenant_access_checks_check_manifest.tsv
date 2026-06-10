@@ -1,0 +1,13 @@
+check_id	check_name	required	deny_decision	audit_required	high_risk	tenant_required	status
+tenant_context_required	Tenant context required	YES	DENY_NO_TENANT	YES	YES	YES	contract_only
+jwt_tenant_required	JWT tenant required	YES	DENY_JWT_TENANT_MISSING	YES	YES	YES	contract_only
+header_tenant_match	Header tenant must match JWT tenant	YES	DENY_HEADER_TENANT_MISMATCH	YES	YES	YES	contract_only
+actor_tenant_match	Actor tenant must match request tenant	YES	DENY_ACTOR_TENANT_MISMATCH	YES	YES	YES	contract_only
+resource_tenant_match	Resource tenant must match request tenant	YES	DENY_RESOURCE_TENANT_MISMATCH	YES	YES	YES	contract_only
+route_tenant_scope	Route must stay in tenant scope	YES	DENY_ROUTE_TENANT_SCOPE	YES	YES	YES	contract_only
+permission_tenant_scope	Permission must stay in tenant scope	YES	DENY_PERMISSION_TENANT_SCOPE	YES	YES	YES	contract_only
+role_tenant_scope	Role must stay in tenant scope	YES	DENY_ROLE_TENANT_SCOPE	YES	YES	YES	contract_only
+audit_tenant_scope	Audit payload must stay in tenant scope	YES	DENY_AUDIT_TENANT_SCOPE	YES	YES	YES	contract_only
+support_boundary_tenant_scope	Support access requires tenant boundary	YES	DENY_SUPPORT_BOUNDARY_TENANT	YES	YES	YES	contract_only
+super_admin_boundary_tenant_scope	Super admin access requires tenant boundary	YES	DENY_SUPER_ADMIN_BOUNDARY_TENANT	YES	YES	YES	contract_only
+cross_tenant_default_deny	Cross-tenant access default deny	YES	DENY_CROSS_TENANT	YES	YES	YES	contract_only

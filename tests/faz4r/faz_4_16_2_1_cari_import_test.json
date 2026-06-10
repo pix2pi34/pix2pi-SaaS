@@ -1,0 +1,118 @@
+{
+  "valid_fixture": {
+    "import_batch": {
+      "tenant_id": "pilot_tenant_001",
+      "batch_id": "customer_import_batch_198_001",
+      "import_type": "CUSTOMER",
+      "import_mode": "DRY_RUN",
+      "commit_requested": false,
+      "source_format": "JSON",
+      "total_rows": 3
+    },
+    "rows": [
+      {
+        "tenant_id": "pilot_tenant_001",
+        "customer_code": "CARI-001",
+        "customer_name": "Acme Yedek Parça Ltd Şti",
+        "customer_type": "COMPANY",
+        "customer_kind": "CUSTOMER",
+        "tax_no": "1234567890",
+        "tax_office": "Kadıköy",
+        "mersis_no": "0123456789012345",
+        "phone": "+90 216 111 22 33",
+        "email": "muhasebe@acme.example",
+        "address": {
+          "full_address": "Caferağa Mah. Pilot Sok. No:1 Kadıköy İstanbul",
+          "city": "İstanbul",
+          "district": "Kadıköy"
+        }
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "customer_code": "CARI-002",
+        "customer_name": "Mehmet Yılmaz",
+        "customer_type": "INDIVIDUAL",
+        "customer_kind": "CUSTOMER",
+        "national_id": "12345678901",
+        "phone": "+90 532 111 22 33",
+        "email": "mehmet.yilmaz@example.local",
+        "address": {
+          "full_address": "Atatürk Mah. Pilot Cad. No:2 Üsküdar İstanbul",
+          "city": "İstanbul",
+          "district": "Üsküdar"
+        }
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "customer_code": "CARI-003",
+        "customer_name": "Beta Tedarik A.Ş.",
+        "customer_type": "COMPANY",
+        "customer_kind": "SUPPLIER",
+        "tax_no": "9876543210",
+        "tax_office": "Şişli",
+        "phone": "+90 212 444 55 66",
+        "email": "finans@beta.example",
+        "address": {
+          "full_address": "Merkez Mah. Tedarik Sok. No:3 Şişli İstanbul",
+          "city": "İstanbul",
+          "district": "Şişli"
+        }
+      }
+    ],
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "import_batch": {
+      "tenant_id": "pilot_tenant_001",
+      "batch_id": "",
+      "import_type": "PRODUCT",
+      "import_mode": "COMMIT",
+      "commit_requested": true,
+      "source_format": "TXT",
+      "total_rows": 2
+    },
+    "rows": [
+      {
+        "tenant_id": "other_tenant",
+        "customer_code": "CARI-DUP",
+        "customer_name": "",
+        "customer_type": "COMPANY",
+        "customer_kind": "CUSTOMER",
+        "tax_no": "123",
+        "tax_office": "",
+        "email": "bad-email",
+        "phone": "x",
+        "address": {
+          "full_address": "",
+          "city": ""
+        }
+      },
+      {
+        "tenant_id": "pilot_tenant_001",
+        "customer_code": "CARI-DUP",
+        "customer_name": "Duplicate Cari",
+        "customer_type": "COMPANY",
+        "customer_kind": "BAD_KIND",
+        "tax_no": "123",
+        "tax_office": "",
+        "address": {
+          "full_address": "Adres var",
+          "city": "İstanbul"
+        }
+      }
+    ],
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Design Token Finalizasyonu</title>
+  <link rel="stylesheet" href="./design_tokens.css">
+</head>
+<body>
+  <main class="pix2pi-page">
+    <header class="pix2pi-page-header">
+      <div>
+        <h1 class="pix2pi-page-title">Pix2pi Design Token Finalizasyonu</h1>
+        <p class="pix2pi-page-subtitle">FAZ 1-4.1 — WEB-L1 UI Foundation / Design System</p>
+      </div>
+      <span class="pix2pi-badge ok">WEB-L1 READY</span>
+    </header>
+
+    <section class="pix2pi-grid">
+      <article class="pix2pi-card">
+        <section class="pix2pi-token-section">
+          <h2 class="pix2pi-card-title">Color tokens</h2>
+          <div class="pix2pi-token-grid" id="pix2piColorTokenGrid"></div>
+        </section>
+
+        <section class="pix2pi-token-section">
+          <h2 class="pix2pi-card-title">Typography scale</h2>
+          <div class="pix2pi-token-grid" id="pix2piTypographyTokenGrid"></div>
+        </section>
+
+        <section class="pix2pi-token-section">
+          <h2 class="pix2pi-card-title">Spacing tokens</h2>
+          <div class="pix2pi-token-grid" id="pix2piSpacingTokenGrid"></div>
+        </section>
+
+        <section class="pix2pi-token-section">
+          <h2 class="pix2pi-card-title">Radius / shadow tokens</h2>
+          <div class="pix2pi-token-grid" id="pix2piRadiusShadowTokenGrid"></div>
+        </section>
+      </article>
+
+      <aside class="pix2pi-card">
+        <h2 class="pix2pi-card-title">Component usage doc</h2>
+        <p class="pix2pi-card-text">Design tokenlar bu temel bileşenlerde kullanılır.</p>
+
+        <div class="pix2pi-token-section">
+          <button class="pix2pi-button primary" type="button">pix2pi-button</button>
+          <span class="pix2pi-badge ok">pix2pi-badge</span>
+          <input class="pix2pi-input" value="pix2pi-input" aria-label="Demo input">
+
+          <article class="pix2pi-state-card">
+            pix2pi-state-card — loading/error/empty/retry state yüzeyleri için temel kart.
+          </article>
+
+          <table class="pix2pi-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>pix2pi-card</td>
+                <td>PASS</td>
+              </tr>
+              <tr>
+                <td>pix2pi-table</td>
+                <td>PASS</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <button class="pix2pi-button primary" id="runDesignTokenTestsButton" type="button">Design token testlerini çalıştır</button>
+        <pre class="pix2pi-log" id="pix2piDesignTokenTestOutput">DESIGN_TOKEN_TEST_LOADING</pre>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./design_tokens.js"></script>
+</body>
+</html>

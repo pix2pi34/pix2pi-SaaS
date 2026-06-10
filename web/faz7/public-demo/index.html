@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pix2pi SaaS ERP | POS, Stok, Cari, Rapor ve Entegrasyon Hazirligi</title>
+  <meta name="description" content="Pix2pi; isletmeler icin SaaS ERP, POS hazirligi, stok, cari, rapor, muhasebeci portal ve entegrasyon hazirligi sunar.">
+  <link rel="canonical" href="https://pix2pi.com.tr/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Pix2pi",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "SaaS ERP, POS hazirligi, stok, cari, rapor, muhasebeci portal ve entegrasyon hazirligi.",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "TRY",
+      "availability": "https://schema.org/PreOrder"
+    }
+  }
+  </script>
+  <style>
+    :root { color-scheme: dark; font-family: Arial, sans-serif; }
+    body { margin: 0; background: #07111f; color: #eef6ff; }
+    header, section, footer { padding: 32px; max-width: 1120px; margin: auto; }
+    .hero { padding-top: 64px; }
+    .badge { display: inline-block; padding: 8px 12px; border: 1px solid #3b82f6; border-radius: 999px; color: #93c5fd; }
+    h1 { font-size: clamp(34px, 6vw, 72px); line-height: 1.02; margin: 18px 0; }
+    p { color: #c7d2fe; font-size: 18px; line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 20px; padding: 20px; }
+    .cta { display: inline-block; margin-top: 16px; padding: 14px 20px; background: #2563eb; color: white; border-radius: 14px; text-decoration: none; font-weight: 700; }
+    input, select, textarea { width: 100%; box-sizing: border-box; margin: 8px 0 14px; padding: 12px; border-radius: 12px; border: 1px solid #334155; background: #0f172a; color: white; }
+    label { font-weight: 700; color: #dbeafe; }
+    .note { color: #93c5fd; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <span class="badge">FAZ 7-7 Public Website / Landing / Demo Flow</span>
+    <h1>Pix2pi ile isletmeni SaaS ERP, POS ve entegrasyon hazirligina tasi.</h1>
+    <p>Stok, cari, rapor, POS hazirligi, muhasebeci portal ve marketplace entegrasyonlari icin moduler ticari platform.</p>
+    <a class="cta" href="#demo">Demo Talep Et</a>
+  </header>
+
+  <section>
+    <h2>Urun Degeri</h2>
+    <div class="grid">
+      <div class="card"><h3>SaaS ERP</h3><p>Tenant bazli, paketlenebilir, ticari runtime'a hazir ERP yuzeyi.</p></div>
+      <div class="card"><h3>POS Hazirligi</h3><p>Perakende ve market operasyonlari icin POS-ready temel.</p></div>
+      <div class="card"><h3>Raporlama</h3><p>Stok, cari ve ticari veriler icin raporlama yuzeyi hazirligi.</p></div>
+      <div class="card"><h3>Entegrasyon</h3><p>Marketplace, webhook, public API ve Paraşut benzeri entegrasyonlara hazirlik.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Paketler</h2>
+    <div class="grid">
+      <div class="card"><h3>Starter</h3><p>Kucuk isletmeler ve pilot kullanimlar.</p></div>
+      <div class="card"><h3>Pro</h3><p>Gunluk aktif isletme operasyonlari.</p></div>
+      <div class="card"><h3>Enterprise</h3><p>Cok subeli ve yuksek hacimli firmalar.</p></div>
+      <div class="card"><h3>Muhasebeci</h3><p>Cok firmali muhasebeci erisim modeli.</p></div>
+      <div class="card"><h3>Marketplace Integration</h3><p>Pazaryeri, webhook ve API entegrasyonlari.</p></div>
+    </div>
+  </section>
+
+  <section id="demo">
+    <h2>Demo Talep Formu</h2>
+    <p class="note">Bu sayfa production public launch degildir; FAZ 7-7 static UI checkpoint'tir.</p>
+    <form>
+      <label>Isletme Adi</label>
+      <input name="business_name" placeholder="Ornek Market">
+      <label>Yetkili Kisi</label>
+      <input name="contact_name" placeholder="Ad Soyad">
+      <label>E-posta</label>
+      <input name="email" type="email" placeholder="demo@example.com">
+      <label>Telefon</label>
+      <input name="phone" placeholder="+90...">
+      <label>Firma Olcegi</label>
+      <select name="company_size">
+        <option>1-10</option>
+        <option>11-50</option>
+        <option>51-250</option>
+        <option>250+</option>
+      </select>
+      <label>Talep Edilen Paket</label>
+      <select name="requested_plan">
+        <option>starter</option>
+        <option>pro</option>
+        <option>enterprise</option>
+        <option>accountant</option>
+        <option>marketplace</option>
+      </select>
+      <label>Mesaj</label>
+      <textarea name="message" rows="4" placeholder="Ihtiyacinizi kisaca yazin"></textarea>
+      <label><input type="checkbox" name="consent_accepted" style="width:auto"> KVKK ve iletisim on hazirlik iznini kabul ediyorum.</label>
+      <a class="cta" href="#">Demo Talebini Hazirla</a>
+    </form>
+  </section>
+
+  <footer>
+    <p class="note">FAZ_7_7_WEB_STATUS=READY | Public launch icin legal, KVKK ve Cloudflare green mode gate gerekir.</p>
+  </footer>
+</body>
+</html>

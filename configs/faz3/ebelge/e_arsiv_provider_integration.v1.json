@@ -1,0 +1,29 @@
+{
+  "phase": "FAZ_3_10_3_2_E_ARSIV_PROVIDER_INTEGRATION",
+  "provider_code": "SIM_GIB_EARSIV",
+  "provider_mode": "SIMULATION",
+  "real_api_gate_open": false,
+  "production_approved": false,
+  "operations": [
+    "SEND",
+    "STATUS_CHECK",
+    "CANCEL",
+    "DOWNLOAD_PDF",
+    "DOWNLOAD_UBL"
+  ],
+  "security_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "ubl_hash_required_for_send": true,
+    "pdf_hash_required_for_send": true,
+    "cancel_reason_required": true
+  },
+  "live_policy": {
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_APPROVALS",
+    "production_send_status": "DENIED_BY_DEFAULT",
+    "secret_policy": "CREDENTIAL_REF_ONLY_NO_RAW_SECRET"
+  },
+  "next_gate": "FAZ_3_10_3_3_E_ADISYON_PROVIDER_INTEGRATION"
+}

@@ -1,0 +1,70 @@
+{
+  "app.name": "Pix2pi",
+  "panel.title": "پنل کسب‌وکار",
+  "panel.dashboard": "داشبورد",
+  "panel.customer_surface": "سطح استفاده مشتری",
+  "panel.language_switcher": "انتخاب زبان",
+  "panel.tenant_indicator": "تنانت",
+  "auth.login.title": "ورود",
+  "auth.login.email": "ایمیل",
+  "auth.login.password": "رمز عبور",
+  "auth.login.submit": "ورود",
+  "auth.tenant_select.title": "انتخاب کسب‌وکار",
+  "auth.errors.INVALID_CREDENTIALS": "ایمیل یا رمز عبور نادرست است.",
+  "auth.errors.TENANT_REQUIRED": "برای ادامه باید کسب‌وکار انتخاب شود.",
+  "auth.errors.TENANT_FORBIDDEN": "این کاربر به کسب‌وکار انتخاب‌شده دسترسی ندارد.",
+  "auth.errors.SESSION_EXPIRED": "نشست منقضی شد. لطفاً دوباره وارد شوید.",
+  "auth.errors.NETWORK_ERROR": "ارتباط با سرور برقرار نشد. لطفاً دوباره تلاش کنید.",
+  "auth.errors.UNKNOWN": "فرآیند ورود کامل نشد.",
+  "pos.title": "صفحه فروش POS",
+  "pos.cart": "سبد",
+  "pos.payment": "پرداخت",
+  "marketplace.title": "بازارچه",
+  "marketplace.product_list": "فهرست محصولات",
+  "marketplace.order": "سفارش",
+  "notification.welcome": "به Pix2pi خوش آمدید.",
+  "email.subject.welcome": "حساب Pix2pi شما آماده است",
+  "error.unauthorized": "نشست تأیید نشد.",
+  "error.forbidden": "دسترسی مجاز نیست.",
+  "format.currency": "قالب پول",
+  "format.date": "قالب تاریخ",
+  "format.number": "قالب عدد",
+  "layout.direction": "rtl",
+  "layout.font_family": "Noto Naskh Arabic, Noto Sans Arabic, Vazirmatn, Tahoma, Arial, sans-serif",
+  "helpCenter": {
+    "title": "مرکز راهنما",
+    "subtitle": "اسناد شروع کار با Pix2pi",
+    "login": {
+      "title": "ورود به سیستم",
+      "body": "با ایمیل و رمز عبور وارد پنل شوید و در صورت نیاز tenant کسب‌وکار را انتخاب کنید."
+    },
+    "business": {
+      "title": "ایجاد کسب‌وکار",
+      "body": "نام کسب‌وکار، اطلاعات مالیاتی، آدرس، حوزه فعالیت، زبان و ارز پیش‌فرض را وارد کنید."
+    },
+    "party": {
+      "title": "افزودن طرف حساب",
+      "body": "اطلاعات مشتری یا تأمین‌کننده را از صفحه طرف حساب وارد کنید و اطلاعات مالیاتی و آدرس را بررسی کنید."
+    },
+    "product": {
+      "title": "افزودن محصول",
+      "body": "نام محصول، بارکد، SKU، دسته‌بندی، واحد، قیمت فروش، مالیات و موجودی را وارد کنید."
+    },
+    "posSale": {
+      "title": "ثبت فروش POS",
+      "body": "در صفحه POS صندوق را انتخاب کنید، محصول را به سبد اضافه کنید، روش پرداخت را انتخاب و فروش را تکمیل کنید."
+    },
+    "report": {
+      "title": "مشاهده گزارش",
+      "body": "گزارش فروش روزانه، موجودی، مانده طرف حساب و مالیات را مشاهده کنید."
+    },
+    "language": {
+      "title": "تغییر زبان",
+      "body": "از فهرست زبان‌ها ترکی، عثمانی، عربی، فارسی یا انگلیسی را انتخاب کنید."
+    },
+    "smoke": {
+      "title": "تست مرکز راهنما",
+      "body": "اسناد مرکز راهنما با URL واقعی، کلیدهای i18n و ثبت smoke در DB بررسی می‌شوند."
+    }
+  }
+}

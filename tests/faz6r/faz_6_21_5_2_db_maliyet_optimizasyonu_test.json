@@ -1,0 +1,39 @@
+{
+  "expected_dependency": "FAZ_6_21_5_1",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_db_resize_allowed": false,
+  "expected_replica_delete_allowed": false,
+  "expected_index_drop_allowed": false,
+  "expected_partition_drop_allowed": false,
+  "expected_retention_delete_allowed": false,
+  "expected_backup_delete_allowed": false,
+  "expected_required_controls": [
+    "compute_cost_dependency_gate",
+    "db_inventory_model",
+    "db_workload_classification_policy",
+    "connection_pool_review_policy",
+    "query_cost_review_policy",
+    "index_cost_review_policy",
+    "replica_cost_review_policy",
+    "retention_cost_review_policy",
+    "storage_growth_review_policy",
+    "backup_cost_review_policy",
+    "performance_slo_guard",
+    "data_safety_guard",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "dry_run_cost_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_workload_classes": [
+    "primary_oltp",
+    "read_replica",
+    "reporting_mart",
+    "backup_archive"
+  ],
+  "expected_min_recommendation_count": 5,
+  "expected_status": "dry_run_only_no_db_mutation",
+  "expected_next_step": "FAZ_6_21_5_3"
+}

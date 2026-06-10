@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "350",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "panel_access_test_screen",
+      "path": "/panel-access-test/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_350_PANEL_ACCESS_TEST_APP_SHELL_START",
+        "PIX2PI_350_PANEL_ROUTE_AVAILABILITY_CHECKLIST_START",
+        "PIX2PI_350_PANEL_ACCESS_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "panel_access_test_runtime",
+      "path": "/assets/panel-access-test/panel-access-test-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_350_PANEL_ACCESS_TEST_RUNTIME_START",
+        "panelAccessScopeHeaders",
+        "buildPanelAccessRuntimeContract"
+      ]
+    }
+  ]
+}

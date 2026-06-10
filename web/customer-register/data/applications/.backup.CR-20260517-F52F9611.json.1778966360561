@@ -1,0 +1,46 @@
+{
+  "marker": "CUSTOMER_REGISTER_PENDING_APPLICATION_MARKER",
+  "application_id": "CR-20260517-F52F9611",
+  "status": "PENDING",
+  "application_status": "PENDING",
+  "source": "customer-register-live-submit-api",
+  "created_at": "2026-05-16T21:18:56.565Z",
+  "updated_at": "2026-05-16T21:18:56.565Z",
+  "company_name": "Pix2pi Register Submit Recovery Smoke",
+  "tax_office": "",
+  "tax_number": "9999999999",
+  "owner_name": "Recovery Smoke User",
+  "email": "register-submit-recovery-20260517_001853@pix2pi.local",
+  "phone": "+905550000000",
+  "password_setup": {
+    "provided": true,
+    "algorithm": "sha256-demo-salted",
+    "salt": "2eb84ffd02bd9fde124447e0219d0c4b",
+    "hash": "e2d9d2b5f8ee827dda390cb22a233bb5a096f5c2d11b1788d817eb86bef000ee",
+    "storage_policy": "RAW_PASSWORD_NOT_STORED"
+  },
+  "approval_flow": {
+    "owner_admin_required": true,
+    "owner_admin_marker": "OWNER_REGISTER_APPROVALS_ADMIN_MARKER",
+    "tenant_create_real_create": false,
+    "tenant_create_status": "WAITING_OWNER_APPROVAL",
+    "note": "Başvuru PENDING olarak kaydedildi. Tenant sadece Pix2pi owner admin onayı ve sonraki aktivasyon adımıyla açılır."
+  },
+  "audit_trail": [
+    {
+      "at": "2026-05-16T21:18:56.565Z",
+      "actor": "CUSTOMER_REGISTER_FORM",
+      "action": "CREATE_PENDING_APPLICATION",
+      "to_status": "PENDING",
+      "tenant_created": false
+    }
+  ],
+  "raw_client_payload_keys": [
+    "company_name",
+    "email",
+    "owner_name",
+    "password",
+    "phone",
+    "tax_number"
+  ]
+}

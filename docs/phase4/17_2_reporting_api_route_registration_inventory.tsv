@@ -1,0 +1,12 @@
+component	path	status
+runtime_package	internal/platform/reporting/runtime	CREATED
+registration	internal/platform/reporting/runtime/registration.go	CREATED
+tests	internal/platform/reporting/runtime/registration_test.go	CREATED
+route	GET /api/v1/reporting/operational/summary	REGISTERED
+route	GET /api/v1/reporting/operational/daily-metrics	REGISTERED
+route	GET /api/v1/reporting/inventory/status	REGISTERED
+route	GET /api/v1/reporting/documents/work-queue	REGISTERED
+route	GET /api/v1/reporting/reconciliation/status	REGISTERED
+route	GET /api/v1/reporting/projections/state	REGISTERED
+safety	no runtime start	PASS
+safety	no db mutation	PASS

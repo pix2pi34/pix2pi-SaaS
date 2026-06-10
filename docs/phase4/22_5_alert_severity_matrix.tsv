@@ -1,0 +1,5 @@
+severity	meaning	urgency	escalation_level	default_channel	response_target	record_policy
+CRITICAL	system_down_or_security_or_data_loss	immediate	L1_immediate	ops_console + phone/sms + chat	0-5m	incident_record_required
+HIGH	soon_user_impact_or_data_pipeline_risk	fast	L2_fast	ops_console + chat + email	5-15m	incident_or_task_required
+MEDIUM	performance_or_capacity_watch	watch	L3_watch	ops_console + chat	15-60m	task_or_review_required
+LOW	hygiene_or_information	normal	L4_review	ops_console only	daily/weekly	review_required

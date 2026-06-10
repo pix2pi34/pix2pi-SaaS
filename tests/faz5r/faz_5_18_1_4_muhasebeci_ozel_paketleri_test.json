@@ -1,0 +1,37 @@
+{
+  "test_name": "faz_5_18_1_4_muhasebeci_ozel_paketleri_test",
+  "phase": "FAZ_5_18_1_4",
+  "expected": {
+    "required_package_count": 4,
+    "required_segment_count": 4,
+    "internal_accountant_package_ready": true,
+    "production_package_published": false,
+    "real_customer_billing_enabled": false,
+    "payment_collection_enabled": false,
+    "accountant_portal_commercial_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_package_keys": [
+    "accountant_starter_package",
+    "accountant_pro_package",
+    "accountant_enterprise_package",
+    "pricing_validation_deferred_marker"
+  ],
+  "must_have_segments": [
+    "ACCOUNTANT_STARTER",
+    "ACCOUNTANT_PRO",
+    "ACCOUNTANT_ENTERPRISE",
+    "VALIDATION_NEXT"
+  ],
+  "must_have_flags": [
+    "requires_package_code",
+    "requires_currency",
+    "requires_monthly_base_fee",
+    "requires_per_company_fee",
+    "requires_vat_policy",
+    "requires_company_assignment_policy",
+    "requires_monthly_revalidation",
+    "blocks_production_publish"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "phase": "FAZ_7_8M_3",
+  "module": "MIKRO_IMPORT_PACKAGE_DELIVERY_CONTRACT",
+  "module_name": "Mikro Import Package / Delivery Contract Readiness",
+  "provider": {
+    "provider_id": "mikro",
+    "provider_name": "Mikro",
+    "provider_category": "ACCOUNTING_EXPORT_PROVIDER",
+    "connector_family": "MIKRO_DRY_RUN_CONNECTOR"
+  },
+  "delivery_contract": {
+    "delivery_contract_mode": "IMPORT_PACKAGE_DELIVERY_CONTRACT_ONLY",
+    "delivery_runtime_mode": "DRY_RUN_DELIVERY_PLACEHOLDER_ONLY",
+    "direction": "PIX2PI_TO_MIKRO",
+    "source_system": "PIX2PI_ERP",
+    "target_system": "MIKRO_ACCOUNTING_IMPORT_DRY_RUN",
+    "delivery_gate": "READY_AFTER_TEST_AND_AUDIT_PASS",
+    "delivery_policy": "NO_EXTERNAL_DELIVERY_IN_THIS_PHASE",
+    "receipt_policy": "DRY_RUN_RECEIPT_ONLY",
+    "checksum_verification": "REQUIRED",
+    "virtual_content_verification": "REQUIRED"
+  },
+  "closed_real_operations": {
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "real_delivery_channel_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE"
+  },
+  "supported_delivery_channels": [
+    "DRY_RUN_MANIFEST_ONLY",
+    "MANUAL_REVIEW_PLACEHOLDER",
+    "SFTP_PLACEHOLDER",
+    "API_PLACEHOLDER"
+  ],
+  "required_context_fields": [
+    "tenant_id",
+    "actor_user_id",
+    "correlation_id",
+    "delivery_id",
+    "package_id"
+  ],
+  "forbidden_fields": [
+    "client_secret",
+    "access_token",
+    "refresh_token",
+    "password",
+    "real_provider_endpoint",
+    "real_delivery_endpoint",
+    "secret",
+    "token"
+  ],
+  "audit": {
+    "go_test_required": true,
+    "real_implementation_audit_required": true,
+    "hardcoded_final_ok_block_allowed": false,
+    "counter_based_final_status_required": true
+  },
+  "phase_gate": {
+    "faz_7_8m_3_import_delivery_gate": "READY_AFTER_TEST_AND_AUDIT_PASS",
+    "faz_7_8m_4_ready": "YES_AFTER_PASS",
+    "faz_7_9_hold_status": "HOLD_UNTIL_INTEGRATION_FAMILY_DONE"
+  }
+}

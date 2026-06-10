@@ -1,0 +1,45 @@
+{
+  "test_name": "faz_5_18_8_3_support_readiness_test",
+  "phase": "FAZ_5_18_8_3",
+  "expected": {
+    "required_item_count": 8,
+    "required_domain_count": 8,
+    "internal_support_readiness_ready": true,
+    "production_support_enabled": false,
+    "real_customer_support_open": false,
+    "public_support_enabled": false,
+    "customer_notification_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_item_keys": [
+    "support_sla_ready",
+    "support_channel_ready",
+    "support_templates_ready",
+    "support_escalation_ready",
+    "support_incident_ready",
+    "support_ops_tests_ready",
+    "commercial_legal_alignment_ready",
+    "support_launch_gate_ready"
+  ],
+  "must_have_domains": [
+    "SLA",
+    "CHANNEL",
+    "TEMPLATE",
+    "ESCALATION",
+    "INCIDENT",
+    "OPS_TEST",
+    "COMMERCIAL_LEGAL",
+    "LAUNCH_GATE"
+  ],
+  "must_have_flags": [
+    "internal_ready",
+    "has_evidence",
+    "has_counter_based_audit",
+    "requires_tenant_id",
+    "requires_correlation_id",
+    "requires_audit_trail",
+    "blocks_production_support",
+    "blocks_real_customer_notification"
+  ]
+}

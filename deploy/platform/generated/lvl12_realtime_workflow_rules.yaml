@@ -1,0 +1,18 @@
+version: v1
+realtime_rules:
+  core_enabled: true
+  websocket_enabled: true
+  sse_enabled: true
+  channel_mode: tenant_scoped
+  heartbeat_seconds: 30
+  max_connections_per_tenant: 500
+  default_topic: platform-events
+
+workflow_rules:
+  engine_enabled: true
+  default_timeout_seconds: 900
+  retry_max: 3
+  compensation_enabled: true
+  approval_enabled: true
+  observability_enabled: true
+  default_queue: workflow-default

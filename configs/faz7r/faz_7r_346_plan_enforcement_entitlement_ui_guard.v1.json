@@ -1,0 +1,66 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "346",
+  "name": "Plan enforcement / entitlement UI guard",
+  "surface": "merchant_panel_commercial",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/entitlements/",
+  "runtime_path": "/assets/entitlements/panel-entitlements-runtime.js",
+  "depends_on": [
+    "341 - Paket / abonelik ekranı",
+    "342 - Kullanım hakkı / kota ekranı",
+    "343 - Ödeme / billing ekranı",
+    "344 - Fatura geçmişi ekranı",
+    "345 - Admin commercial panel"
+  ],
+  "backend_contract": {
+    "entitlement_snapshot_endpoint": "/api/commercial/entitlements/snapshot",
+    "entitlement_decision_endpoint": "/api/commercial/entitlements/decision",
+    "enforcement_audit_endpoint": "/api/commercial/entitlements/audit",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "user_session_header": "X-User-Session",
+    "entitlement_scope_header": "X-Entitlement-Scope"
+  },
+  "runtime_contract": {
+    "real_backend_enforcement_enabled": false,
+    "real_plan_change_enabled": false,
+    "real_payment_collection_enabled": false,
+    "real_tenant_suspend_enabled": false,
+    "ui_guard_enabled": true,
+    "dry_run_enforcement_enabled": true,
+    "fallback_entitlement_snapshot_enabled": true,
+    "ready_for_step_347": true
+  },
+  "decision_contract": {
+    "decision_values": [
+      "ALLOW",
+      "DISABLE",
+      "UPGRADE_REQUIRED",
+      "DENY"
+    ],
+    "default_mode": "DRY_RUN_UI_GUARD",
+    "audit_event_type": "ENTITLEMENT_UI_GUARD_DECISION"
+  },
+  "required_capabilities": [
+    "entitlement_ui_guard_app_shell",
+    "tenant_user_role_plan_context",
+    "feature_entitlement_matrix",
+    "ui_route_access_guard_preview",
+    "pos_entitlement_guard",
+    "marketplace_entitlement_guard",
+    "product_user_store_quota_guard_bridge",
+    "disabled_action_buttons_by_entitlement",
+    "upgrade_required_banner",
+    "plan_enforcement_dry_run_mode",
+    "enforcement_audit_event_preview",
+    "permission_entitlement_decision_contract",
+    "tenant_user_action_scope_guard",
+    "frontend_guard_runtime_data_contract",
+    "i18n_ready_entitlement_marker",
+    "seo_opengraph_entitlement_placeholder",
+    "entitlement_ui_guard_smoke_test"
+  ],
+  "next_step": "347 - Pilot müşteri tenant açılışı"
+}

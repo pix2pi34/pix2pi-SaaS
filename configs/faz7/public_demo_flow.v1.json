@@ -1,0 +1,86 @@
+{
+  "schema_version": "public_demo_flow.v1",
+  "phase": "FAZ_7",
+  "step": "7-7",
+  "runtime_status": "READY",
+  "source_catalog": "configs/faz7/product_plan_catalog.v1.json",
+  "source_onboarding": "configs/faz7/tenant_onboarding.v1.json",
+  "source_billing": "configs/faz7/billing_readiness.v1.json",
+  "next_step": "7-8 Marketplace / Integration Catalog Foundation",
+  "public_launch_status": "NOT_PUBLIC_PRODUCTION_LAUNCH",
+  "landing_sections": [
+    "hero",
+    "product_value",
+    "plans",
+    "demo_request",
+    "trial_cta",
+    "integration_cta",
+    "seo_schema"
+  ],
+  "plans_visible": [
+    "starter",
+    "pro",
+    "enterprise",
+    "accountant",
+    "marketplace"
+  ],
+  "required_demo_fields": [
+    "request_id",
+    "business_name",
+    "contact_name",
+    "email",
+    "phone",
+    "company_size",
+    "requested_plan",
+    "message",
+    "consent_accepted"
+  ],
+  "lead_statuses": [
+    "NEW",
+    "QUALIFIED",
+    "READY_FOR_ONBOARDING",
+    "REJECTED"
+  ],
+  "cta_targets": [
+    "request_demo",
+    "start_trial",
+    "marketplace_discovery",
+    "integration_catalog",
+    "accountant_portal"
+  ],
+  "consent_gate": {
+    "kvkk_consent_required": true,
+    "commercial_contact_consent_required": true
+  },
+  "seo": {
+    "title": "Pix2pi SaaS ERP | POS, Stok, Cari, Rapor ve Entegrasyon Hazirligi",
+    "description": "Pix2pi; isletmeler icin SaaS ERP, POS hazirligi, stok, cari, rapor, muhasebeci portal ve entegrasyon hazirligi sunar.",
+    "schema_type": "SoftwareApplication",
+    "application_category": "BusinessApplication"
+  },
+  "public_safety_gates": {
+    "real_payment_enabled": false,
+    "public_production_launch_enabled": false,
+    "requires_legal_approval_before_public_launch": true,
+    "requires_kvkk_approval_before_public_forms": true,
+    "requires_cloudflare_green_mode_before_public_launch": true
+  },
+  "decision_model": {
+    "allow_status": "ALLOW",
+    "deny_status": "DENY",
+    "reason_codes": [
+      "ALLOW_DEMO_REQUEST_READY",
+      "ALLOW_READY_FOR_ONBOARDING",
+      "DENY_REQUEST_REQUIRED",
+      "DENY_BUSINESS_REQUIRED",
+      "DENY_CONTACT_REQUIRED",
+      "DENY_EMAIL_INVALID",
+      "DENY_PHONE_REQUIRED",
+      "DENY_COMPANY_SIZE_REQUIRED",
+      "DENY_PLAN_REQUIRED",
+      "DENY_PLAN_UNKNOWN",
+      "DENY_CONSENT_REQUIRED",
+      "DENY_PUBLIC_LAUNCH_DISABLED"
+    ]
+  }
+}

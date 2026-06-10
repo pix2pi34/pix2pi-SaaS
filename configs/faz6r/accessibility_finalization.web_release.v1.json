@@ -1,0 +1,97 @@
+{
+  "version": "web_release.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_22_2",
+  "status": "dry_run_only_no_accessibility_mutation",
+  "checks": [
+    {
+      "check_id": "a11y-auth-login-critical-flow",
+      "surface": "auth_login",
+      "wcag_target": "WCAG_2_2_AA",
+      "keyboard_status": "REQUIRED",
+      "focus_status": "REQUIRED",
+      "contrast_status": "AA_REQUIRED",
+      "semantic_status": "REQUIRED",
+      "aria_status": "REQUIRED_FOR_ERRORS",
+      "screen_reader_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "check_id": "a11y-tenant-panel-shell-navigation",
+      "surface": "tenant_panel_shell",
+      "wcag_target": "WCAG_2_2_AA",
+      "keyboard_status": "REQUIRED",
+      "focus_status": "SKIP_LINK_AND_VISIBLE_FOCUS_REQUIRED",
+      "contrast_status": "AA_REQUIRED",
+      "semantic_status": "LANDMARKS_REQUIRED",
+      "aria_status": "REVIEW_ONLY",
+      "screen_reader_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "check_id": "a11y-approval-inbox-actions",
+      "surface": "approval_inbox",
+      "wcag_target": "WCAG_2_2_AA",
+      "keyboard_status": "ACTION_FLOW_REQUIRED",
+      "focus_status": "FOCUS_RESTORE_REQUIRED",
+      "contrast_status": "AA_REQUIRED",
+      "semantic_status": "BUTTONS_AND_STATUS_REQUIRED",
+      "aria_status": "LIVE_STATUS_REQUIRED",
+      "screen_reader_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "check_id": "a11y-workflow-monitor-status",
+      "surface": "workflow_monitor",
+      "wcag_target": "WCAG_2_2_AA",
+      "keyboard_status": "REQUIRED",
+      "focus_status": "REQUIRED",
+      "contrast_status": "AA_REQUIRED",
+      "semantic_status": "STATUS_REGION_REQUIRED",
+      "aria_status": "LIVE_REGION_REVIEW",
+      "screen_reader_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "check_id": "a11y-reporting-tables-grid",
+      "surface": "reporting_tables",
+      "wcag_target": "WCAG_2_2_AA",
+      "keyboard_status": "TABLE_NAVIGATION_REQUIRED",
+      "focus_status": "REQUIRED",
+      "contrast_status": "AA_REQUIRED",
+      "semantic_status": "TH_SCOPE_REQUIRED",
+      "aria_status": "SORT_STATE_REQUIRED",
+      "screen_reader_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "check_id": "a11y-public-landing",
+      "surface": "public_landing",
+      "wcag_target": "WCAG_2_2_AA",
+      "keyboard_status": "REQUIRED",
+      "focus_status": "REQUIRED",
+      "contrast_status": "AA_REQUIRED",
+      "semantic_status": "LANDMARKS_REQUIRED",
+      "aria_status": "REVIEW_ONLY",
+      "screen_reader_status": "REQUIRED",
+      "risk_level": "medium",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_22_3",
+    "name": "Frontend performance budget",
+    "runtime_mutation_allowed_now": false
+  }
+}

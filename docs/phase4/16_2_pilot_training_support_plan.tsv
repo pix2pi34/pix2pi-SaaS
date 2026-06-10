@@ -1,0 +1,9 @@
+training_name	target_role	scope	owner_role	required_by	attendance_required	implementation_status	note
+tenant_admin_training	tenant_admin	users/roles/settings/reports/audit	trainer	before_uat	YES	READY_FOR_IMPLEMENTATION	contract_only
+cashier_training	cashier	sales/refund/cancel/basic product lookup	trainer	before_uat	YES	READY_FOR_IMPLEMENTATION	contract_only
+operator_training	tenant_operator	product/stock/customer/vendor/task	trainer	before_uat	YES	READY_FOR_IMPLEMENTATION	contract_only
+accountant_training	accountant	journal/ledger/report/export review	trainer	before_go_live	YES	READY_FOR_IMPLEMENTATION	contract_only
+approver_training	tenant_approver	approval/reject/reason/audit	trainer	before_uat	YES	READY_FOR_IMPLEMENTATION	contract_only
+support_handoff	support_agent	issue intake/escalation/feedback loop	support	before_uat	YES	READY_FOR_IMPLEMENTATION	contract_only
+ops_handoff	ops_admin	health/backlog/dlq/incident loop	ops_admin	before_go_live	YES	READY_FOR_IMPLEMENTATION	contract_only
+security_handoff	security_admin	tenant isolation/rbac/audit review	security_admin	before_go_live	YES	READY_FOR_IMPLEMENTATION	contract_only

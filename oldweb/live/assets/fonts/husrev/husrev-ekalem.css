@@ -1,0 +1,33 @@
+/* PIX2PI_HUSREV_EKALEM_FONT_BINDING_START */
+
+@font-face {
+  font-family: "Pix2piHusrevDuz";
+  src: url("/assets/fonts/husrev/eKalemDuz-Regular_150.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pix2piHusrevTezyinat";
+  src: url("/assets/fonts/husrev/eKalemTezyinat-Regular_2.ttf") format("truetype");
+  font-display: swap;
+}
+
+.pix2pi-husrev-rtl {
+  font-family: "Pix2piHusrevDuz", "Amiri", "Scheherazade New", serif;
+  direction: rtl;
+  text-align: right;
+  font-feature-settings: "liga" 1, "calt" 1;
+}
+
+.pix2pi-husrev-title {
+  font-family: "Pix2piHusrevTezyinat", "Pix2piHusrevDuz", serif;
+  direction: rtl;
+  text-align: right;
+  font-feature-settings: "liga" 1, "calt" 1;
+}
+
+.pix2pi-no-husrev {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* PIX2PI_HUSREV_EKALEM_FONT_BINDING_END */

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi admin commercial panel" />
+  <meta property="og:title" content="Pix2pi Admin Commercial Panel" />
+  <meta property="og:description" content="Platform yöneticisi için ticari yönetim, approval gate ve subscription görünüm yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Admin Commercial Panel</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --blue: #2563eb;
+      --ok: #16a34a;
+      --warn: #f59e0b;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(245,158,11,.13), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1360px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    button:disabled {
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric, .admin-commercial-card, .admin-commercial-row {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .metric strong, .admin-commercial-card em {
+      font-style: normal;
+      font-weight: 950;
+      font-size: 26px;
+      color: #166534;
+      letter-spacing: -0.04em;
+    }
+
+    .admin-commercial-row {
+      grid-template-columns: minmax(0, 1.4fr) auto auto auto;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .admin-commercial-row span, .admin-commercial-row em {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 950;
+      font-size: 12px;
+      font-style: normal;
+    }
+
+    .admin-commercial-row em {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .admin-commercial-row { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_345_ADMIN_COMMERCIAL_APP_SHELL_START -->
+  <main class="shell" data-step="345" data-surface="panel-admin-commercial">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 345</span>
+      <h1 data-i18n="admin_commercial.title">Admin commercial panel</h1>
+      <p data-i18n="admin_commercial.description">Platform yöneticisi için ticari durum, onay gate, subscription ve provider görünüm yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_345_PLATFORM_ADMIN_CONTEXT_START -->
+    <section class="card guard" data-widget="platform_admin_context">
+      <h2>Platform admin context</h2>
+      <div class="grid-4">
+        <p>Admin session: <strong id="admin-commercial-session">ADMIN_DEMO_SESSION</strong></p>
+        <p>Role: <strong id="admin-commercial-role">COMMERCIAL_ADMIN_READONLY</strong></p>
+        <p>Selected tenant: <strong id="admin-commercial-selected-tenant">controlled-pilot</strong></p>
+        <p>Scope: <strong id="admin-commercial-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_345_PLATFORM_ADMIN_CONTEXT_END -->
+
+    <!-- PIX2PI_345_REVENUE_MRR_TRIAL_KPI_CARDS_START -->
+    <section class="grid-4" data-widget="revenue_mrr_trial_kpi_cards">
+      <article class="metric"><h2>Active subscriptions</h2><strong id="admin-commercial-active-subscriptions">0</strong></article>
+      <article class="metric"><h2>Trial tenants</h2><strong id="admin-commercial-trial-tenants">0</strong></article>
+      <article class="metric"><h2>Suspended tenants</h2><strong id="admin-commercial-suspended-tenants">0</strong></article>
+      <article class="metric"><h2>Draft invoices</h2><strong id="admin-commercial-draft-invoices">0</strong></article>
+      <article class="metric"><h2>MRR simulation</h2><strong id="admin-commercial-mrr-simulation">₺0</strong></article>
+      <article class="metric"><h2>Approval queue</h2><strong id="admin-commercial-approval-queue-count">0</strong></article>
+    </section>
+    <!-- PIX2PI_345_REVENUE_MRR_TRIAL_KPI_CARDS_END -->
+
+    <!-- PIX2PI_345_TENANT_COMMERCIAL_OVERVIEW_START -->
+    <section class="card" data-widget="tenant_commercial_overview">
+      <h2>Tenant commercial overview</h2>
+      <!-- PIX2PI_345_SUBSCRIPTION_ACCOUNT_STATUS_TABLE_START -->
+      <div id="admin-commercial-tenant-overview">
+        <article class="admin-commercial-row" data-tenant-id="controlled-pilot">
+          <div>
+            <strong>Demo Market</strong>
+            <p>controlled-pilot / pilot_free / CONTROLLED_PILOT</p>
+          </div>
+          <span>TRIALING</span>
+          <span>DRAFT_NOT_COLLECTING</span>
+          <em>LOW</em>
+        </article>
+      </div>
+      <!-- PIX2PI_345_SUBSCRIPTION_ACCOUNT_STATUS_TABLE_END -->
+    </section>
+    <!-- PIX2PI_345_TENANT_COMMERCIAL_OVERVIEW_END -->
+
+    <!-- PIX2PI_345_PLAN_CATALOG_MANAGEMENT_PREVIEW_START -->
+    <section class="card" data-widget="plan_catalog_management_preview">
+      <h2>Plan catalog management preview</h2>
+      <div id="admin-commercial-plan-catalog" class="grid-4">
+        <article class="admin-commercial-card" data-plan-code="pilot_free">
+          <strong>Pilot Free</strong>
+          <p>Code: pilot_free / Visible: true</p>
+          <em>₺0</em>
+          <button type="button" disabled>Plan yönetimi kapalı</button>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_345_PLAN_CATALOG_MANAGEMENT_PREVIEW_END -->
+
+    <!-- PIX2PI_345_BILLING_APPROVAL_QUEUE_START -->
+    <section class="card" data-widget="billing_approval_queue">
+      <h2>Billing approval queue</h2>
+      <div id="admin-commercial-approval-queue" class="grid-4">
+        <article class="admin-commercial-card" data-approval-id="appr-fin-001">
+          <strong>FINANCIAL_APPROVAL</strong>
+          <p>Status: REQUIRED / Owner: finance</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_345_BILLING_APPROVAL_QUEUE_END -->
+
+    <!-- PIX2PI_345_PAYMENT_PROVIDER_GATE_STATUS_START -->
+    <section class="card" data-widget="payment_provider_gate_status">
+      <h2>Payment provider gate status</h2>
+      <div id="admin-commercial-provider-gates" class="grid-3">
+        <article class="admin-commercial-card" data-provider="SIMULATION">
+          <strong>SIMULATION</strong>
+          <p>Mode: SIMULATION / Status: OPEN_FOR_TEST / Live allowed: false</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_345_PAYMENT_PROVIDER_GATE_STATUS_END -->
+
+    <!-- PIX2PI_345_RISK_COMPLIANCE_GATE_PANEL_START -->
+    <section class="card guard" data-widget="risk_compliance_gate_panel">
+      <h2>Risk / compliance gate panel</h2>
+      <p>financial_approval_required=true / tax_consultant_approval_required=true / legal_approval_required=true / production_live_commercial_allowed=false</p>
+    </section>
+    <!-- PIX2PI_345_RISK_COMPLIANCE_GATE_PANEL_END -->
+
+    <!-- PIX2PI_345_MANUAL_COMMERCIAL_OVERRIDE_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="manual_commercial_override_disabled_gate">
+      <h2>Manual commercial override disabled gate</h2>
+      <p>real_manual_override_enabled=false. Ticari override bu adımda kapalıdır.</p>
+      <button type="button" disabled>Override kapalı</button>
+    </section>
+    <!-- PIX2PI_345_MANUAL_COMMERCIAL_OVERRIDE_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_345_TENANT_SUSPEND_RESUME_CANCEL_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="tenant_suspend_resume_cancel_disabled_gate">
+      <h2>Tenant suspend / resume / cancel disabled gate</h2>
+      <p>real_tenant_suspend_resume_enabled=false / real_subscription_mutation_enabled=false.</p>
+      <button type="button" disabled>Suspend / resume / cancel kapalı</button>
+    </section>
+    <!-- PIX2PI_345_TENANT_SUSPEND_RESUME_CANCEL_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_345_COMMERCIAL_AUDIT_TIMELINE_START -->
+    <section class="card" data-widget="commercial_audit_timeline">
+      <h2>Commercial audit timeline</h2>
+      <div id="admin-commercial-audit-timeline" class="grid-4">
+        <article class="admin-commercial-card" data-audit-action="INVOICE_HISTORY_READY">
+          <strong>INVOICE_HISTORY_READY</strong>
+          <p>2026-05-demo / system / PASS</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_345_COMMERCIAL_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_345_EXPORT_REPORT_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="export_report_disabled_gate">
+      <h2>Export / report disabled gate</h2>
+      <p>real_export_report_enabled=false. Commercial export/report üretimi bu adımda kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_345_EXPORT_REPORT_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_345_ADMIN_TENANT_COMMERCIAL_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="admin_tenant_commercial_scope_guard">
+      <h2>Admin / tenant / commercial scope guard</h2>
+      <p>Admin commercial endpointleri `X-Admin-Session`, `X-Tenant-ID`, `X-Commercial-Scope` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_345_ADMIN_TENANT_COMMERCIAL_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_345_ADMIN_COMMERCIAL_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="admin_commercial_runtime_data_contract">
+      <h2>Admin commercial runtime data contract</h2>
+      <p id="admin-commercial-runtime-contract">admin_snapshot_enabled=true / fallback_admin_commercial_snapshot_enabled=true / ready_for_step_346=true</p>
+    </section>
+    <!-- PIX2PI_345_ADMIN_COMMERCIAL_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_345_SEO_OPENGRAPH_ADMIN_COMMERCIAL_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_admin_commercial_placeholder">
+      <h2>SEO / OpenGraph admin commercial placeholder</h2>
+      <p>Title, description ve og:* metadata admin commercial yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_345_SEO_OPENGRAPH_ADMIN_COMMERCIAL_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_345_I18N_READY_ADMIN_COMMERCIAL_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_admin_commercial_marker">
+      <h2 data-i18n="admin_commercial.i18n_ready">i18n-ready admin commercial screen</h2>
+      <p data-i18n="admin_commercial.surface_ready">Admin commercial panel metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_345_I18N_READY_ADMIN_COMMERCIAL_MARKER_END -->
+  </main>
+  <!-- PIX2PI_345_ADMIN_COMMERCIAL_APP_SHELL_END -->
+
+  <script src="/assets/admin-commercial/panel-admin-commercial-runtime.js"></script>
+  <script>
+    Pix2piPanelAdminCommercial.bootAdminCommercialScreen().then(function (contract) {
+      console.log("PIX2PI_345_ADMIN_COMMERCIAL_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+{
+  "smoke_id": "training_support_smoke.controlled_pilot.v1",
+  "smoke_status": "READY",
+  "smoke_mode": "CONTROLLED_PILOT",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT"
+  },
+  "chain_dependencies": {
+    "210_FAZ_4_16_4_1_KULLANICI_EGITIM_SETI": "PASS",
+    "211_FAZ_4_16_4_2_YARDIM_MERKEZI_ICERIGI": "PASS",
+    "212_FAZ_4_16_4_3_ILK_DESTEK_TRIAGE_AKISI": "PASS",
+    "213_FAZ_4_16_4_4_PILOT_ISSUE_ESCALATION": "PASS"
+  },
+  "smoke_checks": [
+    {
+      "code": "TRAINING_SET_ACCESS_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "TRAINING",
+      "evidence_ref": "docs/faz4r/training_support_smoke/training_set_access_smoke.md"
+    },
+    {
+      "code": "HELP_CENTER_ACCESS_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "HELP_CENTER",
+      "evidence_ref": "docs/faz4r/training_support_smoke/help_center_access_smoke.md"
+    },
+    {
+      "code": "SUPPORT_INTAKE_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "SUPPORT",
+      "evidence_ref": "docs/faz4r/training_support_smoke/support_intake_smoke.md"
+    },
+    {
+      "code": "TRIAGE_CLASSIFICATION_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "TRIAGE",
+      "evidence_ref": "docs/faz4r/training_support_smoke/triage_classification_smoke.md"
+    },
+    {
+      "code": "ESCALATION_ROUTING_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "ESCALATION",
+      "evidence_ref": "docs/faz4r/training_support_smoke/escalation_routing_smoke.md"
+    },
+    {
+      "code": "EVIDENCE_ATTACHMENT_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "EVIDENCE",
+      "evidence_ref": "docs/faz4r/training_support_smoke/evidence_attachment_smoke.md"
+    },
+    {
+      "code": "OWNER_MATRIX_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "OWNER_MATRIX",
+      "evidence_ref": "docs/faz4r/training_support_smoke/owner_matrix_smoke.md"
+    },
+    {
+      "code": "SLA_MATRIX_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "SLA",
+      "evidence_ref": "docs/faz4r/training_support_smoke/sla_matrix_smoke.md"
+    },
+    {
+      "code": "CLOSED_PROVIDER_POLICY_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "POLICY",
+      "evidence_ref": "docs/faz4r/training_support_smoke/closed_provider_policy_smoke.md"
+    },
+    {
+      "code": "FIRST_RESPONSE_TEMPLATE_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "SUPPORT",
+      "evidence_ref": "docs/faz4r/training_support_smoke/first_response_template_smoke.md"
+    },
+    {
+      "code": "COMPLETION_CHECKLIST_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "CHECKLIST",
+      "evidence_ref": "docs/faz4r/training_support_smoke/completion_checklist_smoke.md"
+    },
+    {
+      "code": "TRAINING_SUPPORT_HANDOFF_SMOKE",
+      "required": true,
+      "status": "PASS",
+      "area": "HANDOFF",
+      "evidence_ref": "docs/faz4r/training_support_smoke/training_support_handoff_smoke.md"
+    }
+  ],
+  "smoke_controls": {
+    "training_set_status": "PASS",
+    "help_center_status": "PASS",
+    "triage_status": "PASS",
+    "escalation_status": "PASS",
+    "owner_matrix_status": "READY",
+    "sla_matrix_status": "READY",
+    "evidence_attachment_status": "READY",
+    "no_real_external_dispatch": true
+  },
+  "summary": {
+    "total_check_count": 12,
+    "pass_check_count": 12,
+    "fail_check_count": 0,
+    "required_fail_count": 0,
+    "critical_issue_count": 0,
+    "training_set_status": "PASS",
+    "help_center_status": "PASS",
+    "triage_status": "PASS",
+    "escalation_status": "PASS",
+    "smoke_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "real_ticket_system": "CLOSED",
+    "real_email_dispatch": "CLOSED",
+    "production_launch": "CLOSED",
+    "hotfix_deploy": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

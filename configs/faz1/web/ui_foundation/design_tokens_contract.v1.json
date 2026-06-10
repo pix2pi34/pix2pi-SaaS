@@ -1,0 +1,73 @@
+{
+  "phase": "FAZ_1_4_1",
+  "module": "WEB_L1_UI_FOUNDATION_DESIGN_SYSTEM",
+  "component": "design_token_finalization",
+  "status": "READY",
+  "required_capabilities": [
+    "color_tokens",
+    "typography_scale",
+    "spacing_tokens",
+    "radius_shadow_tokens",
+    "component_usage_doc"
+  ],
+  "token_contract": {
+    "css_root_selector": ":root",
+    "token_prefix": "--pix2pi-",
+    "color_tokens": [
+      "--pix2pi-color-bg",
+      "--pix2pi-color-surface",
+      "--pix2pi-color-surface-soft",
+      "--pix2pi-color-content",
+      "--pix2pi-color-border",
+      "--pix2pi-color-text",
+      "--pix2pi-color-muted",
+      "--pix2pi-color-accent",
+      "--pix2pi-color-success",
+      "--pix2pi-color-warning",
+      "--pix2pi-color-danger"
+    ],
+    "typography_tokens": [
+      "--pix2pi-font-family",
+      "--pix2pi-font-size-xs",
+      "--pix2pi-font-size-sm",
+      "--pix2pi-font-size-base",
+      "--pix2pi-font-size-lg",
+      "--pix2pi-font-size-xl",
+      "--pix2pi-font-size-2xl",
+      "--pix2pi-font-weight-regular",
+      "--pix2pi-font-weight-medium",
+      "--pix2pi-font-weight-bold"
+    ],
+    "spacing_tokens": [
+      "--pix2pi-space-1",
+      "--pix2pi-space-2",
+      "--pix2pi-space-3",
+      "--pix2pi-space-4",
+      "--pix2pi-space-5",
+      "--pix2pi-space-6",
+      "--pix2pi-space-8",
+      "--pix2pi-space-10"
+    ],
+    "radius_shadow_tokens": [
+      "--pix2pi-radius-sm",
+      "--pix2pi-radius-md",
+      "--pix2pi-radius-lg",
+      "--pix2pi-radius-xl",
+      "--pix2pi-shadow-sm",
+      "--pix2pi-shadow-md",
+      "--pix2pi-shadow-lg"
+    ]
+  },
+  "usage_contract": {
+    "button": "pix2pi-button",
+    "card": "pix2pi-card",
+    "badge": "pix2pi-badge",
+    "input": "pix2pi-input",
+    "table": "pix2pi-table",
+    "state": "pix2pi-state-card"
+  },
+  "final_gate": {
+    "required_fail_count": 0,
+    "next_ready_flag": "FAZ_1_4_7_READY"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "module_code": "FAZ_7_8Z_4",
+  "module_name": "Zirve Validation / Error Mapping / Retry-DLQ",
+  "provider_id": "zirve",
+  "provider_display_name": "Zirve",
+  "mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+  "status": "READY_DRY_RUN_ONLY",
+  "validation_policy": "VALIDATE_BEFORE_DELIVERY_AND_ROUTE_FAILURES",
+  "retry_policy": "MAX_ATTEMPT_THEN_DLQ",
+  "dlq_policy": "DLQ_FOR_EXHAUSTED_RETRY_OR_BLOCKER",
+  "manual_review_policy": "MANUAL_REVIEW_FOR_BUSINESS_OR_SCHEMA_FAILURE",
+  "required_upstream_contract": {
+    "module_code": "FAZ_7_8Z_3",
+    "contract_mode": "IMPORT_PACKAGE_DELIVERY_CONTRACT_DRY_RUN_ONLY",
+    "contract_status": "READY_DRY_RUN_ONLY",
+    "target_system": "ZIRVE_ACCOUNTING_IMPORT_DRY_RUN"
+  },
+  "validation_error_codes": [
+    "ZIRVE_ERR_TENANT_REQUIRED",
+    "ZIRVE_ERR_CORRELATION_REQUIRED",
+    "ZIRVE_ERR_PACKAGE_MISSING",
+    "ZIRVE_ERR_PACKAGE_ARTIFACT_MISSING",
+    "ZIRVE_ERR_OBJECT_UNSUPPORTED",
+    "ZIRVE_ERR_SCHEMA_MISMATCH",
+    "ZIRVE_ERR_PROVIDER_TEMPORARY",
+    "ZIRVE_ERR_PROVIDER_RATE_LIMIT",
+    "ZIRVE_ERR_PROVIDER_AUTH",
+    "ZIRVE_ERR_REAL_DELIVERY_ATTEMPTED",
+    "ZIRVE_ERR_UNKNOWN"
+  ],
+  "outcomes": [
+    "PASS",
+    "RETRY",
+    "DLQ",
+    "MANUAL_REVIEW",
+    "DENY"
+  ],
+  "retryable_error_codes": [
+    "ZIRVE_ERR_PROVIDER_TEMPORARY",
+    "ZIRVE_ERR_PROVIDER_RATE_LIMIT"
+  ],
+  "manual_review_error_codes": [
+    "ZIRVE_ERR_SCHEMA_MISMATCH",
+    "ZIRVE_ERR_OBJECT_UNSUPPORTED",
+    "ZIRVE_ERR_PROVIDER_AUTH",
+    "ZIRVE_ERR_PACKAGE_MISSING",
+    "ZIRVE_ERR_PACKAGE_ARTIFACT_MISSING",
+    "ZIRVE_ERR_REAL_DELIVERY_ATTEMPTED",
+    "ZIRVE_ERR_UNKNOWN"
+  ],
+  "dlq_error_codes": [
+    "ZIRVE_ERR_PACKAGE_MISSING",
+    "ZIRVE_ERR_PACKAGE_ARTIFACT_MISSING",
+    "ZIRVE_ERR_REAL_DELIVERY_ATTEMPTED"
+  ],
+  "default_max_attempts": 3,
+  "required_request_fields": [
+    "tenant_id",
+    "export_run_id",
+    "delivery_run_id",
+    "validation_run_id",
+    "correlation_id",
+    "requested_by",
+    "delivery_contract"
+  ],
+  "tenant_safety_mode": "TENANT_CONTEXT_REQUIRED",
+  "audit_policy": "AUDIT_DECISION_REQUIRED_FOR_EVERY_OPERATION",
+  "secret_policy": "FORBIDDEN_IN_CODE_CONFIG_DOCS",
+  "real_operation_policy": {
+    "real_zirve_api": false,
+    "real_file_delivery": false,
+    "real_delivery_channel": false,
+    "real_erp_write": false,
+    "real_operator_provider_action": false,
+    "external_delivery_attempted": false
+  },
+  "handoff": {
+    "zirve_provider_live_module_status": "NOT_STARTED",
+    "zirve_provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+    "next_step": "FAZ 7-8Z.5 Zirve Admin / Ops / Manual Review"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "expected_dependencies": [
+    "FAZ_6_21_4_1",
+    "FAZ_6_21_4_2"
+  ],
+  "expected_live_provider_api_mutation_allowed": false,
+  "expected_required_controls": [
+    "waf_dependency_gate",
+    "abuse_bot_dependency_gate",
+    "public_private_route_boundary",
+    "api_route_policy_review",
+    "auth_route_policy_review",
+    "panel_route_policy_review",
+    "health_route_policy_review",
+    "static_asset_cache_policy_review",
+    "redirect_canonical_policy_review",
+    "security_header_policy_review",
+    "origin_lockdown_policy_review",
+    "edge_cache_bypass_policy_review",
+    "webhook_route_exception_review",
+    "tenant_header_edge_observability_review",
+    "rollback_policy",
+    "evidence_audit_policy"
+  ],
+  "expected_route_classes": [
+    "public_web",
+    "api",
+    "auth",
+    "panel",
+    "health",
+    "webhook"
+  ],
+  "expected_no_cache_classes": [
+    "api",
+    "auth",
+    "panel",
+    "health",
+    "webhook"
+  ],
+  "expected_security_headers": [
+    "Strict-Transport-Security",
+    "X-Content-Type-Options",
+    "X-Frame-Options",
+    "Referrer-Policy",
+    "Permissions-Policy"
+  ],
+  "expected_tenant_header": "X-Tenant-ID",
+  "expected_rollback_required": true
+}

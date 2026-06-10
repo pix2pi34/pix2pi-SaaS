@@ -1,0 +1,49 @@
+{
+  "phase": "FAZ_3_10_5_1_MULTI_FIRM_ACCESS_RUNTIME",
+  "runtime": "multi_firm_access_runtime",
+  "runtime_enabled": true,
+  "default_country_code": "TR",
+  "require_active_subscription": true,
+  "require_active_assignment": true,
+  "require_tenant_scope": true,
+  "require_company_scope": true,
+  "require_permission_match": true,
+  "require_valid_assignment_dates": true,
+  "allow_super_admin_override": false,
+  "max_assigned_firm_count": 100,
+  "required_permissions": [
+    "VIEW_FIRM",
+    "VIEW_LEDGER",
+    "EXPORT_EXCEL",
+    "EXPORT_PDF",
+    "EXPORT_TDHP",
+    "MANAGE_ASSIGNMENT",
+    "VIEW_SUBSCRIPTION"
+  ],
+  "allowed_roles": [
+    "ACCOUNTANT_OWNER",
+    "ACCOUNTANT_STAFF",
+    "ACCOUNTANT_READ_ONLY",
+    "SUPER_ADMIN"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "accountant_firm_id_required": true,
+    "accountant_user_id_required": true,
+    "target_firm_tenant_id_required": true,
+    "target_company_id_required": true,
+    "required_permission_required": true,
+    "subscription_active_or_trialing_required": true,
+    "subscription_tenant_scope_required": true,
+    "assignment_active_required": true,
+    "assignment_tenant_scope_required": true,
+    "assignment_company_scope_required": true,
+    "assignment_permission_match_required": true,
+    "assignment_date_validity_required": true,
+    "visible_firm_list_filters_denied_assignments": true
+  },
+  "next_gate": "FAZ_3_10_5_2_COMPANY_PERMISSION_ENFORCEMENT"
+}

@@ -1,0 +1,18 @@
+{
+  "step": "FAZ 7-R / 356",
+  "name": "Controlled usage go-live kararı real final",
+  "decisionId": "go-live-356-20260513_074955",
+  "tenantId": "tenant-api-e2e-success",
+  "decisionScope": "controlled_usage_only",
+  "publicLaunchAllowed": false,
+  "controlledUsageAllowedExpected": true,
+  "requiredEvidence": [
+    "dependency evidence 319/347-355",
+    "DB runtime readiness SELECT",
+    "live API route validation",
+    "decision page route smoke",
+    "risk register blocker check",
+    "rollback no partial write",
+    "DB decision final SELECT"
+  ]
+}

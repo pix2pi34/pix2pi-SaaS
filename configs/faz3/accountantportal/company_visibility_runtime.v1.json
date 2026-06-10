@@ -1,0 +1,50 @@
+{
+  "phase": "FAZ_3_10_5_5_COMPANY_VISIBILITY_RUNTIME",
+  "runtime": "company_visibility_runtime",
+  "runtime_enabled": true,
+  "require_tenant_scope": true,
+  "require_company_scope": true,
+  "require_active_subscription": true,
+  "require_active_assignment": true,
+  "require_visible_company_flag": true,
+  "require_active_company_status": true,
+  "require_company_profile": true,
+  "require_permission_match": true,
+  "require_audit_hash": true,
+  "max_visible_firm_count": 100,
+  "allowed_company_statuses": [
+    "ACTIVE"
+  ],
+  "required_portal_permissions": [
+    "VIEW_FIRM",
+    "VIEW_LEDGER",
+    "EXPORT_EXCEL",
+    "EXPORT_PDF",
+    "EXPORT_TDHP"
+  ],
+  "runtime_bridges": {
+    "multi_firm_access_runtime": "FAZ_3_10_5_1_MULTI_FIRM_ACCESS_RUNTIME",
+    "monthly_subscription_runtime": "FAZ_3_10_5_4_MONTHLY_SUBSCRIPTION_RUNTIME"
+  },
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "accountant_firm_id_required": true,
+    "accountant_user_id_required": true,
+    "required_permission_required": true,
+    "assignments_required": true,
+    "companies_required": true,
+    "subscription_access_required": true,
+    "multi_firm_access_required": true,
+    "company_profile_required": true,
+    "company_tenant_scope_required": true,
+    "company_scope_required": true,
+    "company_tax_no_required": true,
+    "company_visible_flag_required": true,
+    "company_active_status_required": true,
+    "visibility_hash_required": true
+  },
+  "next_gate": "FAZ_3_10_5_6_ACCOUNTANT_PORTAL_INTEGRATION_TESTS"
+}

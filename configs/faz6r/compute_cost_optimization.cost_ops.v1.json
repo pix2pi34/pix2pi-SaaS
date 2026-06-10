@@ -1,0 +1,60 @@
+{
+  "version": "cost_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_5_1",
+  "status": "dry_run_only_no_provider_mutation",
+  "recommendations": [
+    {
+      "recommendation_id": "compute-rec-api-gateway-rightsize",
+      "service": "api_gateway",
+      "workload_class": "critical_runtime",
+      "current_shape": "current_vcpu_memory_baseline",
+      "recommended_shape": "keep_current_until_7d_metrics_confirm",
+      "estimated_savings_level": "low",
+      "risk_level": "medium",
+      "slo_guard_status": "REQUIRED",
+      "dr_capacity_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "compute-rec-panel-rightsize",
+      "service": "panel",
+      "workload_class": "important_runtime",
+      "current_shape": "current_vcpu_memory_baseline",
+      "recommended_shape": "review_smaller_shape_after_observation",
+      "estimated_savings_level": "medium",
+      "risk_level": "low",
+      "slo_guard_status": "REQUIRED",
+      "dr_capacity_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "compute-rec-background-jobs-schedule",
+      "service": "background_jobs",
+      "workload_class": "batch_or_background",
+      "current_shape": "always_on_baseline",
+      "recommended_shape": "schedule_or_limit_noncritical_jobs",
+      "estimated_savings_level": "medium",
+      "risk_level": "low",
+      "slo_guard_status": "REQUIRED",
+      "dr_capacity_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "compute-rec-staging-idle",
+      "service": "staging_preview",
+      "workload_class": "dev_or_staging",
+      "current_shape": "always_on_baseline",
+      "recommended_shape": "review_stop_schedule_outside_work_hours",
+      "estimated_savings_level": "high",
+      "risk_level": "low",
+      "slo_guard_status": "NOT_REQUIRED_FOR_NON_PROD",
+      "dr_capacity_guard_status": "NOT_REQUIRED_FOR_NON_PROD",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ]
+}

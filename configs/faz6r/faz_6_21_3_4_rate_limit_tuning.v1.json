@@ -1,0 +1,202 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "299",
+  "code": "FAZ_6_21_3_4",
+  "name": "Rate limit tuning",
+  "depends_on": [
+    "FAZ_6_21_3_3"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "gateway_rate_limit_mutation_allowed": false,
+  "redis_rate_limit_mutation_allowed": false,
+  "edge_waf_mutation_allowed": false,
+  "nginx_mutation_allowed": false,
+  "required_controls": [
+    "cache_hit_miss_dependency_gate",
+    "rate_limit_surface_inventory",
+    "tenant_rate_limit_model",
+    "route_rate_limit_model",
+    "auth_bruteforce_guard",
+    "api_abuse_guard",
+    "webhook_rate_limit_guard",
+    "public_web_rate_limit_guard",
+    "burst_policy_review",
+    "false_positive_guard",
+    "redis_namespace_guard",
+    "edge_waf_alignment_guard",
+    "dry_run_tuning_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "rate_limit_surfaces": [
+    {
+      "surface": "api_gateway",
+      "risk_level": "high",
+      "tenant_scope_required": true,
+      "route_scope_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "auth",
+      "risk_level": "critical",
+      "tenant_scope_required": true,
+      "route_scope_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "panel",
+      "risk_level": "medium",
+      "tenant_scope_required": true,
+      "route_scope_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "pos",
+      "risk_level": "high",
+      "tenant_scope_required": true,
+      "route_scope_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "webhook",
+      "risk_level": "high",
+      "tenant_scope_required": true,
+      "route_scope_required": true,
+      "idempotency_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "public_web",
+      "risk_level": "medium",
+      "tenant_scope_required": false,
+      "route_scope_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "metric_model": {
+    "required_metrics": [
+      "request_rate_per_tenant",
+      "request_rate_per_route",
+      "burst_rate_per_route",
+      "rate_limit_block_count",
+      "rate_limit_allow_count",
+      "rate_limit_error_ratio",
+      "auth_failed_attempt_count",
+      "auth_lockout_candidate_count",
+      "api_abuse_signal_count",
+      "webhook_retry_count",
+      "webhook_duplicate_count",
+      "false_positive_candidate_count",
+      "edge_waf_challenge_count",
+      "redis_rate_limit_key_growth",
+      "tenant_namespace_distribution"
+    ],
+    "minimum_observation_days": 7,
+    "requires_per_tenant_breakdown": true,
+    "requires_per_route_breakdown": true
+  },
+  "tuning_policy": {
+    "mode": "recommendation_only",
+    "burst_policy_review_enabled": true,
+    "tenant_limit_review_enabled": true,
+    "route_limit_review_enabled": true,
+    "auth_bruteforce_review_enabled": true,
+    "webhook_retry_review_enabled": true,
+    "false_positive_review_enabled": true,
+    "edge_waf_alignment_required": true,
+    "redis_namespace_required": true
+  },
+  "guards": {
+    "auth_bruteforce_guard": {
+      "enabled": true,
+      "block_if_bruteforce_risk_increases": true,
+      "requires_security_owner_review": true
+    },
+    "api_abuse_guard": {
+      "enabled": true,
+      "block_if_abuse_window_increases": true,
+      "requires_sre_owner_review": true
+    },
+    "webhook_rate_limit_guard": {
+      "enabled": true,
+      "block_if_provider_retry_failure_risk": true,
+      "requires_idempotency_review": true
+    },
+    "public_web_rate_limit_guard": {
+      "enabled": true,
+      "block_if_seo_or_real_user_false_positive_risk": true,
+      "requires_ops_owner_review": true
+    },
+    "false_positive_guard": {
+      "enabled": true,
+      "block_if_legitimate_tenant_traffic_impacted": true,
+      "requires_review_window": true
+    },
+    "redis_namespace_guard": {
+      "enabled": true,
+      "block_if_key_without_tenant_or_surface_namespace": true
+    },
+    "edge_waf_alignment_guard": {
+      "enabled": true,
+      "block_if_conflicts_with_waf_or_bot_policy": true
+    }
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "gateway_rate_limit_change_execute",
+      "redis_rate_limit_policy_change_execute",
+      "edge_waf_rate_limit_change_execute",
+      "nginx_rate_limit_change_execute",
+      "auth_bruteforce_threshold_change_execute",
+      "webhook_rate_limit_change_execute",
+      "public_web_rate_limit_change_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "security_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "gateway_rate_limit_mutation_allowed": false,
+    "redis_rate_limit_mutation_allowed": false,
+    "edge_waf_mutation_allowed": false,
+    "nginx_mutation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "tuning_id",
+      "surface",
+      "current_signal",
+      "recommended_action",
+      "expected_effect",
+      "risk_level",
+      "tenant_scope_guard_status",
+      "false_positive_guard_status",
+      "security_guard_status",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_cache_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_gateway_or_redis_mutation_allowed": true,
+    "block_if_edge_waf_mutation_allowed": true,
+    "block_if_missing_tenant_scope_guard": true,
+    "block_if_missing_false_positive_guard": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_3_4_RATE_LIMIT_TUNING_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

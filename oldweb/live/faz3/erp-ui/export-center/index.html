@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="tr" data-phase="FAZ_3_11_7" data-screen="EXPORT_CENTER_SCREEN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi ERP — Export Center</title>
+  <meta name="description" content="FAZ 3-11.7 Export center ekranı: Logo, Mikro, Zirve, ETA gerçek format paketleri, format validasyon matrisi, adapter testleri ve evidence export yüzeyi." />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #ffffff;
+      --text: #0f172a;
+      --soft: #475569;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --ok: #059669;
+      --warn: #d97706;
+      --fail: #dc2626;
+      --info: #2563eb;
+      --violet: #7c3aed;
+      --shadow: 0 20px 60px rgba(15, 23, 42, .15);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(124,58,237,.17), transparent 34rem),
+        radial-gradient(circle at 92% 0%, rgba(5,150,105,.14), transparent 32rem),
+        #f8fafc;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 22px;
+      color: #e5e7eb;
+      background: linear-gradient(180deg, #0f172a, #111827);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #7c3aed, #059669);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 12px 30px rgba(124,58,237,.25);
+    }
+
+    .brand strong { display: block; font-size: 18px; }
+    .brand small { color: #94a3b8; font-size: 12px; }
+
+    .nav-title {
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 11px;
+      margin: 26px 0 10px;
+    }
+
+    .nav-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .nav-item.active {
+      color: white;
+      background: rgba(124,58,237,.15);
+      border: 1px solid rgba(196,181,253,.25);
+    }
+
+    .main { padding: 26px; min-width: 0; }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(226,232,240,.9);
+      background: rgba(255,255,255,.88);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .crumb {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.05;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--soft);
+      white-space: nowrap;
+    }
+
+    .pill.ok { color: var(--ok); border-color: rgba(5,150,105,.25); background: rgba(5,150,105,.08); }
+    .pill.warn { color: var(--warn); border-color: rgba(217,119,6,.25); background: rgba(217,119,6,.08); }
+    .pill.fail { color: var(--fail); border-color: rgba(220,38,38,.25); background: rgba(220,38,38,.08); }
+    .pill.info { color: var(--info); border-color: rgba(37,99,235,.25); background: rgba(37,99,235,.08); }
+
+    .grid { display: grid; gap: 18px; }
+    .kpi-grid { grid-template-columns: repeat(4, minmax(0,1fr)); margin-bottom: 18px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      min-width: 0;
+    }
+
+    .kpi-label { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    .kpi-value { font-size: 30px; font-weight: 900; letter-spacing: -.04em; }
+    .kpi-foot { color: var(--soft); font-size: 12px; margin-top: 8px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 400px;
+      gap: 18px;
+    }
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .panel-title h2 { margin: 0; font-size: 20px; letter-spacing: -.03em; }
+    .panel-title p { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1.1fr repeat(4, minmax(120px, .42fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 11px 12px;
+      font: inherit;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: rgba(37,99,235,.5);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.1);
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 14px 10px;
+      border-bottom: 1px solid #edf2f7;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    tbody tr { cursor: pointer; transition: background .15s ease; }
+    tbody tr:hover { background: #f8fafc; }
+
+    .main-text { font-weight: 850; letter-spacing: -.02em; }
+    .sub { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+    .status {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 11px;
+      font-weight: 850;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .status.ready { color: var(--ok); background: rgba(5,150,105,.09); border-color: rgba(5,150,105,.22); }
+    .status.validating { color: var(--info); background: rgba(37,99,235,.09); border-color: rgba(37,99,235,.22); }
+    .status.review { color: var(--warn); background: rgba(217,119,6,.09); border-color: rgba(217,119,6,.22); }
+    .status.blocked { color: var(--fail); background: rgba(220,38,38,.09); border-color: rgba(220,38,38,.22); }
+
+    .target {
+      font-weight: 900;
+      color: var(--violet);
+      white-space: nowrap;
+    }
+
+    .metric {
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      color: var(--info);
+    }
+
+    .button-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 9px 11px;
+      color: white;
+      background: #0f172a;
+      font-weight: 850;
+      font-size: 12px;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(15,23,42,.14);
+    }
+
+    button.secondary {
+      color: #0f172a;
+      background: #f1f5f9;
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    button.warning { background: #d97706; }
+    button.success { background: #059669; }
+    button.danger { background: #dc2626; }
+    button:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
+
+    .side-stack { display: grid; gap: 18px; align-content: start; }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 13px;
+    }
+
+    .detail-row span:first-child { color: var(--muted); }
+    .detail-row strong { text-align: right; word-break: break-word; }
+
+    .notice {
+      border-radius: 16px;
+      padding: 13px;
+      font-size: 13px;
+      line-height: 1.5;
+      border: 1px solid rgba(217,119,6,.24);
+      color: #92400e;
+      background: rgba(217,119,6,.08);
+    }
+
+    .ops-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .op-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px;
+      background: #f8fafc;
+    }
+
+    .op-card strong { display: block; font-size: 13px; margin-bottom: 6px; }
+    .op-card small { display: block; color: var(--muted); font-size: 12px; line-height: 1.45; }
+
+    .timeline { display: grid; gap: 10px; }
+
+    .event {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+
+    .event strong { display: block; font-size: 13px; margin-bottom: 4px; }
+    .event small { color: var(--muted); line-height: 1.45; }
+
+    @media (max-width: 1180px) {
+      .shell { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .layout { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 780px) {
+      .main { padding: 14px; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .filters { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      table { min-width: 1040px; }
+      .table-wrap { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="ERP navigation">
+      <div class="brand">
+        <div class="logo">P2</div>
+        <div>
+          <strong>Pix2pi ERP</strong>
+          <small>Export Center</small>
+        </div>
+      </div>
+
+      <div class="nav-title">WEB-L4 / WEB-L5 / WEB-L6</div>
+      <div class="nav-item"><span>e-Belge Operasyon</span><span>157</span></div>
+      <div class="nav-item"><span>Reconciliation</span><span>158</span></div>
+      <div class="nav-item"><span>Vergi / KDV Rule</span><span>159</span></div>
+      <div class="nav-item"><span>Journal / Ledger</span><span>160</span></div>
+      <div class="nav-item"><span>TDHP Mapping</span><span>161</span></div>
+      <div class="nav-item"><span>Ödeme / Mutabakat</span><span>162</span></div>
+      <div class="nav-item active"><span>Export Center</span><span>163</span></div>
+
+      <div class="nav-title">Export Hedefleri</div>
+      <div class="nav-item"><span>Logo</span><span>READY</span></div>
+      <div class="nav-item"><span>Mikro</span><span>READY</span></div>
+      <div class="nav-item"><span>Zirve</span><span>READY</span></div>
+      <div class="nav-item"><span>ETA</span><span>READY</span></div>
+    </aside>
+
+    <main class="main">
+      <section class="topbar">
+        <div>
+          <div class="crumb">FAZ 3-R › Öncelik 3 › 163 / FAZ 3-11.7</div>
+          <h1>Export Center</h1>
+        </div>
+        <div class="top-actions">
+          <span class="pill info" data-tenant-guard="required">Tenant: tenant_demo_001</span>
+          <span class="pill info" data-correlation-guard="required">Correlation: corr-ui-163</span>
+          <span class="pill ok" data-format-matrix="ready">Format Matrix: READY</span>
+          <span class="pill fail" data-production-approved="false">Production: FALSE</span>
+        </div>
+      </section>
+
+      <section class="grid kpi-grid" aria-label="Export center KPI cards">
+        <article class="card" data-kpi="packages_ready">
+          <div class="kpi-label">Hazır paket</div>
+          <div class="kpi-value">28</div>
+          <div class="kpi-foot">Logo + Mikro + Zirve + ETA</div>
+        </article>
+        <article class="card" data-kpi="format_matrix">
+          <div class="kpi-label">Format matrix</div>
+          <div class="kpi-value">4/4</div>
+          <div class="kpi-foot">Tüm hedefler doğrulandı</div>
+        </article>
+        <article class="card" data-kpi="adapter_tests">
+          <div class="kpi-label">Adapter test</div>
+          <div class="kpi-value">PASS</div>
+          <div class="kpi-foot">Negatif senaryolar dahil</div>
+        </article>
+        <article class="card" data-kpi="external_delivery">
+          <div class="kpi-label">Dış teslimat</div>
+          <div class="kpi-value">CLOSED</div>
+          <div class="kpi-foot">Canlı dosya gönderimi kapalı</div>
+        </article>
+      </section>
+
+      <section class="layout">
+        <div class="card">
+          <div class="panel-title">
+            <div>
+              <h2>Export Paket Kuyruğu</h2>
+              <p>Logo, Mikro, Zirve ve ETA için gerçek format paketleri, validasyon matrisi ve evidence kayıtları.</p>
+            </div>
+            <span class="pill ok">Export Audit Ready</span>
+          </div>
+
+          <div class="filters" data-filter-bar="export-center">
+            <input id="searchInput" aria-label="Export ara" placeholder="Export id, paket no, hedef sistem, dönem, hash ara..." />
+            <select id="targetFilter" aria-label="Hedef sistem filtrele">
+              <option value="ALL">Tüm hedefler</option>
+              <option value="LOGO">Logo</option>
+              <option value="MIKRO">Mikro</option>
+              <option value="ZIRVE">Zirve</option>
+              <option value="ETA">ETA</option>
+            </select>
+            <select id="statusFilter" aria-label="Durum filtrele">
+              <option value="ALL">Tüm durumlar</option>
+              <option value="READY">Ready</option>
+              <option value="VALIDATING">Validating</option>
+              <option value="REVIEW_REQUIRED">Review Required</option>
+              <option value="BLOCKED">Blocked</option>
+            </select>
+            <select id="formatFilter" aria-label="Format filtrele">
+              <option value="ALL">Tüm formatlar</option>
+              <option value="TDHP_V1">TDHP V1</option>
+              <option value="JOURNAL_LEDGER_SUMMARY">Journal + Ledger + Summary</option>
+            </select>
+            <select id="actionFilter" aria-label="Aksiyon filtrele">
+              <option value="ALL">Tüm aksiyonlar</option>
+              <option value="BUILD">Build</option>
+              <option value="VALIDATE">Validate</option>
+              <option value="DOWNLOAD">Download</option>
+              <option value="AUDIT">Audit</option>
+            </select>
+          </div>
+
+          <div class="table-wrap">
+            <table aria-label="Export center tablosu">
+              <thead>
+                <tr>
+                  <th>Paket</th>
+                  <th>Hedef</th>
+                  <th>Durum</th>
+                  <th>Dosya</th>
+                  <th>Satır</th>
+                  <th>Toplam</th>
+                  <th>Hash</th>
+                  <th>Aksiyon</th>
+                </tr>
+              </thead>
+              <tbody id="exportRows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <aside class="side-stack">
+          <section class="card" data-detail-drawer="export-center">
+            <div class="panel-title">
+              <div>
+                <h2>Export Detayı</h2>
+                <p>Seçili paket için hedef sistem, dosyalar, validasyon, hash ve evidence izi.</p>
+              </div>
+            </div>
+            <div id="detailPanel"></div>
+          </section>
+
+          <section class="card" data-operation-actions="export-center">
+            <div class="panel-title">
+              <div>
+                <h2>Export Operasyonları</h2>
+                <p>Build package, validate matrix, adapter test, download ve evidence export yüzeyi.</p>
+              </div>
+            </div>
+
+            <div class="notice" data-live-policy="external-delivery-closed">
+              Gerçek muhasebe programına dosya teslimi kapalıdır. Bu ekran export package readiness ve UI iş akışını doğrular; canlı dış sistem aksiyonu yapmaz.
+            </div>
+
+            <div class="ops-grid">
+              <div class="op-card" data-action="build-package">
+                <strong>Build Package</strong>
+                <small>Journal, ledger ve summary dosyalarını üretir.</small>
+              </div>
+              <div class="op-card" data-action="validate-matrix">
+                <strong>Validate Matrix</strong>
+                <small>Logo, Mikro, Zirve, ETA formatlarını çapraz doğrular.</small>
+              </div>
+              <div class="op-card" data-action="adapter-tests">
+                <strong>Adapter Tests</strong>
+                <small>Negatif testler ve tenant/hash guard doğrulaması.</small>
+              </div>
+              <div class="op-card" data-action="export-evidence">
+                <strong>Export Evidence</strong>
+                <small>Package hash, file hash ve audit evidence paketi.</small>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" data-audit-trail="export-center">
+            <div class="panel-title">
+              <div>
+                <h2>Audit Timeline</h2>
+                <p>Tenant-safe export işlem geçmişi.</p>
+              </div>
+            </div>
+            <div class="timeline" id="timeline"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const productionApproved = false;
+    const realExternalDeliveryAllowed = false;
+    const realAccountingProgramWriteAllowed = false;
+
+    const packages = [
+      {
+        id: "exp-logo-001",
+        packageNo: "EXP-LOGO-2026-0001",
+        targetSystem: "LOGO",
+        displayTarget: "Logo",
+        formatVersion: "LOGO_TDHP_V1",
+        period: "2026-05",
+        status: "READY",
+        fileCount: 3,
+        rowCount: 128,
+        totalDebitMinor: 2450000,
+        totalCreditMinor: 2450000,
+        balanceMinor: 0,
+        journalFile: "logo_journal_2026_05.txt",
+        ledgerFile: "logo_ledger_2026_05.txt",
+        summaryFile: "logo_summary_2026_05.txt",
+        journalHeader: "LOGO_JOURNAL_HEADER",
+        ledgerHeader: "LOGO_LEDGER_HEADER",
+        summaryBalancedField: "BALANCED=true",
+        packageHash: "sha256:package-logo-001",
+        journalFileHash: "sha256:logo-journal-001",
+        ledgerFileHash: "sha256:logo-ledger-001",
+        summaryFileHash: "sha256:logo-summary-001",
+        validationMatrixHash: "sha256:matrix-logo-001",
+        adapterTestHash: "sha256:adapter-logo-001",
+        evidenceFile: "docs/faz3/evidence/export_logo_001.md",
+        tenantId: "tenant_demo_001",
+        correlationId: "corr-export-logo-001",
+        requestId: "req-export-logo-001",
+        idempotencyKey: "idem-export-logo-001",
+        allowedActions: ["DOWNLOAD", "VALIDATE", "AUDIT"]
+      },
+      {
+        id: "exp-mikro-002",
+        packageNo: "EXP-MIKRO-2026-0002",
+        targetSystem: "MIKRO",
+        displayTarget: "Mikro",
+        formatVersion: "MIKRO_TDHP_V1",
+        period: "2026-05",
+        status: "READY",
+        fileCount: 3,
+        rowCount: 128,
+        totalDebitMinor: 2450000,
+        totalCreditMinor: 2450000,
+        balanceMinor: 0,
+        journalFile: "mikro_journal_2026_05.txt",
+        ledgerFile: "mikro_ledger_2026_05.txt",
+        summaryFile: "mikro_summary_2026_05.txt",
+        journalHeader: "MIKRO_JOURNAL_HEADER",
+        ledgerHeader: "MIKRO_LEDGER_HEADER",
+        summaryBalancedField: "BALANCED=true",
+        packageHash: "sha256:package-mikro-002",
+        journalFileHash: "sha256:mikro-journal-002",
+        ledgerFileHash: "sha256:mikro-ledger-002",
+        summaryFileHash: "sha256:mikro-summary-002",
+        validationMatrixHash: "sha256:matrix-mikro-002",
+        adapterTestHash: "sha256:adapter-mikro-002",
+        evidenceFile: "docs/faz3/evidence/export_mikro_002.md",
+        tenantId: "tenant_demo_001",
+        correlationId: "corr-export-mikro-002",
+        requestId: "req-export-mikro-002",
+        idempotencyKey: "idem-export-mikro-002",
+        allowedActions: ["DOWNLOAD", "VALIDATE", "AUDIT"]
+      },
+      {
+        id: "exp-zirve-003",
+        packageNo: "EXP-ZIRVE-2026-0003",
+        targetSystem: "ZIRVE",
+        displayTarget: "Zirve",
+        formatVersion: "ZIRVE_TDHP_V1",
+        period: "2026-05",
+        status: "VALIDATING",
+        fileCount: 3,
+        rowCount: 128,
+        totalDebitMinor: 2450000,
+        totalCreditMinor: 2450000,
+        balanceMinor: 0,
+        journalFile: "zirve_journal_2026_05.txt",
+        ledgerFile: "zirve_ledger_2026_05.txt",
+        summaryFile: "zirve_summary_2026_05.txt",
+        journalHeader: "ZIRVE_JOURNAL_HEADER",
+        ledgerHeader: "ZIRVE_LEDGER_HEADER",
+        summaryBalancedField: "BALANCED=true",
+        packageHash: "sha256:package-zirve-003",
+        journalFileHash: "sha256:zirve-journal-003",
+        ledgerFileHash: "sha256:zirve-ledger-003",
+        summaryFileHash: "sha256:zirve-summary-003",
+        validationMatrixHash: "sha256:matrix-zirve-003",
+        adapterTestHash: "sha256:adapter-zirve-003",
+        evidenceFile: "docs/faz3/evidence/export_zirve_003.md",
+        tenantId: "tenant_demo_001",
+        correlationId: "corr-export-zirve-003",
+        requestId: "req-export-zirve-003",
+        idempotencyKey: "idem-export-zirve-003",
+        allowedActions: ["VALIDATE", "AUDIT"]
+      },
+      {
+        id: "exp-eta-004",
+        packageNo: "EXP-ETA-2026-0004",
+        targetSystem: "ETA",
+        displayTarget: "ETA",
+        formatVersion: "ETA_TDHP_V1",
+        period: "2026-05",
+        status: "REVIEW_REQUIRED",
+        fileCount: 3,
+        rowCount: 128,
+        totalDebitMinor: 2450000,
+        totalCreditMinor: 2450000,
+        balanceMinor: 0,
+        journalFile: "eta_journal_2026_05.txt",
+        ledgerFile: "eta_ledger_2026_05.txt",
+        summaryFile: "eta_summary_2026_05.txt",
+        journalHeader: "ETA_JOURNAL_HEADER",
+        ledgerHeader: "ETA_LEDGER_HEADER",
+        summaryBalancedField: "BALANCED=true",
+        packageHash: "sha256:package-eta-004",
+        journalFileHash: "sha256:eta-journal-004",
+        ledgerFileHash: "sha256:eta-ledger-004",
+        summaryFileHash: "sha256:eta-summary-004",
+        validationMatrixHash: "sha256:matrix-eta-004",
+        adapterTestHash: "sha256:adapter-eta-004",
+        evidenceFile: "docs/faz3/evidence/export_eta_004.md",
+        tenantId: "tenant_demo_001",
+        correlationId: "corr-export-eta-004",
+        requestId: "req-export-eta-004",
+        idempotencyKey: "idem-export-eta-004",
+        allowedActions: ["VALIDATE", "AUDIT"]
+      }
+    ];
+
+    const statusClass = {
+      READY: "ready",
+      VALIDATING: "validating",
+      REVIEW_REQUIRED: "review",
+      BLOCKED: "blocked"
+    };
+
+    const statusLabel = {
+      READY: "Ready",
+      VALIDATING: "Validating",
+      REVIEW_REQUIRED: "Review Required",
+      BLOCKED: "Blocked"
+    };
+
+    function formatMoney(minor) {
+      return new Intl.NumberFormat("tr-TR", {
+        style: "currency",
+        currency: "TRY"
+      }).format(minor / 100);
+    }
+
+    function actionButtons(pkg) {
+      const externalDeliveryDisabled = realExternalDeliveryAllowed === false || productionApproved === false;
+      const actions = [
+        ["BUILD", "Build", "success"],
+        ["VALIDATE", "Validate", "warning"],
+        ["DOWNLOAD", "Download", "secondary"],
+        ["AUDIT", "Audit", "secondary"],
+        ["DELIVER", "Deliver", "danger"]
+      ];
+
+      return actions
+        .filter(([key]) => pkg.allowedActions.includes(key) || key === "BUILD" || key === "DELIVER")
+        .map(([key, label, cls]) => {
+          const disabled = key === "DELIVER" ? externalDeliveryDisabled : false;
+          return `<button class="${cls}" data-op="${key}" ${disabled ? "disabled" : ""}>${label}</button>`;
+        })
+        .join("");
+    }
+
+    function renderRows() {
+      const q = document.getElementById("searchInput").value.trim().toLowerCase();
+      const target = document.getElementById("targetFilter").value;
+      const status = document.getElementById("statusFilter").value;
+      const format = document.getElementById("formatFilter").value;
+      const action = document.getElementById("actionFilter").value;
+
+      const filtered = packages.filter(pkg => {
+        const haystack = [
+          pkg.id,
+          pkg.packageNo,
+          pkg.targetSystem,
+          pkg.displayTarget,
+          pkg.formatVersion,
+          pkg.period,
+          pkg.journalFile,
+          pkg.ledgerFile,
+          pkg.summaryFile,
+          pkg.packageHash,
+          pkg.validationMatrixHash,
+          pkg.adapterTestHash,
+          pkg.evidenceFile
+        ].join(" ").toLowerCase();
+
+        const qOk = q === "" || haystack.includes(q);
+        const targetOk = target === "ALL" || pkg.targetSystem === target;
+        const statusOk = status === "ALL" || pkg.status === status;
+        const formatOk =
+          format === "ALL" ||
+          (format === "TDHP_V1" && pkg.formatVersion.includes("TDHP_V1")) ||
+          (format === "JOURNAL_LEDGER_SUMMARY" && pkg.fileCount === 3);
+        const actionOk = action === "ALL" || pkg.allowedActions.includes(action) || action === "BUILD";
+
+        return qOk && targetOk && statusOk && formatOk && actionOk;
+      });
+
+      document.getElementById("exportRows").innerHTML = filtered.map(pkg => `
+        <tr data-export-id="${pkg.id}" onclick="selectPackage('${pkg.id}')">
+          <td>
+            <span class="main-text">${pkg.packageNo}</span>
+            <span class="sub">${pkg.period} / ${pkg.formatVersion}</span>
+          </td>
+          <td><span class="target">${pkg.displayTarget}</span></td>
+          <td><span class="status ${statusClass[pkg.status]}">${statusLabel[pkg.status]}</span></td>
+          <td>
+            <strong>${pkg.fileCount}</strong>
+            <span class="sub">journal + ledger + summary</span>
+          </td>
+          <td><span class="metric">${pkg.rowCount}</span></td>
+          <td>
+            <strong>${formatMoney(pkg.totalDebitMinor)}</strong>
+            <span class="sub">Balance: ${formatMoney(pkg.balanceMinor)}</span>
+          </td>
+          <td>
+            <strong>${pkg.packageHash}</strong>
+            <span class="sub">${pkg.validationMatrixHash}</span>
+          </td>
+          <td><div class="button-row">${actionButtons(pkg)}</div></td>
+        </tr>
+      `).join("");
+
+      if (filtered.length > 0) {
+        selectPackage(filtered[0].id);
+      } else {
+        document.getElementById("detailPanel").innerHTML = "";
+        document.getElementById("timeline").innerHTML = "";
+      }
+    }
+
+    function selectPackage(id) {
+      const pkg = packages.find(item => item.id === id);
+      if (!pkg) return;
+
+      document.getElementById("detailPanel").innerHTML = `
+        <div class="detail-row"><span>Export ID</span><strong>${pkg.id}</strong></div>
+        <div class="detail-row"><span>Package No</span><strong>${pkg.packageNo}</strong></div>
+        <div class="detail-row"><span>Target System</span><strong>${pkg.displayTarget}</strong></div>
+        <div class="detail-row"><span>Format Version</span><strong>${pkg.formatVersion}</strong></div>
+        <div class="detail-row"><span>Period</span><strong>${pkg.period}</strong></div>
+        <div class="detail-row"><span>Status</span><strong>${statusLabel[pkg.status]}</strong></div>
+        <div class="detail-row"><span>File Count</span><strong>${pkg.fileCount}</strong></div>
+        <div class="detail-row"><span>Row Count</span><strong>${pkg.rowCount}</strong></div>
+        <div class="detail-row"><span>Total Debit</span><strong>${formatMoney(pkg.totalDebitMinor)}</strong></div>
+        <div class="detail-row"><span>Total Credit</span><strong>${formatMoney(pkg.totalCreditMinor)}</strong></div>
+        <div class="detail-row"><span>Balance</span><strong>${formatMoney(pkg.balanceMinor)}</strong></div>
+        <div class="detail-row"><span>Journal File</span><strong>${pkg.journalFile}</strong></div>
+        <div class="detail-row"><span>Ledger File</span><strong>${pkg.ledgerFile}</strong></div>
+        <div class="detail-row"><span>Summary File</span><strong>${pkg.summaryFile}</strong></div>
+        <div class="detail-row"><span>Journal Header</span><strong>${pkg.journalHeader}</strong></div>
+        <div class="detail-row"><span>Ledger Header</span><strong>${pkg.ledgerHeader}</strong></div>
+        <div class="detail-row"><span>Summary Balanced Field</span><strong>${pkg.summaryBalancedField}</strong></div>
+        <div class="detail-row"><span>Package Hash</span><strong>${pkg.packageHash}</strong></div>
+        <div class="detail-row"><span>Journal File Hash</span><strong>${pkg.journalFileHash}</strong></div>
+        <div class="detail-row"><span>Ledger File Hash</span><strong>${pkg.ledgerFileHash}</strong></div>
+        <div class="detail-row"><span>Summary File Hash</span><strong>${pkg.summaryFileHash}</strong></div>
+        <div class="detail-row"><span>Validation Matrix Hash</span><strong>${pkg.validationMatrixHash}</strong></div>
+        <div class="detail-row"><span>Adapter Test Hash</span><strong>${pkg.adapterTestHash}</strong></div>
+        <div class="detail-row"><span>Evidence File</span><strong>${pkg.evidenceFile}</strong></div>
+        <div class="detail-row"><span>Tenant ID</span><strong>${pkg.tenantId}</strong></div>
+        <div class="detail-row"><span>Correlation ID</span><strong>${pkg.correlationId}</strong></div>
+        <div class="detail-row"><span>Request ID</span><strong>${pkg.requestId}</strong></div>
+        <div class="detail-row"><span>Idempotency Key</span><strong>${pkg.idempotencyKey}</strong></div>
+      `;
+
+      document.getElementById("timeline").innerHTML = [
+        ["EXPORT_PACKAGE_SELECTED", "Export paketi tenant scope içinde görüntülendi."],
+        [pkg.targetSystem, `${pkg.displayTarget} hedef sistemi için ${pkg.formatVersion} formatı hazırlandı.`],
+        [pkg.status, `Durum: ${statusLabel[pkg.status]}, package hash: ${pkg.packageHash}.`]
+      ].map(([title, desc]) => `
+        <div class="event">
+          <strong>${title}</strong>
+          <small>${desc}</small>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("searchInput").addEventListener("input", renderRows);
+    document.getElementById("targetFilter").addEventListener("change", renderRows);
+    document.getElementById("statusFilter").addEventListener("change", renderRows);
+    document.getElementById("formatFilter").addEventListener("change", renderRows);
+    document.getElementById("actionFilter").addEventListener("change", renderRows);
+
+    renderRows();
+  </script>
+</body>
+</html>

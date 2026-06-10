@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Table / Filter / Pagination Standardı</title>
+  <link rel="stylesheet" href="./table_filter_pagination.css">
+</head>
+<body>
+  <main class="pix2pi-page" id="pix2piTableStandardRoot">
+    <header class="pix2pi-page-header">
+      <div>
+        <h1 class="pix2pi-page-title">Pix2pi Table / Filter / Pagination Standardı</h1>
+        <p class="pix2pi-page-subtitle">FAZ 1-4.5 — WEB-L1 UI Foundation / Design System</p>
+      </div>
+      <span class="pix2pi-badge ok">WEB-L1 READY</span>
+    </header>
+
+    <section class="pix2pi-card pix2pi-table-region">
+      <div class="pix2pi-table-toolbar">
+        <input class="pix2pi-filter" id="pix2piTableFilterInput" type="search" placeholder="Kod, ad veya tip ara">
+
+        <select class="pix2pi-select" id="pix2piStatusFilter">
+          <option value="ALL">Tüm durumlar</option>
+          <option value="ACTIVE">ACTIVE</option>
+          <option value="READY">READY</option>
+          <option value="DRAFT">DRAFT</option>
+        </select>
+
+        <select class="pix2pi-select" id="pix2piSortSelect">
+          <option value="updated_at_desc">Güncelleme yeni → eski</option>
+          <option value="updated_at_asc">Güncelleme eski → yeni</option>
+          <option value="code_asc">Kod A → Z</option>
+          <option value="code_desc">Kod Z → A</option>
+          <option value="name_asc">Ad A → Z</option>
+          <option value="name_desc">Ad Z → A</option>
+          <option value="status_asc">Durum A → Z</option>
+        </select>
+
+        <button class="pix2pi-button" id="pix2piResetFilterButton" type="button">Filtreyi temizle</button>
+      </div>
+
+      <div class="pix2pi-table-scroll">
+        <table class="pix2pi-table" id="pix2piDataTable">
+          <thead>
+            <tr>
+              <th><button class="pix2pi-sort-button" type="button" data-sort-field="code">Kod</button></th>
+              <th><button class="pix2pi-sort-button" type="button" data-sort-field="name">Ad</button></th>
+              <th>Tip</th>
+              <th><button class="pix2pi-sort-button" type="button" data-sort-field="status">Durum</button></th>
+              <th><button class="pix2pi-sort-button" type="button" data-sort-field="updated_at">Güncelleme</button></th>
+            </tr>
+          </thead>
+          <tbody id="pix2piDataTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="pix2pi-empty-state" id="pix2piTableEmptyState"></div>
+
+      <footer class="pix2pi-pagination" id="pix2piPagination">
+        <div class="pix2pi-pagination-controls">
+          <button class="pix2pi-pagination-button" id="pix2piPrevPageButton" type="button">Önceki</button>
+          <button class="pix2pi-pagination-button" id="pix2piNextPageButton" type="button">Sonraki</button>
+        </div>
+
+        <span class="pix2pi-badge" id="pix2piPaginationInfo">Sayfa hazırlanıyor</span>
+
+        <select class="pix2pi-select" id="pix2piPageSizeSelect" style="max-width: 140px;">
+          <option value="5">5 / sayfa</option>
+          <option value="10">10 / sayfa</option>
+          <option value="25">25 / sayfa</option>
+        </select>
+      </footer>
+
+      <button class="pix2pi-button primary" id="pix2piRunTableTestsButton" type="button">Table testlerini çalıştır</button>
+      <pre class="pix2pi-log" id="pix2piTableTestOutput">TABLE_TEST_LOADING</pre>
+      <pre class="pix2pi-log" id="pix2piTableLog">TABLE_LOG_LOADING</pre>
+    </section>
+  </main>
+
+  <script src="./table_filter_pagination.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "expected_dependency": "FAZ_6_21_3_4",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_db_promotion_allowed": false,
+  "expected_replica_attach_allowed": false,
+  "expected_replica_detach_allowed": false,
+  "expected_dns_mutation_allowed": false,
+  "expected_dsn_mutation_allowed": false,
+  "expected_read_write_route_mutation_allowed": false,
+  "expected_required_controls": [
+    "rate_limit_tuning_dependency_gate",
+    "db_ha_role_model",
+    "primary_replica_topology_model",
+    "write_primary_guard",
+    "read_replica_guard",
+    "replication_health_model",
+    "failover_decision_guard",
+    "split_brain_prevention_policy",
+    "connection_routing_policy",
+    "backup_pitr_dependency_policy",
+    "rto_rpo_alignment_policy",
+    "dry_run_topology_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_roles": [
+    "primary",
+    "sync_replica_candidate",
+    "async_read_replica",
+    "backup_pitr_chain"
+  ],
+  "expected_min_node_count": 4,
+  "expected_status": "dry_run_only_no_db_ha_mutation",
+  "expected_next_step": "FAZ_6_21_2_2"
+}

@@ -1,0 +1,69 @@
+{
+  "version": "ha_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_2_5",
+  "status": "dry_run_only_no_restore_execution",
+  "rehearsals": [
+    {
+      "rehearsal_id": "pitr-dry-run-happy-path",
+      "restore_target": "isolated_restore_environment_only",
+      "recovery_target_time_status": "INSIDE_PITR_WINDOW",
+      "backup_chain_status": "AVAILABLE",
+      "wal_archive_status": "AVAILABLE",
+      "restore_preflight_status": "READY",
+      "wal_replay_validation_status": "DRY_RUN_READY",
+      "data_integrity_validation_status": "DRY_RUN_READY",
+      "tenant_scope_validation_status": "DRY_RUN_READY",
+      "rto_minutes": 120,
+      "rpo_minutes": 15,
+      "mutation_allowed": false
+    },
+    {
+      "rehearsal_id": "pitr-blocked-missing-wal",
+      "restore_target": "isolated_restore_environment_only",
+      "recovery_target_time_status": "INSIDE_PITR_WINDOW",
+      "backup_chain_status": "AVAILABLE",
+      "wal_archive_status": "MISSING_EVIDENCE",
+      "restore_preflight_status": "BLOCKED",
+      "wal_replay_validation_status": "BLOCKED",
+      "data_integrity_validation_status": "NOT_STARTED",
+      "tenant_scope_validation_status": "NOT_STARTED",
+      "rto_minutes": 120,
+      "rpo_minutes": 15,
+      "mutation_allowed": false
+    },
+    {
+      "rehearsal_id": "pitr-blocked-target-time-outside-window",
+      "restore_target": "isolated_restore_environment_only",
+      "recovery_target_time_status": "OUTSIDE_PITR_WINDOW",
+      "backup_chain_status": "AVAILABLE",
+      "wal_archive_status": "AVAILABLE",
+      "restore_preflight_status": "BLOCKED",
+      "wal_replay_validation_status": "NOT_STARTED",
+      "data_integrity_validation_status": "NOT_STARTED",
+      "tenant_scope_validation_status": "NOT_STARTED",
+      "rto_minutes": 120,
+      "rpo_minutes": 15,
+      "mutation_allowed": false
+    },
+    {
+      "rehearsal_id": "pitr-blocked-production-target",
+      "restore_target": "production_primary",
+      "recovery_target_time_status": "INSIDE_PITR_WINDOW",
+      "backup_chain_status": "AVAILABLE",
+      "wal_archive_status": "AVAILABLE",
+      "restore_preflight_status": "BLOCKED",
+      "wal_replay_validation_status": "NOT_STARTED",
+      "data_integrity_validation_status": "NOT_STARTED",
+      "tenant_scope_validation_status": "NOT_STARTED",
+      "rto_minutes": 120,
+      "rpo_minutes": 15,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_21_1_2",
+    "name": "Service discovery runtime tuning",
+    "runtime_mutation_allowed_now": false
+  }
+}

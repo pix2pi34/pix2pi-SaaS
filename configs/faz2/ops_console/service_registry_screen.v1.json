@@ -1,0 +1,32 @@
+{
+  "phase": "FAZ 2-8.1",
+  "screen": "service_registry_screen",
+  "web_path": "web/ops-console/service-registry/index.html",
+  "runtime_package": "./internal/platform/ops/console",
+  "require_tenant": true,
+  "allow_platform_viewer": true,
+  "max_visible_services": 100,
+  "stale_after_seconds": 120,
+  "guards": [
+    "tenant_required",
+    "cross_tenant_viewer_denied",
+    "valid_status_required",
+    "valid_visibility_required",
+    "service_id_required",
+    "instance_id_required",
+    "address_required",
+    "tenant_viewer_internal_hidden",
+    "platform_viewer_internal_toggle",
+    "stale_heartbeat_detection"
+  ],
+  "screen_sections": [
+    "registered_services_metric",
+    "healthy_metric",
+    "degraded_metric",
+    "maintenance_metric",
+    "service_instances_table",
+    "tenant_indicator",
+    "responsive_shell"
+  ],
+  "next_ready": "FAZ_2_8_2_MISSION_CONTROL_SCREEN"
+}

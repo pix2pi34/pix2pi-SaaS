@@ -1,0 +1,39 @@
+{
+  "test_name": "faz_5_18_4_2_destek_kanal_yapisi_test",
+  "phase": "FAZ_5_18_4_2",
+  "expected": {
+    "required_channel_count": 6,
+    "required_family_count": 6,
+    "internal_channel_structure_ready": true,
+    "public_support_enabled": false,
+    "real_customer_support_open": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_channel_keys": [
+    "support_email_intake",
+    "support_in_app_intake",
+    "support_help_center_form",
+    "support_kvkk_request",
+    "support_security_report",
+    "support_ops_escalation"
+  ],
+  "must_have_families": [
+    "PILOT",
+    "BILLING",
+    "KVKK",
+    "SECURITY",
+    "TECHNICAL",
+    "COMMERCIAL"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_requester_email",
+    "requires_correlation_id",
+    "requires_audit_trail",
+    "requires_sla_key",
+    "has_intake_template",
+    "has_routing_rule",
+    "has_ops_owner"
+  ]
+}

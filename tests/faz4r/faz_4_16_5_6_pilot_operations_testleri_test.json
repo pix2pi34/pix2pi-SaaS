@@ -1,0 +1,149 @@
+{
+  "valid_fixture": {
+    "operations_test_id": "pilot_operations_tests.valid_fixture",
+    "operations_test_status": "READY",
+    "operations_test_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT"
+    },
+    "chain_dependencies": {
+      "214_FAZ_4_16_4_5_EGITIM_DESTEK_SMOKE": "PASS",
+      "215_FAZ_4_16_5_2_GUNLUK_PILOT_REVIEW": "PASS",
+      "216_FAZ_4_16_5_4_PILOT_ROLLBACK_KARARI_AKISI": "PASS"
+    },
+    "operations_tests": [
+      {"code": "DAILY_PILOT_REVIEW_TEST", "required": true, "status": "PASS", "area": "DAILY_REVIEW", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/daily_pilot_review_test.md"},
+      {"code": "ROLLBACK_DECISION_FLOW_TEST", "required": true, "status": "PASS", "area": "ROLLBACK_DECISION", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/rollback_decision_flow_test.md"},
+      {"code": "TRAINING_SUPPORT_SMOKE_TEST", "required": true, "status": "PASS", "area": "TRAINING_SUPPORT", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/training_support_smoke_test.md"},
+      {"code": "SUPPORT_TRIAGE_TEST", "required": true, "status": "PASS", "area": "TRIAGE", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/support_triage_test.md"},
+      {"code": "ISSUE_ESCALATION_TEST", "required": true, "status": "PASS", "area": "ESCALATION", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/issue_escalation_test.md"},
+      {"code": "PILOT_HEALTH_TEST", "required": true, "status": "PASS", "area": "HEALTH", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/pilot_health_test.md"},
+      {"code": "KPI_SNAPSHOT_TEST", "required": true, "status": "PASS", "area": "KPI", "owner": "BUSINESS_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/kpi_snapshot_test.md"},
+      {"code": "OPEN_BLOCKER_ZERO_TEST", "required": true, "status": "PASS", "area": "BLOCKER", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/open_blocker_zero_test.md"},
+      {"code": "CRITICAL_ISSUE_ZERO_TEST", "required": true, "status": "PASS", "area": "QUALITY", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/critical_issue_zero_test.md"},
+      {"code": "CLOSED_PROVIDER_POLICY_TEST", "required": true, "status": "PASS", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/closed_provider_policy_test.md"},
+      {"code": "NO_REAL_ROLLBACK_EXECUTION_TEST", "required": true, "status": "PASS", "area": "ROLLBACK_EXECUTION", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/no_real_rollback_execution_test.md"},
+      {"code": "NO_HOTFIX_DEPLOY_TEST", "required": true, "status": "PASS", "area": "DEPLOY", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/no_hotfix_deploy_test.md"},
+      {"code": "NO_PRODUCTION_LAUNCH_TEST", "required": true, "status": "PASS", "area": "PRODUCTION_LAUNCH", "owner": "BUSINESS_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/no_production_launch_test.md"},
+      {"code": "OPERATIONS_HANDOFF_READINESS_TEST", "required": true, "status": "PASS", "area": "HANDOFF", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_operations_tests/operations_handoff_readiness_test.md"}
+    ],
+    "operations_controls": {
+      "daily_pilot_review_status": "PASS",
+      "rollback_decision_flow_status": "PASS",
+      "training_support_smoke_status": "PASS",
+      "support_triage_status": "PASS",
+      "issue_escalation_status": "PASS",
+      "pilot_health_status": "PASS",
+      "operations_handoff_ready": "YES",
+      "no_real_rollback_execution": true,
+      "no_hotfix_deploy": true,
+      "production_launch_status": "CLOSED"
+    },
+    "operations_metrics": {
+      "open_blocker_count": 0,
+      "critical_issue_count": 0,
+      "required_fail_count": 0,
+      "failed_operation_test_count": 0,
+      "rollback_execution_count": 0,
+      "hotfix_deploy_count": 0,
+      "production_launch_count": 0
+    },
+    "summary": {
+      "total_test_count": 14,
+      "pass_test_count": 14,
+      "fail_test_count": 0,
+      "required_fail_count": 0,
+      "critical_issue_count": 0,
+      "open_blocker_count": 0,
+      "daily_pilot_review_status": "PASS",
+      "rollback_decision_flow_status": "PASS",
+      "training_support_smoke_status": "PASS",
+      "support_triage_status": "PASS",
+      "issue_escalation_status": "PASS",
+      "operations_handoff_ready": "YES",
+      "operations_test_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "production_launch": "CLOSED",
+      "hotfix_deploy": "CLOSED",
+      "real_rollback_execution": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "operations_test_id": "pilot_operations_tests.invalid_fixture",
+    "operations_test_status": "DRAFT",
+    "operations_test_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED"
+    },
+    "chain_dependencies": {
+      "214_FAZ_4_16_4_5_EGITIM_DESTEK_SMOKE": "PASS",
+      "215_FAZ_4_16_5_2_GUNLUK_PILOT_REVIEW": "PASS",
+      "216_FAZ_4_16_5_4_PILOT_ROLLBACK_KARARI_AKISI": "FAIL"
+    },
+    "operations_tests": [
+      {"code": "DAILY_PILOT_REVIEW_TEST", "required": true, "status": "FAIL", "area": "DAILY_REVIEW", "owner": "SUPPORT_OWNER", "evidence_ref": ""},
+      {"code": "ROLLBACK_DECISION_FLOW_TEST", "required": true, "status": "PASS", "area": "ROLLBACK_DECISION", "owner": "TECH_OWNER", "evidence_ref": "x"},
+      {"code": "ROLLBACK_DECISION_FLOW_TEST", "required": true, "status": "PASS", "area": "ROLLBACK_DECISION", "owner": "TECH_OWNER", "evidence_ref": "x"}
+    ],
+    "operations_controls": {
+      "daily_pilot_review_status": "FAIL",
+      "rollback_decision_flow_status": "FAIL",
+      "training_support_smoke_status": "FAIL",
+      "support_triage_status": "FAIL",
+      "issue_escalation_status": "FAIL",
+      "pilot_health_status": "FAIL",
+      "operations_handoff_ready": "NO",
+      "no_real_rollback_execution": false,
+      "no_hotfix_deploy": false,
+      "production_launch_status": "OPEN"
+    },
+    "operations_metrics": {
+      "open_blocker_count": 1,
+      "critical_issue_count": 1,
+      "required_fail_count": 1,
+      "failed_operation_test_count": 1,
+      "rollback_execution_count": 1,
+      "hotfix_deploy_count": 1,
+      "production_launch_count": 1
+    },
+    "summary": {
+      "total_test_count": 99,
+      "pass_test_count": 99,
+      "fail_test_count": 99,
+      "required_fail_count": 99,
+      "critical_issue_count": 1,
+      "open_blocker_count": 1,
+      "daily_pilot_review_status": "FAIL",
+      "rollback_decision_flow_status": "FAIL",
+      "training_support_smoke_status": "FAIL",
+      "support_triage_status": "FAIL",
+      "issue_escalation_status": "FAIL",
+      "operations_handoff_ready": "NO",
+      "operations_test_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "production_launch": "OPEN",
+      "hotfix_deploy": "OPEN",
+      "real_rollback_execution": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

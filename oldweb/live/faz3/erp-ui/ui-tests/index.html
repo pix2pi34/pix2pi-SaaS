@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="tr" data-phase="FAZ_3_11_10" data-screen="ERP_UI_TESTS_REPORT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi ERP — ERP UI Testleri</title>
+  <style>
+    body{margin:0;background:#f8fafc;color:#0f172a;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{max-width:1180px;margin:0 auto;padding:28px}
+    .card{background:white;border:1px solid #e2e8f0;border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 18px 50px rgba(15,23,42,.12)}
+    h1{margin:0 0 8px;font-size:36px;letter-spacing:-.04em}
+    p{color:#64748b;line-height:1.5}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .pill{display:inline-flex;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800;background:#ecfdf5;color:#059669;border:1px solid rgba(5,150,105,.24)}
+    .warn{background:#fff7ed;color:#d97706;border-color:rgba(217,119,6,.24)}
+    .fail{background:#fef2f2;color:#dc2626;border-color:rgba(220,38,38,.24)}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;border-bottom:1px solid #e2e8f0;padding:12px;font-size:14px}
+    th{color:#64748b;font-size:12px}
+    @media(max-width:820px){.grid{grid-template-columns:1fr}main{padding:14px}}
+  </style>
+</head>
+<body>
+<main>
+  <section class="card">
+    <span class="pill">FAZ 3-11.10</span>
+    <h1>ERP UI Testleri</h1>
+    <p>157–165 ERP web yüzeyleri için static/read-only UI test raporu. Bu ekran production aktivasyonu yapmaz.</p>
+    <p data-tenant-guard="required">Tenant: tenant_demo_001</p>
+    <p data-correlation-guard="required">Correlation: corr-ui-166</p>
+    <p data-production-approved="false">Production: FALSE</p>
+  </section>
+
+  <section class="grid">
+    <div class="card"><span class="pill">Screens</span><h2>9/9</h2><p>157–165 kapsamı</p></div>
+    <div class="card"><span class="pill">Policy</span><h2>READ-ONLY</h2><p>Canlı aksiyon yok</p></div>
+    <div class="card"><span class="pill warn">Next</span><h2>167</h2><p>Export workspace</p></div>
+  </section>
+
+  <section class="card">
+    <h2>Screen Coverage</h2>
+    <table>
+      <thead><tr><th>No</th><th>Ekran</th><th>Route</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>157</td><td>e-Belge Operasyon</td><td>/faz3/erp-ui/ebelge-operations/</td><td><span class="pill">READY</span></td></tr>
+        <tr><td>158</td><td>Reconciliation</td><td>/faz3/erp-ui/reconciliation/</td><td><span class="pill">READY</span></td></tr>
+        <tr><td>159</td><td>Vergi / KDV Rule</td><td>/faz3/erp-ui/tax-kdv-rules/</td><td><span class="pill">READY</span></td></tr>
+        <tr><td>160</td><td>Journal / Ledger</td><td>/faz3/erp-ui/journal-ledger/</td><td><span class="pill">READY</span></td></tr>
+        <tr><td>161</td><td>TDHP Mapping</td><td>/faz3/erp-ui/tdhp-mapping/</td><td><span class="pill">READY</span></td></tr>
+        <tr><td>162</td><td>Ödeme / Mutabakat</td><td>/faz3/erp-ui/payment-reconciliation/</td><td><span class="pill">READY</span></td></tr>
+        <tr><td>163</td><td>Export Center</td><td>/faz3/erp-ui/export-center/</td><td><span class="pill">READY</span></td></tr>
+        <tr><td>164</td><td>Finans Özet</td><td>/faz3/erp-ui/finance-summary/</td><td><span class="pill">READY</span></td></tr>
+        <tr><td>165</td><td>Ana Yönetim Dashboard</td><td>/faz3/erp-ui/main-dashboard/</td><td><span class="pill">READY</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Live Policy</h2>
+    <p>Ledger write: CLOSED · Tax rule activation: CLOSED · Payment capture: CLOSED · Export delivery: CLOSED · e-Belge provider call: CLOSED</p>
+  </section>
+</main>
+</body>
+</html>

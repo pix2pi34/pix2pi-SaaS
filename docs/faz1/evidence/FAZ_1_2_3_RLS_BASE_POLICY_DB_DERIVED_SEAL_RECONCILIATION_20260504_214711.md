@@ -1,0 +1,15 @@
+# FAZ 1-2.3 RLS Base Policy DB-Derived Seal Reconciliation
+
+- Tarih: 2026-05-04T21:47:11+03:00
+- Reason: RLS evidence file exists but textual SEALED scan returned zero; DB runtime counters are authoritative for final closure.
+
+## DB Counters
+- TENANT_TABLE_COUNT=108
+- RLS_ENABLED_TABLE_COUNT=108
+- RLS_FORCED_TABLE_COUNT=108
+- ALLOW_POLICY_COUNT=108
+- ENFORCE_POLICY_COUNT=108
+- APP_SECURITY_HELPER_COUNT=3
+
+FAZ_1_2_3_RLS_BASE_POLICY_DB_DERIVED_SEAL_STATUS=PASS
+FAZ_1_2_3_RLS_BASE_POLICY_EFFECTIVE_SEAL_STATUS=SEALED

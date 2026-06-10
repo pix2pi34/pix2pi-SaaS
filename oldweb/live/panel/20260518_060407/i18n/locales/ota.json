@@ -1,0 +1,70 @@
+{
+  "app.name": "Pix2pi",
+  "panel.title": "ایشلتمه پانلی",
+  "panel.dashboard": "داشبورد",
+  "panel.customer_surface": "مشتری قوللانم یوزی",
+  "panel.language_switcher": "دیل سچیمی",
+  "panel.tenant_indicator": "تنانت",
+  "auth.login.title": "گیریش یاپ",
+  "auth.login.email": "ای-پوستا",
+  "auth.login.password": "شیفره",
+  "auth.login.submit": "گیریش یاپ",
+  "auth.tenant_select.title": "ایشلتمه سچیمی",
+  "auth.errors.INVALID_CREDENTIALS": "ای-پوستا یا شیفره خطالی.",
+  "auth.errors.TENANT_REQUIRED": "دوام اتمک ایچون ایشلتمه سچیمی گره‌کلیدیر.",
+  "auth.errors.TENANT_FORBIDDEN": "بو قوللانجی سچیلن ایشلتمه‌یه اریشه‌مز.",
+  "auth.errors.SESSION_EXPIRED": "اوتوروم سوره‌سی دولدو. لطفن تکرار گیریش یاپین.",
+  "auth.errors.NETWORK_ERROR": "سونوجویه اولا شیلامادی. لطفن تکرار دنه‌یین.",
+  "auth.errors.UNKNOWN": "گیریش ایشلمی تمام‌لانامادی.",
+  "pos.title": "POS ساتیش اکرانی",
+  "pos.cart": "سبد",
+  "pos.payment": "اودمه",
+  "marketplace.title": "Marketplace",
+  "marketplace.product_list": "اورون لیسته‌سی",
+  "marketplace.order": "سیپاریش",
+  "notification.welcome": "Pix2pi’ye خوش گلدینیز.",
+  "email.subject.welcome": "Pix2pi حسابینیز حاضر",
+  "error.unauthorized": "اوتوروم دوغرولانامادی.",
+  "error.forbidden": "یتکی یوق.",
+  "format.currency": "پارا فورماتی",
+  "format.date": "تاریخ فورماتی",
+  "format.number": "سایی فورماتی",
+  "layout.direction": "rtl",
+  "layout.font_family": "Noto Naskh Arabic, Noto Sans Arabic, Vazirmatn, Tahoma, Arial, sans-serif",
+  "helpCenter": {
+    "title": "یاردیم مرکزی",
+    "subtitle": "Pix2pi ایلک قوللانیم دوقومانلاری",
+    "login": {
+      "title": "گیریش یاپمه",
+      "body": "پنل آدرسندن ای-پوسته و شفره ایله گیریش یاپین. تننت سچیمی گلیرسه ایشلتمنیزی سچین."
+    },
+    "business": {
+      "title": "ایشلتنه اولوشدورمه",
+      "body": "ایشلتنه آدی، ورگی بیلگیسی، آدرس، سکتور، Varsayılan dil و para birimi بیلگیلرینی گیرین."
+    },
+    "party": {
+      "title": "جاری اکلمه",
+      "body": "جاری اکرانندن مشتری یا تداریکچی بیلگیلرینی اکله‌یین."
+    },
+    "product": {
+      "title": "اورون اکلمه",
+      "body": "اورون آدی، بارکود، SKU، کتگوری، بیریم، قیمت و KDV بیلگیلرینی گیرین."
+    },
+    "posSale": {
+      "title": "POS ساتیش یاپمه",
+      "body": "POS اکرانندا کاسه‌نی سچین، اورونو سپته اکله‌یین و اودمه ایله ساتیشی تمامله‌یین."
+    },
+    "report": {
+      "title": "راپور گورونتوله‌مه",
+      "body": "راپور اکرانندن گونلوک ساتیش، ستوک، جاری باقیه و KDV راپورلرینی گورون."
+    },
+    "language": {
+      "title": "دیل دگیشدیرمه",
+      "body": "دیل لیسته‌سیندن تورکچه، عثمانلیجه، عربچه، فارسی یا انگلیسی سچین."
+    },
+    "smoke": {
+      "title": "Help center smoke test",
+      "body": "یاردیم مرکزی دوقومانلاری URL، i18n key و DB smoke قیدلری ایله دوغرولانیر."
+    }
+  }
+}

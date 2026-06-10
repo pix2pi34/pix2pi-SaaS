@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Tenant Switcher UX</title>
+  <link rel="stylesheet" href="./tenant_switcher.css">
+</head>
+<body>
+  <main class="pix2pi-shell">
+    <header class="pix2pi-header">
+      <div>
+        <h1 class="pix2pi-title">Pix2pi Tenant Switcher UX</h1>
+        <p class="pix2pi-subtitle">FAZ 1-5.3 — Auth / Tenant Experience</p>
+      </div>
+      <span class="pix2pi-badge ok">WEB-L2 READY</span>
+    </header>
+
+    <section class="pix2pi-grid">
+      <article class="pix2pi-card pix2pi-active-tenant" id="activeTenantIndicator" aria-live="polite">
+        <span class="pix2pi-label">Aktif Tenant</span>
+        <div class="pix2pi-active-name" id="activeTenantName">Tenant yükleniyor</div>
+        <div class="pix2pi-active-meta">
+          <span class="pix2pi-badge" id="activeTenantCode">TENANT_CODE</span>
+          <span class="pix2pi-badge ok" id="activeTenantRoles">ROLES</span>
+        </div>
+
+        <div>
+          <button class="pix2pi-tenant-item" type="button" id="simulateWrongTenantButton">
+            Wrong-tenant guard test et
+          </button>
+          <button class="pix2pi-tenant-item" type="button" id="clearWrongTenantButton">
+            Guard mesajını temizle
+          </button>
+        </div>
+
+        <div class="pix2pi-guard" id="wrongTenantGuard" role="alert"></div>
+
+        <div class="pix2pi-log" id="tenantSwitchLog">Tenant switch event log...</div>
+      </article>
+
+      <article class="pix2pi-card">
+        <label class="pix2pi-label" for="tenantSearch">Tenant Listesi</label>
+        <input class="pix2pi-search" id="tenantSearch" type="search" placeholder="Tenant adı, kodu veya ID ara">
+        <div class="pix2pi-tenant-list" id="tenantList" aria-label="Role-aware tenant list"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="./tenant_switcher.js"></script>
+</body>
+</html>

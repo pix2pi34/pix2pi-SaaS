@@ -1,0 +1,51 @@
+{
+  "phase": "FAZ_3_10_8_1_TDHP_SMOKE",
+  "runtime": "tdhp_smoke_runtime",
+  "runtime_enabled": true,
+  "require_all_modules": true,
+  "require_voucher_pipeline": true,
+  "require_account_switch": true,
+  "require_posting_runtime": true,
+  "require_audit_trace": true,
+  "require_reconciliation": true,
+  "require_tdhp_live_tests": true,
+  "require_tenant_guard": true,
+  "require_correlation_guard": true,
+  "require_idempotency_guard": true,
+  "require_smoke_hash": true,
+  "minimum_pass_count": 40,
+  "required_modules": [
+    "REAL_VOUCHER_PIPELINE",
+    "ACCOUNT_PLAN_LIVE_VERSION_SWITCH",
+    "DOCUMENT_BASED_POSTING_RUNTIME",
+    "AUDIT_TRACE_PERSISTENCE",
+    "TDHP_RECONCILIATION_RUNTIME",
+    "TDHP_LIVE_TESTS"
+  ],
+  "covered_gates": [
+    "FAZ_3_10_1_1_REAL_VOUCHER_PIPELINE",
+    "FAZ_3_10_1_2_ACCOUNT_PLAN_LIVE_VERSION_SWITCH",
+    "FAZ_3_10_1_3_DOCUMENT_BASED_POSTING_RUNTIME",
+    "FAZ_3_10_1_4_AUDIT_TRACE_PERSISTENCE",
+    "FAZ_3_10_1_5_TDHP_RECONCILIATION_RUNTIME",
+    "FAZ_3_10_1_6_TDHP_LIVE_TESTS"
+  ],
+  "live_policy": {
+    "production_approved": false,
+    "real_external_status": "CLOSED",
+    "real_external_provider_calls_allowed": false,
+    "tdhp_smoke_is_readiness_only": true
+  },
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "smoke_id_required": true,
+    "requested_at_required": true,
+    "minimum_pass_count_required": true,
+    "smoke_hash_required": true
+  },
+  "previous_gate": "FAZ_3_10_8_6_ERP_TR_LIVE_READINESS_CLOSURE",
+  "next_gate": "FAZ_3_10_8_2_TAX_SMOKE"
+}

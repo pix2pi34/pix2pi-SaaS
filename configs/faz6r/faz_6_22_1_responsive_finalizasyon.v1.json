@@ -1,0 +1,169 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "312",
+  "code": "FAZ_6_22_1",
+  "name": "Responsive finalizasyon",
+  "depends_on": [
+    "FAZ_6_22_8"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "frontend_deploy_allowed": false,
+  "css_mutation_allowed": false,
+  "layout_mutation_allowed": false,
+  "breakpoint_mutation_allowed": false,
+  "build_publish_allowed": false,
+  "cdn_invalidation_allowed": false,
+  "required_controls": [
+    "final_web_closure_dependency_gate",
+    "breakpoint_matrix_policy",
+    "responsive_route_inventory",
+    "mobile_layout_policy",
+    "tablet_layout_policy",
+    "desktop_layout_policy",
+    "overflow_scroll_guard",
+    "touch_target_policy",
+    "navigation_collapse_policy",
+    "form_responsive_policy",
+    "table_responsive_policy",
+    "modal_drawer_responsive_policy",
+    "dry_run_responsive_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "breakpoint_matrix_policy": {
+    "enabled": true,
+    "required_breakpoints": [
+      "mobile_360_390",
+      "mobile_414_430",
+      "tablet_768_834",
+      "laptop_1366",
+      "desktop_1440_plus"
+    ],
+    "block_if_mobile_missing": true,
+    "block_if_tablet_missing": true,
+    "block_if_desktop_missing": true,
+    "block_if_horizontal_overflow": true
+  },
+  "responsive_surfaces": [
+    {
+      "surface": "public_landing",
+      "risk_level": "medium",
+      "mobile_required": true,
+      "tablet_required": true,
+      "desktop_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "auth_login",
+      "risk_level": "critical",
+      "mobile_required": true,
+      "tablet_required": true,
+      "desktop_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "tenant_panel_shell",
+      "risk_level": "critical",
+      "mobile_required": true,
+      "tablet_required": true,
+      "desktop_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "approval_inbox",
+      "risk_level": "high",
+      "mobile_required": true,
+      "tablet_required": true,
+      "desktop_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "workflow_monitor",
+      "risk_level": "high",
+      "mobile_required": true,
+      "tablet_required": true,
+      "desktop_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "reporting_tables",
+      "risk_level": "high",
+      "mobile_required": true,
+      "tablet_required": true,
+      "desktop_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "responsive_guard_policy": {
+    "enabled": true,
+    "min_touch_target_px": 44,
+    "block_if_touch_target_below_min": true,
+    "block_if_nav_collapse_missing": true,
+    "block_if_form_fields_overflow": true,
+    "block_if_table_has_no_mobile_strategy": true,
+    "block_if_modal_drawer_overflow": true,
+    "block_if_text_truncation_unreviewed": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "frontend_deploy_execute",
+      "css_mutation_execute",
+      "layout_mutation_execute",
+      "breakpoint_mutation_execute",
+      "build_publish_execute",
+      "cdn_invalidation_execute"
+    ],
+    "approval_roles": [
+      "frontend_owner",
+      "ux_owner",
+      "sre_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "frontend_deploy_allowed": false,
+    "css_mutation_allowed": false,
+    "layout_mutation_allowed": false,
+    "breakpoint_mutation_allowed": false,
+    "build_publish_allowed": false,
+    "cdn_invalidation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "responsive_check_id",
+      "surface",
+      "mobile_status",
+      "tablet_status",
+      "desktop_status",
+      "overflow_guard_status",
+      "touch_target_status",
+      "navigation_status",
+      "form_table_modal_status",
+      "risk_level",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_final_web_closure_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_frontend_deploy_allowed": true,
+    "block_if_css_or_layout_mutation_allowed": true,
+    "block_if_build_publish_allowed": true,
+    "block_if_missing_breakpoint_matrix": true,
+    "block_if_missing_overflow_guard": true,
+    "block_if_missing_touch_target_policy": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_22_1_RESPONSIVE_FINALIZASYON_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

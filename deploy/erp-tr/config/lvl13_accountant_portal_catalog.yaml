@@ -1,0 +1,42 @@
+version: v1
+accountant_portal:
+  multi_company_access:
+    required_fields:
+      - accountant_id
+      - company_id
+      - access_scope
+      - assigned_at
+
+  company_scoped_permissions:
+    required_fields:
+      - company_id
+      - permission_set
+      - role_name
+      - granted_at
+
+  export_surfaces:
+    required_fields:
+      - export_type
+      - export_format
+      - company_id
+      - created_at
+
+  subscription_model:
+    required_fields:
+      - subscription_mode
+      - started_at
+      - renews_at
+      - billing_scope
+
+  company_visibility:
+    required_fields:
+      - accountant_id
+      - company_id
+      - visibility_mode
+      - visible_at
+
+  test_suite:
+    required_fields:
+      - test_profile
+      - test_status
+      - tested_at

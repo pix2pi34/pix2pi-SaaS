@@ -1,0 +1,42 @@
+{
+  "expected_dependency": "FAZ_6_21_6_3",
+  "expected_runtime_mutation_allowed": false,
+  "expected_real_customer_notification_enabled": false,
+  "expected_real_status_page_enabled": false,
+  "expected_real_email_enabled": false,
+  "expected_real_sms_enabled": false,
+  "expected_real_phone_call_enabled": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_required_controls": [
+    "regional_outage_dependency_gate",
+    "stakeholder_matrix",
+    "severity_communication_mapping",
+    "internal_update_policy",
+    "customer_update_policy",
+    "status_page_policy",
+    "business_owner_approval_policy",
+    "security_owner_approval_policy",
+    "next_update_cadence_policy",
+    "message_template_catalog",
+    "channel_provider_closed_policy",
+    "dry_run_communication_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_severities": [
+    "P0",
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "expected_channels": [
+    "internal_incident_room",
+    "ops_update_record",
+    "customer_update_draft",
+    "status_page_draft",
+    "support_macro_draft"
+  ],
+  "expected_template_count": 6,
+  "expected_send_mode": "record_only_no_real_send",
+  "expected_next_step": "FAZ_6_21_6_5"
+}

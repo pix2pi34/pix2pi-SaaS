@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi controlled usage go-live karar ekranı" />
+  <meta property="og:title" content="Pix2pi Controlled Usage Go-Live Kararı" />
+  <meta property="og:description" content="Kontrollü müşteri kullanımına geçiş için go/no-go karar yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Controlled Usage Go-Live Kararı</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(245,158,11,.13), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1360px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .decision-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+      min-height: 96px;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_356_CONTROLLED_GO_LIVE_DECISION_APP_SHELL_START -->
+  <main class="shell" data-step="356" data-surface="controlled-usage-go-live-decision">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 356</span>
+      <h1 data-i18n="controlled_go_live_decision.title">Controlled usage go-live kararı</h1>
+      <p data-i18n="controlled_go_live_decision.description">İlk gerçek kullanım smoke sonrası kontrollü müşteri erişimi için go/no-go karar yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_356_DECISION_BOARD_CONTEXT_START -->
+    <section class="card guard" data-widget="decision_board_context">
+      <h2>Decision board context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="go-live-tenant-id">controlled-pilot</strong></p>
+        <p>Owner: <strong id="go-live-owner-user">owner@example.invalid</strong></p>
+        <p>Access mode: <strong id="go-live-access-mode">CONTROLLED_PREVIEW</strong></p>
+        <p>Scope: <strong id="go-live-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_356_DECISION_BOARD_CONTEXT_END -->
+
+    <!-- PIX2PI_356_PREREQUISITE_EVIDENCE_CHECKLIST_START -->
+    <section class="card" data-widget="prerequisite_evidence_checklist">
+      <h2>Prerequisite evidence checklist</h2>
+      <div id="go-live-prerequisite-list" class="grid-3">
+        <article class="decision-card" data-prerequisite-step="355" data-status="PASS">
+          <strong>355 / first_real_usage_smoke</strong>
+          <p>PASS</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_356_PREREQUISITE_EVIDENCE_CHECKLIST_END -->
+
+    <section class="card" data-widget="gate_decision_list">
+      <h2>Gate decisions</h2>
+      <div id="go-live-gate-list" class="grid-3">
+        <!-- PIX2PI_356_SECURITY_GATE_DECISION_START -->
+        <article class="decision-card" data-gate-code="SECURITY_GATE" data-decision="GO_PREVIEW">
+          <strong>Security gate</strong>
+          <p>PASS / GO_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_356_SECURITY_GATE_DECISION_END -->
+
+        <!-- PIX2PI_356_TENANT_ISOLATION_GATE_DECISION_START -->
+        <article class="decision-card" data-gate-code="TENANT_ISOLATION_GATE" data-decision="GO_PREVIEW">
+          <strong>Tenant isolation gate</strong>
+          <p>PASS / GO_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_356_TENANT_ISOLATION_GATE_DECISION_END -->
+
+        <!-- PIX2PI_356_PERMISSION_GATE_DECISION_START -->
+        <article class="decision-card" data-gate-code="PERMISSION_GATE" data-decision="GO_PREVIEW">
+          <strong>Permission gate</strong>
+          <p>PASS / GO_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_356_PERMISSION_GATE_DECISION_END -->
+
+        <!-- PIX2PI_356_LOCALIZATION_GATE_DECISION_START -->
+        <article class="decision-card" data-gate-code="LOCALIZATION_GATE" data-decision="GO_PREVIEW">
+          <strong>Localization gate</strong>
+          <p>PASS / GO_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_356_LOCALIZATION_GATE_DECISION_END -->
+
+        <!-- PIX2PI_356_PANEL_POS_MARKET_ROUTE_GATE_DECISION_START -->
+        <article class="decision-card" data-gate-code="ROUTE_GATE" data-decision="GO_PREVIEW">
+          <strong>Panel / POS / Market route gate</strong>
+          <p>PASS / GO_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_356_PANEL_POS_MARKET_ROUTE_GATE_DECISION_END -->
+
+        <!-- PIX2PI_356_DATA_MUTATION_SAFETY_DECISION_START -->
+        <article class="decision-card" data-gate-code="DATA_MUTATION_SAFETY" data-decision="GO_PREVIEW">
+          <strong>Data mutation safety</strong>
+          <p>PASS / GO_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_356_DATA_MUTATION_SAFETY_DECISION_END -->
+
+        <!-- PIX2PI_356_BILLING_PAYMENT_DISABLED_DECISION_START -->
+        <article class="decision-card" data-gate-code="BILLING_PAYMENT_DISABLED" data-decision="GO_PREVIEW">
+          <strong>Billing / payment disabled</strong>
+          <p>PASS / GO_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_356_BILLING_PAYMENT_DISABLED_DECISION_END -->
+
+        <!-- PIX2PI_356_SUPPORT_ROLLBACK_READINESS_DECISION_START -->
+        <article class="decision-card" data-gate-code="SUPPORT_ROLLBACK_READY" data-decision="READY_FOR_APPROVAL">
+          <strong>Support / rollback readiness</strong>
+          <p>PASS / READY_FOR_APPROVAL</p>
+        </article>
+        <!-- PIX2PI_356_SUPPORT_ROLLBACK_READINESS_DECISION_END -->
+      </div>
+    </section>
+
+    <!-- PIX2PI_356_CUSTOMER_ACCESS_MODE_DECISION_START -->
+    <section class="card guard" data-widget="customer_access_mode_decision">
+      <h2>Customer access mode decision</h2>
+      <p>mode=CONTROLLED_PREVIEW / real_customer_go_live_enabled=false / real_activation_enabled=false / human_approval_required=true</p>
+    </section>
+    <!-- PIX2PI_356_CUSTOMER_ACCESS_MODE_DECISION_END -->
+
+    <!-- PIX2PI_356_GO_NO_GO_DECISION_PREVIEW_START -->
+    <section class="card locked" data-widget="go_no_go_decision_preview">
+      <h2>Go / no-go decision preview</h2>
+      <p>decision=READY_FOR_APPROVAL / GO_PREVIEW only. Gerçek customer activation bu adımda kapalıdır.</p>
+      <button type="button" disabled>Gerçek go-live bu adımda kapalı</button>
+    </section>
+    <!-- PIX2PI_356_GO_NO_GO_DECISION_PREVIEW_END -->
+
+    <!-- PIX2PI_356_APPROVER_CHECKLIST_PLACEHOLDER_START -->
+    <section class="card" data-widget="approver_checklist_placeholder">
+      <h2>Approver checklist placeholder</h2>
+      <div id="go-live-approver-list" class="grid-4">
+        <article class="decision-card" data-approver-role="Founder / Product Owner" data-approval-status="PENDING_APPROVAL">
+          <strong>Founder / Product Owner</strong>
+          <p>required=true / PENDING_APPROVAL</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_356_APPROVER_CHECKLIST_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_356_FINAL_RISK_REGISTER_PREVIEW_START -->
+    <section class="card locked" data-widget="final_risk_register_preview">
+      <h2>Final risk register preview</h2>
+      <div id="go-live-risk-register" class="grid-4">
+        <article class="decision-card" data-risk-severity="P1" data-risk-status="CONTROLLED">
+          <strong>P1 / Tenant isolation failure</strong>
+          <p>STOP_GO_LIVE / CONTROLLED</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_356_FINAL_RISK_REGISTER_PREVIEW_END -->
+
+    <!-- PIX2PI_356_DECISION_AUDIT_TIMELINE_START -->
+    <section class="card" data-widget="decision_audit_timeline">
+      <h2>Decision audit timeline</h2>
+      <div id="go-live-audit-timeline" class="grid-3">
+        <article class="decision-card" data-audit-action="CONTROLLED_GO_LIVE_DECISION_READY">
+          <strong>CONTROLLED_GO_LIVE_DECISION_READY</strong>
+          <p>2026-05-demo / system / READY_FOR_APPROVAL</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_356_DECISION_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_356_CONTROLLED_GO_LIVE_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="controlled_go_live_runtime_data_contract">
+      <h2>Controlled go-live runtime data contract</h2>
+      <p id="go-live-runtime-contract">decision_preview_enabled=true / real_activation_enabled=false / ready_for_step_357=true</p>
+    </section>
+    <!-- PIX2PI_356_CONTROLLED_GO_LIVE_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_356_SEO_OPENGRAPH_DECISION_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_decision_placeholder">
+      <h2>SEO / OpenGraph decision placeholder</h2>
+      <p>Title, description ve og:* metadata controlled go-live decision yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_356_SEO_OPENGRAPH_DECISION_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_356_I18N_READY_DECISION_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_decision_marker">
+      <h2 data-i18n="controlled_go_live_decision.i18n_ready">i18n-ready controlled go-live decision screen</h2>
+      <p data-i18n="controlled_go_live_decision.surface_ready">Controlled usage go-live karar ekranı çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_356_I18N_READY_DECISION_MARKER_END -->
+  </main>
+  <!-- PIX2PI_356_CONTROLLED_GO_LIVE_DECISION_APP_SHELL_END -->
+
+  <script src="/assets/controlled-usage-go-live-decision/controlled-usage-go-live-decision-runtime.js"></script>
+  <script>
+    Pix2piControlledGoLiveDecision.bootGoLiveDecisionScreen().then(function (contract) {
+      console.log("PIX2PI_356_CONTROLLED_GO_LIVE_DECISION_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

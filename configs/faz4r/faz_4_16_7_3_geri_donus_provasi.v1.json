@@ -1,0 +1,65 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 228,
+  "step": "FAZ_4_16_7_3",
+  "title": "Geri dönüş provası",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "227_FAZ_4_16_7_2_CUTOVER_CHECKLIST"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "rollback_rehearsal_policy": {
+    "rollback_rehearsal_status_required": "READY",
+    "rollback_rehearsal_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "cutover_checklist_status_required": "PASS",
+    "backup_snapshot_status_required": "READY",
+    "rollback_package_status_required": "READY",
+    "data_restore_plan_status_required": "READY",
+    "app_restore_plan_status_required": "READY",
+    "route_rollback_plan_status_required": "READY",
+    "runtime_health_after_rollback_status_required": "READY",
+    "monitoring_after_rollback_status_required": "READY",
+    "support_communication_status_required": "READY",
+    "approval_owner_status_required": "READY",
+    "no_real_rollback_execution_required": true,
+    "no_production_launch_required": true,
+    "no_dns_change_required": true,
+    "no_nginx_change_required": true,
+    "no_ssl_change_required": true,
+    "no_live_external_provider_activation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_rehearsal_items": [
+    "ROLLBACK_REHEARSAL_KICKOFF",
+    "CUTOVER_CHECKLIST_LINK",
+    "BACKUP_SNAPSHOT_LINK",
+    "ROLLBACK_PACKAGE_LINK",
+    "ROLLBACK_SCOPE_BOUNDARY",
+    "DATA_RESTORE_DRY_RUN_PLAN",
+    "APP_VERSION_RESTORE_DRY_RUN_PLAN",
+    "ROUTE_DNS_NGINX_ROLLBACK_PLAN",
+    "RUNTIME_HEALTH_AFTER_ROLLBACK_PLAN",
+    "MONITORING_WATCH_AFTER_ROLLBACK_PLAN",
+    "SUPPORT_COMMUNICATION_ROLLBACK_NOTE",
+    "APPROVAL_OWNER_CONFIRMATION",
+    "REHEARSAL_EVIDENCE_ATTACHMENT",
+    "REHEARSAL_METRICS",
+    "EXTERNAL_PROVIDER_POLICY_CLOSED_GATE",
+    "FINAL_ROLLBACK_REHEARSAL_REPORT"
+  ],
+  "rollback_rehearsal_artifact": "configs/faz4r/rollback_rehearsal.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "229_FAZ_4_16_7_4_ILETISIM_PLANI"
+  ]
+}

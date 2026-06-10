@@ -1,0 +1,16 @@
+version: v1
+plugin_rules:
+  runtime: go
+  contract_version: v1
+  default_state: inactive
+  tenant_mode: tenant_scoped
+  permission_mode: least_privilege
+  min_compatible_core: 1.0.0
+
+public_api_rules:
+  gateway_mode: enabled
+  auth_mode: api_key
+  rate_limit_per_minute: 120
+  quota_per_day: 50000
+  sandbox_mode: true
+  docs_mode: generated

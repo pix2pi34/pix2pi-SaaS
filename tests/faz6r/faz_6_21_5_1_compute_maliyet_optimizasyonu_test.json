@@ -1,0 +1,33 @@
+{
+  "expected_dependency": "FAZ_6_21_6_5",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_production_resize_allowed": false,
+  "expected_instance_shutdown_allowed": false,
+  "expected_autoscaling_policy_mutation_allowed": false,
+  "expected_required_controls": [
+    "dr_rehearsal_dependency_gate",
+    "compute_inventory_model",
+    "workload_classification_policy",
+    "rightsizing_recommendation_policy",
+    "idle_capacity_detection_policy",
+    "scale_down_guard_policy",
+    "reservation_commitment_review_policy",
+    "burst_capacity_policy",
+    "performance_slo_guard",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "dry_run_cost_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_workload_classes": [
+    "critical_runtime",
+    "important_runtime",
+    "batch_or_background",
+    "dev_or_staging"
+  ],
+  "expected_min_recommendation_count": 4,
+  "expected_status": "dry_run_only_no_provider_mutation",
+  "expected_next_step": "FAZ_6_21_5_2"
+}

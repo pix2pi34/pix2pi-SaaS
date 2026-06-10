@@ -1,0 +1,73 @@
+{
+  "version": "ha_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_2_2",
+  "status": "dry_run_only_no_replica_promotion",
+  "rehearsals": [
+    {
+      "rehearsal_id": "replica-failover-preflight-sync-candidate",
+      "candidate_node": "postgres_sync_replica_candidate",
+      "preflight_status": "READY",
+      "promotion_decision": "READY_FOR_MANUAL_APPROVED_FAILOVER_REHEARSAL",
+      "primary_reachability_status": "KNOWN_REACHABLE_OR_DECISION_INPUT_REQUIRED",
+      "replica_reachability_status": "KNOWN_REACHABLE",
+      "replica_lag_seconds": 10,
+      "wal_replay_status": "HEALTHY",
+      "backup_pitr_status": "HEALTHY",
+      "split_brain_guard_status": "READY",
+      "rto_minutes": 30,
+      "rpo_minutes": 5,
+      "mutation_allowed": false
+    },
+    {
+      "rehearsal_id": "replica-failover-blocked-lag-case",
+      "candidate_node": "postgres_sync_replica_candidate",
+      "preflight_status": "BLOCKED",
+      "promotion_decision": "BLOCKED_REPLICA_LAG",
+      "primary_reachability_status": "KNOWN_REACHABLE",
+      "replica_reachability_status": "KNOWN_REACHABLE",
+      "replica_lag_seconds": 120,
+      "wal_replay_status": "HEALTHY",
+      "backup_pitr_status": "HEALTHY",
+      "split_brain_guard_status": "READY",
+      "rto_minutes": 30,
+      "rpo_minutes": 5,
+      "mutation_allowed": false
+    },
+    {
+      "rehearsal_id": "replica-failover-blocked-split-brain-case",
+      "candidate_node": "postgres_sync_replica_candidate",
+      "preflight_status": "BLOCKED",
+      "promotion_decision": "BLOCKED_SPLIT_BRAIN_RISK",
+      "primary_reachability_status": "UNKNOWN",
+      "replica_reachability_status": "KNOWN_REACHABLE",
+      "replica_lag_seconds": 5,
+      "wal_replay_status": "HEALTHY",
+      "backup_pitr_status": "HEALTHY",
+      "split_brain_guard_status": "BLOCKED",
+      "rto_minutes": 30,
+      "rpo_minutes": 5,
+      "mutation_allowed": false
+    },
+    {
+      "rehearsal_id": "replica-failover-blocked-backup-pitr-case",
+      "candidate_node": "postgres_sync_replica_candidate",
+      "preflight_status": "BLOCKED",
+      "promotion_decision": "BLOCKED_BACKUP_PITR",
+      "primary_reachability_status": "KNOWN_REACHABLE",
+      "replica_reachability_status": "KNOWN_REACHABLE",
+      "replica_lag_seconds": 5,
+      "wal_replay_status": "HEALTHY",
+      "backup_pitr_status": "MISSING_EVIDENCE",
+      "split_brain_guard_status": "READY",
+      "rto_minutes": 30,
+      "rpo_minutes": 5,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_21_2_5",
+    "name": "Point-in-time recovery provası",
+    "restore_execution_allowed_now": false
+  }
+}

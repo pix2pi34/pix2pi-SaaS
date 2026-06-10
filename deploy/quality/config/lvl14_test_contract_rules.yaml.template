@@ -1,0 +1,16 @@
+version: v1
+test_rules:
+  baseline_mode: __QUALITY_BASELINE_MODE__
+  min_unit_coverage_percent: __QUALITY_MIN_UNIT_COVERAGE_PERCENT__
+  min_integration_coverage_percent: __QUALITY_MIN_INTEGRATION_COVERAGE_PERCENT__
+  min_e2e_coverage_percent: __QUALITY_MIN_E2E_COVERAGE_PERCENT__
+  owner_mode: __QUALITY_OWNER_MODE__
+  missing_test_policy: __QUALITY_MISSING_TEST_POLICY__
+
+contract_rules:
+  api_gate_enabled: __CONTRACT_API_GATE_ENABLED__
+  event_gate_enabled: __CONTRACT_EVENT_GATE_ENABLED__
+  envelope_gate_enabled: __CONTRACT_ENVELOPE_GATE_ENABLED__
+  integration_dep_gate_enabled: __CONTRACT_INTEGRATION_DEP_GATE_ENABLED__
+  backward_compat_enabled: __CONTRACT_BACKWARD_COMPAT_ENABLED__
+  test_profile: __CONTRACT_TEST_PROFILE__

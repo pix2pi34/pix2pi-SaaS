@@ -1,0 +1,19 @@
+{
+  "phase": "FAZ 2-7.6.6",
+  "runtime": "workflow_runtime_tests_final_closure",
+  "test_scope": [
+    "workflow_state_machine",
+    "workflow_definition_loader",
+    "manual_approval",
+    "retry_compensation",
+    "workflow_observability",
+    "cross_tenant_deny"
+  ],
+  "required_test_package": "./internal/platform/workflow/runtime",
+  "final_gate": {
+    "go_test_status": "PASS",
+    "fail_count": 0,
+    "seal_status": "SEALED"
+  },
+  "next_ready": "FAZ_2_7_8_2_API_KEY_ISSUANCE_RUNTIME"
+}

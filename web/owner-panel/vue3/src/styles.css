@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, Arial, sans-serif; background: #f4f7fb; color: #111827; }
+.page { min-height: 100vh; padding: 28px; }
+.topbar, .card, .hero { background: white; border: 1px solid #e5e7eb; border-radius: 24px; box-shadow: 0 18px 55px rgba(17,24,39,.08); }
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px; margin-bottom: 22px; }
+.logo { font-weight: 900; letter-spacing: 1px; color: #155eef; }
+.user { text-align: right; color: #667085; font-size: 14px; }
+.hero { padding: 28px; margin-bottom: 22px; }
+h1 { margin: 0; font-size: 34px; letter-spacing: -0.04em; }
+p { color: #667085; }
+.grid { display: grid; gap: 18px; margin-bottom: 22px; }
+.grid.three { grid-template-columns: repeat(3, 1fr); }
+.grid.two { grid-template-columns: 1.2fr .8fr; }
+.card { padding: 22px; }
+.metric span { color: #667085; font-weight: 700; }
+.metric b { display: block; margin-top: 8px; font-size: 28px; }
+.company { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid #eef2f7; }
+.company:last-child { border-bottom: 0; }
+.badge { display: inline-flex; padding: 8px 12px; border-radius: 999px; background: #ecfdf3; color: #067647; font-weight: 900; font-size: 13px; }
+button { border: 0; border-radius: 14px; background: #155eef; color: white; font-weight: 900; padding: 12px 16px; cursor: pointer; }
+@media (max-width: 900px) { .grid.three, .grid.two, .company { grid-template-columns: 1fr; } .topbar { align-items: flex-start; gap: 12px; flex-direction: column; } .user { text-align: left; } }

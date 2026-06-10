@@ -1,0 +1,62 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "357",
+  "name": "Controlled customer access activation",
+  "surface": "controlled_customer_access_activation",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/controlled-customer-access-activation/",
+  "runtime_path": "/assets/controlled-customer-access-activation/controlled-customer-access-activation-runtime.js",
+  "depends_on": [
+    "356 - Controlled usage go-live kararı"
+  ],
+  "backend_contract": {
+    "activation_snapshot_endpoint": "/api/customer-access/activation/snapshot",
+    "activation_preview_endpoint": "/api/customer-access/activation/preview",
+    "activation_audit_endpoint": "/api/customer-access/activation/audit",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "user_session_header": "X-User-Session",
+    "activation_scope_header": "X-Activation-Scope",
+    "approval_header": "X-Human-Approval-Status",
+    "correlation_header": "X-Correlation-ID"
+  },
+  "runtime_contract": {
+    "real_customer_access_activation_enabled": false,
+    "real_panel_access_activation_enabled": false,
+    "real_pos_access_activation_enabled": false,
+    "real_market_access_activation_enabled": false,
+    "real_activation_token_issue_enabled": false,
+    "real_customer_notification_send_enabled": false,
+    "real_data_mutation_enabled": false,
+    "activation_preview_enabled": true,
+    "human_approval_required": true,
+    "support_handoff_required": true,
+    "monitoring_ready_required": true,
+    "rollback_ready_required": true,
+    "fallback_activation_snapshot_enabled": true,
+    "ready_for_step_358": true
+  },
+  "required_capabilities": [
+    "controlled_customer_access_activation_app_shell",
+    "tenant_customer_owner_activation_context",
+    "human_approval_binding_preview",
+    "activation_window_scope_preview",
+    "customer_access_toggle_preview",
+    "panel_access_activation_preview",
+    "pos_access_activation_preview",
+    "market_storefront_access_activation_preview",
+    "activation_token_session_handoff_disabled_gate",
+    "data_mutation_safety_remains_disabled",
+    "support_channel_handoff_preview",
+    "monitoring_incident_readiness_preview",
+    "rollback_activation_action_preview",
+    "activation_audit_timeline",
+    "customer_notification_preview",
+    "activation_runtime_data_contract",
+    "i18n_ready_activation_marker",
+    "seo_opengraph_activation_placeholder",
+    "controlled_activation_smoke_test"
+  ],
+  "next_step": "358 - Controlled pilot monitoring / first day watch"
+}

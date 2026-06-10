@@ -1,0 +1,37 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 182,
+  "step": "FAZ_4_14_4",
+  "title": "Backfill / rebuild script standardı",
+  "depends_on": [
+    "180_FAZ_4_14_3_IMPORT_STAGING_TABLES",
+    "181_FAZ_4_14_7_MIGRATION_LIFECYCLE_IMPORT_TESTS"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "runtime_script": "scripts/faz4r/run_import_batch_backfill_rebuild.sh",
+  "safety": {
+    "default_mode": "dry_run",
+    "requires_apply_for_mutation": true,
+    "requires_tenant_id": true,
+    "requires_import_batch_id": true,
+    "schema_name_guard": true
+  },
+  "rebuild_scope": [
+    "import_staging_rows.validation_errors",
+    "import_staging_rows.validation_status",
+    "import_batches.total_rows",
+    "import_batches.valid_rows",
+    "import_batches.invalid_rows",
+    "import_batches.duplicate_rows",
+    "import_batches.committed_rows",
+    "import_batches.failed_rows"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "183_FAZ_4_14_1_MIGRATION_CHAIN_STANDARD",
+    "184_FAZ_4_14_2_REFERENCE_DATA_SEED_STANDARD"
+  ]
+}

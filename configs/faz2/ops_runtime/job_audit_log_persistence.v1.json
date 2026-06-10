@@ -1,0 +1,36 @@
+{
+  "phase": "FAZ 2-7.3.5",
+  "runtime": "job_audit_log_persistence",
+  "require_tenant": true,
+  "allowed_event_types": [
+    "JOB_QUEUED",
+    "JOB_DISPATCHED",
+    "JOB_FAILED",
+    "JOB_RETRIED",
+    "JOB_CANCELED"
+  ],
+  "allowed_severities": [
+    "INFO",
+    "WARNING",
+    "ERROR"
+  ],
+  "default_severity": "INFO",
+  "require_message": true,
+  "guards": [
+    "tenant_required",
+    "job_id_required",
+    "job_type_required",
+    "valid_event_type_required",
+    "valid_severity_required",
+    "message_required",
+    "tenant_safe_audit_access",
+    "job_scoped_audit_list"
+  ],
+  "bridges": [
+    "tenant_aware_job_dispatch_runtime",
+    "record_from_job",
+    "tenant_audit_log_persistence",
+    "job_audit_log_persistence"
+  ],
+  "next_ready": "FAZ_2_7_3_6_JOB_ENGINE_INTEGRATION_TESTS"
+}

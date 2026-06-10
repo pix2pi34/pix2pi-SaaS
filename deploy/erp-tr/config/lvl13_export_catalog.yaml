@@ -1,0 +1,42 @@
+version: v1
+export:
+  logo:
+    required_fields:
+      - export_id
+      - company_code
+      - file_format
+      - created_at
+
+  mikro:
+    required_fields:
+      - export_id
+      - company_code
+      - file_format
+      - created_at
+
+  zirve:
+    required_fields:
+      - export_id
+      - company_code
+      - file_format
+      - created_at
+
+  eta:
+    required_fields:
+      - export_id
+      - company_code
+      - file_format
+      - created_at
+
+  validation_matrix:
+    required_fields:
+      - adapter_name
+      - schema_version
+      - validation_status
+      - validated_at
+
+  test_suite:
+    required_fields:
+      - test_profile
+      - test_status
+      - tested_at

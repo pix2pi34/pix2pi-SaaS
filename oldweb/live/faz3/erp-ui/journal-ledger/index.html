@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="tr" data-phase="FAZ_3_11_3" data-screen="JOURNAL_LEDGER_SCREEN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi ERP — Journal / Ledger Ekranı</title>
+  <meta name="description" content="FAZ 3-11.3 Journal / Ledger ekranı: yevmiye fişi, defter kayıtları, TDHP hesapları, posting, reversal, audit trace ve balance kontrol yüzeyi." />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #ffffff;
+      --text: #0f172a;
+      --soft: #475569;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --ok: #059669;
+      --warn: #d97706;
+      --fail: #dc2626;
+      --info: #2563eb;
+      --violet: #7c3aed;
+      --shadow: 0 20px 60px rgba(15, 23, 42, .15);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(14,165,233,.16), transparent 34rem),
+        radial-gradient(circle at 92% 0%, rgba(124,58,237,.14), transparent 32rem),
+        #f8fafc;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 22px;
+      color: #e5e7eb;
+      background: linear-gradient(180deg, #0f172a, #111827);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 12px 30px rgba(14,165,233,.28);
+    }
+
+    .brand strong { display: block; font-size: 18px; }
+    .brand small { color: #94a3b8; font-size: 12px; }
+
+    .nav-title {
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 11px;
+      margin: 26px 0 10px;
+    }
+
+    .nav-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .nav-item.active {
+      color: white;
+      background: rgba(14,165,233,.15);
+      border: 1px solid rgba(125,211,252,.25);
+    }
+
+    .main { padding: 26px; min-width: 0; }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(226,232,240,.9);
+      background: rgba(255,255,255,.88);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .crumb {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.05;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--soft);
+      white-space: nowrap;
+    }
+
+    .pill.ok { color: var(--ok); border-color: rgba(5,150,105,.25); background: rgba(5,150,105,.08); }
+    .pill.warn { color: var(--warn); border-color: rgba(217,119,6,.25); background: rgba(217,119,6,.08); }
+    .pill.fail { color: var(--fail); border-color: rgba(220,38,38,.25); background: rgba(220,38,38,.08); }
+    .pill.info { color: var(--info); border-color: rgba(37,99,235,.25); background: rgba(37,99,235,.08); }
+
+    .grid { display: grid; gap: 18px; }
+    .kpi-grid { grid-template-columns: repeat(4, minmax(0,1fr)); margin-bottom: 18px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      min-width: 0;
+    }
+
+    .kpi-label { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    .kpi-value { font-size: 30px; font-weight: 900; letter-spacing: -.04em; }
+    .kpi-foot { color: var(--soft); font-size: 12px; margin-top: 8px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 400px;
+      gap: 18px;
+    }
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .panel-title h2 { margin: 0; font-size: 20px; letter-spacing: -.03em; }
+    .panel-title p { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1.1fr repeat(4, minmax(120px, .42fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 11px 12px;
+      font: inherit;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: rgba(37,99,235,.5);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.1);
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 14px 10px;
+      border-bottom: 1px solid #edf2f7;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    tbody tr { cursor: pointer; transition: background .15s ease; }
+    tbody tr:hover { background: #f8fafc; }
+
+    .main-text { font-weight: 850; letter-spacing: -.02em; }
+    .sub { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+    .status {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 11px;
+      font-weight: 850;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .status.posted { color: var(--ok); background: rgba(5,150,105,.09); border-color: rgba(5,150,105,.22); }
+    .status.ready { color: var(--info); background: rgba(37,99,235,.09); border-color: rgba(37,99,235,.22); }
+    .status.reversed { color: var(--warn); background: rgba(217,119,6,.09); border-color: rgba(217,119,6,.22); }
+    .status.blocked { color: var(--fail); background: rgba(220,38,38,.09); border-color: rgba(220,38,38,.22); }
+
+    .money {
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .money.debit { color: var(--info); }
+    .money.credit { color: var(--violet); }
+    .money.balance { color: var(--ok); }
+
+    .button-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 9px 11px;
+      color: white;
+      background: #0f172a;
+      font-weight: 850;
+      font-size: 12px;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(15,23,42,.14);
+    }
+
+    button.secondary {
+      color: #0f172a;
+      background: #f1f5f9;
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    button.warning { background: #d97706; }
+    button.success { background: #059669; }
+    button.danger { background: #dc2626; }
+    button:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
+
+    .side-stack { display: grid; gap: 18px; align-content: start; }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 13px;
+    }
+
+    .detail-row span:first-child { color: var(--muted); }
+    .detail-row strong { text-align: right; word-break: break-word; }
+
+    .notice {
+      border-radius: 16px;
+      padding: 13px;
+      font-size: 13px;
+      line-height: 1.5;
+      border: 1px solid rgba(37,99,235,.24);
+      color: #1e3a8a;
+      background: rgba(37,99,235,.08);
+    }
+
+    .ops-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .op-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px;
+      background: #f8fafc;
+    }
+
+    .op-card strong { display: block; font-size: 13px; margin-bottom: 6px; }
+    .op-card small { display: block; color: var(--muted); font-size: 12px; line-height: 1.45; }
+
+    .timeline { display: grid; gap: 10px; }
+
+    .event {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+
+    .event strong { display: block; font-size: 13px; margin-bottom: 4px; }
+    .event small { color: var(--muted); line-height: 1.45; }
+
+    .line-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .line-item {
+      display: grid;
+      grid-template-columns: 100px 1fr auto auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #f8fafc;
+      font-size: 12px;
+    }
+
+    @media (max-width: 1180px) {
+      .shell { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .layout { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 780px) {
+      .main { padding: 14px; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .filters { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      table { min-width: 1000px; }
+      .table-wrap { overflow-x: auto; }
+      .line-item { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="ERP navigation">
+      <div class="brand">
+        <div class="logo">P2</div>
+        <div>
+          <strong>Pix2pi ERP</strong>
+          <small>Journal / Ledger Control</small>
+        </div>
+      </div>
+
+      <div class="nav-title">WEB-L4 / WEB-L5 / WEB-L6</div>
+      <div class="nav-item"><span>e-Belge Operasyon</span><span>157</span></div>
+      <div class="nav-item"><span>Reconciliation</span><span>158</span></div>
+      <div class="nav-item"><span>Vergi / KDV Rule</span><span>159</span></div>
+      <div class="nav-item active"><span>Journal / Ledger</span><span>160</span></div>
+      <div class="nav-item"><span>TDHP Mapping</span><span>161</span></div>
+      <div class="nav-item"><span>Ödeme / Mutabakat</span><span>162</span></div>
+
+      <div class="nav-title">Defter Politikası</div>
+      <div class="nav-item"><span>Append-only</span><span>ON</span></div>
+      <div class="nav-item"><span>Reversal</span><span>CONTROLLED</span></div>
+      <div class="nav-item"><span>Production</span><span>FALSE</span></div>
+    </aside>
+
+    <main class="main">
+      <section class="topbar">
+        <div>
+          <div class="crumb">FAZ 3-R › Öncelik 3 › 160 / FAZ 3-11.3</div>
+          <h1>Journal / Ledger Ekranı</h1>
+        </div>
+        <div class="top-actions">
+          <span class="pill info" data-tenant-guard="required">Tenant: tenant_demo_001</span>
+          <span class="pill info" data-correlation-guard="required">Correlation: corr-ui-160</span>
+          <span class="pill ok" data-append-only-ledger="enabled">Append-only Ledger: ON</span>
+          <span class="pill fail" data-production-approved="false">Production: FALSE</span>
+        </div>
+      </section>
+
+      <section class="grid kpi-grid" aria-label="Journal ledger KPI cards">
+        <article class="card" data-kpi="posted_today">
+          <div class="kpi-label">Bugün posted</div>
+          <div class="kpi-value">246</div>
+          <div class="kpi-foot">Belge bazlı posting runtime</div>
+        </article>
+        <article class="card" data-kpi="posting_ready">
+          <div class="kpi-label">Posting ready</div>
+          <div class="kpi-value">38</div>
+          <div class="kpi-foot">Voucher balanced + audit ready</div>
+        </article>
+        <article class="card" data-kpi="reversal_count">
+          <div class="kpi-label">Reversal</div>
+          <div class="kpi-value">4</div>
+          <div class="kpi-foot">Kontrollü ters kayıt</div>
+        </article>
+        <article class="card" data-kpi="balance_status">
+          <div class="kpi-label">Balance</div>
+          <div class="kpi-value">0,00 ₺</div>
+          <div class="kpi-foot">Debit / credit farkı</div>
+        </article>
+      </section>
+
+      <section class="layout">
+        <div class="card">
+          <div class="panel-title">
+            <div>
+              <h2>Yevmiye / Ledger Kayıtları</h2>
+              <p>Voucher pipeline, belge bazlı posting, ledger, reversal ve audit trace kayıtlarını tek yüzeyde gösterir.</p>
+            </div>
+            <span class="pill ok">Balanced</span>
+          </div>
+
+          <div class="filters" data-filter-bar="journal-ledger">
+            <input id="searchInput" aria-label="Journal ara" placeholder="Journal no, voucher no, belge no, hesap kodu, posting id ara..." />
+            <select id="sourceFilter" aria-label="Kaynak filtrele">
+              <option value="ALL">Tüm kaynaklar</option>
+              <option value="SALES_INVOICE">Satış faturası</option>
+              <option value="PURCHASE_INVOICE">Alış faturası</option>
+              <option value="PAYMENT_COLLECTION">Tahsilat</option>
+              <option value="SALES_REFUND">Satış iade</option>
+              <option value="OPENING_BALANCE">Açılış</option>
+            </select>
+            <select id="statusFilter" aria-label="Durum filtrele">
+              <option value="ALL">Tüm durumlar</option>
+              <option value="POSTED">Posted</option>
+              <option value="POSTING_READY">Posting Ready</option>
+              <option value="REVERSED">Reversed</option>
+              <option value="BLOCKED">Blocked</option>
+            </select>
+            <select id="accountFilter" aria-label="Hesap filtrele">
+              <option value="ALL">Tüm hesaplar</option>
+              <option value="120">120 Alıcılar</option>
+              <option value="600">600 Satışlar</option>
+              <option value="391">391 Hesaplanan KDV</option>
+              <option value="191">191 İndirilecek KDV</option>
+              <option value="320">320 Satıcılar</option>
+              <option value="102">102 Bankalar</option>
+            </select>
+            <select id="actionFilter" aria-label="Aksiyon filtrele">
+              <option value="ALL">Tüm aksiyonlar</option>
+              <option value="VIEW">View</option>
+              <option value="POST">Post</option>
+              <option value="REVERSE">Reverse</option>
+              <option value="AUDIT">Audit</option>
+            </select>
+          </div>
+
+          <div class="table-wrap">
+            <table aria-label="Journal ledger tablosu">
+              <thead>
+                <tr>
+                  <th>Journal</th>
+                  <th>Kaynak</th>
+                  <th>Durum</th>
+                  <th>Debit</th>
+                  <th>Credit</th>
+                  <th>Balance</th>
+                  <th>Hesaplar</th>
+                  <th>Aksiyon</th>
+                </tr>
+              </thead>
+              <tbody id="journalRows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <aside class="side-stack">
+          <section class="card" data-detail-drawer="journal-ledger">
+            <div class="panel-title">
+              <div>
+                <h2>Journal Detayı</h2>
+                <p>Seçili journal için voucher, posting, line, hesap ve hash izleri.</p>
+              </div>
+            </div>
+            <div id="detailPanel"></div>
+          </section>
+
+          <section class="card" data-operation-actions="journal-ledger">
+            <div class="panel-title">
+              <div>
+                <h2>Ledger Operasyonları</h2>
+                <p>Post, reverse, audit export ve reconciliation link yüzeyi.</p>
+              </div>
+            </div>
+
+            <div class="notice" data-live-policy="append-only-ledger-no-hard-delete">
+              Ledger append-only çalışır. Kayıt silinmez; düzeltme için controlled reversal üretilir. Production activation bu ekranda açılmaz.
+            </div>
+
+            <div class="ops-grid">
+              <div class="op-card" data-action="post-document">
+                <strong>Post Document</strong>
+                <small>Voucher balanced + posting ready ise ledger’a yazar.</small>
+              </div>
+              <div class="op-card" data-action="reverse-posting">
+                <strong>Reverse Posting</strong>
+                <small>Reversal reason zorunlu; append-only ters kayıt üretir.</small>
+              </div>
+              <div class="op-card" data-action="audit-export">
+                <strong>Audit Export</strong>
+                <small>Posting hash, voucher hash ve audit trace hash paketi.</small>
+              </div>
+              <div class="op-card" data-action="reconciliation-link">
+                <strong>Reconciliation Link</strong>
+                <small>TDHP reconciliation kaydına doğrudan bağlantı.</small>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" data-audit-trail="journal-ledger">
+            <div class="panel-title">
+              <div>
+                <h2>Audit Timeline</h2>
+                <p>Tenant-safe journal / ledger işlem geçmişi.</p>
+              </div>
+            </div>
+            <div class="timeline" id="timeline"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const productionApproved = false;
+    const appendOnlyLedger = true;
+    const reversalRequiresReason = true;
+
+    const journals = [
+      {
+        id: "journal-001",
+        journalNo: "JRNL-2026-000782",
+        voucherId: "voucher-001",
+        voucherNo: "VCH-2026-000782",
+        postingId: "posting-001",
+        documentId: "doc-sales-001",
+        documentNo: "INV-2026-000782",
+        source: "SALES_INVOICE",
+        status: "POSTED",
+        currency: "TRY",
+        debitMinor: 120000,
+        creditMinor: 120000,
+        balanceMinor: 0,
+        tenantId: "tenant_demo_001",
+        correlationId: "corr-journal-001",
+        requestId: "req-journal-001",
+        idempotencyKey: "idem-journal-001",
+        voucherHash: "sha256:voucher-001",
+        postingHash: "sha256:posting-001",
+        auditTraceHash: "sha256:audit-journal-001",
+        reconciliationId: "recon-tdhp-001",
+        reversalOfPostingId: "-",
+        reversalReason: "-",
+        lines: [
+          { accountCode: "120.01", accountName: "Alıcılar", debitMinor: 120000, creditMinor: 0 },
+          { accountCode: "600.01", accountName: "Yurtiçi Satışlar", debitMinor: 0, creditMinor: 100000 },
+          { accountCode: "391.01.20", accountName: "Hesaplanan KDV %20", debitMinor: 0, creditMinor: 20000 }
+        ],
+        allowedActions: ["VIEW", "AUDIT", "REVERSE"]
+      },
+      {
+        id: "journal-002",
+        journalNo: "JRNL-2026-000783",
+        voucherId: "voucher-002",
+        voucherNo: "VCH-2026-000783",
+        postingId: "posting-002",
+        documentId: "doc-purchase-002",
+        documentNo: "PUR-2026-000114",
+        source: "PURCHASE_INVOICE",
+        status: "POSTING_READY",
+        currency: "TRY",
+        debitMinor: 240000,
+        creditMinor: 240000,
+        balanceMinor: 0,
+        tenantId: "tenant_demo_001",
+        correlationId: "corr-journal-002",
+        requestId: "req-journal-002",
+        idempotencyKey: "idem-journal-002",
+        voucherHash: "sha256:voucher-002",
+        postingHash: "sha256:posting-002",
+        auditTraceHash: "sha256:audit-journal-002",
+        reconciliationId: "recon-tdhp-002",
+        reversalOfPostingId: "-",
+        reversalReason: "-",
+        lines: [
+          { accountCode: "153.01", accountName: "Ticari Mallar", debitMinor: 200000, creditMinor: 0 },
+          { accountCode: "191.01.20", accountName: "İndirilecek KDV %20", debitMinor: 40000, creditMinor: 0 },
+          { accountCode: "320.01", accountName: "Satıcılar", debitMinor: 0, creditMinor: 240000 }
+        ],
+        allowedActions: ["VIEW", "POST", "AUDIT"]
+      },
+      {
+        id: "journal-003",
+        journalNo: "JRNL-2026-000784",
+        voucherId: "voucher-003",
+        voucherNo: "VCH-2026-000784",
+        postingId: "posting-003",
+        documentId: "doc-payment-003",
+        documentNo: "PAY-2026-000219",
+        source: "PAYMENT_COLLECTION",
+        status: "POSTED",
+        currency: "TRY",
+        debitMinor: 250000,
+        creditMinor: 250000,
+        balanceMinor: 0,
+        tenantId: "tenant_demo_001",
+        correlationId: "corr-journal-003",
+        requestId: "req-journal-003",
+        idempotencyKey: "idem-journal-003",
+        voucherHash: "sha256:voucher-003",
+        postingHash: "sha256:posting-003",
+        auditTraceHash: "sha256:audit-journal-003",
+        reconciliationId: "recon-pay-002",
+        reversalOfPostingId: "-",
+        reversalReason: "-",
+        lines: [
+          { accountCode: "102.01", accountName: "Bankalar", debitMinor: 250000, creditMinor: 0 },
+          { accountCode: "120.01", accountName: "Alıcılar", debitMinor: 0, creditMinor: 250000 }
+        ],
+        allowedActions: ["VIEW", "AUDIT", "REVERSE"]
+      },
+      {
+        id: "journal-004",
+        journalNo: "JRNL-2026-000785",
+        voucherId: "voucher-004",
+        voucherNo: "VCH-2026-000785",
+        postingId: "posting-004",
+        documentId: "doc-refund-004",
+        documentNo: "REF-2026-000044",
+        source: "SALES_REFUND",
+        status: "REVERSED",
+        currency: "TRY",
+        debitMinor: 120000,
+        creditMinor: 120000,
+        balanceMinor: 0,
+        tenantId: "tenant_demo_001",
+        correlationId: "corr-journal-004",
+        requestId: "req-journal-004",
+        idempotencyKey: "idem-journal-004",
+        voucherHash: "sha256:voucher-004",
+        postingHash: "sha256:posting-004",
+        auditTraceHash: "sha256:audit-journal-004",
+        reconciliationId: "recon-refund-004",
+        reversalOfPostingId: "posting-001",
+        reversalReason: "Satış iadesi / müşteri iptali",
+        lines: [
+          { accountCode: "610.01", accountName: "Satıştan İadeler", debitMinor: 100000, creditMinor: 0 },
+          { accountCode: "391.01.20", accountName: "Hesaplanan KDV %20", debitMinor: 20000, creditMinor: 0 },
+          { accountCode: "120.01", accountName: "Alıcılar", debitMinor: 0, creditMinor: 120000 }
+        ],
+        allowedActions: ["VIEW", "AUDIT"]
+      },
+      {
+        id: "journal-005",
+        journalNo: "JRNL-2026-000786",
+        voucherId: "voucher-005",
+        voucherNo: "VCH-2026-000786",
+        postingId: "posting-005",
+        documentId: "doc-open-005",
+        documentNo: "OPEN-2026-000001",
+        source: "OPENING_BALANCE",
+        status: "BLOCKED",
+        currency: "TRY",
+        debitMinor: 500000,
+        creditMinor: 499500,
+        balanceMinor: 500,
+        tenantId: "tenant_demo_001",
+        correlationId: "corr-journal-005",
+        requestId: "req-journal-005",
+        idempotencyKey: "idem-journal-005",
+        voucherHash: "sha256:voucher-005",
+        postingHash: "sha256:posting-005",
+        auditTraceHash: "sha256:audit-journal-005",
+        reconciliationId: "recon-open-005",
+        reversalOfPostingId: "-",
+        reversalReason: "Balance guard blocked",
+        lines: [
+          { accountCode: "100.01", accountName: "Kasa", debitMinor: 500000, creditMinor: 0 },
+          { accountCode: "500.01", accountName: "Sermaye", debitMinor: 0, creditMinor: 499500 }
+        ],
+        allowedActions: ["VIEW", "AUDIT"]
+      }
+    ];
+
+    const statusClass = {
+      POSTED: "posted",
+      POSTING_READY: "ready",
+      REVERSED: "reversed",
+      BLOCKED: "blocked"
+    };
+
+    const statusLabel = {
+      POSTED: "Posted",
+      POSTING_READY: "Posting Ready",
+      REVERSED: "Reversed",
+      BLOCKED: "Blocked"
+    };
+
+    const sourceLabel = {
+      SALES_INVOICE: "Satış faturası",
+      PURCHASE_INVOICE: "Alış faturası",
+      PAYMENT_COLLECTION: "Tahsilat",
+      SALES_REFUND: "Satış iade",
+      OPENING_BALANCE: "Açılış"
+    };
+
+    function formatMoney(minor) {
+      return new Intl.NumberFormat("tr-TR", {
+        style: "currency",
+        currency: "TRY"
+      }).format(minor / 100);
+    }
+
+    function actionButtons(journal) {
+      return `
+        <div class="button-row">
+          <button class="secondary" data-op="VIEW">View</button>
+          <button class="success" ${!journal.allowedActions.includes("POST") ? "disabled" : ""} data-op="POST">Post</button>
+          <button class="warning" ${!journal.allowedActions.includes("REVERSE") || !reversalRequiresReason ? "disabled" : ""} data-op="REVERSE">Reverse</button>
+          <button class="secondary" data-op="AUDIT">Audit</button>
+        </div>
+      `;
+    }
+
+    function recordMatchesAccount(journal, accountPrefix) {
+      if (accountPrefix === "ALL") return true;
+      return journal.lines.some(line => line.accountCode.startsWith(accountPrefix));
+    }
+
+    function renderRows() {
+      const q = document.getElementById("searchInput").value.trim().toLowerCase();
+      const source = document.getElementById("sourceFilter").value;
+      const status = document.getElementById("statusFilter").value;
+      const account = document.getElementById("accountFilter").value;
+      const action = document.getElementById("actionFilter").value;
+
+      const filtered = journals.filter(journal => {
+        const accountHaystack = journal.lines.map(line => `${line.accountCode} ${line.accountName}`).join(" ");
+        const haystack = [
+          journal.id,
+          journal.journalNo,
+          journal.voucherId,
+          journal.voucherNo,
+          journal.postingId,
+          journal.documentId,
+          journal.documentNo,
+          journal.reconciliationId,
+          journal.voucherHash,
+          journal.postingHash,
+          journal.auditTraceHash,
+          accountHaystack
+        ].join(" ").toLowerCase();
+
+        const qOk = q === "" || haystack.includes(q);
+        const sourceOk = source === "ALL" || journal.source === source;
+        const statusOk = status === "ALL" || journal.status === status;
+        const accountOk = recordMatchesAccount(journal, account);
+        const actionOk = action === "ALL" || journal.allowedActions.includes(action);
+
+        return qOk && sourceOk && statusOk && accountOk && actionOk;
+      });
+
+      document.getElementById("journalRows").innerHTML = filtered.map(journal => `
+        <tr data-journal-id="${journal.id}" onclick="selectJournal('${journal.id}')">
+          <td>
+            <span class="main-text">${journal.journalNo}</span>
+            <span class="sub">Voucher: ${journal.voucherNo}</span>
+          </td>
+          <td>
+            <strong>${sourceLabel[journal.source]}</strong>
+            <span class="sub">${journal.documentNo}</span>
+          </td>
+          <td><span class="status ${statusClass[journal.status]}">${statusLabel[journal.status]}</span></td>
+          <td><span class="money debit">${formatMoney(journal.debitMinor)}</span></td>
+          <td><span class="money credit">${formatMoney(journal.creditMinor)}</span></td>
+          <td><span class="money balance">${formatMoney(journal.balanceMinor)}</span></td>
+          <td>
+            <strong>${journal.lines.map(line => line.accountCode).join(", ")}</strong>
+            <span class="sub">${journal.lines.length} line</span>
+          </td>
+          <td>${actionButtons(journal)}</td>
+        </tr>
+      `).join("");
+
+      if (filtered.length > 0) {
+        selectJournal(filtered[0].id);
+      } else {
+        document.getElementById("detailPanel").innerHTML = "";
+        document.getElementById("timeline").innerHTML = "";
+      }
+    }
+
+    function yesNo(value) {
+      return value ? "YES" : "NO";
+    }
+
+    function selectJournal(id) {
+      const journal = journals.find(item => item.id === id);
+      if (!journal) return;
+
+      const lines = journal.lines.map(line => `
+        <div class="line-item">
+          <strong>${line.accountCode}</strong>
+          <span>${line.accountName}</span>
+          <span class="money debit">${formatMoney(line.debitMinor)}</span>
+          <span class="money credit">${formatMoney(line.creditMinor)}</span>
+        </div>
+      `).join("");
+
+      document.getElementById("detailPanel").innerHTML = `
+        <div class="detail-row"><span>Journal ID</span><strong>${journal.id}</strong></div>
+        <div class="detail-row"><span>Journal No</span><strong>${journal.journalNo}</strong></div>
+        <div class="detail-row"><span>Voucher ID</span><strong>${journal.voucherId}</strong></div>
+        <div class="detail-row"><span>Voucher No</span><strong>${journal.voucherNo}</strong></div>
+        <div class="detail-row"><span>Posting ID</span><strong>${journal.postingId}</strong></div>
+        <div class="detail-row"><span>Document ID</span><strong>${journal.documentId}</strong></div>
+        <div class="detail-row"><span>Document No</span><strong>${journal.documentNo}</strong></div>
+        <div class="detail-row"><span>Source</span><strong>${sourceLabel[journal.source]}</strong></div>
+        <div class="detail-row"><span>Status</span><strong>${statusLabel[journal.status]}</strong></div>
+        <div class="detail-row"><span>Currency</span><strong>${journal.currency}</strong></div>
+        <div class="detail-row"><span>Debit Total</span><strong>${formatMoney(journal.debitMinor)}</strong></div>
+        <div class="detail-row"><span>Credit Total</span><strong>${formatMoney(journal.creditMinor)}</strong></div>
+        <div class="detail-row"><span>Balance Difference</span><strong>${formatMoney(journal.balanceMinor)}</strong></div>
+        <div class="detail-row"><span>Tenant ID</span><strong>${journal.tenantId}</strong></div>
+        <div class="detail-row"><span>Correlation ID</span><strong>${journal.correlationId}</strong></div>
+        <div class="detail-row"><span>Request ID</span><strong>${journal.requestId}</strong></div>
+        <div class="detail-row"><span>Idempotency Key</span><strong>${journal.idempotencyKey}</strong></div>
+        <div class="detail-row"><span>Voucher Hash</span><strong>${journal.voucherHash}</strong></div>
+        <div class="detail-row"><span>Posting Hash</span><strong>${journal.postingHash}</strong></div>
+        <div class="detail-row"><span>Audit Trace Hash</span><strong>${journal.auditTraceHash}</strong></div>
+        <div class="detail-row"><span>Reconciliation ID</span><strong>${journal.reconciliationId}</strong></div>
+        <div class="detail-row"><span>Reversal Of</span><strong>${journal.reversalOfPostingId}</strong></div>
+        <div class="detail-row"><span>Reversal Reason</span><strong>${journal.reversalReason}</strong></div>
+        <div class="detail-row"><span>Append-only Ledger</span><strong>${yesNo(appendOnlyLedger)}</strong></div>
+        <div class="line-list" data-journal-lines="visible">${lines}</div>
+      `;
+
+      document.getElementById("timeline").innerHTML = [
+        ["VOUCHER_BUILT", "Voucher pipeline belgeyi TDHP yevmiye fişine dönüştürdü."],
+        [journal.status, `Geçerli durum: ${statusLabel[journal.status]}.`],
+        ["AUDIT_TRACE_WRITTEN", `Audit trace hash: ${journal.auditTraceHash}.`]
+      ].map(([title, desc]) => `
+        <div class="event">
+          <strong>${title}</strong>
+          <small>${desc}</small>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("searchInput").addEventListener("input", renderRows);
+    document.getElementById("sourceFilter").addEventListener("change", renderRows);
+    document.getElementById("statusFilter").addEventListener("change", renderRows);
+    document.getElementById("accountFilter").addEventListener("change", renderRows);
+    document.getElementById("actionFilter").addEventListener("change", renderRows);
+
+    renderRows();
+  </script>
+</body>
+</html>

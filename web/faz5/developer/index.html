@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi Developer Surface</title>
+  <style>
+    :root {
+      --bg: #06101f;
+      --card: #111d31;
+      --text: #edf6ff;
+      --muted: #a9b9cc;
+      --accent: #41b8ff;
+      --ok: #38d996;
+      --line: rgba(255,255,255,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top right, #123f66, var(--bg) 60%);
+    }
+
+    .page {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 42px;
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      background: rgba(17,29,49,.88);
+      box-shadow: 0 18px 38px rgba(0,0,0,.26);
+    }
+
+    .eyebrow {
+      color: var(--ok);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 850px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+      min-height: 190px;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .note {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(56,217,150,.25);
+      background: rgba(56,217,150,.09);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 880px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        width: min(100% - 22px, 1100px);
+        padding-top: 18px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Pix2pi FAZ 5-10</div>
+      <h1>Developer Surface</h1>
+      <p class="subtitle">
+        Pix2pi developer yüzeyi; API docs, sandbox, API key yönetimi, rate limit / quota ve webhook docs kapsamını
+        FAZ 5 ticari kararlarıyla uyumlu şekilde görünür hale getirir. Bu sayfa production developer portal değildir.
+      </p>
+    </section>
+
+    <section class="grid" aria-label="Developer başlıkları">
+      <article class="card">
+        <h2>API Docs Taslak</h2>
+        <p>Endpoint dokümanları ileride public API platformuna bağlanacaktır.</p>
+      </article>
+
+      <article class="card">
+        <h2>Sandbox</h2>
+        <p>Geliştiriciler test ortamında demo ve entegrasyon senaryolarını deneyebilecektir.</p>
+      </article>
+
+      <article class="card">
+        <h2>API Key Yönetimi</h2>
+        <p>API key üretimi ve iptali ileride panel üzerinden yönetilecektir.</p>
+      </article>
+
+      <article class="card">
+        <h2>Rate Limit / Quota</h2>
+        <p>Quota ve rate limit kuralları paket ve entitlement matrix kararlarına bağlı olacaktır.</p>
+      </article>
+
+      <article class="card">
+        <h2>Webhook Docs</h2>
+        <p>Webhook olayları entegrasyon sistemleri için ileride dokümante edilecektir.</p>
+      </article>
+
+      <article class="card">
+        <h2>Developer Portal</h2>
+        <p>Bu yüzey FAZ 5 karar kanıtıdır; login veya canlı API key üretimi içermez.</p>
+      </article>
+    </section>
+
+    <section class="note">
+      Developer surface şimdilik kapsam ve karar kanıtıdır. Gerçek runtime API key, webhook engine ve developer login sonraki fazlarda ele alınacaktır.
+    </section>
+  </main>
+</body>
+</html>

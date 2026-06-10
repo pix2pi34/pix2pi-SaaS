@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi Oto Yedek Parça UI</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --card: #101d31;
+      --card-2: #152640;
+      --text: #eef6ff;
+      --muted: #a8b8cc;
+      --line: rgba(255, 255, 255, 0.12);
+      --accent: #41b8ff;
+      --ok: #38d996;
+      --warn: #ffcf5a;
+      --danger: #ff6b6b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top right, #173e63, var(--bg) 50%);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 36px;
+    }
+
+    .hero {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(65, 184, 255, 0.18), rgba(16, 29, 49, 0.94));
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.06;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      color: var(--muted);
+      max-width: 860px;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .search-panel {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .search-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 13px;
+      background: rgba(7, 17, 31, 0.86);
+      color: var(--text);
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(168, 184, 204, 0.68);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+      background: linear-gradient(180deg, var(--card), var(--card-2));
+      min-height: 178px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 19px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(65, 184, 255, 0.12);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .model {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      background: rgba(16, 29, 49, 0.82);
+    }
+
+    .model h2 {
+      margin: 0 0 14px;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .column {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+    }
+
+    .column h3 {
+      margin: 0 0 10px;
+      color: var(--accent);
+    }
+
+    .column ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 207, 90, 0.35);
+      background: rgba(255, 207, 90, 0.08);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 940px) {
+      .search-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        width: min(100% - 22px, 1180px);
+        padding-top: 16px;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .search-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Pix2pi FAZ 4D-7</div>
+      <h1>Oto Yedek Parça UI</h1>
+      <p class="subtitle">
+        Bu yüzey OEM numarası, eşdeğer parça, muadil parça ve araç uyum bilgilerini core product modelinden ayrı tutmak için hazırlanmıştır.
+        Core ERP ürün modeli sade kalır; oto yedek parça bilgileri extension ve compatibility katmanında izlenir.
+      </p>
+
+      <div class="search-panel">
+        <div class="search-grid">
+          <div class="field">
+            <label>Parça arama</label>
+            <input type="text" placeholder="Parça adı, SKU veya açıklama">
+          </div>
+          <div class="field">
+            <label>OEM numarası</label>
+            <input type="text" placeholder="OEM">
+          </div>
+          <div class="field">
+            <label>Marka</label>
+            <input type="text" placeholder="Renault, Fiat, Ford">
+          </div>
+          <div class="field">
+            <label>Model</label>
+            <input type="text" placeholder="Clio, Megane">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Oto yedek parça kartları">
+      <article class="card">
+        <span class="tag">01</span>
+        <h2>OEM Numarası</h2>
+        <p>OEM alanı core product içine gömülmez. Ürüne bağlı extension alanı olarak tutulur ve arama kalitesini artırır.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">02</span>
+        <h2>Eşdeğer Parça</h2>
+        <p>Aynı işi gören parçalar equivalent group mantığıyla ilişkilendirilir. Böylece muadil parça önerisi yapılabilir.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">03</span>
+        <h2>Muadil Parça</h2>
+        <p>Farklı marka veya üreticiden gelen uyumlu parçalar ayrı ilişki modeliyle gösterilir.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">04</span>
+        <h2>Araç Uyum</h2>
+        <p>Marka, model, yıl, motor ve kasa bilgileri compatibility modeli olarak tutulur.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">05</span>
+        <h2>Stok Durumu</h2>
+        <p>Parça stok bilgisi ERP core stok modeliyle bağlı kalır. Uyumluluk bilgisi stok modelini bozmaz.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">06</span>
+        <h2>Tenant-safe Görünüm</h2>
+        <p>Pilot işletme yalnızca kendi tenant verisini görür. Başka tenant parçaları UI yüzeyine sızmaz.</p>
+      </article>
+    </section>
+
+    <section class="model">
+      <h2>Veri Ayrımı</h2>
+      <div class="columns">
+        <div class="column">
+          <h3>Core Product</h3>
+          <ul>
+            <li>product_id</li>
+            <li>tenant_id</li>
+            <li>product_name</li>
+            <li>sku</li>
+            <li>category</li>
+            <li>stock_tracking</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <h3>Auto Parts Extension</h3>
+          <ul>
+            <li>product_id</li>
+            <li>oem_number</li>
+            <li>equivalent_group_id</li>
+            <li>manufacturer</li>
+            <li>compatibility_note</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <h3>Vehicle Compatibility</h3>
+          <ul>
+            <li>vehicle_brand</li>
+            <li>vehicle_model</li>
+            <li>model_year_start</li>
+            <li>model_year_end</li>
+            <li>engine_code</li>
+            <li>body_type</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-note">
+      Barkod opsiyonel notu: Barkod okutma veya barkod ile parça eşleştirme bu adımda production yapılmaz.
+      4D-8 altında ayrı karar notu olarak kapatılacaktır. Mobile-ready yapı korunmuştur.
+    </section>
+  </main>
+</body>
+</html>

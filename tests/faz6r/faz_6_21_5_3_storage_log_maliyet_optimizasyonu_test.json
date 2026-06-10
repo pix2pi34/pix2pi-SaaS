@@ -1,0 +1,40 @@
+{
+  "expected_dependency": "FAZ_6_21_5_2",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_storage_delete_allowed": false,
+  "expected_log_delete_allowed": false,
+  "expected_backup_delete_allowed": false,
+  "expected_audit_delete_allowed": false,
+  "expected_evidence_delete_allowed": false,
+  "expected_retention_delete_allowed": false,
+  "expected_required_controls": [
+    "db_cost_dependency_gate",
+    "storage_inventory_model",
+    "log_inventory_model",
+    "retention_tier_policy",
+    "log_volume_review_policy",
+    "backup_storage_review_policy",
+    "artifact_storage_review_policy",
+    "evidence_retention_guard",
+    "audit_log_retention_guard",
+    "tenant_data_retention_guard",
+    "compression_archive_policy",
+    "lifecycle_transition_policy",
+    "production_delete_closed_policy",
+    "manual_approval_policy",
+    "dry_run_cost_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_storage_classes": [
+    "audit_logs",
+    "runtime_logs",
+    "evidence_artifacts",
+    "backup_archive",
+    "static_assets"
+  ],
+  "expected_min_recommendation_count": 5,
+  "expected_status": "dry_run_only_no_storage_log_mutation",
+  "expected_next_step": "FAZ_6_21_5_4"
+}

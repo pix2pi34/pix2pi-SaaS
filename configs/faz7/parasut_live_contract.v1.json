@@ -1,0 +1,90 @@
+{
+  "module": "FAZ_7_8P_1_PARASUT_LIVE_CONTRACT_READINESS",
+  "version": "v1",
+  "provider_key": "parasut",
+  "runtime_status": "contract_ready",
+  "real_provider_api_enabled": false,
+  "depends_on": [
+    "FAZ_7_8I_INTEGRATION_RUNTIME_FOUNDATION",
+    "FAZ_7_8P_PARASUT_CONNECTOR_MODULE"
+  ],
+  "oauth_contract": {
+    "tenant_id_required": true,
+    "client_id_required": true,
+    "client_secret_reference_required": true,
+    "redirect_uri_required": true,
+    "scope_required": true,
+    "webhook_secret_reference_required": true,
+    "real_api_enabled_default": false
+  },
+  "token_lifecycle": {
+    "access_token_reference_only": true,
+    "refresh_token_reference_only": true,
+    "expires_at_required": true,
+    "refresh_window_seconds": 600,
+    "statuses": [
+      "ACTIVE",
+      "REFRESH_REQUIRED",
+      "EXPIRED",
+      "REVOKED"
+    ]
+  },
+  "endpoint_contracts": {
+    "PULL_INVOICE": {
+      "method": "GET",
+      "path": "/v4/sales_invoices/{id}",
+      "timeout_seconds": 15,
+      "rate_limit_per_minute": 60,
+      "real_call_enabled": false
+    },
+    "PUSH_INVOICE": {
+      "method": "POST",
+      "path": "/v4/sales_invoices",
+      "timeout_seconds": 20,
+      "rate_limit_per_minute": 30,
+      "real_call_enabled": false
+    },
+    "SYNC_CUSTOMER": {
+      "method": "POST",
+      "path": "/v4/contacts",
+      "timeout_seconds": 20,
+      "rate_limit_per_minute": 30,
+      "real_call_enabled": false
+    },
+    "SYNC_PRODUCT": {
+      "method": "POST",
+      "path": "/v4/products",
+      "timeout_seconds": 20,
+      "rate_limit_per_minute": 30,
+      "real_call_enabled": false
+    },
+    "VERIFY_WEBHOOK": {
+      "method": "POST",
+      "path": "/webhooks/parasut",
+      "timeout_seconds": 5,
+      "rate_limit_per_minute": 120,
+      "real_call_enabled": false
+    }
+  },
+  "error_mapping": {
+    "401": "UNAUTHORIZED_NON_RETRYABLE",
+    "408": "TIMEOUT_RETRYABLE",
+    "422": "VALIDATION_NON_RETRYABLE",
+    "429": "RATE_LIMIT_RETRYABLE",
+    "500": "SERVER_ERROR_RETRYABLE"
+  },
+  "live_safety_gate": {
+    "legal_approval_required": true,
+    "finance_approval_required": true,
+    "kvkk_approval_required": true,
+    "secret_management_required": true,
+    "rollback_plan_required": true,
+    "provider_contract_required": true,
+    "real_api_enabled_must_remain_false_in_this_phase": true
+  },
+  "handoff": {
+    "parasut_live_contract_readiness": true,
+    "real_provider_api_status": "CLOSED_UNTIL_APPROVALS_AND_PROVIDER_LIVE_MODULE",
+    "faz_7_9_hold_until_integration_family_done": true
+  }
+}

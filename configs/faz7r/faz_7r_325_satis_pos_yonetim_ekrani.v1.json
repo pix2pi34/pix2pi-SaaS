@@ -1,0 +1,56 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "325",
+  "name": "Satış / POS yönetim ekranı",
+  "surface": "merchant_panel",
+  "domain": "panel.pix2pi.com.tr",
+  "path": "/sales/",
+  "runtime_path": "/assets/sales/sales-pos-runtime.js",
+  "pos_usage_surface": "pos.pix2pi.com.tr",
+  "depends_on": [
+    "316 - panel.pix2pi.com.tr altyapısı",
+    "317 - Login / tenant seçimi",
+    "318 - Dil Modülü / i18n / Alfabe Altyapısı",
+    "319 - İşletme onboarding ekranı",
+    "320 - Merchant dashboard",
+    "321 - Kullanıcı / rol / personel ekranı",
+    "322 - İşletme ayarları / profil ekranı",
+    "323 - Cari ekranı",
+    "324 - Ürün / stok ekranı"
+  ],
+  "backend_contract": {
+    "sales_snapshot_endpoint": "/api/panel/sales/snapshot",
+    "pos_terminals_endpoint": "/api/panel/pos/terminals",
+    "shift_policy_endpoint": "/api/panel/pos/shift-policy",
+    "sale_action_endpoint": "/api/panel/sales/action",
+    "method": "GET/POST",
+    "auth": "Bearer JWT",
+    "tenant_header": "X-Tenant-ID"
+  },
+  "required_widgets": [
+    "sales_summary",
+    "recent_sales",
+    "pos_terminal_status",
+    "cashier_device_register",
+    "receipt_document_flow",
+    "payment_method_summary",
+    "return_cancel_void_guard",
+    "tenant_scoped_guard",
+    "shift_policy_placeholder"
+  ],
+  "required_capabilities": [
+    "sales_pos_management_app_shell",
+    "sales_summary_recent_sales",
+    "pos_terminal_cash_register_status",
+    "cashier_device_register_placeholder",
+    "receipt_document_flow_preview",
+    "payment_method_summary",
+    "return_cancel_void_guard",
+    "tenant_scoped_sales_pos_guard",
+    "shift_cash_open_close_policy_placeholder",
+    "runtime_data_contract",
+    "i18n_ready_sales_pos_markers",
+    "sales_pos_smoke_test"
+  ],
+  "next_step": "326 - Fatura / belge ekranı"
+}

@@ -1,0 +1,13 @@
+component	path	status
+types	internal/platform/reporting/api/types.go	CREATED
+handler	internal/platform/reporting/api/handler.go	CREATED
+tests	internal/platform/reporting/api/handler_test.go	CREATED
+endpoint	GET /api/v1/reporting/operational/summary	CREATED
+endpoint	GET /api/v1/reporting/operational/daily-metrics	CREATED
+endpoint	GET /api/v1/reporting/inventory/status	CREATED
+endpoint	GET /api/v1/reporting/documents/work-queue	CREATED
+endpoint	GET /api/v1/reporting/reconciliation/status	CREATED
+endpoint	GET /api/v1/reporting/projections/state	CREATED
+contract	Authorization Bearer	CREATED
+contract	X-Tenant-ID	CREATED
+contract	No SQL in response	CREATED

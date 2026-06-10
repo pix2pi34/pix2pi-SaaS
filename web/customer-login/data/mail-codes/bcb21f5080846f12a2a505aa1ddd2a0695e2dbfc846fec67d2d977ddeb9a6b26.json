@@ -1,0 +1,19 @@
+{
+  "marker": "CUSTOMER_LOGIN_REAL_MAIL_CODE_MARKER",
+  "email": "telliogluservet90@gmail.com",
+  "status": "SENT_REAL_EMAIL",
+  "provider": "resend",
+  "provider_status_code": 200,
+  "provider_id": "ac55ea63-c263-400a-bec5-24c721eb0674",
+  "provider_error": null,
+  "code_hash": "517a563534bb19e29a346db69131f681b4604ca9cac3235e5125594120a07fc5",
+  "salt": "0290a065a0574afa10e68497839f9c07",
+  "raw_code_stored": false,
+  "attempts": 0,
+  "max_attempts": 5,
+  "sent_at": "2026-05-16T22:11:39.039Z",
+  "expires_at": "2026-05-16T22:21:38.817Z",
+  "sender": "Pix2pi <no-reply@pix2pi.com.tr>",
+  "tenant_id": "tenant_servet_bcb21f50",
+  "account_marker": "CUSTOMER_LOGIN_ACTIVE_ACCOUNT_MARKER"
+}

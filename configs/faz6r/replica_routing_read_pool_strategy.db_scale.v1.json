@@ -1,0 +1,73 @@
+{
+  "version": "db_scale.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_20_2",
+  "status": "dry_run_only_no_replica_routing_mutation",
+  "routing_decisions": [
+    {
+      "routing_id": "readpool-operational-api-conditional",
+      "surface": "operational_api_reads",
+      "target_decision": "PRIMARY_FOR_STRICT_ROUTES_REPLICA_FOR_SAFE_READS_IF_LAG_OK",
+      "health_score_status": "REQUIRED",
+      "lag_guard_status": "MAX_5_SECONDS_OPERATIONAL",
+      "consistency_guard_status": "READ_AFTER_WRITE_GUARD_REQUIRED",
+      "tenant_scope_guard_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "routing_id": "readpool-reporting-replica-eligible",
+      "surface": "reporting_reads",
+      "target_decision": "READ_POOL_REPLICA_ELIGIBLE_IF_HEALTHY",
+      "health_score_status": "REQUIRED",
+      "lag_guard_status": "MAX_60_SECONDS_REPORTING",
+      "consistency_guard_status": "EVENTUAL_CONSISTENCY_ACCEPTED",
+      "tenant_scope_guard_status": "REQUIRED",
+      "risk_level": "medium",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "routing_id": "readpool-dashboard-route-based",
+      "surface": "dashboard_reads",
+      "target_decision": "ROUTE_BASED_PRIMARY_OR_REPLICA",
+      "health_score_status": "REQUIRED",
+      "lag_guard_status": "ROUTE_BASED_THRESHOLD",
+      "consistency_guard_status": "ROUTE_CONSISTENCY_REQUIRED",
+      "tenant_scope_guard_status": "REQUIRED",
+      "risk_level": "medium",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "routing_id": "readpool-background-export-replica",
+      "surface": "background_export_reads",
+      "target_decision": "REPORTING_REPLICA_ELIGIBLE_IF_LAG_OK",
+      "health_score_status": "REQUIRED",
+      "lag_guard_status": "MAX_60_SECONDS_REPORTING",
+      "consistency_guard_status": "EXPORT_STALENESS_DECLARED",
+      "tenant_scope_guard_status": "REQUIRED",
+      "risk_level": "medium",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "routing_id": "readpool-billing-finance-primary-strict",
+      "surface": "billing_finance_reads",
+      "target_decision": "PRIMARY_ONLY_FOR_STRICT_FINANCIAL_CONSISTENCY",
+      "health_score_status": "REQUIRED",
+      "lag_guard_status": "NOT_APPLICABLE_PRIMARY_ONLY",
+      "consistency_guard_status": "STRICT_CONSISTENCY_REQUIRED",
+      "tenant_scope_guard_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_20_6",
+    "name": "Partition / shard readiness modeli",
+    "runtime_mutation_allowed_now": false
+  }
+}

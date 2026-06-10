@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "345",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "panel_admin_commercial_screen",
+      "path": "/admin-commercial/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_345_ADMIN_COMMERCIAL_APP_SHELL_START",
+        "PIX2PI_345_TENANT_COMMERCIAL_OVERVIEW_START",
+        "PIX2PI_345_ADMIN_COMMERCIAL_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "panel_admin_commercial_runtime",
+      "path": "/assets/admin-commercial/panel-admin-commercial-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_345_PANEL_ADMIN_COMMERCIAL_RUNTIME_START",
+        "adminCommercialScopeHeaders",
+        "buildAdminCommercialRuntimeContract"
+      ]
+    }
+  ]
+}

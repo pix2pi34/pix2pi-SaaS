@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 2-7.7.3",
+  "runtime": "permission_enforcement",
+  "require_tenant": true,
+  "require_enabled_state": true,
+  "action_permission_map": {
+    "ERP_READ": "erp:read",
+    "ERP_WRITE": "erp:write",
+    "WEBHOOK_EMIT": "webhook:emit",
+    "PUBLIC_API_READ": "public_api:read",
+    "PUBLIC_API_WRITE": "public_api:write",
+    "WORKFLOW_TRIGGER": "workflow:trigger",
+    "NOTIFICATION_SEND": "notification:send",
+    "REPORT_READ": "report:read"
+  },
+  "guards": [
+    "tenant_required",
+    "install_required",
+    "action_required",
+    "cross_tenant_denied",
+    "enabled_install_required",
+    "unknown_action_denied",
+    "missing_permission_denied",
+    "permission_audit_decision_fields"
+  ],
+  "next_ready": "FAZ_2_7_7_4_TENANT_SAFE_PLUGIN_SANDBOX_RUNTIME"
+}

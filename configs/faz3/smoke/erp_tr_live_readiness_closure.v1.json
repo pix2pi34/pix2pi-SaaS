@@ -1,0 +1,53 @@
+{
+  "phase": "FAZ_3_10_8_6_ERP_TR_LIVE_READINESS_CLOSURE",
+  "runtime": "erp_tr_live_readiness_closure_runtime",
+  "runtime_enabled": true,
+  "require_all_areas": true,
+  "require_core_final_recheck": true,
+  "require_tdhp_live_tests": true,
+  "require_tax_runtime_tests": true,
+  "require_payment_integration": true,
+  "require_export_adapter_tests": true,
+  "require_document_ai_tests": true,
+  "require_ebelge_smoke": true,
+  "require_real_provider_gates_closed": true,
+  "require_closure_hash": true,
+  "minimum_pass_count": 40,
+  "required_areas": [
+    "ERP_TR_CORE_FINAL_RECHECK",
+    "TDHP_LIVE_TESTS",
+    "TAX_RUNTIME_TESTS",
+    "PAYMENT_INTEGRATION_TESTS",
+    "EXPORT_ADAPTER_TESTS",
+    "DOCUMENT_AI_RUNTIME_TESTS",
+    "EBELGE_SMOKE"
+  ],
+  "covered_evidence": [
+    "FAZ_3_R_ERP_TURKIYE_CORE_FINAL_RECHECK_AUDIT_FIX_V2",
+    "FAZ_3_10_1_6_TDHP_LIVE_TESTS",
+    "FAZ_3_10_2_6_TAX_RUNTIME_TESTS",
+    "FAZ_3_10_7_6_PAYMENT_INTEGRATION_TESTS",
+    "FAZ_3_10_4_6_EXPORT_ADAPTER_TESTS",
+    "FAZ_3_10_6_5_DOCUMENT_AI_RUNTIME_TESTS",
+    "FAZ_3_10_8_3_EBELGE_SMOKE"
+  ],
+  "live_policy": {
+    "production_approved": false,
+    "real_provider_gate_status": "CLOSED_UNTIL_PROVIDER_LIVE_APPROVALS",
+    "real_payment_gate_status": "CLOSED",
+    "real_ebelge_provider_gate_status": "CLOSED",
+    "real_external_provider_calls_allowed": false
+  },
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "closure_id_required": true,
+    "requested_at_required": true,
+    "minimum_pass_count_required": true,
+    "closure_hash_required": true
+  },
+  "previous_gate": "FAZ_3_10_8_3_EBELGE_SMOKE",
+  "next_gate": "FAZ_3_10_8_1_TDHP_SMOKE"
+}

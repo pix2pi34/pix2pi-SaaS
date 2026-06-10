@@ -1,0 +1,42 @@
+{
+  "expected_dependency": "FAZ_6_21_1_5",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_dsn_mutation_allowed": false,
+  "expected_application_route_mutation_allowed": false,
+  "expected_read_pool_attach_allowed": false,
+  "expected_read_pool_detach_allowed": false,
+  "expected_replica_promotion_allowed": false,
+  "expected_db_role_mutation_allowed": false,
+  "expected_dns_mutation_allowed": false,
+  "expected_load_balancer_mutation_allowed": false,
+  "expected_required_controls": [
+    "node_health_fencing_dependency_gate",
+    "read_write_split_policy",
+    "primary_write_only_guard",
+    "replica_read_pool_model",
+    "replica_health_scoring_policy",
+    "lag_aware_routing_policy",
+    "stale_read_guard",
+    "read_after_write_consistency_guard",
+    "tenant_safe_read_routing_guard",
+    "reporting_read_pool_policy",
+    "operational_read_pool_policy",
+    "failover_candidate_exclusion_policy",
+    "dry_run_read_pool_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_surfaces": [
+    "operational_api_reads",
+    "reporting_reads",
+    "dashboard_reads",
+    "background_export_reads",
+    "billing_finance_reads"
+  ],
+  "expected_min_decision_count": 5,
+  "expected_status": "dry_run_only_no_replica_routing_mutation",
+  "expected_next_step": "FAZ_6_20_6"
+}

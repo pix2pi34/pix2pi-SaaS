@@ -1,0 +1,98 @@
+{
+  "module_code": "7-5P.1",
+  "module_name": "Provider Contract / Operation Contract Hardening",
+  "parent_module": "7-5P",
+  "contract_version": "payment_provider_contract.v1",
+  "real_payment_enabled": false,
+  "default_mode": "SIMULATION",
+  "standard_error_codes": [
+    "PAYMENT_TENANT_REQUIRED",
+    "PAYMENT_CORRELATION_REQUIRED",
+    "PAYMENT_IDEMPOTENCY_REQUIRED",
+    "PAYMENT_AMOUNT_REQUIRED",
+    "PAYMENT_CURRENCY_REQUIRED",
+    "PAYMENT_PROVIDER_TRANSACTION_REQUIRED",
+    "PAYMENT_WEBHOOK_SIGNATURE_REQUIRED",
+    "PAYMENT_WEBHOOK_PAYLOAD_REQUIRED",
+    "PAYMENT_OPERATION_UNSUPPORTED",
+    "PAYMENT_PROVIDER_MISMATCH",
+    "PAYMENT_PRODUCTION_GATE_CLOSED"
+  ],
+  "operation_contracts": [
+    {
+      "operation": "AUTHORIZE",
+      "requires_amount": true,
+      "requires_currency": true,
+      "requires_idempotency_key": true,
+      "requires_provider_transaction_id": false,
+      "requires_webhook_signature": false,
+      "requires_raw_webhook_payload": false,
+      "retryable": true,
+      "reversible": true
+    },
+    {
+      "operation": "CAPTURE",
+      "requires_amount": true,
+      "requires_currency": true,
+      "requires_idempotency_key": true,
+      "requires_provider_transaction_id": true,
+      "requires_webhook_signature": false,
+      "requires_raw_webhook_payload": false,
+      "retryable": true,
+      "reversible": false
+    },
+    {
+      "operation": "REFUND",
+      "requires_amount": true,
+      "requires_currency": true,
+      "requires_idempotency_key": true,
+      "requires_provider_transaction_id": true,
+      "requires_webhook_signature": false,
+      "requires_raw_webhook_payload": false,
+      "retryable": true,
+      "reversible": false
+    },
+    {
+      "operation": "VOID",
+      "requires_amount": false,
+      "requires_currency": false,
+      "requires_idempotency_key": true,
+      "requires_provider_transaction_id": true,
+      "requires_webhook_signature": false,
+      "requires_raw_webhook_payload": false,
+      "retryable": true,
+      "reversible": false
+    },
+    {
+      "operation": "WEBHOOK_VERIFY",
+      "requires_amount": false,
+      "requires_currency": false,
+      "requires_idempotency_key": false,
+      "requires_provider_transaction_id": false,
+      "requires_webhook_signature": true,
+      "requires_raw_webhook_payload": true,
+      "retryable": false,
+      "reversible": false
+    }
+  ],
+  "provider_capability_matrix": [
+    {
+      "provider_code": "pix2pi_simulation",
+      "mode": "SIMULATION",
+      "real_payment_enabled": false,
+      "supported_operations": [
+        "AUTHORIZE",
+        "CAPTURE",
+        "REFUND",
+        "VOID",
+        "WEBHOOK_VERIFY"
+      ]
+    }
+  ],
+  "contract_guards": {
+    "tenant_required_for_all_operations": true,
+    "correlation_required_for_all_operations": true,
+    "production_gate_required": true,
+    "audit_required_for_all_decisions": true
+  }
+}

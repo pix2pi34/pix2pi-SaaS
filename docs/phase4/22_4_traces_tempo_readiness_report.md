@@ -1,0 +1,194 @@
+# FAZ 4B / 22.4 - Traces / Tempo Readiness Report
+
+Generated at: 2026-04-29 18:51:11 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+DOCKER_COMPOSE_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+FIREWALL_CHANGED=NO
+PORT_CHANGED=NO
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+TEMPO_CONFIG_CHANGED=NO
+TEMPO_RELOAD_EXECUTED=NO
+TEMPO_RESTARTED=NO
+OTEL_CONFIG_CHANGED=NO
+OTEL_RELOAD_EXECUTED=NO
+OTEL_RESTARTED=NO
+GRAFANA_DASHBOARD_CHANGED=NO
+ALERT_RULE_CHANGED=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+TRACE_BODY_PRINTED=NO
+TEMPO_QUERY_BODY_PRINTED=NO
+OTEL_PAYLOAD_PRINTED=NO
+SPAN_ATTRIBUTE_PRINTED=NO
+METRIC_BODY_PRINTED=NO
+LOG_CONTENT_PRINTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+VALIDATION_MODE=TRACES_TEMPO_READINESS_EVIDENCE_ONLY
+PREVIOUS_22_3_FINAL_STATUS=PASS
+PREVIOUS_22_3_LOGS_LOKI_READINESS=PASS
+PREVIOUS_22_3_SERVICE_RESTARTED=NO
+PREVIOUS_22_3_SECRET_VALUE_PRINTED=NO
+PREVIOUS_22_2_FINAL_STATUS=PASS
+PREVIOUS_22_1_FINAL_STATUS=PASS
+PREVIOUS_20_FINAL_STATUS=PASS
+PREVIOUS_20_INFRA_PRODUCTION_HARDENING_FINAL_CLOSURE=PASS
+PREVIOUS_21_FINAL_STATUS=PASS
+PREVIOUS_21_SECURITY_RBAC_AUDIT_FINAL_CLOSURE=PASS
+TRACES_TEMPO_ENDPOINT_PROBE_COUNT=8
+TRACES_TEMPO_ENDPOINT_REACHABLE_COUNT=8
+TRACES_TEMPO_ENDPOINT_REVIEW_COUNT=0
+TRACES_TEMPO_READY_OK=YES
+TRACES_TEMPO_REACHABLE_COUNT=4
+TRACES_OTEL_REACHABLE_COUNT=3
+TRACES_PIPELINE_CONFIG_COUNT=350
+TRACES_TEMPO_MARKER_COUNT=20
+TRACES_OTEL_MARKER_COUNT=6
+TRACES_TRACE_ID_MARKER_COUNT=8
+TRACES_SPAN_ID_MARKER_COUNT=0
+TRACES_REQUEST_ID_MARKER_COUNT=1070
+TRACES_TENANT_MARKER_COUNT=837
+TRACES_SERVICE_MARKER_COUNT=357
+TRACES_REDACTION_MARKER_COUNT=727
+TRACES_SIGNAL_CONTRACT_COUNT=14
+TRACES_REQUIRED_SIGNAL_COUNT=5
+TRACES_RECOMMENDED_SIGNAL_COUNT=9
+TRACES_PUBLIC_SURFACE_POLICY_COUNT=6
+TRACES_HIGH_RISK_PUBLIC_SURFACE_COUNT=6
+TRACES_TEMPO_PUBLIC_SURFACE_COUNT=2
+TRACES_OTEL_PUBLIC_SURFACE_COUNT=2
+TRACES_PREVIOUS_22_3=PASS
+TRACES_TEMPO_ENDPOINT_PROBE=PASS
+TRACES_PIPELINE_INVENTORY=PASS
+TRACES_SIGNAL_CONTRACT=PASS
+TRACES_PUBLIC_SURFACE_POLICY=PASS
+TRACES_BODY_NOT_PRINTED=PASS
+TRACES_NO_RESTART=PASS
+TRACES_NO_CONFIG_CHANGE=PASS
+TRACES_SECRET_SAFE=PASS
+TRACES_MATRIX_LINE_COUNT=41
+TRACES_TEMPO_ENDPOINT_PROBE_FILE=docs/phase4/22_4_trace_endpoint_probe.tsv
+TRACES_PIPELINE_INVENTORY_FILE=docs/phase4/22_4_trace_pipeline_inventory.tsv
+TRACES_SIGNAL_CONTRACT_FILE=docs/phase4/22_4_trace_signal_contract.tsv
+TRACES_PUBLIC_SURFACE_POLICY_FILE=docs/phase4/22_4_trace_public_surface_policy.tsv
+TRACES_TEMPO_READINESS=PASS
+FAZ4B_22_4_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+TRACES_TEMPO_READINESS=PASS
+FAZ4B_22_4_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+TOOL_curl=FOUND
+TOOL_docker=FOUND
+TOOL_systemctl=FOUND
+
+## Matrix
+MATRIX_FILE=docs/phase4/22_4_traces_tempo_readiness_matrix.tsv
+gate	status	note
+previous_22_3	PASS	logs/loki readiness prerequisite
+tempo_endpoint_probe	PASS	probes=8 reachable=8 review=0
+tempo_ready_metadata	PASS	tempo_ready_ok=YES tempo_reachable=4
+otel_reachability	PASS	otel_reachable=3
+trace_pipeline_inventory	PASS	configs=350 trace_id_markers=8 tenant_markers=837
+trace_signal_contract	PASS	signals=14 required=5 recommended=9
+public_surface_policy	PASS	public_trace_rows=6 high_risk=6 tempo_public=2 otel_public=2
+body_not_printed	PASS	trace/tempo/otel body not printed
+no_restart	PASS	service/container not restarted
+no_config_change	PASS	tempo/otel config not changed
+secret_safe	PASS	secret values not printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+tempo_config_changed	NO	evidence only
+tempo_reload_executed	NO	evidence only
+tempo_restarted	NO	evidence only
+otel_config_changed	NO	evidence only
+otel_reload_executed	NO	evidence only
+otel_restarted	NO	evidence only
+grafana_dashboard_changed	NO	evidence only
+alert_rule_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+trace_body_printed	NO	secret-safe report
+tempo_query_body_printed	NO	secret-safe report
+otel_payload_printed	NO	secret-safe report
+span_attribute_printed	NO	secret-safe report
+metric_body_printed	NO	secret-safe report
+log_content_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+
+## Inventories
+TRACE_ENDPOINT_PROBE_FILE=docs/phase4/22_4_trace_endpoint_probe.tsv
+TRACE_PIPELINE_INVENTORY_FILE=docs/phase4/22_4_trace_pipeline_inventory.tsv
+TRACE_SIGNAL_CONTRACT_FILE=docs/phase4/22_4_trace_signal_contract.tsv
+PUBLIC_SURFACE_POLICY_FILE=docs/phase4/22_4_trace_public_surface_policy.tsv
+NOTE=Trace body, Tempo query body, OTEL payload, span attributes, logs, metrics, raw DSN, token, password, or secret values are never printed.
+
+## Safety Decision
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+DOCKER_COMPOSE_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+FIREWALL_CHANGED=NO
+PORT_CHANGED=NO
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+TEMPO_CONFIG_CHANGED=NO
+TEMPO_RELOAD_EXECUTED=NO
+TEMPO_RESTARTED=NO
+OTEL_CONFIG_CHANGED=NO
+OTEL_RELOAD_EXECUTED=NO
+OTEL_RESTARTED=NO
+GRAFANA_DASHBOARD_CHANGED=NO
+ALERT_RULE_CHANGED=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+TRACE_BODY_PRINTED=NO
+TEMPO_QUERY_BODY_PRINTED=NO
+OTEL_PAYLOAD_PRINTED=NO
+SPAN_ATTRIBUTE_PRINTED=NO
+METRIC_BODY_PRINTED=NO
+LOG_CONTENT_PRINTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+TRACE_BODY_PRINTED=NO
+TEMPO_QUERY_BODY_PRINTED=NO
+OTEL_PAYLOAD_PRINTED=NO
+SPAN_ATTRIBUTE_PRINTED=NO
+METRIC_BODY_PRINTED=NO
+LOG_CONTENT_PRINTED=NO
+QUERY_TEXT_PRINTED=NO
+SECRET_VALUE_PRINTED=NO

@@ -1,0 +1,43 @@
+{
+  "test_name": "faz_5_18_4_5_musteri_iletisim_sablonlari_test",
+  "phase": "FAZ_5_18_4_5",
+  "expected": {
+    "required_template_count": 6,
+    "required_category_count": 6,
+    "internal_templates_ready": true,
+    "public_templates_published": false,
+    "real_customer_sending_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_template_keys": [
+    "template_ticket_ack",
+    "template_incident_update",
+    "template_sla_breach_notice",
+    "template_kvkk_request_ack",
+    "template_billing_issue_ack",
+    "template_security_report_ack"
+  ],
+  "must_have_categories": [
+    "TICKET_ACK",
+    "INCIDENT_UPDATE",
+    "SLA_BREACH",
+    "KVKK_REQUEST",
+    "BILLING_ISSUE",
+    "SECURITY_REPORT"
+  ],
+  "must_have_variables": [
+    "tenant_id",
+    "ticket_id",
+    "requester_email",
+    "correlation_id",
+    "sla_key"
+  ],
+  "must_have_flags": [
+    "has_tenant_context",
+    "has_ticket_context",
+    "has_kvkk_footer",
+    "has_audit_trail",
+    "has_tone_guard"
+  ]
+}

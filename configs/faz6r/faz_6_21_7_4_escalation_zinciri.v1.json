@@ -1,0 +1,199 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "288",
+  "code": "FAZ_6_21_7_4",
+  "name": "Escalation zinciri",
+  "depends_on": [
+    "FAZ_6_21_7_3"
+  ],
+  "runtime_mutation_allowed": false,
+  "notification_provider_enabled": false,
+  "real_sms_enabled": false,
+  "real_email_enabled": false,
+  "real_phone_call_enabled": false,
+  "real_pager_enabled": false,
+  "required_controls": [
+    "on_call_dependency_gate",
+    "escalation_level_model",
+    "severity_to_escalation_mapping",
+    "ack_timeout_policy",
+    "p0_escalation_chain",
+    "p1_escalation_chain",
+    "p2_escalation_chain",
+    "p3_escalation_chain",
+    "business_owner_notification_policy",
+    "security_owner_notification_policy",
+    "technical_owner_notification_policy",
+    "manual_approval_policy",
+    "provider_closed_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "escalation_levels": [
+    {
+      "level": "L1",
+      "name": "primary_on_call",
+      "ack_target_minutes": 5,
+      "role": "primary_on_call"
+    },
+    {
+      "level": "L2",
+      "name": "secondary_on_call",
+      "ack_target_minutes": 10,
+      "role": "secondary_on_call"
+    },
+    {
+      "level": "L3",
+      "name": "sre_owner",
+      "ack_target_minutes": 15,
+      "role": "sre_owner"
+    },
+    {
+      "level": "L4",
+      "name": "security_or_ops_owner",
+      "ack_target_minutes": 30,
+      "role": "security_owner_or_ops_owner"
+    },
+    {
+      "level": "L5",
+      "name": "founder_business_owner",
+      "ack_target_minutes": 60,
+      "role": "business_owner"
+    }
+  ],
+  "severity_mapping": [
+    {
+      "severity": "P0",
+      "required_levels": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "incident_commander_required": true,
+      "business_owner_required": true,
+      "security_owner_required": true,
+      "max_ack_minutes": 5
+    },
+    {
+      "severity": "P1",
+      "required_levels": [
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "incident_commander_required": true,
+      "business_owner_required": false,
+      "security_owner_required": true,
+      "max_ack_minutes": 15
+    },
+    {
+      "severity": "P2",
+      "required_levels": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "incident_commander_required": false,
+      "business_owner_required": false,
+      "security_owner_required": false,
+      "max_ack_minutes": 60
+    },
+    {
+      "severity": "P3",
+      "required_levels": [
+        "L1"
+      ],
+      "incident_commander_required": false,
+      "business_owner_required": false,
+      "security_owner_required": false,
+      "max_ack_minutes": 240
+    }
+  ],
+  "ack_timeout_policy": {
+    "enabled": true,
+    "auto_escalate_on_ack_timeout": true,
+    "requires_evidence": true,
+    "timeout_action": "escalate_to_next_level",
+    "provider_action_mode": "record_only_no_real_send"
+  },
+  "owner_notification_policy": {
+    "business_owner_notification_policy": {
+      "required_for": [
+        "P0"
+      ],
+      "mode": "record_only_no_real_send"
+    },
+    "security_owner_notification_policy": {
+      "required_for": [
+        "P0",
+        "P1",
+        "security_incident"
+      ],
+      "mode": "record_only_no_real_send"
+    },
+    "technical_owner_notification_policy": {
+      "required_for": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "mode": "record_only_no_real_send"
+    }
+  },
+  "manual_approval_policy": {
+    "required_for": [
+      "production_restart",
+      "rollback_execute",
+      "database_failover_execute",
+      "data_restore_execute",
+      "firewall_enforce_execute",
+      "edge_block_rule_push",
+      "mass_cache_delete",
+      "destructive_cleanup"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "security_owner"
+    ]
+  },
+  "provider_closed_policy": {
+    "enabled": true,
+    "real_sms_enabled": false,
+    "real_email_enabled": false,
+    "real_phone_call_enabled": false,
+    "real_pager_enabled": false,
+    "provider_mutation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "incident_id",
+      "severity",
+      "current_level",
+      "next_level",
+      "ack_deadline",
+      "ack_status",
+      "escalation_reason",
+      "owners_notified_record_only",
+      "manual_approval_required",
+      "timestamp",
+      "final_status"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_missing_severity_mapping": true,
+    "block_if_missing_ack_timeout_policy": true,
+    "block_if_provider_enabled": true,
+    "block_if_missing_evidence_fields": true,
+    "block_if_p0_without_l5": true,
+    "block_if_p1_without_l4": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_7_4_ESCALATION_ZINCIRI_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

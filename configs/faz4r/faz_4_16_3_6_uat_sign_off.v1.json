@@ -1,0 +1,46 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 209,
+  "step": "FAZ_4_16_3_6",
+  "title": "UAT sign-off",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT",
+    "205_FAZ_4_16_3_2_POS_UAT",
+    "206_FAZ_4_16_3_3_MUHASEBE_UAT",
+    "207_FAZ_4_16_3_4_MUHASEBECI_PORTALI_UAT",
+    "208_FAZ_4_16_3_5_E_BELGE_EXPORT_UAT"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "signoff_policy": {
+    "signoff_status_required": "READY",
+    "signoff_mode_required": "CONTROLLED_PILOT",
+    "all_uat_status_required": "PASS",
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "business_owner_signoff_required": "READY",
+    "technical_owner_signoff_required": "READY",
+    "product_owner_signoff_required": "READY",
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "support_handoff_ready_required": "YES",
+    "next_phase_ready_required": "FAZ_4_16_4_1_READY",
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_uat_areas": [
+    "MANAGEMENT_PANEL_UAT",
+    "POS_UAT",
+    "ACCOUNTING_UAT",
+    "ACCOUNTANT_PORTAL_UAT",
+    "E_DOCUMENT_EXPORT_UAT"
+  ],
+  "signoff_artifact": "configs/faz4r/uat_sign_off.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "210_FAZ_4_16_4_1_KULLANICI_EGITIM_SETI"
+  ]
+}

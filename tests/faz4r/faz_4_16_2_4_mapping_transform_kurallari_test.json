@@ -1,0 +1,137 @@
+{
+  "valid_fixture": {
+    "transform_request": {
+      "import_type": "CUSTOMER",
+      "transform_mode": "DRY_RUN",
+      "commit_requested": false
+    },
+    "rows": [
+      {
+        "Cari Kodu": " cari-001 ",
+        "Cari Ünvan": " Acme Ltd ",
+        "Tip": " Şirket ",
+        "Yön": " Müşteri ",
+        "Vergi No": "1234567890",
+        "Vergi Dairesi": " Kadıköy ",
+        "Adres": " Caferağa Mah. Pilot Sok. No:1 ",
+        "Şehir": " İstanbul "
+      }
+    ],
+    "expected_preview": [
+      {
+        "customer_code": "CARI-001",
+        "customer_name": "Acme Ltd",
+        "customer_type": "COMPANY",
+        "customer_kind": "CUSTOMER",
+        "tax_no": "1234567890",
+        "tax_office": "Kadıköy",
+        "address.full_address": "Caferağa Mah. Pilot Sok. No:1",
+        "address.city": "İstanbul"
+      }
+    ],
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "transform_request": {
+      "import_type": "CUSTOMER",
+      "transform_mode": "COMMIT",
+      "commit_requested": true
+    },
+    "rows": [
+      {
+        "Cari Kodu": " cari-001 ",
+        "Cari Ünvan": " Broken Cari ",
+        "Tip": " Bilinmeyen ",
+        "Yön": " Müşteri ",
+        "Vergi No": "1234567890",
+        "Vergi Dairesi": " Kadıköy ",
+        "Adres": " Adres ",
+        "Şehir": " İstanbul ",
+        "Bilinmeyen Alan": "hata"
+      }
+    ],
+    "expected_preview": [],
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  },
+  "duplicate_target_rules_fixture": {
+    "rule_set_id": "mapping_transform_rules.duplicate_target.fixture",
+    "rule_set_status": "READY",
+    "transform_mode": "DRY_RUN",
+    "commit_allowed": false,
+    "common_transforms": [
+      "trim_string",
+      "uppercase_code",
+      "normalize_enum",
+      "normalize_date",
+      "parse_decimal",
+      "normalize_currency",
+      "normalize_boolean"
+    ],
+    "import_types": {
+      "CUSTOMER": {
+        "target_staging_table": "import_staging_customers",
+        "field_mappings": [
+          {"source": "Cari Kodu", "target": "customer_code", "required": true, "transforms": ["trim_string"]},
+          {"source": "Cari No", "target": "customer_code", "required": false, "transforms": ["trim_string"]}
+        ],
+        "enum_maps": {}
+      }
+    },
+    "guards": {
+      "unknown_source_field_forbidden": true,
+      "duplicate_target_field_forbidden": true,
+      "required_transform_missing_forbidden": true,
+      "dry_run_required": true,
+      "real_commit_forbidden": true,
+      "audit_safe_output_required": true,
+      "live_external_policy_status_required": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "missing_transform_rules_fixture": {
+    "rule_set_id": "mapping_transform_rules.missing_transform.fixture",
+    "rule_set_status": "READY",
+    "transform_mode": "DRY_RUN",
+    "commit_allowed": false,
+    "common_transforms": [
+      "trim_string",
+      "uppercase_code",
+      "normalize_enum",
+      "normalize_date",
+      "parse_decimal",
+      "normalize_currency",
+      "normalize_boolean"
+    ],
+    "import_types": {
+      "CUSTOMER": {
+        "target_staging_table": "import_staging_customers",
+        "field_mappings": [
+          {"source": "Cari Kodu", "target": "customer_code", "required": true, "transforms": []}
+        ],
+        "enum_maps": {}
+      }
+    },
+    "guards": {
+      "unknown_source_field_forbidden": true,
+      "duplicate_target_field_forbidden": true,
+      "required_transform_missing_forbidden": true,
+      "dry_run_required": true,
+      "real_commit_forbidden": true,
+      "audit_safe_output_required": true,
+      "live_external_policy_status_required": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  }
+}

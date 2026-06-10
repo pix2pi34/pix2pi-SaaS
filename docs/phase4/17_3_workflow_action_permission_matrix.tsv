@@ -1,0 +1,15 @@
+permission_name	description	minimum_role	audit_required	tenant_scope_required	implementation_status	note
+workflow:read	view workflow and actions	tenant_admin_limited	NO	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow:execute	start/resume/complete workflow	tenant_operator	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow:pause	pause workflow	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow:retry	retry failed workflow	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow:cancel	cancel workflow	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow:archive	archive workflow	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+approval:request	create approval request	system	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+approval:read	read approval queue	tenant_approver	NO	YES	READY_FOR_IMPLEMENTATION	contract_only
+approval:write	approve/reject approval	tenant_approver	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+approval:escalate	escalate overdue approval	system_or_tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+task:assign	assign workflow task	tenant_operator	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+task:write	complete/update workflow task	tenant_operator	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+notification:send	create notification binding	system	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+realtime:read	subscribe realtime workflow signals	tenant_user	NO	YES	READY_FOR_IMPLEMENTATION	contract_only

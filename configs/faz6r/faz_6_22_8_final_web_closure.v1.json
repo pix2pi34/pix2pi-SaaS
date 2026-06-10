@@ -1,0 +1,169 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "311",
+  "code": "FAZ_6_22_8",
+  "name": "Final web closure",
+  "depends_on": [
+    "FAZ_6_22_4"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "frontend_deploy_allowed": false,
+  "build_publish_allowed": false,
+  "route_mutation_allowed": false,
+  "cdn_invalidation_allowed": false,
+  "dns_mutation_allowed": false,
+  "nginx_mutation_allowed": false,
+  "asset_pipeline_mutation_allowed": false,
+  "required_controls": [
+    "visual_regression_dependency_gate",
+    "accessibility_closure_gate",
+    "performance_budget_closure_gate",
+    "visual_regression_closure_gate",
+    "public_landing_closure_policy",
+    "auth_surface_closure_policy",
+    "panel_shell_closure_policy",
+    "workflow_ui_closure_policy",
+    "reporting_ui_closure_policy",
+    "release_blocker_policy",
+    "rollback_readiness_policy",
+    "dry_run_final_web_closure_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "dependency_evidence_policy": {
+    "enabled": true,
+    "required_evidence": [
+      "FAZ_6_22_2_ACCESSIBILITY_FINALIZASYON_REAL_IMPLEMENTATION_AUDIT",
+      "FAZ_6_22_3_FRONTEND_PERFORMANCE_BUDGET_REAL_IMPLEMENTATION_AUDIT",
+      "FAZ_6_22_4_VISUAL_REGRESSION_SETI_REAL_IMPLEMENTATION_AUDIT"
+    ],
+    "block_if_any_dependency_not_pass": true
+  },
+  "closure_surfaces": [
+    {
+      "surface": "public_landing",
+      "risk_level": "medium",
+      "accessibility_required": true,
+      "performance_budget_required": true,
+      "visual_regression_required": true,
+      "rollback_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "auth_surface",
+      "risk_level": "critical",
+      "accessibility_required": true,
+      "performance_budget_required": true,
+      "visual_regression_required": true,
+      "rollback_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "tenant_panel_shell",
+      "risk_level": "critical",
+      "accessibility_required": true,
+      "performance_budget_required": true,
+      "visual_regression_required": true,
+      "rollback_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "workflow_ui",
+      "risk_level": "high",
+      "accessibility_required": true,
+      "performance_budget_required": true,
+      "visual_regression_required": true,
+      "rollback_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "reporting_ui",
+      "risk_level": "high",
+      "accessibility_required": true,
+      "performance_budget_required": true,
+      "visual_regression_required": true,
+      "rollback_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "release_blocker_policy": {
+    "enabled": true,
+    "block_if_accessibility_fail": true,
+    "block_if_performance_budget_fail": true,
+    "block_if_visual_regression_fail": true,
+    "block_if_unreviewed_critical_route": true,
+    "block_if_unapproved_risk": true,
+    "accepted_risk_requires_owner": true
+  },
+  "rollback_readiness_policy": {
+    "enabled": true,
+    "previous_build_reference_required": true,
+    "asset_rollback_reference_required": true,
+    "cdn_rollback_plan_required": true,
+    "route_rollback_plan_required": true,
+    "manual_approval_required": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "frontend_deploy_execute",
+      "build_publish_execute",
+      "route_mutation_execute",
+      "cdn_invalidation_execute",
+      "dns_mutation_execute",
+      "nginx_mutation_execute",
+      "asset_pipeline_mutation_execute",
+      "final_web_release_execute"
+    ],
+    "approval_roles": [
+      "frontend_owner",
+      "ux_owner",
+      "sre_owner",
+      "release_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "frontend_deploy_allowed": false,
+    "build_publish_allowed": false,
+    "route_mutation_allowed": false,
+    "cdn_invalidation_allowed": false,
+    "dns_mutation_allowed": false,
+    "nginx_mutation_allowed": false,
+    "asset_pipeline_mutation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "closure_id",
+      "surface",
+      "accessibility_gate_status",
+      "performance_gate_status",
+      "visual_regression_gate_status",
+      "release_blocker_status",
+      "rollback_readiness_status",
+      "risk_level",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_visual_regression_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_frontend_deploy_allowed": true,
+    "block_if_build_publish_allowed": true,
+    "block_if_release_blocker_open": true,
+    "block_if_rollback_readiness_missing": true,
+    "block_if_missing_dependency_gate": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_22_8_FINAL_WEB_CLOSURE_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

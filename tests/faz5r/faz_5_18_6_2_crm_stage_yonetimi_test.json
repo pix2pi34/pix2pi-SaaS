@@ -1,0 +1,47 @@
+{
+  "test_name": "faz_5_18_6_2_crm_stage_yonetimi_test",
+  "phase": "FAZ_5_18_6_2",
+  "expected": {
+    "required_transition_count": 9,
+    "required_stage_count": 9,
+    "internal_crm_stage_ready": true,
+    "production_crm_enabled": false,
+    "real_customer_crm_open": false,
+    "auto_sales_action_enabled": false,
+    "external_crm_provider_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_transition_keys": [
+    "lead_to_discovery",
+    "discovery_to_qualified",
+    "qualified_to_demo",
+    "demo_to_proposal_requested",
+    "proposal_requested_to_proposal_sent",
+    "proposal_sent_to_won",
+    "proposal_sent_to_lost",
+    "won_to_onboarding_handoff",
+    "quote_sales_flow_deferred_marker"
+  ],
+  "must_have_stages": [
+    "LEAD_INTAKE",
+    "DISCOVERY",
+    "QUALIFIED",
+    "DEMO_SCHEDULED",
+    "PROPOSAL_REQUESTED",
+    "PROPOSAL_SENT",
+    "WON",
+    "LOST",
+    "ONBOARDING_HANDOFF"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_lead_id",
+    "requires_stage_reason",
+    "requires_owner_assignment",
+    "requires_audit_trail",
+    "requires_consent_check",
+    "requires_kvkk_notice",
+    "blocks_production_crm"
+  ]
+}

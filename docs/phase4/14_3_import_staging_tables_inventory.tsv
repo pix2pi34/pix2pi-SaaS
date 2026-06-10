@@ -1,0 +1,10 @@
+table	status	tenant_id_required	import_batch_id_required	note
+import_batches	YES	YES	NO	import_pipeline.import_batches
+import_files	YES	YES	YES	import_pipeline.import_files
+import_customers_staging	YES	YES	YES	import_pipeline.import_customers_staging
+import_vendors_staging	YES	YES	YES	import_pipeline.import_vendors_staging
+import_products_staging	YES	YES	YES	import_pipeline.import_products_staging
+import_opening_stocks_staging	YES	YES	YES	import_pipeline.import_opening_stocks_staging
+import_price_lists_staging	YES	YES	YES	import_pipeline.import_price_lists_staging
+import_validation_errors	YES	YES	YES	import_pipeline.import_validation_errors
+import_row_status_events	YES	YES	YES	import_pipeline.import_row_status_events

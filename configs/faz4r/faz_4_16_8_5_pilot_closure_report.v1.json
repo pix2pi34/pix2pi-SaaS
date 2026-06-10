@@ -1,0 +1,57 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 235,
+  "step": "FAZ_4_16_8_5",
+  "title": "Pilot closure report",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "234_FAZ_4_16_8_4_GO_NO_GO_KARARI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "closure_policy": {
+    "pilot_closure_status_required": "READY",
+    "pilot_closure_mode_required": "CONTROLLED_PILOT",
+    "closure_result_required": "CLOSED",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "p0_issue_count_required": 0,
+    "p1_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "go_no_go_decision_status_required": "PASS",
+    "decision_result_required": "GO",
+    "owner_approval_status_required": "APPROVED",
+    "next_phase_handoff_status_required": "READY",
+    "no_production_launch_required": true,
+    "no_live_external_provider_activation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_closure_items": [
+    "PILOT_CLOSURE_KICKOFF",
+    "GO_NO_GO_DECISION_LINK",
+    "PILOT_KPI_SUMMARY",
+    "UAT_THRESHOLD_SUMMARY",
+    "CRITICAL_ISSUE_RESET_SUMMARY",
+    "REHEARSAL_SUMMARY",
+    "IMPORT_UAT_SUPPORT_FEEDBACK_SUMMARY",
+    "EVIDENCE_INDEX",
+    "FINAL_RISK_SUMMARY",
+    "OPEN_BLOCKER_ZERO_SUMMARY",
+    "EXTERNAL_POLICY_CLOSED_SUMMARY",
+    "OWNER_APPROVAL_SUMMARY",
+    "LESSONS_LEARNED_SUMMARY",
+    "NEXT_PHASE_HANDOFF",
+    "FINAL_PILOT_CLOSURE_REPORT"
+  ],
+  "closure_artifact": "configs/faz4r/pilot_closure_report.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "236_FAZ_4_17_1_APPROVAL_INBOX"
+  ]
+}

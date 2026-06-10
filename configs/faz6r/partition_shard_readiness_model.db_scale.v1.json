@@ -1,0 +1,83 @@
+{
+  "version": "db_scale.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_20_6",
+  "status": "dry_run_only_no_partition_shard_mutation",
+  "readiness_records": [
+    {
+      "readiness_id": "partition-ready-tenant-operational-events",
+      "surface": "tenant_operational_events",
+      "candidate_type": "partition_candidate",
+      "preferred_key": "tenant_id_created_at",
+      "tenant_distribution_status": "REQUIRES_14D_OBSERVATION",
+      "shard_key_status": "TENANT_SCOPED_DETERMINISTIC",
+      "cross_shard_guard_status": "LOW_RISK",
+      "reporting_impact_status": "PROJECTION_REBUILD_REVIEW_REQUIRED",
+      "migration_safety_status": "DRY_RUN_REQUIRED_NO_TABLE_REWRITE",
+      "risk_level": "medium",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "readiness_id": "partition-ready-audit-logs-time",
+      "surface": "audit_logs",
+      "candidate_type": "time_partition_candidate",
+      "preferred_key": "created_at_tenant_id",
+      "tenant_distribution_status": "REQUIRES_RETENTION_AND_GROWTH_REVIEW",
+      "shard_key_status": "TENANT_SCOPED_TIME_ORDERED",
+      "cross_shard_guard_status": "LOW_RISK",
+      "reporting_impact_status": "AUDIT_QUERY_IMPACT_REVIEW_REQUIRED",
+      "migration_safety_status": "DRY_RUN_REQUIRED_NO_DROP",
+      "risk_level": "medium",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "readiness_id": "partition-ready-reporting-readmodels",
+      "surface": "reporting_readmodels",
+      "candidate_type": "partition_candidate",
+      "preferred_key": "tenant_id_period",
+      "tenant_distribution_status": "REQUIRES_PROJECTION_SIZE_REVIEW",
+      "shard_key_status": "TENANT_PERIOD_SCOPED",
+      "cross_shard_guard_status": "MEDIUM_RISK_READMODEL_ONLY",
+      "reporting_impact_status": "REBUILD_PLAN_REQUIRED",
+      "migration_safety_status": "DRY_RUN_REQUIRED_NO_REBUILD",
+      "risk_level": "medium",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "readiness_id": "shard-review-pos-receipt-movements",
+      "surface": "pos_receipt_movements",
+      "candidate_type": "shard_candidate_review_only",
+      "preferred_key": "tenant_id_business_date",
+      "tenant_distribution_status": "HOT_TENANT_DETECTION_REQUIRED",
+      "shard_key_status": "CANDIDATE_REVIEW_REQUIRED",
+      "cross_shard_guard_status": "MEDIUM_RISK_BUSINESS_CHAIN_REVIEW",
+      "reporting_impact_status": "POS_REPORTING_PROJECTION_REVIEW_REQUIRED",
+      "migration_safety_status": "DRY_RUN_REQUIRED_NO_TENANT_MOVE",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "readiness_id": "shard-blocked-finance-ledger",
+      "surface": "finance_ledger",
+      "candidate_type": "blocked_until_boundary_model",
+      "preferred_key": "tenant_id_period",
+      "tenant_distribution_status": "STRICT_CONSISTENCY_REQUIRED",
+      "shard_key_status": "BLOCKED_BOUNDARY_MODEL_REQUIRED",
+      "cross_shard_guard_status": "BLOCKED_FINANCIAL_CONSISTENCY_RISK",
+      "reporting_impact_status": "FINANCE_REPORTING_BOUNDARY_REQUIRED",
+      "migration_safety_status": "BLOCKED_NO_TABLE_REWRITE_ALLOWED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_22_2",
+    "name": "Accessibility finalizasyon",
+    "runtime_mutation_allowed_now": false
+  }
+}

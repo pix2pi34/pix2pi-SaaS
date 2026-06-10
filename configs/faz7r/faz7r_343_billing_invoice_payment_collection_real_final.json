@@ -1,0 +1,29 @@
+{
+  "step": "FAZ 7-R / 343",
+  "name": "Billing invoice / payment collection placeholder runtime real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "billing-invoice-payment-343-20260513_231733",
+  "sourceSubscriptionId": "subscription-342-main-20260513_230101",
+  "sourceInvoiceDraftId": "invoice-draft-342-main-20260513_230101",
+  "invoiceId": "invoice-343-main-20260513_231733",
+  "collectionId": "collection-343-main-20260513_231733",
+  "routes": [
+    "/commercial/billing/",
+    "POST /api/commercial/billing/invoice-issue",
+    "POST /api/commercial/billing/payment-start",
+    "POST /api/commercial/billing/payment-status",
+    "POST /api/commercial/billing/summary"
+  ],
+  "requiredEvidence": [
+    "billing invoice DB runtime",
+    "invoice draft to issued invoice placeholder",
+    "payment collection placeholder DB",
+    "payment pending/collected/failed statuses",
+    "subscription invoice/payment binding",
+    "tenant-safe invoice/payment guard",
+    "no-role denied",
+    "rollback no partial write",
+    "route smoke",
+    "billing invoice/payment audit evidence"
+  ]
+}

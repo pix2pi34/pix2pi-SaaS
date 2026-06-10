@@ -1,0 +1,50 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "362",
+  "name": "Controlled rollout cohort setup",
+  "surface": "controlled_rollout_cohort_setup",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/controlled-rollout-cohort-setup/",
+  "runtime_path": "/assets/controlled-rollout-cohort-setup/controlled-rollout-cohort-setup-runtime.js",
+  "depends_on": [
+    "361 - Pilot closure / controlled rollout readiness"
+  ],
+  "runtime_contract": {
+    "real_customer_add_enabled": false,
+    "real_rollout_activation_enabled": false,
+    "real_feature_flag_write_enabled": false,
+    "real_billing_enabled": false,
+    "real_payment_enabled": false,
+    "real_data_mutation_enabled": false,
+    "cohort_setup_preview_enabled": true,
+    "support_capacity_required": true,
+    "monitoring_capacity_required": true,
+    "legal_kvkk_hold_required": true,
+    "ready_for_step_363": true
+  },
+  "required_capabilities": [
+    "controlled_rollout_cohort_app_shell",
+    "rollout_cohort_setup_context",
+    "cohort_size_limit_preview",
+    "customer_eligibility_checklist",
+    "tenant_selection_preview",
+    "sector_region_risk_segmentation",
+    "rollout_wave_schedule_preview",
+    "feature_flag_cohort_binding_preview",
+    "entitlement_plan_binding_preview",
+    "support_capacity_gate",
+    "monitoring_capacity_gate",
+    "legal_kvkk_approval_hold_gate",
+    "billing_payment_live_disabled_gate",
+    "data_mutation_disabled_safety_guard",
+    "cohort_rollback_plan_preview",
+    "cohort_communication_draft_preview",
+    "cohort_setup_audit_timeline",
+    "cohort_setup_runtime_data_contract",
+    "i18n_ready_cohort_marker",
+    "seo_opengraph_cohort_placeholder",
+    "controlled_rollout_cohort_smoke_test"
+  ],
+  "next_step": "363 - Controlled rollout cohort approval gate"
+}

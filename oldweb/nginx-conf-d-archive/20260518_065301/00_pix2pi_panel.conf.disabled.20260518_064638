@@ -1,0 +1,131 @@
+# PIX2PI_PANEL_CANONICAL_ROUTE_START
+# FAZ_7R_341_FIX_V2_PANEL_NGINX_TARGET
+# Canonical active route target: /etc/nginx/conf.d/00_pix2pi_panel.conf
+
+server {
+
+    include /etc/nginx/snippets/pix2pi_faz7r_ek2_i18n_route.conf;
+
+    include /etc/nginx/snippets/pix2pi_faz7r_ek2_husrev_route.conf;
+
+    include /etc/nginx/snippets/pix2pi_347_pilot_tenant_opening_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_346_plan_enforcement_ui_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_345_commercial_account_console_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_344_entitlement_quota_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_343_billing_invoice_payment_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_342_subscription_lifecycle_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_341_commercial_plan_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_328_import_export_api_route.conf;
+
+
+
+
+    include /etc/nginx/snippets/pix2pi_326_document_screen_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_322_business_settings_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_327_reports_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_320_merchant_dashboard_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_355_first_real_usage_smoke_route.conf;
+
+    include /etc/nginx/snippets/pix2pi_325_sales_pos_management_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_324_product_stock_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_323_party_api_route.conf;
+
+
+    include /etc/nginx/snippets/pix2pi_357_help_center_route.conf;
+
+    include /etc/nginx/snippets/pix2pi_357_customer_access_activation_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_353_user_permission_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_352_tenant_isolation_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_350_panel_access_api_route.conf;
+
+
+
+
+    include /etc/nginx/snippets/pix2pi_321_user_role_rbac_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_348_user_invite_api_route.conf;
+
+
+
+    include /etc/nginx/snippets/pix2pi_319_347_onboarding_api_route.conf;
+
+
+
+
+    listen 80;
+    server_name d316-1.local; # PIX2PI_316_DUPLICATE_SERVER_NAME_DISABLED original: panel.pix2pi.com.tr
+    include /etc/nginx/snippets/pix2pi_customer_login_activation_locations.conf;
+    include /etc/nginx/snippets/pix2pi_customer_register_submit_locations.conf;
+    include /etc/nginx/snippets/pix2pi_customer_login_application_status_locations.conf;
+    include /etc/nginx/snippets/pix2pi_owner_register_approvals_locations.conf;
+    root /var/www/pix2pi/panel;
+    index index.html;
+
+    add_header X-Pix2pi-Surface merchant-panel always;
+    add_header X-Pix2pi-Step 341 always;
+    add_header X-Pix2pi-Fix v2-panel-nginx-target always;
+    add_header X-Frame-Options SAMEORIGIN always;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+
+    location = /health {
+        default_type application/json;
+        add_header Cache-Control "no-store" always;
+        try_files /health.json =404;
+    }
+
+    location /assets/ {
+        try_files $uri =404;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+
+
+    include /etc/nginx/snippets/pix2pi_customer_register_https_exact_locations.conf;
+}
+
+# PIX2PI_PANEL_CANONICAL_ROUTE_END

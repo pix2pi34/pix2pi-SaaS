@@ -1,0 +1,59 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 226,
+  "step": "FAZ_4_16_7_1",
+  "title": "Dry-run canlıya geçiş",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "225_FAZ_4_16_6_5_FEEDBACK_CLOSURE"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "dry_run_policy": {
+    "dry_run_status_required": "READY",
+    "dry_run_mode_required": "CONTROLLED_PILOT",
+    "required_rule_status_required": "READY",
+    "missing_rule_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "feedback_closure_status_required": "PASS",
+    "tenant_readiness_status_required": "READY",
+    "import_closure_status_required": "READY",
+    "uat_closure_status_required": "READY",
+    "backup_snapshot_status_required": "READY",
+    "rollback_readiness_status_required": "READY",
+    "monitoring_status_required": "READY",
+    "no_production_launch_required": true,
+    "no_dns_change_required": true,
+    "no_nginx_change_required": true,
+    "no_live_external_provider_activation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_dry_run_rules": [
+    "DRY_RUN_KICKOFF",
+    "TENANT_READINESS_GATE",
+    "IMPORT_CLOSURE_GATE",
+    "READMODEL_REPORTING_READINESS_GATE",
+    "UAT_CLOSURE_GATE",
+    "SUPPORT_FEEDBACK_CLOSURE_GATE",
+    "BACKUP_SNAPSHOT_READINESS",
+    "ROLLBACK_READINESS",
+    "CUTOVER_OWNER_ASSIGNMENT",
+    "COMMUNICATION_DRAFT_READINESS",
+    "DNS_NGINX_ROUTE_DRY_RUN_CHECK",
+    "RUNTIME_HEALTH_DRY_RUN_CHECK",
+    "MONITORING_DASHBOARD_DRY_RUN_CHECK",
+    "EXTERNAL_PROVIDER_POLICY_CLOSED_GATE",
+    "DRY_RUN_FINAL_REPORT"
+  ],
+  "dry_run_artifact": "configs/faz4r/dry_run_go_live.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "227_FAZ_4_16_7_2_CUTOVER_CHECKLIST"
+  ]
+}

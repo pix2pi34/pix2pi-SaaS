@@ -1,0 +1,8 @@
+config_path	proxy_target_sanitized	target_port	service_hint	risk	note
+/etc/nginx/conf.d/pix2pi_edge_live.conf	http://pix2pi_api_upstream		unknown_or_variable	LOW	reverse_proxy_target_evidence
+/etc/nginx/conf.d/pix2pi_edge_live.conf	http://pix2pi_api_upstream		unknown_or_variable	LOW	reverse_proxy_target_evidence
+/etc/nginx/conf.d/pix2pi_edge_live.conf	http://pix2pi_api_upstream		unknown_or_variable	LOW	reverse_proxy_target_evidence
+/etc/nginx/conf.d/pix2pi_edge_live.conf	http://pix2pi_panel_upstream		unknown_or_variable	LOW	reverse_proxy_target_evidence
+/etc/nginx/conf.d/pix2pi_edge_live.conf	http://pix2pi_auth_upstream		unknown_or_variable	LOW	reverse_proxy_target_evidence
+/etc/nginx/conf.d/pix2pi_edge_live.conf	http://pix2pi_auth_upstream		unknown_or_variable	LOW	reverse_proxy_target_evidence
+/etc/nginx/conf.d/pix2pi_edge_live.conf	http://pix2pi_pos_upstream		unknown_or_variable	LOW	reverse_proxy_target_evidence

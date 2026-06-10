@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Loading / Error / Empty / Retry Standardı</title>
+  <link rel="stylesheet" href="./loading_error_empty_retry.css">
+</head>
+<body>
+  <main class="pix2pi-page" id="pix2piStateStandardRoot">
+    <header class="pix2pi-page-header">
+      <div>
+        <h1 class="pix2pi-page-title">Pix2pi Loading / Error / Empty / Retry Standardı</h1>
+        <p class="pix2pi-page-subtitle">FAZ 1-4.6 — WEB-L1 UI Foundation / Design System</p>
+      </div>
+      <span class="pix2pi-badge ok" id="pix2piCurrentStateBadge">READY</span>
+    </header>
+
+    <section class="pix2pi-grid">
+      <aside class="pix2pi-card">
+        <div class="pix2pi-actions">
+          <button class="pix2pi-button primary" id="showLoadingButton" type="button">Loading state göster</button>
+          <button class="pix2pi-button danger" id="showErrorButton" type="button">Error state göster</button>
+          <button class="pix2pi-button warn" id="showEmptyButton" type="button">Empty state göster</button>
+          <button class="pix2pi-button primary" id="showContentButton" type="button">Content state göster</button>
+          <button class="pix2pi-button primary" id="pix2piRetryButton" type="button">Retry action</button>
+          <button class="pix2pi-button" id="resetRetryButton" type="button">Retry sayacını sıfırla</button>
+          <button class="pix2pi-button" id="runUiStateTestsButton" type="button">UI state testlerini çalıştır</button>
+        </div>
+
+        <pre class="pix2pi-log" id="pix2piStateTestOutput">UI_STATE_TEST_LOADING</pre>
+      </aside>
+
+      <section class="pix2pi-card">
+        <div class="pix2pi-state-stage">
+          <section class="pix2pi-loading-state" id="pix2piLoadingState">
+            <div class="pix2pi-spinner"></div>
+            <h2 class="pix2pi-state-title">Yükleniyor</h2>
+            <p class="pix2pi-state-message" id="pix2piLoadingMessage">Yükleniyor...</p>
+            <div class="pix2pi-skeleton-list">
+              <div class="pix2pi-skeleton"></div>
+              <div class="pix2pi-skeleton medium"></div>
+              <div class="pix2pi-skeleton short"></div>
+            </div>
+          </section>
+
+          <section class="pix2pi-error-state" id="pix2piErrorState">
+            <div class="pix2pi-state-icon">!</div>
+            <h2 class="pix2pi-state-title" id="pix2piErrorTitle">UI_STATE_ERROR</h2>
+            <p class="pix2pi-state-message" id="pix2piErrorMessage">İşlem sırasında hata oluştu.</p>
+            <button class="pix2pi-button primary" type="button" onclick="window.Pix2piLoadingErrorEmptyRetryStandard.retryLastAction()">Tekrar dene</button>
+          </section>
+
+          <section class="pix2pi-empty-state" id="pix2piEmptyState">
+            <div class="pix2pi-state-icon">∅</div>
+            <h2 class="pix2pi-state-title">Kayıt yok</h2>
+            <p class="pix2pi-state-message" id="pix2piEmptyMessage">Gösterilecek kayıt bulunamadı.</p>
+            <button class="pix2pi-button" type="button" onclick="window.Pix2piLoadingErrorEmptyRetryStandard.showContentState()">Demo kayıt getir</button>
+          </section>
+
+          <section class="pix2pi-content-state" id="pix2piContentState">
+            <div class="pix2pi-state-icon">✓</div>
+            <h2 class="pix2pi-state-title">İçerik hazır</h2>
+            <p class="pix2pi-state-message">Yükleme başarıyla tamamlandı.</p>
+            <div class="pix2pi-content-list" id="pix2piContentList"></div>
+          </section>
+        </div>
+
+        <pre class="pix2pi-log" id="pix2piStateLog">UI state event log...</pre>
+      </section>
+    </section>
+  </main>
+
+  <script src="./loading_error_empty_retry.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "phase": "FAZ_5_18_3_5",
+  "title": "Uyum Doküman Kontrolü",
+  "status": "READY",
+  "control_surface": "LEGAL_KVKK_CONTRACT_CONSENT_DOCUMENT_CONTROL",
+  "inputs": [
+    "FAZ_5_18_3_1_CONTRACT_SET",
+    "FAZ_5_18_3_2_KVKK_PRIVACY_TEXTS",
+    "FAZ_5_18_3_4_COMMERCIAL_USE_TERMS",
+    "CONSENT_REGISTRY_RUNTIME"
+  ],
+  "outputs": [
+    "VERSIONED_DOCUMENT_INVENTORY",
+    "APPROVAL_GATE_MATRIX",
+    "PUBLIC_PUBLISH_BLOCK_POLICY",
+    "REAL_CUSTOMER_COLLECTION_BLOCK_POLICY",
+    "READINESS_AUDIT_EVIDENCE"
+  ],
+  "gates": {
+    "legal_counsel_approval": "PENDING",
+    "kvkk_consultant_approval": "PENDING",
+    "founder_go_no_go": "PENDING",
+    "public_publish_allowed": false,
+    "real_customer_collection_allowed": false
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

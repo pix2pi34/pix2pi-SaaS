@@ -1,0 +1,164 @@
+{
+  "module": "FAZ_7_8L",
+  "step": "FAZ_7_8L.9",
+  "name": "Logo E2E Dry-Run Flow",
+  "provider": {
+    "provider_code": "LOGO",
+    "provider_name": "Logo",
+    "connector_code": "logo_connector",
+    "connector_family": "accounting_export_connector",
+    "provider_directory": "internal/platform/integrations/providers/logo",
+    "foundation_runtime_file": "internal/platform/integrations/providers/logo/logo_foundation.go",
+    "live_contract_runtime_file": "internal/platform/integrations/providers/logo/logo_live_contract.go",
+    "credential_runtime_file": "internal/platform/integrations/providers/logo/logo_credential.go",
+    "export_mapping_runtime_file": "internal/platform/integrations/providers/logo/logo_export_mapping.go",
+    "file_generation_runtime_file": "internal/platform/integrations/providers/logo/logo_file_generation.go",
+    "import_delivery_runtime_file": "internal/platform/integrations/providers/logo/logo_import_delivery.go",
+    "validation_retry_dlq_runtime_file": "internal/platform/integrations/providers/logo/logo_validation_retry_dlq.go",
+    "admin_ops_runtime_file": "internal/platform/integrations/providers/logo/logo_admin_ops.go",
+    "runtime_file": "internal/platform/integrations/providers/logo/logo_e2e_dry_run.go",
+    "test_file": "internal/platform/integrations/providers/logo/logo_e2e_dry_run_test.go"
+  },
+  "runtime": {
+    "mode": "DRY_RUN",
+    "e2e_mode": "E2E_DRY_RUN_ONLY",
+    "target_system": "LOGO_ACCOUNTING_IMPORT_DRY_RUN",
+    "e2e_dry_run_status": "READY",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE"
+  },
+  "chain_steps": [
+    "FOUNDATION_VALIDATED",
+    "LIVE_CONTRACT_VALIDATED",
+    "CREDENTIAL_CONTRACT_VALIDATED",
+    "EXPORT_MAPPING_VALIDATED",
+    "FILE_GENERATION_DRY_RUN_COMPLETED",
+    "IMPORT_DELIVERY_ENVELOPE_PREPARED",
+    "VALIDATION_RETRY_DLQ_EVALUATED",
+    "ADMIN_OPS_MANUAL_REVIEW_EVALUATED",
+    "NO_REAL_PROVIDER_API_CALLED",
+    "NO_REAL_FILE_DELIVERY_ATTEMPTED",
+    "NO_ERP_WRITE_ATTEMPTED"
+  ],
+  "flow_types": [
+    "SUCCESSFUL_DRY_RUN_FLOW",
+    "VALIDATION_FAILURE_TO_DLQ_FLOW",
+    "TRANSIENT_PROVIDER_RETRY_FLOW",
+    "UNKNOWN_PROVIDER_MANUAL_REVIEW_FLOW"
+  ],
+  "e2e_contract": {
+    "declared": true,
+    "status": "READY",
+    "dry_run_only": true,
+    "chain_dependency_validation_required": true,
+    "successful_flow_required": true,
+    "validation_failure_flow_required": true,
+    "retry_decision_flow_required": true,
+    "manual_review_flow_required": true,
+    "external_call_allowed": false,
+    "real_file_delivery_allowed": false,
+    "erp_write_allowed": false
+  },
+  "operations": [
+    {
+      "name": "DECLARE_LOGO_E2E_DRY_RUN_CONTRACT",
+      "mode": "E2E_DRY_RUN_ONLY",
+      "dry_run_e2e_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "RUN_LOGO_E2E_DRY_RUN_SUCCESS_FLOW",
+      "mode": "E2E_DRY_RUN_ONLY",
+      "dry_run_e2e_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "RUN_LOGO_E2E_VALIDATION_FLOW",
+      "mode": "E2E_DRY_RUN_ONLY",
+      "dry_run_e2e_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "RUN_LOGO_E2E_RETRY_DECISION_FLOW",
+      "mode": "E2E_DRY_RUN_ONLY",
+      "dry_run_e2e_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "RUN_LOGO_E2E_MANUAL_REVIEW_FLOW",
+      "mode": "E2E_DRY_RUN_ONLY",
+      "dry_run_e2e_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_E2E_CHAIN_DEPENDENCIES",
+      "mode": "E2E_DRY_RUN_ONLY",
+      "dry_run_e2e_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_E2E_NO_REAL_PROVIDER_API",
+      "mode": "E2E_DRY_RUN_ONLY",
+      "dry_run_e2e_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_E2E_NO_REAL_FILE_DELIVERY",
+      "mode": "E2E_DRY_RUN_ONLY",
+      "dry_run_e2e_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_E2E_NO_ERP_WRITE",
+      "mode": "E2E_DRY_RUN_ONLY",
+      "dry_run_e2e_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_LOGO_FINAL_CLOSURE_HANDOFF",
+      "mode": "E2E_DRY_RUN_ONLY",
+      "dry_run_e2e_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    }
+  ],
+  "handoff_gates": {
+    "logo_foundation_gate": "READY_FROM_7_8L_1",
+    "logo_live_contract_gate": "READY_FROM_7_8L_2",
+    "logo_credential_secret_gate": "READY_FROM_7_8L_3",
+    "logo_export_mapping_gate": "READY_FROM_7_8L_4",
+    "logo_file_generation_gate": "READY_FROM_7_8L_5",
+    "logo_import_delivery_gate": "READY_FROM_7_8L_6",
+    "logo_validation_retry_dlq_gate": "READY_FROM_7_8L_7",
+    "logo_admin_ops_gate": "READY_FROM_7_8L_8",
+    "logo_e2e_dry_run_gate": "READY",
+    "logo_final_closure_gate": "PENDING_7_8L_10"
+  },
+  "audit": {
+    "real_implementation_audit_required": true,
+    "real_provider_api_must_remain_closed": true,
+    "real_file_delivery_must_remain_closed": true,
+    "real_erp_write_must_remain_closed": true,
+    "e2e_dry_run_flow_must_be_present": true
+  }
+}

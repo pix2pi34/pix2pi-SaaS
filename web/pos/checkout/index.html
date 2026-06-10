@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <title>Pix2pi POS Sepet / Ödeme</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: rgba(17,24,39,.92);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --border: rgba(255,255,255,.12);
+      --brand: #60a5fa;
+      --brand2: #22c55e;
+      --danger: #fb7185;
+      --warn: #f59e0b;
+      --shadow: 0 20px 52px rgba(0,0,0,.28);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(96,165,250,.22), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(34,197,94,.12), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(16px);
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(30px, 7vw, 56px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr .9fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .checkout-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .checkout-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(15,23,42,.65);
+    }
+
+    .totals-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .total-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(15,23,42,.58);
+    }
+
+    .total-card strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 24px;
+      color: #bbf7d0;
+      letter-spacing: -0.04em;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--muted);
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: rgba(15,23,42,.88);
+      color: var(--text);
+      border-radius: 18px;
+      padding: 16px;
+      font: inherit;
+      font-size: 18px;
+      outline: none;
+    }
+
+    button {
+      border: none;
+      border-radius: 18px;
+      padding: 14px 16px;
+      font: inherit;
+      font-weight: 950;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color: #06101f;
+      width: 100%;
+    }
+
+    .secondary {
+      background: rgba(96,165,250,.14);
+      color: #bfdbfe;
+      border: 1px solid rgba(147,197,253,.24);
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: rgba(96,165,250,.14);
+      color: #bfdbfe;
+      border: 1px solid rgba(147,197,253,.26);
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .status-box {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(15,23,42,.56);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .status-box[data-validation-status="valid"] {
+      border-color: rgba(34,197,94,.42);
+      color: #bbf7d0;
+    }
+
+    .status-box[data-validation-status="invalid"] {
+      border-color: rgba(251,113,133,.5);
+      color: #fecdd3;
+    }
+
+    .locked {
+      border: 1px dashed rgba(245,158,11,.55);
+      background: rgba(245,158,11,.08);
+    }
+
+    @media (max-width: 980px) {
+      .main-grid, .totals-grid { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+      .checkout-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_332_CHECKOUT_APP_SHELL_START -->
+  <main class="shell" data-step="332" data-surface="pos-checkout">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 332</span>
+      <h1 data-i18n="pos_checkout.title">Sepet / ödeme akışı</h1>
+      <p data-i18n="pos_checkout.description">Sepeti gözden geçir, ödeme yöntemini seç, draft receipt payload hazırla.</p>
+    </section>
+
+    <section class="main-grid">
+      <!-- PIX2PI_332_CART_REVIEW_LINE_SUMMARY_START -->
+      <section class="card" data-widget="cart_review_line_summary">
+        <h2>Sepet review</h2>
+        <div id="checkout-cart-lines" class="checkout-list">
+          <article class="checkout-row" data-checkout-product-id="pos-prd-001">
+            <div>
+              <strong>Demo Ürün</strong>
+              <p>1 ADET × ₺100,00 / KDV %20</p>
+            </div>
+            <strong>₺100,00</strong>
+          </article>
+        </div>
+      </section>
+      <!-- PIX2PI_332_CART_REVIEW_LINE_SUMMARY_END -->
+
+      <aside class="card">
+        <!-- PIX2PI_332_PAYMENT_METHOD_SELECTION_START -->
+        <h2>Ödeme</h2>
+        <form id="checkout-form" style="display:grid;gap:12px;">
+          <label>
+            Ödeme yöntemi
+            <select name="payment_method" id="payment-method">
+              <option value="CASH">Nakit</option>
+              <option value="CARD">Kart</option>
+              <option value="QR">QR</option>
+            </select>
+          </label>
+          <!-- PIX2PI_332_CASH_CARD_QR_PLACEHOLDER_START -->
+          <label>
+            Alınan tutar
+            <input name="tendered_amount" id="tendered-amount" type="number" step="0.01" min="0" value="120" />
+          </label>
+          <!-- PIX2PI_332_CASH_CARD_QR_PLACEHOLDER_END -->
+
+          <!-- PIX2PI_332_CHECKOUT_VALIDATION_CONTRACT_START -->
+          <section id="checkout-validation-status" class="status-box" hidden data-validation-status="">
+            Checkout validation sonucu burada gösterilir.
+          </section>
+          <!-- PIX2PI_332_CHECKOUT_VALIDATION_CONTRACT_END -->
+
+          <button type="submit" class="primary">Checkout draft hazırla</button>
+          <button type="button" id="receipt-draft-button" class="secondary">Receipt draft hazırla</button>
+        </form>
+      </aside>
+    </section>
+
+    <!-- PIX2PI_332_TENDER_CHANGE_CALCULATION_CONTRACT_START -->
+    <section class="card" data-widget="tender_change_calculation_contract">
+      <h2>Tutar hesaplama</h2>
+      <div class="totals-grid">
+        <article class="total-card"><span>Ara toplam</span><strong id="checkout-gross-total">₺0,00</strong></article>
+        <article class="total-card"><span>KDV</span><strong id="checkout-vat-total">₺0,00</strong></article>
+        <article class="total-card"><span>Genel toplam</span><strong id="checkout-grand-total">₺0,00</strong></article>
+        <article class="total-card"><span>Para üstü</span><strong id="checkout-change-amount">₺0,00</strong></article>
+        <article class="total-card"><span>Kalan</span><strong id="checkout-remaining-amount">₺0,00</strong></article>
+      </div>
+    </section>
+    <!-- PIX2PI_332_TENDER_CHANGE_CALCULATION_CONTRACT_END -->
+
+    <!-- PIX2PI_332_RECEIPT_SALE_COMPLETION_DRAFT_PAYLOAD_START -->
+    <section class="card" data-widget="receipt_sale_completion_draft_payload">
+      <h2>Receipt / sale completion draft payload</h2>
+      <p>Receipt taslağı oluşturulur; gerçek fiş, ödeme ve stok düşümü bu adımda kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_332_RECEIPT_SALE_COMPLETION_DRAFT_PAYLOAD_END -->
+
+    <!-- PIX2PI_332_PAYMENT_PROVIDER_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="payment_provider_live_disabled_gate">
+      <h2>Payment provider live disabled gate</h2>
+      <p>real_payment_enabled=false / provider_live_enabled=false / provider_transaction_id=null</p>
+    </section>
+    <!-- PIX2PI_332_PAYMENT_PROVIDER_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_332_REAL_SALE_FINALIZATION_DISABLED_GUARD_START -->
+    <section class="card locked" data-widget="real_sale_finalization_disabled_guard">
+      <h2>Gerçek satış finalizasyonu kapalı</h2>
+      <p>real_sale_finalize_enabled=false / real_stock_decrement_enabled=false. Finalize işlemi sonraki production gate olmadan çalışmaz.</p>
+    </section>
+    <!-- PIX2PI_332_REAL_SALE_FINALIZATION_DISABLED_GUARD_END -->
+
+    <!-- PIX2PI_332_TENANT_DEVICE_CASHIER_PAYMENT_GUARD_START -->
+    <section class="card" data-widget="tenant_device_cashier_scoped_payment_guard">
+      <h2>Tenant / device / cashier scoped payment guard</h2>
+      <p>Checkout işlemleri `X-Tenant-ID`, `X-POS-Device-ID`, `X-POS-Cashier-Code` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_332_TENANT_DEVICE_CASHIER_PAYMENT_GUARD_END -->
+
+    <!-- PIX2PI_332_OFFLINE_PAYMENT_QUEUE_PLACEHOLDER_START -->
+    <section class="card locked" data-widget="offline_payment_queue_placeholder">
+      <h2>Offline payment queue placeholder</h2>
+      <p>Offline ödeme kuyruğu 333 adımında genişletilecek. Bu adımda gerçek offline queue kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_332_OFFLINE_PAYMENT_QUEUE_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_332_CHECKOUT_SESSION_STORAGE_CONTRACT_START -->
+    <section class="card" data-widget="checkout_session_storage_contract">
+      <h2>Checkout session storage contract</h2>
+      <p>pix2pi.pos.sale.draft / pix2pi.pos.checkout.draft / pix2pi.pos.cashier.session</p>
+    </section>
+    <!-- PIX2PI_332_CHECKOUT_SESSION_STORAGE_CONTRACT_END -->
+
+    <!-- PIX2PI_332_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_checkout_markers">
+      <h2 data-i18n="pos_checkout.i18n_ready">i18n-ready checkout</h2>
+      <p data-i18n="pos_checkout.surface_ready">Sepet / ödeme ekran metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_332_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_332_CHECKOUT_APP_SHELL_END -->
+
+  <script src="/assets/checkout/pos-checkout-runtime.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById("checkout-form");
+      const status = document.getElementById("checkout-validation-status");
+      const receiptButton = document.getElementById("receipt-draft-button");
+
+      Pix2piPOSCheckout.bootPOSCheckoutScreen();
+
+      form.addEventListener("input", function () {
+        Pix2piPOSCheckout.recomputeFromForm(form);
+      });
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const data = Pix2piPOSCheckout.readCheckoutForm(form);
+        const result = await Pix2piPOSCheckout.prepareCheckout(data.payment_method, data.tendered_amount);
+        Pix2piPOSCheckout.renderCheckoutValidation(status, result.validation);
+        console.log("PIX2PI_332_CHECKOUT_DRAFT_RESULT", result);
+      });
+
+      receiptButton.addEventListener("click", async function () {
+        const data = Pix2piPOSCheckout.readCheckoutForm(form);
+        const result = await Pix2piPOSCheckout.prepareReceiptDraft(data.payment_method, data.tendered_amount);
+        console.log("PIX2PI_332_RECEIPT_DRAFT_RESULT", result);
+      });
+    })();
+  </script>
+</body>
+</html>

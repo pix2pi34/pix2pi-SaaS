@@ -1,0 +1,18 @@
+{
+  "stepGroup": "FAZ 7-R / 319 + 347",
+  "name": "Onboarding tenant opening real DB API final",
+  "api": "POST /api/panel/onboarding/tenant-opening",
+  "apiPort": 9319,
+  "transactionRequired": true,
+  "rollbackRequired": true,
+  "evidenceRequired": [
+    "migration tables",
+    "curl success",
+    "db select success",
+    "duplicate 409",
+    "validation 422",
+    "rollback no partial write",
+    "next_url redirect"
+  ],
+  "finalStatusRule": "curl + db select + transaction rollback evidence required"
+}

@@ -1,0 +1,33 @@
+# uzmanparcaci — FAZ 4C Handoff Package Manifest
+
+## Manifest
+
+HANDOFF_PACKAGE_STATUS=READY
+PILOT_BUSINESS_NAME=uzmanparcaci
+TENANT_BUSINESS_CODE=UZMANPARCACI
+FINAL_GO_NO_GO_DECISION=GO
+
+---
+
+## Package groups
+
+| Group | Açıklama | Status |
+|-------|----------|--------|
+| FINAL_CLOSURES | 4C-1..4C-9 final closure dokümanları | READY |
+| UAT_EVIDENCE | UAT ve business acceptance kanıtları | READY |
+| FOLLOWUP_ACTIONS | Follow-up register ve owner assignment | READY |
+| CARRY_FORWARD | FAZ 4D carry-forward bağlantısı | READY |
+
+---
+
+## Manifest status
+
+HANDOFF_MANIFEST_CREATED=YES
+HANDOFF_MANIFEST_VALIDATION_STATUS=PASS
+HANDOFF_PACKAGE_ASSEMBLY_STATUS=PASS
+HANDOFF_READINESS_GATE_STATUS=PASS
+REQUIRED_EVIDENCE_COUNT=12
+PACKAGE_EVIDENCE_COUNT=12
+MISSING_PACKAGE_FILE_COUNT=0
+DB_WRITE_APPLIED=NO
+4C_10E_READY=YES

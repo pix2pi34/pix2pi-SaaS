@@ -1,0 +1,13 @@
+priority	failure_type	rollout_decision	escalation_owner	required_action	implementation_status	note
+P0	tenant_access_failed	NO_GO	project_owner	fix tenant access before rollout	READY_FOR_IMPLEMENTATION	contract_only
+P0	rbac_bypass_or_wrong_access	NO_GO	security_admin	fix RBAC/tenant isolation before rollout	READY_FOR_IMPLEMENTATION	contract_only
+P0	sale_flow_failed	NO_GO	project_owner	fix sale flow before rollout	READY_FOR_IMPLEMENTATION	contract_only
+P0	stock_movement_mismatch	NO_GO	tenant_operator	fix stock movement before rollout	READY_FOR_IMPLEMENTATION	contract_only
+P0	accounting_journal_wrong	NO_GO	accountant	fix TDHP/journal mapping before rollout	READY_FOR_IMPLEMENTATION	contract_only
+P0	audit_missing	NO_GO	security_admin	fix audit evidence before rollout	READY_FOR_IMPLEMENTATION	contract_only
+P0	secret_leak_detected	NO_GO	security_admin	remove raw secret/raw payload before rollout	READY_FOR_IMPLEMENTATION	contract_only
+P0	go_no_go_not_signed	NO_GO	project_owner	complete go/no-go decision	READY_FOR_IMPLEMENTATION	contract_only
+P1	reporting_minor_mismatch	CONDITIONAL_GO	tenant_admin	document workaround and backlog item	READY_FOR_IMPLEMENTATION	contract_only
+P1	workflow_minor_issue	CONDITIONAL_GO	tenant_admin	document workaround and retry plan	READY_FOR_IMPLEMENTATION	contract_only
+P1	support_loop_minor_gap	CONDITIONAL_GO	support	assign support owner before rollout	READY_FOR_IMPLEMENTATION	contract_only
+P1	backup_restore_note_missing	CONDITIONAL_GO	ops_admin	create readiness note before final go-live	READY_FOR_IMPLEMENTATION	contract_only

@@ -1,0 +1,33 @@
+{
+  "expected_dependency": "FAZ_6_21_2_1",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_db_promotion_allowed": false,
+  "expected_replica_promotion_allowed": false,
+  "expected_dns_mutation_allowed": false,
+  "expected_dsn_mutation_allowed": false,
+  "expected_application_route_mutation_allowed": false,
+  "expected_replication_slot_mutation_allowed": false,
+  "expected_required_controls": [
+    "db_ha_topology_dependency_gate",
+    "failover_candidate_preflight",
+    "primary_reachability_check",
+    "replica_reachability_check",
+    "replica_lag_guard",
+    "wal_replay_guard",
+    "backup_pitr_guard",
+    "split_brain_guard",
+    "promotion_decision_policy",
+    "dns_dsn_route_switch_guard",
+    "rollback_decision_policy",
+    "rto_rpo_measurement_policy",
+    "dry_run_failover_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_min_rehearsal_count": 4,
+  "expected_status": "dry_run_only_no_replica_promotion",
+  "expected_next_step": "FAZ_6_21_2_5"
+}

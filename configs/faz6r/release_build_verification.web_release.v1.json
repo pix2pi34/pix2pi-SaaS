@@ -1,0 +1,91 @@
+{
+  "version": "web_release.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_22_7",
+  "status": "dry_run_only_no_release_build_mutation",
+  "checks": [
+    {
+      "build_check_id": "build-frontend-static-assets",
+      "surface": "frontend_static_assets",
+      "manifest_status": "REQUIRED",
+      "checksum_status": "REQUIRED",
+      "secret_scan_status": "REQUIRED",
+      "dependency_lock_status": "REQUIRED",
+      "rollback_status": "REQUIRED",
+      "release_blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "build_check_id": "build-web-release-manifest",
+      "surface": "web_release_manifest",
+      "manifest_status": "REQUIRED",
+      "checksum_status": "REQUIRED",
+      "secret_scan_status": "NOT_APPLICABLE",
+      "dependency_lock_status": "REQUIRED",
+      "rollback_status": "REQUIRED",
+      "release_blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "build_check_id": "build-container-image-metadata",
+      "surface": "container_image_metadata",
+      "manifest_status": "REQUIRED",
+      "checksum_status": "REQUIRED",
+      "secret_scan_status": "REQUIRED",
+      "dependency_lock_status": "REQUIRED",
+      "rollback_status": "IMAGE_ROLLBACK_REFERENCE_REQUIRED",
+      "release_blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "build_check_id": "build-environment-config-bundle",
+      "surface": "environment_config_bundle",
+      "manifest_status": "REQUIRED",
+      "checksum_status": "REQUIRED",
+      "secret_scan_status": "REQUIRED",
+      "dependency_lock_status": "REQUIRED",
+      "rollback_status": "CONFIG_ROLLBACK_REQUIRED",
+      "release_blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "build_check_id": "build-migration-bundle",
+      "surface": "migration_bundle",
+      "manifest_status": "REQUIRED",
+      "checksum_status": "REQUIRED",
+      "secret_scan_status": "NOT_APPLICABLE",
+      "dependency_lock_status": "REQUIRED",
+      "rollback_status": "ROLLBACK_SQL_REQUIRED",
+      "release_blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "build_check_id": "build-rollback-manifest",
+      "surface": "rollback_manifest",
+      "manifest_status": "REQUIRED",
+      "checksum_status": "REQUIRED",
+      "secret_scan_status": "NOT_APPLICABLE",
+      "dependency_lock_status": "REQUIRED",
+      "rollback_status": "REQUIRED",
+      "release_blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_R_FINAL_CLOSURE",
+    "name": "FAZ 6-R Final review / closure",
+    "runtime_mutation_allowed_now": false
+  }
+}

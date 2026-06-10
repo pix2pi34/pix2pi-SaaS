@@ -1,0 +1,13 @@
+pilot_area	owner_role	tenant_scope	readiness_target	acceptance_signal	risk_level	implementation_status	note
+pilot_tenant_setup	platform_admin	tenant_scoped	tenant created and isolated	tenant_id available	HIGH	READY_FOR_IMPLEMENTATION	baseline_only
+pilot_user_roles	tenant_admin	tenant_scoped	admin/cashier/accountant/operator roles mapped	role matrix exists	HIGH	READY_FOR_IMPLEMENTATION	baseline_only
+pilot_store_branch_setup	tenant_admin	tenant_scoped	store/branch/cash desk structure ready	branch/cash desk checklist	HIGH	READY_FOR_IMPLEMENTATION	baseline_only
+product_catalog_setup	tenant_operator	tenant_scoped	products/categories/units ready	sample product set	MEDIUM	READY_FOR_IMPLEMENTATION	baseline_only
+stock_opening_balance	tenant_operator	tenant_scoped	opening stock imported or entered	stock count evidence	HIGH	READY_FOR_IMPLEMENTATION	baseline_only
+customer_vendor_cards	tenant_operator	tenant_scoped	customer/vendor cards ready	card validation checklist	MEDIUM	READY_FOR_IMPLEMENTATION	baseline_only
+sales_flow_validation	cashier	tenant_scoped	sale/refund/cancel flow validated	UAT sale scenarios	CRITICAL	READY_FOR_IMPLEMENTATION	baseline_only
+inventory_movement_validation	tenant_operator	tenant_scoped	stock movement after sale validated	stock delta evidence	CRITICAL	READY_FOR_IMPLEMENTATION	baseline_only
+ufk_accounting_validation	accountant	tenant_scoped	journal/ledger/TDHP mapping reviewed	accounting UAT evidence	CRITICAL	READY_FOR_IMPLEMENTATION	baseline_only
+reporting_validation	tenant_admin	tenant_scoped	read model/reporting output validated	report snapshot evidence	MEDIUM	READY_FOR_IMPLEMENTATION	baseline_only
+workflow_approval_validation	tenant_admin	tenant_scoped	approval/action workflow validated	workflow UAT evidence	MEDIUM	READY_FOR_IMPLEMENTATION	baseline_only
+observability_support_loop	ops_admin	platform_scoped	ops console/support loop ready	incident feedback evidence	HIGH	READY_FOR_IMPLEMENTATION	baseline_only

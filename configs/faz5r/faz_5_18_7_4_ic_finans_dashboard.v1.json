@@ -1,0 +1,38 @@
+{
+  "phase": "FAZ_5_18_7_4",
+  "title": "İç Finans Dashboard",
+  "status": "READY",
+  "control_surface": "INTERNAL_FINANCE_DASHBOARD",
+  "inputs": [
+    "FAZ_5_18_7_1_MRR_ARR_RAPORU",
+    "FAZ_5_18_7_2_CHURN_EXPANSION_RAPORU",
+    "FAZ_5_18_7_3_TAHSILAT_BASARI_RAPORU",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "EXECUTIVE_FINANCE_SUMMARY",
+    "MRR_ARR_PANEL",
+    "CHURN_EXPANSION_PANEL",
+    "COLLECTION_SUCCESS_PANEL",
+    "BILLING_RISK_PANEL",
+    "CASHFLOW_PROJECTION_PANEL",
+    "FINANCE_OPS_ALERT_PANEL",
+    "AUDIT_EVIDENCE_PANEL",
+    "PRICING_TABLE_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_finance_dashboard_ready": true,
+    "production_dashboard_enabled": false,
+    "real_customer_finance_enabled": false,
+    "external_finance_export_enabled": false,
+    "auto_executive_email_enabled": false,
+    "pricing_table_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

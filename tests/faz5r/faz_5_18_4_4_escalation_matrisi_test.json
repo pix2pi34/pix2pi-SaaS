@@ -1,0 +1,37 @@
+{
+  "test_name": "faz_5_18_4_4_escalation_matrisi_test",
+  "phase": "FAZ_5_18_4_4",
+  "expected": {
+    "required_rule_count": 6,
+    "required_trigger_count": 6,
+    "internal_matrix_ready": true,
+    "production_auto_escalation_enabled": false,
+    "customer_notification_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_rule_keys": [
+    "sla_breach_to_ops",
+    "p0_incident_to_engineering",
+    "kvkk_request_to_compliance",
+    "security_report_to_compliance",
+    "billing_dispute_to_business",
+    "unresolved_ticket_to_ops"
+  ],
+  "must_have_triggers": [
+    "SLA_BREACH",
+    "P0_INCIDENT",
+    "KVKK_REQUEST",
+    "SECURITY_REPORT",
+    "BILLING_DISPUTE",
+    "UNRESOLVED_TICKET"
+  ],
+  "must_have_fields": [
+    "requires_tenant_id",
+    "requires_ticket_id",
+    "requires_correlation_id",
+    "requires_sla_key",
+    "requires_audit_trail",
+    "blocks_silent_failure"
+  ]
+}

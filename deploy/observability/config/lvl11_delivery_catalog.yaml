@@ -1,0 +1,45 @@
+version: v1
+delivery:
+  grafana_route:
+    id: grafana_primary
+    route: ops-grafana-route
+
+  channels:
+    - id: email_ops
+      type: email
+      target: ops@pix2pi.com.tr
+
+    - id: chat_ops
+      type: chat
+      target: "#pix2pi-alerts"
+
+severity_routing:
+  warn:
+    route: warning-oncall
+    channels:
+      - grafana_primary
+      - chat_ops
+
+  crit:
+    route: critical-oncall
+    channels:
+      - grafana_primary
+      - email_ops
+      - chat_ops
+
+ack_silence_policy:
+  ack_timeout_minutes: 15
+  silence_window_minutes: 30
+
+escalation_ladder:
+  - level: 1
+    after_minutes: 10
+    action: notify_primary_oncall
+
+  - level: 2
+    after_minutes: 20
+    action: escalate_to_secondary_oncall
+
+  - level: 3
+    after_minutes: 30
+    action: escalate_to_platform_lead

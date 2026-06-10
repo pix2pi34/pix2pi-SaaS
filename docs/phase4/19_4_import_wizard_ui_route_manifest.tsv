@@ -1,0 +1,9 @@
+route_id	method	path	purpose	auth_required	tenant_required	status
+import_templates	GET	/api/v1/admin/imports/templates	template_list	YES	YES	contract_only
+import_upload	POST	/api/v1/admin/imports/upload	upload_placeholder	YES	YES	contract_only
+import_mapping	POST	/api/v1/admin/imports/:import_batch_id/mapping	save_mapping	YES	YES	contract_only
+import_validate	POST	/api/v1/admin/imports/:import_batch_id/validate	validate_staged_data	YES	YES	contract_only
+import_preview	GET	/api/v1/admin/imports/:import_batch_id/preview	preview_staged_rows	YES	YES	contract_only
+import_errors	GET	/api/v1/admin/imports/:import_batch_id/errors	error_list_download	YES	YES	contract_only
+import_commit_plan	POST	/api/v1/admin/imports/:import_batch_id/commit-plan	controlled_commit_plan	YES	YES	contract_only
+import_history	GET	/api/v1/admin/imports/history	import_history_list	YES	YES	contract_only

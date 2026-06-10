@@ -1,0 +1,134 @@
+# FAZ 4B / 14.4 - Backfill / Rebuild Script Standardı Report
+
+Generated at: 2026-04-28 00:15:18 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+BACKFILL_APPLY_EXECUTED=NO
+REBUILD_APPLY_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+VALIDATION_MODE=BACKFILL_REBUILD_STANDARD_ONLY
+PREVIOUS_14_1_FINAL_STATUS=PASS
+PREVIOUS_14_1_MIGRATION_CHAIN_STANDARD=PASS
+PREVIOUS_14_2_FINAL_STATUS=PASS
+PREVIOUS_14_2_REFERENCE_SEED_STANDARD=PASS
+PREVIOUS_14_3_FINAL_STATUS=PASS
+PREVIOUS_14_3_IMPORT_STAGING_TABLES=PASS
+PREVIOUS_14_3_IMPORT_STAGING_MIGRATION_PAIR=PASS
+PREVIOUS_14_3_DB_APPLY_EXECUTED=NO
+BACKFILL_REBUILD_MANIFEST_FILE_EXISTS=YES
+BACKFILL_REBUILD_DOC_MANIFEST_FILE_EXISTS=YES
+BACKFILL_REBUILD_MANIFEST_ROW_COUNT=8
+BACKFILL_REBUILD_DOC_MANIFEST_ROW_COUNT=8
+BACKFILL_REBUILD_MISSING_COLUMN_COUNT=0
+BACKFILL_REBUILD_DUPLICATE_JOB_KEY_COUNT=0
+BACKFILL_REBUILD_REQUIRED_JOB_MISSING_COUNT=0
+BACKFILL_REBUILD_TENANT_SCOPED_COUNT=8
+BACKFILL_REBUILD_GLOBAL_SAFE_COUNT=0
+BACKFILL_REBUILD_DRY_RUN_YES_COUNT=8
+BACKFILL_REBUILD_APPLY_GATE_YES_COUNT=8
+BACKFILL_REBUILD_BAD_DRY_RUN_COUNT=0
+BACKFILL_REBUILD_BAD_APPLY_GATE_COUNT=0
+BACKFILL_REBUILD_BAD_IDEMPOTENCY_COUNT=0
+BACKFILL_REBUILD_BAD_RESUME_COUNT=0
+BACKFILL_REBUILD_BAD_TENANT_SAFETY_COUNT=0
+BACKFILL_REBUILD_BAD_BATCH_COUNT=0
+BACKFILL_REBUILD_BAD_RETRY_COUNT=0
+BACKFILL_REBUILD_BAD_MUTATION_SCOPE_COUNT=0
+BACKFILL_REBUILD_BAD_FAILURE_POLICY_COUNT=0
+BACKFILL_REBUILD_BAD_SCOPE_COUNT=0
+BACKFILL_REBUILD_CANDIDATE_PLAN_FILE_EXISTS=YES
+BACKFILL_REBUILD_CANDIDATE_PLAN_GUARD_EXISTS=YES
+BACKFILL_REBUILD_CANDIDATE_PLAN_BLOCKED_BY_DEFAULT=YES
+BACKFILL_REBUILD_CANDIDATE_PLAN_NO_APPLY_MARKERS=YES
+BACKFILL_REBUILD_CANDIDATE_PLAN_DRY_RUN_STATUS=PASS
+BACKFILL_REBUILD_MANIFEST_STATUS=PASS
+BACKFILL_REBUILD_DRY_RUN_STATUS=PASS
+BACKFILL_REBUILD_APPLY_GATE_STATUS=PASS
+BACKFILL_REBUILD_IDEMPOTENCY_STATUS=PASS
+BACKFILL_REBUILD_RESUME_STATUS=PASS
+BACKFILL_REBUILD_TENANT_SAFETY_STATUS=PASS
+BACKFILL_REBUILD_BATCH_STATUS=PASS
+BACKFILL_REBUILD_MUTATION_SCOPE_STATUS=PASS
+BACKFILL_REBUILD_CANDIDATE_PLAN_STATUS=PASS
+BACKFILL_REBUILD_MATRIX_LINE_COUNT=18
+BACKFILL_REBUILD_STANDARD=PASS
+FAZ4B_14_4_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+BACKFILL_REBUILD_STANDARD=PASS
+FAZ4B_14_4_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_bash=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+
+## Matrix
+MATRIX_FILE=docs/phase4/14_4_backfill_rebuild_matrix.tsv
+gate	status	note
+previous_14_1	PASS	migration chain prerequisite
+previous_14_2	PASS	reference seed prerequisite
+previous_14_3	PASS	import staging prerequisite
+manifest	PASS	rows=8
+required_jobs	PASS	missing=0
+dry_run	PASS	bad=0
+apply_gate	PASS	bad=0
+idempotency	PASS	bad=0
+resume_retry	PASS	bad_resume=0 bad_retry=0
+tenant_safety	PASS	tenant_scoped=8
+batch_cursor	PASS	bad_batch=0
+mutation_scope	PASS	bad=0
+candidate_plan	PASS	blocked_by_default=YES
+db_mutation	NO	standard only
+backfill_apply_executed	NO	standard only
+rebuild_apply_executed	NO	standard only
+query_text_printed	NO	secret-safe report
+
+## Manifest
+MANIFEST_FILE=config/backfill/backfill_rebuild_manifest.tsv
+job_key	domain	target_type	source_type	scope	tenant_required	dry_run_required	apply_gate_required	cursor_strategy	default_batch_size	max_retry	idempotency_strategy	resume_strategy	failure_policy	mutation_scope	note
+readmodel_operational_rebuild	readmodel	operational_readmodel	event_store	TENANT_SCOPED	YES	YES	YES	cursor_by_event_id	1000	3	upsert_by_natural_key	resume_from_last_cursor	fail_batch_keep_checkpoint	readmodel_schema_only	Operational readmodel rebuild standardi
+reporting_finance_mart_backfill	reporting	finance_mart	journal_ledger	TENANT_SCOPED	YES	YES	YES	cursor_by_period_and_id	1000	3	upsert_by_tenant_period	resume_from_last_period	fail_batch_keep_checkpoint	reporting_mart_only	Finance reporting mart backfill standardi
+reporting_export_mart_backfill	reporting	export_mart	document_export_status	TENANT_SCOPED	YES	YES	YES	cursor_by_document_id	1000	3	upsert_by_document_key	resume_from_last_cursor	fail_batch_keep_checkpoint	reporting_mart_only	e-Belge/export reporting mart backfill standardi
+reporting_payment_reconciliation_backfill	reporting	payment_reconciliation_mart	payment_events	TENANT_SCOPED	YES	YES	YES	cursor_by_payment_event_id	1000	3	upsert_by_payment_key	resume_from_last_cursor	fail_batch_keep_checkpoint	reporting_mart_only	Payment/reconciliation mart backfill standardi
+inventory_balance_rebuild	inventory	inventory_balance	stock_movements	TENANT_SCOPED	YES	YES	YES	cursor_by_product_location	500	3	recompute_replace_snapshot	resume_from_last_product_location	fail_batch_keep_checkpoint	inventory_balance_only	Inventory balance rebuild standardi
+search_projection_rebuild	search	search_projection	master_data	TENANT_SCOPED	YES	YES	YES	cursor_by_entity_id	1000	3	upsert_by_search_key	resume_from_last_entity	fail_batch_keep_checkpoint	search_projection_only	Search/index projection rebuild standardi
+materialized_cache_projection_refresh	cache	materialized_cache_projection	readmodel_tables	TENANT_SCOPED	YES	YES	YES	cursor_by_tenant_projection	500	3	refresh_projection_key	resume_from_last_projection	fail_batch_keep_checkpoint	cache_projection_only	Materialized/cache projection refresh standardi
+import_staging_validation_rebuild	import	import_validation_state	import_staging_tables	TENANT_SCOPED	YES	YES	YES	cursor_by_import_batch_row	1000	3	upsert_by_batch_row	resume_from_last_row	fail_batch_keep_checkpoint	import_pipeline_only	Import staging validation rebuild standardi
+
+## Candidate Execution Plan Output
+===== 14.4 BACKFILL / REBUILD CANDIDATE EXECUTION PLAN =====
+BACKFILL_APPLY_EXECUTED=NO
+REBUILD_APPLY_EXECUTED=NO
+DB_MUTATION=NO
+QUERY_TEXT_PRINTED=NO
+BACKFILL_PLAN_BLOCKED_BY_DEFAULT=YES
+BACKFILL_PLAN_DECISION=PLAN_READY_APPLY_NOT_EXECUTED
+
+## Safety Decision
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+BACKFILL_APPLY_EXECUTED=NO
+REBUILD_APPLY_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+QUERY_TEXT_PRINTED=NO

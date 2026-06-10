@@ -1,0 +1,139 @@
+{
+  "valid_fixture": {
+    "review_id": "daily_pilot_review.valid_fixture",
+    "review_status": "READY",
+    "review_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT"
+    },
+    "chain_dependencies": {
+      "214_FAZ_4_16_4_5_EGITIM_DESTEK_SMOKE": "PASS"
+    },
+    "review_items": [
+      {"code": "PILOT_HEALTH_REVIEW", "required": true, "status": "PASS", "area": "HEALTH", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/pilot_health_review.md"},
+      {"code": "UAT_STATUS_REVIEW", "required": true, "status": "PASS", "area": "UAT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/uat_status_review.md"},
+      {"code": "IMPORT_STATUS_REVIEW", "required": true, "status": "PASS", "area": "IMPORT", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/import_status_review.md"},
+      {"code": "READMODEL_REPORTING_REVIEW", "required": true, "status": "PASS", "area": "READMODEL", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/readmodel_reporting_review.md"},
+      {"code": "TRAINING_SUPPORT_REVIEW", "required": true, "status": "PASS", "area": "TRAINING_SUPPORT", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/training_support_review.md"},
+      {"code": "SUPPORT_TRIAGE_REVIEW", "required": true, "status": "PASS", "area": "TRIAGE", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/support_triage_review.md"},
+      {"code": "ISSUE_ESCALATION_REVIEW", "required": true, "status": "PASS", "area": "ESCALATION", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/issue_escalation_review.md"},
+      {"code": "KPI_SNAPSHOT_REVIEW", "required": true, "status": "PASS", "area": "KPI", "owner": "BUSINESS_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/kpi_snapshot_review.md"},
+      {"code": "OPEN_BLOCKER_REVIEW", "required": true, "status": "PASS", "area": "BLOCKER", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/open_blocker_review.md"},
+      {"code": "ROLLBACK_SIGNAL_REVIEW", "required": true, "status": "PASS", "area": "ROLLBACK", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/rollback_signal_review.md"},
+      {"code": "CLOSED_PROVIDER_POLICY_REVIEW", "required": true, "status": "PASS", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/closed_provider_policy_review.md"},
+      {"code": "DAILY_DECISION_LOG_REVIEW", "required": true, "status": "PASS", "area": "DECISION_LOG", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/daily_pilot_review/daily_decision_log_review.md"}
+    ],
+    "review_controls": {
+      "training_support_smoke_status": "PASS",
+      "support_triage_status": "PASS",
+      "issue_escalation_status": "PASS",
+      "pilot_health_status": "PASS",
+      "rollback_signal_status": "CLEAR",
+      "daily_decision_log_status": "READY",
+      "no_real_rollback_execution": true,
+      "no_hotfix_deploy": true
+    },
+    "daily_metrics": {
+      "open_blocker_count": 0,
+      "critical_issue_count": 0,
+      "required_fail_count": 0,
+      "rollback_signal_count": 0,
+      "production_launch_signal": "CLOSED",
+      "live_external_policy_status": "CLOSED"
+    },
+    "summary": {
+      "total_review_item_count": 12,
+      "pass_review_item_count": 12,
+      "fail_review_item_count": 0,
+      "required_fail_count": 0,
+      "critical_issue_count": 0,
+      "open_blocker_count": 0,
+      "training_support_smoke_status": "PASS",
+      "support_triage_status": "PASS",
+      "issue_escalation_status": "PASS",
+      "rollback_signal_status": "CLEAR",
+      "daily_decision_log_status": "READY",
+      "review_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "real_ticket_system": "CLOSED",
+      "real_email_dispatch": "CLOSED",
+      "production_launch": "CLOSED",
+      "hotfix_deploy": "CLOSED",
+      "real_rollback_execution": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "review_id": "daily_pilot_review.invalid_fixture",
+    "review_status": "DRAFT",
+    "review_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED"
+    },
+    "chain_dependencies": {
+      "214_FAZ_4_16_4_5_EGITIM_DESTEK_SMOKE": "FAIL"
+    },
+    "review_items": [
+      {"code": "PILOT_HEALTH_REVIEW", "required": true, "status": "FAIL", "area": "HEALTH", "owner": "SUPPORT_OWNER", "evidence_ref": ""},
+      {"code": "UAT_STATUS_REVIEW", "required": true, "status": "PASS", "area": "UAT", "owner": "PRODUCT_OWNER", "evidence_ref": "x"},
+      {"code": "UAT_STATUS_REVIEW", "required": true, "status": "PASS", "area": "UAT", "owner": "PRODUCT_OWNER", "evidence_ref": "x"}
+    ],
+    "review_controls": {
+      "training_support_smoke_status": "FAIL",
+      "support_triage_status": "FAIL",
+      "issue_escalation_status": "FAIL",
+      "pilot_health_status": "FAIL",
+      "rollback_signal_status": "TRIGGERED",
+      "daily_decision_log_status": "DRAFT",
+      "no_real_rollback_execution": false,
+      "no_hotfix_deploy": false
+    },
+    "daily_metrics": {
+      "open_blocker_count": 1,
+      "critical_issue_count": 1,
+      "required_fail_count": 1,
+      "rollback_signal_count": 1,
+      "production_launch_signal": "OPEN",
+      "live_external_policy_status": "OPEN"
+    },
+    "summary": {
+      "total_review_item_count": 99,
+      "pass_review_item_count": 99,
+      "fail_review_item_count": 99,
+      "required_fail_count": 99,
+      "critical_issue_count": 1,
+      "open_blocker_count": 1,
+      "training_support_smoke_status": "FAIL",
+      "support_triage_status": "FAIL",
+      "issue_escalation_status": "FAIL",
+      "rollback_signal_status": "TRIGGERED",
+      "daily_decision_log_status": "DRAFT",
+      "review_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "real_ticket_system": "OPEN",
+      "real_email_dispatch": "OPEN",
+      "production_launch": "OPEN",
+      "hotfix_deploy": "OPEN",
+      "real_rollback_execution": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "valid_fixture": {
+    "classification_id": "change_classification.valid_fixture",
+    "classification_status": "READY",
+    "classification_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT",
+      "tenant_status": "PILOT_ACTIVE"
+    },
+    "chain_dependencies": {
+      "221_FAZ_4_16_6_1_FEEDBACK_TOPLAMA_KANALI": "PASS"
+    },
+    "classification_rules": [
+      {"code": "FEEDBACK_INTAKE_CLASSIFICATION", "required": true, "status": "READY", "category": "INTAKE", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/change_classification/feedback_intake_classification.md"},
+      {"code": "BUG_DEFECT_CLASSIFICATION", "required": true, "status": "READY", "category": "BUG", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/change_classification/bug_defect_classification.md"},
+      {"code": "UX_IMPROVEMENT_CLASSIFICATION", "required": true, "status": "READY", "category": "UX", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/change_classification/ux_improvement_classification.md"},
+      {"code": "TRAINING_GAP_CLASSIFICATION", "required": true, "status": "READY", "category": "TRAINING", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/change_classification/training_gap_classification.md"},
+      {"code": "SUPPORT_PROCESS_CLASSIFICATION", "required": true, "status": "READY", "category": "SUPPORT_PROCESS", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/change_classification/support_process_classification.md"},
+      {"code": "DATA_IMPORT_ISSUE_CLASSIFICATION", "required": true, "status": "READY", "category": "DATA_IMPORT", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/change_classification/data_import_issue_classification.md"},
+      {"code": "REPORTING_READMODEL_ISSUE_CLASSIFICATION", "required": true, "status": "READY", "category": "REPORTING_READMODEL", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/change_classification/reporting_readmodel_issue_classification.md"},
+      {"code": "INTEGRATION_PROVIDER_POLICY_CLASSIFICATION", "required": true, "status": "READY", "category": "POLICY", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/change_classification/integration_provider_policy_classification.md"},
+      {"code": "PRIORITY_MAPPING", "required": true, "status": "READY", "category": "PRIORITY", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/change_classification/priority_mapping.md"},
+      {"code": "SEVERITY_MAPPING", "required": true, "status": "READY", "category": "SEVERITY", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/change_classification/severity_mapping.md"},
+      {"code": "OWNER_ROUTING", "required": true, "status": "READY", "category": "ROUTING", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/change_classification/owner_routing.md"},
+      {"code": "PRODUCT_DECISION_CANDIDATE_MARKER", "required": true, "status": "READY", "category": "PRODUCT_DECISION", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/change_classification/product_decision_candidate_marker.md"},
+      {"code": "QUICK_FIX_CANDIDATE_MARKER", "required": true, "status": "READY", "category": "QUICK_FIX", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/change_classification/quick_fix_candidate_marker.md"},
+      {"code": "DEFERRED_CHANGE_MARKER", "required": true, "status": "READY", "category": "DEFERRED", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/change_classification/deferred_change_marker.md"},
+      {"code": "REJECTION_OUT_OF_SCOPE_MARKER", "required": true, "status": "READY", "category": "OUT_OF_SCOPE", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/change_classification/rejection_out_of_scope_marker.md"}
+    ],
+    "classification_controls": {
+      "feedback_channel_status": "PASS",
+      "priority_mapping_status": "READY",
+      "severity_mapping_status": "READY",
+      "owner_routing_status": "READY",
+      "quick_fix_candidate_status": "READY",
+      "product_decision_candidate_status": "READY",
+      "deferred_change_status": "READY",
+      "out_of_scope_status": "READY",
+      "no_auto_apply_change": true,
+      "no_hotfix_deploy": true,
+      "no_real_crm_system": true,
+      "no_real_ticket_system": true,
+      "no_live_external_provider_activation": true
+    },
+    "classification_metrics": {
+      "open_blocker_count": 0,
+      "critical_issue_count": 0,
+      "required_fail_count": 0,
+      "missing_rule_count": 0,
+      "auto_apply_change_count": 0,
+      "hotfix_deploy_count": 0,
+      "real_crm_dispatch_count": 0,
+      "real_ticket_dispatch_count": 0,
+      "live_external_policy_status": "CLOSED"
+    },
+    "summary": {
+      "total_rule_count": 15,
+      "ready_rule_count": 15,
+      "missing_rule_count": 0,
+      "required_fail_count": 0,
+      "critical_issue_count": 0,
+      "open_blocker_count": 0,
+      "feedback_channel_status": "PASS",
+      "priority_mapping_status": "READY",
+      "severity_mapping_status": "READY",
+      "owner_routing_status": "READY",
+      "quick_fix_candidate_status": "READY",
+      "product_decision_candidate_status": "READY",
+      "classification_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "real_crm_system": "CLOSED",
+      "real_ticket_system": "CLOSED",
+      "real_email_dispatch": "CLOSED",
+      "production_launch": "CLOSED",
+      "hotfix_deploy": "CLOSED",
+      "real_rollback_execution": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "classification_id": "change_classification.invalid_fixture",
+    "classification_status": "DRAFT",
+    "classification_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED",
+      "tenant_status": "UNKNOWN"
+    },
+    "chain_dependencies": {
+      "221_FAZ_4_16_6_1_FEEDBACK_TOPLAMA_KANALI": "FAIL"
+    },
+    "classification_rules": [
+      {"code": "FEEDBACK_INTAKE_CLASSIFICATION", "required": true, "status": "MISSING", "category": "", "owner": "", "evidence_ref": ""},
+      {"code": "BUG_DEFECT_CLASSIFICATION", "required": true, "status": "READY", "category": "BUG", "owner": "TECH_OWNER", "evidence_ref": "x"},
+      {"code": "BUG_DEFECT_CLASSIFICATION", "required": true, "status": "READY", "category": "BUG", "owner": "TECH_OWNER", "evidence_ref": "x"}
+    ],
+    "classification_controls": {
+      "feedback_channel_status": "FAIL",
+      "priority_mapping_status": "DRAFT",
+      "severity_mapping_status": "DRAFT",
+      "owner_routing_status": "DRAFT",
+      "quick_fix_candidate_status": "DRAFT",
+      "product_decision_candidate_status": "DRAFT",
+      "deferred_change_status": "DRAFT",
+      "out_of_scope_status": "DRAFT",
+      "no_auto_apply_change": false,
+      "no_hotfix_deploy": false,
+      "no_real_crm_system": false,
+      "no_real_ticket_system": false,
+      "no_live_external_provider_activation": false
+    },
+    "classification_metrics": {
+      "open_blocker_count": 1,
+      "critical_issue_count": 1,
+      "required_fail_count": 1,
+      "missing_rule_count": 1,
+      "auto_apply_change_count": 1,
+      "hotfix_deploy_count": 1,
+      "real_crm_dispatch_count": 1,
+      "real_ticket_dispatch_count": 1,
+      "live_external_policy_status": "OPEN"
+    },
+    "summary": {
+      "total_rule_count": 99,
+      "ready_rule_count": 99,
+      "missing_rule_count": 99,
+      "required_fail_count": 99,
+      "critical_issue_count": 1,
+      "open_blocker_count": 1,
+      "feedback_channel_status": "FAIL",
+      "priority_mapping_status": "DRAFT",
+      "severity_mapping_status": "DRAFT",
+      "owner_routing_status": "DRAFT",
+      "quick_fix_candidate_status": "DRAFT",
+      "product_decision_candidate_status": "DRAFT",
+      "classification_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "real_crm_system": "OPEN",
+      "real_ticket_system": "OPEN",
+      "real_email_dispatch": "OPEN",
+      "production_launch": "OPEN",
+      "hotfix_deploy": "OPEN",
+      "real_rollback_execution": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

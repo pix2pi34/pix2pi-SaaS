@@ -1,0 +1,9 @@
+gate_name	category	required_status	blocker_if_failed	evidence_source	owner_role	implementation_status	note
+support_channel_ready	support	PASS	YES	support channel/contact evidence	support	READY_FOR_IMPLEMENTATION	contract_only
+incident_template_ready	incident	PASS	YES	incident template evidence	ops_admin	READY_FOR_IMPLEMENTATION	contract_only
+escalation_owner_ready	incident	PASS	YES	ops/security/business owner mapping	project_owner	READY_FOR_IMPLEMENTATION	contract_only
+pilot_feedback_loop_ready	feedback	PASS	YES	feedback collection owner evidence	support	READY_FOR_IMPLEMENTATION	contract_only
+ops_console_readiness_ready	ops	PASS	YES	observability/ops console closure evidence	ops_admin	READY_FOR_IMPLEMENTATION	contract_only
+rollback_contact_ready	rollout	PASS	YES	rollback contact owner evidence	ops_admin	READY_FOR_IMPLEMENTATION	contract_only
+daily_review_cadence_ready	support	PASS	NO	pilot daily review cadence note	project_owner	READY_FOR_IMPLEMENTATION	contract_only
+customer_communication_plan_ready	communication	PASS	YES	communication plan draft only	project_owner	READY_FOR_IMPLEMENTATION	contract_only

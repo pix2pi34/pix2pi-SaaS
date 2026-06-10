@@ -1,0 +1,48 @@
+{
+  "test_name": "faz_5_19_2_fiyatlama_sayfalari_test",
+  "phase": "FAZ_5_19_2",
+  "expected": {
+    "required_section_count": 10,
+    "required_domain_count": 8,
+    "internal_pricing_pages_ready": true,
+    "static_html_ready": true,
+    "production_page_published": false,
+    "real_customer_signup_enabled": false,
+    "checkout_enabled": false,
+    "payment_collection_enabled": false,
+    "public_pricing_visible": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_section_keys": [
+    "pricing_landing_page",
+    "plan_comparison_table",
+    "vat_notice_panel",
+    "free_plan_public_copy",
+    "starter_plan_public_copy",
+    "pro_plan_public_copy",
+    "enterprise_plan_public_copy",
+    "accountant_package_public_copy",
+    "launch_guard_panel",
+    "public_developer_web_tests_deferred_marker"
+  ],
+  "must_have_domains": [
+    "PRICING_OVERVIEW",
+    "PLAN_COMPARISON",
+    "PUBLIC_COPY",
+    "VAT_NOTICE",
+    "CTA",
+    "ACCOUNTANT_PACKAGE",
+    "LAUNCH_GUARD",
+    "WEB_TESTS_NEXT"
+  ],
+  "must_have_flags": [
+    "requires_pricing_table_source",
+    "requires_accountant_package_source",
+    "requires_validated_pricing",
+    "requires_currency",
+    "requires_vat_notice",
+    "requires_plan_comparison",
+    "blocks_checkout"
+  ]
+}

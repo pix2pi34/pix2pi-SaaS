@@ -1,0 +1,32 @@
+{
+  "test_name": "faz_5_18_4_1_sla_seviyeleri_test",
+  "phase": "FAZ_5_18_4_1",
+  "expected": {
+    "required_sla_level_count": 4,
+    "internal_sla_ready": true,
+    "production_sla_published": false,
+    "public_sla_page_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_priorities": [
+    "P0_CRITICAL",
+    "P1_HIGH",
+    "P2_NORMAL",
+    "P3_LOW"
+  ],
+  "must_have_sla_keys": [
+    "sla_p0_critical",
+    "sla_p1_high",
+    "sla_p2_normal",
+    "sla_p3_low"
+  ],
+  "must_have_flags": [
+    "tenant_scoped",
+    "has_ops_owner",
+    "has_business_owner",
+    "has_escalation_rule",
+    "has_breach_policy",
+    "public_visible"
+  ]
+}

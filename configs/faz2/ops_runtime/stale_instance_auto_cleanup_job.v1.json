@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 2-7.1.4",
+  "runtime": "stale_instance_auto_cleanup_job",
+  "require_tenant": true,
+  "stale_after_seconds": 90,
+  "auto_cleanup_enabled": true,
+  "cleanup_metadata_enabled": true,
+  "cleanup_metadata_visibilities": [
+    "INTERNAL"
+  ],
+  "guards": [
+    "tenant_required",
+    "registry_required",
+    "positive_threshold_required",
+    "tenant_scoped_stale_detection",
+    "tenant_scoped_cleanup",
+    "stale_status_marker",
+    "internal_metadata_cleanup_only",
+    "audit_decision_fields"
+  ],
+  "bridges": [
+    "instance_metadata_runtime",
+    "service_instance_status",
+    "instance_metadata_visibility"
+  ],
+  "next_ready": "FAZ_2_7_1_5_TENANT_AWARE_REGISTRY_VISIBILITY_RUNTIME"
+}

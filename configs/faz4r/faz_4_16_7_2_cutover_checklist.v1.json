@@ -1,0 +1,63 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 227,
+  "step": "FAZ_4_16_7_2",
+  "title": "Cutover checklist",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "226_FAZ_4_16_7_1_DRY_RUN_CANLIYA_GECIS"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "cutover_policy": {
+    "cutover_checklist_status_required": "READY",
+    "cutover_checklist_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "dry_run_go_live_status_required": "PASS",
+    "backup_snapshot_status_required": "READY",
+    "rollback_package_status_required": "READY",
+    "route_plan_status_required": "READY",
+    "runtime_health_status_required": "READY",
+    "monitoring_watch_status_required": "READY",
+    "support_watch_status_required": "READY",
+    "communication_plan_status_required": "READY",
+    "approval_owner_status_required": "READY",
+    "no_production_launch_required": true,
+    "no_dns_change_required": true,
+    "no_nginx_change_required": true,
+    "no_ssl_change_required": true,
+    "no_live_external_provider_activation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_cutover_items": [
+    "CUTOVER_KICKOFF_CHECKLIST",
+    "DRY_RUN_RESULT_LINK",
+    "TENANT_READINESS_CONFIRMATION",
+    "IMPORT_FREEZE_CONFIRMATION",
+    "READMODEL_REPORTING_CONFIRMATION",
+    "UAT_CLOSURE_CONFIRMATION",
+    "BACKUP_SNAPSHOT_CONFIRMATION",
+    "ROLLBACK_PACKAGE_CONFIRMATION",
+    "ROUTE_DNS_NGINX_PLAN_CONFIRMATION",
+    "RUNTIME_HEALTH_CONFIRMATION",
+    "MONITORING_WATCH_CONFIRMATION",
+    "SUPPORT_WATCH_CONFIRMATION",
+    "COMMUNICATION_PLAN_CONFIRMATION",
+    "APPROVAL_OWNER_CONFIRMATION",
+    "EXTERNAL_PROVIDER_POLICY_CLOSED_CONFIRMATION",
+    "FINAL_CHECKLIST_REPORT"
+  ],
+  "cutover_artifact": "configs/faz4r/cutover_checklist.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "228_FAZ_4_16_7_3_GERI_DONUS_PROVASI"
+  ]
+}

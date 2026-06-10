@@ -1,0 +1,3 @@
+locktype	mode	granted	lock_count
+relation	AccessShareLock	true	1
+virtualxid	ExclusiveLock	true	1

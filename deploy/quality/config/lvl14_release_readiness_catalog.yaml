@@ -1,0 +1,36 @@
+version: v1
+release_readiness:
+  checklist:
+    required_fields:
+      - checklist_id
+      - item_name
+      - item_status
+      - checked_at
+
+  rollback_readiness:
+    required_fields:
+      - rollback_plan_id
+      - rollback_status
+      - verified_at
+      - owner
+
+  observability_evidence:
+    required_fields:
+      - evidence_id
+      - dashboard_name
+      - evidence_status
+      - captured_at
+
+  ops_handoff:
+    required_fields:
+      - handoff_id
+      - owner_team
+      - handoff_status
+      - delivered_at
+
+  release_report:
+    required_fields:
+      - report_id
+      - report_mode
+      - report_status
+      - published_at

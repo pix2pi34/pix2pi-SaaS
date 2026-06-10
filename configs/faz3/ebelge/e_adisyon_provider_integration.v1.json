@@ -1,0 +1,38 @@
+{
+  "phase": "FAZ_3_10_3_3_E_ADISYON_PROVIDER_INTEGRATION",
+  "provider_code": "SIM_GIB_EADISYON",
+  "provider_mode": "SIMULATION",
+  "real_api_gate_open": false,
+  "production_approved": false,
+  "operations": [
+    "OPEN_ADISYON",
+    "CLOSE_ADISYON",
+    "SEND",
+    "STATUS_CHECK",
+    "CANCEL",
+    "DOWNLOAD_PDF",
+    "DOWNLOAD_UBL"
+  ],
+  "security_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "venue_id_required": true,
+    "venue_name_required": true,
+    "table_no_required": true,
+    "adisyon_no_required": true,
+    "opened_at_required": true,
+    "closed_at_required_for_close_and_send": true,
+    "closed_at_before_opened_at_denied": true,
+    "ubl_hash_required_for_send": true,
+    "pdf_hash_required_for_send": true,
+    "cancel_reason_required": true
+  },
+  "live_policy": {
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_APPROVALS",
+    "production_send_status": "DENIED_BY_DEFAULT",
+    "secret_policy": "CREDENTIAL_REF_ONLY_NO_RAW_SECRET"
+  },
+  "next_gate": "FAZ_3_10_3_PROVIDER_FAMILY_FINAL_CLOSURE"
+}

@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "339",
+  "domain": "market.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "market_seller_screen",
+      "path": "/seller/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_339_SELLER_MANAGEMENT_APP_SHELL_START",
+        "PIX2PI_339_STORE_SELLER_SESSION_CONTEXT_START",
+        "PIX2PI_339_SELLER_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "market_seller_runtime",
+      "path": "/assets/seller/market-seller-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_339_MARKET_SELLER_RUNTIME_START",
+        "sellerScopeHeaders",
+        "buildSellerRuntimeContract"
+      ]
+    }
+  ]
+}

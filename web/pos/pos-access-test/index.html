@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi POS erişim testi ekranı" />
+  <meta property="og:title" content="Pix2pi POS Erişim Testi" />
+  <meta property="og:description" content="İlk kullanıcı için kontrollü POS route, kasa ve erişim testi yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi POS Erişim Testi</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --surface: rgba(255,255,255,.94);
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --shadow: 0 16px 42px rgba(0,0,0,.20);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(34,197,94,.22), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(59,130,246,.20), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+      touch-action: manipulation;
+    }
+
+    .shell {
+      width: min(100%, 1240px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 9vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    button {
+      min-height: 48px;
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      color: #166534;
+      background: #dcfce7;
+    }
+
+    button:disabled {
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .pos-access-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+      min-height: 96px;
+    }
+
+    .guard {
+      border: 1px dashed #86efac;
+      background: #f0fdf4;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_351_POS_ACCESS_TEST_APP_SHELL_START -->
+  <main class="shell" data-step="351" data-surface="pos-access-test">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 351</span>
+      <h1 data-i18n="pos_access_test.title">POS erişim testi</h1>
+      <p data-i18n="pos_access_test.description">Kasa, mağaza, register, route ve mobil POS erişim preview yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_351_POS_AUTH_SESSION_SIMULATION_CONTEXT_START -->
+    <section class="card guard" data-widget="pos_auth_session_simulation_context">
+      <h2>POS auth/session simulation context</h2>
+      <div class="grid-4">
+        <!-- PIX2PI_351_TENANT_STORE_REGISTER_CONTEXT_START -->
+        <p>Tenant: <strong id="pos-access-tenant-id">controlled-pilot</strong></p>
+        <p>Store: <strong id="pos-access-store-id">demo-market-main</strong></p>
+        <p>Register: <strong id="pos-access-register-id">register-001</strong></p>
+        <!-- PIX2PI_351_TENANT_STORE_REGISTER_CONTEXT_END -->
+        <p>Session: <strong id="pos-access-session-id">USER_DEMO_SESSION</strong></p>
+        <!-- PIX2PI_351_CASHIER_OWNER_ROLE_ACCESS_PREVIEW_START -->
+        <p>Role: <strong id="pos-access-role">OWNER_ADMIN</strong></p>
+        <!-- PIX2PI_351_CASHIER_OWNER_ROLE_ACCESS_PREVIEW_END -->
+        <p>Scope: <strong id="pos-access-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_351_POS_AUTH_SESSION_SIMULATION_CONTEXT_END -->
+
+    <!-- PIX2PI_351_POS_ROUTE_AVAILABILITY_CHECKLIST_START -->
+    <section class="card" data-widget="pos_route_availability_checklist">
+      <h2>POS route availability checklist</h2>
+      <div id="pos-route-checklist" class="grid-3">
+        <!-- PIX2PI_351_CASHIER_LOGIN_ACCESS_CHECK_START -->
+        <article class="pos-access-card" data-route="/cashier-login/" data-decision="ALLOW_PREVIEW">
+          <strong>Cashier login</strong>
+          <p>/cashier-login/ / AVAILABLE / ALLOW_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_351_CASHIER_LOGIN_ACCESS_CHECK_END -->
+        <!-- PIX2PI_351_POS_SALES_SCREEN_ACCESS_CHECK_START -->
+        <article class="pos-access-card" data-route="/sales/" data-decision="ALLOW_PREVIEW">
+          <strong>POS sales screen</strong>
+          <p>/sales/ / AVAILABLE / ALLOW_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_351_POS_SALES_SCREEN_ACCESS_CHECK_END -->
+        <!-- PIX2PI_351_CART_PAYMENT_FLOW_ACCESS_CHECK_START -->
+        <article class="pos-access-card" data-route="/cart-payment/" data-decision="ALLOW_PREVIEW">
+          <strong>Cart / payment</strong>
+          <p>/cart-payment/ / AVAILABLE / ALLOW_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_351_CART_PAYMENT_FLOW_ACCESS_CHECK_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_351_POS_ROUTE_AVAILABILITY_CHECKLIST_END -->
+
+    <!-- PIX2PI_351_OFFLINE_READY_PWA_ASSET_ACCESS_CHECK_START -->
+    <section class="card" data-widget="offline_ready_pwa_asset_access_check">
+      <h2>Offline-ready / PWA asset access check</h2>
+      <div id="pos-readiness-checklist" class="grid-4">
+        <article class="pos-access-card" data-readiness-code="PWA_MANIFEST_PLACEHOLDER">
+          <strong>PWA manifest placeholder</strong>
+          <p>PWA_MANIFEST_PLACEHOLDER / READY</p>
+        </article>
+        <article class="pos-access-card" data-readiness-code="OFFLINE_QUEUE_PLACEHOLDER">
+          <strong>Offline queue placeholder</strong>
+          <p>OFFLINE_QUEUE_PLACEHOLDER / DISABLED_PREVIEW</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_351_OFFLINE_READY_PWA_ASSET_ACCESS_CHECK_END -->
+
+    <!-- PIX2PI_351_MOBILE_VIEWPORT_TOUCH_READINESS_CHECK_START -->
+    <section class="card guard" data-widget="mobile_viewport_touch_readiness_check">
+      <h2>Mobile viewport / touch readiness check</h2>
+      <p>viewport-fit=cover / min touch target 48px / mobile-first POS shell hazır.</p>
+      <button type="button" disabled>Mobil POS preview</button>
+    </section>
+    <!-- PIX2PI_351_MOBILE_VIEWPORT_TOUCH_READINESS_CHECK_END -->
+
+    <!-- PIX2PI_351_UNAUTHORIZED_FORBIDDEN_PREVIEW_START -->
+    <section class="card locked" data-widget="unauthorized_forbidden_preview">
+      <h2>Unauthorized / forbidden preview</h2>
+      <div id="pos-denied-previews" class="grid-3">
+        <article class="pos-access-card" data-error-code="UNAUTHORIZED">
+          <strong>UNAUTHORIZED</strong>
+          <p>POS session yok / PREVIEW_ONLY</p>
+        </article>
+        <article class="pos-access-card" data-error-code="FORBIDDEN">
+          <strong>FORBIDDEN</strong>
+          <p>Kasiyer/owner rol yetkisi yok / PREVIEW_ONLY</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_351_UNAUTHORIZED_FORBIDDEN_PREVIEW_END -->
+
+    <!-- PIX2PI_351_POS_SESSION_TIMEOUT_PREVIEW_START -->
+    <section class="card locked" data-widget="pos_session_timeout_preview">
+      <h2>POS session timeout preview</h2>
+      <p>POS_SESSION_TIMEOUT / Oturum süresi doldu / PREVIEW_ONLY. Gerçek POS session kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_351_POS_SESSION_TIMEOUT_PREVIEW_END -->
+
+    <!-- PIX2PI_351_POS_NAVIGATION_HANDOFF_START -->
+    <section class="card guard" data-widget="pos_navigation_handoff">
+      <h2>POS navigation handoff</h2>
+      <p>Cashier login, sales, cart/payment, offline-ready ve mobile readiness preview geçildi. Sıradaki adım: 352 — Tenant izolasyon kontrolü.</p>
+    </section>
+    <!-- PIX2PI_351_POS_NAVIGATION_HANDOFF_END -->
+
+    <!-- PIX2PI_351_POS_ACCESS_AUDIT_TIMELINE_START -->
+    <section class="card" data-widget="pos_access_audit_timeline">
+      <h2>POS access audit timeline</h2>
+      <div id="pos-access-audit-timeline" class="grid-3">
+        <article class="pos-access-card" data-audit-action="POS_ACCESS_PREVIEW_READY">
+          <strong>POS_ACCESS_PREVIEW_READY</strong>
+          <p>2026-05-demo / system / DRY_RUN</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_351_POS_ACCESS_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_351_TENANT_USER_STORE_REGISTER_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="tenant_user_store_register_scope_guard">
+      <h2>Tenant / user / store / register scope guard</h2>
+      <p>POS access endpointleri `X-Tenant-ID`, `X-Store-ID`, `X-Register-ID`, `X-User-Session`, `X-User-Role`, `X-POS-Scope`, `X-Correlation-ID` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_351_TENANT_USER_STORE_REGISTER_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_351_POS_ACCESS_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="pos_access_runtime_data_contract">
+      <h2>POS access runtime data contract</h2>
+      <p id="pos-access-runtime-contract">pos_access_preview_enabled=true / route_smoke_preview_enabled=true / ready_for_step_352=true</p>
+    </section>
+    <!-- PIX2PI_351_POS_ACCESS_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_351_SEO_OPENGRAPH_POS_ACCESS_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_pos_access_placeholder">
+      <h2>SEO / OpenGraph POS access placeholder</h2>
+      <p>Title, description ve og:* metadata POS erişim testi yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_351_SEO_OPENGRAPH_POS_ACCESS_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_351_I18N_READY_POS_ACCESS_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_pos_access_marker">
+      <h2 data-i18n="pos_access_test.i18n_ready">i18n-ready POS access screen</h2>
+      <p data-i18n="pos_access_test.surface_ready">POS erişim testi ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_351_I18N_READY_POS_ACCESS_MARKER_END -->
+  </main>
+  <!-- PIX2PI_351_POS_ACCESS_TEST_APP_SHELL_END -->
+
+  <script src="/assets/pos-access-test/pos-access-test-runtime.js"></script>
+  <script>
+    Pix2piPosAccessTest.bootPosAccessScreen().then(function (contract) {
+      console.log("PIX2PI_351_POS_ACCESS_TEST_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

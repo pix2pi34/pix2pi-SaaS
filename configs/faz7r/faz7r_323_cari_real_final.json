@@ -1,0 +1,26 @@
+{
+  "step": "FAZ 7-R / 323",
+  "name": "Cari ekranı real final",
+  "schema": "erp_party",
+  "routes": [
+    "/parties/",
+    "POST /api/panel/parties/create",
+    "POST /api/panel/parties/update",
+    "POST /api/panel/parties/list",
+    "POST /api/panel/parties/movement"
+  ],
+  "requiredEvidence": [
+    "migration applied",
+    "create curl HTTP 201",
+    "create DB SELECT",
+    "supplier/customer distinction",
+    "duplicate tax 409 no partial write",
+    "update curl HTTP 200 DB SELECT",
+    "movement curl HTTP 201 DB SELECT",
+    "list/search/filter HTTP 200",
+    "no-role deny",
+    "cross-tenant update deny",
+    "rollback no partial write",
+    "route smoke"
+  ]
+}

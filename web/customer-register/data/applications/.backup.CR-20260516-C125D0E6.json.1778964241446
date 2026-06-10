@@ -1,0 +1,37 @@
+{
+  "id": "CR-20260516-C125D0E6",
+  "status": "PENDING",
+  "tenantProvisioned": false,
+  "adminApprovalRequired": true,
+  "mailStatus": "SENT",
+  "source": "customer-register-business-form-live",
+  "submittedAt": "2026-05-16T19:51:46.470Z",
+  "taxNo": "15322248580",
+  "taxOffice": "bayrampaşa",
+  "companyName": "SERVET",
+  "address": "cevatpaşa mah yurt sokak",
+  "district": "bayrampaşa",
+  "city": "istanbul",
+  "phone": "",
+  "website": "",
+  "mersisNo": "153290",
+  "tradeRegistryNo": "",
+  "email": "telliogluservet90@gmail.com",
+  "optionalFields": {
+    "phone": true,
+    "website": true,
+    "tradeRegistryNo": true
+  },
+  "mails": {
+    "applicant": {
+      "ok": true,
+      "statusCode": 200,
+      "providerId": "3ba68c04-3193-44d0-8386-4942c5ee9e69"
+    },
+    "admin": {
+      "ok": true,
+      "statusCode": 200,
+      "providerId": "2f5b95bd-f817-4e2f-8f70-1d240066ef07"
+    }
+  }
+}

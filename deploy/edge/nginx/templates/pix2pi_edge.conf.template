@@ -1,0 +1,154 @@
+limit_req_zone $binary_remote_addr zone=pix2pi_edge:__RATE_LIMIT_ZONE_SIZE__ rate=__RATE_LIMIT_RPS__;
+
+upstream pix2pi_api_upstream {
+    server __API_UPSTREAM__;
+    keepalive 64;
+}
+
+upstream pix2pi_panel_upstream {
+    server __PANEL_UPSTREAM__;
+    keepalive 32;
+}
+
+upstream pix2pi_auth_upstream {
+    server __AUTH_UPSTREAM__;
+    keepalive 32;
+}
+
+upstream pix2pi_pos_upstream {
+    server __POS_UPSTREAM__;
+    keepalive 32;
+}
+
+server {
+    listen 80;
+    server_name __API_DOMAIN__ __PANEL_DOMAIN__ __AUTH_DOMAIN__ __POS_DOMAIN__;
+
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_logging.conf;
+
+    location ^~ /.well-known/acme-challenge/ {
+        include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_certbot_acme.conf;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name __API_DOMAIN__;
+
+    ssl_certificate     /etc/letsencrypt/live/__API_DOMAIN__/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/__API_DOMAIN__/privkey.pem;
+
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_tls_policy.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_request_limits.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_logging.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_error_handling.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/generated/pix2pi_cdn_foundation.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_waf_foundation.conf;
+
+    location /internal/ {
+        deny all;
+        return 403;
+    }
+
+    location = /health {
+        allow __HEALTH_ALLOW_CIDR__;
+        deny all;
+        include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_proxy_common.conf;
+        proxy_pass http://pix2pi_api_upstream/health;
+    }
+
+    location / {
+        limit_req zone=pix2pi_edge burst=__RATE_LIMIT_BURST__ nodelay;
+        include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_proxy_common.conf;
+        proxy_pass http://pix2pi_api_upstream;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name __PANEL_DOMAIN__;
+
+    ssl_certificate     /etc/letsencrypt/live/__PANEL_DOMAIN__/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/__PANEL_DOMAIN__/privkey.pem;
+
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_tls_policy.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_request_limits.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_logging.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_error_handling.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/generated/pix2pi_cdn_foundation.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_waf_foundation.conf;
+
+    location /internal/ {
+        deny all;
+        return 403;
+    }
+
+    location / {
+        limit_req zone=pix2pi_edge burst=__RATE_LIMIT_BURST__ nodelay;
+        include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_proxy_common.conf;
+        proxy_pass http://pix2pi_panel_upstream;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name __AUTH_DOMAIN__;
+
+    ssl_certificate     /etc/letsencrypt/live/__AUTH_DOMAIN__/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/__AUTH_DOMAIN__/privkey.pem;
+
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_tls_policy.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_request_limits.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_logging.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_error_handling.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/generated/pix2pi_cdn_foundation.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_waf_foundation.conf;
+
+    location /internal/ {
+        deny all;
+        return 403;
+    }
+
+    location = /health {
+        allow __HEALTH_ALLOW_CIDR__;
+        deny all;
+        include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_proxy_common.conf;
+        proxy_pass http://pix2pi_auth_upstream/health;
+    }
+
+    location / {
+        limit_req zone=pix2pi_edge burst=__RATE_LIMIT_BURST__ nodelay;
+        include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_proxy_common.conf;
+        proxy_pass http://pix2pi_auth_upstream;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name __POS_DOMAIN__;
+
+    ssl_certificate     /etc/letsencrypt/live/__POS_DOMAIN__/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/__POS_DOMAIN__/privkey.pem;
+
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_tls_policy.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_request_limits.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_logging.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_error_handling.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/generated/pix2pi_cdn_foundation.conf;
+    include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_waf_foundation.conf;
+
+    location /internal/ {
+        deny all;
+        return 403;
+    }
+
+    location / {
+        limit_req zone=pix2pi_edge burst=__RATE_LIMIT_BURST__ nodelay;
+        include __ROOT_DIR__/deploy/edge/nginx/includes/pix2pi_proxy_common.conf;
+        proxy_pass http://pix2pi_pos_upstream;
+    }
+}

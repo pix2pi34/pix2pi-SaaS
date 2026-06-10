@@ -1,0 +1,43 @@
+version: v1
+security_regressions:
+  cross_tenant_regression:
+    required_fields:
+      - test_id
+      - tenant_a
+      - tenant_b
+      - isolation_status
+
+  auth_forbidden_regression:
+    required_fields:
+      - test_id
+      - route
+      - auth_state
+      - forbidden_status
+
+  rate_limit_abuse_regression:
+    required_fields:
+      - test_id
+      - route
+      - abuse_pattern
+      - throttle_status
+
+  secret_config_regression:
+    required_fields:
+      - test_id
+      - config_area
+      - secret_exposure_status
+      - checked_at
+
+  audit_export_isolation_regression:
+    required_fields:
+      - test_id
+      - export_scope
+      - audit_scope
+      - isolation_status
+
+  security_suite:
+    required_fields:
+      - suite_name
+      - profile
+      - status
+      - executed_at

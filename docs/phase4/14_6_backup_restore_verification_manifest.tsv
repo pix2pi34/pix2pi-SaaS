@@ -1,0 +1,13 @@
+gate_key	domain	required	current_status	gate_type	mutates_db	evidence_source	apply_gate_required	deferred_allowed	note
+pre_import_backup_gate	backup	YES	PASS	backup_gate	NO	14_6_standard	YES	NO	Import/apply oncesi backup gate zorunlu
+pre_import_backup_evidence	backup	YES	PASS	evidence	NO	existing_backup_set	YES	NO	Import oncesi alinmis backup kaniti kontrol edilmeli
+post_import_restore_safety	restore	YES	PASS	restore_gate	NO	14_6_standard	YES	NO	Import sonrasi restore safety evidence zorunlu
+logical_backup_evidence	backup	YES	PASS	evidence	NO	phase4_db_readiness_scorecard	YES	NO	Logical backup evidence onceki DB readiness ile bagli
+restore_drill_evidence	restore	YES	PASS	evidence	NO	phase4_db_readiness_scorecard	YES	NO	Restore drill evidence onceki DB readiness ile bagli
+pitr_design_ready	pitr	YES	PASS	design	NO	phase4_db_readiness_scorecard	YES	NO	PITR design hazir
+pitr_enable_gate_ready	pitr	YES	PASS	gate	NO	phase4_db_readiness_scorecard	YES	NO	PITR enable gate hazir
+pitr_active_apply	pitr	YES	DEFERRED	apply	YES	maintenance_window	YES	YES	PITR active apply bakim penceresine erteli
+import_staging_backup_alignment	import	YES	PASS	alignment	NO	14_3_import_staging	YES	NO	Import staging migration/apply oncesi backup zorunlu
+retention_backup_alignment	retention	YES	PASS	alignment	NO	14_5_retention_model	YES	NO	Retention/archive/purge islemleri backup gate olmadan calismaz
+restore_runbook_safety	restore	YES	PASS	runbook	NO	14_6_standard	YES	NO	Restore runbook / geri donus karari standarda baglandi
+secret_safety	security	YES	PASS	safety	NO	14_6_standard	YES	NO	Backup/restore raporlari secret/query text basmaz

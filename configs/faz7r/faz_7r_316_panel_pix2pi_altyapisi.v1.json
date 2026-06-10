@@ -1,0 +1,31 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "316",
+  "fix": "V3",
+  "name": "panel.pix2pi.com.tr altyapısı",
+  "surface": "merchant_panel",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "health_path": "/health",
+  "spa_fallback": "/index.html",
+  "required_capabilities": [
+    "panel_subdomain_routing",
+    "nginx_route_standard",
+    "nginx_loaded_route_audit",
+    "panel_app_shell",
+    "sidebar_topbar",
+    "breadcrumb",
+    "tenant_indicator",
+    "responsive_shell",
+    "panel_health_check",
+    "panel_smoke_test",
+    "http_301_guard"
+  ],
+  "routes": {
+    "panel": "panel.pix2pi.com.tr",
+    "pos": "pos.pix2pi.com.tr",
+    "market_primary": "market.pix2pi.com.tr",
+    "market_secondary": "pix2pi.com.tr/market"
+  },
+  "next_step": "317 - Login / tenant seçimi"
+}

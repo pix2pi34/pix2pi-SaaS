@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "324",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "products_screen",
+      "path": "/products/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_324_PRODUCTS_APP_SHELL_START",
+        "PIX2PI_324_PRODUCT_LIST_START",
+        "PIX2PI_324_PRODUCT_VALIDATION_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "products_runtime",
+      "path": "/assets/products/products-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_324_PRODUCTS_RUNTIME_START",
+        "tenantScopedHeaders",
+        "buildProductPayload"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "test_name": "faz_5_18_5_3_tenant_dondurma_test",
+  "phase": "FAZ_5_18_5_3",
+  "expected": {
+    "required_step_count": 10,
+    "required_event_count": 10,
+    "internal_tenant_freeze_ready": true,
+    "production_freeze_enabled": false,
+    "real_tenant_freeze_enabled": false,
+    "auto_access_cutoff_enabled": false,
+    "auto_unfreeze_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_step_keys": [
+    "freeze_request_intake",
+    "billing_status_check",
+    "unpaid_invoice_check",
+    "freeze_eligibility_check",
+    "owner_approval_queue",
+    "entitlement_freeze_plan",
+    "access_limit_policy",
+    "notification_block_policy",
+    "unfreeze_path_define",
+    "production_freeze_deferred_marker"
+  ],
+  "must_have_events": [
+    "FREEZE_REQUEST_RECEIVED",
+    "BILLING_STATUS_CHECKED",
+    "UNPAID_INVOICE_CHECKED",
+    "FREEZE_ELIGIBILITY_CHECKED",
+    "OWNER_APPROVAL_QUEUED",
+    "ENTITLEMENT_FREEZE_PLANNED",
+    "ACCESS_LIMIT_POLICY_READY",
+    "NOTIFICATION_BLOCKED",
+    "UNFREEZE_PATH_DEFINED",
+    "PRODUCTION_FREEZE_DEFERRED"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_freeze_request_id",
+    "requires_billing_status_check",
+    "requires_unpaid_invoice_check",
+    "requires_freeze_eligibility_policy",
+    "requires_owner_approval",
+    "requires_entitlement_freeze",
+    "requires_access_limit_policy",
+    "requires_unfreeze_path",
+    "blocks_production_freeze"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "phase": "FAZ_5_18_8_1",
+  "title": "Ticari Checklist",
+  "status": "READY",
+  "control_surface": "COMMERCIAL_PUBLIC_LAUNCH_CHECKLIST",
+  "inputs": [
+    "FAZ_5_18_3_3_LOG_RETENTION_IMHA_POLITIKASI",
+    "FAZ_5_18_3_5_UYUM_DOKUMAN_KONTROLU",
+    "FAZ_5_18_4_1_SLA_SEVIYELERI",
+    "FAZ_5_18_4_2_DESTEK_KANAL_YAPISI",
+    "FAZ_5_18_4_3_INCIDENT_SINIFLANDIRMA",
+    "FAZ_5_18_4_4_ESCALATION_MATRISI",
+    "FAZ_5_18_4_5_MUSTERI_ILETISIM_SABLONLARI",
+    "FAZ_5_18_4_6_SUPPORT_OPS_TESTLERI"
+  ],
+  "outputs": [
+    "COMMERCIAL_CHECKLIST",
+    "COMMERCIAL_LAUNCH_GATE",
+    "DEFERRED_NEXT_PRIORITY_MARKERS",
+    "PRODUCTION_LAUNCH_BLOCK_POLICY",
+    "REAL_CUSTOMER_COMMERCIAL_OPS_BLOCK_POLICY"
+  ],
+  "gates": {
+    "internal_commercial_checklist_ready": true,
+    "production_public_launch_allowed": false,
+    "real_customer_commercial_ops_open": false,
+    "legal_checklist_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

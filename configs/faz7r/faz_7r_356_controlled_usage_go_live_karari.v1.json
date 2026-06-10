@@ -1,0 +1,68 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "356",
+  "name": "Controlled usage go-live kararı",
+  "surface": "controlled_customer_access_decision",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/controlled-usage-go-live-decision/",
+  "runtime_path": "/assets/controlled-usage-go-live-decision/controlled-usage-go-live-decision-runtime.js",
+  "depends_on": [
+    "355 - İlk gerçek kullanım smoke testi"
+  ],
+  "backend_contract": {
+    "decision_snapshot_endpoint": "/api/customer-access/go-live-decision/snapshot",
+    "decision_preview_endpoint": "/api/customer-access/go-live-decision/preview",
+    "decision_audit_endpoint": "/api/customer-access/go-live-decision/audit",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "user_session_header": "X-User-Session",
+    "decision_scope_header": "X-Go-Live-Decision-Scope",
+    "correlation_header": "X-Correlation-ID"
+  },
+  "runtime_contract": {
+    "real_customer_go_live_enabled": false,
+    "real_activation_enabled": false,
+    "real_payment_enabled": false,
+    "real_billing_enabled": false,
+    "real_data_mutation_enabled": false,
+    "decision_preview_enabled": true,
+    "human_approval_required": true,
+    "rollback_ready_required": true,
+    "fallback_decision_snapshot_enabled": true,
+    "ready_for_step_357": true
+  },
+  "decision_contract": {
+    "allowed_decisions": [
+      "GO_PREVIEW",
+      "NO_GO",
+      "READY_FOR_APPROVAL",
+      "BLOCKED_BY_RISK"
+    ],
+    "default_decision": "READY_FOR_APPROVAL",
+    "audit_event_type": "CONTROLLED_USAGE_GO_LIVE_DECISION"
+  },
+  "required_capabilities": [
+    "controlled_go_live_decision_app_shell",
+    "decision_board_context",
+    "prerequisite_evidence_checklist",
+    "security_gate_decision",
+    "tenant_isolation_gate_decision",
+    "permission_gate_decision",
+    "localization_gate_decision",
+    "panel_pos_market_route_gate_decision",
+    "data_mutation_safety_decision",
+    "billing_payment_disabled_decision",
+    "support_rollback_readiness_decision",
+    "customer_access_mode_decision",
+    "go_no_go_decision_preview",
+    "approver_checklist_placeholder",
+    "final_risk_register_preview",
+    "decision_audit_timeline",
+    "controlled_go_live_runtime_data_contract",
+    "i18n_ready_decision_marker",
+    "seo_opengraph_decision_placeholder",
+    "controlled_go_live_decision_smoke_test"
+  ],
+  "next_step": "357 - Controlled customer access activation"
+}

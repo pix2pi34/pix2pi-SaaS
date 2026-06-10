@@ -1,0 +1,28 @@
+version: v1
+mission_control:
+  service_status_view:
+    panels:
+      - service_health
+      - instance_count
+      - health_latency
+      - registry_state
+
+  manual_actions:
+    actions:
+      - restart_service
+      - isolate_service
+      - enter_maintenance_mode
+      - leave_maintenance_mode
+
+  maintenance_mode:
+    required_fields:
+      - service_name
+      - reason
+      - started_at
+
+  incident_notes:
+    required_fields:
+      - incident_id
+      - note
+      - author
+      - created_at

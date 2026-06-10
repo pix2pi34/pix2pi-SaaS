@@ -1,0 +1,38 @@
+{
+  "module_code": "FAZ_7_10_ACCOUNTANT_PORTAL_ACCESS_RUNTIME",
+  "mode": "MULTI_FIRM_ACCESS_RUNTIME_DRY_RUN_ONLY",
+  "status": "READY_DRY_RUN_ONLY",
+  "depends_on": {
+    "faz_7_9_accountant_portal_commercial_surface_final_status": "PASS",
+    "accountant_portal_commercial_surface_gate": "READY_AFTER_TEST_AND_AUDIT_PASS"
+  },
+  "access_runtime": {
+    "tenant_isolation_policy": "ACCOUNTANT_TENANT_AND_FIRM_TENANT_BOUNDARY_ENFORCED",
+    "firm_context_policy": "ACTIVE_GRANT_REQUIRED_PER_ACCOUNTANT_USER_FIRM_PERIOD",
+    "period_policy": "YYYY-MM_PERIOD_BOUNDARY_ENFORCED",
+    "default_permissions": [
+      "firm.read",
+      "report.view",
+      "export.preview",
+      "billing.draft.view"
+    ],
+    "supported_roles": [
+      "accountant_viewer",
+      "accountant_operator"
+    ]
+  },
+  "closed_live_gates": {
+    "real_accountant_billing_status": "CLOSED_UNTIL_BILLING_LIVE_MODULE",
+    "real_payment_capture_status": "CLOSED_UNTIL_BILLING_LIVE_MODULE",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "real_customer_data_export_live_status": "CLOSED_UNTIL_EXPORT_LIVE_MODULE",
+    "real_operator_provider_action_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE"
+  },
+  "live_operation_policy": {
+    "customer_data_export": "NO_REAL_CUSTOMER_DATA_EXPORT_IN_THIS_PHASE",
+    "provider_operation": "NO_REAL_PROVIDER_API_OPERATION_IN_THIS_PHASE",
+    "erp_write": "NO_REAL_ERP_WRITE_IN_THIS_PHASE"
+  }
+}

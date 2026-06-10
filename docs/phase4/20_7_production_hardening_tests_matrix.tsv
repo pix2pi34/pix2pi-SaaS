@@ -1,0 +1,38 @@
+gate	status	note
+cleanup	PASS	20.1 production cleanup
+config_env	PASS	20.2 config/env hardening
+runtime_service	PASS	20.3 runtime service hardening
+nginx_reverse_proxy	PASS	20.4 nginx/reverse proxy hardening
+docker_compose	PASS	20.5 docker/compose hardening
+backup_archive	PASS	20.6 backup/archive retention
+artifact_coverage	PASS	missing=0
+no_change	PASS	failures=0
+risk_evidence	PASS	risk_total=2364
+secret_safe	PASS	secret values not printed
+file_delete_executed	NO	evidence only
+file_move_executed	NO	evidence only
+file_permission_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+firewall_changed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+docker_network_changed	NO	evidence only
+docker_volume_changed	NO	evidence only
+docker_port_changed	NO	evidence only
+docker_prune_executed	NO	evidence only
+restic_prune_executed	NO	evidence only
+restore_executed	NO	evidence only
+pg_dump_executed	NO	evidence only
+pg_restore_executed	NO	evidence only
+service_restarted	NO	evidence only
+deploy_executed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+log_content_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

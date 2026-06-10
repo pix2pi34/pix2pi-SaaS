@@ -1,0 +1,16 @@
+version: v1
+test_rules:
+  baseline_mode: strict
+  min_unit_coverage_percent: 80
+  min_integration_coverage_percent: 70
+  min_e2e_coverage_percent: 60
+  owner_mode: module_scoped
+  missing_test_policy: track_and_block
+
+contract_rules:
+  api_gate_enabled: true
+  event_gate_enabled: true
+  envelope_gate_enabled: true
+  integration_dep_gate_enabled: true
+  backward_compat_enabled: true
+  test_profile: final-quality-core

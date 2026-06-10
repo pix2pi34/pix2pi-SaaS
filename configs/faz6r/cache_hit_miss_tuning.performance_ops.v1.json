@@ -1,0 +1,73 @@
+{
+  "version": "performance_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_3_3",
+  "status": "dry_run_only_no_cache_mutation",
+  "recommendations": [
+    {
+      "tuning_id": "cache-tune-tenant-data-ttl-review",
+      "cache_surface": "tenant_data_cache",
+      "current_signal": "miss_ratio_or_ttl_missing_keys",
+      "recommended_action": "review_ttl_policy_no_mutation",
+      "expected_hit_ratio_impact": "medium_positive",
+      "risk_level": "medium",
+      "tenant_namespace_guard_status": "REQUIRED",
+      "fallback_safety_status": "REQUIRED",
+      "stale_data_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "cache-tune-readmodel-cache-hit-ratio",
+      "cache_surface": "readmodel_cache",
+      "current_signal": "readmodel_cache_miss_ratio",
+      "recommended_action": "review_readmodel_cache_keys_no_mutation",
+      "expected_hit_ratio_impact": "high_positive",
+      "risk_level": "medium",
+      "tenant_namespace_guard_status": "REQUIRED",
+      "fallback_safety_status": "REQUIRED",
+      "stale_data_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "cache-tune-hot-key-distribution",
+      "cache_surface": "tenant_data_cache",
+      "current_signal": "hot_key_candidates",
+      "recommended_action": "review_hot_key_distribution_no_delete",
+      "expected_hit_ratio_impact": "medium_positive",
+      "risk_level": "medium",
+      "tenant_namespace_guard_status": "REQUIRED",
+      "fallback_safety_status": "REQUIRED",
+      "stale_data_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "cache-tune-rate-limit-cache-safety",
+      "cache_surface": "rate_limit_cache",
+      "current_signal": "rate_limit_cache_error_count",
+      "recommended_action": "review_rate_limit_cache_policy_no_mutation",
+      "expected_hit_ratio_impact": "stability_positive",
+      "risk_level": "high",
+      "tenant_namespace_guard_status": "REQUIRED",
+      "fallback_safety_status": "REQUIRED",
+      "stale_data_guard_status": "NOT_APPLICABLE",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "tuning_id": "cache-tune-public-asset-cache",
+      "cache_surface": "public_asset_cache",
+      "current_signal": "public_asset_miss_ratio",
+      "recommended_action": "review_static_asset_cache_headers_no_mutation",
+      "expected_hit_ratio_impact": "medium_positive",
+      "risk_level": "low",
+      "tenant_namespace_guard_status": "NOT_REQUIRED",
+      "fallback_safety_status": "REQUIRED",
+      "stale_data_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ]
+}

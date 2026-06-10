@@ -1,0 +1,49 @@
+{
+  "expected_dependency": "FAZ_6_21_4_5",
+  "expected_runtime_mutation_allowed": false,
+  "expected_destructive_action_default_allowed": false,
+  "expected_auto_remediation_enabled": false,
+  "expected_required_controls": [
+    "security_edge_audit_dependency_gate",
+    "incident_severity_model",
+    "runbook_index",
+    "edge_security_incident_runbook",
+    "tls_cert_incident_runbook",
+    "api_outage_runbook",
+    "db_degradation_runbook",
+    "event_queue_backlog_runbook",
+    "cache_degradation_runbook",
+    "release_rollback_runbook",
+    "evidence_capture_policy",
+    "escalation_policy_placeholder",
+    "manual_approval_policy",
+    "no_destructive_default_policy",
+    "final_status_policy"
+  ],
+  "expected_severity_levels": [
+    "P0",
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "expected_runbook_controls": [
+    "edge_security_incident_runbook",
+    "tls_cert_incident_runbook",
+    "api_outage_runbook",
+    "db_degradation_runbook",
+    "event_queue_backlog_runbook",
+    "cache_degradation_runbook",
+    "release_rollback_runbook"
+  ],
+  "expected_runbook_count": 7,
+  "expected_evidence_required": true,
+  "expected_manual_approval_for": [
+    "production_restart",
+    "rollback",
+    "firewall_or_edge_enforce_change",
+    "database_failover",
+    "data_restore",
+    "destructive_cleanup"
+  ],
+  "expected_next_step": "FAZ_6_21_7_2"
+}

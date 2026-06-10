@@ -1,0 +1,50 @@
+{
+  "phase": "FAZ_3_10_5_6_ACCOUNTANT_PORTAL_INTEGRATION_TESTS",
+  "runtime": "accountant_portal_integration_suite",
+  "runtime_enabled": true,
+  "default_currency_code": "TRY",
+  "require_subscription_flow": true,
+  "require_visibility_flow": true,
+  "require_permission_flow": true,
+  "require_export_flow": true,
+  "require_all_formats": true,
+  "require_audit_hash": true,
+  "required_permission": "EXPORT_TDHP",
+  "required_export_formats": [
+    "EXCEL",
+    "PDF",
+    "TDHP"
+  ],
+  "covered_modules": [
+    "FAZ_3_10_5_1_MULTI_FIRM_ACCESS_RUNTIME",
+    "FAZ_3_10_5_2_COMPANY_PERMISSION_ENFORCEMENT",
+    "FAZ_3_10_5_3_EXCEL_PDF_TDHP_EXPORT_RUNTIME",
+    "FAZ_3_10_5_4_MONTHLY_SUBSCRIPTION_RUNTIME",
+    "FAZ_3_10_5_5_COMPANY_VISIBILITY_RUNTIME"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "suite_id_required": true,
+    "accountant_firm_id_required": true,
+    "accountant_user_id_required": true,
+    "actor_id_required": true,
+    "subscription_id_required": true,
+    "billing_profile_id_required": true,
+    "assignment_id_required": true,
+    "target_firm_tenant_id_required": true,
+    "target_company_id_required": true,
+    "target_company_name_required": true,
+    "target_company_tax_no_required": true,
+    "period_code_required": true,
+    "fiscal_year_required": true,
+    "subscription_flow_required": true,
+    "visibility_flow_required": true,
+    "permission_flow_required": true,
+    "export_flow_required": true,
+    "integration_hash_required": true
+  },
+  "next_gate": "FAZ_3_10_6_1_OCR_LENS_PROCESSING_RUNTIME"
+}

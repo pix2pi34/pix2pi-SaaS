@@ -1,0 +1,13 @@
+probe_name	category	service_hint	host	port	path	result	status_code	body_policy	reachable	note
+prometheus_ready	metrics_core	prometheus	127.0.0.1	9090	/-/ready	READY_OR_AUTH_REQUIRED	200	body_not_printed	YES	endpoint_metadata_only
+prometheus_health	metrics_core	prometheus	127.0.0.1	9090	/-/healthy	READY_OR_AUTH_REQUIRED	200	body_not_printed	YES	endpoint_metadata_only
+grafana_health_3000	dashboard	grafana	127.0.0.1	3000	/api/health	REVIEW	000	body_not_printed	NO	endpoint_metadata_only
+grafana_health_3001	dashboard	grafana	127.0.0.1	3001	/api/health	READY_OR_AUTH_REQUIRED	200	body_not_printed	YES	endpoint_metadata_only
+loki_ready	logs	loki	127.0.0.1	3100	/ready	REVIEW	503	body_not_printed	YES	endpoint_metadata_only
+tempo_ready	traces	tempo	127.0.0.1	3200	/ready	REVIEW	503	body_not_printed	YES	endpoint_metadata_only
+node_exporter_metrics	host_metrics	node_exporter	127.0.0.1	9100	/metrics	READY_OR_AUTH_REQUIRED	200	body_not_printed	YES	endpoint_metadata_only
+cadvisor_health	container_metrics	cadvisor	127.0.0.1	8080	/healthz	READY_OR_AUTH_REQUIRED	200	body_not_printed	YES	endpoint_metadata_only
+cadvisor_metrics	container_metrics	cadvisor	127.0.0.1	8080	/metrics	READY_OR_AUTH_REQUIRED	200	body_not_printed	YES	endpoint_metadata_only
+nats_monitoring	event_bus_metrics	nats	127.0.0.1	8222	/healthz	REVIEW	000	body_not_printed	NO	endpoint_metadata_only
+api_gateway_health	api_health	api_gateway	127.0.0.1	9010	/health	READY_OR_AUTH_REQUIRED	200	body_not_printed	YES	endpoint_metadata_only
+identity_health	service_health	identity	127.0.0.1	9001	/health	REVIEW	000	body_not_printed	NO	endpoint_metadata_only

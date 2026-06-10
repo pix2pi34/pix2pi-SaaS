@@ -1,0 +1,34 @@
+version: v1
+plugin:
+  contract:
+    required_fields:
+      - plugin_id
+      - plugin_name
+      - contract_version
+      - runtime
+      - entrypoint
+
+  lifecycle:
+    required_fields:
+      - install_state
+      - activation_state
+      - rollback_state
+      - upgraded_at
+
+  permission_boundary:
+    required_fields:
+      - permission_set
+      - resource_scope
+      - approval_required
+
+  tenant_safe_runtime:
+    required_fields:
+      - tenant_id
+      - tenant_scope
+      - isolation_mode
+
+  version_compatibility:
+    required_fields:
+      - plugin_version
+      - min_core_version
+      - max_core_version

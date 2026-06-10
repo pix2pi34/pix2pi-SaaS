@@ -1,0 +1,154 @@
+{
+  "valid_fixture": {
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_name": "Pilot Tenant 001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT",
+      "tenant_opening_type": "PILOT"
+    },
+    "summary": {
+      "opening_status": "READY",
+      "pilot_data_boundary_status": "PASS",
+      "tenant_acceptance_status": "PASS",
+      "onboarding_smoke_status": "PASS",
+      "critical_issue_count": 0,
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED"
+    },
+    "opening_stages": [
+      {
+        "code": "PILOT_SCOPE_CONFIRMED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/pilot_scope_confirmed.md"
+      },
+      {
+        "code": "TENANT_ID_PREPARED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/tenant_id_prepared.md"
+      },
+      {
+        "code": "TENANT_RECORD_PREPARED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/tenant_record_prepared.md"
+      },
+      {
+        "code": "TENANT_CONFIG_PREPARED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/tenant_config_prepared.md"
+      },
+      {
+        "code": "TENANT_ADMIN_PREPARED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/tenant_admin_prepared.md"
+      },
+      {
+        "code": "ROLE_BASELINE_PREPARED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/role_baseline_prepared.md"
+      },
+      {
+        "code": "USER_INVITE_PREPARED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/user_invite_prepared.md"
+      },
+      {
+        "code": "IMPORT_DRY_RUN_PREPARED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/import_dry_run_prepared.md"
+      },
+      {
+        "code": "READMODEL_REPORTING_CONFIRMED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/FAZ_4_15_7_READMODEL_REPORTING_TEST_SET_REAL_IMPLEMENTATION_AUDIT.md"
+      },
+      {
+        "code": "OPERATIONAL_READMODEL_CONFIRMED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/FAZ_4_15_1_OPERATIONAL_READMODEL_TABLES_REAL_IMPLEMENTATION_AUDIT.md"
+      },
+      {
+        "code": "SUPPORT_CHANNEL_CONFIRMED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/support_channel_confirmed.md"
+      },
+      {
+        "code": "ROLLBACK_CUTOVER_GUARD_CONFIRMED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/rollback_cutover_guard_confirmed.md"
+      },
+      {
+        "code": "AUDIT_EVIDENCE_CONFIRMED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/audit_evidence_confirmed.md"
+      },
+      {
+        "code": "OPENING_APPROVED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/opening_approved.md"
+      },
+      {
+        "code": "CRITICAL_ISSUE_ZERO",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/critical_issue_zero.md"
+      },
+      {
+        "code": "CLOSED_EXTERNAL_POLICY_GATE",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/closed_external_policy_gate.md"
+      }
+    ]
+  },
+  "invalid_fixture": {
+    "tenant": {
+      "tenant_id": "",
+      "tenant_name": "Broken Pilot Tenant",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED",
+      "tenant_opening_type": "PRODUCTION"
+    },
+    "summary": {
+      "opening_status": "NOT_READY",
+      "pilot_data_boundary_status": "FAIL",
+      "tenant_acceptance_status": "FAIL",
+      "onboarding_smoke_status": "FAIL",
+      "critical_issue_count": 1,
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN"
+    },
+    "opening_stages": [
+      {
+        "code": "TENANT_ID_PREPARED",
+        "required": true,
+        "status": "FAIL",
+        "evidence_ref": ""
+      }
+    ]
+  }
+}

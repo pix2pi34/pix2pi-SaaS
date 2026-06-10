@@ -1,0 +1,36 @@
+{
+  "phase": "FAZ_5_18_2_2",
+  "title": "Faturalama Akışı",
+  "status": "READY",
+  "control_surface": "INVOICE_FLOW",
+  "inputs": [
+    "FAZ_5_18_2_3_TAHSILAT_BASARISIZ_ODEME_AKISI",
+    "FAZ_7_5_BILLING_READINESS",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "INVOICE_DRAFT_FLOW",
+    "BILLING_PROFILE_VALIDATION",
+    "PLAN_SNAPSHOT_BINDING",
+    "LINE_ITEM_AND_TAX_CALCULATION",
+    "INVOICE_FINALIZATION_POLICY",
+    "INVOICE_DELIVERY_BLOCK_POLICY",
+    "ACCOUNTING_EXPORT_HANDOFF",
+    "E_DOCUMENT_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_invoice_flow_ready": true,
+    "production_invoice_enabled": false,
+    "real_customer_invoice_enabled": false,
+    "auto_invoice_delivery_enabled": false,
+    "e_document_live_deferred": true,
+    "refund_cancel_flow_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

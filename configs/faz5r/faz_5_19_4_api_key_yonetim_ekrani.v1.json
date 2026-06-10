@@ -1,0 +1,42 @@
+{
+  "phase": "FAZ_5_19_4",
+  "title": "API Key Yönetim Ekranı",
+  "status": "READY",
+  "control_surface": "API_KEY_MANAGEMENT_SCREEN",
+  "inputs": [
+    "FAZ_5_19_3_DEVELOPER_DOCS_PORTALI",
+    "FAZ_5_R_PRIORITY_4_WEB_L8_PUBLIC_DEVELOPER_SURFACES"
+  ],
+  "outputs": [
+    "KEY_INVENTORY",
+    "KEY_CREATE_DISABLED_PANEL",
+    "KEY_MASKED_SECRET_PANEL",
+    "KEY_ROTATION_PREVIEW",
+    "KEY_REVOKE_PREVIEW",
+    "PERMISSION_SCOPE_PANEL",
+    "TENANT_SCOPE_PANEL",
+    "AUDIT_TRAIL_PANEL",
+    "SECURITY_POLICY_PANEL",
+    "SANDBOX_SURFACE_DEFERRED_MARKER"
+  ],
+  "web_artifact": "web/faz5r/api-key-management/index.html",
+  "gates": {
+    "internal_api_key_screen_ready": true,
+    "static_html_ready": true,
+    "production_screen_published": false,
+    "real_developer_access_enabled": false,
+    "api_key_creation_enabled": false,
+    "api_key_reveal_enabled": false,
+    "api_key_rotation_enabled": false,
+    "sandbox_live_enabled": false,
+    "sandbox_surface_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "web_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

@@ -1,0 +1,46 @@
+gate	status	note
+previous_16_4	PASS	pilot data readiness prerequisite
+go_no_go_decision_matrix	PASS	decision_gates=15 p0=12 no_go=12
+rollout_blocker_policy	PASS	blockers=15 p0=11 no_go=11
+security_tenant_gate	PASS	security_gates=10 blockers=10
+business_chain_gate	PASS	business_gates=10 blockers=9
+support_incident_gate	PASS	support_gates=8 blockers=7
+no_runtime_change	PASS	no rollout/live/db/api/ui/event changed
+no_config_change	PASS	no config/env/nginx/firewall changed
+secret_safe	PASS	no secrets/customer private data printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+rollout_executed	NO	contract only
+go_live_switched	NO	contract only
+production_traffic_changed	NO	contract only
+tenant_enabled_for_live	NO	contract only
+real_customer_notified	NO	contract only
+uat_executed	NO	contract only
+sample_data_inserted	NO	contract only
+real_customer_data_created	NO	contract only
+real_product_created	NO	contract only
+real_stock_mutated	NO	contract only
+real_sale_created	NO	contract only
+real_accounting_entry_created	NO	contract only
+data_import_executed	NO	contract only
+file_export_executed	NO	contract only
+ui_code_changed	NO	contract only
+api_route_created	NO	contract only
+api_implementation_changed	NO	contract only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+event_published	NO	contract only
+event_consumed	NO	contract only
+notification_sent	NO	contract only
+customer_private_data_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report

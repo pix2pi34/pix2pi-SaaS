@@ -1,0 +1,48 @@
+{
+  "phase": "FAZ_3_10_3_5_EBELGE_ERROR_CANCEL_RETRY_RUNTIME",
+  "runtime": "e_belge_error_cancel_retry",
+  "max_retry_count": 3,
+  "base_retry_delay_sec": 60,
+  "max_retry_delay_sec": 600,
+  "dlq_enabled": true,
+  "manual_review_enabled": true,
+  "cancel_reason_required": true,
+  "allowed_document_types": [
+    "E_FATURA",
+    "E_ARSIV",
+    "E_ADISYON"
+  ],
+  "allowed_provider_codes": [
+    "SIM_GIB_EFATURA",
+    "SIM_GIB_EARSIV",
+    "SIM_GIB_EADISYON"
+  ],
+  "retryable_error_codes": [
+    "PROVIDER_TIMEOUT",
+    "PROVIDER_RATE_LIMITED",
+    "PROVIDER_TEMPORARY_UNAVAILABLE"
+  ],
+  "fatal_error_codes": [
+    "INVALID_TAX_IDENTITY",
+    "INVALID_UBL",
+    "DOCUMENT_SCHEMA_INVALID"
+  ],
+  "manual_review_codes": [
+    "PROVIDER_STATE_CONFLICT",
+    "LEGAL_STATUS_UNKNOWN"
+  ],
+  "duplicate_error_codes": [
+    "DUPLICATE_IDEMPOTENCY_KEY",
+    "DUPLICATE_PROVIDER_DOCUMENT"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "provider_document_id_required": true,
+    "provider_payload_hash_required": true,
+    "cancel_reason_required": true
+  },
+  "next_gate": "FAZ_3_10_3_RUNTIME_FINAL_CLOSURE"
+}

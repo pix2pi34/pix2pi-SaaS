@@ -1,0 +1,65 @@
+# FAZ 7-8P Paraşüt Real Implementation Audit
+
+Generated at: 2026-05-02T03:34:02Z
+
+- 7-8P.0.1 Documentation artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.0.2 Config artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.0.3 Paraşüt connector code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.0.4 Paraşüt connector test code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.0.5 Scope document title IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.0 Scope doc config identity IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.0 Scope doc adapter bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.0 Scope doc data mapping IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.0 Scope doc webhook bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.5.0 Scope doc retry DLQ IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.0 Scope doc final gate IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.1 Config provider key IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.2 Config production gate closed IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.3 Config simulation mode IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.4 Config invoice pull capability IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.5 Config invoice push capability IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.6 Config customer sync capability IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.7 Config product sync capability IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.8 Config webhook verify capability IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.9 Config dependency on 7-8I IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.10 Code provider key constant IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.11 Code connector config model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.12 Code simulation environment IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.13 Code sandbox environment IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.14 Code production environment IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.15 Code config validator IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.16 Code production gate closed IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1 Code adapter model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2 Code adapter constructor IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.3 Code ProviderKey interface method IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.4 Code Capabilities interface method IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.5 Code Execute interface method IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.6 Code pull invoice operation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.7 Code push invoice operation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.8 Code sync customer operation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.9 Code sync product operation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.10 Code verify webhook operation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.11 Code simulated provider transaction trace IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1 Code invoice draft request IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2 Code invoice draft model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.3 Code invoice draft mapper IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.4 Code amount minor unit guard IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5 Code customer tax no field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1 Code webhook bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2 Code webhook bridge constructor IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3 Code webhook signature bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.4 Code webhook verify bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.5 Code 7-8I webhook intake runtime bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.5.1 Test retry DLQ bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.5.2 Test provider timeout failure code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.5.3 Test DLQ message creation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.5.4 Test poison message bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.1 Code final gate input IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.2 Code final gate evaluator IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.3 Code ready decision IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.4 Code production blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.1.17 Test config provider identity IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.12 Test adapter SDK bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.6 Test data mapping IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.6 Test webhook bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.6.5 Test final closure gate IMPLEMENTED_OR_PRESENT / OK

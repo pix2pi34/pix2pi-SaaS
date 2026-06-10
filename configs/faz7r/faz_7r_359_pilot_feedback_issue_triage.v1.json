@@ -1,0 +1,47 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "359",
+  "name": "Pilot feedback / issue triage",
+  "surface": "pilot_feedback_issue_triage",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/pilot-feedback-triage/",
+  "runtime_path": "/assets/pilot-feedback-triage/pilot-feedback-triage-runtime.js",
+  "depends_on": [
+    "358 - Controlled pilot monitoring / first day watch"
+  ],
+  "runtime_contract": {
+    "real_ticket_create_enabled": false,
+    "real_customer_notification_send_enabled": false,
+    "real_hotfix_deploy_enabled": false,
+    "real_data_mutation_enabled": false,
+    "feedback_triage_preview_enabled": true,
+    "issue_queue_preview_enabled": true,
+    "support_response_draft_preview_enabled": true,
+    "hotfix_decision_preview_enabled": true,
+    "ready_for_step_360": true
+  },
+  "required_capabilities": [
+    "pilot_feedback_triage_app_shell",
+    "pilot_tenant_customer_feedback_context",
+    "feedback_intake_channels",
+    "customer_sentiment_snapshot",
+    "issue_triage_queue_preview",
+    "severity_priority_classification",
+    "owner_assignment_preview",
+    "duplicate_issue_merge_preview",
+    "incident_escalation_link_preview",
+    "product_backlog_candidate_preview",
+    "support_response_draft_preview",
+    "hotfix_no_hotfix_decision_preview",
+    "data_mutation_disabled_safety_guard",
+    "rollback_request_review_preview",
+    "daily_pilot_report_handoff",
+    "feedback_audit_timeline",
+    "feedback_triage_runtime_data_contract",
+    "i18n_ready_feedback_marker",
+    "seo_opengraph_feedback_placeholder",
+    "pilot_feedback_triage_smoke_test"
+  ],
+  "next_step": "360 - Pilot stabilization / fix plan closure"
+}

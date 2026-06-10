@@ -1,0 +1,145 @@
+# FAZ 4B / 21.1 - Role Matrix Report
+
+Generated at: 2026-04-29 07:35:38 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+MIGRATION_BASE=20260429_211001_security_role_matrix
+UP_FILE=db/migrations/20260429_211001_security_role_matrix.up.sql
+DOWN_FILE=db/migrations/20260429_211001_security_role_matrix.down.sql
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=YES
+MIGRATION_APPLY_EXECUTED=NO
+RBAC_ENFORCEMENT_EXECUTED=NO
+AUDIT_LOG_WRITE_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+VALIDATION_MODE=ROLE_MATRIX_MIGRATION_PAIR_ONLY
+PREVIOUS_14_FINAL_STATUS=PASS
+PREVIOUS_15_FINAL_STATUS=PASS
+PREVIOUS_18_FINAL_STATUS=PASS
+PREVIOUS_19_FINAL_STATUS=PASS
+PREVIOUS_19_PANEL_ADMIN_FINAL_CLOSURE=PASS
+PREVIOUS_19_DB_APPLY_EXECUTED=NO
+UP_FILE_SHA256=5e8caad6406d46857f131ef4c54b47505f279114efa76f2656df7f6591779d7e
+DOWN_FILE_SHA256=ef46c8fa207ff963dffc0db206e8be85a9296979e48ee5418e90eb57bf8e9ef5
+CREATE_SCHEMA_COUNT=1
+ROLE_MATRIX_TABLE_COUNT=6
+ROLE_MATRIX_EXPECTED_TABLE_MISSING_COUNT=0
+ROLE_MATRIX_TENANT_ID_COLUMN_COUNT=6
+ROLE_MATRIX_ROLE_CODE_COUNT=4
+ROLE_MATRIX_PERMISSION_CODE_COUNT=4
+ROLE_MATRIX_RESOURCE_AREA_COUNT=3
+ROLE_MATRIX_ACTION_CODE_COUNT=3
+ROLE_MATRIX_ALLOW_ACCESS_COUNT=1
+ROLE_MATRIX_REQUIRES_AUDIT_COUNT=3
+ROLE_MATRIX_HIGH_RISK_COUNT=2
+ROLE_MATRIX_SUPPORT_ROLE_COUNT=3
+ROLE_MATRIX_SUPER_ADMIN_BOUNDARY_COUNT=2
+ROLE_MATRIX_CROSS_TENANT_COUNT=3
+ROLE_MATRIX_STATUS_CODE_COLUMN_COUNT=6
+ROLE_MATRIX_UNIQUE_CONSTRAINT_COUNT=9
+ROLE_MATRIX_INDEX_COUNT=15
+ROLE_MATRIX_DOWN_DROP_TABLE_COUNT=6
+DROP_TABLE_IN_UP=0
+TRUNCATE_IN_UP=0
+ALTER_SYSTEM_IN_UP=0
+DOCKER_IN_UP=0
+SYSTEMCTL_IN_UP=0
+PSQL_IN_UP=0
+CURRENT_MIGRATION_SQL_FILE_COUNT=74
+CURRENT_MIGRATION_INVALID_NAME_COUNT=0
+CURRENT_MIGRATION_PAIR_COUNT=37
+CURRENT_MIGRATION_MISSING_PAIR_COUNT=0
+CURRENT_MIGRATION_DUPLICATE_PAIR_COUNT=0
+ROLE_MATRIX_MIGRATION_PAIR=PASS
+ROLE_MATRIX_SCHEMA_STATUS=PASS
+ROLE_MATRIX_TABLE_STATUS=PASS
+ROLE_MATRIX_TENANT_SAFETY_STATUS=PASS
+ROLE_MATRIX_ROLE_STATUS=PASS
+ROLE_MATRIX_PERMISSION_STATUS=PASS
+ROLE_MATRIX_AUDIT_READY_STATUS=PASS
+ROLE_MATRIX_BOUNDARY_STATUS=PASS
+ROLE_MATRIX_INDEX_STATUS=PASS
+ROLE_MATRIX_DOWN_STATUS=PASS
+ROLE_MATRIX_RISK_STATUS=PASS
+ROLE_MATRIX_CHAIN_STATUS=PASS
+ROLE_MATRIX_INVENTORY_LINE_COUNT=7
+ROLE_MATRIX_MATRIX_LINE_COUNT=22
+ROLE_MATRIX=PASS
+FAZ4B_21_1_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+ROLE_MATRIX=PASS
+FAZ4B_21_1_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+TOOL_sha256sum=FOUND
+
+## Inventory
+INVENTORY_FILE=docs/phase4/21_1_role_matrix_inventory.tsv
+table	status	tenant_id_required	purpose	note
+role_matrix_profiles	YES	YES	role_matrix_profile_header	platform_security.role_matrix_profiles
+role_definitions	YES	YES	tenant_role_catalog	platform_security.role_definitions
+permission_definitions	YES	YES	permission_catalog	platform_security.permission_definitions
+role_permission_matrix	YES	YES	role_permission_allow_deny_matrix	platform_security.role_permission_matrix
+role_scope_rules	YES	YES	role_scope_and_boundary_rules	platform_security.role_scope_rules
+role_matrix_validation_errors	YES	YES	role_matrix_validation	platform_security.role_matrix_validation_errors
+
+## Matrix
+MATRIX_FILE=docs/phase4/21_1_role_matrix_matrix.tsv
+gate	status	note
+previous_14	PASS	migration lifecycle prerequisite
+previous_15	PASS	readmodel/reporting prerequisite
+previous_18	PASS	inventory prerequisite
+previous_19	PASS	panel/admin prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=6
+tenant_safety	PASS	tenant_id=6
+role	PASS	role_code=4 permission_code=4
+permission	PASS	resource_area=3 action_code=3
+audit_ready	PASS	requires_audit=3 high_risk=2
+boundary	PASS	support=3 super_admin=2 cross_tenant=3
+indexes	PASS	index_count=15
+down_migration	PASS	drop_table_count=6
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=37
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+rbac_enforcement_executed	NO	permission guard later
+audit_log_write_executed	NO	audit runtime later
+query_text_printed	NO	secret-safe report
+
+## Migration Files
+UP_FILE=db/migrations/20260429_211001_security_role_matrix.up.sql
+DOWN_FILE=db/migrations/20260429_211001_security_role_matrix.down.sql
+UP_FILE_SHA256=5e8caad6406d46857f131ef4c54b47505f279114efa76f2656df7f6591779d7e
+DOWN_FILE_SHA256=ef46c8fa207ff963dffc0db206e8be85a9296979e48ee5418e90eb57bf8e9ef5
+
+## Safety Decision
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=YES
+MIGRATION_APPLY_EXECUTED=NO
+RBAC_ENFORCEMENT_EXECUTED=NO
+AUDIT_LOG_WRITE_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+QUERY_TEXT_PRINTED=NO

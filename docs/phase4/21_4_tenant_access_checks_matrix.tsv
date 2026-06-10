@@ -1,0 +1,22 @@
+gate	status	note
+previous_21_3	PASS	audit event model prerequisite
+contract	PASS	inputs=21 outputs=16 decisions=13
+check_manifest	PASS	check_count=12
+decision_manifest	PASS	decision_count=13
+surface_manifest	PASS	surface_count=10
+tenant_safety	PASS	tenant_refs=202 deny_refs=70
+identity_match	PASS	jwt=15 header=12 actor=16 resource=24
+boundary	PASS	boundary_refs=65 high_risk=6
+audit_ready	PASS	audit_refs=29
+no_apply	PASS	contract only
+secret_safety	PASS	secret_hits=0
+db_mutation	NO	contract only
+db_apply_executed	NO	contract only
+migration_created	NO	contract only
+tenant_access_check_executed	NO	contract only
+permission_guard_executed	NO	contract only
+rbac_enforcement_executed	NO	contract only
+audit_log_write_executed	NO	contract only
+panel_route_deployed	NO	contract only
+api_route_deployed	NO	contract only
+query_text_printed	NO	secret-safe report

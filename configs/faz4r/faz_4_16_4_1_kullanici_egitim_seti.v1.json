@@ -1,0 +1,50 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 210,
+  "step": "FAZ_4_16_4_1",
+  "title": "Kullanıcı eğitim seti",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "209_FAZ_4_16_3_6_UAT_SIGN_OFF"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "training_policy": {
+    "training_set_status_required": "READY",
+    "training_mode_required": "CONTROLLED_PILOT",
+    "required_module_status_required": "READY",
+    "missing_module_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "uat_signoff_status_required": "PASS",
+    "support_handoff_ready_required": "YES",
+    "completion_checklist_status_required": "READY",
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_training_modules": [
+    "FIRST_LOGIN_GUIDE",
+    "TENANT_CONTEXT_GUIDE",
+    "MANAGEMENT_PANEL_BASIC_GUIDE",
+    "POS_BASIC_GUIDE",
+    "CUSTOMER_IMPORT_GUIDE",
+    "PRODUCT_STOCK_IMPORT_GUIDE",
+    "RECEIPT_MOVEMENT_IMPORT_GUIDE",
+    "IMPORT_VALIDATION_REPORT_GUIDE",
+    "ACCOUNTING_BASIC_GUIDE",
+    "ACCOUNTANT_PORTAL_READONLY_GUIDE",
+    "E_DOCUMENT_EXPORT_PREVIEW_GUIDE",
+    "SUPPORT_ISSUE_REPORTING_GUIDE",
+    "PILOT_LIMITS_AND_CLOSED_POLICY_GUIDE",
+    "COMMON_MISTAKES_GUIDE",
+    "TRAINING_COMPLETION_CHECKLIST"
+  ],
+  "training_artifact": "configs/faz4r/user_training_set.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "211_FAZ_4_16_4_2_YARDIM_MERKEZI_ICERIGI"
+  ]
+}

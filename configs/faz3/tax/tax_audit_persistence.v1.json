@@ -1,0 +1,72 @@
+{
+  "phase": "FAZ_3_10_2_5_TAX_AUDIT_PERSISTENCE",
+  "runtime": "tax_audit_persistence",
+  "persistence_enabled": true,
+  "append_only": true,
+  "idempotency_required": true,
+  "evidence_hash_required": true,
+  "rule_version_required": true,
+  "actor_required": true,
+  "retention_days": 3650,
+  "repository_contract": [
+    "Append",
+    "FindByAuditID",
+    "FindByIdempotencyKey",
+    "ListByTenant",
+    "ListByTaxFamily",
+    "ListByDateRange",
+    "ExportTenantAuditTrail"
+  ],
+  "allowed_tax_families": [
+    "KDV",
+    "STOPAJ",
+    "TAX_EXEMPTION",
+    "OTV",
+    "DAMGA",
+    "CUSTOM"
+  ],
+  "allowed_audit_actions": [
+    "KDV_CALCULATED",
+    "STOPAJ_CALCULATED",
+    "EXEMPTION_APPLIED",
+    "RULE_VERSION_ROLLED",
+    "RULE_VERSION_ACTIVATED",
+    "RULE_VERSION_ROLLBACK",
+    "VALIDATION_REJECTED",
+    "MANUAL_REVIEW"
+  ],
+  "allowed_source_runtimes": [
+    "KDV_RUNTIME",
+    "STOPAJ_RUNTIME",
+    "TAX_EXEMPTION_RUNTIME",
+    "TAX_RULE_VERSION_ROLLOUT_RUNTIME",
+    "TAX_RUNTIME_TEST_SUITE"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "audit_id_required": true,
+    "append_only_required": true,
+    "duplicate_audit_id_rejected": true,
+    "duplicate_idempotency_key_rejected": true,
+    "tax_family_allowed": true,
+    "source_runtime_allowed": true,
+    "audit_action_allowed": true,
+    "decision_status_required": true,
+    "rule_version_required": true,
+    "document_or_target_version_required": true,
+    "amounts_non_negative": true,
+    "currency_code_required": true,
+    "evidence_file_path_required": true,
+    "evidence_hash_required": true,
+    "request_hash_required": true,
+    "result_hash_required": true,
+    "actor_required": true,
+    "created_at_required": true,
+    "tenant_scoped_lookup": true,
+    "tenant_scoped_export": true
+  },
+  "next_gate": "FAZ_3_10_2_6_TAX_RUNTIME_TESTS"
+}

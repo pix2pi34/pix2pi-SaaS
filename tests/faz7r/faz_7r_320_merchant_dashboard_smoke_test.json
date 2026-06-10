@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "320",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "merchant_dashboard_screen",
+      "path": "/dashboard/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_320_DASHBOARD_APP_SHELL_START",
+        "PIX2PI_320_KPI_CARDS_START",
+        "PIX2PI_320_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "merchant_dashboard_runtime",
+      "path": "/assets/dashboard/merchant-dashboard-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_320_MERCHANT_DASHBOARD_RUNTIME_START",
+        "fetchDashboardSnapshot",
+        "renderDashboardSnapshot"
+      ]
+    }
+  ]
+}

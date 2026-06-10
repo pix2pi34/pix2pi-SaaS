@@ -1,0 +1,17 @@
+version: v1
+jobs_rules:
+  default_queue: platform-default
+  max_retry: 5
+  retry_backoff_seconds: 30
+  idempotency_ttl_seconds: 86400
+  audit_retention_days: 90
+  tenant_mode: tenant_scoped
+
+notifications_rules:
+  email_enabled: true
+  sms_enabled: true
+  push_enabled: true
+  webhook_enabled: true
+  webhook_max_retry: 6
+  webhook_dlq_enabled: true
+  default_severity: info

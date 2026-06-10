@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "340",
+  "domain": "market.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "market_shop_screen",
+      "path": "/shop/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_340_CUSTOMER_SHOPPING_APP_SHELL_START",
+        "PIX2PI_340_BASKET_PREVIEW_WIDGET_START",
+        "PIX2PI_340_SHOPPING_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "market_shop_runtime",
+      "path": "/assets/shop/market-shop-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_340_MARKET_SHOP_RUNTIME_START",
+        "shoppingScopeHeaders",
+        "buildShoppingRuntimeContract"
+      ]
+    }
+  ]
+}

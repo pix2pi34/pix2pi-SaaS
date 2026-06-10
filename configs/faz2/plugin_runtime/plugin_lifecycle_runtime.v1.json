@@ -1,0 +1,50 @@
+{
+  "phase": "FAZ 2-7.7.2",
+  "runtime": "plugin_lifecycle",
+  "require_tenant": true,
+  "install_statuses": [
+    "INSTALLED",
+    "ENABLED",
+    "DISABLED",
+    "SUSPENDED",
+    "UNINSTALLED"
+  ],
+  "actions": [
+    "INSTALL",
+    "ENABLE",
+    "DISABLE",
+    "SUSPEND",
+    "UNINSTALL"
+  ],
+  "valid_transitions": {
+    "INSTALLED": [
+      "ENABLED",
+      "UNINSTALLED"
+    ],
+    "ENABLED": [
+      "DISABLED",
+      "SUSPENDED",
+      "UNINSTALLED"
+    ],
+    "DISABLED": [
+      "ENABLED",
+      "UNINSTALLED"
+    ],
+    "SUSPENDED": [
+      "ENABLED",
+      "UNINSTALLED"
+    ],
+    "UNINSTALLED": []
+  },
+  "guards": [
+    "tenant_required",
+    "loaded_manifest_required",
+    "cross_tenant_install_denied",
+    "already_installed_denied",
+    "invalid_transition_denied",
+    "terminal_install_denied",
+    "tenant_safe_install_get",
+    "tenant_safe_install_list"
+  ],
+  "next_ready": "FAZ_2_7_7_3_PERMISSION_ENFORCEMENT_RUNTIME"
+}

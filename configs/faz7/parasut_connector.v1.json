@@ -1,0 +1,69 @@
+{
+  "module": "FAZ_7_8P_PARASUT_CONNECTOR_MODULE",
+  "version": "v1",
+  "provider_key": "parasut",
+  "runtime_status": "foundation_ready",
+  "production_real_provider_enabled": false,
+  "depends_on": [
+    "FAZ_7_8_MARKETPLACE_INTEGRATION_CATALOG_FOUNDATION",
+    "FAZ_7_8I_INTEGRATION_RUNTIME_FOUNDATION"
+  ],
+  "environment_modes": [
+    "SIMULATION",
+    "SANDBOX",
+    "PRODUCTION"
+  ],
+  "enabled_environment": "SIMULATION",
+  "capabilities": [
+    "invoice.pull",
+    "invoice.push",
+    "customer.sync",
+    "product.sync",
+    "webhook.verify"
+  ],
+  "operation_contracts": {
+    "PULL_INVOICE": {
+      "enabled": true,
+      "mode": "simulation",
+      "real_api_call": false
+    },
+    "PUSH_INVOICE": {
+      "enabled": true,
+      "mode": "simulation",
+      "real_api_call": false
+    },
+    "SYNC_CUSTOMER": {
+      "enabled": true,
+      "mode": "simulation",
+      "real_api_call": false
+    },
+    "SYNC_PRODUCT": {
+      "enabled": true,
+      "mode": "simulation",
+      "real_api_call": false
+    },
+    "VERIFY_WEBHOOK": {
+      "enabled": true,
+      "mode": "simulation",
+      "real_api_call": false
+    }
+  },
+  "required_guards": {
+    "tenant_id_required": true,
+    "app_key_required": true,
+    "provider_key_must_be_parasut": true,
+    "operation_required": true,
+    "idempotency_key_required": true,
+    "correlation_id_required": true,
+    "webhook_secret_required": true,
+    "webhook_signature_required": true,
+    "webhook_timestamp_skew_guard": true,
+    "raw_payload_required": true,
+    "production_gate_closed": true
+  },
+  "handoff": {
+    "provider_connector_module_foundation_ready": true,
+    "real_provider_api_handoff_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "faz_7_9_hold_until_integration_family_done": true
+  }
+}

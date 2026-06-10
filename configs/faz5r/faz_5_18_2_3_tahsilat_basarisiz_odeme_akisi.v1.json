@@ -1,0 +1,35 @@
+{
+  "phase": "FAZ_5_18_2_3",
+  "title": "Tahsilat / Başarısız Ödeme Akışı",
+  "status": "READY",
+  "control_surface": "COLLECTION_FAILED_PAYMENT_FLOW",
+  "inputs": [
+    "FAZ_5_18_8_4_COMMERCIAL_CLOSURE_REPORT",
+    "FAZ_7_5P_PAYMENT_MODULE_PROVIDER_ADAPTER_HANDOFF",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "COLLECTION_ATTEMPT_FLOW",
+    "PAYMENT_FAILED_FLOW",
+    "RETRY_SCHEDULE_POLICY",
+    "GRACE_PERIOD_POLICY",
+    "MANUAL_REVIEW_QUEUE_POLICY",
+    "TENANT_ACTION_BLOCK_POLICY",
+    "PROVIDER_LIVE_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_collection_flow_ready": true,
+    "production_payment_enabled": false,
+    "real_customer_charging_enabled": false,
+    "auto_tenant_suspension_enabled": false,
+    "real_provider_live_deferred": true,
+    "invoice_flow_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pix2pi Müşteri Girişi</title>
+  <meta name="pix2pi-marker" content="CUSTOMER_LOGIN_STANDALONE_REAL_OTP_MARKER" />
+  <meta name="pix2pi-real-mail" content="CUSTOMER_LOGIN_REAL_MAIL_CODE_MARKER" />
+  <style>
+    :root {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #172033;
+      background: #eef3f8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(37, 99, 235, .12), transparent 36rem),
+        #eef3f8;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      background: #0f172a;
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, .16);
+    }
+
+    .topbar strong {
+      font-size: 15px;
+      letter-spacing: .01em;
+    }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 850;
+      font-size: 14px;
+      opacity: .92;
+    }
+
+    .page {
+      width: min(960px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 52px 0;
+    }
+
+    .brand {
+      display: grid;
+      justify-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 132px;
+      padding: 14px 24px;
+      border-radius: 14px;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 950;
+      letter-spacing: .08em;
+      box-shadow: 0 18px 36px rgba(37, 99, 235, .24);
+    }
+
+    h1 {
+      margin: 0;
+      color: #111827;
+      font-size: clamp(30px, 4vw, 42px);
+      letter-spacing: -.04em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #667085;
+      font-size: 17px;
+      font-weight: 650;
+    }
+
+    .card {
+      width: min(520px, 100%);
+      margin: 0 auto;
+      padding: 28px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, .94);
+      border: 1px solid rgba(67, 91, 128, .12);
+      box-shadow: 0 26px 70px rgba(16, 24, 40, .10);
+    }
+
+    .step {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #475467;
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .step b {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #2563eb;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 8px;
+      color: #344054;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid #cfd8e3;
+      border-radius: 14px;
+      padding: 15px 16px;
+      background: #fffbcc;
+      color: #101828;
+      font-size: 16px;
+      outline: none;
+      transition: .15s ease;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, .14);
+      background: #fff;
+    }
+
+    #otp {
+      text-align: center;
+      letter-spacing: 6px;
+      font-size: 22px;
+      font-weight: 950;
+      background: #fff;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 14px;
+      padding: 15px 18px;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 950;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 16px 36px rgba(37, 99, 235, .20);
+    }
+
+    button.secondary {
+      color: #2563eb;
+      background: #eef4ff;
+      border: 1px solid #b2ccff;
+      box-shadow: none;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: .58;
+    }
+
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-weight: 850;
+      line-height: 1.45;
+    }
+
+    .message.ok {
+      display: block;
+      color: #067647;
+      background: #ecfdf3;
+      border: 1px solid #abefc6;
+    }
+
+    .message.warn {
+      display: block;
+      color: #92400e;
+      background: #fffaeb;
+      border: 1px solid #fedf89;
+    }
+
+    .message.error {
+      display: block;
+      color: #b42318;
+      background: #fef3f2;
+      border: 1px solid #fecdca;
+    }
+
+    .verify {
+      display: none;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #eaecf0;
+    }
+
+    .verify.active {
+      display: block;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: #667085;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .debug {
+      margin-top: 16px;
+      color: #98a2b3;
+      text-align: center;
+      font-size: 11px;
+      word-break: break-word;
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body data-marker="CUSTOMER_LOGIN_STANDALONE_REAL_OTP_MARKER">
+  <header class="topbar">
+    <strong>Pix2pi Müşteri Girişi</strong>
+    <nav class="nav">
+      <a href="https://pix2pi.com.tr/">Ana Sayfa</a>
+      <a href="/customer-register/react/">Kayıt Ol</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="brand">
+      <div class="logo">PIX2PI</div>
+      <h1>Müşteri Girişi</h1>
+      <p class="subtitle">E-posta adresinizle giriş yapın.</p>
+    </section>
+
+    <section class="card">
+      <div id="loginStep">
+        <div class="step"><b>1</b> E-posta ve şifre</div>
+
+        <label for="email">E-posta</label>
+        <input id="email" type="email" autocomplete="email" placeholder="ornek@firma.com" />
+
+        <label for="password">Şifre</label>
+        <input id="password" type="password" autocomplete="current-password" placeholder="Şifreniz" />
+
+        <button id="sendBtn" type="button">Mail Kodu Gönder</button>
+        <a href="/customer-register/react/" style="text-decoration:none">
+          <button class="secondary" type="button">Kayıt Ol</button>
+        </a>
+      </div>
+
+      <div id="verifyStep" class="verify">
+        <div class="step"><b>2</b> Mail kodu doğrulama</div>
+
+        <label for="otp">E-postaya gelen 6 haneli kod</label>
+        <input id="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" />
+
+        <button id="verifyBtn" type="button">Kodu Doğrula ve Giriş Yap</button>
+        <button id="changeEmailBtn" class="secondary" type="button">E-postayı Değiştir</button>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <div class="footer">Gönderen: no-reply@pix2pi.com.tr</div>
+      <div class="debug">CUSTOMER_LOGIN_STANDALONE_REAL_OTP_MARKER</div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var MARKER = "CUSTOMER_LOGIN_STANDALONE_REAL_OTP_MARKER";
+      var STATUS_API = "/customer-login/activation-api/status?email=";
+      var APPLICATION_STATUS_API = "/customer-login/application-status-api/status?email=";
+      var SEND_API = "/customer-login/activation-api/send-mail-code";
+      var VERIFY_API = "/customer-login/activation-api/verify-mail-code";
+
+      var emailInput = document.getElementById("email");
+      var passwordInput = document.getElementById("password");
+      var otpInput = document.getElementById("otp");
+      var sendBtn = document.getElementById("sendBtn");
+      var verifyBtn = document.getElementById("verifyBtn");
+      var changeEmailBtn = document.getElementById("changeEmailBtn");
+      var verifyStep = document.getElementById("verifyStep");
+      var message = document.getElementById("message");
+
+      var lastEmail = "";
+      var sending = false;
+      var verifying = false;
+
+      function normalizeEmail(value) {
+        return String(value || "").trim().toLowerCase();
+      }
+
+      function showMessage(text, type) {
+        message.textContent = text || "";
+        message.className = text ? "message " + (type || "ok") : "message";
+      }
+
+      function showVerifyStep(focus) {
+        verifyStep.classList.add("active");
+        if (focus) otpInput.focus();
+      }
+
+      function hideVerifyStep() {
+        verifyStep.classList.remove("active");
+        otpInput.value = "";
+      }
+
+      function fetchJson(url, options) {
+        return fetch(url, Object.assign({
+          credentials: "same-origin",
+          cache: "no-store"
+        }, options || {})).then(function (res) {
+          return res.json();
+        });
+      }
+
+      function statusMessage(data) {
+        if (!data || !data.code) return null;
+
+        if (data.code === "CUSTOMER_LOGIN_ACTIVE") {
+          return { text: "Hesabınız aktif. Gerçek e-posta kodu gönderilebilir.", type: "ok", active: true };
+        }
+
+        if (data.code === "APPLICATION_PENDING") {
+          return { text: "Başvurunuz alındı. Pix2pi owner onayı bekleniyor.", type: "warn", active: false };
+        }
+
+        if (data.code === "APPROVED_ACTIVATION_REQUIRED" || data.code === "APPROVED_ACTIVATION_PENDING") {
+          return { text: "Başvurunuz onaylandı. Pix2pi aktivasyonu bekleniyor.", type: "warn", active: false };
+        }
+
+        if (data.code === "APPLICATION_REJECTED") {
+          return { text: "Başvurunuz reddedildi. Destek ile iletişime geçiniz.", type: "error", active: false };
+        }
+
+        if (data.code === "NOT_REGISTERED") {
+          return { text: "Bu e-posta için aktif kayıt bulunamadı.", type: "error", active: false };
+        }
+
+        return { text: data.message || "Durum okunamadı.", type: "warn", active: false };
+      }
+
+      function checkStatus(email) {
+        email = normalizeEmail(email);
+
+        if (!email || email.indexOf("@") === -1) {
+          showMessage("Geçerli e-posta adresi girin.", "error");
+          hideVerifyStep();
+          return Promise.resolve(null);
+        }
+
+        return fetchJson(STATUS_API + encodeURIComponent(email))
+          .then(function (activationData) {
+            if (activationData && activationData.code === "CUSTOMER_LOGIN_ACTIVE") {
+              return activationData;
+            }
+
+            return fetchJson(APPLICATION_STATUS_API + encodeURIComponent(email))
+              .then(function (applicationData) {
+                return applicationData || activationData;
+              });
+          });
+      }
+
+      function sendMailCode() {
+        var email = normalizeEmail(emailInput.value);
+
+        if (sending) return;
+
+        sending = true;
+        sendBtn.disabled = true;
+        showMessage("Durum kontrol ediliyor…", "warn");
+        hideVerifyStep();
+
+        checkStatus(email)
+          .then(function (statusData) {
+            var info = statusMessage(statusData);
+
+            if (!info || !info.active) {
+              showMessage(info ? info.text : "Hesap aktif değil.", info ? info.type : "error");
+              return null;
+            }
+
+            showMessage("Gerçek e-posta gönderiliyor…", "warn");
+
+            return fetchJson(SEND_API, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email: email })
+            });
+          })
+          .then(function (data) {
+            if (!data) return;
+
+            if (data.ok && data.code === "MAIL_CODE_SENT_REAL") {
+              lastEmail = email;
+              showMessage("Doğrulama kodu e-posta adresine gönderildi. Gelen kutusu ve spam klasörünü kontrol edin.", "ok");
+              showVerifyStep(true);
+              return;
+            }
+
+            showMessage(data.message || "Gerçek mail gönderilemedi.", "error");
+          })
+          .catch(function () {
+            showMessage("Mail gönderimi sırasında hata oluştu.", "error");
+          })
+          .finally(function () {
+            sending = false;
+            sendBtn.disabled = false;
+          });
+      }
+
+      function verifyCode() {
+        var email = normalizeEmail(lastEmail || emailInput.value);
+        var code = String(otpInput.value || "").trim();
+
+        if (verifying) return;
+
+        if (!/^[0-9]{6}$/.test(code)) {
+          showMessage("6 haneli kodu girin.", "error");
+          showVerifyStep(true);
+          return;
+        }
+
+        verifying = true;
+        verifyBtn.disabled = true;
+        showMessage("Kod doğrulanıyor…", "warn");
+
+        fetchJson(VERIFY_API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email, code: code })
+        })
+          .then(function (data) {
+            if (data && data.ok && data.code === "LOGIN_VERIFIED") {
+              showMessage("Giriş başarılı. Müşteri paneli yönlendirmesi hazırlanıyor.", "ok");
+              hideVerifyStep();
+              window.PIX2PI_CUSTOMER_LOGIN_VERIFIED = data;
+
+              setTimeout(function () {
+                window.location.href = "/customer-panel/";
+              }, 700);
+
+              return;
+            }
+
+            showMessage((data && data.message) || "Kod doğrulanamadı.", "error");
+            showVerifyStep(true);
+          })
+          .catch(function () {
+            showMessage("Kod doğrulanamadı.", "error");
+            showVerifyStep(true);
+          })
+          .finally(function () {
+            verifying = false;
+            verifyBtn.disabled = false;
+          });
+      }
+
+      var statusTimer = null;
+
+      emailInput.addEventListener("input", function () {
+        clearTimeout(statusTimer);
+        statusTimer = setTimeout(function () {
+          var email = normalizeEmail(emailInput.value);
+          if (!email || email.indexOf("@") === -1) return;
+
+          checkStatus(email)
+            .then(function (data) {
+              var info = statusMessage(data);
+              if (info) showMessage(info.text, info.type);
+              if (!info || !info.active) hideVerifyStep();
+            })
+            .catch(function () {});
+        }, 450);
+      });
+
+      sendBtn.addEventListener("click", sendMailCode);
+      verifyBtn.addEventListener("click", verifyCode);
+
+      changeEmailBtn.addEventListener("click", function () {
+        lastEmail = "";
+        hideVerifyStep();
+        showMessage("E-posta adresini değiştirebilirsiniz.", "warn");
+        emailInput.focus();
+      });
+
+      otpInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          verifyCode();
+        }
+      });
+
+      window.PIX2PI_CUSTOMER_LOGIN_STANDALONE_REAL_OTP_MARKER = MARKER;
+    })();
+  </script>
+</body>
+</html>

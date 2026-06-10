@@ -1,0 +1,7 @@
+table_name	primary_key	purpose
+readmodel.projection_state	tenant_id, projection_name	Projection offset/state tracking
+readmodel.tenant_operational_snapshot	tenant_id	Tenant dashboard snapshot
+readmodel.daily_operational_metrics	tenant_id, metric_date	Daily operational metrics
+readmodel.inventory_status_snapshot	tenant_id, item_id, warehouse_id	Inventory operational status
+readmodel.document_work_queue	tenant_id, document_type, document_id	Document operation queue
+readmodel.reconciliation_status_snapshot	tenant_id, scope_type, scope_id	Reconciliation status snapshot

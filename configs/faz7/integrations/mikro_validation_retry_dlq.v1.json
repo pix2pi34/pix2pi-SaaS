@@ -1,0 +1,109 @@
+{
+  "phase": "FAZ_7_8M_4",
+  "module": "MIKRO_VALIDATION_ERROR_MAPPING_RETRY_DLQ",
+  "module_name": "Mikro Validation / Error Mapping / Retry-DLQ Readiness",
+  "provider": {
+    "provider_id": "mikro",
+    "provider_name": "Mikro",
+    "provider_category": "ACCOUNTING_EXPORT_PROVIDER",
+    "connector_family": "MIKRO_DRY_RUN_CONNECTOR"
+  },
+  "validation": {
+    "validation_mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+    "direction": "PIX2PI_TO_MIKRO",
+    "source_system": "PIX2PI_ERP",
+    "target_system": "MIKRO_ACCOUNTING_IMPORT_DRY_RUN",
+    "validation_gate": "READY_AFTER_TEST_AND_AUDIT_PASS",
+    "package_checksum_validation": "REQUIRED",
+    "delivery_policy_validation": "REQUIRED",
+    "real_queue_write_policy": "NO_REAL_QUEUE_WRITE_IN_THIS_PHASE"
+  },
+  "retry_policy": {
+    "strategy": "EXPONENTIAL_BACKOFF_DRY_RUN",
+    "max_attempts": 3,
+    "initial_backoff_seconds": 30,
+    "max_backoff_seconds": 300,
+    "retryable_classes": [
+      "RETRYABLE_TEMPORARY",
+      "RETRYABLE_RATE_LIMIT"
+    ]
+  },
+  "provider_error_mapping": [
+    {
+      "provider_error_code": "MIKRO_TIMEOUT",
+      "classification": "RETRYABLE_TEMPORARY",
+      "retryable": true,
+      "manual_review": false,
+      "dlq_after_retry_exhausted": true
+    },
+    {
+      "provider_error_code": "MIKRO_RATE_LIMIT",
+      "classification": "RETRYABLE_RATE_LIMIT",
+      "retryable": true,
+      "manual_review": false,
+      "dlq_after_retry_exhausted": true
+    },
+    {
+      "provider_error_code": "MIKRO_FORMAT_ERROR",
+      "classification": "NON_RETRYABLE_VALIDATION",
+      "retryable": false,
+      "manual_review": false,
+      "dlq_after_retry_exhausted": true
+    },
+    {
+      "provider_error_code": "MIKRO_AUTH_FAILED",
+      "classification": "NON_RETRYABLE_AUTH",
+      "retryable": false,
+      "manual_review": true,
+      "dlq_after_retry_exhausted": false
+    },
+    {
+      "provider_error_code": "MIKRO_DUPLICATE_RECORD",
+      "classification": "NON_RETRYABLE_DUPLICATE",
+      "retryable": false,
+      "manual_review": false,
+      "dlq_after_retry_exhausted": true
+    },
+    {
+      "provider_error_code": "MIKRO_UNKNOWN_ERROR",
+      "classification": "UNKNOWN_PROVIDER_ERROR",
+      "retryable": false,
+      "manual_review": true,
+      "dlq_after_retry_exhausted": false
+    }
+  ],
+  "closed_real_operations": {
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "real_delivery_channel_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE"
+  },
+  "required_context_fields": [
+    "tenant_id",
+    "actor_user_id",
+    "correlation_id",
+    "validation_id",
+    "package_id"
+  ],
+  "forbidden_fields": [
+    "client_secret",
+    "access_token",
+    "refresh_token",
+    "password",
+    "real_provider_endpoint",
+    "real_delivery_endpoint",
+    "secret",
+    "token"
+  ],
+  "audit": {
+    "go_test_required": true,
+    "real_implementation_audit_required": true,
+    "hardcoded_final_ok_block_allowed": false,
+    "counter_based_final_status_required": true
+  },
+  "phase_gate": {
+    "faz_7_8m_4_validation_retry_dlq_gate": "READY_AFTER_TEST_AND_AUDIT_PASS",
+    "faz_7_8m_5_ready": "YES_AFTER_PASS",
+    "faz_7_9_hold_status": "HOLD_UNTIL_INTEGRATION_FAMILY_DONE"
+  }
+}

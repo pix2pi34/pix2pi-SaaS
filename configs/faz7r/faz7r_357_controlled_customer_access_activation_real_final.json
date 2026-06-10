@@ -1,0 +1,22 @@
+{
+  "step": "FAZ 7-R / 357",
+  "name": "Controlled customer access activation real final",
+  "tenantId": "tenant-api-e2e-success",
+  "decisionId": "go-live-356-20260513_074955",
+  "activationId": "activation-357-20260513_075355",
+  "accessMode": "controlled_pilot",
+  "publicLaunchAllowed": false,
+  "controlledUsageAllowed": true,
+  "enabledSurfaces": ["panel", "pos", "localization"],
+  "disabledSurfaces": ["marketplace_public_launch"],
+  "requiredEvidence": [
+    "356 GO decision DB select",
+    "activation API curl",
+    "activation DB select",
+    "activation status API curl",
+    "panel session under activation",
+    "POS session under activation",
+    "rollback deactivation no partial write",
+    "final activation DB status"
+  ]
+}

@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="tr" data-phase="FAZ_3_11_2" data-screen="FINANCE_SUMMARY_SCREEN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi ERP — Finans Özet Ekranı</title>
+  <meta name="description" content="FAZ 3-11.2 Finans özet ekranı: gelir, gider, brüt/net kâr, KDV, stopaj, tahsilat, borç/alacak, banka/kasa, mutabakat ve export readiness yüzeyi." />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #ffffff;
+      --text: #0f172a;
+      --soft: #475569;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --ok: #059669;
+      --warn: #d97706;
+      --fail: #dc2626;
+      --info: #2563eb;
+      --violet: #7c3aed;
+      --shadow: 0 20px 60px rgba(15, 23, 42, .15);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(5,150,105,.16), transparent 34rem),
+        radial-gradient(circle at 92% 0%, rgba(37,99,235,.14), transparent 32rem),
+        #f8fafc;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 22px;
+      color: #e5e7eb;
+      background: linear-gradient(180deg, #0f172a, #111827);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #059669, #2563eb);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 12px 30px rgba(5,150,105,.25);
+    }
+
+    .brand strong { display: block; font-size: 18px; }
+    .brand small { color: #94a3b8; font-size: 12px; }
+
+    .nav-title {
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 11px;
+      margin: 26px 0 10px;
+    }
+
+    .nav-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .nav-item.active {
+      color: white;
+      background: rgba(5,150,105,.15);
+      border: 1px solid rgba(110,231,183,.25);
+    }
+
+    .main { padding: 26px; min-width: 0; }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(226,232,240,.9);
+      background: rgba(255,255,255,.88);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .crumb {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.05;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--soft);
+      white-space: nowrap;
+    }
+
+    .pill.ok { color: var(--ok); border-color: rgba(5,150,105,.25); background: rgba(5,150,105,.08); }
+    .pill.warn { color: var(--warn); border-color: rgba(217,119,6,.25); background: rgba(217,119,6,.08); }
+    .pill.fail { color: var(--fail); border-color: rgba(220,38,38,.25); background: rgba(220,38,38,.08); }
+    .pill.info { color: var(--info); border-color: rgba(37,99,235,.25); background: rgba(37,99,235,.08); }
+
+    .grid { display: grid; gap: 18px; }
+    .kpi-grid { grid-template-columns: repeat(4, minmax(0,1fr)); margin-bottom: 18px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      min-width: 0;
+    }
+
+    .kpi-label { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    .kpi-value { font-size: 28px; font-weight: 900; letter-spacing: -.04em; }
+    .kpi-foot { color: var(--soft); font-size: 12px; margin-top: 8px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 400px;
+      gap: 18px;
+    }
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .panel-title h2 { margin: 0; font-size: 20px; letter-spacing: -.03em; }
+    .panel-title p { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1.1fr repeat(4, minmax(120px, .42fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 11px 12px;
+      font: inherit;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: rgba(37,99,235,.5);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.1);
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 14px 10px;
+      border-bottom: 1px solid #edf2f7;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    tbody tr { cursor: pointer; transition: background .15s ease; }
+    tbody tr:hover { background: #f8fafc; }
+
+    .main-text { font-weight: 850; letter-spacing: -.02em; }
+    .sub { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+    .status {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 11px;
+      font-weight: 850;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .status.ready { color: var(--ok); background: rgba(5,150,105,.09); border-color: rgba(5,150,105,.22); }
+    .status.review { color: var(--warn); background: rgba(217,119,6,.09); border-color: rgba(217,119,6,.22); }
+    .status.blocked { color: var(--fail); background: rgba(220,38,38,.09); border-color: rgba(220,38,38,.22); }
+    .status.open { color: var(--info); background: rgba(37,99,235,.09); border-color: rgba(37,99,235,.22); }
+
+    .money {
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .money.ok { color: var(--ok); }
+    .money.warn { color: var(--warn); }
+    .money.fail { color: var(--fail); }
+    .money.info { color: var(--info); }
+
+    .button-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 9px 11px;
+      color: white;
+      background: #0f172a;
+      font-weight: 850;
+      font-size: 12px;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(15,23,42,.14);
+    }
+
+    button.secondary {
+      color: #0f172a;
+      background: #f1f5f9;
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    button.warning { background: #d97706; }
+    button.success { background: #059669; }
+    button.danger { background: #dc2626; }
+    button:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
+
+    .side-stack { display: grid; gap: 18px; align-content: start; }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 13px;
+    }
+
+    .detail-row span:first-child { color: var(--muted); }
+    .detail-row strong { text-align: right; word-break: break-word; }
+
+    .notice {
+      border-radius: 16px;
+      padding: 13px;
+      font-size: 13px;
+      line-height: 1.5;
+      border: 1px solid rgba(37,99,235,.24);
+      color: #1e3a8a;
+      background: rgba(37,99,235,.08);
+    }
+
+    .ops-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .op-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px;
+      background: #f8fafc;
+    }
+
+    .op-card strong { display: block; font-size: 13px; margin-bottom: 6px; }
+    .op-card small { display: block; color: var(--muted); font-size: 12px; line-height: 1.45; }
+
+    .timeline { display: grid; gap: 10px; }
+
+    .event {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+
+    .event strong { display: block; font-size: 13px; margin-bottom: 4px; }
+    .event small { color: var(--muted); line-height: 1.45; }
+
+    @media (max-width: 1180px) {
+      .shell { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .layout { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 780px) {
+      .main { padding: 14px; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .filters { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      table { min-width: 1040px; }
+      .table-wrap { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="ERP navigation">
+      <div class="brand">
+        <div class="logo">P2</div>
+        <div>
+          <strong>Pix2pi ERP</strong>
+          <small>Finance Summary</small>
+        </div>
+      </div>
+
+      <div class="nav-title">WEB-L4 / WEB-L5 / WEB-L6</div>
+      <div class="nav-item"><span>e-Belge Operasyon</span><span>157</span></div>
+      <div class="nav-item"><span>Reconciliation</span><span>158</span></div>
+      <div class="nav-item"><span>Vergi / KDV Rule</span><span>159</span></div>
+      <div class="nav-item"><span>Journal / Ledger</span><span>160</span></div>
+      <div class="nav-item"><span>TDHP Mapping</span><span>161</span></div>
+      <div class="nav-item"><span>Ödeme / Mutabakat</span><span>162</span></div>
+      <div class="nav-item"><span>Export Center</span><span>163</span></div>
+      <div class="nav-item active"><span>Finans Özet</span><span>164</span></div>
+
+      <div class="nav-title">Finans Kapsamı</div>
+      <div class="nav-item"><span>TDHP</span><span>READY</span></div>
+      <div class="nav-item"><span>KDV / Stopaj</span><span>READY</span></div>
+      <div class="nav-item"><span>Payment</span><span>READY</span></div>
+      <div class="nav-item"><span>Export</span><span>READY</span></div>
+    </aside>
+
+    <main class="main">
+      <section class="topbar">
+        <div>
+          <div class="crumb">FAZ 3-R › Öncelik 3 › 164 / FAZ 3-11.2</div>
+          <h1>Finans Özet Ekranı</h1>
+        </div>
+        <div class="top-actions">
+          <span class="pill info" data-tenant-guard="required">Tenant: tenant_demo_001</span>
+          <span class="pill info" data-correlation-guard="required">Correlation: corr-ui-164</span>
+          <span class="pill ok" data-period-status="current">Period: 2026-05</span>
+          <span class="pill fail" data-production-approved="false">Production: FALSE</span>
+        </div>
+      </section>
+
+      <section class="grid kpi-grid" aria-label="Finance KPI cards">
+        <article class="card" data-kpi="gross_revenue">
+          <div class="kpi-label">Brüt satış</div>
+          <div class="kpi-value">₺2.450.000</div>
+          <div class="kpi-foot">TDHP 600 + KDV hariç net ayrımı</div>
+        </article>
+        <article class="card" data-kpi="net_profit">
+          <div class="kpi-label">Net kâr</div>
+          <div class="kpi-value">₺418.500</div>
+          <div class="kpi-foot">Gelir - maliyet - gider</div>
+        </article>
+        <article class="card" data-kpi="tax_position">
+          <div class="kpi-label">Vergi pozisyonu</div>
+          <div class="kpi-value">₺126.400</div>
+          <div class="kpi-foot">KDV + stopaj izleri</div>
+        </article>
+        <article class="card" data-kpi="cash_bank">
+          <div class="kpi-label">Kasa / banka</div>
+          <div class="kpi-value">₺980.000</div>
+          <div class="kpi-foot">102 banka + 100 kasa</div>
+        </article>
+      </section>
+
+      <section class="layout">
+        <div class="card">
+          <div class="panel-title">
+            <div>
+              <h2>Finans Özet Kalemleri</h2>
+              <p>Gelir, gider, kâr, KDV, stopaj, tahsilat, borç/alacak, banka/kasa, mutabakat ve export readiness.</p>
+            </div>
+            <span class="pill ok">Finance Audit Ready</span>
+          </div>
+
+          <div class="filters" data-filter-bar="finance-summary">
+            <input id="searchInput" aria-label="Finans özet ara" placeholder="Kalem, hesap kodu, kaynak ekran, audit hash ara..." />
+            <select id="categoryFilter" aria-label="Kategori filtrele">
+              <option value="ALL">Tüm kategoriler</option>
+              <option value="REVENUE">Gelir</option>
+              <option value="EXPENSE">Gider</option>
+              <option value="PROFIT">Kâr</option>
+              <option value="TAX">Vergi</option>
+              <option value="PAYMENT">Tahsilat</option>
+              <option value="RECEIVABLE_PAYABLE">Borç / Alacak</option>
+              <option value="CASH_BANK">Kasa / Banka</option>
+              <option value="EXPORT">Export</option>
+            </select>
+            <select id="statusFilter" aria-label="Durum filtrele">
+              <option value="ALL">Tüm durumlar</option>
+              <option value="READY">Ready</option>
+              <option value="OPEN">Open</option>
+              <option value="REVIEW_REQUIRED">Review Required</option>
+              <option value="BLOCKED">Blocked</option>
+            </select>
+            <select id="sourceFilter" aria-label="Kaynak filtrele">
+              <option value="ALL">Tüm kaynaklar</option>
+              <option value="TDHP">TDHP</option>
+              <option value="TAX">Tax Runtime</option>
+              <option value="PAYMENT">Payment</option>
+              <option value="RECONCILIATION">Reconciliation</option>
+              <option value="EXPORT">Export Center</option>
+            </select>
+            <select id="periodFilter" aria-label="Dönem filtrele">
+              <option value="2026-05">2026-05</option>
+              <option value="2026-Q2">2026-Q2</option>
+              <option value="YTD">YTD</option>
+            </select>
+          </div>
+
+          <div class="table-wrap">
+            <table aria-label="Finans özet tablosu">
+              <thead>
+                <tr>
+                  <th>Kalem</th>
+                  <th>Kategori</th>
+                  <th>Hesap / Kaynak</th>
+                  <th>Brüt</th>
+                  <th>Net</th>
+                  <th>Durum</th>
+                  <th>Readiness</th>
+                  <th>Aksiyon</th>
+                </tr>
+              </thead>
+              <tbody id="summaryRows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <aside class="side-stack">
+          <section class="card" data-detail-drawer="finance-summary">
+            <div class="panel-title">
+              <div>
+                <h2>Finans Kalem Detayı</h2>
+                <p>Seçili kalem için hesap, kaynak ekran, mutabakat, export ve audit izleri.</p>
+              </div>
+            </div>
+            <div id="detailPanel"></div>
+          </section>
+
+          <section class="card" data-operation-actions="finance-summary">
+            <div class="panel-title">
+              <div>
+                <h2>Finans Operasyonları</h2>
+                <p>Drill-down, reconciliation link, export link ve audit evidence yüzeyi.</p>
+              </div>
+            </div>
+
+            <div class="notice" data-live-policy="summary-readonly">
+              Finans özet ekranı read-only karar destek yüzeyidir. Muhasebe kaydı, vergi rule değişimi, ödeme capture veya canlı export teslimi yapmaz.
+            </div>
+
+            <div class="ops-grid">
+              <div class="op-card" data-action="drill-down">
+                <strong>Drill-down</strong>
+                <small>Journal, tax, payment veya export ekranına kaynak bağlantısı.</small>
+              </div>
+              <div class="op-card" data-action="reconcile-check">
+                <strong>Reconcile Check</strong>
+                <small>TDHP ve ödeme mutabakat readiness durumunu gösterir.</small>
+              </div>
+              <div class="op-card" data-action="export-readiness">
+                <strong>Export Readiness</strong>
+                <small>Logo, Mikro, Zirve, ETA paket durumlarını özetler.</small>
+              </div>
+              <div class="op-card" data-action="audit-evidence">
+                <strong>Audit Evidence</strong>
+                <small>Summary hash ve kaynak evidence dosyalarını gösterir.</small>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" data-audit-trail="finance-summary">
+            <div class="panel-title">
+              <div>
+                <h2>Audit Timeline</h2>
+                <p>Tenant-safe finans özet işlem geçmişi.</p>
+              </div>
+            </div>
+            <div class="timeline" id="timeline"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const productionApproved = false;
+    const readOnlySummary = true;
+    const realPaymentCaptureAllowed = false;
+    const realExportDeliveryAllowed = false;
+    const realTaxRuleChangeAllowed = false;
+
+    const rows = [
+      {
+        id: "fin-revenue-001",
+        title: "Yurtiçi satış gelirleri",
+        category: "REVENUE",
+        accountCodes: "600.01, 391.01.20, 120.01",
+        source: "TDHP",
+        period: "2026-05",
+        grossMinor: 245000000,
+        netMinor: 204166667,
+        taxMinor: 40833333,
+        status: "READY",
+        readiness: "JOURNAL_LEDGER_READY",
+        sourceScreen: "FAZ_3_11_3_JOURNAL_LEDGER_SCREEN",
+        reconciliationStatus: "MATCHED",
+        exportStatus: "READY",
+        auditHash: "sha256:finance-revenue-001",
+        summaryHash: "sha256:summary-revenue-001",
+        evidenceFile: "docs/faz3/evidence/finance_revenue_001.md",
+        allowedActions: ["DRILL_DOWN", "AUDIT"]
+      },
+      {
+        id: "fin-expense-002",
+        title: "Alış maliyetleri ve giderler",
+        category: "EXPENSE",
+        accountCodes: "153.01, 191.01.20, 320.01",
+        source: "TDHP",
+        period: "2026-05",
+        grossMinor: 158000000,
+        netMinor: 131666667,
+        taxMinor: 26333333,
+        status: "READY",
+        readiness: "POSTING_READY",
+        sourceScreen: "FAZ_3_11_3_JOURNAL_LEDGER_SCREEN",
+        reconciliationStatus: "MATCHED",
+        exportStatus: "READY",
+        auditHash: "sha256:finance-expense-002",
+        summaryHash: "sha256:summary-expense-002",
+        evidenceFile: "docs/faz3/evidence/finance_expense_002.md",
+        allowedActions: ["DRILL_DOWN", "AUDIT"]
+      },
+      {
+        id: "fin-profit-003",
+        title: "Brüt / net kâr özeti",
+        category: "PROFIT",
+        accountCodes: "600.01, 153.01, 610.01",
+        source: "TDHP",
+        period: "2026-05",
+        grossMinor: 87000000,
+        netMinor: 41850000,
+        taxMinor: 0,
+        status: "OPEN",
+        readiness: "MANAGEMENT_REVIEW_READY",
+        sourceScreen: "FAZ_3_11_2_FINANCE_SUMMARY_SCREEN",
+        reconciliationStatus: "MATCHED",
+        exportStatus: "READY",
+        auditHash: "sha256:finance-profit-003",
+        summaryHash: "sha256:summary-profit-003",
+        evidenceFile: "docs/faz3/evidence/finance_profit_003.md",
+        allowedActions: ["DRILL_DOWN", "AUDIT"]
+      },
+      {
+        id: "fin-tax-004",
+        title: "KDV / stopaj pozisyonu",
+        category: "TAX",
+        accountCodes: "391.01.20, 191.01.20, 360.01.20",
+        source: "TAX",
+        period: "2026-05",
+        grossMinor: 12640000,
+        netMinor: 12640000,
+        taxMinor: 12640000,
+        status: "REVIEW_REQUIRED",
+        readiness: "LEGAL_FINANCE_REVIEW_REQUIRED",
+        sourceScreen: "FAZ_3_11_5_TAX_KDV_RULE_SCREEN",
+        reconciliationStatus: "MATCHED",
+        exportStatus: "READY",
+        auditHash: "sha256:finance-tax-004",
+        summaryHash: "sha256:summary-tax-004",
+        evidenceFile: "docs/faz3/evidence/finance_tax_004.md",
+        allowedActions: ["DRILL_DOWN", "AUDIT"]
+      },
+      {
+        id: "fin-payment-005",
+        title: "Tahsilat ve ödeme kapanışı",
+        category: "PAYMENT",
+        accountCodes: "102.01, 120.01",
+        source: "PAYMENT",
+        period: "2026-05",
+        grossMinor: 98000000,
+        netMinor: 98000000,
+        taxMinor: 0,
+        status: "READY",
+        readiness: "PAYMENT_RECONCILIATION_READY",
+        sourceScreen: "FAZ_3_11_9_PAYMENT_RECONCILIATION_SCREEN",
+        reconciliationStatus: "MATCHED",
+        exportStatus: "READY",
+        auditHash: "sha256:finance-payment-005",
+        summaryHash: "sha256:summary-payment-005",
+        evidenceFile: "docs/faz3/evidence/finance_payment_005.md",
+        allowedActions: ["DRILL_DOWN", "RECONCILE", "AUDIT"]
+      },
+      {
+        id: "fin-arap-006",
+        title: "Alacak / borç görünümü",
+        category: "RECEIVABLE_PAYABLE",
+        accountCodes: "120.01, 320.01",
+        source: "RECONCILIATION",
+        period: "2026-05",
+        grossMinor: 74000000,
+        netMinor: 74000000,
+        taxMinor: 0,
+        status: "OPEN",
+        readiness: "AGING_REVIEW_READY",
+        sourceScreen: "FAZ_3_11_6_RECONCILIATION_SCREEN",
+        reconciliationStatus: "DIFFERENCE_REVIEW",
+        exportStatus: "READY",
+        auditHash: "sha256:finance-arap-006",
+        summaryHash: "sha256:summary-arap-006",
+        evidenceFile: "docs/faz3/evidence/finance_arap_006.md",
+        allowedActions: ["DRILL_DOWN", "RECONCILE", "AUDIT"]
+      },
+      {
+        id: "fin-cashbank-007",
+        title: "Kasa / banka özeti",
+        category: "CASH_BANK",
+        accountCodes: "100.01, 102.01",
+        source: "PAYMENT",
+        period: "2026-05",
+        grossMinor: 98000000,
+        netMinor: 98000000,
+        taxMinor: 0,
+        status: "READY",
+        readiness: "BANK_STATEMENT_MATCHED",
+        sourceScreen: "FAZ_3_11_9_PAYMENT_RECONCILIATION_SCREEN",
+        reconciliationStatus: "MATCHED",
+        exportStatus: "READY",
+        auditHash: "sha256:finance-cashbank-007",
+        summaryHash: "sha256:summary-cashbank-007",
+        evidenceFile: "docs/faz3/evidence/finance_cashbank_007.md",
+        allowedActions: ["DRILL_DOWN", "RECONCILE", "AUDIT"]
+      },
+      {
+        id: "fin-export-008",
+        title: "Muhasebe export readiness",
+        category: "EXPORT",
+        accountCodes: "Logo, Mikro, Zirve, ETA",
+        source: "EXPORT",
+        period: "2026-05",
+        grossMinor: 245000000,
+        netMinor: 245000000,
+        taxMinor: 0,
+        status: "READY",
+        readiness: "EXPORT_CENTER_READY",
+        sourceScreen: "FAZ_3_11_7_EXPORT_CENTER_SCREEN",
+        reconciliationStatus: "MATCHED",
+        exportStatus: "LOGO_MIKRO_ZIRVE_ETA_READY",
+        auditHash: "sha256:finance-export-008",
+        summaryHash: "sha256:summary-export-008",
+        evidenceFile: "docs/faz3/evidence/finance_export_008.md",
+        allowedActions: ["DRILL_DOWN", "EXPORT_READINESS", "AUDIT"]
+      }
+    ];
+
+    const categoryLabel = {
+      REVENUE: "Gelir",
+      EXPENSE: "Gider",
+      PROFIT: "Kâr",
+      TAX: "Vergi",
+      PAYMENT: "Tahsilat",
+      RECEIVABLE_PAYABLE: "Borç / Alacak",
+      CASH_BANK: "Kasa / Banka",
+      EXPORT: "Export"
+    };
+
+    const sourceLabel = {
+      TDHP: "TDHP",
+      TAX: "Tax Runtime",
+      PAYMENT: "Payment",
+      RECONCILIATION: "Reconciliation",
+      EXPORT: "Export Center"
+    };
+
+    const statusClass = {
+      READY: "ready",
+      OPEN: "open",
+      REVIEW_REQUIRED: "review",
+      BLOCKED: "blocked"
+    };
+
+    const statusLabel = {
+      READY: "Ready",
+      OPEN: "Open",
+      REVIEW_REQUIRED: "Review Required",
+      BLOCKED: "Blocked"
+    };
+
+    function formatMoney(minor) {
+      return new Intl.NumberFormat("tr-TR", {
+        style: "currency",
+        currency: "TRY"
+      }).format(minor / 100);
+    }
+
+    function actionButtons(row) {
+      const actions = [
+        ["DRILL_DOWN", "Drill-down", "secondary"],
+        ["RECONCILE", "Reconcile", "warning"],
+        ["EXPORT_READINESS", "Export", "success"],
+        ["AUDIT", "Audit", "secondary"],
+        ["WRITE_LEDGER", "Write", "danger"]
+      ];
+
+      return actions
+        .filter(([key]) => row.allowedActions.includes(key) || key === "WRITE_LEDGER")
+        .map(([key, label, cls]) => {
+          const disabled = key === "WRITE_LEDGER" && readOnlySummary;
+          return `<button class="${cls}" data-op="${key}" ${disabled ? "disabled" : ""}>${label}</button>`;
+        })
+        .join("");
+    }
+
+    function renderRows() {
+      const q = document.getElementById("searchInput").value.trim().toLowerCase();
+      const category = document.getElementById("categoryFilter").value;
+      const status = document.getElementById("statusFilter").value;
+      const source = document.getElementById("sourceFilter").value;
+      const period = document.getElementById("periodFilter").value;
+
+      const filtered = rows.filter(row => {
+        const haystack = [
+          row.id,
+          row.title,
+          row.category,
+          row.accountCodes,
+          row.source,
+          row.period,
+          row.readiness,
+          row.sourceScreen,
+          row.reconciliationStatus,
+          row.exportStatus,
+          row.auditHash,
+          row.summaryHash,
+          row.evidenceFile
+        ].join(" ").toLowerCase();
+
+        const qOk = q === "" || haystack.includes(q);
+        const categoryOk = category === "ALL" || row.category === category;
+        const statusOk = status === "ALL" || row.status === status;
+        const sourceOk = source === "ALL" || row.source === source;
+        const periodOk = period === row.period || period === "2026-Q2" || period === "YTD";
+
+        return qOk && categoryOk && statusOk && sourceOk && periodOk;
+      });
+
+      document.getElementById("summaryRows").innerHTML = filtered.map(row => `
+        <tr data-finance-row-id="${row.id}" onclick="selectRow('${row.id}')">
+          <td>
+            <span class="main-text">${row.title}</span>
+            <span class="sub">ID: ${row.id}</span>
+          </td>
+          <td>
+            <strong>${categoryLabel[row.category]}</strong>
+            <span class="sub">${row.period}</span>
+          </td>
+          <td>
+            <strong>${row.accountCodes}</strong>
+            <span class="sub">${sourceLabel[row.source]}</span>
+          </td>
+          <td><span class="money info">${formatMoney(row.grossMinor)}</span></td>
+          <td><span class="money ok">${formatMoney(row.netMinor)}</span></td>
+          <td><span class="status ${statusClass[row.status]}">${statusLabel[row.status]}</span></td>
+          <td>
+            <strong>${row.readiness}</strong>
+            <span class="sub">${row.reconciliationStatus} / ${row.exportStatus}</span>
+          </td>
+          <td><div class="button-row">${actionButtons(row)}</div></td>
+        </tr>
+      `).join("");
+
+      if (filtered.length > 0) {
+        selectRow(filtered[0].id);
+      } else {
+        document.getElementById("detailPanel").innerHTML = "";
+        document.getElementById("timeline").innerHTML = "";
+      }
+    }
+
+    function yesNo(value) {
+      return value ? "YES" : "NO";
+    }
+
+    function selectRow(id) {
+      const row = rows.find(item => item.id === id);
+      if (!row) return;
+
+      document.getElementById("detailPanel").innerHTML = `
+        <div class="detail-row"><span>Finance Row ID</span><strong>${row.id}</strong></div>
+        <div class="detail-row"><span>Title</span><strong>${row.title}</strong></div>
+        <div class="detail-row"><span>Category</span><strong>${categoryLabel[row.category]}</strong></div>
+        <div class="detail-row"><span>Account Codes</span><strong>${row.accountCodes}</strong></div>
+        <div class="detail-row"><span>Source</span><strong>${sourceLabel[row.source]}</strong></div>
+        <div class="detail-row"><span>Period</span><strong>${row.period}</strong></div>
+        <div class="detail-row"><span>Gross</span><strong>${formatMoney(row.grossMinor)}</strong></div>
+        <div class="detail-row"><span>Net</span><strong>${formatMoney(row.netMinor)}</strong></div>
+        <div class="detail-row"><span>Tax</span><strong>${formatMoney(row.taxMinor)}</strong></div>
+        <div class="detail-row"><span>Status</span><strong>${statusLabel[row.status]}</strong></div>
+        <div class="detail-row"><span>Readiness</span><strong>${row.readiness}</strong></div>
+        <div class="detail-row"><span>Source Screen</span><strong>${row.sourceScreen}</strong></div>
+        <div class="detail-row"><span>Reconciliation</span><strong>${row.reconciliationStatus}</strong></div>
+        <div class="detail-row"><span>Export Status</span><strong>${row.exportStatus}</strong></div>
+        <div class="detail-row"><span>Audit Hash</span><strong>${row.auditHash}</strong></div>
+        <div class="detail-row"><span>Summary Hash</span><strong>${row.summaryHash}</strong></div>
+        <div class="detail-row"><span>Evidence File</span><strong>${row.evidenceFile}</strong></div>
+        <div class="detail-row"><span>Read-only Summary</span><strong>${yesNo(readOnlySummary)}</strong></div>
+        <div class="detail-row"><span>Real Payment Capture</span><strong>${yesNo(realPaymentCaptureAllowed)}</strong></div>
+        <div class="detail-row"><span>Real Export Delivery</span><strong>${yesNo(realExportDeliveryAllowed)}</strong></div>
+        <div class="detail-row"><span>Real Tax Rule Change</span><strong>${yesNo(realTaxRuleChangeAllowed)}</strong></div>
+      `;
+
+      document.getElementById("timeline").innerHTML = [
+        ["SUMMARY_ROW_SELECTED", "Finans özet kalemi tenant scope içinde görüntülendi."],
+        [row.sourceScreen, `Kaynak ekran: ${row.sourceScreen}.`],
+        [row.readiness, `Readiness: ${row.readiness}, reconciliation: ${row.reconciliationStatus}.`]
+      ].map(([title, desc]) => `
+        <div class="event">
+          <strong>${title}</strong>
+          <small>${desc}</small>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("searchInput").addEventListener("input", renderRows);
+    document.getElementById("categoryFilter").addEventListener("change", renderRows);
+    document.getElementById("statusFilter").addEventListener("change", renderRows);
+    document.getElementById("sourceFilter").addEventListener("change", renderRows);
+    document.getElementById("periodFilter").addEventListener("change", renderRows);
+
+    renderRows();
+  </script>
+</body>
+</html>

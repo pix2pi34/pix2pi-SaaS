@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "343",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "panel_billing_screen",
+      "path": "/billing/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_343_BILLING_APP_SHELL_START",
+        "PIX2PI_343_BILLING_SUMMARY_CARDS_START",
+        "PIX2PI_343_BILLING_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "panel_billing_runtime",
+      "path": "/assets/billing/panel-billing-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_343_PANEL_BILLING_RUNTIME_START",
+        "billingScopeHeaders",
+        "buildBillingRuntimeContract"
+      ]
+    }
+  ]
+}

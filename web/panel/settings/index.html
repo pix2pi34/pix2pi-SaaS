@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi İşletme Ayarları</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #687287;
+      --border: #e6e9f0;
+      --brand: #1f6feb;
+      --brand-soft: #eaf2ff;
+      --ok: #0f8b4c;
+      --danger: #b42318;
+      --shadow: 0 14px 34px rgba(18, 27, 46, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 28px;
+    }
+
+    .shell {
+      width: min(100%, 1220px);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #344054;
+    }
+
+    input, select, textarea {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 13px;
+      font: inherit;
+      outline: none;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 86px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      border-radius: 15px;
+      padding: 12px 16px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .primary { background: var(--brand); color: #fff; }
+    .secondary { background: var(--brand-soft); color: var(--brand); }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .status {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 13px;
+      color: var(--muted);
+      background: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .status[data-validation-status="valid"] {
+      border-color: #bbf7d0;
+      background: #f0fdf4;
+      color: var(--ok);
+    }
+
+    .status[data-validation-status="invalid"] {
+      border-color: #fecaca;
+      background: #fff1f2;
+      color: var(--danger);
+    }
+
+    .logo-box {
+      min-height: 120px;
+      border: 1px dashed var(--border);
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      background: #fff;
+      font-weight: 900;
+    }
+
+    @media (max-width: 860px) {
+      body { padding: 18px; }
+      .grid, .field-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_322_BUSINESS_SETTINGS_APP_SHELL_START -->
+  <main class="shell" data-step="322" data-surface="business-settings">
+    <section class="hero">
+      <h1 data-i18n="settings.title">İşletme ayarları</h1>
+      <p data-i18n="settings.description">İşletme profili, ticari bilgiler, varsayılan dil ve modül görünürlük ayarları.</p>
+    </section>
+
+    <form id="business-settings-form">
+      <section class="grid">
+        <!-- PIX2PI_322_BUSINESS_PROFILE_CARD_START -->
+        <article class="card" data-widget="business_profile">
+          <h2>İşletme profili</h2>
+          <div class="field-grid">
+            <label>
+              İşletme adı
+              <input name="business_name" required />
+            </label>
+
+            <label>
+              Ticari unvan
+              <input name="legal_title" required />
+            </label>
+
+            <label>
+              İşletme tipi
+              <select name="business_type">
+                <option value="market">Market</option>
+                <option value="retail">Perakende</option>
+                <option value="restaurant">Restoran</option>
+                <option value="service">Hizmet</option>
+              </select>
+            </label>
+
+            <!-- PIX2PI_322_TENANT_DEFAULT_LANGUAGE_SETTING_START -->
+            <label>
+              Varsayılan dil
+              <select name="default_language" required>
+                <option value="tr-TR">Latin Türkçe — tr-TR</option>
+                <option value="ota">Osmanlıca Türkçesi — ota</option>
+                <option value="ar">Arapça — ar</option>
+                <option value="fa">Farsça — fa</option>
+                <option value="en">İngilizce — en</option>
+              </select>
+            </label>
+            <!-- PIX2PI_322_TENANT_DEFAULT_LANGUAGE_SETTING_END -->
+          </div>
+        </article>
+        <!-- PIX2PI_322_BUSINESS_PROFILE_CARD_END -->
+
+        <!-- PIX2PI_322_TAX_COMMERCIAL_SETTINGS_START -->
+        <article class="card" data-widget="tax_commercial_settings">
+          <h2>Ticari / vergi bilgileri</h2>
+          <div class="field-grid">
+            <label>
+              Vergi no / TCKN
+              <input name="tax_number" required />
+            </label>
+
+            <label>
+              Vergi dairesi
+              <input name="tax_office" required />
+            </label>
+          </div>
+        </article>
+        <!-- PIX2PI_322_TAX_COMMERCIAL_SETTINGS_END -->
+
+        <!-- PIX2PI_322_ADDRESS_CONTACT_SETTINGS_START -->
+        <article class="card" data-widget="address_contact_settings">
+          <h2>Adres / iletişim</h2>
+          <div class="field-grid">
+            <label>
+              İl
+              <input name="city" required />
+            </label>
+
+            <label>
+              İlçe
+              <input name="district" required />
+            </label>
+
+            <label>
+              Telefon
+              <input name="phone" />
+            </label>
+
+            <label>
+              E-posta
+              <input name="email" type="email" />
+            </label>
+          </div>
+
+          <label style="margin-top:12px;">
+            Açık adres
+            <textarea name="address_line"></textarea>
+          </label>
+        </article>
+        <!-- PIX2PI_322_ADDRESS_CONTACT_SETTINGS_END -->
+
+        <!-- PIX2PI_322_BRAND_LOGO_PLACEHOLDER_START -->
+        <article class="card" data-widget="brand_logo_placeholder">
+          <h2>Marka / logo</h2>
+          <div class="logo-box">LOGO PLACEHOLDER</div>
+          <label style="margin-top:12px;">
+            Renk teması
+            <select name="color_theme">
+              <option value="default">Default</option>
+              <option value="blue">Blue</option>
+              <option value="dark">Dark</option>
+            </select>
+          </label>
+        </article>
+        <!-- PIX2PI_322_BRAND_LOGO_PLACEHOLDER_END -->
+      </section>
+
+      <!-- PIX2PI_322_MODULE_VISIBILITY_SETTINGS_START -->
+      <section class="card" data-widget="module_visibility_settings">
+        <h2>POS / ERP / Marketplace görünürlük</h2>
+        <div class="field-grid">
+          <label><input name="pos_visible" type="checkbox" checked /> POS modülü görünür</label>
+          <label><input name="erp_visible" type="checkbox" checked /> ERP modülü görünür</label>
+          <label><input name="marketplace_visible" type="checkbox" /> Marketplace modülü görünür</label>
+        </div>
+      </section>
+      <!-- PIX2PI_322_MODULE_VISIBILITY_SETTINGS_END -->
+
+      <!-- PIX2PI_322_NOTIFICATION_PREFERENCES_START -->
+      <section class="card" data-widget="notification_preferences">
+        <h2>Bildirim tercihleri</h2>
+        <div class="field-grid">
+          <label><input name="email_enabled" type="checkbox" checked /> E-posta bildirimleri</label>
+          <label><input name="sms_enabled" type="checkbox" /> SMS bildirimleri</label>
+          <label><input name="system_alerts_enabled" type="checkbox" checked /> Sistem uyarıları</label>
+        </div>
+      </section>
+      <!-- PIX2PI_322_NOTIFICATION_PREFERENCES_END -->
+
+      <!-- PIX2PI_322_TENANT_SCOPED_SETTINGS_GUARD_START -->
+      <section class="card" data-widget="tenant_scoped_settings_guard">
+        <h2>Tenant scoped settings guard</h2>
+        <p>Ayar okuma/yazma işlemleri JWT ve `X-Tenant-ID` ile tenant kapsamına alınır.</p>
+      </section>
+      <!-- PIX2PI_322_TENANT_SCOPED_SETTINGS_GUARD_END -->
+
+      <!-- PIX2PI_322_SETTINGS_VALIDATION_DRAFT_SAVE_START -->
+      <section id="settings-validation-status" class="status" hidden data-validation-status="">
+        Settings validation sonucu burada gösterilir.
+      </section>
+
+      <section class="actions">
+        <button type="button" class="secondary" id="save-settings-draft">Taslak kaydet</button>
+        <button type="submit" class="primary">Ayarları kontrol et</button>
+      </section>
+      <!-- PIX2PI_322_SETTINGS_VALIDATION_DRAFT_SAVE_END -->
+
+      <!-- PIX2PI_322_I18N_READY_MARKERS_START -->
+      <section class="card" data-widget="i18n_ready_settings_markers">
+        <h2 data-i18n="settings.i18n_ready">i18n-ready settings</h2>
+        <p data-i18n="settings.business_profile_surface">İşletme ayarları çeviri dosyalarına bağlanmaya hazırdır.</p>
+      </section>
+      <!-- PIX2PI_322_I18N_READY_MARKERS_END -->
+    </form>
+  </main>
+  <!-- PIX2PI_322_BUSINESS_SETTINGS_APP_SHELL_END -->
+
+  <script src="/assets/settings/business-settings-runtime.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById("business-settings-form");
+      const status = document.getElementById("settings-validation-status");
+      const draftButton = document.getElementById("save-settings-draft");
+
+      Pix2piBusinessSettings.bootSettingsScreen();
+
+      draftButton.addEventListener("click", function () {
+        const payload = Pix2piBusinessSettings.readForm(form);
+        Pix2piBusinessSettings.saveDraft(payload);
+        status.textContent = "İşletme ayarları taslağı kaydedildi.";
+        status.setAttribute("data-validation-status", "valid");
+        status.hidden = false;
+      });
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const payload = Pix2piBusinessSettings.readForm(form);
+        const validation = Pix2piBusinessSettings.validateSettingsPayload(payload);
+        Pix2piBusinessSettings.renderValidation(status, validation);
+
+        if (validation.valid) {
+          Pix2piBusinessSettings.saveDraft(payload);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

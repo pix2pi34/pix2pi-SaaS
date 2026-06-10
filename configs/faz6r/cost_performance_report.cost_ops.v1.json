@@ -1,0 +1,89 @@
+{
+  "version": "cost_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_5_5",
+  "status": "dry_run_report_only_no_mutation",
+  "report_id": "cost-performance-report-faz-6-21-5-5",
+  "category_summaries": [
+    {
+      "category": "compute",
+      "source_step": "FAZ_6_21_5_1",
+      "recommendation_count": 4,
+      "estimated_savings_level": "medium",
+      "risk_level": "medium",
+      "priority": "P2_REVIEW_NEXT",
+      "guard_status": "SLO_AND_DR_GUARD_REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false,
+      "next_action": "collect_7d_metrics_then_review_rightsizing"
+    },
+    {
+      "category": "database",
+      "source_step": "FAZ_6_21_5_2",
+      "recommendation_count": 5,
+      "estimated_savings_level": "medium",
+      "risk_level": "high",
+      "priority": "P3_BACKLOG",
+      "guard_status": "SLO_DATA_SAFETY_DR_GUARD_REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false,
+      "next_action": "review_query_index_replica_backup_without_mutation"
+    },
+    {
+      "category": "storage_log",
+      "source_step": "FAZ_6_21_5_3",
+      "recommendation_count": 5,
+      "estimated_savings_level": "medium",
+      "risk_level": "high",
+      "priority": "P3_BACKLOG",
+      "guard_status": "RETENTION_TENANT_AUDIT_EVIDENCE_GUARD_REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false,
+      "next_action": "review_retention_and_archive_tiers_no_delete"
+    },
+    {
+      "category": "cache_queue",
+      "source_step": "FAZ_6_21_5_4",
+      "recommendation_count": 5,
+      "estimated_savings_level": "medium",
+      "risk_level": "high",
+      "priority": "P2_REVIEW_NEXT",
+      "guard_status": "TENANT_NAMESPACE_IDEMPOTENCY_REPLAY_GUARD_REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false,
+      "next_action": "start_cache_hit_miss_tuning_before_any_ttl_or_retention_change"
+    }
+  ],
+  "risk_impact_matrix": [
+    {
+      "risk": "performance_regression",
+      "impact": "latency_or_error_rate_increase",
+      "guard": "slo_guard",
+      "status": "REQUIRED"
+    },
+    {
+      "risk": "data_loss",
+      "impact": "backup_log_stream_or_evidence_loss",
+      "guard": "data_safety_guard",
+      "status": "REQUIRED"
+    },
+    {
+      "risk": "tenant_isolation_break",
+      "impact": "cross_tenant_key_or_artifact_scope_error",
+      "guard": "tenant_isolation_guard",
+      "status": "REQUIRED"
+    },
+    {
+      "risk": "dr_readiness_drop",
+      "impact": "rpo_rto_or_replay_capability_regression",
+      "guard": "dr_capacity_guard",
+      "status": "REQUIRED"
+    }
+  ],
+  "final_recommendation": {
+    "overall_status": "REVIEW_READY_NO_MUTATION",
+    "first_next_tuning_step": "FAZ_6_21_3_3",
+    "reason": "Cache hit/miss tuning is the safest next step before TTL, retention, queue or DB mutations.",
+    "mutation_allowed": false
+  }
+}

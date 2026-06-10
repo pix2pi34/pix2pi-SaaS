@@ -1,0 +1,193 @@
+# FAZ 4B / 22.5 - Alert Rule Catalog / Severity Matrix Report
+
+Generated at: 2026-04-29 19:00:51 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+DOCKER_COMPOSE_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+FIREWALL_CHANGED=NO
+PORT_CHANGED=NO
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+PROMETHEUS_CONFIG_CHANGED=NO
+PROMETHEUS_RELOAD_EXECUTED=NO
+PROMETHEUS_RESTARTED=NO
+ALERTMANAGER_CONFIG_CHANGED=NO
+ALERTMANAGER_RELOAD_EXECUTED=NO
+ALERTMANAGER_RESTARTED=NO
+GRAFANA_DASHBOARD_CHANGED=NO
+GRAFANA_ALERT_CHANGED=NO
+ALERT_RULE_CHANGED=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+METRIC_BODY_PRINTED=NO
+LOG_CONTENT_PRINTED=NO
+TRACE_BODY_PRINTED=NO
+PROMETHEUS_QUERY_BODY_PRINTED=NO
+LOKI_QUERY_BODY_PRINTED=NO
+TEMPO_QUERY_BODY_PRINTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+VALIDATION_MODE=ALERT_RULE_CATALOG_EVIDENCE_ONLY
+PREVIOUS_22_4_FINAL_STATUS=PASS
+PREVIOUS_22_4_TRACES_TEMPO_READINESS=PASS
+PREVIOUS_22_4_SERVICE_RESTARTED=NO
+PREVIOUS_22_4_SECRET_VALUE_PRINTED=NO
+PREVIOUS_22_3_FINAL_STATUS=PASS
+PREVIOUS_22_2_FINAL_STATUS=PASS
+PREVIOUS_22_1_FINAL_STATUS=PASS
+PREVIOUS_20_FINAL_STATUS=PASS
+PREVIOUS_20_INFRA_PRODUCTION_HARDENING_FINAL_CLOSURE=PASS
+PREVIOUS_21_FINAL_STATUS=PASS
+PREVIOUS_21_SECURITY_RBAC_AUDIT_FINAL_CLOSURE=PASS
+ALERT_RULE_COUNT=24
+ALERT_CRITICAL_COUNT=6
+ALERT_HIGH_COUNT=14
+ALERT_MEDIUM_COUNT=4
+ALERT_LOW_COUNT=0
+ALERT_SECURITY_COUNT=4
+ALERT_RUNTIME_COUNT=3
+ALERT_DB_COUNT=2
+ALERT_EVENT_BUS_COUNT=3
+ALERT_OBSERVABILITY_COUNT=4
+ALERT_RUNBOOK_PLACEHOLDER_COUNT=24
+ALERT_SEVERITY_MATRIX_COUNT=4
+ALERT_ESCALATION_MATRIX_COUNT=4
+ALERT_SIGNAL_MAPPING_COUNT=24
+ALERT_SIGNAL_MAPPING_READY_COUNT=24
+ALERT_PREVIOUS_22_4=PASS
+ALERT_RULE_INVENTORY=PASS
+ALERT_SEVERITY_MATRIX=PASS
+ALERT_SIGNAL_MAPPING=PASS
+ALERT_ESCALATION_MATRIX=PASS
+ALERT_RUNBOOK_PLACEHOLDER=PASS
+ALERT_NO_CONFIG_CHANGE=PASS
+ALERT_NO_RESTART=PASS
+ALERT_BODY_NOT_PRINTED=PASS
+ALERT_SECRET_SAFE=PASS
+ALERT_MATRIX_LINE_COUNT=46
+ALERT_RULE_CATALOG_FILE=docs/phase4/22_5_alert_rule_catalog.tsv
+ALERT_SEVERITY_MATRIX_FILE=docs/phase4/22_5_alert_severity_matrix.tsv
+ALERT_SIGNAL_MAPPING_FILE=docs/phase4/22_5_alert_signal_mapping.tsv
+ALERT_ESCALATION_MATRIX_FILE=docs/phase4/22_5_alert_escalation_matrix.tsv
+ALERT_RULE_CATALOG=PASS
+FAZ4B_22_5_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+ALERT_RULE_CATALOG=PASS
+FAZ4B_22_5_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+
+## Matrix
+MATRIX_FILE=docs/phase4/22_5_alert_rule_catalog_matrix.tsv
+gate	status	note
+previous_22_4	PASS	traces/tempo readiness prerequisite
+alert_rule_inventory	PASS	alerts=24 critical=6 high=14 medium=4
+severity_matrix	PASS	severity_rows=4
+signal_mapping	PASS	mapped=24 ready=24
+escalation_matrix	PASS	escalation_rows=4
+runbook_placeholder	PASS	runbook_placeholders=24
+security_alerts	PASS	count=4
+runtime_alerts	PASS	count=3
+db_alerts	PASS	count=2
+event_bus_alerts	PASS	count=3
+observability_alerts	PASS	count=4
+body_not_printed	PASS	metric/log/trace/query body not printed
+no_config_change	PASS	alert/prometheus/grafana config not changed
+no_restart	PASS	service/container not restarted
+secret_safe	PASS	secret values not printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+prometheus_config_changed	NO	evidence only
+prometheus_reload_executed	NO	evidence only
+prometheus_restarted	NO	evidence only
+alertmanager_config_changed	NO	evidence only
+alertmanager_reload_executed	NO	evidence only
+alertmanager_restarted	NO	evidence only
+grafana_dashboard_changed	NO	evidence only
+grafana_alert_changed	NO	evidence only
+alert_rule_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+metric_body_printed	NO	secret-safe report
+log_content_printed	NO	secret-safe report
+trace_body_printed	NO	secret-safe report
+prometheus_query_body_printed	NO	secret-safe report
+loki_query_body_printed	NO	secret-safe report
+tempo_query_body_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+
+## Inventories
+ALERT_RULE_CATALOG_FILE=docs/phase4/22_5_alert_rule_catalog.tsv
+ALERT_SEVERITY_MATRIX_FILE=docs/phase4/22_5_alert_severity_matrix.tsv
+ALERT_SIGNAL_MAPPING_FILE=docs/phase4/22_5_alert_signal_mapping.tsv
+ALERT_ESCALATION_MATRIX_FILE=docs/phase4/22_5_alert_escalation_matrix.tsv
+NOTE=Alert rules are cataloged only. No Prometheus/Alertmanager/Grafana config is changed.
+
+## Safety Decision
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+DOCKER_COMPOSE_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+FIREWALL_CHANGED=NO
+PORT_CHANGED=NO
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+PROMETHEUS_CONFIG_CHANGED=NO
+PROMETHEUS_RELOAD_EXECUTED=NO
+PROMETHEUS_RESTARTED=NO
+ALERTMANAGER_CONFIG_CHANGED=NO
+ALERTMANAGER_RELOAD_EXECUTED=NO
+ALERTMANAGER_RESTARTED=NO
+GRAFANA_DASHBOARD_CHANGED=NO
+GRAFANA_ALERT_CHANGED=NO
+ALERT_RULE_CHANGED=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+METRIC_BODY_PRINTED=NO
+LOG_CONTENT_PRINTED=NO
+TRACE_BODY_PRINTED=NO
+PROMETHEUS_QUERY_BODY_PRINTED=NO
+LOKI_QUERY_BODY_PRINTED=NO
+TEMPO_QUERY_BODY_PRINTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+METRIC_BODY_PRINTED=NO
+LOG_CONTENT_PRINTED=NO
+TRACE_BODY_PRINTED=NO
+PROMETHEUS_QUERY_BODY_PRINTED=NO
+LOKI_QUERY_BODY_PRINTED=NO
+TEMPO_QUERY_BODY_PRINTED=NO
+QUERY_TEXT_PRINTED=NO
+SECRET_VALUE_PRINTED=NO

@@ -1,0 +1,245 @@
+{
+  "version": "sre_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_7_5",
+  "status": "review_ready_no_live_alert_mutation",
+  "metric_groups": [
+    {
+      "group": "edge_security_metrics",
+      "owner": "sre",
+      "dashboard": "edge-security-overview",
+      "metrics": [
+        {
+          "metric_id": "edge_waf_block_rate",
+          "surface": "edge",
+          "signal": "errors",
+          "severity_mapping": {
+            "P1": "sustained_block_spike",
+            "P2": "moderate_block_spike"
+          },
+          "threshold": "review_defined",
+          "required": true
+        },
+        {
+          "metric_id": "edge_bot_challenge_rate",
+          "surface": "edge",
+          "signal": "traffic",
+          "severity_mapping": {
+            "P1": "bot_challenge_spike",
+            "P2": "bot_activity_warning"
+          },
+          "threshold": "review_defined",
+          "required": true
+        },
+        {
+          "metric_id": "tls_certificate_days_remaining",
+          "surface": "edge_tls",
+          "signal": "saturation",
+          "severity_mapping": {
+            "P0": "expired",
+            "P1": "less_than_7_days",
+            "P2": "less_than_14_days",
+            "P3": "less_than_30_days"
+          },
+          "threshold": "30/14/7 days",
+          "required": true
+        }
+      ]
+    },
+    {
+      "group": "api_gateway_metrics",
+      "owner": "sre",
+      "dashboard": "api-gateway-overview",
+      "metrics": [
+        {
+          "metric_id": "api_gateway_request_rate",
+          "surface": "api_gateway",
+          "signal": "traffic",
+          "severity_mapping": {
+            "P2": "unexpected_spike"
+          },
+          "threshold": "review_defined",
+          "required": true
+        },
+        {
+          "metric_id": "api_gateway_p95_latency_ms",
+          "surface": "api_gateway",
+          "signal": "latency",
+          "severity_mapping": {
+            "P1": "critical_latency",
+            "P2": "high_latency"
+          },
+          "threshold": "review_defined",
+          "required": true
+        },
+        {
+          "metric_id": "api_gateway_5xx_ratio",
+          "surface": "api_gateway",
+          "signal": "errors",
+          "severity_mapping": {
+            "P0": "major_5xx_outage",
+            "P1": "sustained_5xx_spike"
+          },
+          "threshold": "review_defined",
+          "required": true
+        }
+      ]
+    },
+    {
+      "group": "db_metrics",
+      "owner": "sre",
+      "dashboard": "db-health-overview",
+      "metrics": [
+        {
+          "metric_id": "db_connection_pool_usage",
+          "surface": "database",
+          "signal": "saturation",
+          "severity_mapping": {
+            "P1": "pool_exhaustion",
+            "P2": "high_pool_usage"
+          },
+          "threshold": "review_defined",
+          "required": true
+        },
+        {
+          "metric_id": "db_query_p95_latency_ms",
+          "surface": "database",
+          "signal": "latency",
+          "severity_mapping": {
+            "P1": "critical_query_latency",
+            "P2": "high_query_latency"
+          },
+          "threshold": "review_defined",
+          "required": true
+        },
+        {
+          "metric_id": "db_replica_lag_seconds",
+          "surface": "database",
+          "signal": "saturation",
+          "severity_mapping": {
+            "P1": "critical_replica_lag",
+            "P2": "replica_lag_warning"
+          },
+          "threshold": "review_defined",
+          "required": true
+        }
+      ]
+    },
+    {
+      "group": "event_queue_metrics",
+      "owner": "sre",
+      "dashboard": "event-queue-overview",
+      "metrics": [
+        {
+          "metric_id": "event_consumer_lag",
+          "surface": "event_queue",
+          "signal": "saturation",
+          "severity_mapping": {
+            "P1": "critical_consumer_lag",
+            "P2": "consumer_lag_warning"
+          },
+          "threshold": "review_defined",
+          "required": true
+        },
+        {
+          "metric_id": "event_dlq_count",
+          "surface": "event_queue",
+          "signal": "errors",
+          "severity_mapping": {
+            "P1": "dlq_growth_critical",
+            "P2": "dlq_growth_warning"
+          },
+          "threshold": "review_defined",
+          "required": true
+        }
+      ]
+    },
+    {
+      "group": "cache_metrics",
+      "owner": "sre",
+      "dashboard": "cache-overview",
+      "metrics": [
+        {
+          "metric_id": "cache_hit_ratio",
+          "surface": "cache",
+          "signal": "traffic",
+          "severity_mapping": {
+            "P2": "hit_ratio_degradation",
+            "P3": "hit_ratio_warning"
+          },
+          "threshold": "review_defined",
+          "required": true
+        },
+        {
+          "metric_id": "cache_error_rate",
+          "surface": "cache",
+          "signal": "errors",
+          "severity_mapping": {
+            "P1": "cache_failure",
+            "P2": "cache_error_warning"
+          },
+          "threshold": "review_defined",
+          "required": true
+        }
+      ]
+    },
+    {
+      "group": "release_health_metrics",
+      "owner": "sre",
+      "dashboard": "release-health-overview",
+      "metrics": [
+        {
+          "metric_id": "post_deploy_5xx_delta",
+          "surface": "release",
+          "signal": "errors",
+          "severity_mapping": {
+            "P1": "release_regression",
+            "P2": "release_warning"
+          },
+          "threshold": "review_defined",
+          "required": true
+        },
+        {
+          "metric_id": "healthcheck_success_ratio",
+          "surface": "release",
+          "signal": "errors",
+          "severity_mapping": {
+            "P0": "healthcheck_outage",
+            "P1": "healthcheck_degradation"
+          },
+          "threshold": "review_defined",
+          "required": true
+        }
+      ]
+    },
+    {
+      "group": "incident_readiness_metrics",
+      "owner": "sre",
+      "dashboard": "incident-readiness-overview",
+      "metrics": [
+        {
+          "metric_id": "on_call_ack_time_minutes",
+          "surface": "incident_ops",
+          "signal": "latency",
+          "severity_mapping": {
+            "P1": "ack_target_miss",
+            "P2": "ack_warning"
+          },
+          "threshold": "aligned_with_escalation_chain",
+          "required": true
+        },
+        {
+          "metric_id": "escalation_timeout_count",
+          "surface": "incident_ops",
+          "signal": "errors",
+          "severity_mapping": {
+            "P1": "repeated_escalation_timeout",
+            "P2": "single_timeout_warning"
+          },
+          "threshold": "review_defined",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

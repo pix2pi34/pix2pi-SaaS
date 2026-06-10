@@ -1,0 +1,169 @@
+{
+  "dashboard_id": "pilot_health_dashboard.controlled_pilot.v1",
+  "dashboard_status": "READY",
+  "dashboard_mode": "CONTROLLED_PILOT",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT"
+  },
+  "chain_dependencies": {
+    "217_FAZ_4_16_5_6_PILOT_OPERATIONS_TESTLERI": "PASS"
+  },
+  "widgets": [
+    {
+      "code": "PILOT_TENANT_HEALTH_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "TENANT",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#pilot-tenant-health-summary"
+    },
+    {
+      "code": "SERVICE_HEALTH_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "SERVICE",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#service-health-widget"
+    },
+    {
+      "code": "IMPORT_PIPELINE_HEALTH_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "IMPORT",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#import-pipeline-health-widget"
+    },
+    {
+      "code": "READMODEL_REPORTING_HEALTH_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "READMODEL",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#readmodel-reporting-health-widget"
+    },
+    {
+      "code": "UAT_STATUS_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "UAT",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#uat-status-widget"
+    },
+    {
+      "code": "TRAINING_SUPPORT_HEALTH_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "TRAINING_SUPPORT",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#training-support-health-widget"
+    },
+    {
+      "code": "SUPPORT_TRIAGE_HEALTH_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "TRIAGE",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#support-triage-health-widget"
+    },
+    {
+      "code": "ISSUE_ESCALATION_HEALTH_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "ESCALATION",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#issue-escalation-health-widget"
+    },
+    {
+      "code": "ROLLBACK_SIGNAL_HEALTH_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "ROLLBACK",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#rollback-signal-health-widget"
+    },
+    {
+      "code": "KPI_SNAPSHOT_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "KPI",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#kpi-snapshot-widget"
+    },
+    {
+      "code": "OPEN_BLOCKER_CRITICAL_ISSUE_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "QUALITY",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#open-blocker-critical-issue-widget"
+    },
+    {
+      "code": "CLOSED_PROVIDER_POLICY_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "POLICY",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#closed-provider-policy-widget"
+    },
+    {
+      "code": "OPERATIONS_HANDOFF_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "HANDOFF",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#operations-handoff-widget"
+    },
+    {
+      "code": "LAST_REVIEW_TIMESTAMP_WIDGET",
+      "required": true,
+      "status": "READY",
+      "area": "REVIEW",
+      "health": "GREEN",
+      "evidence_ref": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html#last-review-timestamp-widget"
+    }
+  ],
+  "dashboard_controls": {
+    "pilot_operations_tests_status": "PASS",
+    "last_review_status": "PASS",
+    "rollback_signal_status": "CLEAR",
+    "operations_handoff_ready": "YES",
+    "html_dashboard_status": "READY",
+    "dashboard_visibility": "CONTROLLED_PILOT_ONLY",
+    "no_live_external_provider_activation": true
+  },
+  "dashboard_metrics": {
+    "open_blocker_count": 0,
+    "critical_issue_count": 0,
+    "required_fail_count": 0,
+    "missing_widget_count": 0,
+    "live_external_policy_status": "CLOSED"
+  },
+  "summary": {
+    "total_widget_count": 14,
+    "ready_widget_count": 14,
+    "missing_widget_count": 0,
+    "required_fail_count": 0,
+    "critical_issue_count": 0,
+    "open_blocker_count": 0,
+    "pilot_operations_tests_status": "PASS",
+    "last_review_status": "PASS",
+    "rollback_signal_status": "CLEAR",
+    "operations_handoff_ready": "YES",
+    "html_dashboard_status": "READY",
+    "dashboard_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "production_launch": "CLOSED",
+    "hotfix_deploy": "CLOSED",
+    "real_rollback_execution": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

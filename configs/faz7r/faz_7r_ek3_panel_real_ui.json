@@ -1,0 +1,29 @@
+{
+  "phase": "FAZ 7-R / EK3",
+  "job": "Gerçek Panel UI REAL FINAL",
+  "domain": "panel.pix2pi.com.tr",
+  "live_routes": [
+    "/panel-real-ui/",
+    "/panel-real-ui/health.json"
+  ],
+  "runtime": {
+    "ui": "React + HTML",
+    "real_implementation": true,
+    "demo_only": false
+  },
+  "i18n": {
+    "languages": ["tr-TR", "ota-Arab", "ar", "fa", "en"],
+    "rtl_enabled": true,
+    "husrev_ekalem_marker": "HUSREV_EKALEM_RTL_MARKER",
+    "reference_policy": "Ahmed Hüsrev Altınbaşak / e-Kalem marker only"
+  },
+  "required_markers": [
+    "FAZ_7R_EK3_PANEL_REAL_UI_MARKER",
+    "PIX2PI_REAL_PANEL_REACT_APP",
+    "PANEL_ROUTE_BOUND_MARKER",
+    "I18N_TR_MARKER",
+    "I18N_OTA_ARAB_MARKER",
+    "HUSREV_EKALEM_RTL_MARKER"
+  ],
+  "evidence_file": "docs/faz7r/evidence/FAZ_7R_EK3_GERCEK_PANEL_UI_REAL_FINAL_AUDIT.md"
+}

@@ -1,0 +1,42 @@
+version: v1
+tax:
+  vat_rule_engine:
+    required_fields:
+      - tax_code
+      - tax_percent
+      - tax_base
+      - effective_from
+
+  withholding_prep:
+    required_fields:
+      - withholding_code
+      - withholding_percent
+      - scope
+      - effective_from
+
+  exemption_flow:
+    required_fields:
+      - exemption_code
+      - exemption_reason
+      - document_scope
+      - approval_required
+
+  rule_versioning:
+    required_fields:
+      - rule_version
+      - effective_from
+      - effective_to
+      - status
+
+  audit_trail:
+    required_fields:
+      - tax_trace_id
+      - source_document_id
+      - tax_decision
+      - recorded_at
+
+  validation_suite:
+    required_fields:
+      - tax_validation_profile
+      - validation_status
+      - validated_at

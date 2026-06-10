@@ -1,0 +1,63 @@
+{
+  "phase": "FAZ_1_5_7",
+  "module": "WEB_L2_AUTH_TENANT_EXPERIENCE",
+  "component": "auth_tenant_ui_tests",
+  "status": "READY",
+  "required_capabilities": [
+    "login_test",
+    "logout_test",
+    "tenant_switch_test",
+    "forbidden_test",
+    "role_menu_test"
+  ],
+  "covered_modules": {
+    "FAZ_1_5_1": "login_session_flow",
+    "FAZ_1_5_2": "logout_session_expiry_flow",
+    "FAZ_1_5_3": "tenant_switcher_ux",
+    "FAZ_1_5_4": "role_aware_menu",
+    "FAZ_1_5_5": "unauthorized_forbidden_pages",
+    "FAZ_1_5_6": "auth_tenant_state_persistence"
+  },
+  "test_contract": {
+    "login_test": [
+      "loginForm",
+      "loginWithCredentials",
+      "persistTokens",
+      "validateSession",
+      "LOGIN_UI_STATUS"
+    ],
+    "logout_test": [
+      "logoutButton",
+      "logout",
+      "cleanupTokens",
+      "validateLogoutCleanup",
+      "LOGOUT_STATUS"
+    ],
+    "tenant_switch_test": [
+      "tenantList",
+      "setActiveTenant",
+      "getRoleAwareTenantList",
+      "guardWrongTenant",
+      "TENANT_SWITCH_STATUS"
+    ],
+    "forbidden_test": [
+      "403.html",
+      "TENANT_MISMATCH",
+      "SESSION_EXPIRED",
+      "buildApiErrorResponse",
+      "FORBIDDEN_403_PAGE_STATUS"
+    ],
+    "role_menu_test": [
+      "roleAwareMenu",
+      "hasRequiredRole",
+      "hasRequiredPermission",
+      "hasRequiredEntitlement",
+      "ROLE_BASED_MENU_STATUS"
+    ]
+  },
+  "final_gate": {
+    "required_fail_count": 0,
+    "final_status": "PASS_ONLY_IF_ALL_TESTS_PASS",
+    "web_l2_closure": "READY_AFTER_FAZ_1_5_7_PASS"
+  }
+}

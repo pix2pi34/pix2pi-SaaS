@@ -1,0 +1,30 @@
+{
+  "phase": "FAZ 2-7.6.5",
+  "runtime": "workflow_observability",
+  "require_tenant": true,
+  "metric_groups": [
+    "state_transition_counters",
+    "approval_counters",
+    "retry_counters",
+    "compensation_counters",
+    "failed_workflow_counters"
+  ],
+  "snapshot_fields": [
+    "tenant_id",
+    "state_transition_counters",
+    "approval_counters",
+    "retry_counters",
+    "compensation_counters",
+    "failed_workflow_counters",
+    "total_transitions",
+    "total_approvals",
+    "total_retry_decisions",
+    "total_compensations",
+    "last_updated_at"
+  ],
+  "tenant_safety": {
+    "snapshot_requires_tenant": true,
+    "recording_requires_tenant": true
+  },
+  "next_ready": "FAZ_2_7_6_6_WORKFLOW_RUNTIME_TESTS"
+}

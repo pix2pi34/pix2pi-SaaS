@@ -1,0 +1,43 @@
+version: v1
+scale_triggers:
+  - id: db_bottleneck
+    label: DB bottleneck alarmi
+    warn: 250
+    crit: 600
+    unit: ms
+    action: read_write_split_or_db_tuning
+
+  - id: event_backlog
+    label: Event backlog alarmi
+    warn: 2000
+    crit: 8000
+    unit: count
+    action: increase_consumers_or_stream_capacity
+
+  - id: reporting_impact
+    label: Reporting impact alarmi
+    warn: 400
+    crit: 900
+    unit: ms
+    action: isolate_reporting_store
+
+  - id: single_node_risk
+    label: Single-node risk alarmi
+    warn: 75
+    crit: 90
+    unit: percent
+    action: prepare_multi_node_transition
+
+  - id: deploy_risk_growth
+    label: Deploy risk growth alarmi
+    warn: 2
+    crit: 5
+    unit: count
+    action: reduce_blast_radius_and_add_progressive_delivery
+
+  - id: cluster_transition
+    label: Cluster transition trigger
+    warn: 70
+    crit: 90
+    unit: score
+    action: cluster_transition_required

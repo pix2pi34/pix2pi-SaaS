@@ -1,0 +1,79 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "319",
+  "name": "İşletme onboarding ekranı gerçek DB kayıt akışı",
+  "component": "internal/onboarding/businessonboarding",
+  "panel_path": "/onboarding/",
+  "asset_path": "/assets/onboarding/business-onboarding-runtime.js",
+  "database_contract": {
+    "schema": "tenant_onboarding",
+    "tables": [
+      "tenant_onboarding.business_onboarding_requests",
+      "tenant_onboarding.business_onboarding_audit_events",
+      "core.tenants",
+      "core.legal_entities",
+      "core.branches",
+      "auth.user_tenant_memberships"
+    ],
+    "tracked_fields": [
+      "tenant_id",
+      "tenant_slug",
+      "business_name",
+      "tax_or_tckn",
+      "address_line",
+      "sector_code",
+      "branch_name",
+      "currency_code",
+      "language_code",
+      "first_role_code",
+      "onboarding_status",
+      "correlation_id"
+    ]
+  },
+  "runtime_contract": {
+    "business_name_required": true,
+    "tax_or_tckn_validation": true,
+    "address_required": true,
+    "sector_required": true,
+    "branch_required": true,
+    "currency_validation": true,
+    "language_validation": true,
+    "first_role_validation": true,
+    "tenant_record_created": true,
+    "legal_entity_record_created": true,
+    "branch_record_created": true,
+    "owner_role_binding_created": true,
+    "onboarding_completed_marker": true,
+    "audit_event_contract": true
+  },
+  "supported_languages": [
+    "tr-TR",
+    "ota",
+    "ar",
+    "fa",
+    "en"
+  ],
+  "supported_currencies": [
+    "TRY",
+    "USD",
+    "EUR"
+  ],
+  "required_checks": [
+    "business_name_validation",
+    "tax_or_tckn_validation",
+    "address_validation",
+    "sector_validation",
+    "branch_validation",
+    "currency_validation",
+    "language_validation",
+    "first_role_validation",
+    "tenant_creation",
+    "legal_entity_creation",
+    "branch_creation",
+    "owner_role_binding",
+    "audit_event",
+    "panel_screen_smoke",
+    "go_test"
+  ],
+  "next_step": "347 - Pilot müşteri tenant açılışı gerçek provisioning"
+}

@@ -1,0 +1,44 @@
+gate	status	note
+previous_17_4	PASS	realtime channel contract prerequisite
+ui_page_plan	PASS	ui_pages=12 tenant=8 platform=4
+api_endpoint_plan	PASS	api_endpoints=22 tenant=16 platform=6
+permission_mapping	PASS	permissions=18 audit_permissions=11
+sequence_plan	PASS	steps=11
+test_plan	PASS	tests=12 tenant=12 rbac=12 realtime=12
+audit_coverage	PASS	ui_audit=12 api_audit=8
+realtime_mapping	PASS	realtime_api_endpoints=21
+tenant_platform_split	PASS	tenant_ui=8 platform_ui=4 tenant_api=16 platform_api=6
+no_runtime_change	PASS	no UI/API/realtime runtime changed
+no_config_change	PASS	no config/env/nginx/firewall changed
+secret_safe	PASS	no secrets printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+ui_code_changed	NO	plan only
+frontend_file_created	NO	plan only
+api_route_created	NO	plan only
+api_implementation_changed	NO	plan only
+dto_code_created	NO	plan only
+handler_code_created	NO	plan only
+middleware_changed	NO	plan only
+websocket_server_started	NO	plan only
+sse_server_started	NO	plan only
+realtime_runtime_changed	NO	plan only
+workflow_runtime_changed	NO	plan only
+approval_runtime_changed	NO	plan only
+event_published	NO	plan only
+event_consumed	NO	plan only
+notification_sent	NO	plan only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+raw_payload_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report

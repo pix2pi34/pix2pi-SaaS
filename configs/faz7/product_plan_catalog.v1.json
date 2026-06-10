@@ -1,0 +1,150 @@
+{
+  "schema_version": "product_plan_catalog.v1",
+  "phase": "FAZ_7",
+  "step": "7-2",
+  "catalog_status": "READY",
+  "next_step": "7-3 Entitlement Runtime / Feature Gate",
+  "plans": [
+    {
+      "code": "starter",
+      "name": "Starter",
+      "category": "business",
+      "description": "Kucuk isletmeler ve pilot/demo kullanimlar icin temel SaaS paketi.",
+      "features": [
+        "erp_core",
+        "stock_basic",
+        "customer_basic",
+        "reporting_basic",
+        "export_limited"
+      ],
+      "limits": {
+        "users": 3,
+        "tenants": 1,
+        "api_monthly_requests": 0,
+        "monthly_exports": 10,
+        "accountant_firms": 0,
+        "integrations": 0
+      }
+    },
+    {
+      "code": "pro",
+      "name": "Pro",
+      "category": "business",
+      "description": "Aktif isletmelerin gunluk operasyonlari icin ana ticari paket.",
+      "features": [
+        "erp_core",
+        "pos_ready",
+        "stock_advanced",
+        "customer_advanced",
+        "reporting_basic",
+        "reporting_advanced",
+        "api_access_basic",
+        "marketplace_discovery",
+        "export_standard"
+      ],
+      "limits": {
+        "users": 15,
+        "tenants": 1,
+        "api_monthly_requests": 50000,
+        "monthly_exports": 250,
+        "accountant_firms": 0,
+        "integrations": 2
+      }
+    },
+    {
+      "code": "enterprise",
+      "name": "Enterprise",
+      "category": "business",
+      "description": "Cok subeli, yuksek hacimli ve ozel ihtiyaclari olan firmalar icin kurumsal paket.",
+      "features": [
+        "erp_core",
+        "pos_ready",
+        "stock_advanced",
+        "customer_advanced",
+        "reporting_basic",
+        "reporting_advanced",
+        "api_access_advanced",
+        "marketplace_discovery",
+        "integration_catalog",
+        "webhook_access",
+        "commercial_ops",
+        "audit_advanced",
+        "export_advanced"
+      ],
+      "limits": {
+        "users": 250,
+        "tenants": 50,
+        "api_monthly_requests": 1000000,
+        "monthly_exports": 10000,
+        "accountant_firms": 0,
+        "integrations": 50
+      }
+    },
+    {
+      "code": "accountant",
+      "name": "Muhasebeci",
+      "category": "accountant",
+      "description": "Bir muhasebecinin birden fazla firmaya erisebilmesi icin ticari paket.",
+      "features": [
+        "accountant_portal",
+        "multi_company_access",
+        "export_standard",
+        "export_advanced",
+        "tdhp_export_ready",
+        "reporting_basic",
+        "reporting_advanced"
+      ],
+      "limits": {
+        "users": 20,
+        "tenants": 100,
+        "api_monthly_requests": 100000,
+        "monthly_exports": 5000,
+        "accountant_firms": 100,
+        "integrations": 5
+      }
+    },
+    {
+      "code": "marketplace",
+      "name": "Marketplace Integration",
+      "category": "integration",
+      "description": "Pazaryeri, webhook, public API ve entegrasyon kullanimlari icin paket.",
+      "features": [
+        "marketplace_discovery",
+        "integration_catalog",
+        "webhook_access",
+        "api_access_advanced",
+        "export_standard",
+        "commercial_ops"
+      ],
+      "limits": {
+        "users": 10,
+        "tenants": 5,
+        "api_monthly_requests": 500000,
+        "monthly_exports": 1000,
+        "accountant_firms": 0,
+        "integrations": 25
+      }
+    }
+  ],
+  "required_features": [
+    "erp_core",
+    "reporting_basic",
+    "export_limited",
+    "export_standard",
+    "export_advanced",
+    "api_access_basic",
+    "api_access_advanced",
+    "accountant_portal",
+    "integration_catalog",
+    "webhook_access",
+    "marketplace_discovery",
+    "commercial_ops"
+  ],
+  "launch_gates": {
+    "real_payment_requires_financial_approval": true,
+    "public_launch_requires_legal_approval": true,
+    "public_launch_requires_kvkk_approval": true,
+    "public_launch_requires_cloudflare_green_mode": true,
+    "public_launch_requires_waf_rate_limit": true
+  }
+}

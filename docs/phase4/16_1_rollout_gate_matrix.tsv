@@ -1,0 +1,12 @@
+gate_name	category	required_status	blocker_if_failed	evidence_source	implementation_status	note
+foundation_closed	prerequisite	PASS	YES	17/20/21/22 final closure reports	READY_FOR_IMPLEMENTATION	baseline_only
+tenant_scope_ready	tenant	PASS	YES	pilot scope inventory	READY_FOR_IMPLEMENTATION	baseline_only
+p0_uat_passed	uat	PASS	YES	UAT scenario catalog	READY_FOR_IMPLEMENTATION	baseline_only
+rbac_access_checked	security	PASS	YES	role permission evidence	READY_FOR_IMPLEMENTATION	baseline_only
+tenant_isolation_checked	security	PASS	YES	tenant access UAT	READY_FOR_IMPLEMENTATION	baseline_only
+audit_evidence_checked	audit	PASS	YES	audit trail UAT	READY_FOR_IMPLEMENTATION	baseline_only
+stock_sales_accounting_checked	business	PASS	YES	sales/stock/accounting UAT	READY_FOR_IMPLEMENTATION	baseline_only
+reporting_checked	reporting	PASS	NO	reporting UAT	READY_FOR_IMPLEMENTATION	baseline_only
+support_loop_ready	support	PASS	YES	support/incident checklist	READY_FOR_IMPLEMENTATION	baseline_only
+backup_restore_readiness_noted	ops	PASS	NO	ops readiness note	READY_FOR_IMPLEMENTATION	baseline_only
+go_no_go_ready	rollout	PASS	YES	rollout gate matrix	READY_FOR_IMPLEMENTATION	baseline_only

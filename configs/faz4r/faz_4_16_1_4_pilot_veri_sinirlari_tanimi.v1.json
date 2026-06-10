@@ -1,0 +1,73 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 192,
+  "step": "FAZ_4_16_1_4",
+  "title": "Pilot veri sınırları tanımı",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "191_FAZ_4_15_1_OPERATIONAL_READMODEL_TABLES"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "pilot_scope": {
+    "pilot_mode": "CONTROLLED_PILOT",
+    "tenant_scope": "SINGLE_TENANT",
+    "tenant_count_min": 1,
+    "tenant_count_max": 1,
+    "live_external_activation": "CLOSED",
+    "real_provider_api_status": "CLOSED",
+    "real_gib_operation_status": "CLOSED",
+    "real_bank_operation_status": "CLOSED",
+    "real_pos_provider_operation_status": "CLOSED"
+  },
+  "data_boundaries": {
+    "max_admin_user_count": 3,
+    "max_operator_user_count": 10,
+    "max_accountant_user_count": 5,
+    "max_customer_count": 500,
+    "max_supplier_count": 250,
+    "max_product_count": 5000,
+    "max_stock_entry_count": 20000,
+    "max_finance_document_count": 5000,
+    "max_e_document_export_count": 1000,
+    "max_import_batch_count": 25,
+    "max_uat_case_count": 100,
+    "max_training_item_count": 50,
+    "max_support_ticket_count": 100,
+    "max_open_issue_count": 50,
+    "max_critical_issue_count": 0
+  },
+  "required_domains": [
+    "tenant",
+    "user_role",
+    "customer",
+    "supplier",
+    "product",
+    "stock",
+    "finance_document",
+    "e_document_export",
+    "import_batch",
+    "uat_case",
+    "support_issue",
+    "training"
+  ],
+  "required_validation_rules": [
+    "tenant_count_within_boundary",
+    "user_count_within_boundary",
+    "customer_count_within_boundary",
+    "product_count_within_boundary",
+    "stock_entry_count_within_boundary",
+    "finance_document_count_within_boundary",
+    "e_document_export_count_within_boundary",
+    "import_batch_count_within_boundary",
+    "uat_case_count_within_boundary",
+    "critical_issue_count_zero",
+    "closed_external_policy_gate"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "193_FAZ_4_16_1_5_TENANT_ACCEPTANCE_CHECKLIST"
+  ]
+}

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi pilot feedback issue triage ekranı" />
+  <meta property="og:title" content="Pix2pi Pilot Feedback Issue Triage" />
+  <meta property="og:description" content="Pilot feedback, issue triage ve hotfix/no-hotfix karar yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Pilot Feedback Issue Triage</title>
+  <style>
+    :root { --bg:#f6f8fb; --text:#172033; --muted:#64748b; --border:#e5e7eb; --shadow:0 16px 42px rgba(15,23,42,.08); --radius:24px; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(circle at top left,rgba(37,99,235,.15),transparent 34rem),radial-gradient(circle at bottom right,rgba(22,163,74,.14),transparent 32rem),var(--bg); color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; padding:18px 16px; }
+    .shell { width:min(100%,1360px); margin:0 auto; display:grid; gap:16px; }
+    .hero,.card { background:rgba(255,255,255,.94); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; }
+    h1 { margin:0 0 8px; font-size:clamp(34px,7vw,64px); line-height:.95; letter-spacing:-.07em; }
+    h2 { margin:0 0 12px; font-size:19px; letter-spacing:-.03em; }
+    p { margin:0; color:var(--muted); line-height:1.55; }
+    .badge { display:inline-flex; width:fit-content; border-radius:999px; padding:7px 11px; background:#eff6ff; color:#1d4ed8; font-weight:900; font-size:12px; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .triage-card { border:1px solid var(--border); border-radius:20px; padding:16px; background:#fff; display:grid; gap:8px; min-height:96px; overflow-wrap:anywhere; }
+    .guard { border:1px dashed #93c5fd; background:#eff6ff; }
+    .locked { border:1px dashed #f59e0b; background:#fffbeb; }
+    @media (max-width:1080px) { .grid-4,.grid-3 { grid-template-columns:1fr; } .hero,.card { border-radius:20px; } }
+  </style>
+</head>
+<body>
+  <!-- PIX2PI_359_PILOT_FEEDBACK_TRIAGE_APP_SHELL_START -->
+  <main class="shell" data-step="359" data-surface="pilot-feedback-triage">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 359</span>
+      <h1 data-i18n="pilot_feedback_triage.title">Pilot feedback / issue triage</h1>
+      <p data-i18n="pilot_feedback_triage.description">Müşteri feedback, issue triage, support draft ve hotfix/no-hotfix karar preview yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_359_PILOT_TENANT_CUSTOMER_FEEDBACK_CONTEXT_START -->
+    <section class="card guard">
+      <h2>Pilot tenant / customer feedback context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="triage-tenant-id">controlled-pilot</strong></p>
+        <p>Customer: <strong id="triage-customer-name">Demo Market</strong></p>
+        <p>Owner: <strong id="triage-owner-user">owner@example.invalid</strong></p>
+        <p>Scope: <strong id="triage-scope-validation">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_359_PILOT_TENANT_CUSTOMER_FEEDBACK_CONTEXT_END -->
+
+    <!-- PIX2PI_359_FEEDBACK_INTAKE_CHANNELS_START -->
+    <section class="card">
+      <h2>Feedback intake channels</h2>
+      <div id="triage-intake-channels" class="grid-4"></div>
+    </section>
+    <!-- PIX2PI_359_FEEDBACK_INTAKE_CHANNELS_END -->
+
+    <!-- PIX2PI_359_CUSTOMER_SENTIMENT_SNAPSHOT_START -->
+    <section class="card guard">
+      <h2>Customer sentiment snapshot</h2>
+      <p id="triage-sentiment">POSITIVE_PREVIEW / score=82</p>
+    </section>
+    <!-- PIX2PI_359_CUSTOMER_SENTIMENT_SNAPSHOT_END -->
+
+    <!-- PIX2PI_359_ISSUE_TRIAGE_QUEUE_PREVIEW_START -->
+    <section class="card">
+      <h2>Issue triage queue preview</h2>
+      <div id="triage-issue-queue" class="grid-3">
+        <!-- PIX2PI_359_SEVERITY_PRIORITY_CLASSIFICATION_START -->
+        <article class="triage-card"><strong>PILOT-ISSUE-001</strong><p>severity=P3 / priority=P2 / TRIAGE_PREVIEW</p></article>
+        <!-- PIX2PI_359_SEVERITY_PRIORITY_CLASSIFICATION_END -->
+        <!-- PIX2PI_359_OWNER_ASSIGNMENT_PREVIEW_START -->
+        <article class="triage-card"><strong>Owner assignment</strong><p>owner=product/frontend/commercial</p></article>
+        <!-- PIX2PI_359_OWNER_ASSIGNMENT_PREVIEW_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_359_ISSUE_TRIAGE_QUEUE_PREVIEW_END -->
+
+    <!-- PIX2PI_359_DUPLICATE_ISSUE_MERGE_PREVIEW_START -->
+    <section class="card">
+      <h2>Duplicate issue merge preview</h2>
+      <div id="triage-duplicate-merge" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_359_DUPLICATE_ISSUE_MERGE_PREVIEW_END -->
+
+    <!-- PIX2PI_359_INCIDENT_ESCALATION_LINK_PREVIEW_START -->
+    <section class="card locked">
+      <h2>Incident escalation link preview</h2>
+      <div id="triage-escalation-links" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_359_INCIDENT_ESCALATION_LINK_PREVIEW_END -->
+
+    <!-- PIX2PI_359_PRODUCT_BACKLOG_CANDIDATE_PREVIEW_START -->
+    <section class="card">
+      <h2>Product backlog candidate preview</h2>
+      <div id="triage-backlog-candidates" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_359_PRODUCT_BACKLOG_CANDIDATE_PREVIEW_END -->
+
+    <!-- PIX2PI_359_SUPPORT_RESPONSE_DRAFT_PREVIEW_START -->
+    <section class="card guard">
+      <h2>Support response draft preview</h2>
+      <div id="triage-support-drafts" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_359_SUPPORT_RESPONSE_DRAFT_PREVIEW_END -->
+
+    <!-- PIX2PI_359_HOTFIX_NO_HOTFIX_DECISION_PREVIEW_START -->
+    <section class="card locked">
+      <h2>Hotfix / no-hotfix decision preview</h2>
+      <div id="triage-hotfix-decisions" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_359_HOTFIX_NO_HOTFIX_DECISION_PREVIEW_END -->
+
+    <!-- PIX2PI_359_DATA_MUTATION_DISABLED_SAFETY_GUARD_START -->
+    <section class="card locked">
+      <h2>Data mutation disabled safety guard</h2>
+      <p>real_ticket_create_enabled=false / real_hotfix_deploy_enabled=false / real_data_mutation_enabled=false</p>
+    </section>
+    <!-- PIX2PI_359_DATA_MUTATION_DISABLED_SAFETY_GUARD_END -->
+
+    <!-- PIX2PI_359_ROLLBACK_REQUEST_REVIEW_PREVIEW_START -->
+    <section class="card locked">
+      <h2>Rollback request review preview</h2>
+      <div id="triage-rollback-review" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_359_ROLLBACK_REQUEST_REVIEW_PREVIEW_END -->
+
+    <!-- PIX2PI_359_DAILY_PILOT_REPORT_HANDOFF_START -->
+    <section class="card">
+      <h2>Daily pilot report handoff</h2>
+      <p>358 daily pilot report çıktısı 359 triage kararına bağlandı.</p>
+    </section>
+    <!-- PIX2PI_359_DAILY_PILOT_REPORT_HANDOFF_END -->
+
+    <!-- PIX2PI_359_FEEDBACK_AUDIT_TIMELINE_START -->
+    <section class="card">
+      <h2>Feedback audit timeline</h2>
+      <div id="triage-audit-timeline" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_359_FEEDBACK_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_359_FEEDBACK_TRIAGE_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card">
+      <h2>Feedback triage runtime data contract</h2>
+      <p id="triage-runtime-contract">feedback_triage_preview_enabled=true / real_data_mutation_enabled=false / ready_for_step_360=true</p>
+    </section>
+    <!-- PIX2PI_359_FEEDBACK_TRIAGE_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_359_SEO_OPENGRAPH_FEEDBACK_PLACEHOLDER_START -->
+    <section class="card">
+      <h2>SEO / OpenGraph feedback placeholder</h2>
+      <p>Title, description ve og:* metadata pilot feedback triage yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_359_SEO_OPENGRAPH_FEEDBACK_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_359_I18N_READY_FEEDBACK_MARKER_START -->
+    <section class="card">
+      <h2 data-i18n="pilot_feedback_triage.i18n_ready">i18n-ready feedback triage screen</h2>
+      <p data-i18n="pilot_feedback_triage.surface_ready">Pilot feedback triage ekranı çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_359_I18N_READY_FEEDBACK_MARKER_END -->
+  </main>
+  <!-- PIX2PI_359_PILOT_FEEDBACK_TRIAGE_APP_SHELL_END -->
+
+  <script src="/assets/pilot-feedback-triage/pilot-feedback-triage-runtime.js"></script>
+  <script>
+    Pix2piPilotFeedbackTriage.bootFeedbackTriageScreen().then(function (contract) {
+      console.log("PIX2PI_359_PILOT_FEEDBACK_TRIAGE_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

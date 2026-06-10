@@ -1,0 +1,56 @@
+{
+  "phase": "FAZ_3_10_4_5_FORMAT_VALIDATION_MATRIX_RUNTIME",
+  "runtime": "format_validation_matrix_runtime",
+  "runtime_enabled": true,
+  "default_currency_code": "TRY",
+  "require_all_targets": true,
+  "require_balanced": true,
+  "require_package_hash": true,
+  "require_files": true,
+  "require_rows": true,
+  "fail_on_provider_issue": true,
+  "required_targets": [
+    "ETA",
+    "LOGO",
+    "MIKRO",
+    "ZIRVE"
+  ],
+  "required_file_minimum": 3,
+  "required_row_minimum": 3,
+  "required_account_prefix": [
+    "120",
+    "191",
+    "320",
+    "391",
+    "600",
+    "610",
+    "102",
+    "153",
+    "500"
+  ],
+  "covered_modules": [
+    "FAZ_3_10_4_4_ETA_REAL_FORMAT_GENERATION",
+    "FAZ_3_10_4_1_LOGO_REAL_FORMAT_GENERATION",
+    "FAZ_3_10_4_2_MIKRO_REAL_FORMAT_GENERATION",
+    "FAZ_3_10_4_3_ZIRVE_REAL_FORMAT_GENERATION"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "matrix_id_required": true,
+    "period_code_required": true,
+    "fiscal_year_required": true,
+    "postings_required": true,
+    "all_targets_required": true,
+    "target_file_count_required": true,
+    "target_row_count_required": true,
+    "target_balanced_required": true,
+    "target_package_hash_required": true,
+    "target_total_debit_credit_match_required": true,
+    "provider_issue_blocks_matrix": true,
+    "ready_for_adapter_tests_requires_all_pass": true
+  },
+  "next_gate": "FAZ_3_10_4_6_EXPORT_ADAPTER_TESTS"
+}

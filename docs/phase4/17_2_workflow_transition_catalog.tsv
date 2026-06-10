@@ -1,0 +1,16 @@
+transition_name	from_state	to_state	trigger_type	required_permission	approval_required	audit_required	realtime_signal	event_binding	allowed_actor	implementation_status	note
+activate_workflow	draft	active	manual	workflow:write	NO	YES	workflow.instance.updated	workflow.state.changed	workflow_admin_or_owner	READY_FOR_IMPLEMENTATION	contract_only
+start_workflow	active	running	manual_or_system	workflow:execute	NO	YES	workflow.step.started	workflow.state.changed	workflow_admin_or_system	READY_FOR_IMPLEMENTATION	contract_only
+request_approval	running	waiting_approval	system	approval:request	YES	YES	approval.requested	workflow.approval.requested	system	READY_FOR_IMPLEMENTATION	contract_only
+approve_and_resume	waiting_approval	running	manual	approval:write	YES	YES	approval.approved	workflow.approval.approved	approver	READY_FOR_IMPLEMENTATION	contract_only
+reject_and_cancel	waiting_approval	cancelled	manual	approval:write	YES	YES	approval.rejected	workflow.approval.rejected	approver	READY_FOR_IMPLEMENTATION	contract_only
+wait_external	running	waiting_external	system	workflow:execute	NO	YES	workflow.instance.updated	workflow.external.waiting	system	READY_FOR_IMPLEMENTATION	contract_only
+external_resume	waiting_external	running	system	workflow:execute	NO	YES	workflow.instance.updated	workflow.external.resumed	system	READY_FOR_IMPLEMENTATION	contract_only
+pause_workflow	running	paused	manual	workflow:pause	NO	YES	workflow.instance.updated	workflow.paused	workflow_admin_or_owner	READY_FOR_IMPLEMENTATION	contract_only
+resume_workflow	paused	running	manual	workflow:execute	NO	YES	workflow.instance.updated	workflow.resumed	workflow_admin_or_owner	READY_FOR_IMPLEMENTATION	contract_only
+complete_workflow	running	completed	system	workflow:execute	NO	YES	workflow.step.completed	workflow.completed	system	READY_FOR_IMPLEMENTATION	contract_only
+fail_workflow	running	failed	system	workflow:execute	NO	YES	workflow.step.failed	workflow.failed	system	READY_FOR_IMPLEMENTATION	contract_only
+retry_failed_workflow	failed	running	manual_or_system	workflow:retry	NO	YES	workflow.instance.updated	workflow.retry.requested	workflow_admin_or_system	READY_FOR_IMPLEMENTATION	contract_only
+cancel_failed_workflow	failed	cancelled	manual	workflow:cancel	NO	YES	workflow.instance.updated	workflow.cancelled	workflow_admin_or_owner	READY_FOR_IMPLEMENTATION	contract_only
+archive_completed	completed	archived	manual_or_system	workflow:archive	NO	YES	workflow.instance.updated	workflow.archived	workflow_admin_or_system	READY_FOR_IMPLEMENTATION	contract_only
+archive_cancelled	cancelled	archived	manual_or_system	workflow:archive	NO	YES	workflow.instance.updated	workflow.archived	workflow_admin_or_system	READY_FOR_IMPLEMENTATION	contract_only

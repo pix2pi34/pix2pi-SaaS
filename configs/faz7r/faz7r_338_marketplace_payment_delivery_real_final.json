@@ -1,0 +1,31 @@
+{
+  "step": "FAZ 7-R / 338",
+  "name": "Marketplace ödeme / teslimat placeholder real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "marketplace-payment-delivery-338-20260513_224137",
+  "sellerId": "seller-335-main",
+  "mainOrderId": "market-order-338-main-20260513_224137",
+  "mainPaymentIntentId": "payment-intent-338-main-20260513_224137",
+  "mainDeliveryId": "delivery-338-main-20260513_224137",
+  "routes": [
+    "/payment-delivery/",
+    "POST /api/market/payment-delivery/payment-intent",
+    "POST /api/market/payment-delivery/payment-status",
+    "POST /api/market/payment-delivery/delivery-create",
+    "POST /api/market/payment-delivery/delivery-status",
+    "POST /api/market/payment-delivery/order-summary"
+  ],
+  "requiredEvidence": [
+    "payment placeholder DB",
+    "order payment intent",
+    "payment pending/paid/failed placeholders",
+    "delivery/shipping placeholder DB",
+    "delivery preparing/in_transit/delivered statuses",
+    "controlled payment/delivery guard",
+    "tenant-safe payment/delivery tests",
+    "no-role denied",
+    "rollback no partial write",
+    "route smoke",
+    "payment/delivery audit evidence"
+  ]
+}

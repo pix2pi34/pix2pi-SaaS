@@ -1,0 +1,27 @@
+{
+  "step": "FAZ 7-R / 325",
+  "name": "Satış / POS yönetim real final",
+  "schema": "pos_sales",
+  "routes": [
+    "/pos-sales-management/",
+    "POST /api/panel/pos-management/sales-list",
+    "POST /api/panel/pos-management/sales-detail",
+    "POST /api/panel/pos-management/day-summary",
+    "POST /api/panel/pos-management/refund-preview"
+  ],
+  "sourceSaleId": "sale-331-main",
+  "requiredEvidence": [
+    "migration applied",
+    "sales list HTTP 200",
+    "sales detail HTTP 200",
+    "payment status paid",
+    "refund/cancel preview DB write",
+    "cashier based list",
+    "day summary total",
+    "management audit trail",
+    "no-role deny",
+    "cross-tenant detail deny",
+    "rollback no partial write",
+    "route smoke"
+  ]
+}

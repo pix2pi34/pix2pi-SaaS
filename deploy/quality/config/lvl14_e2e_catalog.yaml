@@ -1,0 +1,43 @@
+version: v1
+e2e_scenarios:
+  auth_tenant_flow:
+    required_fields:
+      - scenario_id
+      - auth_state
+      - tenant_context
+      - expected_result
+
+  dashboard_monitoring_flow:
+    required_fields:
+      - scenario_id
+      - dashboard_state
+      - monitoring_state
+      - expected_result
+
+  erp_accounting_flow:
+    required_fields:
+      - scenario_id
+      - journal_state
+      - ledger_state
+      - expected_result
+
+  ebelge_export_flow:
+    required_fields:
+      - scenario_id
+      - ebelge_state
+      - export_state
+      - expected_result
+
+  payment_reconciliation_flow:
+    required_fields:
+      - scenario_id
+      - payment_state
+      - reconciliation_state
+      - expected_result
+
+  smoke_suite:
+    required_fields:
+      - suite_name
+      - profile
+      - status
+      - executed_at

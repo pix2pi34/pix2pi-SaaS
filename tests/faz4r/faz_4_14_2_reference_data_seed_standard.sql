@@ -1,0 +1,4 @@
+-- 184 — FAZ 4-14.2 Reference Data / Seed Standardı SQL test artifact
+-- Runtime behavior is verified by scripts/faz4r/audit_faz_4_14_2_reference_data_seed_standard.sh.
+--
+-- REFERENCE_DATA_SEED_STANDARD_SQL_TEST_ARTIFACT_IMPLEMENTED

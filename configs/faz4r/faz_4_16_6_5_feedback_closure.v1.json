@@ -1,0 +1,59 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 225,
+  "step": "FAZ_4_16_6_5",
+  "title": "Feedback closure",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "224_FAZ_4_16_6_4_URUN_KARAR_DEFTERI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "feedback_closure_policy": {
+    "feedback_closure_status_required": "READY",
+    "feedback_closure_mode_required": "CONTROLLED_PILOT",
+    "required_rule_status_required": "READY",
+    "missing_rule_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "product_decision_log_status_required": "PASS",
+    "closure_outcome_taxonomy_status_required": "READY",
+    "owner_confirmation_status_required": "READY",
+    "evidence_completion_status_required": "READY",
+    "user_communication_note_status_required": "READY",
+    "reopen_guard_status_required": "READY",
+    "no_auto_delete_feedback_required": true,
+    "no_auto_apply_change_required": true,
+    "no_real_crm_system_required": true,
+    "no_real_ticket_system_required": true,
+    "no_real_email_dispatch_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_closure_rules": [
+    "FEEDBACK_CLOSURE_INTAKE",
+    "CLOSURE_OUTCOME_TAXONOMY",
+    "PRODUCT_DECISION_LINK",
+    "QUICK_FIX_LINK",
+    "DEFERRED_DECISION_LINK",
+    "REJECTED_OUT_OF_SCOPE_LINK",
+    "TRAINING_SUPPORT_CLOSURE_LINK",
+    "OWNER_CONFIRMATION",
+    "EVIDENCE_COMPLETION",
+    "USER_COMMUNICATION_NOTE",
+    "CLOSURE_REASON",
+    "CLOSURE_TIMESTAMP",
+    "REOPEN_GUARD",
+    "CLOSURE_METRICS",
+    "CLOSED_PROVIDER_POLICY_GUARD"
+  ],
+  "feedback_closure_artifact": "configs/faz4r/feedback_closure.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "226_FAZ_4_16_7_1_DRY_RUN_CANLIYA_GECIS"
+  ]
+}

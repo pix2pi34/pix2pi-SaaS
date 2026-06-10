@@ -1,0 +1,44 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 184,
+  "step": "FAZ_4_14_2",
+  "title": "Reference data / seed standardı",
+  "depends_on": [
+    "180_FAZ_4_14_3_IMPORT_STAGING_TABLES",
+    "181_FAZ_4_14_7_MIGRATION_LIFECYCLE_IMPORT_TESTS",
+    "182_FAZ_4_14_4_BACKFILL_REBUILD_SCRIPT_STANDARD",
+    "183_FAZ_4_14_1_MIGRATION_CHAIN_STANDARD"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "runtime_script": "scripts/faz4r/apply_reference_data_seed.sh",
+  "seed_scope": "FAZ4_IMPORT_CORE",
+  "seed_version": "v1",
+  "safety": {
+    "default_mode": "dry_run",
+    "requires_apply_for_mutation": true,
+    "schema_name_guard": true,
+    "idempotent_apply_required": true
+  },
+  "seed_domains": [
+    "IMPORT_TYPE",
+    "IMPORT_STATUS",
+    "ENTITY_TYPE",
+    "VALIDATION_STATUS",
+    "TRANSFORM_STATUS",
+    "COMMIT_STATUS",
+    "CUSTOMER_TYPE",
+    "PRODUCT_TYPE",
+    "STOCK_MOVEMENT_TYPE",
+    "FINANCE_DOCUMENT_TYPE",
+    "UNIT",
+    "CURRENCY",
+    "VAT_RATE"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "185_FAZ_4_15_5_SEARCH_INDEX_PROJECTION_TABLES"
+  ]
+}

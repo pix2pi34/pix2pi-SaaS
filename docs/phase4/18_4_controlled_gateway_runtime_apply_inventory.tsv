@@ -1,0 +1,14 @@
+item	status	note
+target_file	FOUND	cmd/api-gateway/api_gateway_main.go
+runtime_registration	FOUND	internal/platform/reporting/runtime/registration.go
+backup_file	CREATED	backups/faz4_18_4_runtime_apply_file_backup_20260427_201753/cmd/api-gateway/api_gateway_main.go
+module_path	FOUND	github.com/divrigili/pix2pi-SaaS
+import_path	SET	github.com/divrigili/pix2pi-SaaS/internal/platform/reporting/runtime
+patch_mode	NOOP_ALREADY_APPLIED	insert_strategy=ALREADY_APPLIED
+gateway_code_changed	NO	before=8aa1f982c1f2a62a023dca0c1dc25e2d1295115ae05cac12b902c558c93b3484 after=8aa1f982c1f2a62a023dca0c1dc25e2d1295115ae05cac12b902c558c93b3484
+reporting_import_count_after	1	expected=1
+reporting_register_call_count_after	1	expected=1
+gofmt_status	PASS	target=cmd/api-gateway/api_gateway_main.go
+reporting_go_test_suite	PASS	internal/platform/reporting
+api_gateway_go_test_status	PASS	cmd/api-gateway
+rollback_ready	YES	restore backup target file

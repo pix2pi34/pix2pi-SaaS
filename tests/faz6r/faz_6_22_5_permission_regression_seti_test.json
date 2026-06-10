@@ -1,0 +1,42 @@
+{
+  "expected_dependency": "FAZ_6_22_1",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_role_permission_mutation_allowed": false,
+  "expected_jwt_claim_mutation_allowed": false,
+  "expected_route_guard_mutation_allowed": false,
+  "expected_api_policy_mutation_allowed": false,
+  "expected_frontend_deploy_allowed": false,
+  "expected_build_publish_allowed": false,
+  "expected_required_controls": [
+    "responsive_dependency_gate",
+    "permission_surface_inventory",
+    "role_route_matrix_policy",
+    "tenant_permission_isolation_policy",
+    "super_admin_boundary_policy",
+    "jwt_claim_permission_guard",
+    "api_ui_permission_alignment_guard",
+    "hidden_button_not_security_policy",
+    "negative_permission_test_policy",
+    "export_report_permission_policy",
+    "approval_workflow_permission_policy",
+    "accountant_portal_permission_policy",
+    "dry_run_permission_regression_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_surfaces": [
+    "auth_login_session",
+    "tenant_panel_navigation",
+    "user_role_management",
+    "approval_inbox_actions",
+    "reporting_export_actions",
+    "accountant_portal_access",
+    "super_admin_boundary"
+  ],
+  "expected_min_check_count": 7,
+  "expected_status": "dry_run_only_no_permission_mutation",
+  "expected_next_step": "FAZ_6_22_6"
+}

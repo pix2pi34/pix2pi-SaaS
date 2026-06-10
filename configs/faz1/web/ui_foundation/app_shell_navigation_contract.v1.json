@@ -1,0 +1,42 @@
+{
+  "phase": "FAZ_1_4_3",
+  "module": "WEB_L1_UI_FOUNDATION_DESIGN_SYSTEM",
+  "component": "app_shell_navigation",
+  "status": "READY",
+  "required_capabilities": [
+    "app_shell",
+    "sidebar",
+    "topbar",
+    "breadcrumb",
+    "tenant_indicator",
+    "responsive_shell"
+  ],
+  "shell_contract": {
+    "root_id": "pix2piAppShell",
+    "sidebar_id": "pix2piSidebar",
+    "topbar_id": "pix2piTopbar",
+    "breadcrumb_id": "pix2piBreadcrumb",
+    "tenant_indicator_id": "pix2piTenantIndicator",
+    "content_id": "pix2piMainContent",
+    "mobile_toggle_id": "pix2piSidebarToggle"
+  },
+  "navigation_groups": [
+    "dashboard",
+    "erp",
+    "operations",
+    "accounting",
+    "admin",
+    "ops"
+  ],
+  "responsive_contract": {
+    "desktop_min_width_px": 1024,
+    "tablet_min_width_px": 768,
+    "mobile_policy": "COLLAPSIBLE_SIDEBAR",
+    "shell_policy": "SIDEBAR_TOPBAR_CONTENT_GRID"
+  },
+  "tenant_contract": {
+    "active_tenant_storage_key": "pix2pi.activeTenant",
+    "fallback_tenant_name": "Tenant seçilmedi",
+    "wrong_tenant_guard_source": "FAZ_1_5_3_TENANT_SWITCHER_UX"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "pix2pi-panel-real-ui-ek3",
+  "version": "7.0.3",
+  "private": true,
+  "type": "module",
+  "description": "FAZ 7-R / EK3 Gerçek Panel UI REAL FINAL",
+  "scripts": {
+    "smoke": "bash ../../scripts/faz7r/faz_7r_ek3_panel_real_ui_smoke.sh"
+  },
+  "phase": "FAZ_7R_EK3",
+  "markers": [
+    "FAZ_7R_EK3_PANEL_REAL_UI_MARKER",
+    "PIX2PI_REAL_PANEL_REACT_APP",
+    "HUSREV_EKALEM_RTL_MARKER",
+    "I18N_TR_MARKER",
+    "I18N_OTA_ARAB_MARKER"
+  ]
+}

@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi Market sipariş ekranı" />
+  <meta property="og:title" content="Pix2pi Market Sipariş" />
+  <meta property="og:description" content="Sipariş taslak, teslimat seçimi ve ödeme kapalı gate yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Market Sipariş</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --brand: #16a34a;
+      --brand2: #2563eb;
+      --warn: #f59e0b;
+      --danger: #dc2626;
+      --shadow: 0 16px 42px rgba(15, 23, 42, .08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.12), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.12), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1240px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 62px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+    }
+
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .order-line, .timeline-item {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      background: #fff;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .order-line em {
+      font-style: normal;
+      font-size: 19px;
+      font-weight: 950;
+      color: #166534;
+    }
+
+    .timeline-item[data-done="true"] {
+      border-color: #86efac;
+      background: #f0fdf4;
+    }
+
+    .total-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .total-card strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 24px;
+      color: #166534;
+      letter-spacing: -0.04em;
+    }
+
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      border-radius: 16px;
+      padding: 13px 14px;
+      font: inherit;
+      outline: none;
+    }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      background: #f1f5f9;
+      color: #64748b;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 900px) {
+      .grid-4, .grid-2 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+      .order-line, .timeline-item { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_338_ORDER_APP_SHELL_START -->
+  <main class="shell" data-step="338" data-surface="market-orders">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 338</span>
+      <h1 data-i18n="market_orders.title">Sipariş ekranı</h1>
+      <p data-i18n="market_orders.description">Sipariş taslağı, teslimat seçimi ve ödeme kapalı gate yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_338_STORE_CUSTOMER_SESSION_CONTEXT_START -->
+    <section class="card guard" data-widget="store_customer_session_context">
+      <h2>Store / customer session context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="order-tenant">controlled-pilot</strong></p>
+        <p>Store: <strong id="order-store-slug">demo-market</strong></p>
+        <p>Customer: <strong id="order-customer-session">ANONYMOUS_PLACEHOLDER</strong></p>
+        <p>Scope: <strong id="order-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_338_STORE_CUSTOMER_SESSION_CONTEXT_END -->
+
+    <section class="grid-2">
+      <!-- PIX2PI_338_BASKET_ORDER_DRAFT_CONTEXT_START -->
+      <section class="card" data-widget="basket_order_draft_context">
+        <h2>Sepet / sipariş taslak</h2>
+        <!-- PIX2PI_338_ORDER_LINE_ITEMS_START -->
+        <div id="order-line-items">
+          <article class="order-line" data-product-id="mkt-prd-001">
+            <div>
+              <strong>Demo Süt 1L</strong>
+              <p>MKT-SUT-001 / 2 ADET × ₺35,00 / KDV %10</p>
+            </div>
+            <em>₺70,00</em>
+          </article>
+        </div>
+        <!-- PIX2PI_338_ORDER_LINE_ITEMS_END -->
+      </section>
+      <!-- PIX2PI_338_BASKET_ORDER_DRAFT_CONTEXT_END -->
+
+      <aside class="card">
+        <!-- PIX2PI_338_DELIVERY_PICKUP_SELECTION_START -->
+        <h2>Teslimat / gel-al</h2>
+        <label>
+          Sipariş tipi
+          <select id="order-fulfillment-mode">
+            <option value="DELIVERY">Teslimat</option>
+            <option value="PICKUP">Gel-al</option>
+          </select>
+        </label>
+        <!-- PIX2PI_338_DELIVERY_PICKUP_SELECTION_END -->
+
+        <!-- PIX2PI_338_ADDRESS_DELIVERY_NOTE_PLACEHOLDER_START -->
+        <section style="margin-top:14px;">
+          <h2>Adres / not placeholder</h2>
+          <p id="order-address-placeholder">Demo Mahalle — Adres doğrulama 340 sonrası açılacak</p>
+          <p id="order-delivery-note-placeholder">Kapıya bırakma notu placeholder</p>
+        </section>
+        <!-- PIX2PI_338_ADDRESS_DELIVERY_NOTE_PLACEHOLDER_END -->
+      </aside>
+    </section>
+
+    <!-- PIX2PI_338_ORDER_TOTALS_CONTRACT_START -->
+    <section class="card" data-widget="order_totals_contract">
+      <h2>Sipariş toplamları</h2>
+      <div class="grid-4">
+        <article class="total-card"><span>Ara toplam</span><strong id="order-subtotal">₺0,00</strong></article>
+        <article class="total-card"><span>KDV</span><strong id="order-vat-total">₺0,00</strong></article>
+        <article class="total-card"><span>Teslimat</span><strong id="order-delivery-fee">₺0,00</strong></article>
+        <article class="total-card"><span>Genel toplam</span><strong id="order-grand-total">₺0,00</strong></article>
+      </div>
+      <p>Ürün adedi: <strong id="order-item-count">0</strong></p>
+    </section>
+    <!-- PIX2PI_338_ORDER_TOTALS_CONTRACT_END -->
+
+    <!-- PIX2PI_338_ORDER_STATUS_TIMELINE_DRAFT_START -->
+    <section class="card" data-widget="order_status_timeline_draft">
+      <h2>Sipariş durum timeline taslağı</h2>
+      <div id="order-status-timeline">
+        <article class="timeline-item" data-order-status="DRAFT" data-done="true">
+          <strong>DRAFT</strong>
+          <p>Sipariş taslağı</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_338_ORDER_STATUS_TIMELINE_DRAFT_END -->
+
+    <!-- PIX2PI_338_REAL_ORDER_SUBMIT_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="real_order_submit_disabled_gate">
+      <h2>Gerçek sipariş oluşturma disabled gate</h2>
+      <p>real_order_submit_enabled=false / real_stock_reservation_enabled=false. Sipariş submit production gate olmadan çalışmaz.</p>
+      <button type="button" id="order-submit-disabled-button" disabled>Sipariş oluşturma kapalı</button>
+    </section>
+    <!-- PIX2PI_338_REAL_ORDER_SUBMIT_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_338_PAYMENT_HANDOFF_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="payment_handoff_disabled_gate">
+      <h2>Payment handoff disabled gate</h2>
+      <p>real_payment_handoff_enabled=false / provider_transaction_id=null. Ödeme yönlendirme bu adımda kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_338_PAYMENT_HANDOFF_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_338_TENANT_STORE_CUSTOMER_ORDER_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="tenant_store_customer_order_scope_guard">
+      <h2>Tenant / store / customer / order scope guard</h2>
+      <p>Sipariş draft `X-Tenant-ID`, `X-Store-Slug`, `X-Market-Customer-Session` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_338_TENANT_STORE_CUSTOMER_ORDER_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_338_ORDER_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="order_runtime_data_contract">
+      <h2>Order runtime data contract</h2>
+      <p id="order-runtime-contract">order_draft_enabled=true / fallback_order_enabled=true / ready_for_step_339=true</p>
+    </section>
+    <!-- PIX2PI_338_ORDER_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_338_SEO_OPENGRAPH_ORDER_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_order_placeholder">
+      <h2>SEO / OpenGraph order placeholder</h2>
+      <p>Title, description ve og:* metadata sipariş yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_338_SEO_OPENGRAPH_ORDER_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_338_I18N_READY_ORDER_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_order_markers">
+      <h2 data-i18n="market_orders.i18n_ready">i18n-ready order</h2>
+      <p data-i18n="market_orders.surface_ready">Sipariş ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_338_I18N_READY_ORDER_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_338_ORDER_APP_SHELL_END -->
+
+  <script src="/assets/orders/market-orders-runtime.js"></script>
+  <script>
+    (function () {
+      const fulfillmentMode = document.getElementById("order-fulfillment-mode");
+
+      Pix2piMarketOrders.bootOrderScreen().then(function (order) {
+        console.log("PIX2PI_338_ORDER_DRAFT_CONTRACT", order);
+      });
+
+      fulfillmentMode.addEventListener("change", function () {
+        const order = Pix2piMarketOrders.buildOrderDraftPayload({
+          fulfillment_mode: fulfillmentMode.value
+        });
+        Pix2piMarketOrders.saveOrderDraft(order);
+        Pix2piMarketOrders.renderOrderScreen(order);
+        console.log("PIX2PI_338_ORDER_FULFILLMENT_CHANGE", order);
+      });
+    })();
+  </script>
+</body>
+</html>

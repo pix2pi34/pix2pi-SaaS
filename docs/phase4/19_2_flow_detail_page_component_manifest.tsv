@@ -1,0 +1,13 @@
+component_id	component_name	purpose	required	status
+flow_summary_header	FlowSummaryHeader	flow run summary header	YES	contract_only
+flow_status_badge	FlowStatusBadge	status/severity display	YES	contract_only
+flow_trace_bar	FlowTraceBar	request/correlation/source_event trace	YES	contract_only
+flow_timeline	FlowTimeline	ordered timeline projection	YES	contract_only
+flow_step_list	FlowStepList	step detail list	YES	contract_only
+flow_event_list	FlowEventList	event history list	YES	contract_only
+flow_error_panel	FlowErrorPanel	error links and incident/audit references	YES	contract_only
+flow_snapshot_panel	FlowSnapshotPanel	progress snapshot panel	YES	contract_only
+flow_action_bar	FlowActionBar	copy ids/retry/replay placeholders	YES	contract_only
+flow_empty_state	FlowEmptyState	no data display	YES	contract_only
+flow_loading_state	FlowLoadingState	loading display	YES	contract_only
+flow_error_state	FlowErrorState	page error display	YES	contract_only

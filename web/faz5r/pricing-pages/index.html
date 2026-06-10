@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pix2pi Fiyatlama Sayfaları — Internal Preview</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root { color-scheme: dark; font-family: Inter, Arial, sans-serif; background:#0f172a; color:#e5e7eb; }
+    body { margin:0; }
+    .wrap { max-width:1180px; margin:0 auto; padding:40px 20px; }
+    .hero { border:1px solid #334155; border-radius:24px; padding:28px; background:linear-gradient(135deg,#111827,#1e293b); }
+    .badge { display:inline-block; padding:6px 10px; border:1px solid #475569; border-radius:999px; font-size:12px; color:#cbd5e1; }
+    h1 { margin:18px 0 10px; font-size:36px; line-height:1.1; }
+    p { color:#cbd5e1; line-height:1.65; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:22px; }
+    .card { border:1px solid #334155; border-radius:18px; padding:18px; background:#111827; }
+    .card h2 { margin:0 0 8px; font-size:18px; }
+    .price { font-size:26px; font-weight:800; color:#bfdbfe; }
+    code { background:#020617; border:1px solid #334155; border-radius:8px; padding:2px 6px; color:#93c5fd; }
+    .guard { margin-top:24px; border:1px solid #7f1d1d; background:#450a0a; border-radius:18px; padding:18px; color:#fecaca; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <!-- PIX2PI_PRICING_PAGES_START -->
+    <section class="hero" data-pricing-section="pricing_landing_page">
+      <span class="badge">FAZ 5-19.2 / Internal Preview / Public Pricing Disabled</span>
+      <h1>Pix2pi Fiyatlama Sayfaları</h1>
+      <p>
+        Bu yüzey fiyatlama sayfaları için internal preview iskeletidir.
+        Production yayın, gerçek müşteri kayıt, checkout ve ödeme tahsilatı bu fazda kapalıdır.
+      </p>
+      <p>
+        Kaynaklar: <code>FAZ_5_18_1_2_FIYAT_TABLOSU</code>,
+        <code>FAZ_5_18_1_4_MUHASEBECI_OZEL_PAKETLERI</code>,
+        <code>FAZ_5_18_1_5_FIYATLAMA_DOGRULAMA</code>.
+      </p>
+    </section>
+
+    <section class="grid" aria-label="Pricing plan cards">
+      <article class="card" data-pricing-section="free_plan_public_copy">
+        <h2>Free</h2>
+        <div class="price">0 TL</div>
+        <p>Küçük işletme başlangıç paketi. Tahsilat kapalı; public launch öncesi görünür değildir.</p>
+      </article>
+      <article class="card" data-pricing-section="starter_plan_public_copy">
+        <h2>Starter</h2>
+        <div class="price">999 TL + KDV</div>
+        <p>Temel POS, stok ve satış raporlama yüzeyleri.</p>
+      </article>
+      <article class="card" data-pricing-section="pro_plan_public_copy">
+        <h2>Pro</h2>
+        <div class="price">2499 TL + KDV</div>
+        <p>Gelişmiş raporlama, marketplace hazırlığı, API ve destek SLA.</p>
+      </article>
+      <article class="card" data-pricing-section="enterprise_plan_public_copy">
+        <h2>Enterprise</h2>
+        <div class="price">Teklif</div>
+        <p>Çok şube, özel SLA, özel entegrasyon ve kurumsal destek.</p>
+      </article>
+      <article class="card" data-pricing-section="accountant_package_public_copy">
+        <h2>Muhasebeci Paketleri</h2>
+        <div class="price">Paket bazlı</div>
+        <p>Firma başı ücret, export hakkı, aylık revalidation ve portal entitlement.</p>
+      </article>
+      <article class="card" data-pricing-section="plan_comparison_table">
+        <h2>Plan Karşılaştırma</h2>
+        <p>Entitlement referansları ve özellik kıyasları validation sonrasında gösterilir.</p>
+      </article>
+      <article class="card" data-pricing-section="vat_notice_panel">
+        <h2>KDV Bilgilendirmesi</h2>
+        <p>Fiyatlar KDV hariç/hariç olmayan kullanım metnine göre legal review ve founder approval kapısından geçer.</p>
+      </article>
+    </section>
+
+    <section class="guard" data-pricing-section="launch_guard_panel">
+      <strong>Launch Guard:</strong>
+      production_page_published=false,
+      public_pricing_visible=false,
+      real_customer_signup_enabled=false,
+      checkout_enabled=false,
+      payment_collection_enabled=false.
+    </section>
+    <!-- PIX2PI_PRICING_PAGES_END -->
+  </main>
+</body>
+</html>

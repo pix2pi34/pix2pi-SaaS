@@ -1,0 +1,49 @@
+candidate_type	path_or_name	status	note
+selected_entry_target	cmd/api-gateway/api_gateway_main.go	SELECTED	type=API_GATEWAY
+runtime_registration	internal/platform/reporting/runtime/registration.go	FOUND	RegisterReportingRoutes available
+candidate_execution	docs/phase4/18_2_reporting_runtime_service_entry_candidate_execution.sh	YES	blocked_by_default=YES
+compose_candidates	deploy/api-gateway_or_gateway	DISCOVERED	2
+env_candidates	env_files	DISCOVERED	11
+entry_candidate_total	go_files	DISCOVERED	96
+apply_mode	plan_only	NO_APPLY	18.2 does not mutate code
+candidate_index	path
+1	./cmd/accounting-service/accounting_service_main.go
+2	./cmd/api-gateway/api_gateway_main.go
+3	./cmd/api-gateway/api_gateway_main_test.go
+4	./cmd/api-gateway/erp_runtime_live_mount_wiring_test.go
+5	./cmd/api-gateway/erp_runtime_mount.go
+6	./cmd/api-gateway/erp_runtime_mount_test.go
+7	./cmd/api-gateway/erp_runtime_protected_endpoint_smoke_test.go
+8	./cmd/api-gateway/erp_runtime_route_catalog_visibility_test.go
+9	./cmd/api-gateway/erp_runtime_route_catalog_wiring_test.go
+10	./cmd/api-gateway/erp_runtime_route_policy.go
+11	./cmd/api-gateway/erp_runtime_route_policy_test.go
+12	./cmd/api-gateway/erp_runtime_service_factory.go
+13	./cmd/api-gateway/erp_runtime_service_factory_test.go
+14	./cmd/api-gateway/gateway_config.go
+15	./cmd/api-gateway/gateway_config_security_test.go
+16	./cmd/api-gateway/gateway_entry_contract_test.go
+17	./cmd/api-gateway/gateway_middleware.go
+18	./cmd/api-gateway/gateway_routes.go
+19	./cmd/api-gateway/gateway_routes_test.go
+20	./cmd/api-gateway/gateway_s2s_policy_test.go
+21	./cmd/api-gateway/user_detail_route.go
+22	./cmd/auth-api/auth_api_main.go
+23	./cmd/cache-pattern-clean-test/cache_pattern_clean_test_main.go
+24	./cmd/cache-service/cache_service_main.go
+25	./cmd/cache-test/cache_test_main.go
+26	./cmd/early-warning-runtime/early_warning_runtime_main.go
+27	./cmd/erp/core/ufk/erp_ufk_main.go
+28	./cmd/event-bus/event_bus_main.go
+29	./cmd/event-bus-store-lifecycle-test/event_bus_store_lifecycle_test_main.go
+30	./cmd/event-concurrency-test/event_concurrency_test_main.go
+31	./cmd/event-consumer/event_consumer_main.go
+32	./cmd/event-idempotency-test/event_idempotency_test_main.go
+33	./cmd/event-metadata-test/event_metadata_test_main.go
+34	./cmd/event-replay-test/event_replay_test_main.go
+35	./cmd/event-schema-test/event_schema_test_main.go
+36	./cmd/event-store-postgres-test/event_store_postgres_test_main.go
+37	./cmd/gateway-quota-redis-test/gateway_quota_redis_test_main.go
+38	./cmd/gateway-rate-limit-redis-test/gateway_rate_limit_redis_test_main.go
+39	./cmd/identity-api/identity_api_main.go
+40	./cmd/incident-audit-runtime/incident_audit_runtime_main.go

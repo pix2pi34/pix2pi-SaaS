@@ -1,0 +1,11 @@
+surface_id	surface_name	resource_area	default_action	permission_code	tenant_required	auth_required	boundary_required	audit_required	status
+panel_route_guard	Panel Route Guard	panel	read	panel.route.read	YES	YES	YES	YES	contract_only
+api_route_guard	API Route Guard	api	execute	api.route.execute	YES	YES	YES	YES	contract_only
+import_action_guard	Import Action Guard	import	execute	import.action.execute	YES	YES	YES	YES	contract_only
+inventory_action_guard	Inventory Action Guard	inventory	write	inventory.action.write	YES	YES	YES	YES	contract_only
+reporting_access_guard	Reporting Access Guard	reporting	read	reporting.access.read	YES	YES	YES	YES	contract_only
+uat_action_guard	UAT Action Guard	uat	write	uat.action.write	YES	YES	YES	YES	contract_only
+issue_feedback_guard	Issue Feedback Guard	issue_feedback	write	issue_feedback.write	YES	YES	YES	YES	contract_only
+security_admin_guard	Security Admin Guard	security	admin	security.admin.manage	YES	YES	YES	YES	contract_only
+support_boundary_guard	Support Boundary Guard	support	read	support.boundary.read	YES	YES	YES	YES	contract_only
+super_admin_boundary_guard	Super Admin Boundary Guard	super_admin	admin	super_admin.boundary.admin	YES	YES	YES	YES	contract_only

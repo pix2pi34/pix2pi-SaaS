@@ -1,0 +1,35 @@
+{
+  "phase": "FAZ 2-7.5.4",
+  "runtime": "presence_connection_lifecycle",
+  "connection_id_prefix": "conn_",
+  "tenant_safe_registry": true,
+  "presence_statuses": [
+    "CONNECTED",
+    "DISCONNECTED"
+  ],
+  "transports": [
+    "websocket",
+    "sse"
+  ],
+  "lifecycle_events": [
+    "connect",
+    "heartbeat",
+    "disconnect"
+  ],
+  "bridges": {
+    "websocket": true,
+    "sse": true
+  },
+  "audit_fields": [
+    "connection_id",
+    "tenant_id",
+    "channel",
+    "user_id",
+    "transport",
+    "status",
+    "connected_at",
+    "last_seen_at",
+    "disconnected_at"
+  ],
+  "production_live_policy": "runtime_ready_but_distributed_presence_store_in_later_phase"
+}

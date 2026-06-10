@@ -1,0 +1,64 @@
+{
+  "phase": "FAZ_3_10_6_4_CONFIDENCE_REVIEW_QUEUE_RUNTIME",
+  "runtime": "confidence_review_queue_runtime",
+  "runtime_enabled": true,
+  "require_tenant_scope": true,
+  "require_source_hash": true,
+  "require_review_reason": true,
+  "require_actor_for_action": true,
+  "require_assignee_for_assign": true,
+  "require_resolution_note": true,
+  "require_decision_hash": true,
+  "min_confidence_bps": 5000,
+  "medium_priority_below_bps": 8500,
+  "high_priority_below_bps": 7500,
+  "critical_priority_below_bps": 6000,
+  "critical_missing_field_count": 2,
+  "max_open_items_per_tenant": 1000,
+  "allowed_source_types": [
+    "OCR",
+    "TAX_EXTRACTION",
+    "CONTACT_EXTRACTION"
+  ],
+  "allowed_statuses": [
+    "OPEN",
+    "ASSIGNED",
+    "RESOLVED_APPROVED",
+    "RESOLVED_REJECTED",
+    "DISMISSED"
+  ],
+  "allowed_actions": [
+    "REGISTER",
+    "ASSIGN",
+    "RESOLVE_APPROVE",
+    "RESOLVE_REJECT",
+    "DISMISS",
+    "LIST_OPEN"
+  ],
+  "runtime_bridges": {
+    "ocr_lens_processing_runtime": "FAZ_3_10_6_1_OCR_LENS_PROCESSING_RUNTIME",
+    "tax_field_extraction_runtime": "FAZ_3_10_6_2_TAX_FIELD_EXTRACTION_RUNTIME",
+    "contact_field_extraction_runtime": "FAZ_3_10_6_3_CONTACT_FIELD_EXTRACTION_RUNTIME"
+  },
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "review_id_required": true,
+    "source_type_allowed_required": true,
+    "source_id_required": true,
+    "document_id_required": true,
+    "source_hash_required": true,
+    "confidence_minimum_required": true,
+    "reason_code_required": true,
+    "reason_required": true,
+    "actor_id_required_for_action": true,
+    "assignee_id_required_for_assign": true,
+    "resolution_note_required": true,
+    "max_open_items_per_tenant_guard": true,
+    "decision_hash_required": true
+  },
+  "previous_gate": "FAZ_3_10_6_3_CONTACT_FIELD_EXTRACTION_RUNTIME",
+  "next_gate": "FAZ_3_10_6_5_DOCUMENT_AI_RUNTIME_TESTS"
+}

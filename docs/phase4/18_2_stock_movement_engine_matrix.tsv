@@ -1,0 +1,21 @@
+gate	status	note
+previous_14	PASS	migration lifecycle prerequisite
+previous_15	PASS	readmodel/reporting prerequisite
+previous_18_1	PASS	opening stock prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=7
+tenant_safety	PASS	tenant_id=7
+movement_header	PASS	batch_ref=5 movement_ref=3
+movement_line	PASS	type=2 direction=3 product=2
+location	PASS	from=1 to=1 location=4
+quantity_delta	PASS	quantity=3 delta=1 numeric=16
+idempotency	PASS	idempotency_key=3
+indexes	PASS	index_count=17
+down_migration	PASS	drop_table_count=7
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=30
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+stock_movement_executed	NO	movement runtime later
+query_text_printed	NO	secret-safe report

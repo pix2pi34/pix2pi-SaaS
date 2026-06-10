@@ -1,0 +1,32 @@
+{
+  "phase": "FAZ 2-7.3.4",
+  "runtime": "tenant_aware_job_dispatch",
+  "require_tenant": true,
+  "allowed_job_types": [
+    "WEBHOOK_DELIVERY",
+    "EMAIL_DELIVERY",
+    "REPORT_BUILD",
+    "CLEANUP"
+  ],
+  "allowed_priorities": [
+    "LOW",
+    "NORMAL",
+    "HIGH",
+    "CRITICAL"
+  ],
+  "default_queue": "default",
+  "default_priority": "NORMAL",
+  "require_payload": true,
+  "enable_dedupe_guard": true,
+  "guards": [
+    "tenant_required",
+    "valid_job_type_required",
+    "valid_priority_required",
+    "payload_required",
+    "tenant_scoped_dedupe_key",
+    "tenant_safe_job_access",
+    "tenant_safe_queue_access",
+    "cross_tenant_dispatch_denied"
+  ],
+  "next_ready": "FAZ_2_7_3_5_JOB_AUDIT_LOG_PERSISTENCE"
+}

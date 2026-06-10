@@ -1,0 +1,78 @@
+{
+  "phase": "FAZ_3_10_2_3_TAX_EXEMPTION_RUNTIME_EXECUTION",
+  "runtime": "tax_exemption_runtime_execution",
+  "runtime_enabled": true,
+  "active_rule_version": "TR_TAX_EXEMPTION_2026_V1",
+  "default_currency_code": "TRY",
+  "audit_required": true,
+  "idempotency_required": true,
+  "min_override_rate_bps": 0,
+  "max_override_rate_bps": 2000,
+  "allowed_document_types": [
+    "SALES_INVOICE",
+    "PURCHASE_INVOICE",
+    "E_BELGE_DOCUMENT",
+    "EXPENSE_VOUCHER",
+    "JOURNAL_DOCUMENT",
+    "CUSTOM"
+  ],
+  "allowed_tax_types": [
+    "KDV",
+    "STOPAJ",
+    "OTV",
+    "DAMGA",
+    "CUSTOM"
+  ],
+  "rule_examples": [
+    {
+      "rule_id": "KDV-FULL-EXPORT-2026",
+      "rule_version": "TR_TAX_EXEMPTION_2026_V1",
+      "tax_type": "KDV",
+      "exemption_code": "KDV_EXPORT_FULL",
+      "exemption_scope": "FULL_EXEMPTION",
+      "account_code": "391.00",
+      "declaration_code": "KDV_EXPORT_EXEMPTION",
+      "reason_required": true
+    },
+    {
+      "rule_id": "KDV-PARTIAL-2026",
+      "rule_version": "TR_TAX_EXEMPTION_2026_V1",
+      "tax_type": "KDV",
+      "exemption_code": "KDV_PARTIAL_50",
+      "exemption_scope": "PARTIAL_EXEMPTION",
+      "exempt_rate_bps": 5000,
+      "account_code": "391.01",
+      "declaration_code": "KDV_PARTIAL_EXEMPTION",
+      "reason_required": false
+    },
+    {
+      "rule_id": "KDV-RATE-OVERRIDE-2026",
+      "rule_version": "TR_TAX_EXEMPTION_2026_V1",
+      "tax_type": "KDV",
+      "exemption_code": "KDV_RATE_10",
+      "exemption_scope": "RATE_OVERRIDE",
+      "override_rate_bps": 1000,
+      "account_code": "391.10",
+      "declaration_code": "KDV_RATE_OVERRIDE",
+      "reason_required": false
+    }
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "document_id_required": true,
+    "document_no_required": true,
+    "party_id_required": true,
+    "party_tax_no_required": true,
+    "tax_type_required": true,
+    "exemption_code_required": true,
+    "gross_amount_positive_required": true,
+    "tax_base_positive_required": true,
+    "tax_base_cannot_exceed_gross": true,
+    "document_date_required": true,
+    "active_rule_version_required": true
+  },
+  "next_gate": "FAZ_3_10_2_TAX_RUNTIME_FINAL_CLOSURE"
+}

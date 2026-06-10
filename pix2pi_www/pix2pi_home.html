@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Pix2pi Ana Sayfa</title>
+  <meta name="description" content="Pix2pi ana sayfa" />
+  <meta name="pix2pi-marker" content="PIX2PI_ANA_SAYFA_MARKER" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Times New Roman", Times, serif;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url("/assets/images/ana_zemin.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .top-menu {
+      position: fixed;
+      top: 28px;
+      right: 42px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .top-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 24px;
+      line-height: 1;
+      padding: 10px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 999px;
+      background: transparent;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .top-menu a:hover {
+      transform: translateY(-2px);
+      border-color: #ffffff;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 96px 32px 48px;
+    }
+
+    .center-text {
+      text-align: center;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.65);
+    }
+
+    .center-text h1 {
+      margin: 0;
+      font-size: clamp(52px, 8vw, 112px);
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .center-text p {
+      margin: 18px 0 0;
+      font-size: clamp(22px, 3vw, 40px);
+    }
+
+    @media (max-width: 700px) {
+      .top-menu {
+        top: 18px;
+        right: 18px;
+        left: 18px;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .top-menu a {
+        font-size: 20px;
+        padding: 9px 13px;
+      }
+
+      .page {
+        padding-top: 110px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_ANA_SAYFA_MARKER -->
+  <nav class="top-menu" aria-label="Ana menü">
+    <a href="/Grs/">Giriş</a>
+    <a href="/Kyt_ol/">Kayıt Ol</a>
+  </nav>
+</body>
+</html>

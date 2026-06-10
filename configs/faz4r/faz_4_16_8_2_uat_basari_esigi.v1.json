@@ -1,0 +1,60 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 232,
+  "step": "FAZ_4_16_8_2",
+  "title": "UAT başarı eşiği",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "231_FAZ_4_16_8_1_PILOT_KPI_DEGERLENDIRMESI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "uat_threshold_policy": {
+    "uat_threshold_status_required": "READY",
+    "uat_threshold_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "pilot_kpi_status_required": "PASS",
+    "management_panel_uat_status_required": "PASS",
+    "pos_uat_status_required": "PASS",
+    "accounting_uat_status_required": "PASS",
+    "accountant_portal_uat_status_required": "PASS",
+    "edocument_export_uat_status_required": "PASS",
+    "required_case_pass_rate_min": 100,
+    "evidence_completeness_rate_min": 100,
+    "signoff_completeness_rate_min": 100,
+    "no_go_no_go_decision_required": true,
+    "no_production_launch_required": true,
+    "no_live_external_provider_activation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_threshold_items": [
+    "UAT_THRESHOLD_KICKOFF",
+    "PILOT_KPI_EVALUATION_LINK",
+    "MANAGEMENT_PANEL_UAT_THRESHOLD",
+    "POS_UAT_THRESHOLD",
+    "ACCOUNTING_UAT_THRESHOLD",
+    "ACCOUNTANT_PORTAL_UAT_THRESHOLD",
+    "EDOCUMENT_EXPORT_UAT_THRESHOLD",
+    "REQUIRED_CASE_PASS_THRESHOLD",
+    "CRITICAL_ISSUE_ZERO_THRESHOLD",
+    "OPEN_BLOCKER_ZERO_THRESHOLD",
+    "EVIDENCE_COMPLETENESS_THRESHOLD",
+    "SIGNOFF_COMPLETENESS_THRESHOLD",
+    "EXCEPTION_POLICY_THRESHOLD",
+    "EXTERNAL_POLICY_CLOSED_THRESHOLD",
+    "FINAL_UAT_THRESHOLD_REPORT"
+  ],
+  "uat_threshold_artifact": "configs/faz4r/uat_success_threshold.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "233_FAZ_4_16_8_3_KRITIK_HATA_SIFIRLAMA"
+  ]
+}

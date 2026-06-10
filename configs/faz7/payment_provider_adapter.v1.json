@@ -1,0 +1,57 @@
+{
+  "module_code": "7-5P",
+  "module_name": "Payment Provider Adapter Module Foundation",
+  "module_boundary": "commercial/payment-provider-adapter",
+  "billing_core_dependency": "7-5 Billing Readiness",
+  "real_payment_enabled": false,
+  "default_mode": "SIMULATION",
+  "supported_modes": [
+    "SIMULATION",
+    "SANDBOX",
+    "PRODUCTION"
+  ],
+  "supported_operations": [
+    "AUTHORIZE",
+    "CAPTURE",
+    "REFUND",
+    "VOID",
+    "WEBHOOK_VERIFY"
+  ],
+  "providers": [
+    {
+      "provider_name": "Pix2pi Simulation Provider",
+      "provider_code": "pix2pi_simulation",
+      "mode": "SIMULATION",
+      "real_payment_enabled": false,
+      "allowed_operations": [
+        "AUTHORIZE",
+        "CAPTURE",
+        "REFUND",
+        "VOID",
+        "WEBHOOK_VERIFY"
+      ],
+      "settlement_currency": "TRY",
+      "webhook_required": true,
+      "audit_enabled": true
+    }
+  ],
+  "guardrails": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "idempotency_key_required": true,
+    "positive_amount_required": true,
+    "currency_required": true,
+    "production_real_payment_gate_required": true,
+    "audit_required": true
+  },
+  "production_opening_requires": [
+    "payment_provider_contract_approval",
+    "tax_and_accounting_approval",
+    "legal_approval",
+    "security_review",
+    "webhook_signature_verification",
+    "settlement_reconciliation_test",
+    "refund_and_void_test",
+    "incident_runbook"
+  ]
+}

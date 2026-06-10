@@ -1,0 +1,46 @@
+{
+  "test_name": "faz_5_18_7_4_ic_finans_dashboard_test",
+  "phase": "FAZ_5_18_7_4",
+  "expected": {
+    "required_panel_count": 9,
+    "required_domain_count": 8,
+    "internal_finance_dashboard_ready": true,
+    "production_dashboard_enabled": false,
+    "real_customer_finance_enabled": false,
+    "external_finance_export_enabled": false,
+    "auto_executive_email_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_panel_keys": [
+    "executive_finance_summary",
+    "mrr_arr_panel",
+    "churn_expansion_panel",
+    "collection_success_panel",
+    "billing_risk_panel",
+    "cashflow_projection_panel",
+    "finance_ops_alert_panel",
+    "audit_evidence_panel",
+    "pricing_table_deferred_marker"
+  ],
+  "must_have_domains": [
+    "REVENUE",
+    "COLLECTION",
+    "BILLING",
+    "RISK",
+    "CASHFLOW",
+    "OPS_ALERT",
+    "AUDIT_EVIDENCE",
+    "NEXT_PRIORITY"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_period_window",
+    "requires_mrr_arr_source",
+    "requires_churn_expansion_source",
+    "requires_collection_success_source",
+    "requires_billing_source",
+    "requires_cashflow_projection",
+    "blocks_production_dashboard"
+  ]
+}

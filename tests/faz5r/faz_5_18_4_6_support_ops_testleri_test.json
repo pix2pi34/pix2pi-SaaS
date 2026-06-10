@@ -1,0 +1,42 @@
+{
+  "test_name": "faz_5_18_4_6_support_ops_testleri_test",
+  "phase": "FAZ_5_18_4_6",
+  "expected": {
+    "required_case_count": 7,
+    "required_domain_count": 7,
+    "internal_support_ops_tests_ready": true,
+    "production_support_ops_enabled": false,
+    "real_customer_notification_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_case_keys": [
+    "support_sla_contract_test",
+    "support_channel_intake_test",
+    "support_template_contract_test",
+    "support_escalation_matrix_test",
+    "support_incident_classification_test",
+    "support_end_to_end_readiness_test",
+    "support_negative_guard_test"
+  ],
+  "must_have_domains": [
+    "SLA",
+    "CHANNEL",
+    "TEMPLATE",
+    "ESCALATION",
+    "INCIDENT",
+    "END_TO_END",
+    "NEGATIVE_GUARD"
+  ],
+  "must_have_flags": [
+    "has_positive_path",
+    "has_negative_path",
+    "has_tenant_isolation_check",
+    "has_correlation_id_check",
+    "has_audit_evidence_check",
+    "has_counter_based_result",
+    "blocks_public_support",
+    "blocks_real_customer_notification",
+    "blocks_production_auto_action"
+  ]
+}

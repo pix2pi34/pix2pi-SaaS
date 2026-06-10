@@ -1,0 +1,43 @@
+{
+  "module_code": "FAZ_7_11_ACCOUNTANT_PORTAL_REPORTING_EXPORT_PREVIEW",
+  "mode": "REPORTING_EXPORT_PREVIEW_DRY_RUN_ONLY",
+  "status": "READY_DRY_RUN_ONLY",
+  "depends_on": {
+    "faz_7_9_accountant_portal_commercial_surface_final_status": "PASS",
+    "faz_7_10_accountant_portal_access_runtime_final_status": "PASS",
+    "faz_7_11_ready": "YES"
+  },
+  "reporting_preview_surface": {
+    "access_policy": "ACTIVE_FIRM_CONTEXT_AND_PERMISSION_REQUIRED",
+    "report_permission": "report.view",
+    "export_permission": "export.preview",
+    "supported_report_types": [
+      "FIRM_SUMMARY",
+      "TAX_SUMMARY",
+      "INTEGRATION_STATUS"
+    ],
+    "supported_dry_run_providers": [
+      "PARASUT",
+      "LOGO",
+      "MIKRO",
+      "ZIRVE"
+    ],
+    "preview_data_policy": "NO_REAL_CUSTOMER_DATA_IN_REPORT_PREVIEW",
+    "export_data_policy": "NO_REAL_CUSTOMER_DATA_EXPORT_IN_THIS_PHASE"
+  },
+  "closed_live_gates": {
+    "real_accountant_billing_status": "CLOSED_UNTIL_BILLING_LIVE_MODULE",
+    "real_payment_capture_status": "CLOSED_UNTIL_BILLING_LIVE_MODULE",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "real_customer_data_export_live_status": "CLOSED_UNTIL_EXPORT_LIVE_MODULE",
+    "real_operator_provider_action_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE"
+  },
+  "live_operation_policy": {
+    "customer_data_export": "NO_REAL_CUSTOMER_DATA_EXPORT_IN_THIS_PHASE",
+    "provider_api": "NO_REAL_PROVIDER_API_OPERATION_IN_THIS_PHASE",
+    "file_delivery": "NO_REAL_FILE_DELIVERY_IN_THIS_PHASE",
+    "erp_write": "NO_REAL_ERP_WRITE_IN_THIS_PHASE"
+  }
+}

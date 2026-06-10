@@ -1,0 +1,33 @@
+{
+  "phase": "FAZ 2-7.4.5",
+  "runtime": "webhook_retry_dlq_runtime",
+  "require_tenant": true,
+  "max_attempts": 5,
+  "base_backoff_seconds": 5,
+  "max_backoff_seconds": 300,
+  "enable_dlq": true,
+  "require_payload_hash": true,
+  "require_last_error": true,
+  "guards": [
+    "tenant_required",
+    "delivery_id_required",
+    "event_type_required",
+    "url_required",
+    "payload_hash_required",
+    "last_error_required",
+    "valid_attempt_required",
+    "max_attempt_guard",
+    "duplicate_retry_guard",
+    "tenant_safe_retry_access",
+    "tenant_safe_dlq_access",
+    "delivery_retry_list",
+    "dlq_disabled_guard"
+  ],
+  "retry_policy": {
+    "strategy": "exponential_backoff",
+    "base_seconds": 5,
+    "max_seconds": 300,
+    "max_attempts": 5
+  },
+  "next_ready": "ONCELIK_4_NOTIFICATION_RUNTIME_BLOCK_FINAL_CLOSURE"
+}

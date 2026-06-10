@@ -1,0 +1,35 @@
+version: v1
+realtime:
+  core:
+    required_fields:
+      - session_id
+      - connection_id
+      - transport
+      - tenant_id
+      - connected_at
+
+  websocket:
+    required_fields:
+      - topic
+      - message_type
+      - correlation_id
+      - delivered_at
+
+  sse:
+    required_fields:
+      - stream_id
+      - event_name
+      - event_id
+      - delivered_at
+
+  tenant_safe_channels:
+    required_fields:
+      - tenant_id
+      - channel_key
+      - authorization_scope
+
+  connection_policy:
+    required_fields:
+      - heartbeat_seconds
+      - max_connections_per_tenant
+      - default_topic

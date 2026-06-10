@@ -1,0 +1,10 @@
+case	method	path	expected_status	actual_status	status	query_text_leak	note
+authorized_endpoint	GET	/api/v1/reporting/operational/summary	200	401	FAIL	NO	http_401
+authorized_endpoint	GET	/api/v1/reporting/operational/daily-metrics	200	401	FAIL	NO	http_401
+authorized_endpoint	GET	/api/v1/reporting/inventory/status	200	401	FAIL	NO	http_401
+authorized_endpoint	GET	/api/v1/reporting/documents/work-queue	200	401	FAIL	NO	http_401
+authorized_endpoint	GET	/api/v1/reporting/reconciliation/status	200	401	FAIL	NO	http_401
+authorized_endpoint	GET	/api/v1/reporting/projections/state	200	401	FAIL	NO	http_401
+missing_bearer	GET	/api/v1/reporting/operational/summary	401	401	PASS	NO	http_401
+missing_tenant	GET	/api/v1/reporting/operational/summary	400	401	FAIL	NO	http_401
+method_gate	POST	/api/v1/reporting/operational/summary	405	401	FAIL	NO	http_401

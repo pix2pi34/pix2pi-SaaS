@@ -1,0 +1,21 @@
+# FAZ 1-1.5 PK / Business-Code Standard Strict Suite Result FIX V3B
+
+- Tarih: 2026-05-05T06:36:40+03:00
+- Repo: /root/pix2pi/pix2pi-SaaS
+- Backup dir: /root/pix2pi/pix2pi-SaaS/backups/faz1/faz_1_1_5_pk_business_code_standard_fix_v3b_safe_continue_20260505_063638/suite_runtime
+
+## Counters
+- BUSINESS_TABLE_COUNT=103
+- ID_COLUMN_TABLE_COUNT=103
+- PK_TABLE_COUNT=103
+- BUSINESS_CODE_TABLE_COUNT=103
+- TENANT_BUSINESS_CODE_UNIQUE_INDEX_COUNT=103
+- BUSINESS_CODE_FORMAT_CHECK_COUNT=103
+- CODE_GENERATOR_FUNCTION_COUNT=2
+- GENERATOR_TEST_COUNT=1
+- UPPERCASE_GENERATOR_TEST_COUNT=1
+
+## Final Counters
+- PASS_COUNT=16
+- FAIL_COUNT=0
+- WARN_COUNT=0

@@ -1,0 +1,12 @@
+item	status	note
+phase4_final_status	PASS	blockers=0
+faz5_transition_gate	READY_WITH_DEFERRED_ACTIONS	deferred_actions=2
+db_readiness	READY_WITH_DEFERRED_ACTIONS	score=96 grade=A
+gateway_reporting_live_route	AUTH_PROTECTED	auth protected route verified
+real_jwt_live_smoke	DEFERRED_NO_VALID_TOKEN	optional follow-up with LIVE_SMOKE_AUTH_TOKEN
+runtime_restart_executed	NO	final master closure only
+gateway_config_changed	NO	final master closure only
+nginx_config_changed	NO	final master closure only
+db_mutation	NO	final master closure only
+deferred_pitr	DEFERRED	PITR aktiflestirme bakim penceresine erteli
+deferred_real_jwt_live_smoke	DEFERRED	Gecerli JWT ile full 200/tenant/method smoke daha sonra kosulacak

@@ -1,0 +1,28 @@
+{
+  "step": "FAZ 7-R / 355",
+  "name": "İlk gerçek kullanım smoke real final",
+  "tenantId": "tenant-api-e2e-success",
+  "smokeRunId": "first-real-usage-355-20260513_193359",
+  "partyId": "party-355-customer-a",
+  "productId": "product-355-main",
+  "saleId": "sale-355-main",
+  "routes": [
+    "/first-real-usage-smoke/",
+    "POST /api/panel/parties/create",
+    "POST /api/panel/products/create",
+    "POST /api/panel/products/stock-movement",
+    "POST /api/pos/sale/complete",
+    "POST /api/panel/pos-management/day-summary"
+  ],
+  "requiredEvidence": [
+    "cari create curl + DB SELECT",
+    "product create curl + DB SELECT",
+    "stock movement curl + DB SELECT",
+    "POS sale complete curl + DB SELECT",
+    "dashboard visibility DB snapshot",
+    "report generation DB snapshot",
+    "smoke run DB write",
+    "rollback no partial write",
+    "route smoke"
+  ]
+}

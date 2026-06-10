@@ -1,0 +1,10 @@
+{
+  "status": "ok",
+  "service": "pix2pi-customer-panel-live",
+  "marker": "PIX2PI_CUSTOMER_PANEL_LIVE_HEALTH",
+  "routes": [
+    "/customer-panel/",
+    "/customer-panel/react/",
+    "/customer-panel/vue3/"
+  ]
+}

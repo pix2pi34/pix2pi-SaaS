@@ -1,0 +1,59 @@
+{
+  "phase": "FAZ_1_5_5",
+  "module": "WEB_L2_AUTH_TENANT_EXPERIENCE",
+  "component": "unauthorized_forbidden_pages",
+  "status": "READY",
+  "required_capabilities": [
+    "unauthorized_401_page",
+    "forbidden_403_page",
+    "tenant_mismatch_message",
+    "session_expired_message",
+    "ui_api_tests"
+  ],
+  "error_routes": {
+    "unauthorized": "/auth-errors/401.html",
+    "forbidden": "/auth-errors/403.html",
+    "tenant_mismatch": "/auth-errors/tenant-mismatch.html",
+    "session_expired": "/auth-errors/session-expired.html"
+  },
+  "api_error_contract": {
+    "401": {
+      "status": 401,
+      "code": "UNAUTHORIZED",
+      "message": "Oturum bulunamadı veya giriş yapılmadı.",
+      "action": "LOGIN_REQUIRED"
+    },
+    "403": {
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "Bu işlem için yetkiniz yok.",
+      "action": "CONTACT_ADMIN"
+    },
+    "TENANT_MISMATCH": {
+      "status": 403,
+      "code": "TENANT_MISMATCH",
+      "message": "İstek tenant bağlamı aktif tenant ile eşleşmiyor.",
+      "action": "SWITCH_TENANT_OR_RETRY"
+    },
+    "SESSION_EXPIRED": {
+      "status": 401,
+      "code": "SESSION_EXPIRED",
+      "message": "Oturum süresi doldu.",
+      "action": "RE_LOGIN_REQUIRED"
+    }
+  },
+  "ui_contract": {
+    "root_id": "authErrorRoot",
+    "title_id": "authErrorTitle",
+    "message_id": "authErrorMessage",
+    "action_id": "authErrorAction",
+    "technical_code_id": "authErrorTechnicalCode",
+    "api_preview_id": "authErrorApiPreview"
+  },
+  "guard_policy": {
+    "missing_token": "SHOW_401",
+    "invalid_role": "SHOW_403",
+    "tenant_mismatch": "SHOW_TENANT_MISMATCH",
+    "expired_session": "SHOW_SESSION_EXPIRED"
+  }
+}

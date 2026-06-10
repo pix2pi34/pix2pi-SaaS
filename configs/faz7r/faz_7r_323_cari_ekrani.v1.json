@@ -1,0 +1,65 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "323",
+  "name": "Cari ekranı",
+  "surface": "merchant_panel",
+  "domain": "panel.pix2pi.com.tr",
+  "path": "/customers/",
+  "runtime_path": "/assets/customers/customers-runtime.js",
+  "depends_on": [
+    "316 - panel.pix2pi.com.tr altyapısı",
+    "317 - Login / tenant seçimi",
+    "318 - Dil Modülü / i18n / Alfabe Altyapısı",
+    "319 - İşletme onboarding ekranı",
+    "320 - Merchant dashboard",
+    "321 - Kullanıcı / rol / personel ekranı",
+    "322 - İşletme ayarları / profil ekranı"
+  ],
+  "backend_contract": {
+    "list_endpoint": "/api/panel/customers",
+    "save_endpoint": "/api/panel/customers/save",
+    "status_endpoint": "/api/panel/customers/status",
+    "method": "GET/POST",
+    "auth": "Bearer JWT",
+    "tenant_header": "X-Tenant-ID"
+  },
+  "required_fields": [
+    "customer_name",
+    "customer_type",
+    "tax_number",
+    "tax_office",
+    "city",
+    "district",
+    "address_line"
+  ],
+  "optional_fields": [
+    "mersis_no",
+    "phone",
+    "email"
+  ],
+  "customer_types": [
+    "CUSTOMER",
+    "SUPPLIER",
+    "BOTH"
+  ],
+  "customer_statuses": [
+    "ACTIVE",
+    "PASSIVE"
+  ],
+  "required_capabilities": [
+    "customer_app_shell",
+    "customer_list",
+    "customer_create_edit_form",
+    "customer_supplier_type",
+    "tax_address_required_fields",
+    "phone_email_fields",
+    "customer_balance_summary",
+    "customer_status_active_passive",
+    "tenant_scoped_customer_guard",
+    "customer_validation_contract",
+    "import_export_placeholder",
+    "i18n_ready_customer_markers",
+    "customer_smoke_test"
+  ],
+  "next_step": "324 - Ürün / stok ekranı"
+}

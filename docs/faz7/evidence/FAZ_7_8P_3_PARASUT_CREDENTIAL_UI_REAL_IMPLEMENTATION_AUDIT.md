@@ -1,0 +1,72 @@
+# FAZ 7-8P.3 Paraşüt Credential UI Real Implementation Audit
+
+Generated at: 2026-05-02T03:51:15Z
+
+- 7-8P.3.0.1 Documentation artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.0.2 Config artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.0.3 Credential UI code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.0.4 Credential UI test code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.0.5 Scope document title IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.0 User API entry surface documented IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.1 Scope doc admin surface IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.0 Scope doc credential form IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.3.0 Scope doc save action IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.4.0 Scope doc test action IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.0 Scope doc disable rotate IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.6.0 Scope doc final closure IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.0.6 Config provider key IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.0.7 Config real provider API disabled IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.2 Config panel path IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.3 Config tenant admin role IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.4 Config integration admin role IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.1 Config client id field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.2 Config client secret field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.3 Config webhook secret field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.3.1 Config save action IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.4.1 Config dry-run test action IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.1 Config disable action IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.2 Config rotate client secret action IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.3 Config rotate webhook secret action IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.4 Config secret fields masked IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.5 Config client secret plaintext forbidden IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.6 Config webhook secret plaintext forbidden IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.4.2 Config real API closed status IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.3.2 Config vault bridge required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.5 Code UI screen contract IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.6 Code default UI contract IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.7 Code role access guard IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.8 Code screen contract validator IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.9 Code tenant admin role IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.10 Code integration admin role IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.3.3 Code save action constant IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.4.3 Code dry-run test action constant IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.4 Code disable action constant IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.5 Code rotate client action constant IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.6 Code rotate webhook action constant IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.0.8 Code UI action handler IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.3.4 Code save credentials handler IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.3.5 Code vault store bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.3.6 Code credential set bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.7 Code plaintext persisted flag IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.4.4 Code dry-run test handler IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.4.5 Code blocked real API status IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.4.6 Code provider live module guard IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.4.7 Code real API enabled guard IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.7 Code disable handler IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.8 Code rotate handler IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.9 Code token vault rotate bridge IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.10 Code disabled status IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.11 Code rotated status IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.8 Code display field builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.9 Code secret masking IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.10 Code secret ref only display IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.6.1 Code final readiness gate IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.6.2 Code readiness decision IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.6.3 Code real API blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.1.11 Test admin surface IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.2.11 Test credential form IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.3.7 Test save action IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.4.8 Test dry-run connection IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.12 Test disable rotate IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.5.13 Test role tenant guards IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.3.6.4 Test final closure IMPLEMENTED_OR_PRESENT / OK

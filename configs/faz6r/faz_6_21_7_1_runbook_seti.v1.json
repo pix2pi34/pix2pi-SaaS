@@ -1,0 +1,120 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "285",
+  "code": "FAZ_6_21_7_1",
+  "name": "Runbook seti",
+  "depends_on": [
+    "FAZ_6_21_4_5"
+  ],
+  "runtime_mutation_allowed": false,
+  "destructive_action_default_allowed": false,
+  "auto_remediation_enabled": false,
+  "required_controls": [
+    "security_edge_audit_dependency_gate",
+    "incident_severity_model",
+    "runbook_index",
+    "edge_security_incident_runbook",
+    "tls_cert_incident_runbook",
+    "api_outage_runbook",
+    "db_degradation_runbook",
+    "event_queue_backlog_runbook",
+    "cache_degradation_runbook",
+    "release_rollback_runbook",
+    "evidence_capture_policy",
+    "escalation_policy_placeholder",
+    "manual_approval_policy",
+    "no_destructive_default_policy",
+    "final_status_policy"
+  ],
+  "severity_model": [
+    {
+      "level": "P0",
+      "name": "critical_outage_or_security_breach",
+      "response_target_minutes": 5,
+      "requires_escalation": true,
+      "requires_evidence": true
+    },
+    {
+      "level": "P1",
+      "name": "major_degradation_or_release_blocker",
+      "response_target_minutes": 15,
+      "requires_escalation": true,
+      "requires_evidence": true
+    },
+    {
+      "level": "P2",
+      "name": "partial_degradation_or_high_risk_warning",
+      "response_target_minutes": 60,
+      "requires_escalation": false,
+      "requires_evidence": true
+    },
+    {
+      "level": "P3",
+      "name": "minor_warning_or_followup",
+      "response_target_minutes": 240,
+      "requires_escalation": false,
+      "requires_evidence": true
+    }
+  ],
+  "policies": {
+    "evidence_capture_policy": {
+      "required": true,
+      "minimum_fields": [
+        "incident_id",
+        "severity",
+        "timestamp",
+        "affected_surface",
+        "symptom",
+        "detection_source",
+        "actions_taken",
+        "rollback_decision",
+        "owner",
+        "final_status"
+      ]
+    },
+    "manual_approval_policy": {
+      "required_for": [
+        "production_restart",
+        "rollback",
+        "firewall_or_edge_enforce_change",
+        "database_failover",
+        "data_restore",
+        "destructive_cleanup"
+      ],
+      "approval_roles": [
+        "sre_owner",
+        "ops_owner"
+      ]
+    },
+    "no_destructive_default_policy": {
+      "enabled": true,
+      "default_mode": "read_only_diagnosis",
+      "destructive_actions_require_explicit_approval": true
+    },
+    "escalation_policy_placeholder": {
+      "enabled": true,
+      "detailed_step": "FAZ_6_21_7_4",
+      "temporary_roles": [
+        "sre_owner",
+        "security_owner",
+        "ops_owner"
+      ]
+    },
+    "final_status_policy": {
+      "required_final_states": [
+        "resolved",
+        "mitigated",
+        "rolled_back",
+        "deferred_with_owner"
+      ],
+      "requires_postmortem_for": [
+        "P0",
+        "P1"
+      ]
+    }
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_7_1_RUNBOOK_SETI_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

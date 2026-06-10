@@ -1,0 +1,14 @@
+gate	status	note
+previous_18_1_readiness	PASS	readiness=READY blockers=0
+previous_18_2_plan	PASS	selected=cmd/api-gateway/api_gateway_main.go kind=API_GATEWAY
+previous_17_final	PASS	reporting api closure
+selected_target_api_gateway	FOUND	cmd/api-gateway/api_gateway_main.go
+runtime_registration	PASS	RegisterReportingRoutes available
+reporting_go_test_suite	PASS	internal platform reporting
+api_gateway_go_test	PASS	selected api-gateway tests
+candidate_execution_created	YES	blocked_by_default=YES
+apply_executed	NO	gate only
+gateway_config_changed	NO	gate only
+runtime_started	NO	gate only
+db_mutation	NO	gate only
+apply_gate_ready	YES	warnings=0

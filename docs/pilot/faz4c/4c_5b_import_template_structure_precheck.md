@@ -1,0 +1,72 @@
+# FAZ 4C — 4C-5B Import Template Structure Precheck
+
+## Amac
+
+uzmanparcaci product/stock import template yapisini ve ornek satir veri kalitesini kontrol etmek.
+
+Bu adim DB'ye yazmaz.
+
+---
+
+## 1. Template
+
+CSV_FILE=imports/pilot/faz4c/uzmanparcaci/product_import_template.csv
+CSV_FILE_FOUND=YES
+HEADER_COLUMN_COUNT=15
+EXPECTED_COLUMN_COUNT=15
+HEADER_ORDER_STATUS=PASS
+
+---
+
+## 2. Kolon kalite kontrolu
+
+MISSING_COLUMN_COUNT=0
+EXTRA_COLUMN_COUNT=0
+MISSING_COLUMNS=NONE
+EXTRA_COLUMNS=NONE
+
+---
+
+## 3. Satir kalite kontrolu
+
+SAMPLE_ROW_COUNT=1
+REQUIRED_NON_EMPTY_FIELD_COUNT=13
+NUMERIC_COLUMN_COUNT=3
+DUPLICATE_SKU_COUNT=0
+ROW_ERROR_COUNT=0
+ROW_WARNING_COUNT=1
+
+---
+
+## 4. Uyarilar
+
+WARNINGS=NONE
+
+Not:
+Barcode bos olabilir. Pilot isletme barkod kullanmadigini bildirdigi icin bu blocker degildir.
+
+---
+
+## 5. Hatalar
+
+ERRORS=NONE
+
+---
+
+## 6. Status
+
+4C_5B_IMPORT_TEMPLATE_STRUCTURE_STATUS=PASS
+4C_5B_CSV_FILE_FOUND=YES
+4C_5B_HEADER_COLUMN_COUNT=15
+4C_5B_EXPECTED_COLUMN_COUNT=15
+4C_5B_HEADER_ORDER_STATUS=PASS
+4C_5B_MISSING_COLUMN_COUNT=0
+4C_5B_EXTRA_COLUMN_COUNT=0
+4C_5B_SAMPLE_ROW_COUNT=1
+4C_5B_DUPLICATE_SKU_COUNT=0
+4C_5B_ROW_ERROR_COUNT=0
+4C_5B_ROW_WARNING_COUNT=1
+4C_5B_DB_WRITE_APPLIED=NO
+4C_5B_CRITICAL_BLOCKER_COUNT=0
+4C_5B_WARNING_COUNT=1
+4C_5C_READY=YES

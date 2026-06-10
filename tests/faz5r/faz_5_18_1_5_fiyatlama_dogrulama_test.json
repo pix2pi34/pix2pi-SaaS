@@ -1,0 +1,46 @@
+{
+  "test_name": "faz_5_18_1_5_fiyatlama_dogrulama_test",
+  "phase": "FAZ_5_18_1_5",
+  "expected": {
+    "required_control_count": 9,
+    "required_domain_count": 8,
+    "internal_pricing_validation_ready": true,
+    "production_pricing_published": false,
+    "real_customer_billing_enabled": false,
+    "payment_collection_enabled": false,
+    "public_checkout_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_control_keys": [
+    "pricing_table_integrity",
+    "accountant_package_integrity",
+    "vat_policy_validation",
+    "annual_monthly_price_validation",
+    "entitlement_consistency_validation",
+    "billing_gate_validation",
+    "payment_gate_validation",
+    "public_copy_approval_validation",
+    "developer_docs_portal_deferred_marker"
+  ],
+  "must_have_domains": [
+    "PRICING_TABLE",
+    "ACCOUNTANT_PACKAGE",
+    "VAT_POLICY",
+    "BILLING_GATE",
+    "PAYMENT_GATE",
+    "PUBLIC_COPY",
+    "APPROVAL",
+    "DEVELOPER_DOCS_NEXT"
+  ],
+  "must_have_flags": [
+    "requires_pricing_table_source",
+    "requires_accountant_package_source",
+    "requires_plan_code_consistency",
+    "requires_currency_consistency",
+    "requires_vat_policy_consistency",
+    "requires_billing_gate_closed",
+    "requires_payment_gate_closed",
+    "blocks_production_publish"
+  ]
+}

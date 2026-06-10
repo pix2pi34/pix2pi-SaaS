@@ -1,0 +1,24 @@
+gate	status	note
+previous_21	PASS	security final prerequisite
+baseline	PASS	existing=5/5
+inventory	PASS	rows=400
+migration_chain	PASS	pairs=38
+cleanup_candidates	PASS	candidate_count=8
+potential_secret_paths	PASS	path_count=2 values_not_printed
+no_delete	PASS	file delete not executed
+no_move	PASS	file move not executed
+no_deploy	PASS	deploy/restart not executed
+secret_safe	PASS	secret values not printed
+file_delete_executed	NO	evidence only
+file_move_executed	NO	evidence only
+file_permission_changed	NO	evidence only
+env_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+deploy_executed	NO	evidence only
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+query_text_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

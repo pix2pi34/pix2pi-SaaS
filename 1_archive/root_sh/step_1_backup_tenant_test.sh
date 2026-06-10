@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+cd ~/pix2pi/pix2pi-SaaS
+
+mkdir -p backups/app/manual
+
+cp -f cmd/playground/playground_main.go \
+  backups/app/manual/playground_main.go.tenant_test.bak 2>/dev/null || true
+
+echo "OK ✅ tenant test yedegi alindi"

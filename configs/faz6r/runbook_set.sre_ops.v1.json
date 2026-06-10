@@ -1,0 +1,270 @@
+{
+  "version": "sre_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_7_1",
+  "runbooks": [
+    {
+      "id": "rb-edge-security-incident",
+      "title": "Edge security incident runbook",
+      "control": "edge_security_incident_runbook",
+      "severity_candidates": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "symptoms": [
+        "waf_block_spike",
+        "bot_attack_spike",
+        "scanner_flood",
+        "tenant_api_abuse_signal"
+      ],
+      "detection": [
+        "edge_logs",
+        "waf_evidence",
+        "abuse_bot_evidence",
+        "sre_dashboard"
+      ],
+      "first_response": [
+        "capture_edge_logs",
+        "identify_affected_routes",
+        "check_false_positive_scope",
+        "confirm_previous_stable_edge_policy"
+      ],
+      "mitigation": [
+        "prefer_observe_or_challenge_before_enforce",
+        "apply_manual_approval_before_block_change",
+        "document_decision"
+      ],
+      "rollback": [
+        "return_to_previous_stable_edge_policy"
+      ],
+      "evidence_required": true,
+      "owner": "sre"
+    },
+    {
+      "id": "rb-tls-cert-incident",
+      "title": "TLS / certificate incident runbook",
+      "control": "tls_cert_incident_runbook",
+      "severity_candidates": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "symptoms": [
+        "certificate_expiring",
+        "certificate_expired",
+        "tls_handshake_failure",
+        "https_redirect_failure"
+      ],
+      "detection": [
+        "tls_cert_check",
+        "browser_error",
+        "monitor_alert"
+      ],
+      "first_response": [
+        "capture_certificate_chain",
+        "check_days_remaining",
+        "verify_affected_domains",
+        "confirm_https_redirect"
+      ],
+      "mitigation": [
+        "renew_or_reissue_certificate_with_approval",
+        "verify_hsts_header",
+        "verify_tls_min_version"
+      ],
+      "rollback": [
+        "return_to_previous_stable_tls_edge_policy"
+      ],
+      "evidence_required": true,
+      "owner": "sre"
+    },
+    {
+      "id": "rb-api-outage",
+      "title": "API outage runbook",
+      "control": "api_outage_runbook",
+      "severity_candidates": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "symptoms": [
+        "api_5xx_spike",
+        "gateway_unhealthy",
+        "auth_failure_spike",
+        "tenant_request_failure"
+      ],
+      "detection": [
+        "gateway_health",
+        "service_health",
+        "logs",
+        "prometheus"
+      ],
+      "first_response": [
+        "check_gateway_health",
+        "check_identity_health",
+        "check_upstream_service_health",
+        "capture_recent_logs"
+      ],
+      "mitigation": [
+        "restart_only_with_manual_approval",
+        "route_around_failed_upstream_if_available",
+        "rollback_release_if_release_correlated"
+      ],
+      "rollback": [
+        "release_rollback_runbook"
+      ],
+      "evidence_required": true,
+      "owner": "sre"
+    },
+    {
+      "id": "rb-db-degradation",
+      "title": "DB degradation runbook",
+      "control": "db_degradation_runbook",
+      "severity_candidates": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "symptoms": [
+        "slow_queries",
+        "connection_pool_exhaustion",
+        "replica_lag",
+        "db_unavailable"
+      ],
+      "detection": [
+        "db_health",
+        "slow_query_logs",
+        "prometheus",
+        "application_errors"
+      ],
+      "first_response": [
+        "check_connection_pool",
+        "check_primary_db_health",
+        "check_replica_lag",
+        "capture_slow_query_sample"
+      ],
+      "mitigation": [
+        "increase_timeout_only_with_review",
+        "reduce_noncritical_load",
+        "failover_only_with_manual_approval"
+      ],
+      "rollback": [
+        "return_to_previous_db_runtime_policy"
+      ],
+      "evidence_required": true,
+      "owner": "sre"
+    },
+    {
+      "id": "rb-event-queue-backlog",
+      "title": "Event / queue backlog runbook",
+      "control": "event_queue_backlog_runbook",
+      "severity_candidates": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "symptoms": [
+        "consumer_lag",
+        "jetstream_backlog",
+        "dlq_growth",
+        "event_processing_delay"
+      ],
+      "detection": [
+        "event_bus_metrics",
+        "consumer_logs",
+        "dlq_count"
+      ],
+      "first_response": [
+        "identify_backlog_subject",
+        "check_consumer_health",
+        "check_dlq_growth",
+        "capture_event_sample_without_sensitive_payload"
+      ],
+      "mitigation": [
+        "scale_consumer_with_approval",
+        "pause_noncritical_publishers_if_needed",
+        "replay_only_with_idempotency_confirmation"
+      ],
+      "rollback": [
+        "return_to_previous_consumer_runtime_policy"
+      ],
+      "evidence_required": true,
+      "owner": "sre"
+    },
+    {
+      "id": "rb-cache-degradation",
+      "title": "Cache degradation runbook",
+      "control": "cache_degradation_runbook",
+      "severity_candidates": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "symptoms": [
+        "redis_unavailable",
+        "cache_miss_spike",
+        "hot_key_warning",
+        "rate_limit_cache_failure"
+      ],
+      "detection": [
+        "redis_health",
+        "cache_metrics",
+        "gateway_errors"
+      ],
+      "first_response": [
+        "check_redis_health",
+        "check_cache_hit_miss_ratio",
+        "identify_hot_keys",
+        "verify_fallback_path"
+      ],
+      "mitigation": [
+        "fallback_to_db_if_safe",
+        "disable_noncritical_cache_with_approval",
+        "avoid_mass_key_delete_without_explicit_approval"
+      ],
+      "rollback": [
+        "return_to_previous_cache_policy"
+      ],
+      "evidence_required": true,
+      "owner": "sre"
+    },
+    {
+      "id": "rb-release-rollback",
+      "title": "Release rollback runbook",
+      "control": "release_rollback_runbook",
+      "severity_candidates": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "symptoms": [
+        "release_correlated_failure",
+        "post_deploy_5xx_spike",
+        "critical_regression",
+        "security_gate_failure"
+      ],
+      "detection": [
+        "release_checklist",
+        "logs",
+        "health_checks",
+        "audit_evidence"
+      ],
+      "first_response": [
+        "freeze_new_release_actions",
+        "capture_current_version",
+        "confirm_previous_stable_version",
+        "notify_sre_owner"
+      ],
+      "mitigation": [
+        "rollback_only_after_manual_approval",
+        "verify_health_after_rollback",
+        "write_evidence"
+      ],
+      "rollback": [
+        "return_to_previous_stable_release"
+      ],
+      "evidence_required": true,
+      "owner": "sre"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "phase": "FAZ_5_18_1_4",
+  "title": "Muhasebeci Özel Paketleri",
+  "status": "READY",
+  "control_surface": "ACCOUNTANT_SPECIAL_PACKAGES",
+  "inputs": [
+    "FAZ_5_18_1_2_FIYAT_TABLOSU",
+    "FAZ_7_9_ACCOUNTANT_PORTAL_COMMERCIAL_SURFACE",
+    "FAZ_5_R_PRIORITY_3_LVL18_PRICING"
+  ],
+  "outputs": [
+    "ACCOUNTANT_STARTER_PACKAGE",
+    "ACCOUNTANT_PRO_PACKAGE",
+    "ACCOUNTANT_ENTERPRISE_PACKAGE",
+    "PRICING_VALIDATION_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_accountant_package_ready": true,
+    "production_package_published": false,
+    "real_customer_billing_enabled": false,
+    "payment_collection_enabled": false,
+    "accountant_portal_commercial_enabled": false,
+    "pricing_validation_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

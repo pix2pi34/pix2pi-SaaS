@@ -1,0 +1,31 @@
+gate	status	note
+previous_foundation	PASS	17/20/21/22 prerequisite final closures
+pilot_scope_inventory	PASS	scope=12 critical=3
+uat_scenario_catalog	PASS	scenarios=16 p0=10
+onboarding_checklist	PASS	items=12 required=12
+rollout_gate_matrix	PASS	gates=11 blockers=9
+no_runtime_change	PASS	no service/db/api/ui/event changed
+no_config_change	PASS	no config/env/nginx/firewall changed
+secret_safe	PASS	no secrets/customer private data printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+ui_code_changed	NO	baseline only
+api_route_created	NO	baseline only
+api_implementation_changed	NO	baseline only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+event_published	NO	baseline only
+event_consumed	NO	baseline only
+notification_sent	NO	baseline only
+customer_private_data_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report

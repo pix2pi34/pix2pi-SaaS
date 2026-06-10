@@ -1,0 +1,7 @@
+category	score	max_score	status	note
+migration_readiness	15	15	PASS	migration final reconciliation=NO_OP_APPLY_NOT_REQUIRED
+backup_restore_readiness	20	20	PASS	readiness=PASS, logical_backup=PASS, restore_drill=PASS
+pitr_readiness	6	10	DEFERRED	design=PASS, gate=PASS, current_ready=NO, decision=PLAN_READY_APPLY_NOT_EXECUTED
+observability_readiness	20	20	PASS	final=PASS, stack=ACTIVE, risk=LOW
+performance_health_baseline	25	25	PASS	final=PASS, stack=BASELINED, risk=LOW, closure=PASS
+final_live_db_health	10	10	PASS	connection=PASS, role=PRIMARY_WRITE, lock=0, idle_tx=0, long_query_60s=0, prepared_tx=0

@@ -1,0 +1,68 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "353",
+  "name": "Kullanıcı yetki kontrolü",
+  "surface": "merchant_panel_controlled_access",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/user-permission-check/",
+  "runtime_path": "/assets/user-permission-check/user-permission-check-runtime.js",
+  "depends_on": [
+    "352 - Tenant izolasyon kontrolü"
+  ],
+  "backend_contract": {
+    "permission_snapshot_endpoint": "/api/security/permissions/snapshot",
+    "permission_decision_endpoint": "/api/security/permissions/decision",
+    "permission_audit_endpoint": "/api/security/permissions/audit",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "user_session_header": "X-User-Session",
+    "role_header": "X-User-Role",
+    "permission_scope_header": "X-Permission-Scope",
+    "action_header": "X-Requested-Action",
+    "correlation_header": "X-Correlation-ID"
+  },
+  "runtime_contract": {
+    "real_rbac_backend_enforcement_enabled": false,
+    "real_role_mutation_enabled": false,
+    "real_admin_override_enabled": false,
+    "real_customer_access_enabled": false,
+    "permission_preview_enabled": true,
+    "deny_by_default_preview_enabled": true,
+    "role_switch_regression_preview_enabled": true,
+    "fallback_permission_snapshot_enabled": true,
+    "ready_for_step_354": true
+  },
+  "decision_contract": {
+    "allowed_decisions": [
+      "ALLOW",
+      "DENY_MISSING_PERMISSION",
+      "DENY_ADMIN_ONLY",
+      "DENY_TENANT_SCOPE",
+      "DENY_ENTITLEMENT"
+    ],
+    "default_decision": "DENY_MISSING_PERMISSION",
+    "audit_event_type": "USER_PERMISSION_DECISION"
+  },
+  "required_capabilities": [
+    "user_permission_check_app_shell",
+    "tenant_user_role_session_context",
+    "role_permission_matrix_preview",
+    "permission_decision_contract",
+    "panel_route_permission_checks",
+    "pos_action_permission_checks",
+    "marketplace_action_permission_checks",
+    "commercial_billing_permission_checks",
+    "admin_only_action_disabled_gate",
+    "least_privilege_deny_by_default_preview",
+    "role_switch_regression_preview",
+    "unauthorized_forbidden_permission_state_preview",
+    "permission_audit_timeline",
+    "tenant_user_role_action_scope_guard",
+    "permission_runtime_data_contract",
+    "i18n_ready_permission_marker",
+    "seo_opengraph_permission_placeholder",
+    "user_permission_smoke_test"
+  ],
+  "next_step": "354 - Localization customer smoke"
+}

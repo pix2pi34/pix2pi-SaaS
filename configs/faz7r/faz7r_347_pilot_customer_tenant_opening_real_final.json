@@ -1,0 +1,25 @@
+{
+  "step": "FAZ 7-R / 347",
+  "name": "Pilot customer tenant opening real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "pilot-tenant-opening-347-20260513_234022",
+  "openingId": "pilot-opening-347-20260513_234022",
+  "pilotCustomerCode": "pilot-customer-347",
+  "routes": [
+    "/pilot-tenant-opening/",
+    "POST /api/pilot/tenant-opening/open",
+    "POST /api/pilot/tenant-opening/status"
+  ],
+  "requiredEvidence": [
+    "pilot customer tenant DB record",
+    "tenant legal commercial binding",
+    "tenant owner user binding",
+    "plan subscription entitlement binding",
+    "first customer access activation",
+    "tenant-safe pilot opening guard",
+    "no-role pilot opening deny",
+    "rollback no partial write",
+    "pilot tenant opening route smoke",
+    "pilot tenant opening audit evidence"
+  ]
+}

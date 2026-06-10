@@ -1,0 +1,43 @@
+version: v1
+scale_triggers:
+  - id: db_bottleneck
+    label: DB bottleneck alarmi
+    warn: __DB_BOTTLENECK_WARN_MS__
+    crit: __DB_BOTTLENECK_CRIT_MS__
+    unit: ms
+    action: read_write_split_or_db_tuning
+
+  - id: event_backlog
+    label: Event backlog alarmi
+    warn: __EVENT_BACKLOG_WARN_COUNT__
+    crit: __EVENT_BACKLOG_CRIT_COUNT__
+    unit: count
+    action: increase_consumers_or_stream_capacity
+
+  - id: reporting_impact
+    label: Reporting impact alarmi
+    warn: __REPORTING_IMPACT_WARN_MS__
+    crit: __REPORTING_IMPACT_CRIT_MS__
+    unit: ms
+    action: isolate_reporting_store
+
+  - id: single_node_risk
+    label: Single-node risk alarmi
+    warn: __SINGLE_NODE_CPU_WARN_PERCENT__
+    crit: __SINGLE_NODE_CPU_CRIT_PERCENT__
+    unit: percent
+    action: prepare_multi_node_transition
+
+  - id: deploy_risk_growth
+    label: Deploy risk growth alarmi
+    warn: __DEPLOY_RISK_WARN_COUNT__
+    crit: __DEPLOY_RISK_CRIT_COUNT__
+    unit: count
+    action: reduce_blast_radius_and_add_progressive_delivery
+
+  - id: cluster_transition
+    label: Cluster transition trigger
+    warn: __CLUSTER_TRANSITION_WARN_SCORE__
+    crit: __CLUSTER_TRANSITION_CRIT_SCORE__
+    unit: score
+    action: cluster_transition_required

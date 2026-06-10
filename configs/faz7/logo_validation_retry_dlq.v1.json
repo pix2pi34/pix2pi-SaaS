@@ -1,0 +1,229 @@
+{
+  "module": "FAZ_7_8L",
+  "step": "FAZ_7_8L.7",
+  "name": "Logo Validation / Error Mapping / Retry-DLQ",
+  "provider": {
+    "provider_code": "LOGO",
+    "provider_name": "Logo",
+    "connector_code": "logo_connector",
+    "connector_family": "accounting_export_connector",
+    "provider_directory": "internal/platform/integrations/providers/logo",
+    "foundation_runtime_file": "internal/platform/integrations/providers/logo/logo_foundation.go",
+    "live_contract_runtime_file": "internal/platform/integrations/providers/logo/logo_live_contract.go",
+    "credential_runtime_file": "internal/platform/integrations/providers/logo/logo_credential.go",
+    "export_mapping_runtime_file": "internal/platform/integrations/providers/logo/logo_export_mapping.go",
+    "file_generation_runtime_file": "internal/platform/integrations/providers/logo/logo_file_generation.go",
+    "import_delivery_runtime_file": "internal/platform/integrations/providers/logo/logo_import_delivery.go",
+    "runtime_file": "internal/platform/integrations/providers/logo/logo_validation_retry_dlq.go",
+    "test_file": "internal/platform/integrations/providers/logo/logo_validation_retry_dlq_test.go"
+  },
+  "runtime": {
+    "mode": "DRY_RUN",
+    "validation_mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+    "target_system": "LOGO_ACCOUNTING_IMPORT_DRY_RUN",
+    "validation_retry_dlq_status": "READY",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE"
+  },
+  "validation_contract": {
+    "declared": true,
+    "status": "READY",
+    "dry_run_only": true,
+    "external_call_allowed": false,
+    "real_file_delivery_allowed": false,
+    "erp_write_allowed": false,
+    "tenant_required": true,
+    "correlation_id_required": true,
+    "idempotency_key_required": true,
+    "checksum_required": true,
+    "manifest_required": true
+  },
+  "error_classes": [
+    "VALIDATION_ERROR",
+    "TENANT_BOUNDARY_ERROR",
+    "CHECKSUM_ERROR",
+    "MANIFEST_ERROR",
+    "TRANSIENT_PROVIDER_ERROR",
+    "PERMANENT_PROVIDER_ERROR",
+    "UNKNOWN_PROVIDER_ERROR"
+  ],
+  "error_codes": [
+    {
+      "code": "MISSING_TENANT_ID",
+      "class": "VALIDATION_ERROR",
+      "retryable": false,
+      "dlq": true,
+      "manual_review": false
+    },
+    {
+      "code": "MISSING_CORRELATION_ID",
+      "class": "VALIDATION_ERROR",
+      "retryable": false,
+      "dlq": true,
+      "manual_review": false
+    },
+    {
+      "code": "MISSING_IDEMPOTENCY_KEY",
+      "class": "VALIDATION_ERROR",
+      "retryable": false,
+      "dlq": true,
+      "manual_review": false
+    },
+    {
+      "code": "CHECKSUM_MISMATCH",
+      "class": "CHECKSUM_ERROR",
+      "retryable": false,
+      "dlq": false,
+      "manual_review": true
+    },
+    {
+      "code": "INVALID_MANIFEST",
+      "class": "MANIFEST_ERROR",
+      "retryable": false,
+      "dlq": true,
+      "manual_review": false
+    },
+    {
+      "code": "TENANT_BOUNDARY_VIOLATION",
+      "class": "TENANT_BOUNDARY_ERROR",
+      "retryable": false,
+      "dlq": false,
+      "manual_review": true
+    },
+    {
+      "code": "PROVIDER_TIMEOUT",
+      "class": "TRANSIENT_PROVIDER_ERROR",
+      "retryable": true,
+      "dlq": false,
+      "manual_review": false
+    },
+    {
+      "code": "PROVIDER_RATE_LIMIT",
+      "class": "TRANSIENT_PROVIDER_ERROR",
+      "retryable": true,
+      "dlq": false,
+      "manual_review": false
+    },
+    {
+      "code": "PROVIDER_REJECTED_PACKAGE",
+      "class": "PERMANENT_PROVIDER_ERROR",
+      "retryable": false,
+      "dlq": true,
+      "manual_review": false
+    },
+    {
+      "code": "UNKNOWN_PROVIDER_ERROR",
+      "class": "UNKNOWN_PROVIDER_ERROR",
+      "retryable": false,
+      "dlq": false,
+      "manual_review": true
+    }
+  ],
+  "retry_policy": {
+    "declared": true,
+    "max_attempts": 3,
+    "backoff_seconds": [10, 30, 90],
+    "retryable_classes": ["TRANSIENT_PROVIDER_ERROR"],
+    "retry_limit_exceeded_action": "DLQ"
+  },
+  "decision_actions": [
+    "PASS",
+    "RETRY",
+    "DLQ",
+    "MANUAL_REVIEW"
+  ],
+  "operations": [
+    {
+      "name": "DECLARE_LOGO_VALIDATION_RETRY_DLQ_CONTRACT",
+      "mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+      "dry_run_validation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_DELIVERY_ENVELOPE",
+      "mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+      "dry_run_validation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_CHECKSUM",
+      "mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+      "dry_run_validation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_MANIFEST",
+      "mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+      "dry_run_validation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "MAP_LOGO_ERROR_CODE",
+      "mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+      "dry_run_validation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "DECIDE_LOGO_RETRY_OR_DLQ",
+      "mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+      "dry_run_validation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "DECIDE_LOGO_MANUAL_REVIEW",
+      "mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+      "dry_run_validation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_NO_REAL_DELIVERY",
+      "mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+      "dry_run_validation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_LOGO_ADMIN_OPS_HANDOFF",
+      "mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+      "dry_run_validation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    }
+  ],
+  "handoff_gates": {
+    "logo_foundation_gate": "READY_FROM_7_8L_1",
+    "logo_live_contract_gate": "READY_FROM_7_8L_2",
+    "logo_credential_secret_gate": "READY_FROM_7_8L_3",
+    "logo_export_mapping_gate": "READY_FROM_7_8L_4",
+    "logo_file_generation_gate": "READY_FROM_7_8L_5",
+    "logo_import_delivery_gate": "READY_FROM_7_8L_6",
+    "logo_validation_retry_dlq_gate": "READY",
+    "logo_admin_ops_gate": "PENDING_7_8L_8",
+    "logo_e2e_dry_run_gate": "PENDING_7_8L_9",
+    "logo_final_closure_gate": "PENDING_7_8L_10"
+  },
+  "audit": {
+    "real_implementation_audit_required": true,
+    "real_provider_api_must_remain_closed": true,
+    "real_file_delivery_must_remain_closed": true,
+    "real_erp_write_must_remain_closed": true,
+    "retry_dlq_contract_must_be_present": true
+  }
+}

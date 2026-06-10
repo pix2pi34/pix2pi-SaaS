@@ -1,0 +1,144 @@
+# FAZ 4B / 15.6 - Materialized View / Cache Projection Standardı Report
+
+Generated at: 2026-04-28 07:57:47 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+REDIS_MUTATION=NO
+MATERIALIZED_VIEW_REFRESH_EXECUTED=NO
+CACHE_WRITE_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+VALIDATION_MODE=MATERIALIZED_CACHE_PROJECTION_STANDARD_ONLY
+PREVIOUS_14_FINAL_STATUS=PASS
+PREVIOUS_14_MIGRATION_LIFECYCLE_IMPORT_TESTS=PASS
+PREVIOUS_15_2_FINAL_STATUS=PASS
+PREVIOUS_15_2_FINANCE_REPORTING_MART=PASS
+PREVIOUS_15_3_FINAL_STATUS=PASS
+PREVIOUS_15_3_EBELGE_EXPORT_REPORTING_MART=PASS
+PREVIOUS_15_4_FINAL_STATUS=PASS
+PREVIOUS_15_4_PAYMENT_RECONCILIATION_REPORTING_MART=PASS
+PREVIOUS_15_5_FINAL_STATUS=PASS
+PREVIOUS_15_5_SEARCH_INDEX_PROJECTION_TABLES=PASS
+PREVIOUS_15_5_DB_APPLY_EXECUTED=NO
+MATERIALIZED_CACHE_MANIFEST_FILE_EXISTS=YES
+MATERIALIZED_CACHE_DOC_MANIFEST_FILE_EXISTS=YES
+MATERIALIZED_CACHE_MANIFEST_ROW_COUNT=10
+MATERIALIZED_CACHE_DOC_MANIFEST_ROW_COUNT=10
+MATERIALIZED_CACHE_MISSING_COLUMN_COUNT=0
+MATERIALIZED_CACHE_DUPLICATE_PROJECTION_KEY_COUNT=0
+MATERIALIZED_CACHE_REQUIRED_PROJECTION_MISSING_COUNT=0
+MATERIALIZED_CACHE_TENANT_SCOPED_COUNT=10
+MATERIALIZED_CACHE_CACHE_PROJECTION_COUNT=6
+MATERIALIZED_CACHE_MATERIALIZED_VIEW_COUNT=1
+MATERIALIZED_CACHE_HYBRID_COUNT=3
+MATERIALIZED_CACHE_DRY_RUN_YES_COUNT=10
+MATERIALIZED_CACHE_APPLY_GATE_YES_COUNT=10
+MATERIALIZED_CACHE_BAD_TENANT_COUNT=0
+MATERIALIZED_CACHE_BAD_CACHE_KEY_COUNT=0
+MATERIALIZED_CACHE_BAD_TTL_COUNT=0
+MATERIALIZED_CACHE_BAD_REFRESH_COUNT=0
+MATERIALIZED_CACHE_BAD_REBUILD_COUNT=0
+MATERIALIZED_CACHE_BAD_INVALIDATION_COUNT=0
+MATERIALIZED_CACHE_BAD_DRY_RUN_COUNT=0
+MATERIALIZED_CACHE_BAD_APPLY_GATE_COUNT=0
+MATERIALIZED_CACHE_BAD_MUTATION_SCOPE_COUNT=0
+MATERIALIZED_CACHE_BAD_PROJECTION_TYPE_COUNT=0
+MATERIALIZED_CACHE_CANDIDATE_PLAN_FILE_EXISTS=YES
+MATERIALIZED_CACHE_CANDIDATE_PLAN_GUARD_EXISTS=YES
+MATERIALIZED_CACHE_CANDIDATE_PLAN_BLOCKED_BY_DEFAULT=YES
+MATERIALIZED_CACHE_CANDIDATE_PLAN_NO_APPLY_MARKERS=YES
+MATERIALIZED_CACHE_CANDIDATE_PLAN_DRY_RUN_STATUS=PASS
+MATERIALIZED_CACHE_MANIFEST_STATUS=PASS
+MATERIALIZED_CACHE_TENANT_KEY_STATUS=PASS
+MATERIALIZED_CACHE_REFRESH_STATUS=PASS
+MATERIALIZED_CACHE_REBUILD_STATUS=PASS
+MATERIALIZED_CACHE_INVALIDATION_STATUS=PASS
+MATERIALIZED_CACHE_PROJECTION_TYPE_STATUS=PASS
+MATERIALIZED_CACHE_APPLY_GATE_STATUS=PASS
+MATERIALIZED_CACHE_CANDIDATE_PLAN_STATUS=PASS
+MATERIALIZED_CACHE_MATRIX_LINE_COUNT=19
+MATERIALIZED_CACHE_PROJECTION_STANDARD=PASS
+FAZ4B_15_6_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+MATERIALIZED_CACHE_PROJECTION_STANDARD=PASS
+FAZ4B_15_6_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_bash=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+
+## Matrix
+MATRIX_FILE=docs/phase4/15_6_materialized_cache_projection_matrix.tsv
+gate	status	note
+previous_14	PASS	migration lifecycle prerequisite
+previous_15_2	PASS	finance reporting prerequisite
+previous_15_3	PASS	ebelge/export prerequisite
+previous_15_4	PASS	payment/reconciliation prerequisite
+previous_15_5	PASS	search/index prerequisite
+manifest	PASS	rows=10
+tenant_cache_key	PASS	tenant_scoped=10
+refresh	PASS	bad_refresh=0 bad_ttl=0
+rebuild	PASS	bad_rebuild=0
+invalidation	PASS	bad_invalidation=0
+projection_type	PASS	cache=6 materialized=1 hybrid=3
+apply_gate	PASS	dry_run=10 apply_gate=10
+candidate_plan	PASS	blocked_by_default=YES
+db_mutation	NO	standard only
+redis_mutation	NO	standard only
+materialized_view_refresh_executed	NO	standard only
+cache_write_executed	NO	standard only
+query_text_printed	NO	secret-safe report
+
+## Manifest
+MANIFEST_FILE=config/projection/materialized_cache_projection_manifest.tsv
+projection_key	domain	source_scope	target_projection	projection_type	tenant_scoped	cache_key_pattern	ttl_seconds	refresh_strategy	refresh_trigger	rebuild_strategy	invalidation_strategy	dry_run_required	apply_gate_required	mutation_scope	note
+finance_daily_dashboard	finance	reporting_mart	finance_daily_dashboard	HYBRID	YES	tenant:{tenant_id}:reporting:finance:daily:{date}	900	incremental_refresh	event_or_schedule	rebuild_by_date_range	invalidate_by_tenant_date	YES	YES	reporting_cache_only	Günlük finans dashboard projection standardı
+finance_period_kpi_cache	finance	reporting_mart	finance_period_kpi	CACHE_PROJECTION	YES	tenant:{tenant_id}:reporting:finance:kpi:{period_key}	1800	incremental_refresh	event_or_schedule	rebuild_by_period	invalidate_by_tenant_period	YES	YES	reporting_cache_only	Dönemsel finans KPI cache standardı
+ebelge_status_dashboard	ebelge	reporting_mart	ebelge_status_dashboard	CACHE_PROJECTION	YES	tenant:{tenant_id}:reporting:ebelge:status:{period_key}	900	incremental_refresh	event_or_schedule	rebuild_by_period	invalidate_by_tenant_period	YES	YES	reporting_cache_only	e-Belge durum dashboard cache standardı
+payment_reconciliation_dashboard	payment	reporting_mart	payment_reconciliation_dashboard	HYBRID	YES	tenant:{tenant_id}:reporting:payment:reconciliation:{period_key}	900	incremental_refresh	event_or_schedule	rebuild_by_period	invalidate_by_tenant_provider_period	YES	YES	reporting_cache_only	Payment reconciliation dashboard cache standardı
+party_search_cache	search	search_projection	party_search_cache	CACHE_PROJECTION	YES	tenant:{tenant_id}:search:party:{query_hash}	600	event_driven_refresh	entity_change	rebuild_by_entity_type	invalidate_by_party_entity	YES	YES	search_cache_only	Cari arama cache standardı
+product_search_cache	search	search_projection	product_search_cache	CACHE_PROJECTION	YES	tenant:{tenant_id}:search:product:{query_hash}	600	event_driven_refresh	entity_change	rebuild_by_entity_type	invalidate_by_product_entity	YES	YES	search_cache_only	Ürün arama cache standardı
+inventory_balance_cache	inventory	readmodel	inventory_balance_cache	HYBRID	YES	tenant:{tenant_id}:inventory:balance:{location_code}:{product_code}	300	event_driven_refresh	stock_movement	rebuild_by_location	invalidate_by_product_location	YES	YES	inventory_cache_only	Stok bakiye cache standardı
+global_search_cache	search	search_projection	global_search_cache	CACHE_PROJECTION	YES	tenant:{tenant_id}:search:global:{query_hash}	600	event_driven_refresh	entity_change	rebuild_all_search_projection	invalidate_by_tenant_query	YES	YES	search_cache_only	Global arama cache standardı
+reporting_home_snapshot	reporting	reporting_mart	reporting_home_snapshot	MATERIALIZED_VIEW	YES	tenant:{tenant_id}:reporting:home:{period_key}	1800	scheduled_refresh	schedule	rebuild_by_period	invalidate_by_tenant_period	YES	YES	reporting_projection_only	Reporting ana ekran snapshot standardı
+pilot_ops_health_cache	ops	observability	pilot_ops_health_cache	CACHE_PROJECTION	YES	tenant:{tenant_id}:ops:health:{service_group}	120	scheduled_refresh	schedule	rebuild_by_service_group	invalidate_by_service_group	YES	YES	ops_cache_only	Pilot ops health cache standardı
+
+## Candidate Execution Plan Output
+===== 15.6 MATERIALIZED VIEW / CACHE PROJECTION CANDIDATE EXECUTION PLAN =====
+DB_MUTATION=NO
+REDIS_MUTATION=NO
+MATERIALIZED_VIEW_REFRESH_EXECUTED=NO
+CACHE_WRITE_EXECUTED=NO
+QUERY_TEXT_PRINTED=NO
+MATERIALIZED_CACHE_PLAN_BLOCKED_BY_DEFAULT=YES
+MATERIALIZED_CACHE_PLAN_DECISION=PLAN_READY_APPLY_NOT_EXECUTED
+
+## Safety Decision
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+REDIS_MUTATION=NO
+MATERIALIZED_VIEW_REFRESH_EXECUTED=NO
+CACHE_WRITE_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+QUERY_TEXT_PRINTED=NO

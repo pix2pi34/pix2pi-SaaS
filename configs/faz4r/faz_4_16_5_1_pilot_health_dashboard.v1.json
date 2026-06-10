@@ -1,0 +1,53 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 218,
+  "step": "FAZ_4_16_5_1",
+  "title": "Pilot health dashboard",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "217_FAZ_4_16_5_6_PILOT_OPERATIONS_TESTLERI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "dashboard_policy": {
+    "dashboard_status_required": "READY",
+    "dashboard_mode_required": "CONTROLLED_PILOT",
+    "required_widget_status_required": "READY",
+    "missing_widget_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "pilot_operations_tests_status_required": "PASS",
+    "last_review_status_required": "PASS",
+    "rollback_signal_status_required": "CLEAR",
+    "operations_handoff_ready_required": "YES",
+    "html_dashboard_status_required": "READY",
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_widgets": [
+    "PILOT_TENANT_HEALTH_SUMMARY",
+    "SERVICE_HEALTH_WIDGET",
+    "IMPORT_PIPELINE_HEALTH_WIDGET",
+    "READMODEL_REPORTING_HEALTH_WIDGET",
+    "UAT_STATUS_WIDGET",
+    "TRAINING_SUPPORT_HEALTH_WIDGET",
+    "SUPPORT_TRIAGE_HEALTH_WIDGET",
+    "ISSUE_ESCALATION_HEALTH_WIDGET",
+    "ROLLBACK_SIGNAL_HEALTH_WIDGET",
+    "KPI_SNAPSHOT_WIDGET",
+    "OPEN_BLOCKER_CRITICAL_ISSUE_WIDGET",
+    "CLOSED_PROVIDER_POLICY_WIDGET",
+    "OPERATIONS_HANDOFF_WIDGET",
+    "LAST_REVIEW_TIMESTAMP_WIDGET"
+  ],
+  "dashboard_artifact": "configs/faz4r/pilot_health_dashboard.controlled_pilot.v1.json",
+  "html_artifact": "docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "219_FAZ_4_16_5_3_PILOT_INCIDENT_YONETIMI"
+  ]
+}

@@ -1,0 +1,18 @@
+gate	status	note
+previous_14_1	PASS	migration chain prerequisite
+previous_14_2	PASS	reference seed prerequisite
+previous_14_3	PASS	import staging prerequisite
+previous_14_4	PASS	backfill rebuild prerequisite
+previous_14_5	PASS	retention prerequisite
+manifest	PASS	rows=12
+required_gates	PASS	missing=0
+pre_import_backup_gate	PASS	backup gate exists
+post_import_restore_safety	PASS	restore safety exists
+pitr_deferred	PASS	pitr_active_apply=DEFERRED
+pass_deferred_balance	PASS	pass=11 deferred=1
+candidate_plan	PASS	blocked_by_default=YES
+db_mutation	NO	standard only
+backup_executed	NO	standard only
+restore_executed	NO	standard only
+pitr_apply_executed	NO	standard only
+query_text_printed	NO	secret-safe report

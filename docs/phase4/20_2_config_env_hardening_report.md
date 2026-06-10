@@ -1,0 +1,133 @@
+# FAZ 4B / 20.2 - Config / Env Hardening Gate Report
+
+Generated at: 2026-04-29 08:23:58 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+FILE_PERMISSION_CHANGED=NO
+FILE_DELETE_EXECUTED=NO
+FILE_MOVE_EXECUTED=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+DEPLOY_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+VALIDATION_MODE=CONFIG_ENV_HARDENING_EVIDENCE_ONLY
+PREVIOUS_20_1_FINAL_STATUS=PASS
+PREVIOUS_20_1_PRODUCTION_CLEANUP_GATE=PASS
+PREVIOUS_20_1_FILE_DELETE_EXECUTED=NO
+PREVIOUS_21_FINAL_STATUS=PASS
+PREVIOUS_21_SECURITY_RBAC_AUDIT_FINAL_CLOSURE=PASS
+CONFIG_ENV_BASELINE_EXPECTED_COUNT=6
+CONFIG_ENV_BASELINE_EXISTING_COUNT=6
+CONFIG_ENV_INVENTORY_ROW_COUNT=500
+CONFIG_ENV_ENV_FILE_COUNT=39
+CONFIG_ENV_CONFIG_FILE_COUNT=229
+CONFIG_ENV_POTENTIAL_SECRET_PATH_COUNT=232
+CONFIG_ENV_KEY_MATERIAL_PATH_COUNT=0
+CONFIG_ENV_BACKUP_ENV_CANDIDATE_COUNT=0
+CONFIG_ENV_WORLD_READABLE_CANDIDATE_COUNT=421
+CONFIG_ENV_GROUP_READABLE_CANDIDATE_COUNT=0
+CONFIG_ENV_EXECUTABLE_CONFIG_CANDIDATE_COUNT=0
+CONFIG_ENV_HIGH_RISK_COUNT=469
+CONFIG_ENV_MEDIUM_RISK_COUNT=31
+CONFIG_ENV_LOW_RISK_COUNT=0
+CONFIG_ENV_SECRET_KEY_NAME_COUNT=235
+CONFIG_ENV_DSN_KEY_NAME_COUNT=46
+CONFIG_ENV_PREVIOUS_20_1=PASS
+CONFIG_ENV_BASELINE=PASS
+CONFIG_ENV_INVENTORY=PASS
+CONFIG_ENV_PERMISSION_EVIDENCE=PASS
+CONFIG_ENV_VALUE_NOT_PRINTED=PASS
+CONFIG_ENV_NO_CHANGE=PASS
+CONFIG_ENV_NO_DEPLOY=PASS
+CONFIG_ENV_SECRET_SAFE=PASS
+CONFIG_ENV_MATRIX_LINE_COUNT=29
+CONFIG_ENV_POLICY_FILE=docs/phase4/20_2_config_env_hardening_policy.md
+CONFIG_ENV_INVENTORY_FILE=docs/phase4/20_2_config_env_hardening_inventory.tsv
+CONFIG_ENV_HARDENING_GATE=PASS
+FAZ4B_20_2_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+CONFIG_ENV_HARDENING_GATE=PASS
+FAZ4B_20_2_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+TOOL_find=FOUND
+TOOL_stat=FOUND
+
+## Matrix
+MATRIX_FILE=docs/phase4/20_2_config_env_hardening_matrix.tsv
+gate	status	note
+previous_20_1	PASS	production cleanup prerequisite
+baseline	PASS	existing=6/6
+inventory	PASS	rows=500
+permission_evidence	PASS	world_readable=421 group_readable=0
+env_files	PASS	env_file_count=39
+config_files	PASS	config_file_count=229
+potential_secret_paths	PASS	path_count=232 values_not_printed
+secret_key_names	PASS	secret_key_name_count=235 values_not_printed
+dsn_key_names	PASS	dsn_key_name_count=46 values_not_printed
+value_not_printed	PASS	metadata_only
+no_change	PASS	no chmod/chown/env edit
+no_deploy	PASS	deploy/restart not executed
+secret_safe	PASS	secret values not printed
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+file_permission_changed	NO	evidence only
+file_delete_executed	NO	evidence only
+file_move_executed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+deploy_executed	NO	evidence only
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+
+## Inventory
+INVENTORY_FILE=docs/phase4/20_2_config_env_hardening_inventory.tsv
+INVENTORY_ROW_LIMIT=500
+NOTE=Secret values and raw DSN values are never printed. Key names are counted only.
+
+## Safety Decision
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+FILE_PERMISSION_CHANGED=NO
+FILE_DELETE_EXECUTED=NO
+FILE_MOVE_EXECUTED=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+DEPLOY_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+QUERY_TEXT_PRINTED=NO
+SECRET_VALUE_PRINTED=NO

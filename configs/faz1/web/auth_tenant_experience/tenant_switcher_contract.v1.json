@@ -1,0 +1,45 @@
+{
+  "phase": "FAZ_1_5_3",
+  "module": "WEB_L2_AUTH_TENANT_EXPERIENCE",
+  "component": "tenant_switcher_ux",
+  "status": "READY",
+  "storage_keys": {
+    "session": "pix2pi.session",
+    "active_tenant": "pix2pi.activeTenant",
+    "tenant_list": "pix2pi.tenants",
+    "last_tenant_switch": "pix2pi.lastTenantSwitch"
+  },
+  "required_capabilities": [
+    "tenant_list",
+    "active_tenant_indicator",
+    "tenant_switch",
+    "role_aware_tenant_list",
+    "wrong_tenant_guard"
+  ],
+  "allowed_tenant_roles": [
+    "TENANT_ADMIN",
+    "OWNER",
+    "ACCOUNTANT",
+    "MANAGER",
+    "OPERATOR",
+    "SUPPORT"
+  ],
+  "permission_contract": {
+    "view_tenant": "tenant:view",
+    "switch_tenant": "tenant:switch",
+    "admin_tenant": "tenant:admin",
+    "accountant_access": "accountant:tenant_access"
+  },
+  "guard_contract": {
+    "wrong_tenant_policy": "BLOCK_AND_EXPLAIN",
+    "missing_tenant_policy": "REQUIRE_SELECTION",
+    "unauthorized_tenant_policy": "HIDE_AND_BLOCK"
+  },
+  "ui_contract": {
+    "active_indicator_id": "activeTenantIndicator",
+    "tenant_list_id": "tenantList",
+    "tenant_search_id": "tenantSearch",
+    "wrong_tenant_guard_id": "wrongTenantGuard",
+    "tenant_switch_event": "pix2pi:tenant-switched"
+  }
+}

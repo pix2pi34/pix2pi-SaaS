@@ -1,0 +1,121 @@
+{
+  "catalog_code": "pix2pi_faz5_final_closure_v1",
+  "phase": "FAZ_5",
+  "step": "5-12",
+  "depends_on": [
+    "pix2pi_commercial_master_plan_scope_freeze_v1",
+    "pix2pi_packages_pricing_v1",
+    "pix2pi_entitlement_matrix_v1",
+    "pix2pi_subscription_billing_policy_v1",
+    "pix2pi_tenant_lifecycle_policy_v1",
+    "pix2pi_legal_compliance_policy_v1",
+    "pix2pi_support_sla_incident_policy_v1",
+    "pix2pi_sales_demo_crm_policy_v1",
+    "pix2pi_revenue_metrics_policy_v1",
+    "pix2pi_public_pricing_developer_surface_v1",
+    "pix2pi_commercial_readiness_suite_v1"
+  ],
+  "closed_steps": [
+    "5-1",
+    "5-2",
+    "5-3",
+    "5-4",
+    "5-5",
+    "5-6",
+    "5-7",
+    "5-8",
+    "5-9",
+    "5-10",
+    "5-11",
+    "5-12"
+  ],
+  "final_status": {
+    "FAZ_5_12_TEST_STATUS": "PASS",
+    "FAZ_5_FINAL_STATUS": "PASS",
+    "FAZ_5_FINAL_SEAL_STATUS": "SEALED",
+    "FAZ_5_COMMERCIAL_READY": "YES",
+    "FAZ_5_FINAL_GO_DECISION": "GO",
+    "FAZ_5_FINAL_BLOCKER_COUNT": 0,
+    "FAZ_6_READY": "YES"
+  },
+  "commercial_domains_closed": [
+    "commercial_master_plan",
+    "packages_pricing",
+    "entitlement_matrix",
+    "subscription_billing",
+    "tenant_lifecycle",
+    "legal_compliance_checklist",
+    "support_sla_incident",
+    "sales_demo_crm",
+    "revenue_metrics",
+    "public_pricing_developer_surfaces",
+    "commercial_readiness_suite"
+  ],
+  "public_urls_verified": [
+    "https://pix2pi.com.tr/faz5/",
+    "https://pix2pi.com.tr/faz5/pricing/",
+    "https://pix2pi.com.tr/faz5/developer/"
+  ],
+  "open_actions_carried_forward": [
+    {
+      "code": "final_lawyer_review",
+      "name_tr": "Nihai hukukçu onayı",
+      "target_phase": "production_public_launch_before"
+    },
+    {
+      "code": "final_kvkk_review",
+      "name_tr": "Nihai KVKK danışmanı onayı",
+      "target_phase": "production_public_launch_before"
+    },
+    {
+      "code": "tax_advisor_review",
+      "name_tr": "Vergi / mali müşavir incelemesi",
+      "target_phase": "production_billing_before"
+    },
+    {
+      "code": "live_payment_integration",
+      "name_tr": "Gerçek ödeme sağlayıcı entegrasyonu",
+      "target_phase": "future_payment_runtime"
+    },
+    {
+      "code": "real_crm_system",
+      "name_tr": "Gerçek CRM sistemi",
+      "target_phase": "future_commercial_ops_runtime"
+    },
+    {
+      "code": "real_support_ticket_system",
+      "name_tr": "Gerçek support ticket sistemi",
+      "target_phase": "future_support_ops_runtime"
+    }
+  ],
+  "faz6_readiness": {
+    "ready": true,
+    "next_phase": "FAZ_6",
+    "focus": [
+      "scale",
+      "sre",
+      "dr",
+      "production_hardening",
+      "ops_readiness",
+      "advanced_public_rollout"
+    ]
+  },
+  "out_of_scope": [
+    "faz_6_code_start",
+    "live_payment_provider_integration",
+    "real_crm_system_setup",
+    "real_support_ticket_system_setup",
+    "final_lawyer_approved_contract_publish",
+    "production_public_launch",
+    "multi_region_sre_dr"
+  ],
+  "seal": {
+    "FAZ_5_12_TEST_STATUS": "PASS",
+    "FAZ_5_FINAL_STATUS": "PASS",
+    "FAZ_5_FINAL_SEAL_STATUS": "SEALED",
+    "FAZ_5_COMMERCIAL_READY": "YES",
+    "FAZ_5_FINAL_GO_DECISION": "GO",
+    "FAZ_5_FINAL_BLOCKER_COUNT": 0,
+    "FAZ_6_READY": "YES"
+  }
+}

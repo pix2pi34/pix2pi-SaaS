@@ -1,0 +1,11 @@
+permission_name	description	minimum_role	audit_required	tenant_scope_required	implementation_status	note
+workflow:read	view workflow definitions and instances	tenant_admin_limited	NO	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow:write	create or modify workflow definitions	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow:execute	start or continue workflow execution	tenant_operator	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow:pause	pause active workflow instance	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow:retry	retry failed workflow instance	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow:cancel	cancel workflow instance	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+workflow:archive	archive terminal workflow instance	tenant_admin	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+approval:request	create approval request from workflow	system	YES	YES	READY_FOR_IMPLEMENTATION	contract_only
+approval:read	view approval request queue	tenant_approver	NO	YES	READY_FOR_IMPLEMENTATION	contract_only
+approval:write	approve or reject approval request	tenant_approver	YES	YES	READY_FOR_IMPLEMENTATION	contract_only

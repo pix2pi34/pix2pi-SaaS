@@ -1,0 +1,101 @@
+{
+  "pilot_closure_id": "pilot_closure_report.controlled_pilot.v1",
+  "pilot_closure_status": "READY",
+  "pilot_closure_mode": "CONTROLLED_PILOT",
+  "closure_result": "CLOSED",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT",
+    "tenant_status": "PILOT_CLOSED"
+  },
+  "chain_dependencies": {
+    "234_FAZ_4_16_8_4_GO_NO_GO_KARARI": "PASS"
+  },
+  "closure_items": [
+    {"code": "PILOT_CLOSURE_KICKOFF", "required": true, "status": "READY", "area": "KICKOFF", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/pilot_closure_kickoff.md"},
+    {"code": "GO_NO_GO_DECISION_LINK", "required": true, "status": "READY", "area": "DECISION", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/go_no_go_decision_link.md"},
+    {"code": "PILOT_KPI_SUMMARY", "required": true, "status": "READY", "area": "KPI", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/pilot_kpi_summary.md"},
+    {"code": "UAT_THRESHOLD_SUMMARY", "required": true, "status": "READY", "area": "UAT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/uat_threshold_summary.md"},
+    {"code": "CRITICAL_ISSUE_RESET_SUMMARY", "required": true, "status": "READY", "area": "QUALITY", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/critical_issue_reset_summary.md"},
+    {"code": "REHEARSAL_SUMMARY", "required": true, "status": "READY", "area": "REHEARSAL", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/rehearsal_summary.md"},
+    {"code": "IMPORT_UAT_SUPPORT_FEEDBACK_SUMMARY", "required": true, "status": "READY", "area": "SUMMARY", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/import_uat_support_feedback_summary.md"},
+    {"code": "EVIDENCE_INDEX", "required": true, "status": "READY", "area": "EVIDENCE", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/evidence_index.md"},
+    {"code": "FINAL_RISK_SUMMARY", "required": true, "status": "READY", "area": "RISK", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/final_risk_summary.md"},
+    {"code": "OPEN_BLOCKER_ZERO_SUMMARY", "required": true, "status": "READY", "area": "BLOCKER", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/open_blocker_zero_summary.md"},
+    {"code": "EXTERNAL_POLICY_CLOSED_SUMMARY", "required": true, "status": "READY", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/external_policy_closed_summary.md"},
+    {"code": "OWNER_APPROVAL_SUMMARY", "required": true, "status": "READY", "area": "APPROVAL", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/owner_approval_summary.md"},
+    {"code": "LESSONS_LEARNED_SUMMARY", "required": true, "status": "READY", "area": "LEARNING", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/lessons_learned_summary.md"},
+    {"code": "NEXT_PHASE_HANDOFF", "required": true, "status": "READY", "area": "HANDOFF", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/next_phase_handoff.md"},
+    {"code": "FINAL_PILOT_CLOSURE_REPORT", "required": true, "status": "READY", "area": "REPORT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/pilot_closure_report/final_pilot_closure_report.md"}
+  ],
+  "closure_values": {
+    "critical_issue_count": 0,
+    "p0_issue_count": 0,
+    "p1_issue_count": 0,
+    "open_blocker_count": 0,
+    "required_fail_count": 0,
+    "missing_item_count": 0
+  },
+  "closure_controls": {
+    "go_no_go_decision_status": "PASS",
+    "decision_result": "GO",
+    "pilot_kpi_status": "PASS",
+    "uat_threshold_status": "PASS",
+    "critical_issue_reset_status": "PASS",
+    "rehearsal_report_status": "PASS",
+    "owner_approval_status": "APPROVED",
+    "evidence_index_status": "READY",
+    "final_risk_summary_status": "READY",
+    "open_blocker_zero_status": "PASS",
+    "next_phase_handoff_status": "READY",
+    "next_phase": "236_FAZ_4_17_1_APPROVAL_INBOX",
+    "no_production_launch": true,
+    "no_live_external_provider_activation": true,
+    "no_dns_change": true,
+    "no_nginx_change": true,
+    "no_ssl_change": true
+  },
+  "closure_metrics": {
+    "missing_item_count": 0,
+    "required_fail_count": 0,
+    "critical_issue_count": 0,
+    "p0_issue_count": 0,
+    "p1_issue_count": 0,
+    "open_blocker_count": 0,
+    "production_launch_count": 0,
+    "live_external_provider_activation_count": 0,
+    "live_external_policy_status": "CLOSED"
+  },
+  "summary": {
+    "total_item_count": 15,
+    "ready_item_count": 15,
+    "missing_item_count": 0,
+    "required_fail_count": 0,
+    "critical_issue_count": 0,
+    "p0_issue_count": 0,
+    "p1_issue_count": 0,
+    "open_blocker_count": 0,
+    "go_no_go_decision_status": "PASS",
+    "decision_result": "GO",
+    "owner_approval_status": "APPROVED",
+    "next_phase_handoff_status": "READY",
+    "closure_result": "CLOSED",
+    "pilot_closure_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "production_launch": "CLOSED",
+    "dns_change": "CLOSED",
+    "nginx_change": "CLOSED",
+    "ssl_change": "CLOSED",
+    "hotfix_deploy": "CLOSED",
+    "real_rollback_execution": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

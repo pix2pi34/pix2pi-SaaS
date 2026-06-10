@@ -1,0 +1,41 @@
+{
+  "phase": "FAZ_3_10_7_2_BANK_COLLECTION_RUNTIME",
+  "runtime": "bank_collection",
+  "provider_bank_code": "SIM_BANK",
+  "runtime_mode": "SIMULATION",
+  "real_bank_gate_open": false,
+  "production_approved": false,
+  "operations": [
+    "REGISTER_BANK_TRANSFER",
+    "MATCH_BANK_STATEMENT",
+    "RECONCILE_COLLECTION",
+    "BUILD_SETTLEMENT",
+    "REVERSE_COLLECTION",
+    "STATUS_CHECK"
+  ],
+  "reconciliation_policy": {
+    "statement_hash_required": true,
+    "reconciliation_tolerance_kurus": 100,
+    "manual_difference_review_required": true
+  },
+  "security_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "payment_transaction_id_required": true,
+    "collection_no_required": true,
+    "bank_account_id_required": true,
+    "provider_bank_code_match_required": true,
+    "bank_reference_no_required": true,
+    "statement_line_id_required": true,
+    "statement_payload_hash_required": true,
+    "reverse_reason_required": true
+  },
+  "live_policy": {
+    "real_bank_status": "CLOSED_UNTIL_BANK_PROVIDER_APPROVALS",
+    "production_bank_collection_status": "DENIED_BY_DEFAULT",
+    "secret_policy": "CREDENTIAL_REF_ONLY_NO_RAW_SECRET"
+  },
+  "next_gate": "FAZ_3_10_7_3_PAYMENT_STATUS_SYNC"
+}

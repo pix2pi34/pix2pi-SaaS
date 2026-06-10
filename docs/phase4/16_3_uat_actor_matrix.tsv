@@ -1,0 +1,10 @@
+actor_role	scenario_count	p0_count	allowed_scope	forbidden_scope	evidence_owner	implementation_status	note
+accountant	1	1	accounting/journal/ledger/report review	cashier action/security/platform ops	accountant	READY_FOR_IMPLEMENTATION	contract_only
+cashier	3	3	sales/refund/basic product lookup	admin/security/accounting/platform ops	cashier	READY_FOR_IMPLEMENTATION	contract_only
+ops_admin	2	0	ops/support/readiness evidence	tenant private data raw/raw secrets	ops_admin	READY_FOR_IMPLEMENTATION	contract_only
+project_owner	1	1	UAT decision/go-no-go	raw secrets	project_owner	READY_FOR_IMPLEMENTATION	contract_only
+security_admin	1	1	security/rbac/tenant isolation evidence	tenant business mutation	security_admin	READY_FOR_IMPLEMENTATION	contract_only
+tenant_admin	2	1	tenant reports/audit/users/readiness	platform security/raw secrets	tenant_admin	READY_FOR_IMPLEMENTATION	contract_only
+tenant_approver	1	0	approval/workflow action evidence	security/platform ops/raw secrets	tenant_approver	READY_FOR_IMPLEMENTATION	contract_only
+tenant_operator	4	2	product/stock/customer/vendor/task	security/platform ops/raw secrets	tenant_operator	READY_FOR_IMPLEMENTATION	contract_only
+tenant_user	1	1	tenant scoped panel access	platform/security/raw secrets	tenant_user	READY_FOR_IMPLEMENTATION	contract_only

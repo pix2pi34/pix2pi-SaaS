@@ -1,0 +1,36 @@
+{
+  "locale": "zza-Arab",
+  "languageName": "Zazaca / İslami harfler",
+  "nativeName": "زازاکی",
+  "script": "Arab",
+  "direction": "rtl",
+  "calligraphyRenderer": "ekalem-husrev-duz-tezyinat",
+  "calligraphyCssClass": "pix2pi-husrev-rtl",
+  "calligraphyTitleCssClass": "pix2pi-husrev-title",
+  "calligraphySource": "https://oku.risale.online/osm",
+  "fontBinding": {
+    "bodyFontFamily": "Pix2piHusrevDuz",
+    "titleFontFamily": "Pix2piHusrevTezyinat",
+    "bodyAssetPath": "/assets/fonts/husrev/eKalemDuz-Regular_150.ttf",
+    "titleAssetPath": "/assets/fonts/husrev/eKalemTezyinat-Regular_2.ttf",
+    "cssPath": "/assets/fonts/husrev/husrev-ekalem.css"
+  },
+  "messages": {
+    "app.name": "پیکس٢پی",
+    "auth.login": "تده که‌وتیش",
+    "nav.dashboard": "پانل",
+    "nav.pos": "POS",
+    "tenant.create": "کار خو ورازە",
+    "customer.add": "مشتری دکرە",
+    "product.add": "مال دکرە",
+    "pos.sale": "روتیش POS",
+    "reports.view": "راپوران ببینە",
+    "language.change": "زوان بڤورنە",
+    "support.title": "پشتیوانی و یاردەم",
+    "upgrade.required": "برزکردش لازمو",
+    "quota.exceeded": "سینور درباس بو",
+    "localization.ek2.title": "کوردی و زازاکی زێدە کران",
+    "localization.ek2.subtitle": "لاتین و هەرفێ ئیسلامی ئامادە یە",
+    "nav.marketplace": "بازار"
+  }
+}

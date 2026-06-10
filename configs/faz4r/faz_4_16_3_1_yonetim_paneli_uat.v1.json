@@ -1,0 +1,59 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 204,
+  "step": "FAZ_4_16_3_1",
+  "title": "Yönetim paneli UAT",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "192_FAZ_4_16_1_4_PILOT_VERI_SINIRLARI_TANIMI",
+    "193_FAZ_4_16_1_5_TENANT_ACCEPTANCE_CHECKLIST",
+    "194_FAZ_4_16_1_6_ONBOARDING_SMOKE",
+    "195_FAZ_4_16_1_1_PILOT_TENANT_ACILIS_AKISI",
+    "196_FAZ_4_16_1_2_TENANT_CONFIG_SABLONLARI",
+    "197_FAZ_4_16_1_3_KULLANICI_ROL_ILK_KURULUMU",
+    "198_FAZ_4_16_2_1_CARI_IMPORT",
+    "199_FAZ_4_16_2_2_URUN_STOK_IMPORT",
+    "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT",
+    "201_FAZ_4_16_2_4_MAPPING_TRANSFORM_KURALLARI",
+    "202_FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU",
+    "203_FAZ_4_16_2_6_IMPORT_TESTLERI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "uat_policy": {
+    "uat_status_required": "READY",
+    "uat_mode_required": "CONTROLLED_PILOT",
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "tenant_context_status_required": "PASS",
+    "import_uat_status_required": "PASS",
+    "reporting_uat_status_required": "PASS",
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_uat_cases": [
+    "PANEL_LOGIN_ACCESS",
+    "TENANT_CONTEXT_VISIBLE",
+    "TENANT_CONFIG_VIEW",
+    "USER_ROLE_VIEW",
+    "IMPORT_BATCH_LIST_VIEW",
+    "IMPORT_VALIDATION_REPORT_VIEW",
+    "CUSTOMER_IMPORT_RESULT_VIEW",
+    "PRODUCT_STOCK_IMPORT_RESULT_VIEW",
+    "RECEIPT_MOVEMENT_IMPORT_RESULT_VIEW",
+    "READMODEL_REPORTING_SUMMARY_VIEW",
+    "OPERATIONAL_READMODEL_SUMMARY_VIEW",
+    "SUPPORT_ISSUE_LINK_VIEW",
+    "AUDIT_EVIDENCE_LINK_VIEW",
+    "ROLLBACK_CUTOVER_GUARD_VIEW",
+    "CLOSED_EXTERNAL_POLICY_GATE"
+  ],
+  "uat_artifact": "configs/faz4r/management_panel_uat.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "205_FAZ_4_16_3_2_POS_UAT"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "352",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "tenant_isolation_screen",
+      "path": "/tenant-isolation-check/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_352_TENANT_ISOLATION_APP_SHELL_START",
+        "PIX2PI_352_CROSS_TENANT_ACCESS_DENIAL_PREVIEW_START",
+        "PIX2PI_352_TENANT_ISOLATION_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "tenant_isolation_runtime",
+      "path": "/assets/tenant-isolation-check/tenant-isolation-check-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_352_TENANT_ISOLATION_CHECK_RUNTIME_START",
+        "tenantIsolationScopeHeaders",
+        "buildTenantIsolationRuntimeContract"
+      ]
+    }
+  ]
+}

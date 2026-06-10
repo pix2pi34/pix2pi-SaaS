@@ -1,0 +1,42 @@
+# FAZ 1-2.6 Super-admin / Break-glass Strict Suite Result FIX V2
+
+- Tarih: 2026-05-04T23:05:07+03:00
+- Repo: /root/pix2pi/pix2pi-SaaS
+- Backup dir: /root/pix2pi/pix2pi-SaaS/backups/faz1/faz_1_2_6_super_admin_break_glass_strict_reseal_fix_v2_20260504_230501/suite_runtime
+
+## Required Scope
+- Super-admin rol modeli
+- Break-glass reason zorunluluğu
+- Süreli erişim
+- Admin action audit
+- Alert/event üretimi
+- Abuse testleri
+
+## DB Counters
+- CANONICAL_TABLE_COUNT=4
+- CANONICAL_RLS_ENABLED_COUNT=4
+- CANONICAL_RLS_FORCED_COUNT=4
+- CANONICAL_ALLOW_POLICY_COUNT=4
+- CANONICAL_ENFORCE_POLICY_COUNT=4
+- CANONICAL_POLICY_COUNT=8
+- BREAK_GLASS_FUNCTION_COUNT=5
+- SUPER_ADMIN_SEED_COUNT=1
+- DB_REASON_COLUMN_COUNT=1
+- DB_EXPIRY_COLUMN_COUNT=1
+- DB_ADMIN_AUDIT_TABLE_COUNT=1
+- DB_ALERT_TABLE_COUNT=1
+- DB_ADMIN_AUDIT_COLUMN_COUNT=9
+- DB_ALERT_COLUMN_COUNT=10
+
+## Repo Counters
+- SUPER_ADMIN_ROLE_MODEL_COUNT=1010
+- BREAK_GLASS_REASON_COUNT=171
+- TIMED_ACCESS_COUNT=2785
+- ADMIN_ACTION_AUDIT_COUNT=59
+- ALERT_EVENT_COUNT=36
+- ABUSE_TEST_COUNT=1515
+
+## Final Counters
+- PASS_COUNT=27
+- FAIL_COUNT=0
+- WARN_COUNT=0

@@ -1,0 +1,17 @@
+version: v1
+jobs_rules:
+  default_queue: __JOB_DEFAULT_QUEUE__
+  max_retry: __JOB_MAX_RETRY__
+  retry_backoff_seconds: __JOB_RETRY_BACKOFF_SECONDS__
+  idempotency_ttl_seconds: __JOB_IDEMPOTENCY_TTL_SECONDS__
+  audit_retention_days: __JOB_AUDIT_RETENTION_DAYS__
+  tenant_mode: __JOB_TENANT_MODE__
+
+notifications_rules:
+  email_enabled: __NOTIFY_EMAIL_ENABLED__
+  sms_enabled: __NOTIFY_SMS_ENABLED__
+  push_enabled: __NOTIFY_PUSH_ENABLED__
+  webhook_enabled: __NOTIFY_WEBHOOK_ENABLED__
+  webhook_max_retry: __NOTIFY_WEBHOOK_MAX_RETRY__
+  webhook_dlq_enabled: __NOTIFY_WEBHOOK_DLQ_ENABLED__
+  default_severity: __NOTIFY_DEFAULT_SEVERITY__

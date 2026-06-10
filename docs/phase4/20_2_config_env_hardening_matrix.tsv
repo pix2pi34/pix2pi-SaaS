@@ -1,0 +1,29 @@
+gate	status	note
+previous_20_1	PASS	production cleanup prerequisite
+baseline	PASS	existing=6/6
+inventory	PASS	rows=500
+permission_evidence	PASS	world_readable=421 group_readable=0
+env_files	PASS	env_file_count=39
+config_files	PASS	config_file_count=229
+potential_secret_paths	PASS	path_count=232 values_not_printed
+secret_key_names	PASS	secret_key_name_count=235 values_not_printed
+dsn_key_names	PASS	dsn_key_name_count=46 values_not_printed
+value_not_printed	PASS	metadata_only
+no_change	PASS	no chmod/chown/env edit
+no_deploy	PASS	deploy/restart not executed
+secret_safe	PASS	secret values not printed
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+file_permission_changed	NO	evidence only
+file_delete_executed	NO	evidence only
+file_move_executed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+deploy_executed	NO	evidence only
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

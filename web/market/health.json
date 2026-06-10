@@ -1,0 +1,10 @@
+{
+  "status": "ok",
+  "surface": "marketplace",
+  "service": "pix2pi-market-storefront",
+  "phase": "FAZ 7-R",
+  "step": "335",
+  "domain": "market.pix2pi.com.tr",
+  "fix": "v2-market-domain-isolation",
+  "ready_for_step_336": true
+}

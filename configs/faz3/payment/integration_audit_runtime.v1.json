@@ -1,0 +1,61 @@
+{
+  "phase": "FAZ_3_10_7_5_INTEGRATION_AUDIT_RUNTIME",
+  "runtime": "payment_integration_audit_runtime",
+  "runtime_enabled": true,
+  "runtime_mode": "SIMULATION",
+  "real_provider_gate_open": false,
+  "production_approved": false,
+  "idempotency_required": true,
+  "evidence_hash_required": true,
+  "artifact_path_required": true,
+  "fail_blocks_closure": true,
+  "warn_requires_review": true,
+  "minimum_pass_count_for_readiness": 20,
+  "required_scopes": [
+    "POS_PROVIDER_RUNTIME",
+    "BANK_COLLECTION_RUNTIME",
+    "RECONCILIATION_RUNTIME",
+    "REFUND_CANCEL_RUNTIME",
+    "PAYMENT_STATUS_SYNC",
+    "PAYMENT_ERROR_RETRY_RUNTIME",
+    "PAYMENT_INTEGRATION_E2E"
+  ],
+  "allowed_provider_codes": [
+    "SIM_BANK_POS",
+    "SIM_BANK",
+    "SIM_MARKETPLACE",
+    "INTERNAL_AUDIT"
+  ],
+  "operations": [
+    "REGISTER_AUDIT_EVENT",
+    "EVALUATE_EVIDENCE_BUNDLE",
+    "CHECK_REQUIRED_SCOPE_COVERAGE",
+    "CHECK_PASS_FAIL_WARN_COUNTERS",
+    "CHECK_CLOSURE_READINESS"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "audit_event_id_required": true,
+    "scope_required": true,
+    "source_required": true,
+    "status_required": true,
+    "check_name_required": true,
+    "artifact_path_required": true,
+    "evidence_file_path_required": true,
+    "evidence_hash_required": true,
+    "pass_count_non_negative": true,
+    "fail_count_non_negative": true,
+    "warn_count_non_negative": true,
+    "pass_event_cannot_have_fail_count": true,
+    "fail_event_must_have_fail_count": true
+  },
+  "live_policy": {
+    "real_provider_audit_status": "CLOSED_UNTIL_PROVIDER_APPROVALS",
+    "production_audit_status": "DENIED_BY_DEFAULT",
+    "secret_policy": "CREDENTIAL_REF_ONLY_NO_RAW_SECRET"
+  },
+  "next_gate": "FAZ_3_10_7_6_PAYMENT_INTEGRATION_TESTS"
+}

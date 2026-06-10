@@ -1,0 +1,39 @@
+{
+  "module_code": "7-5P.6",
+  "module_name": "Payment Webhook Intake / Verification Runtime",
+  "parent_module": "7-5P",
+  "depends_on": [
+    "7-5P",
+    "7-5P.1",
+    "7-5P.2",
+    "7-5P.3",
+    "7-5P.4",
+    "7-5P.5"
+  ],
+  "webhook_intake_version": "payment_webhook_intake.v1",
+  "signature": {
+    "header_format": "t=<unix_timestamp>,v1=<hex_hmac_sha256>",
+    "algorithm": "HMAC-SHA256",
+    "signed_payload": "<unix_timestamp>.<raw_payload>",
+    "timestamp_skew_seconds": 300
+  },
+  "guards": {
+    "tenant_id_required": true,
+    "attempt_id_required": true,
+    "provider_code_required": true,
+    "correlation_id_required": true,
+    "raw_payload_required": true,
+    "signature_header_required": true,
+    "timestamp_required": true,
+    "timestamp_skew_guard_required": true,
+    "provider_match_required": true,
+    "payment_service_verify_webhook_bridge_required": true,
+    "audit_event_history_required": true
+  },
+  "test_strategy": {
+    "go_test_required": true,
+    "test_names_verified_from_output": true,
+    "hardcoded_final_ok_forbidden": true,
+    "final_status_from_counters_required": true
+  }
+}

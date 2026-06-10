@@ -1,0 +1,11 @@
+version: v1
+payment_rules:
+  pos_backbone_enabled: true
+  pos_provider_mode: adapter_based
+  bank_collection_enabled: true
+  bank_settlement_mode: daily_batch
+  reconciliation_bridge_mode: strict
+  refund_flow_enabled: true
+  cancel_flow_enabled: true
+  audit_enabled: true
+  test_profile: turkiye-payment-core

@@ -1,0 +1,78 @@
+{
+  "version": "sre_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_1_5",
+  "status": "dry_run_only_no_node_fencing_mutation",
+  "recommendations": [
+    {
+      "fencing_id": "node-fence-api-gateway-degraded-review",
+      "node_class": "api_gateway_node",
+      "current_signal": "route_error_ratio_and_node_health_status",
+      "fencing_decision": "REVIEW_NODE_DEGRADED",
+      "risk_level": "critical",
+      "quorum_guard_status": "REQUIRED",
+      "split_brain_guard_status": "REQUIRED",
+      "tenant_traffic_guard_status": "REQUIRED",
+      "session_affinity_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "fencing_id": "node-fence-app-runtime-manual-rehearsal",
+      "node_class": "app_runtime_node",
+      "current_signal": "memory_saturation_and_session_affinity_error_ratio",
+      "fencing_decision": "READY_FOR_MANUAL_FENCE_REHEARSAL",
+      "risk_level": "high",
+      "quorum_guard_status": "REQUIRED",
+      "split_brain_guard_status": "REQUIRED",
+      "tenant_traffic_guard_status": "REQUIRED",
+      "session_affinity_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "fencing_id": "node-fence-worker-backlog-review",
+      "node_class": "worker_node",
+      "current_signal": "queue_backlog_contribution_and_process_health",
+      "fencing_decision": "REVIEW_NODE_DEGRADED",
+      "risk_level": "high",
+      "quorum_guard_status": "REQUIRED",
+      "split_brain_guard_status": "REQUIRED",
+      "tenant_traffic_guard_status": "REQUIRED",
+      "session_affinity_guard_status": "NOT_APPLICABLE",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "fencing_id": "node-fence-db-facing-blocked-quorum",
+      "node_class": "db_facing_node",
+      "current_signal": "db_connection_error_ratio_and_heartbeat_age",
+      "fencing_decision": "BLOCKED_QUORUM_RISK",
+      "risk_level": "critical",
+      "quorum_guard_status": "BLOCKED",
+      "split_brain_guard_status": "REQUIRED",
+      "tenant_traffic_guard_status": "REQUIRED",
+      "session_affinity_guard_status": "NOT_APPLICABLE",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "fencing_id": "node-fence-observability-review",
+      "node_class": "observability_node",
+      "current_signal": "disk_pressure_and_process_health",
+      "fencing_decision": "REVIEW_NODE_DEGRADED",
+      "risk_level": "medium",
+      "quorum_guard_status": "REQUIRED",
+      "split_brain_guard_status": "REQUIRED",
+      "tenant_traffic_guard_status": "NOT_REQUIRED",
+      "session_affinity_guard_status": "NOT_APPLICABLE",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_20_2",
+    "name": "Replica routing / read pool stratejisi",
+    "runtime_mutation_allowed_now": false
+  }
+}

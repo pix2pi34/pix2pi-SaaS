@@ -1,0 +1,13 @@
+target_key	domain	table_family	data_classification	tenant_scoped	retention_days	archive_after_days	purge_after_days	partition_candidate	partition_strategy	archive_strategy	kvkk_relevance	restore_requirement	legal_hold_supported	delete_request_action	apply_gate_required	note
+event_store_events	event	event_store_events	operational	YES	365	90	2555	YES	monthly_range	cold_archive_replay_pointer	YES	replay_restore	YES	anonymize_or_delete_when_allowed	YES	Event store retention standardi
+audit_log_events	security	audit_logs	legal_audit	YES	2555	365	3650	YES	monthly_range	cold_archive_immutable	YES	legal_audit_restore	YES	legal_hold_blocks_delete	YES	Audit log retention standardi
+application_logs	observability	service_logs	operational	YES	90	30	365	YES	daily_or_monthly_range	object_storage_archive	YES	incident_restore	YES	redact_personal_data	YES	Application/runtime log retention standardi
+import_batches	import	import_batches	operational	YES	365	180	1095	NO	not_required	archive_summary	YES	import_replay_restore	YES	delete_when_allowed	YES	Import batch retention standardi
+import_files	import	import_files	personal_data	YES	180	30	365	NO	not_required	object_storage_lifecycle	YES	file_restore	YES	delete_file_when_allowed	YES	Import file retention standardi
+import_staging_rows	import	import_staging_tables	personal_data	YES	90	30	180	YES	monthly_range	archive_validation_summary	YES	import_audit_restore	YES	purge_or_anonymize	YES	Import staging row retention standardi
+import_validation_errors	import	validation_errors	operational	YES	365	180	1095	YES	monthly_range	archive_summary	YES	import_error_restore	YES	purge_when_allowed	YES	Import validation error retention standardi
+notification_history	notifications	notification_delivery	operational	YES	180	60	365	YES	monthly_range	archive_summary	NO	support_restore	YES	delete_when_allowed	YES	Notification history retention standardi
+webhook_delivery_history	webhooks	webhook_delivery	operational	YES	180	60	365	YES	monthly_range	archive_summary	NO	replay_restore	YES	delete_when_allowed	YES	Webhook delivery retention standardi
+jobs_queue_history	jobs	job_history	operational	YES	90	30	180	YES	monthly_range	archive_summary	NO	support_restore	YES	delete_when_allowed	YES	Jobs queue history retention standardi
+reporting_marts	reporting	reporting_marts	aggregate	YES	1095	365	2555	YES	monthly_range	cold_archive_summary	NO	mart_restore	YES	aggregate_rebuild	YES	Reporting mart retention standardi
+readmodel_snapshots	readmodel	readmodel_snapshots	aggregate	YES	365	180	1095	NO	not_required	rebuild_from_source	NO	rebuild_restore	YES	rebuild_delete	YES	Readmodel snapshot retention standardi

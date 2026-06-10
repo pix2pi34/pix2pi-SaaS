@@ -1,0 +1,7 @@
+block	status	report_file	primary_evidence
+15.1	PASS	docs/phase4/15_readmodel_final_closure_report.md	READMODEL_FINAL_CLOSURE=PASS
+15.2	PASS	docs/phase4/15_2_finance_reporting_mart_report.md	FINANCE_REPORTING_MART=PASS
+15.3	PASS	docs/phase4/15_3_ebelge_export_reporting_mart_report.md	EBELGE_EXPORT_REPORTING_MART=PASS
+15.4	PASS	docs/phase4/15_4_payment_reconciliation_reporting_mart_report.md	PAYMENT_RECONCILIATION_REPORTING_MART=PASS
+15.5	PASS	docs/phase4/15_5_search_index_projection_tables_report.md	SEARCH_INDEX_PROJECTION_TABLES=PASS
+15.6	PASS	docs/phase4/15_6_materialized_cache_projection_report.md	MATERIALIZED_CACHE_PROJECTION_STANDARD=PASS

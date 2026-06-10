@@ -1,0 +1,10 @@
+gate	status	note
+migration_directory	PASS	db/migrations
+migration_naming	PASS	invalid_count=0
+migration_pairing	PASS	missing_down=0 missing_up=0
+migration_duplicates	PASS	duplicate_base=0 duplicate_version=0
+rollback_files	PASS	empty_down=0
+up_sql_risk	PASS	high_risk=0 shell_token=0 alter_system=0
+schema_migrations_db_check	PASS	dirty=false version=2
+db_mutation	NO	read-only standard validation
+query_text_printed	NO	secret-safe report

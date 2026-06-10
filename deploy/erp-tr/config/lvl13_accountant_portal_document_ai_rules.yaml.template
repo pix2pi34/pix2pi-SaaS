@@ -1,0 +1,19 @@
+version: v1
+accountant_portal_rules:
+  multi_company_enabled: __ACCOUNTANT_MULTI_COMPANY_ENABLED__
+  company_scope_mode: __ACCOUNTANT_COMPANY_SCOPE_MODE__
+  export_excel_enabled: __ACCOUNTANT_EXPORT_EXCEL_ENABLED__
+  export_pdf_enabled: __ACCOUNTANT_EXPORT_PDF_ENABLED__
+  export_tdhp_enabled: __ACCOUNTANT_EXPORT_TDHP_ENABLED__
+  subscription_mode: __ACCOUNTANT_SUBSCRIPTION_MODE__
+  visibility_mode: __ACCOUNTANT_VISIBILITY_MODE__
+  test_profile: __ACCOUNTANT_TEST_PROFILE__
+
+document_ai_rules:
+  enabled: __DOCUMENT_AI_ENABLED__
+  flow_mode: __DOCUMENT_AI_FLOW_MODE__
+  tax_fields_required: __DOCUMENT_AI_TAX_FIELDS_REQUIRED__
+  contact_fields_enabled: __DOCUMENT_AI_CONTACT_FIELDS_ENABLED__
+  confidence_threshold: __DOCUMENT_AI_CONFIDENCE_THRESHOLD__
+  manual_review_enabled: __DOCUMENT_AI_MANUAL_REVIEW_ENABLED__
+  test_profile: __DOCUMENT_AI_TEST_PROFILE__

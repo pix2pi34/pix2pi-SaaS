@@ -1,0 +1,42 @@
+{
+  "phase": "FAZ 5-R",
+  "step_no": 242,
+  "step_code": "FAZ_5_18_3_1",
+  "test_name": "sozlesme_seti_fix_contract_manifest_test",
+  "expected": {
+    "public_publish_allowed": false,
+    "public_core_product_allowed": true,
+    "public_contract_draft_allowed": false,
+    "data_monetization_public_allowed": false,
+    "legal_kvkk_approval_required_for_data_model": true,
+    "legal_approval_required": true,
+    "kvkk_approval_required": true,
+    "production_ready": false,
+    "required_document_count": 12,
+    "required_gates": [
+      "hukukcu_onayi",
+      "kvkk_danismani_onayi",
+      "ticari_operasyon_onayi",
+      "founder_go_no_go"
+    ],
+    "required_plan_modes": [
+      "DATA_SUPPORTED",
+      "RESTRICTED_PAID",
+      "ENTERPRISE_PRIVACY"
+    ],
+    "required_contract_slugs": [
+      "abonelik_hizmet_sozlesmesi",
+      "kullanim_sartlari",
+      "gizlilik_politikasi",
+      "kvkk_aydinlatma_metni",
+      "acik_riza_metni",
+      "cerez_politikasi",
+      "veri_isleme_ek_protokolu",
+      "sla_destek_politikasi",
+      "iptal_iade_politikasi",
+      "muhasebeci_portali_ek_sartlari",
+      "paket_fiyat_entitlement_ek_sartlari",
+      "ticari_fayda_programi_ek_sartlari"
+    ]
+  }
+}

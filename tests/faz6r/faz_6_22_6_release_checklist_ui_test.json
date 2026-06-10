@@ -1,0 +1,40 @@
+{
+  "expected_dependency": "FAZ_6_22_5",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_ui_deploy_allowed": false,
+  "expected_frontend_deploy_allowed": false,
+  "expected_build_publish_allowed": false,
+  "expected_route_mutation_allowed": false,
+  "expected_checklist_state_mutation_allowed": false,
+  "expected_approval_state_mutation_allowed": false,
+  "expected_cdn_invalidation_allowed": false,
+  "expected_required_controls": [
+    "permission_regression_dependency_gate",
+    "release_gate_visibility_policy",
+    "checklist_section_model",
+    "blocker_status_policy",
+    "dependency_evidence_display_policy",
+    "approval_state_display_policy",
+    "rollback_readiness_display_policy",
+    "permission_safe_visibility_policy",
+    "tenant_safe_release_visibility_policy",
+    "audit_evidence_link_policy",
+    "dry_run_release_checklist_ui_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_sections": [
+    "security_edge_sre_ops",
+    "dr_cost_tuning",
+    "db_scale_readiness",
+    "web_accessibility_performance_visual",
+    "permission_release_ui",
+    "release_build_readiness"
+  ],
+  "expected_min_check_count": 6,
+  "expected_status": "dry_run_only_no_release_checklist_ui_mutation",
+  "expected_next_step": "FAZ_6_22_7"
+}

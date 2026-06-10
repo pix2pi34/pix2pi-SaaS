@@ -1,0 +1,31 @@
+{
+  "phase": "FAZ 2-7.6.2",
+  "runtime": "workflow_definition_loader",
+  "require_tenant": true,
+  "definition_format": "json",
+  "definition_statuses": [
+    "DRAFT",
+    "ACTIVE",
+    "ARCHIVED"
+  ],
+  "step_types": [
+    "TASK",
+    "APPROVAL",
+    "DECISION",
+    "COMPENSATION",
+    "NOTIFY"
+  ],
+  "validation_guards": [
+    "tenant_required",
+    "definition_key_required",
+    "version_required",
+    "name_required",
+    "initial_step_required",
+    "duplicate_step_denied",
+    "approval_policy_required_for_approval_step",
+    "retry_policy_shape_required_when_present",
+    "compensation_step_required_for_compensation_step",
+    "cross_tenant_definition_denied"
+  ],
+  "next_ready": "FAZ_2_7_6_3_MANUAL_APPROVAL_RUNTIME"
+}

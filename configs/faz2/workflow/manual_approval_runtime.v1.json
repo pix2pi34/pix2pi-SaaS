@@ -1,0 +1,30 @@
+{
+  "phase": "FAZ 2-7.6.3",
+  "runtime": "manual_approval",
+  "require_tenant": true,
+  "approval_statuses": [
+    "PENDING",
+    "APPROVED",
+    "REJECTED",
+    "CANCELED"
+  ],
+  "approval_decisions": [
+    "APPROVE",
+    "REJECT"
+  ],
+  "guards": [
+    "tenant_required",
+    "approval_id_required",
+    "workflow_id_required",
+    "step_id_required",
+    "approver_ref_required",
+    "approver_role_required_when_policy_exists",
+    "cross_tenant_access_denied",
+    "already_final_denied"
+  ],
+  "workflow_bridge": {
+    "approved": "WAITING_APPROVAL -> RUNNING",
+    "rejected": "WAITING_APPROVAL -> APPROVAL_REJECTED"
+  },
+  "next_ready": "FAZ_2_7_6_4_RETRY_COMPENSATION_RUNTIME"
+}

@@ -1,0 +1,40 @@
+{
+  "phase": "FAZ_5_18_7_2",
+  "title": "Churn / Expansion Raporu",
+  "status": "READY",
+  "control_surface": "CHURN_EXPANSION_REPORT",
+  "inputs": [
+    "FAZ_5_18_7_1_MRR_ARR_RAPORU",
+    "FAZ_5_18_5_2_TENANT_YUKSELTME_DUSURME",
+    "FAZ_5_18_5_4_TENANT_KAPATMA",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "STARTING_MRR_BASE",
+    "CHURNED_TENANT_SUMMARY",
+    "CHURNED_MRR_SUMMARY",
+    "EXPANSION_TENANT_SUMMARY",
+    "EXPANSION_MRR_SUMMARY",
+    "CONTRACTION_MRR_SUMMARY",
+    "NRR_SUMMARY",
+    "GRR_SUMMARY",
+    "CHURN_REASON_BREAKDOWN",
+    "AUDIT_EVIDENCE_SUMMARY",
+    "COLLECTION_SUCCESS_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_churn_expansion_report_ready": true,
+    "production_motion_report_enabled": false,
+    "real_customer_motion_enabled": false,
+    "external_finance_export_enabled": false,
+    "auto_executive_email_enabled": false,
+    "collection_success_report_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

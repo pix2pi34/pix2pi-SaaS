@@ -1,0 +1,96 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "286",
+  "code": "FAZ_6_21_7_2",
+  "name": "Otomatik remediation",
+  "depends_on": [
+    "FAZ_6_21_7_1"
+  ],
+  "auto_remediation_mode": "dry_run_guarded",
+  "runtime_mutation_allowed": false,
+  "production_mutation_allowed": false,
+  "destructive_action_default_allowed": false,
+  "manual_approval_required_for_production_mutation": true,
+  "required_controls": [
+    "runbook_dependency_gate",
+    "remediation_rule_index",
+    "dry_run_runtime",
+    "manual_approval_gate",
+    "no_destructive_default_policy",
+    "production_mutation_guard",
+    "evidence_capture_policy",
+    "rollback_action_guard",
+    "p0_p1_approval_policy",
+    "safe_action_allowlist",
+    "unsafe_action_denylist",
+    "final_status_policy"
+  ],
+  "safe_action_allowlist": [
+    "capture_logs",
+    "capture_metrics",
+    "capture_health_snapshot",
+    "classify_incident",
+    "recommend_runbook",
+    "recommend_rollback",
+    "recommend_restart",
+    "recommend_scale_consumer",
+    "recommend_cache_fallback",
+    "recommend_edge_challenge"
+  ],
+  "unsafe_action_denylist": [
+    "production_restart",
+    "rollback_execute",
+    "database_failover_execute",
+    "data_restore_execute",
+    "firewall_enforce_execute",
+    "edge_block_rule_push",
+    "mass_cache_delete",
+    "destructive_cleanup"
+  ],
+  "approval_policy": {
+    "manual_approval_required": true,
+    "required_for_severities": [
+      "P0",
+      "P1"
+    ],
+    "required_for_actions": [
+      "production_restart",
+      "rollback_execute",
+      "database_failover_execute",
+      "data_restore_execute",
+      "firewall_enforce_execute",
+      "edge_block_rule_push",
+      "mass_cache_delete",
+      "destructive_cleanup"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "security_owner"
+    ]
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "incident_id",
+      "severity",
+      "signal",
+      "recommended_action",
+      "action_mode",
+      "approval_required",
+      "runbook_id",
+      "decision_reason",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "dry_run_required": true,
+    "block_if_unsafe_action_auto_executes": true,
+    "block_if_missing_runbook_binding": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_7_2_OTOMATIK_REMEDIATION_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

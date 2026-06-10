@@ -1,0 +1,22 @@
+{
+  "step": "FAZ 7-R / 346",
+  "name": "Plan enforcement / entitlement UI guard real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "plan-enforcement-ui-346-20260513_233512",
+  "routes": [
+    "/entitlements/",
+    "POST /api/commercial/enforcement-ui/context",
+    "POST /api/commercial/enforcement-ui/action-guard"
+  ],
+  "requiredEvidence": [
+    "plan enforcement UI DB runtime",
+    "commercial account plus entitlement context binding",
+    "allowed disabled quota exceeded UI decision",
+    "upgrade required disabled action guard",
+    "tenant-safe UI guard",
+    "no-role UI guard deny",
+    "rollback no partial write",
+    "entitlement UI route smoke",
+    "plan enforcement UI audit evidence"
+  ]
+}

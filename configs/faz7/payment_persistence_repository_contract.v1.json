@@ -1,0 +1,44 @@
+{
+  "module_code": "7-5P.3",
+  "module_name": "Payment Persistence / Repository Contract",
+  "parent_module": "7-5P",
+  "depends_on": [
+    "7-5P",
+    "7-5P.1",
+    "7-5P.2"
+  ],
+  "repository_contract_version": "payment_persistence_repository_contract.v1",
+  "repository_operations": [
+    "Save",
+    "Update",
+    "FindByAttemptID",
+    "FindByIdempotencyKey",
+    "AppendEvent",
+    "ListEvents"
+  ],
+  "persistence_guards": {
+    "tenant_safe_lookup_required": true,
+    "attempt_id_unique_per_tenant": true,
+    "idempotency_key_unique_per_tenant": true,
+    "event_history_persistence_required": true,
+    "update_requires_existing_attempt": true,
+    "cross_tenant_read_denied": true
+  },
+  "repository_errors": [
+    "PAYMENT_ATTEMPT_ALREADY_EXISTS",
+    "PAYMENT_ATTEMPT_NOT_FOUND",
+    "PAYMENT_ATTEMPT_IDEMPOTENCY_CONFLICT"
+  ],
+  "next_database_step": {
+    "postgres_migration_required_later": true,
+    "tables": [
+      "payment_attempts",
+      "payment_attempt_events"
+    ],
+    "indexes": [
+      "tenant_id_attempt_id_unique",
+      "tenant_id_idempotency_key_unique",
+      "tenant_id_provider_transaction_id_index"
+    ]
+  }
+}

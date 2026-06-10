@@ -1,0 +1,220 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "307",
+  "code": "FAZ_6_20_6",
+  "name": "Partition / shard readiness modeli",
+  "depends_on": [
+    "FAZ_6_20_2"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "partition_create_allowed": false,
+  "partition_drop_allowed": false,
+  "shard_split_allowed": false,
+  "shard_move_allowed": false,
+  "tenant_move_allowed": false,
+  "table_rewrite_allowed": false,
+  "index_rebuild_allowed": false,
+  "sequence_remap_allowed": false,
+  "foreign_key_mutation_allowed": false,
+  "routing_mutation_allowed": false,
+  "dsn_mutation_allowed": false,
+  "required_controls": [
+    "replica_routing_dependency_gate",
+    "partition_candidate_inventory",
+    "shard_key_readiness_policy",
+    "tenant_distribution_model",
+    "data_locality_policy",
+    "cross_shard_transaction_guard",
+    "sequence_identity_guard",
+    "foreign_key_boundary_guard",
+    "reporting_readmodel_impact_guard",
+    "migration_rewrite_safety_policy",
+    "rollback_reversibility_policy",
+    "dry_run_shard_readiness_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "candidate_surfaces": [
+    {
+      "surface": "tenant_operational_events",
+      "risk_level": "medium",
+      "candidate_type": "partition_candidate",
+      "preferred_key": "tenant_id_created_at",
+      "tenant_safe_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "audit_logs",
+      "risk_level": "medium",
+      "candidate_type": "time_partition_candidate",
+      "preferred_key": "created_at_tenant_id",
+      "tenant_safe_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "reporting_readmodels",
+      "risk_level": "medium",
+      "candidate_type": "partition_candidate",
+      "preferred_key": "tenant_id_period",
+      "tenant_safe_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "pos_receipt_movements",
+      "risk_level": "high",
+      "candidate_type": "shard_candidate_review_only",
+      "preferred_key": "tenant_id_business_date",
+      "tenant_safe_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "finance_ledger",
+      "risk_level": "critical",
+      "candidate_type": "blocked_until_boundary_model",
+      "preferred_key": "tenant_id_period",
+      "tenant_safe_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "shard_key_readiness_policy": {
+    "enabled": true,
+    "required_properties": [
+      "deterministic",
+      "tenant_scoped",
+      "stable_over_time",
+      "low_cross_shard_join_risk",
+      "supports_read_pool_strategy",
+      "supports_backup_restore_scope",
+      "supports_reporting_projection"
+    ],
+    "block_if_cross_tenant_key": true,
+    "block_if_non_deterministic_key": true,
+    "block_if_high_cross_shard_transaction_risk": true,
+    "block_if_reporting_projection_unknown": true
+  },
+  "tenant_distribution_model": {
+    "enabled": true,
+    "required_metrics": [
+      "tenant_row_count_distribution",
+      "tenant_storage_distribution",
+      "tenant_write_rate_distribution",
+      "tenant_read_rate_distribution",
+      "hot_tenant_candidates",
+      "period_growth_rate",
+      "table_bloat_signal",
+      "index_size_ratio",
+      "read_pool_query_distribution",
+      "reporting_projection_size"
+    ],
+    "minimum_observation_days": 14,
+    "requires_hot_tenant_detection": true,
+    "requires_period_growth_detection": true
+  },
+  "guards": {
+    "cross_shard_transaction_guard": {
+      "enabled": true,
+      "block_if_financial_consistency_boundary_unknown": true,
+      "block_if_multi_tenant_transaction_detected": true,
+      "block_if_cross_shard_write_required": true
+    },
+    "sequence_identity_guard": {
+      "enabled": true,
+      "block_if_global_sequence_dependency_unknown": true,
+      "requires_id_generation_strategy": true
+    },
+    "foreign_key_boundary_guard": {
+      "enabled": true,
+      "block_if_cross_partition_fk_required": true,
+      "block_if_cross_shard_fk_required": true
+    },
+    "reporting_readmodel_impact_guard": {
+      "enabled": true,
+      "block_if_projection_rebuild_plan_missing": true,
+      "block_if_reporting_lag_budget_unknown": true
+    },
+    "migration_rewrite_safety_policy": {
+      "enabled": true,
+      "mode": "dry_run_only",
+      "block_if_table_rewrite_required_in_production": true,
+      "block_if_index_rebuild_lock_risk": true
+    },
+    "rollback_reversibility_policy": {
+      "enabled": true,
+      "block_if_reverse_migration_missing": true,
+      "block_if_data_movement_not_reversible": true
+    }
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "partition_create_execute",
+      "partition_drop_execute",
+      "shard_split_execute",
+      "shard_move_execute",
+      "tenant_move_execute",
+      "table_rewrite_execute",
+      "index_rebuild_execute",
+      "sequence_remap_execute",
+      "foreign_key_mutation_execute",
+      "routing_mutation_execute",
+      "dsn_mutation_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "data_owner",
+      "domain_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "partition_create_allowed": false,
+    "partition_drop_allowed": false,
+    "shard_split_allowed": false,
+    "shard_move_allowed": false,
+    "tenant_move_allowed": false,
+    "table_rewrite_allowed": false,
+    "index_rebuild_allowed": false,
+    "sequence_remap_allowed": false,
+    "foreign_key_mutation_allowed": false,
+    "routing_mutation_allowed": false,
+    "dsn_mutation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "readiness_id",
+      "surface",
+      "candidate_type",
+      "preferred_key",
+      "tenant_distribution_status",
+      "shard_key_status",
+      "cross_shard_guard_status",
+      "reporting_impact_status",
+      "migration_safety_status",
+      "risk_level",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_replica_routing_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_partition_or_shard_mutation_allowed": true,
+    "block_if_tenant_move_allowed": true,
+    "block_if_table_rewrite_allowed": true,
+    "block_if_missing_shard_key_policy": true,
+    "block_if_missing_cross_shard_guard": true,
+    "block_if_missing_reporting_impact_guard": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_20_6_PARTITION_SHARD_READINESS_MODELI_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

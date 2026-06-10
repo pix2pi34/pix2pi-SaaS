@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi kullanıcı yetki kontrolü ekranı" />
+  <meta property="og:title" content="Pix2pi Kullanıcı Yetki Kontrolü" />
+  <meta property="og:description" content="Kontrollü müşteri açılışı öncesi rol/yetki ve permission decision preview yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Kullanıcı Yetki Kontrolü</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(124,58,237,.12), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1360px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .perm-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_353_USER_PERMISSION_CHECK_APP_SHELL_START -->
+  <main class="shell" data-step="353" data-surface="user-permission-check">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 353</span>
+      <h1 data-i18n="user_permission.title">Kullanıcı yetki kontrolü</h1>
+      <p data-i18n="user_permission.description">Rol/yetki matrisi, permission decision ve deny-by-default preview yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_353_TENANT_USER_ROLE_SESSION_CONTEXT_START -->
+    <section class="card guard" data-widget="tenant_user_role_session_context">
+      <h2>Tenant / user / role / session context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="permission-tenant-id">controlled-pilot</strong></p>
+        <p>Session: <strong id="permission-user-session">USER_DEMO_SESSION</strong></p>
+        <p>Email: <strong id="permission-user-email">owner@example.invalid</strong></p>
+        <p>Role: <strong id="permission-user-role">OWNER_ADMIN</strong></p>
+        <p>Scope: <strong id="permission-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_353_TENANT_USER_ROLE_SESSION_CONTEXT_END -->
+
+    <!-- PIX2PI_353_ROLE_PERMISSION_MATRIX_PREVIEW_START -->
+    <section class="card" data-widget="role_permission_matrix_preview">
+      <h2>Role permission matrix preview</h2>
+      <div id="permission-role-matrix" class="grid-3">
+        <article class="perm-card" data-role="OWNER_ADMIN" data-permission="panel.dashboard.read" data-decision="ALLOW">
+          <strong>OWNER_ADMIN</strong>
+          <p>panel.dashboard.read / ALLOW</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_353_ROLE_PERMISSION_MATRIX_PREVIEW_END -->
+
+    <!-- PIX2PI_353_PERMISSION_DECISION_CONTRACT_START -->
+    <section class="card guard" data-widget="permission_decision_contract">
+      <h2>Permission decision contract</h2>
+      <p>ALLOW / DENY_MISSING_PERMISSION / DENY_ADMIN_ONLY / DENY_TENANT_SCOPE / DENY_ENTITLEMENT</p>
+    </section>
+    <!-- PIX2PI_353_PERMISSION_DECISION_CONTRACT_END -->
+
+    <section class="card" data-widget="permission_check_list">
+      <h2>Permission checks</h2>
+      <div id="permission-check-list" class="grid-3">
+        <!-- PIX2PI_353_PANEL_ROUTE_PERMISSION_CHECKS_START -->
+        <article class="perm-card" data-area="panel" data-action="dashboard.read" data-decision="ALLOW">
+          <strong>panel / dashboard.read</strong>
+          <p>panel.dashboard.read / ALLOW</p>
+        </article>
+        <!-- PIX2PI_353_PANEL_ROUTE_PERMISSION_CHECKS_END -->
+        <!-- PIX2PI_353_POS_ACTION_PERMISSION_CHECKS_START -->
+        <article class="perm-card" data-area="pos" data-action="sale.create" data-decision="ALLOW">
+          <strong>pos / sale.create</strong>
+          <p>pos.sale.create / ALLOW</p>
+        </article>
+        <!-- PIX2PI_353_POS_ACTION_PERMISSION_CHECKS_END -->
+        <!-- PIX2PI_353_MARKETPLACE_ACTION_PERMISSION_CHECKS_START -->
+        <article class="perm-card" data-area="marketplace" data-action="storefront.manage" data-decision="ALLOW">
+          <strong>marketplace / storefront.manage</strong>
+          <p>marketplace.storefront.manage / ALLOW</p>
+        </article>
+        <!-- PIX2PI_353_MARKETPLACE_ACTION_PERMISSION_CHECKS_END -->
+        <!-- PIX2PI_353_COMMERCIAL_BILLING_PERMISSION_CHECKS_START -->
+        <article class="perm-card" data-area="commercial" data-action="billing.read" data-decision="ALLOW">
+          <strong>commercial / billing.read</strong>
+          <p>commercial.billing.read / ALLOW</p>
+        </article>
+        <!-- PIX2PI_353_COMMERCIAL_BILLING_PERMISSION_CHECKS_END -->
+      </div>
+    </section>
+
+    <!-- PIX2PI_353_ADMIN_ONLY_ACTION_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="admin_only_action_disabled_gate">
+      <h2>Admin-only action disabled gate</h2>
+      <p>admin.platform.override → DENY_ADMIN_ONLY / real_admin_override_enabled=false.</p>
+      <button type="button" disabled>Admin override kapalı</button>
+    </section>
+    <!-- PIX2PI_353_ADMIN_ONLY_ACTION_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_353_LEAST_PRIVILEGE_DENY_BY_DEFAULT_PREVIEW_START -->
+    <section class="card locked" data-widget="least_privilege_deny_by_default_preview">
+      <h2>Least privilege / deny-by-default preview</h2>
+      <p>Tanımsız permission → DENY_MISSING_PERMISSION / deny_by_default_preview_enabled=true.</p>
+    </section>
+    <!-- PIX2PI_353_LEAST_PRIVILEGE_DENY_BY_DEFAULT_PREVIEW_END -->
+
+    <!-- PIX2PI_353_ROLE_SWITCH_REGRESSION_PREVIEW_START -->
+    <section class="card" data-widget="role_switch_regression_preview">
+      <h2>Role switch regression preview</h2>
+      <div id="permission-role-switch-regression" class="grid-3">
+        <article class="perm-card" data-from-role="OWNER_ADMIN" data-to-role="CASHIER">
+          <strong>OWNER_ADMIN → CASHIER</strong>
+          <p>panel.users.manage / expected=DENY / PASS_PREVIEW</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_353_ROLE_SWITCH_REGRESSION_PREVIEW_END -->
+
+    <!-- PIX2PI_353_UNAUTHORIZED_FORBIDDEN_PERMISSION_STATE_PREVIEW_START -->
+    <section class="card locked" data-widget="unauthorized_forbidden_permission_state_preview">
+      <h2>Unauthorized / forbidden permission state preview</h2>
+      <div id="permission-denied-previews" class="grid-3">
+        <article class="perm-card" data-error-code="UNAUTHORIZED" data-decision="DENY_MISSING_PERMISSION">
+          <strong>UNAUTHORIZED</strong>
+          <p>Session yok / DENY_MISSING_PERMISSION / PREVIEW_ONLY</p>
+        </article>
+        <article class="perm-card" data-error-code="FORBIDDEN" data-decision="DENY_MISSING_PERMISSION">
+          <strong>FORBIDDEN</strong>
+          <p>Yetki yok / DENY_MISSING_PERMISSION / PREVIEW_ONLY</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_353_UNAUTHORIZED_FORBIDDEN_PERMISSION_STATE_PREVIEW_END -->
+
+    <!-- PIX2PI_353_PERMISSION_AUDIT_TIMELINE_START -->
+    <section class="card" data-widget="permission_audit_timeline">
+      <h2>Permission audit timeline</h2>
+      <div id="permission-audit-timeline" class="grid-3">
+        <article class="perm-card" data-audit-action="USER_PERMISSION_PREVIEW_READY">
+          <strong>USER_PERMISSION_PREVIEW_READY</strong>
+          <p>2026-05-demo / system / DRY_RUN</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_353_PERMISSION_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_353_TENANT_USER_ROLE_ACTION_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="tenant_user_role_action_scope_guard">
+      <h2>Tenant / user / role / action scope guard</h2>
+      <p>Permission endpointleri `X-Tenant-ID`, `X-User-Session`, `X-User-Role`, `X-Permission-Scope`, `X-Requested-Action`, `X-Correlation-ID` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_353_TENANT_USER_ROLE_ACTION_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_353_PERMISSION_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="permission_runtime_data_contract">
+      <h2>Permission runtime data contract</h2>
+      <p id="permission-runtime-contract">permission_preview_enabled=true / deny_by_default_preview_enabled=true / ready_for_step_354=true</p>
+    </section>
+    <!-- PIX2PI_353_PERMISSION_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_353_SEO_OPENGRAPH_PERMISSION_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_permission_placeholder">
+      <h2>SEO / OpenGraph permission placeholder</h2>
+      <p>Title, description ve og:* metadata kullanıcı yetki kontrolü yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_353_SEO_OPENGRAPH_PERMISSION_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_353_I18N_READY_PERMISSION_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_permission_marker">
+      <h2 data-i18n="user_permission.i18n_ready">i18n-ready permission screen</h2>
+      <p data-i18n="user_permission.surface_ready">Kullanıcı yetki kontrolü ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_353_I18N_READY_PERMISSION_MARKER_END -->
+  </main>
+  <!-- PIX2PI_353_USER_PERMISSION_CHECK_APP_SHELL_END -->
+
+  <script src="/assets/user-permission-check/user-permission-check-runtime.js"></script>
+  <script>
+    Pix2piUserPermissionCheck.bootUserPermissionScreen().then(function (contract) {
+      console.log("PIX2PI_353_USER_PERMISSION_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

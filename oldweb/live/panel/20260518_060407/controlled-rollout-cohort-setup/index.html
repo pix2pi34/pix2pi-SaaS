@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi controlled rollout cohort setup ekranı" />
+  <meta property="og:title" content="Pix2pi Controlled Rollout Cohort Setup" />
+  <meta property="og:description" content="Controlled rollout cohort setup ve approval readiness yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Controlled Rollout Cohort Setup</title>
+  <style>
+    :root { --bg:#f6f8fb; --text:#172033; --muted:#64748b; --border:#e5e7eb; --shadow:0 16px 42px rgba(15,23,42,.08); --radius:24px; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(circle at top left,rgba(37,99,235,.15),transparent 34rem),radial-gradient(circle at bottom right,rgba(14,165,233,.14),transparent 32rem),var(--bg); color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; padding:18px 16px; }
+    .shell { width:min(100%,1360px); margin:0 auto; display:grid; gap:16px; }
+    .hero,.card { background:rgba(255,255,255,.94); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; }
+    h1 { margin:0 0 8px; font-size:clamp(34px,7vw,64px); line-height:.95; letter-spacing:-.07em; }
+    h2 { margin:0 0 12px; font-size:19px; letter-spacing:-.03em; }
+    p { margin:0; color:var(--muted); line-height:1.55; }
+    .badge { display:inline-flex; width:fit-content; border-radius:999px; padding:7px 11px; background:#eff6ff; color:#1d4ed8; font-weight:900; font-size:12px; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .cohort-card { border:1px solid var(--border); border-radius:20px; padding:16px; background:#fff; display:grid; gap:8px; min-height:96px; overflow-wrap:anywhere; }
+    .guard { border:1px dashed #93c5fd; background:#eff6ff; }
+    .locked { border:1px dashed #f59e0b; background:#fffbeb; }
+    @media (max-width:1080px) { .grid-4,.grid-3 { grid-template-columns:1fr; } .hero,.card { border-radius:20px; } }
+  </style>
+</head>
+<body>
+  <!-- PIX2PI_362_CONTROLLED_ROLLOUT_COHORT_APP_SHELL_START -->
+  <main class="shell" data-step="362" data-surface="controlled-rollout-cohort-setup">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 362</span>
+      <h1 data-i18n="controlled_rollout_cohort.title">Controlled rollout cohort setup</h1>
+      <p data-i18n="controlled_rollout_cohort.description">Kontrollü rollout için cohort limit, eligibility, wave ve safety guard preview yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_362_ROLLOUT_COHORT_SETUP_CONTEXT_START -->
+    <section class="card guard">
+      <h2>Rollout cohort setup context</h2>
+      <div class="grid-4">
+        <p>Rollout: <strong id="cohort-rollout-id">controlled-rollout-001</strong></p>
+        <p>Scope: <strong id="cohort-scope-validation">VALID</strong></p>
+        <!-- PIX2PI_362_COHORT_SIZE_LIMIT_PREVIEW_START -->
+        <p id="cohort-size-limit">max_customers=3 / mode=CONTROLLED_PREVIEW</p>
+        <!-- PIX2PI_362_COHORT_SIZE_LIMIT_PREVIEW_END -->
+        <p>Public rollout: <strong>false</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_362_ROLLOUT_COHORT_SETUP_CONTEXT_END -->
+
+    <!-- PIX2PI_362_CUSTOMER_ELIGIBILITY_CHECKLIST_START -->
+    <section class="card">
+      <h2>Customer eligibility checklist</h2>
+      <div id="cohort-eligibility" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_362_CUSTOMER_ELIGIBILITY_CHECKLIST_END -->
+
+    <!-- PIX2PI_362_TENANT_SELECTION_PREVIEW_START -->
+    <section class="card">
+      <h2>Tenant selection preview</h2>
+      <p>Tenant selection preview sadece dry-run. Gerçek customer/tenant ekleme kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_362_TENANT_SELECTION_PREVIEW_END -->
+
+    <!-- PIX2PI_362_SECTOR_REGION_RISK_SEGMENTATION_START -->
+    <section class="card">
+      <h2>Sector / region / risk segmentation</h2>
+      <div id="cohort-segmentation" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_362_SECTOR_REGION_RISK_SEGMENTATION_END -->
+
+    <!-- PIX2PI_362_ROLLOUT_WAVE_SCHEDULE_PREVIEW_START -->
+    <section class="card">
+      <h2>Rollout wave schedule preview</h2>
+      <div id="cohort-wave-schedule" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_362_ROLLOUT_WAVE_SCHEDULE_PREVIEW_END -->
+
+    <section class="card">
+      <h2>Bindings</h2>
+      <div id="cohort-bindings" class="grid-3">
+        <!-- PIX2PI_362_FEATURE_FLAG_COHORT_BINDING_PREVIEW_START --><article class="cohort-card"><strong>feature_flag</strong><p>real_write_enabled=false</p></article><!-- PIX2PI_362_FEATURE_FLAG_COHORT_BINDING_PREVIEW_END -->
+        <!-- PIX2PI_362_ENTITLEMENT_PLAN_BINDING_PREVIEW_START --><article class="cohort-card"><strong>entitlement_plan</strong><p>real_write_enabled=false</p></article><!-- PIX2PI_362_ENTITLEMENT_PLAN_BINDING_PREVIEW_END -->
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Capacity / approval gates</h2>
+      <div id="cohort-gates" class="grid-3">
+        <!-- PIX2PI_362_SUPPORT_CAPACITY_GATE_START --><article class="cohort-card"><strong>SUPPORT_CAPACITY</strong><p>READY_PREVIEW</p></article><!-- PIX2PI_362_SUPPORT_CAPACITY_GATE_END -->
+        <!-- PIX2PI_362_MONITORING_CAPACITY_GATE_START --><article class="cohort-card"><strong>MONITORING_CAPACITY</strong><p>READY_PREVIEW</p></article><!-- PIX2PI_362_MONITORING_CAPACITY_GATE_END -->
+        <!-- PIX2PI_362_LEGAL_KVKK_APPROVAL_HOLD_GATE_START --><article class="cohort-card"><strong>LEGAL_KVKK_APPROVAL</strong><p>PENDING_FINAL_APPROVAL</p></article><!-- PIX2PI_362_LEGAL_KVKK_APPROVAL_HOLD_GATE_END -->
+        <!-- PIX2PI_362_BILLING_PAYMENT_LIVE_DISABLED_GATE_START --><article class="cohort-card"><strong>BILLING_PAYMENT_LIVE</strong><p>DISABLED_EXPECTED</p></article><!-- PIX2PI_362_BILLING_PAYMENT_LIVE_DISABLED_GATE_END -->
+      </div>
+    </section>
+
+    <!-- PIX2PI_362_DATA_MUTATION_DISABLED_SAFETY_GUARD_START -->
+    <section class="card locked">
+      <h2>Data mutation disabled safety guard</h2>
+      <div id="cohort-safety-guards" class="grid-4"></div>
+    </section>
+    <!-- PIX2PI_362_DATA_MUTATION_DISABLED_SAFETY_GUARD_END -->
+
+    <!-- PIX2PI_362_COHORT_ROLLBACK_PLAN_PREVIEW_START -->
+    <section class="card locked">
+      <h2>Cohort rollback plan preview</h2>
+      <div id="cohort-rollback-plan" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_362_COHORT_ROLLBACK_PLAN_PREVIEW_END -->
+
+    <!-- PIX2PI_362_COHORT_COMMUNICATION_DRAFT_PREVIEW_START -->
+    <section class="card">
+      <h2>Cohort communication draft preview</h2>
+      <div id="cohort-communication-drafts" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_362_COHORT_COMMUNICATION_DRAFT_PREVIEW_END -->
+
+    <!-- PIX2PI_362_COHORT_SETUP_AUDIT_TIMELINE_START -->
+    <section class="card">
+      <h2>Cohort setup audit timeline</h2>
+      <div id="cohort-audit-timeline" class="grid-3"></div>
+    </section>
+    <!-- PIX2PI_362_COHORT_SETUP_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_362_COHORT_SETUP_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card">
+      <h2>Cohort setup runtime data contract</h2>
+      <p id="cohort-runtime-contract">cohort_setup_preview_enabled=true / real_rollout_activation_enabled=false / ready_for_step_363=true</p>
+    </section>
+    <!-- PIX2PI_362_COHORT_SETUP_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_362_SEO_OPENGRAPH_COHORT_PLACEHOLDER_START -->
+    <section class="card">
+      <h2>SEO / OpenGraph cohort placeholder</h2>
+      <p>Title, description ve og:* metadata controlled rollout cohort setup yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_362_SEO_OPENGRAPH_COHORT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_362_I18N_READY_COHORT_MARKER_START -->
+    <section class="card">
+      <h2 data-i18n="controlled_rollout_cohort.i18n_ready">i18n-ready cohort setup screen</h2>
+      <p data-i18n="controlled_rollout_cohort.surface_ready">Controlled rollout cohort setup ekranı çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_362_I18N_READY_COHORT_MARKER_END -->
+  </main>
+  <!-- PIX2PI_362_CONTROLLED_ROLLOUT_COHORT_APP_SHELL_END -->
+
+  <script src="/assets/controlled-rollout-cohort-setup/controlled-rollout-cohort-setup-runtime.js"></script>
+  <script>
+    Pix2piControlledRolloutCohortSetup.bootCohortSetupScreen().then(function (contract) {
+      console.log("PIX2PI_362_CONTROLLED_ROLLOUT_COHORT_SETUP_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

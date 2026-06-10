@@ -1,0 +1,19 @@
+{
+  "phase": "FAZ 2-7.8.7",
+  "runtime": "public_api_runtime_tests_final_closure",
+  "test_scope": [
+    "api_key_issuance",
+    "app_auth",
+    "quota_rate_limit",
+    "sandbox_environment",
+    "developer_docs_publish_pipeline",
+    "cross_tenant_deny"
+  ],
+  "required_test_package": "./internal/platform/publicapi/runtime",
+  "final_gate": {
+    "go_test_status": "PASS",
+    "fail_count": 0,
+    "seal_status": "SEALED"
+  },
+  "next_ready": "FAZ_2_7_8_1_PUBLIC_API_GATEWAY_RUNTIME"
+}

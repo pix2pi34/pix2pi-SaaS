@@ -1,0 +1,110 @@
+{
+  "valid_fixture": {
+    "help_center_id": "help_center_content.valid_fixture",
+    "help_center_status": "READY",
+    "help_center_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT"
+    },
+    "chain_dependencies": {
+      "210_FAZ_4_16_4_1_KULLANICI_EGITIM_SETI": "PASS"
+    },
+    "articles": [
+      {"code": "HELP_FIRST_LOGIN", "required": true, "status": "READY", "category": "ACCESS", "title": "İlk giriş", "search_keywords": ["ilk giriş"], "evidence_ref": "docs/faz4r/help_center/help_first_login.md"},
+      {"code": "HELP_TENANT_CONTEXT", "required": true, "status": "READY", "category": "TENANT", "title": "Tenant context", "search_keywords": ["tenant"], "evidence_ref": "docs/faz4r/help_center/help_tenant_context.md"},
+      {"code": "HELP_MANAGEMENT_PANEL", "required": true, "status": "READY", "category": "MANAGEMENT_PANEL", "title": "Yönetim paneli", "search_keywords": ["panel"], "evidence_ref": "docs/faz4r/help_center/help_management_panel.md"},
+      {"code": "HELP_POS_BASIC", "required": true, "status": "READY", "category": "POS", "title": "POS", "search_keywords": ["pos"], "evidence_ref": "docs/faz4r/help_center/help_pos_basic.md"},
+      {"code": "HELP_CUSTOMER_IMPORT", "required": true, "status": "READY", "category": "IMPORT", "title": "Cari import", "search_keywords": ["cari"], "evidence_ref": "docs/faz4r/help_center/help_customer_import.md"},
+      {"code": "HELP_PRODUCT_STOCK_IMPORT", "required": true, "status": "READY", "category": "IMPORT", "title": "Ürün stok import", "search_keywords": ["stok"], "evidence_ref": "docs/faz4r/help_center/help_product_stock_import.md"},
+      {"code": "HELP_RECEIPT_MOVEMENT_IMPORT", "required": true, "status": "READY", "category": "IMPORT", "title": "Fiş hareket import", "search_keywords": ["fiş"], "evidence_ref": "docs/faz4r/help_center/help_receipt_movement_import.md"},
+      {"code": "HELP_IMPORT_VALIDATION_REPORT", "required": true, "status": "READY", "category": "IMPORT", "title": "Validation raporu", "search_keywords": ["validation"], "evidence_ref": "docs/faz4r/help_center/help_import_validation_report.md"},
+      {"code": "HELP_ACCOUNTING_PREVIEW", "required": true, "status": "READY", "category": "ACCOUNTING", "title": "Muhasebe preview", "search_keywords": ["muhasebe"], "evidence_ref": "docs/faz4r/help_center/help_accounting_preview.md"},
+      {"code": "HELP_ACCOUNTANT_PORTAL_READONLY", "required": true, "status": "READY", "category": "ACCOUNTANT_PORTAL", "title": "Muhasebeci portalı", "search_keywords": ["muhasebeci"], "evidence_ref": "docs/faz4r/help_center/help_accountant_portal_readonly.md"},
+      {"code": "HELP_E_DOCUMENT_EXPORT_PREVIEW", "required": true, "status": "READY", "category": "E_DOCUMENT_EXPORT", "title": "e-Belge export", "search_keywords": ["e-belge"], "evidence_ref": "docs/faz4r/help_center/help_e_document_export_preview.md"},
+      {"code": "HELP_SUPPORT_ISSUE_REPORTING", "required": true, "status": "READY", "category": "SUPPORT", "title": "Destek bildirimi", "search_keywords": ["destek"], "evidence_ref": "docs/faz4r/help_center/help_support_issue_reporting.md"},
+      {"code": "HELP_PILOT_LIMITS", "required": true, "status": "READY", "category": "POLICY", "title": "Pilot sınırları", "search_keywords": ["pilot"], "evidence_ref": "docs/faz4r/help_center/help_pilot_limits.md"},
+      {"code": "HELP_CLOSED_PROVIDER_POLICY", "required": true, "status": "READY", "category": "POLICY", "title": "Kapalı provider policy", "search_keywords": ["policy"], "evidence_ref": "docs/faz4r/help_center/help_closed_provider_policy.md"},
+      {"code": "HELP_COMMON_FAQ", "required": true, "status": "READY", "category": "FAQ", "title": "SSS", "search_keywords": ["sss"], "evidence_ref": "docs/faz4r/help_center/help_common_faq.md"}
+    ],
+    "navigation": {
+      "searchable_index_status": "READY",
+      "support_route_status": "READY",
+      "completion_checklist_status": "READY",
+      "default_language": "tr-TR",
+      "pilot_visibility": "CONTROLLED_PILOT_ONLY"
+    },
+    "summary": {
+      "total_article_count": 15,
+      "ready_article_count": 15,
+      "missing_article_count": 0,
+      "required_fail_count": 0,
+      "critical_issue_count": 0,
+      "training_set_status": "PASS",
+      "searchable_index_status": "READY",
+      "support_route_status": "READY",
+      "completion_checklist_status": "READY",
+      "help_center_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "real_export": "CLOSED",
+      "production_launch": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "help_center_id": "help_center_content.invalid_fixture",
+    "help_center_status": "DRAFT",
+    "help_center_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED"
+    },
+    "chain_dependencies": {
+      "210_FAZ_4_16_4_1_KULLANICI_EGITIM_SETI": "FAIL"
+    },
+    "articles": [
+      {"code": "HELP_FIRST_LOGIN", "required": true, "status": "MISSING", "category": "", "title": "", "search_keywords": [], "evidence_ref": ""},
+      {"code": "HELP_TENANT_CONTEXT", "required": true, "status": "READY", "category": "TENANT", "title": "Tenant", "search_keywords": ["tenant"], "evidence_ref": "x"},
+      {"code": "HELP_TENANT_CONTEXT", "required": true, "status": "READY", "category": "TENANT", "title": "Tenant", "search_keywords": ["tenant"], "evidence_ref": "x"}
+    ],
+    "navigation": {
+      "searchable_index_status": "DRAFT",
+      "support_route_status": "DRAFT",
+      "completion_checklist_status": "DRAFT",
+      "default_language": "en-US",
+      "pilot_visibility": "PUBLIC"
+    },
+    "summary": {
+      "total_article_count": 99,
+      "ready_article_count": 99,
+      "missing_article_count": 99,
+      "required_fail_count": 99,
+      "critical_issue_count": 1,
+      "training_set_status": "FAIL",
+      "searchable_index_status": "DRAFT",
+      "support_route_status": "DRAFT",
+      "completion_checklist_status": "DRAFT",
+      "help_center_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "real_export": "OPEN",
+      "production_launch": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

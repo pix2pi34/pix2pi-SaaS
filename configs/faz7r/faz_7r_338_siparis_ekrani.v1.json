@@ -1,0 +1,64 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "338",
+  "name": "Sipariş ekranı",
+  "surface": "marketplace",
+  "domain": "market.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/market",
+  "path": "/orders/",
+  "runtime_path": "/assets/orders/market-orders-runtime.js",
+  "depends_on": [
+    "335 - İşletme mağaza vitrini",
+    "336 - Ürün listeleme ekranı",
+    "337 - Marketplace keşif ekranı"
+  ],
+  "backend_contract": {
+    "order_draft_endpoint": "/api/market/orders/draft",
+    "order_submit_endpoint": "/api/market/orders/submit",
+    "order_status_endpoint": "/api/market/orders/status",
+    "method": "GET/POST",
+    "tenant_header": "X-Tenant-ID",
+    "store_slug_header": "X-Store-Slug",
+    "customer_session_header": "X-Market-Customer-Session"
+  },
+  "runtime_contract": {
+    "real_order_submit_enabled": false,
+    "real_payment_handoff_enabled": false,
+    "real_stock_reservation_enabled": false,
+    "real_delivery_integration_enabled": false,
+    "order_draft_enabled": true,
+    "fallback_order_enabled": true,
+    "ready_for_step_339": true
+  },
+  "order_contract": {
+    "fulfillment_modes": [
+      "DELIVERY",
+      "PICKUP"
+    ],
+    "order_statuses": [
+      "DRAFT",
+      "VALIDATION",
+      "PAYMENT_PENDING_DISABLED",
+      "SUBMIT_DISABLED"
+    ],
+    "currency": "TRY"
+  },
+  "required_capabilities": [
+    "order_app_shell",
+    "store_customer_session_context",
+    "basket_order_draft_context",
+    "delivery_pickup_selection",
+    "address_delivery_note_placeholder",
+    "order_line_items",
+    "order_totals_contract",
+    "order_status_timeline_draft",
+    "real_order_submit_disabled_gate",
+    "payment_handoff_disabled_gate",
+    "tenant_store_customer_order_scope_guard",
+    "order_runtime_data_contract",
+    "i18n_ready_order_markers",
+    "seo_opengraph_order_placeholder",
+    "order_smoke_test"
+  ],
+  "next_step": "339 - Satıcı yönetim ekranı"
+}

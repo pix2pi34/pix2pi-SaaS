@@ -1,0 +1,176 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "296",
+  "code": "FAZ_6_21_5_4",
+  "name": "Cache / queue maliyet optimizasyonu",
+  "depends_on": [
+    "FAZ_6_21_5_3"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "cache_flush_allowed": false,
+  "cache_key_delete_allowed": false,
+  "cache_ttl_mutation_allowed": false,
+  "queue_purge_allowed": false,
+  "stream_delete_allowed": false,
+  "consumer_delete_allowed": false,
+  "queue_retention_mutation_allowed": false,
+  "required_controls": [
+    "storage_log_cost_dependency_gate",
+    "cache_inventory_model",
+    "queue_inventory_model",
+    "cache_ttl_review_policy",
+    "cache_hot_key_review_policy",
+    "cache_memory_review_policy",
+    "queue_retention_review_policy",
+    "queue_consumer_lag_review_policy",
+    "dlq_growth_review_policy",
+    "stream_storage_review_policy",
+    "tenant_namespace_guard",
+    "idempotency_safety_guard",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "dry_run_cost_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "surfaces": [
+    {
+      "surface": "redis_cache",
+      "examples": [
+        "tenant_cache",
+        "rate_limit_cache",
+        "session_cache"
+      ],
+      "mutation_allowed": false,
+      "tenant_namespace_required": true
+    },
+    {
+      "surface": "nats_jetstream",
+      "examples": [
+        "event_stream",
+        "consumer_state",
+        "dlq_stream"
+      ],
+      "mutation_allowed": false,
+      "idempotency_guard_required": true
+    },
+    {
+      "surface": "queue_consumers",
+      "examples": [
+        "event_consumer",
+        "reporting_consumer",
+        "integration_consumer"
+      ],
+      "mutation_allowed": false,
+      "lag_guard_required": true
+    }
+  ],
+  "signals": [
+    "cache_memory_usage",
+    "cache_hit_ratio",
+    "cache_miss_ratio",
+    "hot_key_candidates",
+    "ttl_missing_key_count",
+    "tenant_namespace_distribution",
+    "rate_limit_key_growth",
+    "queue_stream_storage_bytes",
+    "queue_consumer_lag",
+    "dlq_message_count",
+    "redelivery_count",
+    "ack_wait_warning_count",
+    "idempotency_replay_count"
+  ],
+  "recommendation_policy": {
+    "cache_ttl_review_enabled": true,
+    "cache_hot_key_review_enabled": true,
+    "cache_memory_review_enabled": true,
+    "queue_retention_review_enabled": true,
+    "queue_consumer_lag_review_enabled": true,
+    "dlq_growth_review_enabled": true,
+    "stream_storage_review_enabled": true,
+    "recommendation_only": true,
+    "minimum_observation_days": 7,
+    "requires_tenant_namespace_confirmation": true,
+    "requires_idempotency_confirmation": true
+  },
+  "guards": {
+    "tenant_namespace_guard": {
+      "enabled": true,
+      "required": true,
+      "block_if_key_without_tenant_namespace": true
+    },
+    "idempotency_safety_guard": {
+      "enabled": true,
+      "required": true,
+      "block_if_replay_or_dedup_risk": true
+    },
+    "queue_replay_guard": {
+      "enabled": true,
+      "block_if_stream_retention_change_risks_replay": true
+    },
+    "performance_slo_guard": {
+      "enabled": true,
+      "block_if_hit_ratio_degradation_risk": true,
+      "block_if_consumer_lag_regression_risk": true
+    }
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "cache_flush_execute",
+      "cache_key_delete_execute",
+      "cache_ttl_change_execute",
+      "queue_purge_execute",
+      "stream_delete_execute",
+      "consumer_delete_execute",
+      "queue_retention_change_execute",
+      "dlq_cleanup_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "data_owner"
+    ]
+  },
+  "provider_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "cache_flush_allowed": false,
+    "cache_key_delete_allowed": false,
+    "cache_ttl_mutation_allowed": false,
+    "queue_purge_allowed": false,
+    "stream_delete_allowed": false,
+    "consumer_delete_allowed": false,
+    "queue_retention_mutation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "recommendation_id",
+      "surface",
+      "resource_class",
+      "current_cost_driver",
+      "recommended_action",
+      "estimated_savings_level",
+      "risk_level",
+      "tenant_namespace_guard_status",
+      "idempotency_guard_status",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_provider_mutation_allowed": true,
+    "block_if_cache_or_queue_mutation_allowed": true,
+    "block_if_missing_tenant_namespace_guard": true,
+    "block_if_missing_idempotency_guard": true,
+    "block_if_missing_manual_approval": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_5_4_CACHE_QUEUE_MALIYET_OPTIMIZASYONU_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

@@ -1,0 +1,136 @@
+# FAZ 4B / 15.5 - Search / Index Projection Tabloları Report
+
+Generated at: 2026-04-28 07:54:39 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+MIGRATION_BASE=20260428_155001_search_index_projection_tables
+UP_FILE=db/migrations/20260428_155001_search_index_projection_tables.up.sql
+DOWN_FILE=db/migrations/20260428_155001_search_index_projection_tables.down.sql
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=YES
+MIGRATION_APPLY_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+VALIDATION_MODE=SEARCH_INDEX_PROJECTION_MIGRATION_PAIR_ONLY
+PREVIOUS_14_FINAL_STATUS=PASS
+PREVIOUS_14_MIGRATION_LIFECYCLE_IMPORT_TESTS=PASS
+PREVIOUS_15_2_FINAL_STATUS=PASS
+PREVIOUS_15_2_FINANCE_REPORTING_MART=PASS
+PREVIOUS_15_3_FINAL_STATUS=PASS
+PREVIOUS_15_3_EBELGE_EXPORT_REPORTING_MART=PASS
+PREVIOUS_15_4_FINAL_STATUS=PASS
+PREVIOUS_15_4_PAYMENT_RECONCILIATION_REPORTING_MART=PASS
+PREVIOUS_15_4_DB_APPLY_EXECUTED=NO
+UP_FILE_SHA256=11746c1d7c8d4b6787d38b31e967257dd0ee43ffe190f863d3bce4f9fd42d74f
+DOWN_FILE_SHA256=24354756992be2e71b5297f553c7aedcc0777ec5b76db1b384072ebec78a674f
+CREATE_SCHEMA_COUNT=1
+SEARCH_INDEX_TABLE_COUNT=7
+SEARCH_INDEX_EXPECTED_TABLE_MISSING_COUNT=0
+SEARCH_INDEX_TENANT_ID_COLUMN_COUNT=7
+SEARCH_INDEX_ENTITY_ID_COLUMN_COUNT=6
+SEARCH_INDEX_ENTITY_TYPE_COLUMN_COUNT=6
+SEARCH_INDEX_SEARCH_TEXT_COLUMN_COUNT=6
+SEARCH_INDEX_SEARCH_KEYWORDS_COLUMN_COUNT=6
+SEARCH_INDEX_JSONB_ROUTE_PARAMS_COUNT=1
+SEARCH_INDEX_NUMERIC_METRIC_COUNT=10
+SEARCH_INDEX_UNIQUE_CONSTRAINT_COUNT=7
+SEARCH_INDEX_INDEX_COUNT=15
+SEARCH_INDEX_DOWN_DROP_TABLE_COUNT=7
+DROP_TABLE_IN_UP=0
+TRUNCATE_IN_UP=0
+ALTER_SYSTEM_IN_UP=0
+DOCKER_IN_UP=0
+SYSTEMCTL_IN_UP=0
+PSQL_IN_UP=0
+CURRENT_MIGRATION_SQL_FILE_COUNT=56
+CURRENT_MIGRATION_INVALID_NAME_COUNT=0
+CURRENT_MIGRATION_PAIR_COUNT=28
+CURRENT_MIGRATION_MISSING_PAIR_COUNT=0
+CURRENT_MIGRATION_DUPLICATE_PAIR_COUNT=0
+SEARCH_INDEX_MIGRATION_PAIR=PASS
+SEARCH_INDEX_SCHEMA_STATUS=PASS
+SEARCH_INDEX_TABLE_STATUS=PASS
+SEARCH_INDEX_TENANT_SAFETY_STATUS=PASS
+SEARCH_INDEX_ENTITY_STATUS=PASS
+SEARCH_INDEX_SEARCH_TEXT_STATUS=PASS
+SEARCH_INDEX_GLOBAL_ROUTE_STATUS=PASS
+SEARCH_INDEX_INDEX_STATUS=PASS
+SEARCH_INDEX_DOWN_STATUS=PASS
+SEARCH_INDEX_RISK_STATUS=PASS
+SEARCH_INDEX_CHAIN_STATUS=PASS
+SEARCH_INDEX_INVENTORY_LINE_COUNT=8
+SEARCH_INDEX_MATRIX_LINE_COUNT=19
+SEARCH_INDEX_PROJECTION_TABLES=PASS
+FAZ4B_15_5_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+SEARCH_INDEX_PROJECTION_TABLES=PASS
+FAZ4B_15_5_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+TOOL_sha256sum=FOUND
+
+## Inventory
+INVENTORY_FILE=docs/phase4/15_5_search_index_projection_tables_inventory.tsv
+table	status	tenant_id_required	entity_id	search_text	search_keywords	note
+party_search_documents	YES	YES	YES	YES	YES	search_projection.party_search_documents
+product_search_documents	YES	YES	YES	YES	YES	search_projection.product_search_documents
+inventory_search_documents	YES	YES	YES	YES	YES	search_projection.inventory_search_documents
+business_document_search_documents	YES	YES	YES	YES	YES	search_projection.business_document_search_documents
+finance_search_documents	YES	YES	YES	YES	YES	search_projection.finance_search_documents
+global_search_documents	YES	YES	YES	YES	YES	search_projection.global_search_documents
+search_projection_rebuild_state	YES	YES	NO	NO	NO	search_projection.search_projection_rebuild_state
+
+## Matrix
+MATRIX_FILE=docs/phase4/15_5_search_index_projection_tables_matrix.tsv
+gate	status	note
+previous_14	PASS	migration lifecycle prerequisite
+previous_15_2	PASS	finance reporting prerequisite
+previous_15_3	PASS	ebelge/export prerequisite
+previous_15_4	PASS	payment/reconciliation prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=7
+tenant_safety	PASS	tenant_id=7
+entity	PASS	entity_id=6 entity_type=6
+search_text	PASS	search_text=6 keywords=6
+global_route	PASS	jsonb_route_params=1
+indexes	PASS	index_count=15
+down_migration	PASS	drop_table_count=7
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=28
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+query_text_printed	NO	secret-safe report
+
+## Migration Files
+UP_FILE=db/migrations/20260428_155001_search_index_projection_tables.up.sql
+DOWN_FILE=db/migrations/20260428_155001_search_index_projection_tables.down.sql
+UP_FILE_SHA256=11746c1d7c8d4b6787d38b31e967257dd0ee43ffe190f863d3bce4f9fd42d74f
+DOWN_FILE_SHA256=24354756992be2e71b5297f553c7aedcc0777ec5b76db1b384072ebec78a674f
+
+## Safety Decision
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=YES
+MIGRATION_APPLY_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+QUERY_TEXT_PRINTED=NO

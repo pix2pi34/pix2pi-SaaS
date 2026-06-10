@@ -1,0 +1,17 @@
+component_id	component_name	purpose	required	tenant_safe	status
+uat_checklist_shell	UATChecklistShell	uat page shell	YES	YES	contract_only
+uat_readiness_summary	UATReadinessSummary	readiness percent and gate	YES	YES	contract_only
+uat_scenario_list	UATScenarioList	scenario checklist list	YES	YES	contract_only
+uat_scenario_detail_panel	UATScenarioDetailPanel	scenario detail	YES	YES	contract_only
+uat_status_badge	UATStatusBadge	status display	YES	YES	contract_only
+uat_evidence_link_panel	UATEvidenceLinkPanel	evidence link display	YES	YES	contract_only
+uat_responsible_owner_panel	UATResponsibleOwnerPanel	owner and reviewer	YES	YES	contract_only
+uat_blocking_items_panel	UATBlockingItemsPanel	blocking item list	YES	YES	contract_only
+uat_go_live_readiness_gate	UATGoLiveReadinessGate	go-live gate	YES	YES	contract_only
+uat_comment_panel	UATCommentPanel	comments and review notes	YES	YES	contract_only
+uat_history_panel	UATHistoryPanel	uat history	YES	YES	contract_only
+uat_flow_link_panel	UATFlowLinkPanel	runtime flow link	YES	YES	contract_only
+uat_issue_link_panel	UATIssueLinkPanel	issue feedback link	YES	YES	contract_only
+uat_empty_state	UATEmptyState	empty state	YES	YES	contract_only
+uat_loading_state	UATLoadingState	loading state	YES	YES	contract_only
+uat_error_state	UATErrorState	error state	YES	YES	contract_only

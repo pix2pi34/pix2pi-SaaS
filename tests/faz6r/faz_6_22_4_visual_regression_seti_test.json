@@ -1,0 +1,42 @@
+{
+  "expected_dependency": "FAZ_6_22_3",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_screenshot_baseline_mutation_allowed": false,
+  "expected_snapshot_update_allowed": false,
+  "expected_visual_approval_mutation_allowed": false,
+  "expected_frontend_deploy_allowed": false,
+  "expected_build_publish_allowed": false,
+  "expected_route_mutation_allowed": false,
+  "expected_cdn_invalidation_allowed": false,
+  "expected_required_controls": [
+    "frontend_performance_budget_dependency_gate",
+    "baseline_inventory_policy",
+    "viewport_matrix_policy",
+    "theme_matrix_policy",
+    "critical_route_screenshot_policy",
+    "component_state_snapshot_policy",
+    "visual_diff_threshold_policy",
+    "accessibility_performance_alignment_guard",
+    "deterministic_fixture_policy",
+    "pii_secret_masking_policy",
+    "screenshot_storage_policy",
+    "approval_gate_policy",
+    "dry_run_visual_regression_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_surfaces": [
+    "public_landing",
+    "auth_login",
+    "tenant_panel_shell",
+    "approval_inbox",
+    "workflow_monitor",
+    "reporting_tables"
+  ],
+  "expected_min_check_count": 6,
+  "expected_status": "dry_run_only_no_visual_regression_mutation",
+  "expected_next_step": "FAZ_6_22_8"
+}

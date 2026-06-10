@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "355",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "first_real_usage_smoke_screen",
+      "path": "/first-real-usage-smoke/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_355_FIRST_REAL_USAGE_SMOKE_APP_SHELL_START",
+        "PIX2PI_355_CUSTOMER_JOURNEY_CHECKLIST_START",
+        "PIX2PI_355_FIRST_USAGE_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "first_real_usage_smoke_runtime",
+      "path": "/assets/first-real-usage-smoke/first-real-usage-smoke-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_355_FIRST_REAL_USAGE_SMOKE_RUNTIME_START",
+        "firstUsageScopeHeaders",
+        "buildFirstUsageRuntimeContract"
+      ]
+    }
+  ]
+}

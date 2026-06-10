@@ -1,0 +1,130 @@
+{
+  "valid_fixture": {
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_name": "Pilot Tenant 001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT"
+    },
+    "summary": {
+      "critical_issue_count": 0,
+      "pilot_data_boundary_status": "PASS",
+      "readmodel_reporting_status": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED"
+    },
+    "checklist": [
+      {
+        "code": "TENANT_ID_ASSIGNED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/tenant_id_assigned.md"
+      },
+      {
+        "code": "TENANT_ISOLATION_READY",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/tenant_isolation_ready.md"
+      },
+      {
+        "code": "TENANT_CONFIG_READY",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/tenant_config_ready.md"
+      },
+      {
+        "code": "TENANT_ADMIN_READY",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/tenant_admin_ready.md"
+      },
+      {
+        "code": "ROLE_BASELINE_READY",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/role_baseline_ready.md"
+      },
+      {
+        "code": "PILOT_DATA_BOUNDARIES_PASS",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_1_4_PILOT_VERI_SINIRLARI_TANIMI_REAL_IMPLEMENTATION_AUDIT.md"
+      },
+      {
+        "code": "IMPORT_BOUNDARIES_READY",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/import_boundaries_ready.md"
+      },
+      {
+        "code": "UAT_SCOPE_DEFINED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/uat_scope_defined.md"
+      },
+      {
+        "code": "SUPPORT_CHANNEL_DEFINED",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/support_channel_defined.md"
+      },
+      {
+        "code": "ROLLBACK_CUTOVER_GUARD_READY",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/rollback_cutover_guard_ready.md"
+      },
+      {
+        "code": "READMODEL_REPORTING_READY",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/FAZ_4_15_7_READMODEL_REPORTING_TEST_SET_REAL_IMPLEMENTATION_AUDIT.md"
+      },
+      {
+        "code": "CRITICAL_ISSUE_ZERO",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/critical_issue_zero.md"
+      },
+      {
+        "code": "CLOSED_EXTERNAL_POLICY_GATE",
+        "required": true,
+        "status": "PASS",
+        "evidence_ref": "docs/faz4r/evidence/closed_external_policy_gate.md"
+      }
+    ]
+  },
+  "invalid_fixture": {
+    "tenant": {
+      "tenant_id": "",
+      "tenant_name": "Broken Tenant",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED"
+    },
+    "summary": {
+      "critical_issue_count": 1,
+      "pilot_data_boundary_status": "FAIL",
+      "readmodel_reporting_status": "FAIL",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN"
+    },
+    "checklist": [
+      {
+        "code": "TENANT_ID_ASSIGNED",
+        "required": true,
+        "status": "FAIL",
+        "evidence_ref": ""
+      }
+    ]
+  }
+}

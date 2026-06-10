@@ -1,0 +1,31 @@
+{
+  "step": "FAZ 7-R / 342",
+  "name": "Subscription / tenant billing lifecycle runtime real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "commercial-subscription-lifecycle-342-20260513_230101",
+  "planCode": "pix2pi-starter",
+  "planAssignmentId": "plan-assignment-341-20260513_225505",
+  "subscriptionId": "subscription-342-main-20260513_230101",
+  "billingPeriodId": "billing-period-342-main-20260513_230101",
+  "invoiceDraftId": "invoice-draft-342-main-20260513_230101",
+  "routes": [
+    "/commercial/subscriptions/",
+    "POST /api/commercial/subscriptions/create",
+    "POST /api/commercial/subscriptions/summary",
+    "POST /api/commercial/subscriptions/invoice-draft",
+    "POST /api/commercial/subscriptions/status"
+  ],
+  "requiredEvidence": [
+    "subscription DB runtime",
+    "tenant subscription creation",
+    "billing period creation",
+    "invoice draft placeholder",
+    "trial/active/past_due/canceled lifecycle",
+    "plan assignment binding",
+    "tenant-safe subscription guard",
+    "no-role denied",
+    "rollback no partial write",
+    "route smoke",
+    "subscription lifecycle audit evidence"
+  ]
+}

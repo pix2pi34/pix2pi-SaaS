@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Auth Error Pages</title>
+  <link rel="stylesheet" href="./auth_error_pages.css">
+</head>
+<body>
+  <main class="pix2pi-error-shell">
+    <section class="pix2pi-error-card" id="authErrorRoot" data-error-code="UNAUTHORIZED">
+      <div class="pix2pi-error-grid">
+        <article>
+          <div class="pix2pi-error-code" id="authErrorTechnicalCode">AUTH ERROR CENTER</div>
+          <h1 class="pix2pi-error-title" id="authErrorTitle">Pix2pi Auth Error Center</h1>
+          <p class="pix2pi-error-message" id="authErrorMessage">401, 403, tenant mismatch ve session expired durumlarını test et.</p>
+
+          <div class="pix2pi-error-actions">
+            <button class="pix2pi-error-button primary" id="authErrorAction" type="button">Demo aksiyon</button>
+          </div>
+        </article>
+
+        <aside class="pix2pi-error-panel">
+          <div class="pix2pi-error-label">Hata Sayfaları</div>
+          <div class="pix2pi-error-list">
+            <a href="./401.html">401 sayfası</a>
+            <a href="./403.html">403 sayfası</a>
+            <a href="./tenant-mismatch.html">Tenant mismatch mesajı</a>
+            <a href="./session-expired.html">Session expired mesajı</a>
+            <button type="button" data-auth-error-simulate="UNAUTHORIZED">Simüle et: 401</button>
+            <button type="button" data-auth-error-simulate="FORBIDDEN">Simüle et: 403</button>
+            <button type="button" data-auth-error-simulate="TENANT_MISMATCH">Simüle et: Tenant mismatch</button>
+            <button type="button" data-auth-error-simulate="SESSION_EXPIRED">Simüle et: Session expired</button>
+          </div>
+
+          <pre class="pix2pi-api-preview" id="authErrorApiPreview">{}</pre>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="./auth_error_pages.js"></script>
+</body>
+</html>

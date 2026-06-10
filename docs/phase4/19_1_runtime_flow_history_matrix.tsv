@@ -1,0 +1,20 @@
+gate	status	note
+previous_14	PASS	migration lifecycle prerequisite
+previous_15	PASS	readmodel/reporting prerequisite
+previous_18	PASS	inventory prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=6
+tenant_safety	PASS	tenant_id=6
+trace	PASS	request=5 correlation=5 source_event=3
+runtime	PASS	run_ref=6 step_ref=3 duration=3
+error	PASS	error_code=3 severity=4
+panel	PASS	visibility=2 timeline=9
+indexes	PASS	index_count=15
+down_migration	PASS	drop_table_count=6
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=36
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+panel_runtime_history_executed	NO	runtime later
+query_text_printed	NO	secret-safe report

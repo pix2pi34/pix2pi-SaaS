@@ -1,0 +1,16 @@
+{
+  "expected_phase": "FAZ_6_R",
+  "expected_code": "FAZ_6_R_FINAL_CLOSURE",
+  "expected_required_evidence_count": 36,
+  "expected_priority_count": 4,
+  "expected_priority_status": "PASS",
+  "expected_final_status": "PASS",
+  "expected_final_closure_status": "SEALED",
+  "expected_ready_for_next_phase": true,
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_production_release_execute_allowed": false,
+  "expected_deploy_execute_allowed": false,
+  "expected_db_mutation_allowed": false,
+  "expected_build_publish_allowed": false
+}

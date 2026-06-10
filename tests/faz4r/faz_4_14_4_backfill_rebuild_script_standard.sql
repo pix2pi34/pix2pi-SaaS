@@ -1,0 +1,11 @@
+-- 182 — FAZ 4-14.4 Backfill / Rebuild Script Standardı SQL behavior fixture
+-- This file documents the lifecycle fixture used by the audit script.
+
+-- BACKFILL_REBUILD_SQL_FIXTURE_IMPLEMENTED
+-- Required behavior:
+-- 1. Insert batch with zero counters.
+-- 2. Insert staging rows.
+-- 3. Insert validation errors.
+-- 4. Dry-run must not mutate counters.
+-- 5. APPLY=1 must rebuild validation_errors and counters.
+-- 6. Final counters must match DB-derived row state.

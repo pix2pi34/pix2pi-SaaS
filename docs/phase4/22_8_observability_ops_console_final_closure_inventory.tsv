@@ -1,0 +1,8 @@
+block	status	domain_key	report_file	artifact_expected	artifact_existing	metric_hit_count	metric_expected	metric_sum	gate_failures
+22.1	PASS	OBSERVABILITY_BASELINE	docs/phase4/22_1_observability_baseline_report.md	11	11	4	4	82	0
+22.2	PASS	METRICS_SCRAPE_READINESS	docs/phase4/22_2_metrics_scrape_readiness_report.md	10	10	5	5	80	0
+22.3	PASS	LOGS_LOKI_READINESS	docs/phase4/22_3_logs_loki_readiness_report.md	11	11	4	4	296	0
+22.4	PASS	TRACES_TEMPO_READINESS	docs/phase4/22_4_traces_tempo_readiness_report.md	11	11	4	4	378	0
+22.5	PASS	ALERT_RULE_CATALOG	docs/phase4/22_5_alert_rule_catalog_report.md	11	11	5	5	92	0
+22.6	PASS	OPS_CONSOLE_SIGNAL_CONTRACT	docs/phase4/22_6_ops_console_signal_contract_report.md	12	12	5	5	104	0
+22.7	PASS	OBS_OPS_TESTS	docs/phase4/22_7_observability_ops_console_tests_report.md	7	7	5	5	1032	0

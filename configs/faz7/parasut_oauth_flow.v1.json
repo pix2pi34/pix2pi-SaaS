@@ -1,0 +1,64 @@
+{
+  "module": "FAZ_7_8P_4_PARASUT_OAUTH_CALLBACK_READINESS",
+  "version": "v1",
+  "provider_key": "parasut",
+  "runtime_status": "oauth_flow_contract_ready",
+  "real_provider_api_enabled": false,
+  "real_token_exchange_enabled": false,
+  "depends_on": [
+    "FAZ_7_8I_INTEGRATION_RUNTIME_FOUNDATION",
+    "FAZ_7_8P_PARASUT_CONNECTOR_MODULE",
+    "FAZ_7_8P_1_PARASUT_LIVE_CONTRACT_READINESS",
+    "FAZ_7_8P_2_PARASUT_TOKEN_VAULT_READINESS",
+    "FAZ_7_8P_3_PARASUT_CREDENTIAL_UI_READINESS"
+  ],
+  "oauth_surface": {
+    "panel_path": "Panel > Ayarlar > Entegrasyonlar > Paraşüt > Bağlan / API Bilgileri",
+    "button_label": "Paraşüt’e Bağlan",
+    "callback_path": "/integrations/parasut/oauth/callback",
+    "allowed_roles": [
+      "TENANT_ADMIN",
+      "INTEGRATION_ADMIN"
+    ],
+    "mfa_recommended": true,
+    "state_required": true,
+    "nonce_required": true
+  },
+  "authorization_url_contract": {
+    "client_id_required": true,
+    "redirect_uri_required": true,
+    "scope_required": true,
+    "state_required": true,
+    "nonce_required": true,
+    "tenant_id_required": true,
+    "response_type": "code",
+    "real_redirect_enabled": false
+  },
+  "callback_contract": {
+    "authorization_code_required": true,
+    "expected_state_required": true,
+    "nonce_required": true,
+    "tenant_guard_required": true,
+    "correlation_id_required": true,
+    "callback_error_supported": true
+  },
+  "token_exchange": {
+    "mode": "DRY_RUN_BLOCKED",
+    "real_token_exchange": false,
+    "requires_provider_live_module": true,
+    "requires_real_api_approval": true,
+    "blocked_status": "TOKEN_EXCHANGE_DRY_RUN_BLOCKED"
+  },
+  "token_ref_handoff": {
+    "access_token_ref_required": true,
+    "refresh_token_ref_required": true,
+    "tenant_safe_secret_ref_required": true,
+    "token_lifecycle_contract_compatible": true,
+    "credential_storage_contract_compatible": true
+  },
+  "handoff": {
+    "parasut_oauth_flow_readiness": true,
+    "real_provider_api_status": "CLOSED_UNTIL_APPROVALS_AND_PROVIDER_LIVE_MODULE",
+    "faz_7_9_hold_until_integration_family_done": true
+  }
+}

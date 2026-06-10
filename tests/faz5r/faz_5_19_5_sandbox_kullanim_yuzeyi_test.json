@@ -1,0 +1,48 @@
+{
+  "test_name": "faz_5_19_5_sandbox_kullanim_yuzeyi_test",
+  "phase": "FAZ_5_19_5",
+  "expected": {
+    "required_section_count": 9,
+    "required_domain_count": 8,
+    "internal_sandbox_surface_ready": true,
+    "static_html_ready": true,
+    "production_sandbox_published": false,
+    "real_developer_access_enabled": false,
+    "live_api_call_enabled": false,
+    "live_data_mutation_enabled": false,
+    "payment_simulation_live_enabled": false,
+    "api_key_creation_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_section_keys": [
+    "sandbox_overview",
+    "mock_credentials_panel",
+    "sample_requests_panel",
+    "sample_responses_panel",
+    "webhook_mock_panel",
+    "tenant_scope_panel",
+    "data_reset_policy_panel",
+    "security_notice_panel",
+    "pricing_pages_deferred_marker"
+  ],
+  "must_have_domains": [
+    "SANDBOX_OVERVIEW",
+    "MOCK_CREDENTIAL",
+    "API_SAMPLE",
+    "WEBHOOK_MOCK",
+    "TENANT_SCOPE",
+    "DATA_RESET",
+    "SECURITY",
+    "PRICING_NEXT"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_mock_credential",
+    "requires_sample_request",
+    "requires_sample_response",
+    "requires_tenant_isolation_notice",
+    "requires_data_reset_policy",
+    "blocks_live_api_call"
+  ]
+}

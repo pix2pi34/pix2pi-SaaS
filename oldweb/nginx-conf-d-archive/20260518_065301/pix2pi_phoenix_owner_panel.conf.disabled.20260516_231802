@@ -1,0 +1,14 @@
+# PIX2PI PHOENIX OWNER PANEL
+# PHOENIX_OWNER_REGISTER_APPROVALS_ROUTE_MARKER
+
+server {
+    listen 80;
+    server_name phoenix.pix2pi.com.tr;
+
+    include /etc/nginx/snippets/pix2pi_edge_security_headers.conf;
+    include /etc/nginx/snippets/pix2pi_owner_register_approvals_locations.conf;
+
+    location = / {
+        return 302 /owner-panel/register-approvals/;
+    }
+}

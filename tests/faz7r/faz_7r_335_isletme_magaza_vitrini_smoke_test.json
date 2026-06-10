@@ -1,0 +1,36 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "335",
+  "domain": "market.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "market_storefront_screen",
+      "path": "/storefront/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_335_STOREFRONT_APP_SHELL_START",
+        "PIX2PI_335_BUSINESS_PROFILE_HERO_START",
+        "PIX2PI_335_FEATURED_PRODUCT_GRID_START"
+      ]
+    },
+    {
+      "name": "market_storefront_runtime",
+      "path": "/assets/storefront/market-storefront-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_335_MARKET_STOREFRONT_RUNTIME_START",
+        "tenantStoreHeaders",
+        "buildStorefrontSnapshotContract"
+      ]
+    },
+    {
+      "name": "market_health",
+      "path": "/health",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "\"status\": \"ok\"",
+        "\"service\": \"pix2pi-market-storefront\""
+      ]
+    }
+  ]
+}

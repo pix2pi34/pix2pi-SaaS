@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Logout / Session Expiry Flow</title>
+  <link rel="stylesheet" href="./logout_session.css">
+</head>
+<body>
+  <main class="pix2pi-shell">
+    <section class="pix2pi-grid">
+      <article class="pix2pi-card">
+        <h1 class="pix2pi-title">Pix2pi Logout / Session Expiry Akışı</h1>
+        <p class="pix2pi-subtitle">FAZ 1-5.2 — Auth / Tenant Experience</p>
+
+        <span class="pix2pi-badge ok">WEB-L2 READY</span>
+
+        <div class="pix2pi-alert">
+          Logout, token cleanup, expired session redirect, session timeout ve logout tests bu yüzeyde doğrulanır.
+        </div>
+
+        <div class="pix2pi-actions">
+          <button class="pix2pi-button primary" id="createLogoutDemoSessionButton" type="button">Demo session oluştur</button>
+          <button class="pix2pi-button danger" id="logoutButton" type="button">Logout</button>
+          <button class="pix2pi-button warn" id="tokenCleanupButton" type="button">Token cleanup</button>
+          <button class="pix2pi-button warn" id="createExpiredSessionButton" type="button">Expired session oluştur</button>
+          <button class="pix2pi-button" id="enforceExpiredRedirectButton" type="button">Expired redirect test</button>
+          <button class="pix2pi-button primary" id="startSessionTimeoutButton" type="button">Session timeout başlat</button>
+          <button class="pix2pi-button" id="stopSessionTimeoutButton" type="button">Timeout durdur</button>
+          <button class="pix2pi-button" id="validateLogoutCleanupButton" type="button">Cleanup doğrula</button>
+        </div>
+
+        <div class="pix2pi-log" id="logoutSessionLog">Logout event log...</div>
+      </article>
+
+      <aside class="pix2pi-card">
+        <div class="pix2pi-label">Logout / Session Expiry Snapshot</div>
+
+        <div class="pix2pi-state-list">
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Session</div>
+            <pre class="pix2pi-state-value" id="logoutSessionSnapshot">SESSION_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Token cleanup</div>
+            <pre class="pix2pi-state-value" id="logoutTokenSnapshot">TOKEN_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Session expiry</div>
+            <pre class="pix2pi-state-value" id="sessionExpirySnapshot">EXPIRY_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Expired redirect</div>
+            <pre class="pix2pi-state-value" id="expiredRedirectSnapshot">REDIRECT_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Session timeout</div>
+            <pre class="pix2pi-state-value" id="sessionTimeoutSnapshot">TIMEOUT_LOADING</pre>
+          </article>
+
+          <article class="pix2pi-state-row">
+            <div class="pix2pi-state-name">Logout cleanup validation</div>
+            <pre class="pix2pi-state-value" id="logoutCleanupSnapshot">CLEANUP_LOADING</pre>
+          </article>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./logout_session.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "test_name": "faz_5_18_1_2_fiyat_tablosu_test",
+  "phase": "FAZ_5_18_1_2",
+  "expected": {
+    "required_row_count": 5,
+    "required_segment_count": 5,
+    "internal_pricing_table_ready": true,
+    "production_pricing_published": false,
+    "real_customer_billing_enabled": false,
+    "payment_collection_enabled": false,
+    "public_checkout_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_row_keys": [
+    "free_plan_row",
+    "starter_plan_row",
+    "pro_plan_row",
+    "enterprise_plan_row",
+    "accountant_package_deferred_marker"
+  ],
+  "must_have_segments": [
+    "FREE",
+    "STARTER",
+    "PRO",
+    "ENTERPRISE",
+    "ACCOUNTANT_NEXT"
+  ],
+  "must_have_flags": [
+    "requires_plan_code",
+    "requires_currency",
+    "requires_monthly_price",
+    "requires_annual_price",
+    "requires_vat_policy",
+    "requires_entitlement_reference",
+    "blocks_production_publish"
+  ]
+}

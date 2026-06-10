@@ -1,0 +1,62 @@
+{
+  "phase": "FAZ_3_10_7_4_PAYMENT_ERROR_RETRY_REVERSAL_RUNTIME",
+  "runtime": "payment_error_retry_reversal",
+  "runtime_mode": "SIMULATION",
+  "real_payment_gate_open": false,
+  "production_approved": false,
+  "max_retry_count": 3,
+  "base_retry_delay_sec": 60,
+  "max_retry_delay_sec": 600,
+  "dlq_enabled": true,
+  "manual_review_enabled": true,
+  "reversal_reason_required": true,
+  "idempotency_required": true,
+  "provider_payload_hash_required": true,
+  "allowed_channels": [
+    "POS",
+    "VIRTUAL_POS",
+    "BANK_COLLECTION",
+    "BANK_TRANSFER",
+    "MARKETPLACE_SETTLEMENT"
+  ],
+  "allowed_provider_codes": [
+    "SIM_BANK_POS",
+    "SIM_BANK",
+    "SIM_MARKETPLACE"
+  ],
+  "retryable_error_codes": [
+    "PROVIDER_TIMEOUT",
+    "PROVIDER_RATE_LIMITED",
+    "BANK_TEMPORARY_UNAVAILABLE"
+  ],
+  "fatal_error_codes": [
+    "INVALID_CARD",
+    "INSUFFICIENT_FUNDS",
+    "INVALID_IBAN",
+    "INVALID_AMOUNT"
+  ],
+  "manual_review_codes": [
+    "CHARGEBACK_RISK",
+    "BANK_RECONCILIATION_CONFLICT"
+  ],
+  "duplicate_error_codes": [
+    "DUPLICATE_IDEMPOTENCY_KEY",
+    "DUPLICATE_PROVIDER_TRANSACTION"
+  ],
+  "security_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "payment_transaction_id_required": true,
+    "provider_transaction_id_required": true,
+    "provider_payload_hash_required": true,
+    "reversal_reason_required": true
+  },
+  "live_policy": {
+    "real_payment_status": "CLOSED_UNTIL_BANK_PROVIDER_APPROVALS",
+    "production_payment_status": "DENIED_BY_DEFAULT",
+    "secret_policy": "CREDENTIAL_REF_ONLY_NO_RAW_SECRET"
+  },
+  "next_gate": "FAZ_3_10_7_PAYMENT_RUNTIME_FINAL_CLOSURE"
+}

@@ -1,0 +1,55 @@
+{
+  "phase": "FAZ_3_11_6_RECONCILIATION_SCREEN",
+  "screen": "reconciliation_screen",
+  "screen_enabled": true,
+  "route": "/faz3/erp-ui/reconciliation/",
+  "static_file": "web/faz3/erp-ui/reconciliation/index.html",
+  "scope": {
+    "tdhp_reconciliation_visibility": true,
+    "payment_reconciliation_visibility": true,
+    "bank_statement_reconciliation_visibility": true,
+    "marketplace_settlement_reconciliation_visibility": true,
+    "export_reconciliation_visibility": true,
+    "difference_review_visibility": true,
+    "manual_review_visibility": true,
+    "closure_block_visibility": true,
+    "ledger_posting_readiness_visibility": true,
+    "payment_closure_readiness_visibility": true,
+    "audit_timeline_visibility": true,
+    "evidence_export_visibility": true
+  },
+  "guard_policy": {
+    "tenant_indicator_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "document_id_required": true,
+    "voucher_id_required": true,
+    "posting_id_required": true,
+    "provider_transaction_id_visible": true,
+    "bank_reference_visible": true,
+    "statement_line_id_visible": true,
+    "marketplace_settlement_id_visible": true,
+    "posting_hash_required": true,
+    "audit_trace_hash_required": true,
+    "reconciliation_hash_required": true
+  },
+  "live_policy": {
+    "production_approved": false,
+    "real_bank_gate_status": "CLOSED",
+    "real_payment_gate_status": "CLOSED",
+    "real_provider_gate_status": "CLOSED",
+    "real_external_provider_calls_allowed": false,
+    "ui_actions_are_dry_run_until_provider_live_module": true
+  },
+  "covered_backend_gates": [
+    "FAZ_3_10_1_5_TDHP_RECONCILIATION_RUNTIME",
+    "FAZ_3_10_7_3_RECONCILIATION_RUNTIME",
+    "FAZ_3_10_7_2_BANK_COLLECTION_RUNTIME",
+    "FAZ_3_10_7_6_PAYMENT_INTEGRATION_TESTS",
+    "FAZ_3_10_8_1_TDHP_SMOKE",
+    "FAZ_3_10_8_5_PAYMENT_SMOKE"
+  ],
+  "previous_gate": "FAZ_3_11_8_EBELGE_OPERATIONS_SCREEN",
+  "next_gate": "FAZ_3_11_5_TAX_KDV_RULE_SCREEN"
+}

@@ -1,0 +1,31 @@
+service_name	category	risk	load_state	active_state	sub_state	unit_file_state	user	restart_policy	main_pid	exec_main_status	fragment_path	note
+containerd.service	critical_platform_service	LOW	loaded	active	running	enabled		always	1000	0	/lib/systemd/system/containerd.service	root_or_unknown_user
+docker.service	critical_platform_service	LOW	loaded	active	running	enabled		always	1222	0	/lib/systemd/system/docker.service	root_or_unknown_user
+fail2ban.service	critical_platform_service	LOW	loaded	active	running	enabled		on-failure	1700080	0	/lib/systemd/system/fail2ban.service	root_or_unknown_user
+nginx.service	critical_platform_service	LOW	loaded	active	running	enabled		no	2611616	0	/lib/systemd/system/nginx.service	root_or_unknown_user,restart_policy_no
+pix2pi-accounting.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled	root	always	4437	0	/etc/systemd/system/pix2pi-accounting.service	pix2pi_service_root_or_unknown_user
+pix2pi-api-gateway.service	pix2pi_service_candidate	HIGH	loaded	active	running	disabled	root	always	4016338	0	/etc/systemd/system/pix2pi-api-gateway.service	pix2pi_service_root_or_unknown_user,unit_state_review
+pix2pi-auth.service	pix2pi_service_candidate	HIGH	loaded	active	running	disabled		always	6541	0	/etc/systemd/system/pix2pi-auth.service	pix2pi_service_root_or_unknown_user,unit_state_review
+pix2pi-backup-retention.service	pix2pi_service_candidate	MEDIUM	loaded	inactive	dead	static		no	0	0	/etc/systemd/system/pix2pi-backup-retention.service	not_active,sub_state_not_running,pix2pi_service_root_or_unknown_user,restart_policy_missing_or_no,unit_state_review
+pix2pi-backup.service	pix2pi_service_candidate	HIGH	loaded	inactive	dead	disabled		always	0	0	/etc/systemd/system/pix2pi-backup.service	not_active,sub_state_not_running,pix2pi_service_root_or_unknown_user,unit_state_review
+pix2pi-cleanup.service	pix2pi_service_candidate	MEDIUM	loaded	inactive	dead	static		no	0	0	/etc/systemd/system/pix2pi-cleanup.service	not_active,sub_state_not_running,pix2pi_service_root_or_unknown_user,restart_policy_missing_or_no,unit_state_review
+pix2pi-daily-backup.service	pix2pi_service_candidate	MEDIUM	loaded	inactive	dead	static		no	0	0	/etc/systemd/system/pix2pi-daily-backup.service	not_active,sub_state_not_running,pix2pi_service_root_or_unknown_user,restart_policy_missing_or_no,unit_state_review
+pix2pi-early-warning-runtime.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled		always	2298782	0	/etc/systemd/system/pix2pi-early-warning-runtime.service	pix2pi_service_root_or_unknown_user
+pix2pi-hourly-snapshot.service	pix2pi_service_candidate	MEDIUM	loaded	inactive	dead	static		no	0	0	/etc/systemd/system/pix2pi-hourly-snapshot.service	not_active,sub_state_not_running,pix2pi_service_root_or_unknown_user,restart_policy_missing_or_no,unit_state_review
+pix2pi-identity.service	pix2pi_service_candidate	HIGH	loaded	active	running	disabled	root	always	6565	0	/etc/systemd/system/pix2pi-identity.service	pix2pi_service_root_or_unknown_user,unit_state_review
+pix2pi-incident-audit-runtime.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled		always	2320945	0	/etc/systemd/system/pix2pi-incident-audit-runtime.service	pix2pi_service_root_or_unknown_user
+pix2pi-jobs-runtime.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled		always	1918914	0	/etc/systemd/system/pix2pi-jobs-runtime.service	pix2pi_service_root_or_unknown_user
+pix2pi-mission-control.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled		always	1900284	0	/etc/systemd/system/pix2pi-mission-control.service	pix2pi_service_root_or_unknown_user
+pix2pi-notification-runtime.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled		always	2069336	0	/etc/systemd/system/pix2pi-notification-runtime.service	pix2pi_service_root_or_unknown_user
+pix2pi-panel.service	pix2pi_service_candidate	HIGH	loaded	active	running	disabled		always	2377074	0	/etc/systemd/system/pix2pi-panel.service	pix2pi_service_root_or_unknown_user,unit_state_review
+pix2pi-plugin-runtime.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled		always	2001122	0	/etc/systemd/system/pix2pi-plugin-runtime.service	pix2pi_service_root_or_unknown_user
+pix2pi-publicapi-runtime.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled		always	2014257	0	/etc/systemd/system/pix2pi-publicapi-runtime.service	pix2pi_service_root_or_unknown_user
+pix2pi-query-read-model.service	pix2pi_service_candidate	HIGH	loaded	active	running	disabled	root	always	6604	0	/etc/systemd/system/pix2pi-query-read-model.service	pix2pi_service_root_or_unknown_user,unit_state_review
+pix2pi-realtime-runtime.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled		always	2365057	0	/etc/systemd/system/pix2pi-realtime-runtime.service	pix2pi_service_root_or_unknown_user
+pix2pi-runtime-topology.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled		always	2342225	0	/etc/systemd/system/pix2pi-runtime-topology.service	pix2pi_service_root_or_unknown_user
+pix2pi-service-discovery.service	pix2pi_service_candidate	HIGH	loaded	inactive	dead	disabled	root	always	0	0	/etc/systemd/system/pix2pi-service-discovery.service	not_active,sub_state_not_running,pix2pi_service_root_or_unknown_user,unit_state_review
+pix2pi-service-registry.service	pix2pi_service_candidate	HIGH	loaded	active	running	disabled		always	6702	0	/etc/systemd/system/pix2pi-service-registry.service	pix2pi_service_root_or_unknown_user,unit_state_review
+pix2pi-user-created-consumer.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled	root	always	4442	0	/etc/systemd/system/pix2pi-user-created-consumer.service	pix2pi_service_root_or_unknown_user
+pix2pi-watchdog.service	pix2pi_service_candidate	HIGH	loaded	inactive	dead	disabled		always	0	0	/etc/systemd/system/pix2pi-watchdog.service	not_active,sub_state_not_running,pix2pi_service_root_or_unknown_user,unit_state_review
+pix2pi-webhook-runtime.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled		always	1957197	0	/etc/systemd/system/pix2pi-webhook-runtime.service	pix2pi_service_root_or_unknown_user
+pix2pi-workflow-runtime.service	pix2pi_service_candidate	HIGH	loaded	active	running	enabled		always	1976507	0	/etc/systemd/system/pix2pi-workflow-runtime.service	pix2pi_service_root_or_unknown_user

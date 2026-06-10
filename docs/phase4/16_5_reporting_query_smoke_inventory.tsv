@@ -1,0 +1,7 @@
+smoke_name	status	result_count
+operational_summary	PASS	0
+daily_metrics	PASS	0
+inventory_status	PASS	0
+document_work_queue	PASS	0
+reconciliation_status	PASS	0
+projection_state	PASS	0

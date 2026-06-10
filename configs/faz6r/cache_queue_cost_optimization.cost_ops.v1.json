@@ -1,0 +1,73 @@
+{
+  "version": "cost_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_5_4",
+  "status": "dry_run_only_no_cache_queue_mutation",
+  "recommendations": [
+    {
+      "recommendation_id": "cache-rec-ttl-review",
+      "surface": "redis_cache",
+      "resource_class": "tenant_cache",
+      "current_cost_driver": "ttl_missing_or_long_lived_keys",
+      "recommended_action": "review_ttl_policy_no_ttl_mutation",
+      "estimated_savings_level": "medium",
+      "risk_level": "medium",
+      "tenant_namespace_guard_status": "REQUIRED",
+      "idempotency_guard_status": "NOT_APPLICABLE",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "cache-rec-hot-key-review",
+      "surface": "redis_cache",
+      "resource_class": "hot_key_candidates",
+      "current_cost_driver": "hot_keys_increase_memory_and_latency",
+      "recommended_action": "review_hot_key_distribution_no_delete",
+      "estimated_savings_level": "medium",
+      "risk_level": "medium",
+      "tenant_namespace_guard_status": "REQUIRED",
+      "idempotency_guard_status": "NOT_APPLICABLE",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "queue-rec-stream-retention-review",
+      "surface": "nats_jetstream",
+      "resource_class": "event_stream",
+      "current_cost_driver": "stream_storage_growth",
+      "recommended_action": "review_stream_retention_no_mutation",
+      "estimated_savings_level": "medium",
+      "risk_level": "high",
+      "tenant_namespace_guard_status": "REQUIRED",
+      "idempotency_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "queue-rec-consumer-lag-review",
+      "surface": "queue_consumers",
+      "resource_class": "consumer_lag",
+      "current_cost_driver": "consumer_lag_causes_backlog_storage",
+      "recommended_action": "review_consumer_scaling_no_mutation",
+      "estimated_savings_level": "medium",
+      "risk_level": "medium",
+      "tenant_namespace_guard_status": "REQUIRED",
+      "idempotency_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "recommendation_id": "queue-rec-dlq-growth-review",
+      "surface": "nats_jetstream",
+      "resource_class": "dlq_stream",
+      "current_cost_driver": "dlq_growth_increases_storage",
+      "recommended_action": "review_dlq_root_cause_no_cleanup",
+      "estimated_savings_level": "low",
+      "risk_level": "high",
+      "tenant_namespace_guard_status": "REQUIRED",
+      "idempotency_guard_status": "REQUIRED",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ]
+}

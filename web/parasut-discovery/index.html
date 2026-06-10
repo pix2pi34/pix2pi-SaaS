@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi Paraşüt Discovery</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --card: #101d31;
+      --card-2: #152640;
+      --text: #eef6ff;
+      --muted: #a8b8cc;
+      --line: rgba(255, 255, 255, 0.12);
+      --accent: #41b8ff;
+      --ok: #38d996;
+      --warn: #ffcf5a;
+      --danger: #ff7d7d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top right, #183f67, var(--bg) 52%);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 38px;
+    }
+
+    .hero {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(65, 184, 255, 0.18), rgba(16, 29, 49, 0.94));
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.06;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      color: var(--muted);
+      max-width: 900px;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 14px;
+    }
+
+    .pill strong {
+      color: var(--ok);
+    }
+
+    .pill.warn strong {
+      color: var(--warn);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      min-height: 178px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--card), var(--card-2));
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 19px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(65, 184, 255, 0.12);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .model {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      background: rgba(16, 29, 49, 0.82);
+    }
+
+    .model h2 {
+      margin: 0 0 14px;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .column {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+    }
+
+    .column h3 {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .column ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 207, 90, 0.35);
+      background: rgba(255, 207, 90, 0.08);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 980px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .columns {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        width: min(100% - 22px, 1180px);
+        padding-top: 16px;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .columns {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Pix2pi FAZ 4D-10</div>
+      <h1>Paraşüt Discovery</h1>
+      <p class="subtitle">
+        Bu yüzey Pix2pi ERP core ile Paraşüt arasında kurulabilecek entegrasyon sınırlarını discovery seviyesinde göstermek için hazırlanmıştır.
+        Gerçek API çağrısı, credential saklama, canlı fatura, canlı tahsilat ve production sync bu adımda yapılmaz.
+      </p>
+
+      <div class="status">
+        <span class="pill">Paraşüt Durumu: <strong>DISCOVERY</strong></span>
+        <span class="pill warn">Gerçek API Çağrısı: <strong>KAPALI</strong></span>
+        <span class="pill warn">Credential: <strong>YAZILMAZ</strong></span>
+        <span class="pill">Pix2pi ERP Core: <strong>ANA KAYNAK</strong></span>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Paraşüt discovery kartları">
+      <article class="card">
+        <span class="tag">01</span>
+        <h2>Cari / Müşteri Eşleme</h2>
+        <p>Pix2pi customer/party kayıtlarının ileride Paraşüt müşteri kayıtlarıyla nasıl eşleşeceği discovery seviyesinde tutulur.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">02</span>
+        <h2>Ürün / Hizmet Eşleme</h2>
+        <p>Product/item kayıtlarının dış sistem ürün/hizmet karşılıkları ayrı mapping alanı olarak değerlendirilir.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">03</span>
+        <h2>Satış / Fatura Akışı</h2>
+        <p>Satıştan fatura veya ön muhasebe çıktısına giden sınır keşfedilir; canlı fatura oluşturulmaz.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">04</span>
+        <h2>Tahsilat / Ödeme</h2>
+        <p>Tahsilat ve ödeme hareketlerinin sync yönü sonraki fazda belirlenir; production ödeme işlenmez.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">05</span>
+        <h2>TDHP / UFK Koruması</h2>
+        <p>Pix2pi TDHP ve UFK kararları korunur. Dış entegrasyon ERP core muhasebe kararlarını kontrolsüz ezmez.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">06</span>
+        <h2>e-Fatura / e-Arşiv</h2>
+        <p>e-Belge production kapsamı ayrı tutulur. Bu adım sadece entegrasyon sınırı ve keşif kararıdır.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">07</span>
+        <h2>Tenant-aware Integration</h2>
+        <p>Her tenant kendi bağlantı durumuna, mapping kayıtlarına ve sync geçmişine sahip olmalıdır.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">08</span>
+        <h2>Secret / Credential Policy</h2>
+        <p>API key, token veya client secret repo içine yazılmaz. Secret yönetimi production güvenlik fazında ele alınır.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">09</span>
+        <h2>Marketplace Ayrımı</h2>
+        <p>Pazar yeri satış kanalı ile ön muhasebe bağlantısı karıştırılmaz. Marketplace 4D-9 altında ayrı mühürlenmiştir.</p>
+      </article>
+    </section>
+
+    <section class="model">
+      <h2>Entegrasyon Katman Ayrımı</h2>
+      <div class="columns">
+        <div class="column">
+          <h3>Pix2pi ERP Core</h3>
+          <ul>
+            <li>cari</li>
+            <li>ürün</li>
+            <li>stok</li>
+            <li>satış</li>
+            <li>TDHP/UFK</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <h3>Mapping Layer</h3>
+          <ul>
+            <li>external_customer_id</li>
+            <li>external_product_id</li>
+            <li>external_invoice_id</li>
+            <li>sync_direction</li>
+            <li>sync_status</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <h3>Integration Layer</h3>
+          <ul>
+            <li>API/export/import</li>
+            <li>webhook</li>
+            <li>retry</li>
+            <li>error queue</li>
+            <li>audit/event</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <h3>Security Layer</h3>
+          <ul>
+            <li>tenant isolation</li>
+            <li>secret storage</li>
+            <li>credential rotation</li>
+            <li>access boundary</li>
+            <li>audit trail</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-note">
+      Pilot karar notu: Bu adım Paraşüt için gerçek API bağlantısı, canlı müşteri verisi, canlı fatura, canlı tahsilat veya secret saklama yapmaz.
+      Sadece entegrasyon sınırını, riskleri ve sonraki faz karar alanlarını temiz şekilde mühürler.
+    </section>
+  </main>
+</body>
+</html>

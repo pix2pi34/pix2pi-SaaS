@@ -1,0 +1,31 @@
+{
+  "step": "FAZ 7-R / 324",
+  "name": "Ürün / stok ekranı real final",
+  "schema": "erp_inventory",
+  "routes": [
+    "/products/",
+    "POST /api/panel/products/create",
+    "POST /api/panel/products/update",
+    "POST /api/panel/products/list",
+    "POST /api/panel/products/stock-movement"
+  ],
+  "requiredEvidence": [
+    "migration applied",
+    "create curl HTTP 201",
+    "create DB SELECT",
+    "barcode and SKU persisted",
+    "category and unit persisted",
+    "purchase/sale price and VAT persisted",
+    "stock quantity and critical stock persisted",
+    "duplicate barcode 409 no partial write",
+    "update curl HTTP 200 DB SELECT",
+    "stock movement curl HTTP 201 DB SELECT",
+    "list/search/filter HTTP 200",
+    "low stock list",
+    "insufficient stock blocked",
+    "no-role deny",
+    "cross-tenant update deny",
+    "rollback no partial write",
+    "route smoke"
+  ]
+}

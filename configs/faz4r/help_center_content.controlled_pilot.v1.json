@@ -1,0 +1,180 @@
+{
+  "help_center_id": "help_center_content.controlled_pilot.v1",
+  "help_center_status": "READY",
+  "help_center_mode": "CONTROLLED_PILOT",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT"
+  },
+  "chain_dependencies": {
+    "210_FAZ_4_16_4_1_KULLANICI_EGITIM_SETI": "PASS"
+  },
+  "articles": [
+    {
+      "code": "HELP_FIRST_LOGIN",
+      "required": true,
+      "status": "READY",
+      "category": "ACCESS",
+      "title": "İlk giriş nasıl yapılır?",
+      "search_keywords": ["ilk giriş", "şifre", "hesap"],
+      "evidence_ref": "docs/faz4r/help_center/help_first_login.md"
+    },
+    {
+      "code": "HELP_TENANT_CONTEXT",
+      "required": true,
+      "status": "READY",
+      "category": "TENANT",
+      "title": "Firma / tenant bağlamı nasıl kontrol edilir?",
+      "search_keywords": ["tenant", "firma", "bağlam"],
+      "evidence_ref": "docs/faz4r/help_center/help_tenant_context.md"
+    },
+    {
+      "code": "HELP_MANAGEMENT_PANEL",
+      "required": true,
+      "status": "READY",
+      "category": "MANAGEMENT_PANEL",
+      "title": "Yönetim paneli temel kullanım",
+      "search_keywords": ["yönetim paneli", "dashboard", "admin"],
+      "evidence_ref": "docs/faz4r/help_center/help_management_panel.md"
+    },
+    {
+      "code": "HELP_POS_BASIC",
+      "required": true,
+      "status": "READY",
+      "category": "POS",
+      "title": "POS temel kullanım",
+      "search_keywords": ["pos", "kasa", "satış"],
+      "evidence_ref": "docs/faz4r/help_center/help_pos_basic.md"
+    },
+    {
+      "code": "HELP_CUSTOMER_IMPORT",
+      "required": true,
+      "status": "READY",
+      "category": "IMPORT",
+      "title": "Cari import nasıl yapılır?",
+      "search_keywords": ["cari", "import", "müşteri"],
+      "evidence_ref": "docs/faz4r/help_center/help_customer_import.md"
+    },
+    {
+      "code": "HELP_PRODUCT_STOCK_IMPORT",
+      "required": true,
+      "status": "READY",
+      "category": "IMPORT",
+      "title": "Ürün / stok import nasıl yapılır?",
+      "search_keywords": ["ürün", "stok", "import"],
+      "evidence_ref": "docs/faz4r/help_center/help_product_stock_import.md"
+    },
+    {
+      "code": "HELP_RECEIPT_MOVEMENT_IMPORT",
+      "required": true,
+      "status": "READY",
+      "category": "IMPORT",
+      "title": "Fiş / hareket import nasıl yapılır?",
+      "search_keywords": ["fiş", "hareket", "import"],
+      "evidence_ref": "docs/faz4r/help_center/help_receipt_movement_import.md"
+    },
+    {
+      "code": "HELP_IMPORT_VALIDATION_REPORT",
+      "required": true,
+      "status": "READY",
+      "category": "IMPORT",
+      "title": "Import validation raporu nasıl okunur?",
+      "search_keywords": ["validation", "rapor", "hata"],
+      "evidence_ref": "docs/faz4r/help_center/help_import_validation_report.md"
+    },
+    {
+      "code": "HELP_ACCOUNTING_PREVIEW",
+      "required": true,
+      "status": "READY",
+      "category": "ACCOUNTING",
+      "title": "Muhasebe preview ekranı nasıl kullanılır?",
+      "search_keywords": ["muhasebe", "preview", "tdhp"],
+      "evidence_ref": "docs/faz4r/help_center/help_accounting_preview.md"
+    },
+    {
+      "code": "HELP_ACCOUNTANT_PORTAL_READONLY",
+      "required": true,
+      "status": "READY",
+      "category": "ACCOUNTANT_PORTAL",
+      "title": "Muhasebeci portalı read-only akışı",
+      "search_keywords": ["muhasebeci", "portal", "read-only"],
+      "evidence_ref": "docs/faz4r/help_center/help_accountant_portal_readonly.md"
+    },
+    {
+      "code": "HELP_E_DOCUMENT_EXPORT_PREVIEW",
+      "required": true,
+      "status": "READY",
+      "category": "E_DOCUMENT_EXPORT",
+      "title": "e-Belge / export preview nasıl kullanılır?",
+      "search_keywords": ["e-belge", "export", "preview"],
+      "evidence_ref": "docs/faz4r/help_center/help_e_document_export_preview.md"
+    },
+    {
+      "code": "HELP_SUPPORT_ISSUE_REPORTING",
+      "required": true,
+      "status": "READY",
+      "category": "SUPPORT",
+      "title": "Hata bildirimi nasıl yapılır?",
+      "search_keywords": ["destek", "hata", "bildirim"],
+      "evidence_ref": "docs/faz4r/help_center/help_support_issue_reporting.md"
+    },
+    {
+      "code": "HELP_PILOT_LIMITS",
+      "required": true,
+      "status": "READY",
+      "category": "POLICY",
+      "title": "Pilot sınırları nelerdir?",
+      "search_keywords": ["pilot", "sınır", "controlled"],
+      "evidence_ref": "docs/faz4r/help_center/help_pilot_limits.md"
+    },
+    {
+      "code": "HELP_CLOSED_PROVIDER_POLICY",
+      "required": true,
+      "status": "READY",
+      "category": "POLICY",
+      "title": "Canlı provider kapalı policy ne demek?",
+      "search_keywords": ["closed policy", "provider", "gib", "pos", "banka"],
+      "evidence_ref": "docs/faz4r/help_center/help_closed_provider_policy.md"
+    },
+    {
+      "code": "HELP_COMMON_FAQ",
+      "required": true,
+      "status": "READY",
+      "category": "FAQ",
+      "title": "Sık sorulan sorular",
+      "search_keywords": ["sss", "faq", "yardım"],
+      "evidence_ref": "docs/faz4r/help_center/help_common_faq.md"
+    }
+  ],
+  "navigation": {
+    "searchable_index_status": "READY",
+    "support_route_status": "READY",
+    "completion_checklist_status": "READY",
+    "default_language": "tr-TR",
+    "pilot_visibility": "CONTROLLED_PILOT_ONLY"
+  },
+  "summary": {
+    "total_article_count": 15,
+    "ready_article_count": 15,
+    "missing_article_count": 0,
+    "required_fail_count": 0,
+    "critical_issue_count": 0,
+    "training_set_status": "PASS",
+    "searchable_index_status": "READY",
+    "support_route_status": "READY",
+    "completion_checklist_status": "READY",
+    "help_center_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "real_export": "CLOSED",
+    "production_launch": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

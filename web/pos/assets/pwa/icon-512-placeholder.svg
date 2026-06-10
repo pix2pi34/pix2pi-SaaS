@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Pix2pi POS icon">
+  <rect width="512" height="512" rx="112" fill="#111827"/>
+  <circle cx="154" cy="166" r="48" fill="#60a5fa"/>
+  <circle cx="358" cy="166" r="48" fill="#22c55e"/>
+  <rect x="112" y="250" width="288" height="54" rx="27" fill="#f8fafc"/>
+  <rect x="112" y="334" width="204" height="42" rx="21" fill="#93c5fd"/>
+</svg>

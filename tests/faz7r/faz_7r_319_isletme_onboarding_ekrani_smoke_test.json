@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "319",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "onboarding_screen",
+      "path": "/onboarding/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_319_ONBOARDING_APP_SHELL_START",
+        "PIX2PI_319_BUSINESS_IDENTITY_FORM_START",
+        "PIX2PI_319_TENANT_BOOTSTRAP_PAYLOAD_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "onboarding_runtime",
+      "path": "/assets/onboarding/onboarding-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_319_ONBOARDING_RUNTIME_START",
+        "validateOnboardingPayload",
+        "buildTenantBootstrapPayload"
+      ]
+    }
+  ]
+}

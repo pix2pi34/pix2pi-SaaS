@@ -1,0 +1,153 @@
+# FAZ 4B / 14.6 - Backup / Restore Verification Seti Report
+
+Generated at: 2026-04-28 00:24:24 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+BACKUP_EXECUTED=NO
+RESTORE_EXECUTED=NO
+PITR_APPLY_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+VALIDATION_MODE=BACKUP_RESTORE_VERIFICATION_STANDARD_ONLY
+PREVIOUS_14_1_FINAL_STATUS=PASS
+PREVIOUS_14_1_MIGRATION_CHAIN_STANDARD=PASS
+PREVIOUS_14_2_FINAL_STATUS=PASS
+PREVIOUS_14_2_REFERENCE_SEED_STANDARD=PASS
+PREVIOUS_14_3_FINAL_STATUS=PASS
+PREVIOUS_14_3_IMPORT_STAGING_TABLES=PASS
+PREVIOUS_14_3_DB_APPLY_EXECUTED=NO
+PREVIOUS_14_4_FINAL_STATUS=PASS
+PREVIOUS_14_4_BACKFILL_REBUILD_STANDARD=PASS
+PREVIOUS_14_4_BACKFILL_APPLY_EXECUTED=NO
+PREVIOUS_14_4_REBUILD_APPLY_EXECUTED=NO
+PREVIOUS_14_5_FINAL_STATUS=PASS
+PREVIOUS_14_5_ARCHIVE_PARTITION_RETENTION_MODEL=PASS
+PREVIOUS_14_5_ARCHIVE_APPLY_EXECUTED=NO
+PREVIOUS_14_5_PARTITION_APPLY_EXECUTED=NO
+PREVIOUS_14_5_RETENTION_PURGE_EXECUTED=NO
+PREVIOUS_DB_SCORECARD_FILE_EXISTS=YES
+PREVIOUS_DB_PRODUCTION_READINESS_SCORECARD=PASS
+PREVIOUS_DB_PRODUCTION_READINESS_STATUS=READY_WITH_DEFERRED_ACTIONS
+PREVIOUS_DB_PRODUCTION_READINESS_SCORE=96
+PREVIOUS_DB_DEFERRED_ACTION_COUNT=1
+BACKUP_RESTORE_MANIFEST_FILE_EXISTS=YES
+BACKUP_RESTORE_DOC_MANIFEST_FILE_EXISTS=YES
+BACKUP_RESTORE_MANIFEST_ROW_COUNT=12
+BACKUP_RESTORE_DOC_MANIFEST_ROW_COUNT=12
+BACKUP_RESTORE_MISSING_COLUMN_COUNT=0
+BACKUP_RESTORE_DUPLICATE_GATE_KEY_COUNT=0
+BACKUP_RESTORE_REQUIRED_GATE_MISSING_COUNT=0
+BACKUP_RESTORE_PASS_GATE_COUNT=11
+BACKUP_RESTORE_DEFERRED_GATE_COUNT=1
+BACKUP_RESTORE_APPLY_GATE_YES_COUNT=12
+BACKUP_RESTORE_REQUIRED_YES_COUNT=12
+BACKUP_RESTORE_BAD_REQUIRED_COUNT=0
+BACKUP_RESTORE_BAD_STATUS_COUNT=0
+BACKUP_RESTORE_BAD_APPLY_GATE_COUNT=0
+BACKUP_RESTORE_BAD_DEFERRED_COUNT=0
+BACKUP_RESTORE_BAD_EVIDENCE_COUNT=0
+BACKUP_RESTORE_BAD_MUTATION_COUNT=0
+BACKUP_RESTORE_PITR_ACTIVE_STATUS=DEFERRED
+BACKUP_RESTORE_PITR_ACTIVE_DEFERRED_ALLOWED=YES
+BACKUP_RESTORE_CANDIDATE_PLAN_FILE_EXISTS=YES
+BACKUP_RESTORE_CANDIDATE_PLAN_GUARD_EXISTS=YES
+BACKUP_RESTORE_CANDIDATE_PLAN_BLOCKED_BY_DEFAULT=YES
+BACKUP_RESTORE_CANDIDATE_PLAN_NO_APPLY_MARKERS=YES
+BACKUP_RESTORE_CANDIDATE_PLAN_DRY_RUN_STATUS=PASS
+BACKUP_RESTORE_MANIFEST_STATUS=PASS
+BACKUP_RESTORE_PRE_IMPORT_GATE_STATUS=PASS
+BACKUP_RESTORE_POST_IMPORT_RESTORE_STATUS=PASS
+BACKUP_RESTORE_PITR_DEFERRED_STATUS=PASS
+BACKUP_RESTORE_SECRET_STATUS=PASS
+BACKUP_RESTORE_CANDIDATE_PLAN_STATUS=PASS
+BACKUP_RESTORE_MATRIX_LINE_COUNT=18
+BACKUP_RESTORE_VERIFICATION_SET=PASS
+FAZ4B_14_6_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+BACKUP_RESTORE_VERIFICATION_SET=PASS
+FAZ4B_14_6_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_bash=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+
+## Matrix
+MATRIX_FILE=docs/phase4/14_6_backup_restore_verification_matrix.tsv
+gate	status	note
+previous_14_1	PASS	migration chain prerequisite
+previous_14_2	PASS	reference seed prerequisite
+previous_14_3	PASS	import staging prerequisite
+previous_14_4	PASS	backfill rebuild prerequisite
+previous_14_5	PASS	retention prerequisite
+manifest	PASS	rows=12
+required_gates	PASS	missing=0
+pre_import_backup_gate	PASS	backup gate exists
+post_import_restore_safety	PASS	restore safety exists
+pitr_deferred	PASS	pitr_active_apply=DEFERRED
+pass_deferred_balance	PASS	pass=11 deferred=1
+candidate_plan	PASS	blocked_by_default=YES
+db_mutation	NO	standard only
+backup_executed	NO	standard only
+restore_executed	NO	standard only
+pitr_apply_executed	NO	standard only
+query_text_printed	NO	secret-safe report
+
+## Manifest
+MANIFEST_FILE=config/backup/backup_restore_verification_manifest.tsv
+gate_key	domain	required	current_status	gate_type	mutates_db	evidence_source	apply_gate_required	deferred_allowed	note
+pre_import_backup_gate	backup	YES	PASS	backup_gate	NO	14_6_standard	YES	NO	Import/apply oncesi backup gate zorunlu
+pre_import_backup_evidence	backup	YES	PASS	evidence	NO	existing_backup_set	YES	NO	Import oncesi alinmis backup kaniti kontrol edilmeli
+post_import_restore_safety	restore	YES	PASS	restore_gate	NO	14_6_standard	YES	NO	Import sonrasi restore safety evidence zorunlu
+logical_backup_evidence	backup	YES	PASS	evidence	NO	phase4_db_readiness_scorecard	YES	NO	Logical backup evidence onceki DB readiness ile bagli
+restore_drill_evidence	restore	YES	PASS	evidence	NO	phase4_db_readiness_scorecard	YES	NO	Restore drill evidence onceki DB readiness ile bagli
+pitr_design_ready	pitr	YES	PASS	design	NO	phase4_db_readiness_scorecard	YES	NO	PITR design hazir
+pitr_enable_gate_ready	pitr	YES	PASS	gate	NO	phase4_db_readiness_scorecard	YES	NO	PITR enable gate hazir
+pitr_active_apply	pitr	YES	DEFERRED	apply	YES	maintenance_window	YES	YES	PITR active apply bakim penceresine erteli
+import_staging_backup_alignment	import	YES	PASS	alignment	NO	14_3_import_staging	YES	NO	Import staging migration/apply oncesi backup zorunlu
+retention_backup_alignment	retention	YES	PASS	alignment	NO	14_5_retention_model	YES	NO	Retention/archive/purge islemleri backup gate olmadan calismaz
+restore_runbook_safety	restore	YES	PASS	runbook	NO	14_6_standard	YES	NO	Restore runbook / geri donus karari standarda baglandi
+secret_safety	security	YES	PASS	safety	NO	14_6_standard	YES	NO	Backup/restore raporlari secret/query text basmaz
+
+## Candidate Execution Plan Output
+===== 14.6 BACKUP / RESTORE CANDIDATE EXECUTION PLAN =====
+BACKUP_EXECUTED=NO
+RESTORE_EXECUTED=NO
+PITR_APPLY_EXECUTED=NO
+DB_MUTATION=NO
+QUERY_TEXT_PRINTED=NO
+BACKUP_RESTORE_PLAN_BLOCKED_BY_DEFAULT=YES
+BACKUP_RESTORE_PLAN_DECISION=PLAN_READY_APPLY_NOT_EXECUTED
+
+## Deferred Actions
+PITR_ACTIVE_APPLY=DEFERRED
+PITR_REASON=Bakim penceresinde controlled apply ile etkinlestirilecek
+
+## Safety Decision
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+BACKUP_EXECUTED=NO
+RESTORE_EXECUTED=NO
+PITR_APPLY_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+QUERY_TEXT_PRINTED=NO

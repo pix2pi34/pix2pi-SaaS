@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Ops Console — Notification / Webhook Monitor</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --card: #1f2937;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --line: rgba(255,255,255,.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0f172a, #111827);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+    aside {
+      border-right: 1px solid var(--line);
+      padding: 24px;
+      background: rgba(15, 23, 42, .88);
+    }
+    main { padding: 28px; }
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 28px;
+    }
+    .nav-item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .nav-item.active {
+      background: rgba(34, 197, 94, .14);
+      color: var(--text);
+      border: 1px solid rgba(34, 197, 94, .35);
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    h1 { margin: 0; font-size: 28px; }
+    .tenant {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .card {
+      background: rgba(31, 41, 55, .86);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.22);
+    }
+    .metric-label { color: var(--muted); font-size: 13px; }
+    .metric-value { font-size: 30px; font-weight: 800; margin-top: 8px; }
+    .metric-note { color: var(--muted); margin-top: 6px; font-size: 12px; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 18px;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      padding: 13px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      font-size: 14px;
+    }
+    th { color: var(--muted); font-weight: 600; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .pill.ok { background: rgba(34, 197, 94, .15); color: #86efac; }
+    .pill.warn { background: rgba(245, 158, 11, .15); color: #fcd34d; }
+    .pill.danger { background: rgba(239, 68, 68, .15); color: #fca5a5; }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .filter {
+      background: #0b1220;
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      min-width: 170px;
+    }
+    @media (max-width: 1080px) {
+      .shell { grid-template-columns: 1fr; }
+      aside { display: none; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="brand">Pix2pi Ops Console</div>
+      <div class="nav-item">Service Registry</div>
+      <div class="nav-item">Mission Control</div>
+      <div class="nav-item">Job Queue / Worker Monitor</div>
+      <div class="nav-item active">Notification / Webhook İzleme</div>
+      <div class="nav-item">Incident / Audit Center</div>
+      <div class="nav-item">Runtime Health / Topology</div>
+      <div class="nav-item">Early Warning</div>
+    </aside>
+
+    <main>
+      <section class="topbar">
+        <div>
+          <h1>Notification / Webhook Monitor</h1>
+          <div class="metric-note">FAZ 2-8.4 — email, SMS, push ve webhook delivery görünümü</div>
+        </div>
+        <div class="tenant">Tenant: tenant_7 · Scope: INTERNAL</div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <div class="metric-label">Delivered</div>
+          <div class="metric-value">842</div>
+          <div class="metric-note">email + sms + push + webhook</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Webhook</div>
+          <div class="metric-value">218</div>
+          <div class="metric-note">signed delivery</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Retry Scheduled</div>
+          <div class="metric-value">9</div>
+          <div class="metric-note">backoff active</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Failed</div>
+          <div class="metric-value">6</div>
+          <div class="metric-note">manual review</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">DLQ</div>
+          <div class="metric-value">2</div>
+          <div class="metric-note">dead-letter</div>
+        </div>
+      </section>
+
+      <section class="two-col">
+        <div class="card">
+          <div class="toolbar">
+            <strong>Delivery Stream</strong>
+            <select class="filter">
+              <option>All Channels</option>
+              <option>EMAIL</option>
+              <option>SMS</option>
+              <option>PUSH</option>
+              <option>WEBHOOK</option>
+            </select>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Delivery</th>
+                <th>Channel</th>
+                <th>Destination</th>
+                <th>State</th>
+                <th>Attempt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>email_delivery_1</td>
+                <td>EMAIL</td>
+                <td>user@example.com</td>
+                <td><span class="pill ok">DELIVERED</span></td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>webhook_delivery_1</td>
+                <td>WEBHOOK</td>
+                <td>https://example.com/webhook</td>
+                <td><span class="pill warn">RETRY_SCHEDULED</span></td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>webhook_dlq_1</td>
+                <td>WEBHOOK</td>
+                <td>https://example.com/webhook</td>
+                <td><span class="pill danger">DLQ</span></td>
+                <td>5</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="toolbar">
+            <strong>Webhook Detail</strong>
+            <span class="pill ok">HMAC</span>
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <th>Event</th>
+                <td>order.created</td>
+              </tr>
+              <tr>
+                <th>Signature</th>
+                <td>sha256=trace</td>
+              </tr>
+              <tr>
+                <th>Retry</th>
+                <td>Backoff active</td>
+              </tr>
+              <tr>
+                <th>DLQ</th>
+                <td>Manual review ready</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

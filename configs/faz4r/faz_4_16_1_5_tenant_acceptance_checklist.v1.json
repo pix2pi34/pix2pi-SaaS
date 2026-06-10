@@ -1,0 +1,41 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 193,
+  "step": "FAZ_4_16_1_5",
+  "title": "Tenant acceptance checklist",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "192_FAZ_4_16_1_4_PILOT_VERI_SINIRLARI_TANIMI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "acceptance_policy": {
+    "all_required_items_must_pass": true,
+    "required_evidence_ref": true,
+    "critical_issue_count_must_be_zero": true,
+    "pilot_data_boundary_status_required": "PASS",
+    "readmodel_reporting_status_required": "PASS",
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_checklist_items": [
+    "TENANT_ID_ASSIGNED",
+    "TENANT_ISOLATION_READY",
+    "TENANT_CONFIG_READY",
+    "TENANT_ADMIN_READY",
+    "ROLE_BASELINE_READY",
+    "PILOT_DATA_BOUNDARIES_PASS",
+    "IMPORT_BOUNDARIES_READY",
+    "UAT_SCOPE_DEFINED",
+    "SUPPORT_CHANNEL_DEFINED",
+    "ROLLBACK_CUTOVER_GUARD_READY",
+    "READMODEL_REPORTING_READY",
+    "CRITICAL_ISSUE_ZERO",
+    "CLOSED_EXTERNAL_POLICY_GATE"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "194_FAZ_4_16_1_6_ONBOARDING_SMOKE"
+  ]
+}

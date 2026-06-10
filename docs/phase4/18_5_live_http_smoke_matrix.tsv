@@ -1,0 +1,13 @@
+gate	status	note
+previous_18_4_apply	PASS	import=1 call=1
+target_code_patch	PASS	import=1 call=1
+live_gateway_reachable	YES	base_url=http://127.0.0.1:9010
+live_reporting_route_active	AUTH_PROTECTED	200_count=0 auth_401_count=6 route_404_count=0
+auth_gate	PASS	missing bearer expected 401
+tenant_gate	DEFERRED_NO_VALID_TOKEN	missing tenant expected 400 when valid token is available
+method_gate	DEFERRED_NO_VALID_TOKEN	POST expected 405 when valid token is available
+query_text_leak	PASS	leak_count=0
+runtime_restart_executed	NO	18.5 smoke only
+gateway_config_changed	NO	no config mutation
+db_mutation	NO	no database mutation
+live_http_smoke	PASS	auth_mode=NO_VALID_TOKEN_PROVIDED failures=0 warnings=0

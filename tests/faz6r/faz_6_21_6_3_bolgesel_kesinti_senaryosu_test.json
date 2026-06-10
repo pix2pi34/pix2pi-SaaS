@@ -1,0 +1,45 @@
+{
+  "expected_dependency": "FAZ_6_21_7_5",
+  "expected_runtime_mutation_allowed": false,
+  "expected_live_failover_allowed": false,
+  "expected_dns_mutation_allowed": false,
+  "expected_db_failover_allowed": false,
+  "expected_queue_failover_allowed": false,
+  "expected_storage_failover_allowed": false,
+  "expected_compute_failover_allowed": false,
+  "expected_required_controls": [
+    "sre_metric_review_dependency_gate",
+    "regional_outage_scope_model",
+    "affected_surface_inventory",
+    "rto_rpo_policy",
+    "failover_decision_policy",
+    "dns_failover_guard",
+    "db_failover_guard",
+    "queue_failover_guard",
+    "storage_failover_guard",
+    "read_only_degradation_policy",
+    "manual_approval_policy",
+    "communication_handoff_policy",
+    "dry_run_scenario_runtime",
+    "provider_mutation_closed_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_min_scenario_count": 4,
+  "expected_surfaces": [
+    "edge_dns",
+    "public_web",
+    "api_gateway",
+    "database_primary",
+    "event_queue",
+    "file_storage"
+  ],
+  "expected_decisions": [
+    "prepare_failover_without_execute",
+    "degrade_to_read_only",
+    "pause_noncritical_writes",
+    "freeze_release"
+  ],
+  "expected_communication_step": "FAZ_6_21_6_4",
+  "expected_next_step": "FAZ_6_21_6_4"
+}

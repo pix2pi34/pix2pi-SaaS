@@ -1,0 +1,5 @@
+escalation_level	severity_scope	first_notify_after	escalate_after	target_owner	channels	record_policy
+L1_immediate	critical	0m	5m	owner + founder/operator	phone/sms/chat	incident_open_required
+L2_fast	high	5m	15m	owner + platform_ops	chat/email	incident_or_task_required
+L3_watch	medium	15m	60m	owner team	ops_console/chat	task_or_review_required
+L4_review	low	daily	weekly	owner team	ops_console	backlog_review

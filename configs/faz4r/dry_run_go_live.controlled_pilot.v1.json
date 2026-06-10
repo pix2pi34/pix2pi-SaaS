@@ -1,0 +1,92 @@
+{
+  "dry_run_id": "dry_run_go_live.controlled_pilot.v1",
+  "dry_run_status": "READY",
+  "dry_run_mode": "CONTROLLED_PILOT",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT",
+    "tenant_status": "PILOT_ACTIVE"
+  },
+  "chain_dependencies": {
+    "225_FAZ_4_16_6_5_FEEDBACK_CLOSURE": "PASS"
+  },
+  "dry_run_rules": [
+    {"code": "DRY_RUN_KICKOFF", "required": true, "status": "READY", "area": "KICKOFF", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/dry_run_kickoff.md"},
+    {"code": "TENANT_READINESS_GATE", "required": true, "status": "READY", "area": "TENANT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/tenant_readiness_gate.md"},
+    {"code": "IMPORT_CLOSURE_GATE", "required": true, "status": "READY", "area": "IMPORT", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/import_closure_gate.md"},
+    {"code": "READMODEL_REPORTING_READINESS_GATE", "required": true, "status": "READY", "area": "READMODEL", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/readmodel_reporting_readiness_gate.md"},
+    {"code": "UAT_CLOSURE_GATE", "required": true, "status": "READY", "area": "UAT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/uat_closure_gate.md"},
+    {"code": "SUPPORT_FEEDBACK_CLOSURE_GATE", "required": true, "status": "READY", "area": "SUPPORT_FEEDBACK", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/support_feedback_closure_gate.md"},
+    {"code": "BACKUP_SNAPSHOT_READINESS", "required": true, "status": "READY", "area": "BACKUP", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/backup_snapshot_readiness.md"},
+    {"code": "ROLLBACK_READINESS", "required": true, "status": "READY", "area": "ROLLBACK", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/rollback_readiness.md"},
+    {"code": "CUTOVER_OWNER_ASSIGNMENT", "required": true, "status": "READY", "area": "OWNER", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/cutover_owner_assignment.md"},
+    {"code": "COMMUNICATION_DRAFT_READINESS", "required": true, "status": "READY", "area": "COMMUNICATION", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/communication_draft_readiness.md"},
+    {"code": "DNS_NGINX_ROUTE_DRY_RUN_CHECK", "required": true, "status": "READY", "area": "ROUTING", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/dns_nginx_route_dry_run_check.md"},
+    {"code": "RUNTIME_HEALTH_DRY_RUN_CHECK", "required": true, "status": "READY", "area": "RUNTIME", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/runtime_health_dry_run_check.md"},
+    {"code": "MONITORING_DASHBOARD_DRY_RUN_CHECK", "required": true, "status": "READY", "area": "MONITORING", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/monitoring_dashboard_dry_run_check.md"},
+    {"code": "EXTERNAL_PROVIDER_POLICY_CLOSED_GATE", "required": true, "status": "READY", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/external_provider_policy_closed_gate.md"},
+    {"code": "DRY_RUN_FINAL_REPORT", "required": true, "status": "READY", "area": "REPORT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/dry_run_go_live/dry_run_final_report.md"}
+  ],
+  "dry_run_controls": {
+    "feedback_closure_status": "PASS",
+    "tenant_readiness_status": "READY",
+    "import_closure_status": "READY",
+    "readmodel_reporting_status": "READY",
+    "uat_closure_status": "READY",
+    "support_feedback_closure_status": "READY",
+    "backup_snapshot_status": "READY",
+    "rollback_readiness_status": "READY",
+    "communication_draft_status": "READY",
+    "runtime_health_status": "READY",
+    "monitoring_status": "READY",
+    "no_production_launch": true,
+    "no_dns_change": true,
+    "no_nginx_change": true,
+    "no_ssl_change": true,
+    "no_live_external_provider_activation": true
+  },
+  "dry_run_metrics": {
+    "open_blocker_count": 0,
+    "critical_issue_count": 0,
+    "required_fail_count": 0,
+    "missing_rule_count": 0,
+    "production_launch_count": 0,
+    "dns_change_count": 0,
+    "nginx_change_count": 0,
+    "ssl_change_count": 0,
+    "live_external_provider_activation_count": 0,
+    "live_external_policy_status": "CLOSED"
+  },
+  "summary": {
+    "total_rule_count": 15,
+    "ready_rule_count": 15,
+    "missing_rule_count": 0,
+    "required_fail_count": 0,
+    "critical_issue_count": 0,
+    "open_blocker_count": 0,
+    "feedback_closure_status": "PASS",
+    "tenant_readiness_status": "READY",
+    "import_closure_status": "READY",
+    "uat_closure_status": "READY",
+    "backup_snapshot_status": "READY",
+    "rollback_readiness_status": "READY",
+    "monitoring_status": "READY",
+    "dry_run_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "production_launch": "CLOSED",
+    "dns_change": "CLOSED",
+    "nginx_change": "CLOSED",
+    "ssl_change": "CLOSED",
+    "hotfix_deploy": "CLOSED",
+    "real_rollback_execution": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

@@ -1,0 +1,62 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 229,
+  "step": "FAZ_4_16_7_4",
+  "title": "İletişim planı",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "228_FAZ_4_16_7_3_GERI_DONUS_PROVASI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "communication_policy": {
+    "communication_plan_status_required": "READY",
+    "communication_plan_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "rollback_rehearsal_status_required": "PASS",
+    "audience_map_status_required": "READY",
+    "channel_map_status_required": "READY",
+    "message_draft_status_required": "READY",
+    "support_contact_status_required": "READY",
+    "incident_escalation_status_required": "READY",
+    "approval_owner_status_required": "READY",
+    "no_real_email_dispatch_required": true,
+    "no_real_sms_dispatch_required": true,
+    "no_real_whatsapp_dispatch_required": true,
+    "no_public_announcement_required": true,
+    "no_production_launch_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_communication_items": [
+    "COMMUNICATION_KICKOFF",
+    "AUDIENCE_MAP",
+    "CHANNEL_MAP",
+    "MESSAGE_OWNER_ASSIGNMENT",
+    "TIMING_WINDOW",
+    "PRE_CUTOVER_MESSAGE_DRAFT",
+    "DURING_CUTOVER_MESSAGE_DRAFT",
+    "ROLLBACK_MESSAGE_DRAFT",
+    "SUPPORT_CONTACT_NOTE",
+    "INCIDENT_ESCALATION_NOTE",
+    "TENANT_ADMIN_NOTICE",
+    "USER_FAQ_DRAFT",
+    "INTERNAL_OPS_NOTE",
+    "STATUS_PAGE_DRAFT",
+    "APPROVAL_OWNER_CONFIRMATION",
+    "EXTERNAL_PROVIDER_POLICY_CLOSED_GATE",
+    "FINAL_COMMUNICATION_REPORT"
+  ],
+  "communication_artifact": "configs/faz4r/communication_plan.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "230_FAZ_4_16_7_5_REHEARSAL_RAPORU"
+  ]
+}

@@ -1,0 +1,20 @@
+# FAZ 1-1.4 Business Common Columns Final Seal
+
+- Tarih: 2026-05-05T06:24:05+03:00
+- Evidence file: /root/pix2pi/pix2pi-SaaS/docs/faz1/evidence/FAZ_1_1_4_BUSINESS_COMMON_COLUMNS_REAL_IMPLEMENTATION_AUDIT.md
+- Migration file: /root/pix2pi/pix2pi-SaaS/db/migrations/faz1/20260505_062403_faz_1_1_4_business_common_columns.sql
+- Strict suite file: /root/pix2pi/pix2pi-SaaS/scripts/db/faz_1_1_4_business_common_columns_strict_suite.sh
+- Doc file: /root/pix2pi/pix2pi-SaaS/docs/faz1/db/FAZ_1_1_4_BUSINESS_COMMON_COLUMNS.md
+
+FAZ_1_1_4_TENANT_ID_STATUS=PASS
+FAZ_1_1_4_LEGAL_ENTITY_ID_STATUS=PASS
+FAZ_1_1_4_BRANCH_ID_STATUS=PASS
+FAZ_1_1_4_CREATED_AT_STATUS=PASS
+FAZ_1_1_4_UPDATED_AT_STATUS=PASS
+FAZ_1_1_4_CREATED_BY_STATUS=PASS
+FAZ_1_1_4_UPDATED_BY_STATUS=PASS
+FAZ_1_1_4_DELETED_AT_STATUS=PASS
+FAZ_1_1_4_AUDIT_COLUMNS_STATUS=PASS
+FAZ_1_1_4_BUSINESS_COMMON_COLUMNS_FINAL_STATUS=PASS
+FAZ_1_1_4_BUSINESS_COMMON_COLUMNS_SEAL_STATUS=SEALED
+FAZ_1_1_5_READY=YES

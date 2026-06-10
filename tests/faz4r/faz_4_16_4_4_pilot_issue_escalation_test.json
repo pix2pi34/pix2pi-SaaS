@@ -1,0 +1,134 @@
+{
+  "valid_fixture": {
+    "escalation_id": "pilot_issue_escalation.valid_fixture",
+    "escalation_status": "READY",
+    "escalation_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT"
+    },
+    "chain_dependencies": {
+      "212_FAZ_4_16_4_3_ILK_DESTEK_TRIAGE_AKISI": "PASS"
+    },
+    "escalation_rules": [
+      {"code": "ESCALATE_P0_BLOCKER", "required": true, "status": "READY", "owner": "TECH_OWNER", "severity": "P0", "sla": "SAME_BUSINESS_DAY", "evidence_ref": "docs/faz4r/support_escalation/escalate_p0_blocker.md"},
+      {"code": "ESCALATE_P1_CRITICAL", "required": true, "status": "READY", "owner": "TECH_OWNER", "severity": "P1", "sla": "NEXT_BUSINESS_DAY", "evidence_ref": "docs/faz4r/support_escalation/escalate_p1_critical.md"},
+      {"code": "ESCALATE_P2_NORMAL", "required": true, "status": "READY", "owner": "SUPPORT_OWNER", "severity": "P2", "sla": "TWO_BUSINESS_DAYS", "evidence_ref": "docs/faz4r/support_escalation/escalate_p2_normal.md"},
+      {"code": "ESCALATE_P3_QUESTION", "required": true, "status": "READY", "owner": "SUPPORT_OWNER", "severity": "P3", "sla": "THREE_BUSINESS_DAYS", "evidence_ref": "docs/faz4r/support_escalation/escalate_p3_question.md"},
+      {"code": "PRODUCT_OWNER_ESCALATION", "required": true, "status": "READY", "owner": "PRODUCT_OWNER", "severity": "P1_P2", "sla": "NEXT_BUSINESS_DAY", "evidence_ref": "docs/faz4r/support_escalation/product_owner_escalation.md"},
+      {"code": "TECH_OWNER_ESCALATION", "required": true, "status": "READY", "owner": "TECH_OWNER", "severity": "P0_P1", "sla": "SAME_OR_NEXT_BUSINESS_DAY", "evidence_ref": "docs/faz4r/support_escalation/tech_owner_escalation.md"},
+      {"code": "SUPPORT_OWNER_ESCALATION", "required": true, "status": "READY", "owner": "SUPPORT_OWNER", "severity": "P2_P3", "sla": "TWO_OR_THREE_BUSINESS_DAYS", "evidence_ref": "docs/faz4r/support_escalation/support_owner_escalation.md"},
+      {"code": "BUSINESS_OWNER_VISIBILITY", "required": true, "status": "READY", "owner": "BUSINESS_OWNER", "severity": "P0_P1", "sla": "VISIBILITY_ONLY", "evidence_ref": "docs/faz4r/support_escalation/business_owner_visibility.md"},
+      {"code": "ESCALATION_SLA_MATRIX", "required": true, "status": "READY", "owner": "SUPPORT_OWNER", "severity": "ALL", "sla": "MATRIX", "evidence_ref": "docs/faz4r/support_escalation/escalation_sla_matrix.md"},
+      {"code": "EVIDENCE_COMPLETENESS_GUARD", "required": true, "status": "READY", "owner": "SUPPORT_OWNER", "severity": "ALL", "sla": "BEFORE_ESCALATION", "evidence_ref": "docs/faz4r/support_escalation/evidence_completeness_guard.md"},
+      {"code": "DUPLICATE_LINKED_ISSUE_GUARD", "required": true, "status": "READY", "owner": "SUPPORT_OWNER", "severity": "ALL", "sla": "BEFORE_ESCALATION", "evidence_ref": "docs/faz4r/support_escalation/duplicate_linked_issue_guard.md"},
+      {"code": "DECISION_LOG_LINK", "required": true, "status": "READY", "owner": "PRODUCT_OWNER", "severity": "P1_P2", "sla": "BEFORE_DECISION", "evidence_ref": "docs/faz4r/support_escalation/decision_log_link.md"},
+      {"code": "HOTFIX_CANDIDATE_MARKER", "required": true, "status": "READY", "owner": "TECH_OWNER", "severity": "P0_P1", "sla": "BEFORE_HOTFIX_DECISION", "evidence_ref": "docs/faz4r/support_escalation/hotfix_candidate_marker.md"},
+      {"code": "POLICY_ONLY_ISSUE_ROUTE", "required": true, "status": "READY", "owner": "SUPPORT_OWNER", "severity": "POLICY", "sla": "NO_ENGINEERING_ACTION", "evidence_ref": "docs/faz4r/support_escalation/policy_only_issue_route.md"},
+      {"code": "ESCALATION_CLOSURE_CHECKLIST", "required": true, "status": "READY", "owner": "SUPPORT_OWNER", "severity": "ALL", "sla": "BEFORE_CLOSURE", "evidence_ref": "docs/faz4r/support_escalation/escalation_closure_checklist.md"}
+    ],
+    "owner_matrix": {
+      "owner_matrix_status": "READY",
+      "product_owner": "PRODUCT_DECISION_AND_SCOPE",
+      "tech_owner": "RUNTIME_BUG_AND_HOTFIX_DECISION",
+      "support_owner": "INTAKE_TRIAGE_AND_USER_RESPONSE",
+      "business_owner": "VISIBILITY_AND_GO_NO_GO_SIGNAL"
+    },
+    "escalation_controls": {
+      "escalation_sla_status": "READY",
+      "evidence_completeness_status": "READY",
+      "decision_log_status": "READY",
+      "duplicate_linked_issue_status": "READY",
+      "hotfix_candidate_marker_status": "READY",
+      "policy_only_route_status": "READY",
+      "no_real_external_dispatch": true
+    },
+    "summary": {
+      "total_rule_count": 15,
+      "ready_rule_count": 15,
+      "missing_rule_count": 0,
+      "required_fail_count": 0,
+      "critical_issue_count": 0,
+      "triage_status": "PASS",
+      "owner_matrix_status": "READY",
+      "escalation_sla_status": "READY",
+      "evidence_completeness_status": "READY",
+      "decision_log_status": "READY",
+      "escalation_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "real_ticket_system": "CLOSED",
+      "real_email_dispatch": "CLOSED",
+      "production_launch": "CLOSED",
+      "hotfix_deploy": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "escalation_id": "pilot_issue_escalation.invalid_fixture",
+    "escalation_status": "DRAFT",
+    "escalation_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED"
+    },
+    "chain_dependencies": {
+      "212_FAZ_4_16_4_3_ILK_DESTEK_TRIAGE_AKISI": "FAIL"
+    },
+    "escalation_rules": [
+      {"code": "ESCALATE_P0_BLOCKER", "required": true, "status": "MISSING", "owner": "", "severity": "", "sla": "", "evidence_ref": ""},
+      {"code": "ESCALATE_P1_CRITICAL", "required": true, "status": "READY", "owner": "TECH_OWNER", "severity": "P1", "sla": "NEXT_BUSINESS_DAY", "evidence_ref": "x"},
+      {"code": "ESCALATE_P1_CRITICAL", "required": true, "status": "READY", "owner": "TECH_OWNER", "severity": "P1", "sla": "NEXT_BUSINESS_DAY", "evidence_ref": "x"}
+    ],
+    "owner_matrix": {
+      "owner_matrix_status": "DRAFT",
+      "product_owner": "",
+      "tech_owner": "",
+      "support_owner": "",
+      "business_owner": ""
+    },
+    "escalation_controls": {
+      "escalation_sla_status": "DRAFT",
+      "evidence_completeness_status": "DRAFT",
+      "decision_log_status": "DRAFT",
+      "duplicate_linked_issue_status": "DRAFT",
+      "hotfix_candidate_marker_status": "DRAFT",
+      "policy_only_route_status": "DRAFT",
+      "no_real_external_dispatch": false
+    },
+    "summary": {
+      "total_rule_count": 99,
+      "ready_rule_count": 99,
+      "missing_rule_count": 99,
+      "required_fail_count": 99,
+      "critical_issue_count": 1,
+      "triage_status": "FAIL",
+      "owner_matrix_status": "DRAFT",
+      "escalation_sla_status": "DRAFT",
+      "evidence_completeness_status": "DRAFT",
+      "decision_log_status": "DRAFT",
+      "escalation_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "real_ticket_system": "OPEN",
+      "real_email_dispatch": "OPEN",
+      "production_launch": "OPEN",
+      "hotfix_deploy": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "347",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "panel_pilot_tenant_screen",
+      "path": "/pilot-tenant/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_347_PILOT_TENANT_OPENING_APP_SHELL_START",
+        "PIX2PI_347_PILOT_TENANT_REQUEST_DRAFT_CONTEXT_START",
+        "PIX2PI_347_TENANT_OPENING_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "panel_pilot_tenant_runtime",
+      "path": "/assets/pilot-tenant/panel-pilot-tenant-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_347_PANEL_PILOT_TENANT_RUNTIME_START",
+        "tenantOpeningScopeHeaders",
+        "buildTenantOpeningRuntimeContract"
+      ]
+    }
+  ]
+}

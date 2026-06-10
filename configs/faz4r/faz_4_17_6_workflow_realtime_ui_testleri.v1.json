@@ -1,0 +1,62 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 239,
+  "step": "FAZ_4_17_6",
+  "title": "Workflow / realtime UI testleri",
+  "priority_group": "WEB-L7 Workflow / Realtime UI",
+  "depends_on": [
+    "236_FAZ_4_17_1_APPROVAL_INBOX",
+    "237_FAZ_4_17_2_WORKFLOW_MONITOR",
+    "238_FAZ_4_17_5_WEBSOCKET_SSE_BAGLANTI_SAGLIGI_GORUNUMU"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "ui_test_policy": {
+    "workflow_realtime_ui_test_status_required": "READY",
+    "workflow_realtime_ui_test_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "approval_inbox_status_required": "PASS",
+    "workflow_monitor_status_required": "PASS",
+    "realtime_health_status_required": "PASS",
+    "tenant_scope_required": "SINGLE_TENANT",
+    "approval_web_checkpoint_status_required": "PASS",
+    "workflow_web_checkpoint_status_required": "PASS",
+    "realtime_web_checkpoint_status_required": "PASS",
+    "no_workflow_mutation_required": true,
+    "no_real_approval_execution_required": true,
+    "no_real_workflow_execution_required": true,
+    "no_live_websocket_connection_required": true,
+    "no_live_sse_connection_required": true,
+    "no_event_stream_publish_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_test_items": [
+    "APPROVAL_INBOX_UI_TEST",
+    "WORKFLOW_MONITOR_UI_TEST",
+    "REALTIME_HEALTH_UI_TEST",
+    "CROSS_NAVIGATION_MARKER_TEST",
+    "TENANT_SCOPE_TEST",
+    "STATUS_BADGE_TEST",
+    "EMPTY_STATE_TEST",
+    "ERROR_STATE_TEST",
+    "NO_WORKFLOW_MUTATION_TEST",
+    "NO_REAL_APPROVAL_EXECUTION_TEST",
+    "NO_REAL_WORKFLOW_EXECUTION_TEST",
+    "NO_LIVE_WEBSOCKET_TEST",
+    "NO_LIVE_SSE_TEST",
+    "NO_EVENT_STREAM_PUBLISH_TEST",
+    "EXTERNAL_POLICY_CLOSED_GATE_TEST",
+    "FINAL_WORKFLOW_REALTIME_UI_TEST_REPORT"
+  ],
+  "ui_test_artifact": "configs/faz4r/workflow_realtime_ui_tests.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "240_FAZ_4_17_3_REALTIME_EVENT_FEED"
+  ]
+}

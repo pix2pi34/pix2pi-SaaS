@@ -1,0 +1,19 @@
+version: v1
+ebelge_rules:
+  efatura_enabled: true
+  earsiv_enabled: true
+  eadisyon_enabled: true
+  status_sync_mode: bidirectional
+  retry_max: 5
+  cancel_flow: enabled
+  error_mode: tracked
+  test_profile: turkiye-ebelge-core
+
+export_rules:
+  logo_enabled: true
+  mikro_enabled: true
+  zirve_enabled: true
+  eta_enabled: true
+  validation_mode: strict
+  batch_limit: 1000
+  test_profile: turkiye-export-core

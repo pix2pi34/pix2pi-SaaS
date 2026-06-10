@@ -1,0 +1,39 @@
+{
+  "expected_dependency": "FAZ_6_21_5_3",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_cache_flush_allowed": false,
+  "expected_cache_key_delete_allowed": false,
+  "expected_cache_ttl_mutation_allowed": false,
+  "expected_queue_purge_allowed": false,
+  "expected_stream_delete_allowed": false,
+  "expected_consumer_delete_allowed": false,
+  "expected_queue_retention_mutation_allowed": false,
+  "expected_required_controls": [
+    "storage_log_cost_dependency_gate",
+    "cache_inventory_model",
+    "queue_inventory_model",
+    "cache_ttl_review_policy",
+    "cache_hot_key_review_policy",
+    "cache_memory_review_policy",
+    "queue_retention_review_policy",
+    "queue_consumer_lag_review_policy",
+    "dlq_growth_review_policy",
+    "stream_storage_review_policy",
+    "tenant_namespace_guard",
+    "idempotency_safety_guard",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "dry_run_cost_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_surfaces": [
+    "redis_cache",
+    "nats_jetstream",
+    "queue_consumers"
+  ],
+  "expected_min_recommendation_count": 5,
+  "expected_status": "dry_run_only_no_cache_queue_mutation",
+  "expected_next_step": "FAZ_6_21_5_5"
+}

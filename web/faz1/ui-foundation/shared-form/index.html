@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Shared Form Standardı</title>
+  <link rel="stylesheet" href="./shared_form.css">
+</head>
+<body>
+  <main class="pix2pi-page">
+    <header class="pix2pi-page-header">
+      <div>
+        <h1 class="pix2pi-page-title">Pix2pi Shared Form Standardı</h1>
+        <p class="pix2pi-page-subtitle">FAZ 1-4.4 — WEB-L1 UI Foundation / Design System</p>
+      </div>
+      <span class="pix2pi-badge ok">WEB-L1 READY</span>
+    </header>
+
+    <section class="pix2pi-grid">
+      <article class="pix2pi-card">
+        <form class="pix2pi-form" id="sharedForm" novalidate>
+          <div class="pix2pi-form-error" id="sharedFormError" role="alert"></div>
+          <div class="pix2pi-form-success" id="sharedFormSuccess" role="status"></div>
+
+          <div class="pix2pi-form-grid">
+            <label class="pix2pi-form-row">
+              <span class="pix2pi-label">Firma adı <span class="pix2pi-required">*</span></span>
+              <input class="pix2pi-input" id="legalName" name="legal_name" type="text" aria-describedby="legalNameError">
+              <span class="pix2pi-field-error" id="legalNameError" data-error-for="legalName"></span>
+            </label>
+
+            <label class="pix2pi-form-row">
+              <span class="pix2pi-label">E-posta <span class="pix2pi-required">*</span></span>
+              <input class="pix2pi-input" id="email" name="email" type="email" aria-describedby="emailError">
+              <span class="pix2pi-field-error" id="emailError" data-error-for="email"></span>
+            </label>
+
+            <label class="pix2pi-form-row">
+              <span class="pix2pi-label">Tenant kodu <span class="pix2pi-required">*</span></span>
+              <input class="pix2pi-input" id="tenantCode" name="tenant_code" type="text" aria-describedby="tenantCodeError">
+              <span class="pix2pi-field-error" id="tenantCodeError" data-error-for="tenantCode"></span>
+            </label>
+
+            <label class="pix2pi-form-row">
+              <span class="pix2pi-label">Vergi no</span>
+              <input class="pix2pi-input" id="taxNumber" name="tax_number" type="text" aria-describedby="taxNumberError">
+              <span class="pix2pi-field-error" id="taxNumberError" data-error-for="taxNumber"></span>
+            </label>
+          </div>
+
+          <label class="pix2pi-form-row">
+            <span class="pix2pi-label">İşletme tipi</span>
+            <select class="pix2pi-select" id="businessType" name="business_type">
+              <option value="retail">Perakende</option>
+              <option value="accounting">Muhasebe</option>
+              <option value="operations">Operasyon</option>
+            </select>
+          </label>
+
+          <label class="pix2pi-form-row">
+            <span class="pix2pi-label">Açıklama</span>
+            <textarea class="pix2pi-textarea" id="description" name="description" aria-describedby="descriptionError"></textarea>
+            <span class="pix2pi-field-error" id="descriptionError" data-error-for="description"></span>
+          </label>
+
+          <div class="pix2pi-form-actions">
+            <span class="pix2pi-badge ok" id="sharedFormDirtyState">CLEAN</span>
+            <button class="pix2pi-button secondary" id="cancelSharedFormButton" type="button">Vazgeç</button>
+            <button class="pix2pi-button secondary" id="resetSharedFormButton" type="button">Demo doldur</button>
+            <button class="pix2pi-button primary" id="saveSharedFormButton" type="submit">Kaydet</button>
+          </div>
+        </form>
+      </article>
+
+      <aside class="pix2pi-card">
+        <div class="pix2pi-form-actions" style="justify-content:flex-start; border-top:0; padding-top:0;">
+          <button class="pix2pi-button primary" id="runSharedFormTestsButton" type="button">Form testlerini çalıştır</button>
+        </div>
+
+        <pre class="pix2pi-log" id="sharedFormTestOutput">FORM_TEST_LOADING</pre>
+        <pre class="pix2pi-log" id="sharedFormLog">Shared form event log...</pre>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./shared_form.js"></script>
+</body>
+</html>

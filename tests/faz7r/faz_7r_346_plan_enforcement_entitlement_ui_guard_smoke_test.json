@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "346",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "panel_entitlements_screen",
+      "path": "/entitlements/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_346_ENTITLEMENT_UI_GUARD_APP_SHELL_START",
+        "PIX2PI_346_FEATURE_ENTITLEMENT_MATRIX_START",
+        "PIX2PI_346_FRONTEND_GUARD_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "panel_entitlements_runtime",
+      "path": "/assets/entitlements/panel-entitlements-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_346_PANEL_ENTITLEMENTS_RUNTIME_START",
+        "entitlementGuardScopeHeaders",
+        "buildGuardRuntimeContract"
+      ]
+    }
+  ]
+}

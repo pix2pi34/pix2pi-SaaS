@@ -1,0 +1,39 @@
+{
+  "phase": "FAZ 2-7.8.6",
+  "runtime": "developer_docs_publish_pipeline",
+  "title": "Pix2pi Public API",
+  "version": "v1",
+  "base_url": "https://api.pix2pi.com.tr",
+  "publish_formats": [
+    "MARKDOWN",
+    "OPENAPI_TRACE"
+  ],
+  "required_sections": [
+    "Sandbox",
+    "API Key",
+    "Quota",
+    "App Auth"
+  ],
+  "endpoint_doc_required_fields": [
+    "method",
+    "path",
+    "description",
+    "required_scopes",
+    "environment"
+  ],
+  "validation_gates": [
+    "title_required",
+    "version_required",
+    "endpoint_docs_required",
+    "sandbox_docs_required",
+    "api_key_docs_required",
+    "quota_docs_required",
+    "app_auth_docs_required",
+    "duplicate_endpoint_denied"
+  ],
+  "published_artifacts": [
+    "docs/public_api/PIX2PI_PUBLIC_API_DEVELOPER_DOCS.md",
+    "docs/public_api/PIX2PI_PUBLIC_API_OPENAPI_TRACE.json"
+  ],
+  "next_ready": "FAZ_2_7_8_7_PUBLIC_API_RUNTIME_TESTS"
+}

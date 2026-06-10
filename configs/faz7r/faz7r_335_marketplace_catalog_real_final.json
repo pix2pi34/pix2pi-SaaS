@@ -1,0 +1,28 @@
+{
+  "step": "FAZ 7-R / 335",
+  "name": "Marketplace katalog ekranı real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "marketplace-catalog-335-20260513_221532",
+  "sellerId": "seller-335-main",
+  "catalogProductId": "catalog-product-335-main",
+  "routes": [
+    "/catalog/",
+    "POST /api/market/catalog/admin/publish",
+    "POST /api/market/catalog/list",
+    "POST /api/market/catalog/detail",
+    "POST /api/market/catalog/checkout-intent"
+  ],
+  "requiredEvidence": [
+    "marketplace public catalog route",
+    "seller/catalog product DB record",
+    "product listing API",
+    "category/search/filter",
+    "tenant-safe catalog tests",
+    "marketplace disabled/controlled access guard",
+    "duplicate no partial write",
+    "no-role denied",
+    "rollback no partial write",
+    "route smoke",
+    "audit evidence"
+  ]
+}

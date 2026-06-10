@@ -1,0 +1,9 @@
+route_id	method	path	purpose	auth_required	tenant_required	status
+uat_checklist_list	GET	/api/v1/admin/uat/checklists	uat_checklist_list	YES	YES	contract_only
+uat_checklist_detail	GET	/api/v1/admin/uat/checklists/:checklist_id	uat_checklist_detail	YES	YES	contract_only
+uat_checklist_items	GET	/api/v1/admin/uat/checklists/:checklist_id/items	uat_items	YES	YES	contract_only
+uat_item_status	POST	/api/v1/admin/uat/checklists/:checklist_id/items/:item_id/status	status_update_placeholder	YES	YES	contract_only
+uat_evidence	POST	/api/v1/admin/uat/checklists/:checklist_id/evidence	evidence_placeholder	YES	YES	contract_only
+uat_readiness	GET	/api/v1/admin/uat/checklists/:checklist_id/readiness	go_live_readiness	YES	YES	contract_only
+uat_blockers	GET	/api/v1/admin/uat/checklists/:checklist_id/blockers	blocking_items	YES	YES	contract_only
+uat_history	GET	/api/v1/admin/uat/history	uat_history_list	YES	YES	contract_only

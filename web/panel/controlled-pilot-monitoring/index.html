@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi controlled pilot monitoring first day watch ekranı" />
+  <meta property="og:title" content="Pix2pi Controlled Pilot Monitoring" />
+  <meta property="og:description" content="Kontrollü pilot ilk gün izleme ve first day watch yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Controlled Pilot Monitoring</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(14,165,233,.14), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1360px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .monitoring-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+      min-height: 96px;
+      overflow-wrap: anywhere;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_358_CONTROLLED_PILOT_MONITORING_APP_SHELL_START -->
+  <main class="shell" data-step="358" data-surface="controlled-pilot-monitoring">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 358</span>
+      <h1 data-i18n="controlled_pilot_monitoring.title">Controlled pilot monitoring / first day watch</h1>
+      <p data-i18n="controlled_pilot_monitoring.description">Kontrollü pilot ilk gün izleme, incident watch, support handoff ve rollback readiness yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_358_PILOT_TENANT_CUSTOMER_WATCH_CONTEXT_START -->
+    <section class="card guard" data-widget="pilot_tenant_customer_watch_context">
+      <h2>Pilot tenant / customer watch context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="monitoring-tenant-id">controlled-pilot</strong></p>
+        <p>Customer: <strong id="monitoring-customer-name">Demo Market</strong></p>
+        <p>Owner: <strong id="monitoring-owner-user">owner@example.invalid</strong></p>
+        <p>Watch mode: <strong id="monitoring-watch-mode">FIRST_DAY_CONTROLLED_WATCH</strong></p>
+        <p>Scope: <strong id="monitoring-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_358_PILOT_TENANT_CUSTOMER_WATCH_CONTEXT_END -->
+
+    <!-- PIX2PI_358_FIRST_DAY_WATCH_TIMELINE_START -->
+    <section class="card" data-widget="first_day_watch_timeline">
+      <h2>First day watch timeline</h2>
+      <div id="monitoring-watch-timeline" class="grid-4">
+        <article class="monitoring-card" data-watch-slot="T+00"><strong>Activation preview complete</strong><p>PASS</p></article>
+      </div>
+    </section>
+    <!-- PIX2PI_358_FIRST_DAY_WATCH_TIMELINE_END -->
+
+    <!-- PIX2PI_358_PILOT_HEALTH_DASHBOARD_PREVIEW_START -->
+    <section class="card" data-widget="pilot_health_dashboard_preview">
+      <h2>Pilot health dashboard preview</h2>
+      <div id="monitoring-health-list" class="grid-3">
+        <!-- PIX2PI_358_PANEL_POS_MARKET_ROUTE_HEALTH_START -->
+        <article class="monitoring-card" data-health-surface="panel" data-health-status="PASS_PREVIEW"><strong>panel_http_200</strong><p>PASS_PREVIEW</p></article>
+        <article class="monitoring-card" data-health-surface="pos" data-health-status="PASS_PREVIEW"><strong>pos_http_200</strong><p>PASS_PREVIEW</p></article>
+        <article class="monitoring-card" data-health-surface="market" data-health-status="PASS_PREVIEW"><strong>market_http_200</strong><p>PASS_PREVIEW</p></article>
+        <!-- PIX2PI_358_PANEL_POS_MARKET_ROUTE_HEALTH_END -->
+        <!-- PIX2PI_358_AUTH_PERMISSION_TENANT_ISOLATION_WATCH_START -->
+        <article class="monitoring-card" data-health-surface="auth" data-health-status="PASS_PREVIEW"><strong>session_permission_preview</strong><p>PASS_PREVIEW</p></article>
+        <article class="monitoring-card" data-health-surface="tenant" data-health-status="PASS_PREVIEW"><strong>tenant_isolation_preview</strong><p>PASS_PREVIEW</p></article>
+        <!-- PIX2PI_358_AUTH_PERMISSION_TENANT_ISOLATION_WATCH_END -->
+        <!-- PIX2PI_358_LOCALIZATION_WATCH_START -->
+        <article class="monitoring-card" data-health-surface="localization" data-health-status="PASS_PREVIEW"><strong>language_render_preview</strong><p>PASS_PREVIEW</p></article>
+        <!-- PIX2PI_358_LOCALIZATION_WATCH_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_358_PILOT_HEALTH_DASHBOARD_PREVIEW_END -->
+
+    <!-- PIX2PI_358_RUNTIME_ERROR_DASHBOARD_PREVIEW_START -->
+    <section class="card" data-widget="runtime_error_dashboard_preview">
+      <h2>Runtime error dashboard preview</h2>
+      <div id="monitoring-error-list" class="grid-4">
+        <article class="monitoring-card" data-error-source="api" data-error-status="OK"><strong>api</strong><p>count=0 / threshold=1 / OK</p></article>
+      </div>
+    </section>
+    <!-- PIX2PI_358_RUNTIME_ERROR_DASHBOARD_PREVIEW_END -->
+
+    <!-- PIX2PI_358_INCIDENT_WATCH_QUEUE_PREVIEW_START -->
+    <section class="card locked" data-widget="incident_watch_queue_preview">
+      <h2>Incident watch queue preview</h2>
+      <div id="monitoring-incident-queue" class="grid-3">
+        <article class="monitoring-card" data-incident-id="INC-PILOT-001" data-incident-status="OPEN_PREVIEW"><strong>INC-PILOT-001</strong><p>P3 / Pilot watch placeholder / WATCH</p></article>
+      </div>
+    </section>
+    <!-- PIX2PI_358_INCIDENT_WATCH_QUEUE_PREVIEW_END -->
+
+    <!-- PIX2PI_358_SUPPORT_HANDOFF_CUSTOMER_CONTACT_WATCH_START -->
+    <section class="card guard" data-widget="support_handoff_customer_contact_watch">
+      <h2>Support handoff / customer contact watch</h2>
+      <div id="monitoring-support-handoff" class="grid-3">
+        <article class="monitoring-card" data-support-channel="phone" data-support-status="READY_PREVIEW"><strong>phone</strong><p>support-owner / READY_PREVIEW</p></article>
+      </div>
+    </section>
+    <!-- PIX2PI_358_SUPPORT_HANDOFF_CUSTOMER_CONTACT_WATCH_END -->
+
+    <!-- PIX2PI_358_CUSTOMER_ACTIVITY_SESSION_WATCH_START -->
+    <section class="card" data-widget="customer_activity_session_watch">
+      <h2>Customer activity / session watch</h2>
+      <div id="monitoring-customer-activity" class="grid-3">
+        <article class="monitoring-card" data-activity-event="panel_view" data-activity-status="PREVIEW"><strong>panel_view</strong><p>count=1 / PREVIEW</p></article>
+      </div>
+    </section>
+    <!-- PIX2PI_358_CUSTOMER_ACTIVITY_SESSION_WATCH_END -->
+
+    <!-- PIX2PI_358_TRANSACTION_MUTATION_GUARD_WATCH_START -->
+    <section class="card locked" data-widget="transaction_mutation_guard_watch">
+      <h2>Transaction mutation guard watch</h2>
+      <div id="monitoring-safety-guards" class="grid-3">
+        <article class="monitoring-card" data-safety-code="REAL_CUSTOMER_DATA_MUTATION_DISABLED" data-safety-status="ENFORCED"><strong>REAL_CUSTOMER_DATA_MUTATION_DISABLED</strong><p>ENFORCED / value=false</p></article>
+        <!-- PIX2PI_358_BILLING_PAYMENT_DISABLED_WATCH_START -->
+        <article class="monitoring-card" data-safety-code="REAL_PAYMENT_DISABLED" data-safety-status="ENFORCED"><strong>REAL_PAYMENT_DISABLED</strong><p>ENFORCED / value=false</p></article>
+        <!-- PIX2PI_358_BILLING_PAYMENT_DISABLED_WATCH_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_358_TRANSACTION_MUTATION_GUARD_WATCH_END -->
+
+    <!-- PIX2PI_358_SLO_EARLY_WARNING_THRESHOLDS_START -->
+    <section class="card guard" data-widget="slo_early_warning_thresholds">
+      <h2>SLO / early warning thresholds</h2>
+      <div id="monitoring-thresholds" class="grid-4">
+        <article class="monitoring-card" data-threshold-metric="p1_incidents" data-threshold-status="OK"><strong>p1_incidents</strong><p>current=0 / warn_at=1 / OK</p></article>
+      </div>
+    </section>
+    <!-- PIX2PI_358_SLO_EARLY_WARNING_THRESHOLDS_END -->
+
+    <!-- PIX2PI_358_ROLLBACK_TRIGGER_CHECKLIST_START -->
+    <section class="card locked" data-widget="rollback_trigger_checklist">
+      <h2>Rollback trigger checklist</h2>
+      <div id="monitoring-rollback-checklist" class="grid-4">
+        <article class="monitoring-card" data-rollback-trigger="P1_INCIDENT" data-rollback-status="READY"><strong>P1_INCIDENT</strong><p>STOP_CUSTOMER_ACCESS / READY</p></article>
+      </div>
+    </section>
+    <!-- PIX2PI_358_ROLLBACK_TRIGGER_CHECKLIST_END -->
+
+    <!-- PIX2PI_358_DAILY_PILOT_REPORT_PREVIEW_START -->
+    <section class="card" data-widget="daily_pilot_report_preview">
+      <h2>Daily pilot report preview</h2>
+      <div id="monitoring-daily-report" class="grid-4">
+        <article class="monitoring-card" data-report-section="health" data-report-status="READY_PREVIEW"><strong>health</strong><p>READY_PREVIEW</p></article>
+      </div>
+    </section>
+    <!-- PIX2PI_358_DAILY_PILOT_REPORT_PREVIEW_END -->
+
+    <!-- PIX2PI_358_MONITORING_AUDIT_TIMELINE_START -->
+    <section class="card" data-widget="monitoring_audit_timeline">
+      <h2>Monitoring audit timeline</h2>
+      <div id="monitoring-audit-timeline" class="grid-3">
+        <article class="monitoring-card" data-audit-action="FIRST_DAY_WATCH_READY"><strong>FIRST_DAY_WATCH_READY</strong><p>2026-05-demo / system / DRY_RUN</p></article>
+      </div>
+    </section>
+    <!-- PIX2PI_358_MONITORING_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_358_MONITORING_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="monitoring_runtime_data_contract">
+      <h2>Monitoring runtime data contract</h2>
+      <p id="monitoring-runtime-contract">pilot_monitoring_preview_enabled=true / incident_watch_preview_enabled=true / ready_for_step_359=true</p>
+    </section>
+    <!-- PIX2PI_358_MONITORING_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_358_SEO_OPENGRAPH_MONITORING_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_monitoring_placeholder">
+      <h2>SEO / OpenGraph monitoring placeholder</h2>
+      <p>Title, description ve og:* metadata controlled pilot monitoring yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_358_SEO_OPENGRAPH_MONITORING_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_358_I18N_READY_MONITORING_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_monitoring_marker">
+      <h2 data-i18n="controlled_pilot_monitoring.i18n_ready">i18n-ready monitoring screen</h2>
+      <p data-i18n="controlled_pilot_monitoring.surface_ready">Controlled pilot monitoring ekranı çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_358_I18N_READY_MONITORING_MARKER_END -->
+  </main>
+  <!-- PIX2PI_358_CONTROLLED_PILOT_MONITORING_APP_SHELL_END -->
+
+  <script src="/assets/controlled-pilot-monitoring/controlled-pilot-monitoring-runtime.js"></script>
+  <script>
+    Pix2piControlledPilotMonitoring.bootMonitoringScreen().then(function (contract) {
+      console.log("PIX2PI_358_CONTROLLED_PILOT_MONITORING_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

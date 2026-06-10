@@ -1,0 +1,126 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "297",
+  "code": "FAZ_6_21_5_5",
+  "name": "Cost-performance raporu",
+  "depends_on": [
+    "FAZ_6_21_5_1",
+    "FAZ_6_21_5_2",
+    "FAZ_6_21_5_3",
+    "FAZ_6_21_5_4"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "production_change_allowed": false,
+  "cost_action_execute_allowed": false,
+  "required_controls": [
+    "compute_cost_dependency_gate",
+    "db_cost_dependency_gate",
+    "storage_log_cost_dependency_gate",
+    "cache_queue_cost_dependency_gate",
+    "cost_category_consolidation",
+    "performance_guard_summary",
+    "risk_impact_matrix",
+    "savings_priority_model",
+    "mutation_closed_policy",
+    "manual_approval_policy",
+    "slo_dr_data_safety_guard",
+    "tenant_isolation_guard",
+    "dry_run_report_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "report_categories": [
+    "compute",
+    "database",
+    "storage_log",
+    "cache_queue"
+  ],
+  "guard_policy": {
+    "slo_guard_required": true,
+    "dr_capacity_guard_required": true,
+    "data_safety_guard_required": true,
+    "tenant_isolation_guard_required": true,
+    "manual_approval_required": true,
+    "recommendation_only": true
+  },
+  "priority_model": {
+    "enabled": true,
+    "ranking_dimensions": [
+      "estimated_savings_level",
+      "risk_level",
+      "implementation_complexity",
+      "slo_risk",
+      "data_safety_risk",
+      "tenant_isolation_risk",
+      "approval_scope"
+    ],
+    "priority_values": [
+      "P1_REVIEW_FIRST",
+      "P2_REVIEW_NEXT",
+      "P3_BACKLOG",
+      "BLOCKED_HIGH_RISK"
+    ]
+  },
+  "mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "production_change_allowed": false,
+    "resize_allowed": false,
+    "delete_allowed": false,
+    "purge_allowed": false,
+    "retention_mutation_allowed": false,
+    "ttl_mutation_allowed": false,
+    "queue_mutation_allowed": false,
+    "db_mutation_allowed": false
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "any_provider_mutation",
+      "any_production_change",
+      "any_resize",
+      "any_delete",
+      "any_purge",
+      "any_retention_change",
+      "any_db_mutation",
+      "any_cache_queue_mutation"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "business_owner",
+      "data_owner",
+      "security_owner"
+    ]
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "report_id",
+      "category",
+      "recommendation_count",
+      "estimated_savings_level",
+      "risk_level",
+      "priority",
+      "guard_status",
+      "approval_required",
+      "mutation_allowed",
+      "next_action",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_any_dependency_missing": true,
+    "block_if_any_dependency_not_pass": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_production_change_allowed": true,
+    "block_if_missing_guard_summary": true,
+    "block_if_missing_risk_impact_matrix": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_5_5_COST_PERFORMANCE_RAPORU_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

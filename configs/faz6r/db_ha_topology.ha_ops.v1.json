@@ -1,0 +1,71 @@
+{
+  "version": "ha_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_2_1",
+  "status": "dry_run_only_no_db_ha_mutation",
+  "topology_id": "pix2pi-db-ha-topology-v1",
+  "nodes": [
+    {
+      "node": "postgres_primary",
+      "role": "primary",
+      "write_allowed": true,
+      "read_allowed": true,
+      "failover_candidate": false,
+      "replication_health_status": "SOURCE_OF_TRUTH",
+      "split_brain_guard_status": "REQUIRED",
+      "rto_minutes": 30,
+      "rpo_minutes": 5,
+      "mutation_allowed": false
+    },
+    {
+      "node": "postgres_sync_replica_candidate",
+      "role": "sync_replica_candidate",
+      "write_allowed": false,
+      "read_allowed": true,
+      "failover_candidate": true,
+      "replication_health_status": "REQUIRES_LAG_AND_WAL_CHECK",
+      "split_brain_guard_status": "REQUIRED",
+      "rto_minutes": 30,
+      "rpo_minutes": 5,
+      "mutation_allowed": false
+    },
+    {
+      "node": "postgres_async_read_replica",
+      "role": "async_read_replica",
+      "write_allowed": false,
+      "read_allowed": true,
+      "failover_candidate": false,
+      "replication_health_status": "READ_POOL_ONLY_REQUIRES_LAG_CHECK",
+      "split_brain_guard_status": "NOT_FAILOVER_CANDIDATE",
+      "rto_minutes": 60,
+      "rpo_minutes": 15,
+      "mutation_allowed": false
+    },
+    {
+      "node": "backup_pitr_chain",
+      "role": "backup_pitr_chain",
+      "write_allowed": false,
+      "read_allowed": false,
+      "failover_candidate": false,
+      "replication_health_status": "RESTORE_CHAIN_REQUIRES_EVIDENCE",
+      "split_brain_guard_status": "NOT_APPLICABLE",
+      "rto_minutes": 120,
+      "rpo_minutes": 15,
+      "mutation_allowed": false
+    }
+  ],
+  "routing": {
+    "write_target": "postgres_primary",
+    "read_pool": [
+      "postgres_sync_replica_candidate",
+      "postgres_async_read_replica"
+    ],
+    "route_mutation_allowed": false,
+    "dsn_mutation_allowed": false
+  },
+  "next_rehearsal": {
+    "step": "FAZ_6_21_2_2",
+    "name": "Replica failover provası",
+    "promotion_allowed_now": false
+  }
+}

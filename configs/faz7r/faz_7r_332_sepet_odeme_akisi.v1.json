@@ -1,0 +1,60 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "332",
+  "name": "Sepet / ödeme akışı",
+  "surface": "pos",
+  "domain": "pos.pix2pi.com.tr",
+  "path": "/checkout/",
+  "runtime_path": "/assets/checkout/pos-checkout-runtime.js",
+  "depends_on": [
+    "329 - pos.pix2pi.com.tr altyapısı",
+    "330 - Kasiyer giriş ekranı",
+    "331 - POS satış ekranı"
+  ],
+  "backend_contract": {
+    "checkout_draft_endpoint": "/api/pos/checkout/draft",
+    "payment_prepare_endpoint": "/api/pos/payments/prepare",
+    "receipt_draft_endpoint": "/api/pos/receipts/draft",
+    "method": "POST",
+    "tenant_header": "X-Tenant-ID",
+    "device_header": "X-POS-Device-ID",
+    "cashier_header": "X-POS-Cashier-Code"
+  },
+  "payment_methods": [
+    "CASH",
+    "CARD",
+    "QR"
+  ],
+  "runtime_contract": {
+    "real_payment_enabled": false,
+    "real_sale_finalize_enabled": false,
+    "real_stock_decrement_enabled": false,
+    "receipt_draft_enabled": true,
+    "checkout_draft_enabled": true,
+    "offline_payment_queue_enabled": false,
+    "ready_for_step_333": true
+  },
+  "session_storage": {
+    "tenant_key": "pix2pi.pos.tenant.preference",
+    "device_key": "pix2pi.pos.device.id",
+    "cashier_session_key": "pix2pi.pos.cashier.session",
+    "sale_draft_key": "pix2pi.pos.sale.draft",
+    "checkout_draft_key": "pix2pi.pos.checkout.draft"
+  },
+  "required_capabilities": [
+    "checkout_app_shell",
+    "cart_review_line_summary",
+    "payment_method_selection",
+    "cash_card_qr_placeholder",
+    "tender_change_calculation_contract",
+    "receipt_sale_completion_draft_payload",
+    "payment_provider_live_disabled_gate",
+    "real_sale_finalization_disabled_guard",
+    "tenant_device_cashier_scoped_payment_guard",
+    "offline_payment_queue_placeholder",
+    "checkout_session_storage_contract",
+    "i18n_ready_checkout_markers",
+    "checkout_smoke_test"
+  ],
+  "next_step": "333 - Offline-ready POS hazırlığı"
+}

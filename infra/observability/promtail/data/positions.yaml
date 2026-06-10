@@ -1,8 +1,5 @@
 positions:
-  /tmp/pix2pi_accounting.log: "431"
-  /tmp/pix2pi_reporting_service.log: "189"
-  /tmp/pix2pi_reporting_service_watchdog.log: "4733"
-  /tmp/pix2pi_service_snapshot_cron.log: "39"
+  /tmp/pix2pi_reporting_service.log: "56"
   /var/log/alternatives.log: "9632"
   /var/log/auth.log: "8170330"
   /var/log/bootstrap.log: "64549"

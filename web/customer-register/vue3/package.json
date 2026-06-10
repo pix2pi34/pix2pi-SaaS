@@ -1,0 +1,16 @@
+{
+  "name": "pix2pi-customer-register-vue3",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "latest",
+    "vite": "latest",
+    "typescript": "latest",
+    "vue": "latest"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,29 @@
+{
+  "phase": "FAZ 2-7.7.5",
+  "runtime": "version_compatibility",
+  "require_tenant": true,
+  "required_runtime_prefix": "pix2pi-plugin-runtime/",
+  "host_runtime_version": "pix2pi-plugin-runtime/v1.0.0",
+  "minimum_supported_runtime_version": "pix2pi-plugin-runtime/v1.0.0",
+  "maximum_supported_runtime_version": "pix2pi-plugin-runtime/v1.9.9",
+  "environment": "SANDBOX",
+  "compatibility_states": [
+    "COMPATIBLE",
+    "INCOMPATIBLE"
+  ],
+  "guards": [
+    "tenant_required",
+    "manifest_required",
+    "plugin_id_required",
+    "plugin_version_required",
+    "runtime_version_required",
+    "host_runtime_required",
+    "cross_tenant_denied",
+    "runtime_prefix_required",
+    "minimum_supported_runtime_guard",
+    "maximum_supported_runtime_guard",
+    "environment_match_required",
+    "tenant_safe_compatibility_state"
+  ],
+  "next_ready": "FAZ_2_7_7_6_PLUGIN_RUNTIME_TESTS"
+}

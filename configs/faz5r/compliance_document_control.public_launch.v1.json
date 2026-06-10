@@ -1,0 +1,138 @@
+{
+  "schema_version": "v1",
+  "phase": "FAZ_5_18_3_5",
+  "name": "compliance_document_control_public_launch",
+  "target": "FAZ_5_R_PUBLIC_LAUNCH",
+  "launch_mode": "COMMERCIAL_PUBLIC_LAUNCH_LEGAL_READINESS",
+  "public_launch_allowed": false,
+  "required_controls": {
+    "require_versioned_docs": true,
+    "require_kvkk_gate": true,
+    "require_legal_gate": true,
+    "require_founder_gate": true,
+    "require_no_public_draft_docs": true,
+    "require_data_supported_plan_disclosure": true,
+    "require_consent_registry_alignment": true,
+    "require_log_retention_alignment": true
+  },
+  "required_document_keys": [
+    "contract_set",
+    "kvkk_privacy_notice",
+    "explicit_consent_text",
+    "commercial_use_terms",
+    "consent_registry_policy",
+    "log_retention_destruction_policy"
+  ],
+  "documents": [
+    {
+      "key": "contract_set",
+      "title": "Sözleşme Seti",
+      "source_phase": "FAZ_5_18_3_1",
+      "owner": "commercial_legal",
+      "version": "v1.0-draft",
+      "status": "APPROVED_PRIVATE",
+      "required": true,
+      "public_publish_allowed": false,
+      "requires_legal_approval": true,
+      "requires_kvkk_approval": false,
+      "requires_founder_go_no_go": true
+    },
+    {
+      "key": "kvkk_privacy_notice",
+      "title": "KVKK / Gizlilik Metinleri",
+      "source_phase": "FAZ_5_18_3_2",
+      "owner": "kvkk",
+      "version": "v1.0-draft",
+      "status": "APPROVED_PRIVATE",
+      "required": true,
+      "public_publish_allowed": false,
+      "requires_legal_approval": false,
+      "requires_kvkk_approval": true,
+      "requires_founder_go_no_go": true,
+      "contains_data_use_scope": true
+    },
+    {
+      "key": "explicit_consent_text",
+      "title": "Açık Rıza Metni",
+      "source_phase": "FAZ_5_18_3_2",
+      "owner": "kvkk",
+      "version": "v1.0-draft",
+      "status": "APPROVED_PRIVATE",
+      "required": true,
+      "public_publish_allowed": false,
+      "requires_legal_approval": false,
+      "requires_kvkk_approval": true,
+      "requires_founder_go_no_go": true,
+      "contains_consent_scope": true,
+      "contains_data_use_scope": true
+    },
+    {
+      "key": "commercial_use_terms",
+      "title": "Ticari Kullanım Şartları",
+      "source_phase": "FAZ_5_18_3_4",
+      "owner": "commercial_legal",
+      "version": "v1.0-draft",
+      "status": "APPROVED_PRIVATE",
+      "required": true,
+      "public_publish_allowed": false,
+      "requires_legal_approval": true,
+      "requires_kvkk_approval": false,
+      "requires_founder_go_no_go": true
+    },
+    {
+      "key": "consent_registry_policy",
+      "title": "Consent Registry Policy",
+      "source_phase": "FAZ_5_18_3_4",
+      "owner": "kvkk",
+      "version": "v1.0-draft",
+      "status": "APPROVED_PRIVATE",
+      "required": true,
+      "public_publish_allowed": false,
+      "requires_legal_approval": false,
+      "requires_kvkk_approval": true,
+      "requires_founder_go_no_go": true,
+      "contains_consent_scope": true
+    },
+    {
+      "key": "log_retention_destruction_policy",
+      "title": "Log Retention / İmha Politikası",
+      "source_phase": "FAZ_5_18_3_3",
+      "owner": "security_compliance",
+      "version": "v1.0-draft",
+      "status": "APPROVED_PRIVATE",
+      "required": true,
+      "public_publish_allowed": false,
+      "requires_legal_approval": true,
+      "requires_kvkk_approval": true,
+      "requires_founder_go_no_go": true,
+      "contains_retention_scope": true
+    }
+  ],
+  "approval_gates": [
+    {
+      "key": "legal_counsel_approval",
+      "owner": "legal",
+      "status": "PENDING",
+      "blocks_public_publish": true
+    },
+    {
+      "key": "kvkk_consultant_approval",
+      "owner": "kvkk",
+      "status": "PENDING",
+      "blocks_public_publish": true
+    },
+    {
+      "key": "founder_go_no_go",
+      "owner": "founder",
+      "status": "PENDING",
+      "blocks_public_publish": true
+    }
+  ],
+  "final_policy": {
+    "legal_kvkk_texts_are_internal_draft_until_approval": true,
+    "production_public_publish_allowed": false,
+    "real_customer_collection_allowed": false,
+    "internal_readiness_audit_allowed": true,
+    "next_gate": "FAZ_5_18_4_1_SUPPORT_CHANNEL_SETUP"
+  }
+}

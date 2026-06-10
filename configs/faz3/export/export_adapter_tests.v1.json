@@ -1,0 +1,54 @@
+{
+  "phase": "FAZ_3_10_4_6_EXPORT_ADAPTER_TESTS",
+  "runtime": "export_adapter_test_suite",
+  "runtime_enabled": true,
+  "default_currency_code": "TRY",
+  "required_adapters": [
+    "ETA",
+    "LOGO",
+    "MIKRO",
+    "ZIRVE"
+  ],
+  "require_matrix_pass": true,
+  "require_file_count": 3,
+  "require_row_count": 3,
+  "require_package_hash": true,
+  "require_negative_tests": true,
+  "covered_modules": [
+    "FAZ_3_10_4_4_ETA_REAL_FORMAT_GENERATION",
+    "FAZ_3_10_4_1_LOGO_REAL_FORMAT_GENERATION",
+    "FAZ_3_10_4_2_MIKRO_REAL_FORMAT_GENERATION",
+    "FAZ_3_10_4_3_ZIRVE_REAL_FORMAT_GENERATION",
+    "FAZ_3_10_4_5_FORMAT_VALIDATION_MATRIX_RUNTIME"
+  ],
+  "positive_scenarios": [
+    "ETA_PACKAGE_READY",
+    "LOGO_PACKAGE_READY",
+    "MIKRO_PACKAGE_READY",
+    "ZIRVE_PACKAGE_READY",
+    "FORMAT_MATRIX_READY"
+  ],
+  "negative_scenarios": [
+    "INVALID_ACCOUNT_PREFIX_REJECTED",
+    "TENANT_MISMATCH_REJECTED",
+    "MISSING_POSTING_HASH_REJECTED"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "suite_id_required": true,
+    "period_code_required": true,
+    "fiscal_year_required": true,
+    "postings_required": true,
+    "adapter_file_count_required": true,
+    "adapter_row_count_required": true,
+    "adapter_package_hash_required": true,
+    "adapter_balance_required": true,
+    "matrix_pass_required": true,
+    "negative_tests_required": true,
+    "ready_for_export_family_closure_requires_all_pass": true
+  },
+  "next_gate": "FAZ_3_10_5_1_ACCOUNTANT_MULTI_FIRM_ACCESS_RUNTIME"
+}

@@ -1,0 +1,28 @@
+{
+  "phase": "FAZ 2-7.1.1",
+  "runtime": "service_registration_endpoint",
+  "path": "/ops/registry/register",
+  "method": "POST",
+  "tenant_header": "X-Tenant-ID",
+  "require_tenant_header": true,
+  "allow_body_tenant_fallback": false,
+  "allow_metadata_persistence": true,
+  "default_metadata_visibility": "INTERNAL",
+  "guards": [
+    "post_method_required",
+    "path_required",
+    "tenant_header_required",
+    "cross_tenant_body_denied",
+    "registry_required",
+    "valid_json_body_required",
+    "service_name_required",
+    "metadata_persistence_bridge",
+    "endpoint_audit_decision_fields"
+  ],
+  "bridges": [
+    "instance_metadata_runtime",
+    "register_or_update_instance",
+    "upsert_metadata"
+  ],
+  "next_ready": "FAZ_2_7_1_2_RUNTIME_HEARTBEAT_HEALTH_PUSH_PULL"
+}

@@ -1,0 +1,47 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 196,
+  "step": "FAZ_4_16_1_2",
+  "title": "Tenant config şablonları",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "192_FAZ_4_16_1_4_PILOT_VERI_SINIRLARI_TANIMI",
+    "193_FAZ_4_16_1_5_TENANT_ACCEPTANCE_CHECKLIST",
+    "194_FAZ_4_16_1_6_ONBOARDING_SMOKE",
+    "195_FAZ_4_16_1_1_PILOT_TENANT_ACILIS_AKISI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "template_artifact": "configs/faz4r/tenant_config_template.controlled_pilot.v1.json",
+  "template_policy": {
+    "template_status_required": "READY",
+    "tenant_scope_required": "SINGLE_TENANT",
+    "pilot_mode_required": "CONTROLLED_PILOT",
+    "timezone_required": "Europe/Istanbul",
+    "language_required": "tr-TR",
+    "default_currency_required": "TRY",
+    "critical_issue_limit_required": 0,
+    "audit_evidence_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_config_sections": [
+    "tenant_identity",
+    "locale",
+    "isolation",
+    "module_flags",
+    "pilot_limits",
+    "import_policy",
+    "uat_policy",
+    "support_policy",
+    "rollback_policy",
+    "security_policy",
+    "audit_policy",
+    "external_policy"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "197_FAZ_4_16_1_3_KULLANICI_ROL_ILK_KURULUMU"
+  ]
+}

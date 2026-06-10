@@ -1,0 +1,8 @@
+smoke	status	note
+all_6_reporting_endpoints	PASS	in_process_httptest
+bearer_auth_gate	PASS	missing_bearer_returns_401
+tenant_header_gate	PASS	missing_tenant_returns_400
+tenant_mismatch_gate	PASS	mismatch_returns_403
+method_gate	PASS	post_returns_405
+query_text_leak_gate	PASS	response_does_not_expose_raw_sql
+runtime_start_gate	PASS	no_port_no_listen

@@ -1,0 +1,9 @@
+step_no	step_id	component_name	purpose	blocking	required	status
+1	template	ImportTemplateStep	import template selection	YES	YES	contract_only
+2	upload	ImportUploadStep	file upload placeholder	YES	YES	contract_only
+3	mapping	ImportMappingStep	column mapping	YES	YES	contract_only
+4	validation	ImportValidationStep	pre-validation	YES	YES	contract_only
+5	preview	ImportPreviewStep	staged row preview	YES	YES	contract_only
+6	error_download	ImportErrorDownloadStep	error list download	NO	YES	contract_only
+7	commit_plan	ImportCommitPlanStep	controlled commit plan	YES	YES	contract_only
+8	history_link	ImportHistoryLinkStep	import history and flow link	NO	YES	contract_only

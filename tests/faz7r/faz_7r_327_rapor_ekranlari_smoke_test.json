@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "327",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "reports_screen",
+      "path": "/reports/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_327_REPORTS_APP_SHELL_START",
+        "PIX2PI_327_KPI_SUMMARY_CARDS_START",
+        "PIX2PI_327_REPORTING_STORE_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "reports_runtime",
+      "path": "/assets/reports/reports-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_327_REPORTS_RUNTIME_START",
+        "tenantScopedHeaders",
+        "buildExportPayload"
+      ]
+    }
+  ]
+}

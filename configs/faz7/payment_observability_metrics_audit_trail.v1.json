@@ -1,0 +1,60 @@
+{
+  "module_code": "7-5P.10",
+  "module_name": "Payment Observability / Metrics / Audit Trail Readiness",
+  "parent_module": "7-5P",
+  "depends_on": [
+    "7-5P",
+    "7-5P.1",
+    "7-5P.2",
+    "7-5P.3",
+    "7-5P.4",
+    "7-5P.5",
+    "7-5P.6",
+    "7-5P.7",
+    "7-5P.8",
+    "7-5P.9"
+  ],
+  "observability_version": "payment_observability_metrics_audit_trail.v1",
+  "metrics": [
+    "payment_operation_total",
+    "payment_operation_authorize_total",
+    "payment_operation_capture_total",
+    "payment_operation_refund_total",
+    "payment_operation_void_total",
+    "payment_webhook_verified_total",
+    "payment_failed_total",
+    "payment_retry_allowed_total",
+    "payment_retry_denied_total",
+    "payment_retry_non_retryable_total",
+    "payment_duplicate_webhook_total",
+    "payment_audit_trail_total"
+  ],
+  "audit_trail_fields": [
+    "tenant_id",
+    "attempt_id",
+    "provider_code",
+    "operation",
+    "status",
+    "event_type",
+    "error_code",
+    "correlation_id",
+    "idempotency_key",
+    "message",
+    "occurred_at"
+  ],
+  "guards": {
+    "tenant_audit_trail_required": true,
+    "failed_payment_metric_required": true,
+    "retry_metric_required": true,
+    "duplicate_webhook_metric_required": true,
+    "snapshot_export_required": true,
+    "final_status_from_counters_required": true,
+    "hardcoded_final_ok_forbidden": true
+  },
+  "test_strategy": {
+    "go_test_required": true,
+    "test_names_verified_from_output": true,
+    "metric_snapshot_verified": true,
+    "tenant_audit_export_verified": true
+  }
+}

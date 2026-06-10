@@ -1,0 +1,14 @@
+{
+  "name": "Pix2pi Pilot Mobile PWA",
+  "short_name": "Pix2pi PWA",
+  "description": "Pix2pi pilot mobile-ready işletme yüzeyi",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "lang": "tr",
+  "categories": ["business", "productivity"],
+  "icons": []
+}

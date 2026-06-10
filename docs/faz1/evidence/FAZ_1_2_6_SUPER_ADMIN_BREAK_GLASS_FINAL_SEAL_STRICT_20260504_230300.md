@@ -1,0 +1,16 @@
+# FAZ 1-2.6 Super-admin / Break-glass Final Seal Strict
+
+- Tarih: 2026-05-04T23:03:01+03:00
+- Evidence file: /root/pix2pi/pix2pi-SaaS/docs/faz1/evidence/FAZ_1_2_6_SUPER_ADMIN_BREAK_GLASS_STRICT_RESEAL_REAL_IMPLEMENTATION_AUDIT.md
+- Strict suite file: /root/pix2pi/pix2pi-SaaS/scripts/security/faz_1_2_6_super_admin_break_glass_strict_suite.sh
+- Doc file: /root/pix2pi/pix2pi-SaaS/docs/faz1/security/FAZ_1_2_6_SUPER_ADMIN_BREAK_GLASS.md
+
+FAZ_1_2_6_SUPER_ADMIN_ROLE_MODEL_STATUS=N/A
+FAZ_1_2_6_BREAK_GLASS_REASON_REQUIRED_STATUS=N/A
+FAZ_1_2_6_TIMED_ACCESS_STATUS=N/A
+FAZ_1_2_6_ADMIN_ACTION_AUDIT_STATUS=N/A
+FAZ_1_2_6_ALERT_EVENT_STATUS=N/A
+FAZ_1_2_6_ABUSE_TEST_STATUS=N/A
+FAZ_1_2_6_SUPER_ADMIN_BREAK_GLASS_FINAL_STATUS=N/A
+FAZ_1_2_6_SUPER_ADMIN_BREAK_GLASS_SEAL_STATUS=N/A
+FAZ_1_2_4_READY=YES

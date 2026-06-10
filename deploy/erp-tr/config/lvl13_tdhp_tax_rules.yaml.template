@@ -1,0 +1,18 @@
+version: v1
+tdhp_rules:
+  version: __TDHP_VERSION__
+  default_currency: __TDHP_DEFAULT_CURRENCY__
+  reconciliation_mode: __TDHP_RECONCILIATION_MODE__
+  audit_trace_enabled: __TDHP_AUDIT_TRACE_ENABLED__
+  document_rule_mode: __TDHP_DOCUMENT_RULE_MODE__
+  validation_profile: __TDHP_VALIDATION_PROFILE__
+
+tax_rules:
+  kdv_default_percent: __KDV_DEFAULT_PERCENT__
+  kdv_reduced_percent: __KDV_REDUCED_PERCENT__
+  kdv_super_reduced_percent: __KDV_SUPER_REDUCED_PERCENT__
+  withholding_enabled: __WITHHOLDING_ENABLED__
+  withholding_default_percent: __WITHHOLDING_DEFAULT_PERCENT__
+  exemption_mode: __TAX_EXEMPTION_MODE__
+  rule_version: __TAX_RULE_VERSION__
+  tax_audit_enabled: __TAX_AUDIT_ENABLED__

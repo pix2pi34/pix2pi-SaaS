@@ -1,0 +1,14 @@
+evidence_name	category	owner_role	required_for_uat	required_for_go_live	acceptance_format	blocker_if_missing	implementation_status	note
+tenant_identity_evidence	tenant	platform_admin	YES	YES	masked tenant id/uuid note	YES	READY_FOR_IMPLEMENTATION	contract_only
+role_permission_evidence	rbac	tenant_admin	YES	YES	role permission matrix	YES	READY_FOR_IMPLEMENTATION	contract_only
+tenant_isolation_evidence	security	security_admin	YES	YES	tenant scoped access check	YES	READY_FOR_IMPLEMENTATION	contract_only
+store_branch_cashdesk_evidence	business_setup	tenant_admin	YES	YES	store/branch/cashdesk checklist	YES	READY_FOR_IMPLEMENTATION	contract_only
+product_catalog_evidence	product	tenant_operator	YES	YES	sample product list/template	YES	READY_FOR_IMPLEMENTATION	contract_only
+opening_stock_evidence	inventory	tenant_operator	YES	YES	stock count/import evidence	YES	READY_FOR_IMPLEMENTATION	contract_only
+sales_flow_evidence	sales	cashier	YES	YES	sale/refund/cancel UAT evidence	YES	READY_FOR_IMPLEMENTATION	contract_only
+inventory_movement_evidence	inventory	tenant_operator	YES	YES	movement quantity matches sale	YES	READY_FOR_IMPLEMENTATION	contract_only
+accounting_mapping_evidence	accounting	accountant	YES	YES	TDHP journal/ledger review	YES	READY_FOR_IMPLEMENTATION	contract_only
+audit_trail_evidence	audit	tenant_admin	YES	YES	actor/request/tenant audit evidence	YES	READY_FOR_IMPLEMENTATION	contract_only
+support_loop_evidence	support	support	YES	YES	support/incident loop evidence	YES	READY_FOR_IMPLEMENTATION	contract_only
+training_completion_evidence	training	trainer	NO	YES	training attendance/completion note	NO	READY_FOR_IMPLEMENTATION	contract_only
+go_no_go_evidence	rollout	project_owner	YES	YES	signed go/no-go decision	YES	READY_FOR_IMPLEMENTATION	contract_only

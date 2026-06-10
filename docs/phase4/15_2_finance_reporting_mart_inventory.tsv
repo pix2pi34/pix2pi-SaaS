@@ -1,0 +1,5 @@
+table	status	tenant_id_required	period_or_date_key	currency_code	note
+finance_daily_summaries	YES	YES	summary_date	YES	reporting_mart.finance_daily_summaries
+finance_journal_summaries	YES	YES	period_key	YES	reporting_mart.finance_journal_summaries
+finance_tax_summaries	YES	YES	period_key	YES	reporting_mart.finance_tax_summaries
+finance_tenant_kpis	YES	YES	period_key	YES	reporting_mart.finance_tenant_kpis

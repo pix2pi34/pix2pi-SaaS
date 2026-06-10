@@ -1,0 +1,136 @@
+{
+  "phase": "FAZ 5-R",
+  "step_no": 243,
+  "step_code": "FAZ_5_18_3_2",
+  "slug": "faz_5_18_3_2_kvkk_gizlilik_metinleri",
+  "module": "commercial_public_launch_privacy",
+  "title_tr": "KVKK / gizlilik metinleri",
+  "set_version": "0.1.0-draft",
+  "status": "DRAFT",
+  "public_publish_allowed": false,
+  "public_core_product_allowed": true,
+  "data_monetization_public_allowed": false,
+  "legal_approval_required": true,
+  "kvkk_approval_required": true,
+  "production_ready": false,
+  "separation_rules": {
+    "privacy_notice_separate_from_explicit_consent": true,
+    "cookie_policy_separate": true,
+    "commercial_electronic_message_consent_separate": true,
+    "data_supported_plan_contract_terms_separate_from_personal_data_consent": true
+  },
+  "approval_gates": {
+    "hukukcu_onayi": {
+      "status": "PENDING",
+      "required_for_public_launch": true
+    },
+    "kvkk_danismani_onayi": {
+      "status": "PENDING",
+      "required_for_public_launch": true
+    },
+    "founder_go_no_go": {
+      "status": "PENDING",
+      "required_for_public_launch": true
+    }
+  },
+  "runtime_contract": {
+    "consent_registry_required": true,
+    "consent_versioning_required": true,
+    "consent_revocation_required": true,
+    "tenant_scoped_consent_required": true,
+    "user_scoped_consent_required": true,
+    "evidence_hash_required": true,
+    "feature_gate_integration_required": true,
+    "data_pipeline_guard_required": true,
+    "commercial_message_consent_guard_required": true,
+    "cookie_preference_guard_required": true
+  },
+  "privacy_documents": [
+    {
+      "slug": "privacy_notice",
+      "title_tr": "KVKK Aydınlatma Metni",
+      "file": "privacy/faz5r/public_launch/privacy_notice.tr.md",
+      "status": "DRAFT",
+      "version": "0.1.0-draft",
+      "public_publish_allowed": false,
+      "required_approvals": ["kvkk_danismani_onayi", "hukukcu_onayi"]
+    },
+    {
+      "slug": "privacy_policy",
+      "title_tr": "Gizlilik Politikası",
+      "file": "privacy/faz5r/public_launch/privacy_policy.tr.md",
+      "status": "DRAFT",
+      "version": "0.1.0-draft",
+      "public_publish_allowed": false,
+      "required_approvals": ["kvkk_danismani_onayi", "hukukcu_onayi"]
+    },
+    {
+      "slug": "explicit_consent",
+      "title_tr": "Açık Rıza Metni",
+      "file": "privacy/faz5r/public_launch/explicit_consent.tr.md",
+      "status": "DRAFT",
+      "version": "0.1.0-draft",
+      "public_publish_allowed": false,
+      "required_approvals": ["kvkk_danismani_onayi", "hukukcu_onayi"]
+    },
+    {
+      "slug": "cookie_policy",
+      "title_tr": "Çerez Politikası",
+      "file": "privacy/faz5r/public_launch/cookie_policy.tr.md",
+      "status": "DRAFT",
+      "version": "0.1.0-draft",
+      "public_publish_allowed": false,
+      "required_approvals": ["kvkk_danismani_onayi", "hukukcu_onayi"]
+    },
+    {
+      "slug": "commercial_electronic_message_consent",
+      "title_tr": "Ticari Elektronik İleti Onayı",
+      "file": "privacy/faz5r/public_launch/commercial_electronic_message_consent.tr.md",
+      "status": "DRAFT",
+      "version": "0.1.0-draft",
+      "public_publish_allowed": false,
+      "required_approvals": ["kvkk_danismani_onayi", "hukukcu_onayi"]
+    },
+    {
+      "slug": "data_processing_inventory",
+      "title_tr": "Veri İşleme Envanteri",
+      "file": "privacy/faz5r/public_launch/data_processing_inventory.tr.md",
+      "status": "DRAFT",
+      "version": "0.1.0-draft",
+      "public_publish_allowed": false,
+      "required_approvals": ["kvkk_danismani_onayi"]
+    },
+    {
+      "slug": "privacy_preference_matrix",
+      "title_tr": "Gizlilik Tercih Matrisi",
+      "file": "privacy/faz5r/public_launch/privacy_preference_matrix.tr.md",
+      "status": "DRAFT",
+      "version": "0.1.0-draft",
+      "public_publish_allowed": false,
+      "required_approvals": ["kvkk_danismani_onayi", "hukukcu_onayi"]
+    },
+    {
+      "slug": "consent_registry_runtime_contract",
+      "title_tr": "Consent Registry Runtime Contract",
+      "file": "privacy/faz5r/public_launch/consent_registry_runtime_contract.tr.md",
+      "status": "DRAFT",
+      "version": "0.1.0-draft",
+      "public_publish_allowed": false,
+      "required_approvals": ["kvkk_danismani_onayi", "hukukcu_onayi"]
+    }
+  ],
+  "required_consent_scopes": [
+    "DATA_SUPPORTED_PLAN_TERMS",
+    "PERSONAL_DATA_COMMERCIAL_RECOMMENDATION",
+    "SPONSORED_OFFER_PERSONALIZATION",
+    "ANONYMIZED_AGGREGATED_INSIGHT",
+    "AI_DECISION_SUPPORT",
+    "COMMERCIAL_ELECTRONIC_MESSAGE",
+    "NON_ESSENTIAL_COOKIES"
+  ],
+  "next_step": {
+    "step_no": 244,
+    "step_code": "FAZ_5_18_3_4",
+    "ready_when_this_passes": true
+  }
+}

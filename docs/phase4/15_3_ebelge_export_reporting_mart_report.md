@@ -1,0 +1,130 @@
+# FAZ 4B / 15.3 - e-Belge / Export Reporting Mart Report
+
+Generated at: 2026-04-28 07:43:51 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+MIGRATION_BASE=20260428_153001_ebelge_export_reporting_mart
+UP_FILE=db/migrations/20260428_153001_ebelge_export_reporting_mart.up.sql
+DOWN_FILE=db/migrations/20260428_153001_ebelge_export_reporting_mart.down.sql
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=YES
+MIGRATION_APPLY_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+VALIDATION_MODE=EBELGE_EXPORT_REPORTING_MART_MIGRATION_PAIR_ONLY
+PREVIOUS_14_FINAL_STATUS=PASS
+PREVIOUS_14_MIGRATION_LIFECYCLE_IMPORT_TESTS=PASS
+PREVIOUS_15_2_FINAL_STATUS=PASS
+PREVIOUS_15_2_FINANCE_REPORTING_MART=PASS
+PREVIOUS_15_2_DB_APPLY_EXECUTED=NO
+UP_FILE_SHA256=432419702a0eac2d63b2f8e5e53506e7fee5e787fcb208aca75694b7446461cb
+DOWN_FILE_SHA256=2a0c1acfd59de366254f17a23fdb2f046821ba1211187f2c195f79ceb3a4f40c
+CREATE_SCHEMA_COUNT=1
+EBELGE_EXPORT_TABLE_COUNT=7
+EBELGE_EXPORT_EXPECTED_TABLE_MISSING_COUNT=0
+EBELGE_EXPORT_TENANT_ID_COLUMN_COUNT=7
+EBELGE_EXPORT_PERIOD_KEY_COLUMN_COUNT=7
+EBELGE_EXPORT_SUMMARY_DATE_COLUMN_COUNT=1
+EBELGE_EXPORT_EBELGE_TYPE_COLUMN_COUNT=3
+EBELGE_EXPORT_PROVIDER_CODE_COLUMN_COUNT=4
+EBELGE_EXPORT_STATUS_CODE_COLUMN_COUNT=5
+EBELGE_EXPORT_NUMERIC_AMOUNT_COLUMN_COUNT=12
+EBELGE_EXPORT_UNIQUE_CONSTRAINT_COUNT=7
+EBELGE_EXPORT_INDEX_COUNT=16
+EBELGE_EXPORT_DOWN_DROP_TABLE_COUNT=7
+DROP_TABLE_IN_UP=0
+TRUNCATE_IN_UP=0
+ALTER_SYSTEM_IN_UP=0
+DOCKER_IN_UP=0
+SYSTEMCTL_IN_UP=0
+PSQL_IN_UP=0
+CURRENT_MIGRATION_SQL_FILE_COUNT=52
+CURRENT_MIGRATION_INVALID_NAME_COUNT=0
+CURRENT_MIGRATION_PAIR_COUNT=26
+CURRENT_MIGRATION_MISSING_PAIR_COUNT=0
+CURRENT_MIGRATION_DUPLICATE_PAIR_COUNT=0
+EBELGE_EXPORT_MIGRATION_PAIR=PASS
+EBELGE_EXPORT_SCHEMA_STATUS=PASS
+EBELGE_EXPORT_TABLE_STATUS=PASS
+EBELGE_EXPORT_TENANT_SAFETY_STATUS=PASS
+EBELGE_EXPORT_PERIOD_STATUS=PASS
+EBELGE_EXPORT_EBELGE_TYPE_STATUS=PASS
+EBELGE_EXPORT_PROVIDER_STATUS=PASS
+EBELGE_EXPORT_INDEX_STATUS=PASS
+EBELGE_EXPORT_DOWN_STATUS=PASS
+EBELGE_EXPORT_RISK_STATUS=PASS
+EBELGE_EXPORT_CHAIN_STATUS=PASS
+EBELGE_EXPORT_INVENTORY_LINE_COUNT=8
+EBELGE_EXPORT_MATRIX_LINE_COUNT=17
+EBELGE_EXPORT_REPORTING_MART=PASS
+FAZ4B_15_3_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+EBELGE_EXPORT_REPORTING_MART=PASS
+FAZ4B_15_3_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+TOOL_sha256sum=FOUND
+
+## Inventory
+INVENTORY_FILE=docs/phase4/15_3_ebelge_export_reporting_mart_inventory.tsv
+table	status	tenant_id_required	period_key	summary_date	type_or_provider	note
+ebelge_daily_summaries	YES	YES	YES	YES	ebelge_type	reporting_mart.ebelge_daily_summaries
+ebelge_document_status_summaries	YES	YES	YES	NO	ebelge_type	reporting_mart.ebelge_document_status_summaries
+ebelge_error_summaries	YES	YES	YES	NO	ebelge_type	reporting_mart.ebelge_error_summaries
+accounting_export_batch_summaries	YES	YES	YES	NO	provider_code	reporting_mart.accounting_export_batch_summaries
+accounting_export_provider_summaries	YES	YES	YES	NO	provider_code	reporting_mart.accounting_export_provider_summaries
+accounting_export_error_summaries	YES	YES	YES	NO	provider_code	reporting_mart.accounting_export_error_summaries
+accounting_export_tenant_kpis	YES	YES	YES	NO	provider_code	reporting_mart.accounting_export_tenant_kpis
+
+## Matrix
+MATRIX_FILE=docs/phase4/15_3_ebelge_export_reporting_mart_matrix.tsv
+gate	status	note
+previous_14	PASS	migration lifecycle prerequisite
+previous_15_2	PASS	finance reporting prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=7
+tenant_safety	PASS	tenant_id=7
+period_date	PASS	period=7 summary_date=1
+ebelge_type	PASS	ebelge_type=3
+provider	PASS	provider_code=4
+indexes	PASS	index_count=16
+down_migration	PASS	drop_table_count=7
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=26
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+query_text_printed	NO	secret-safe report
+
+## Migration Files
+UP_FILE=db/migrations/20260428_153001_ebelge_export_reporting_mart.up.sql
+DOWN_FILE=db/migrations/20260428_153001_ebelge_export_reporting_mart.down.sql
+UP_FILE_SHA256=432419702a0eac2d63b2f8e5e53506e7fee5e787fcb208aca75694b7446461cb
+DOWN_FILE_SHA256=2a0c1acfd59de366254f17a23fdb2f046821ba1211187f2c195f79ceb3a4f40c
+
+## Safety Decision
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=YES
+MIGRATION_APPLY_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+QUERY_TEXT_PRINTED=NO

@@ -1,0 +1,18 @@
+{
+  "phase": "FAZ 2-7.1.6",
+  "runtime": "registry_runtime_integration_tests",
+  "test_scope": [
+    "instance_metadata_persistence",
+    "stale_instance_auto_cleanup",
+    "tenant_aware_registry_visibility",
+    "cross_tenant_registry_deny",
+    "registry_runtime_deny_cases"
+  ],
+  "required_test_package": "./internal/platform/ops/runtime",
+  "final_gate": {
+    "go_test_status": "PASS",
+    "fail_count": 0,
+    "seal_status": "SEALED"
+  },
+  "next_ready": "FAZ_2_7_1_1_SERVICE_REGISTRATION_ENDPOINT"
+}

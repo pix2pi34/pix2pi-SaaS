@@ -1,0 +1,153 @@
+#!/bin/bash
+# FAZ 1-2.4 AUTH USER SCOPES FIX V10
+# FIX V9 HATASI: expired scope still active (Lifecycle trigger eksikti)
+# FIX V10: Lifecycle management trigger eklendi (tfn_user_scopes_manage_lifecycle)
+
+set -euo pipefail
+
+# 1. Ortam Yükleme
+source /root/pix2pi/common.env
+source /root/pix2pi/pix2pi-SaaS/.env
+DB_DSN=$(grep -E '^DATABASE_URL=' /root/pix2pi/pix2pi-SaaS/.env | cut -d'=' -f2-)
+
+# 2. Diziner
+BACKUP_DIR="/root/pix2pi/pix2pi-SaaS/backups/faz1/faz_1_2_4_user_scopes_fix_v10_$(date +%Y%m%d_%H%M%S)"
+mkdir -p "$BACKUP_DIR/suite_runtime"
+mkdir -p /root/pix2pi/pix2pi-SaaS/docs/faz1/evidence
+
+# 3. Lifecycle Trigger ve Function SQL
+cat > "$BACKUP_DIR/suite_runtime/user_scopes_lifecycle_trigger_v10.sql" << 'SQL_LIFECYCLE'
+-- FIX V10: Lifecycle Management Trigger
+-- Süresi dolan scope'ların is_active durumunu otomatik yönet
+
+CREATE OR REPLACE FUNCTION auth.tfn_user_scopes_manage_lifecycle()
+RETURNS TRIGGER AS $$ BEGIN
+    -- Denetim alanlarını güncelle
+    NEW.updated_at = now();
+    
+    -- Senkronizasyon Mantığı:
+    -- Eğer valid_to geçmişse, is_active FALSE olmalı (expire)
+    IF NEW.valid_to IS NOT NULL AND NEW.valid_to < now() THEN
+        NEW.is_active := FALSE;
+    -- Eğer valid_from gelecekteyse, is_active FALSE olmalı (pending)
+    ELSIF NEW.valid_from IS NOT NULL AND NEW.valid_from > now() THEN
+        NEW.is_active := FALSE;
+    -- Geçerli aralıktaysa ve manuel olarak deaktif edilmemişse TRUE
+    ELSE
+        -- valid_from <= now AND (valid_to IS NULL OR valid_to > now)
+        -- Burada kullanıcının manuel deaktif etmesi durumuna saygı duyuyoruz,
+        -- ancak süre dolmuşsa yukarıdaki kural bunu eziyor.
+        IF NEW.is_active IS NULL THEN
+            NEW.is_active := TRUE;
+        END IF;
+    END IF;
+
+    RETURN NEW;
+END;
+ $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Trigger'ı oluştur (önce varsa düşür)
+DROP TRIGGER IF EXISTS trg_user_scopes_lifecycle ON auth.user_scopes;
+CREATE TRIGGER trg_user_scopes_lifecycle
+BEFORE INSERT OR UPDATE ON auth.user_scopes
+FOR EACH ROW
+EXECUTE FUNCTION auth.tfn_user_scopes_manage_lifecycle();
+
+-- Mevcut veriyi düzelt (retroaktif sync)
+UPDATE auth.user_scopes
+SET is_active = FALSE
+WHERE valid_to IS NOT NULL AND valid_to < now() AND is_active = TRUE;
+
+UPDATE auth.user_scopes
+SET is_active = FALSE
+WHERE valid_from IS NOT NULL AND valid_from > now() AND is_active = TRUE;
+
+SQL_LIFECYCLE
+
+# 4. Güncellenmiş Test Suite (Lifecycle trigger'ı test edecek)
+cat > "$BACKUP_DIR/suite_runtime/user_scope_lifecycle_suite_fix_v10.sql" << 'SQL_TEST'
+\echo 'FAZ 1-2.4 User Scope Lifecycle Suite V10 Start'
+
+DO $$ DECLARE
+    v_test_user_id uuid := '00000000-0000-0000-0000-000000000001'::uuid;
+    v_scope_id uuid;
+    v_is_active boolean;
+BEGIN
+    -- Hazırlık
+    PERFORM auth.set_tenant_context('00000000-0000-0000-0000-000000000001'::uuid);
+    
+    DELETE FROM auth.user_scopes WHERE user_id = v_test_user_id;
+    
+    -- TEST 1: Geçerli bir scope ekle
+    INSERT INTO auth.user_scopes (user_id, scope_key, is_active, valid_from, valid_to)
+    VALUES (v_test_user_id, 'test::active', TRUE, now() - interval '1 day', now() + interval '1 day')
+    RETURNING id INTO v_scope_id;
+    
+    SELECT is_active INTO v_is_active FROM auth.user_scopes WHERE id = v_scope_id;
+    IF v_is_active IS NOT TRUE THEN
+        RAISE EXCEPTION 'Test 1 Fail: Valid scope should be active';
+    END IF;
+    RAISE NOTICE 'Test 1 Pass: Valid scope is active';
+
+    -- TEST 2: Scope'u süre dolumuna güncelle (Trigger tetiklenmeli)
+    UPDATE auth.user_scopes 
+    SET valid_to = now() - interval '1 hour' 
+    WHERE id = v_scope_id;
+    
+    SELECT is_active INTO v_is_active FROM auth.user_scopes WHERE id = v_scope_id;
+    
+    -- FIX V10 HEDEFİ: Bu noktada is_active FALSE olmalı
+    IF v_is_active IS TRUE THEN
+        RAISE EXCEPTION 'Test 2 Fail: Expired scope still active (Trigger failed?)';
+    END IF;
+    RAISE NOTICE 'Test 2 Pass: Expired scope automatically deactivated';
+
+    -- TEST 3: Geçmiş tarihli scope ekle (Insert anında trigger çalışmalı)
+    INSERT INTO auth.user_scopes (user_id, scope_key, is_active, valid_from, valid_to)
+    VALUES (v_test_user_id, 'test::expired', TRUE, now() - interval '2 days', now() - interval '1 day')
+    RETURNING id INTO v_scope_id;
+    
+    SELECT is_active INTO v_is_active FROM auth.user_scopes WHERE id = v_scope_id;
+    
+    IF v_is_active IS TRUE THEN
+        RAISE EXCEPTION 'Test 3 Fail: Inserted expired scope is active';
+    END IF;
+    RAISE NOTICE 'Test 3 Pass: Inserted expired scope is inactive';
+
+    -- Temizlik
+    DELETE FROM auth.user_scopes WHERE user_id = v_test_user_id;
+    
+    RAISE NOTICE 'FAZ 1-2.4 Lifecycle Suite V10 Completed Successfully';
+END $$;
+
+SQL_TEST
+
+# 5. Uygulama ve Test
+echo "Lifecycle Trigger uygulanıyor..."
+psql "$DB_DSN" -v ON_ERROR_STOP=1 -f "$BACKUP_DIR/suite_runtime/user_scopes_lifecycle_trigger_v10.sql"
+echo "Lifecycle Test Suite çalıştırılıyor..."
+psql "$DB_DSN" -v ON_ERROR_STOP=1 -f "$BACKUP_DIR/suite_runtime/user_scope_lifecycle_suite_fix_v10.sql"
+
+# 6. Dokümantasyon
+cat > /root/pix2pi/pix2pi-SaaS/docs/faz1/security/FAZ_1_2_4_AUTH_USER_SCOPES.md << 'DOC_EOF'
+# FAZ 1-2.4 Auth User Scopes
+
+## Durum
+- **Status**: ACTIVE (FIX V10)
+- **Tarih**: $(date +%Y-%m-%d)
+
+## Açıklama
+Kullanıcı izin kapsamlarını (scopes) yöneten modül.
+
+## FIX V10 Değişiklikleri
+1. `auth.tfn_user_scopes_manage_lifecycle` function eklendi.
+2. `auth.user_scopes` tablosuna `BEFORE INSERT OR UPDATE` trigger eklendi.
+3. `valid_to < now()` durumunda `is_active` otomatik `FALSE` yapılıyor.
+
+## Tablolar
+- `auth.user_scopes`
+- `auth.user_scope_audit`
+
+DOC_EOF
+
+echo "===== FAZ 1-2.4 AUTH USER SCOPES FIX V10 COMPLETE ====="

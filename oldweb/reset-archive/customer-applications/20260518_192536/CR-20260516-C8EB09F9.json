@@ -1,0 +1,111 @@
+{
+  "id": "CR-20260516-C8EB09F9",
+  "status": "ACTIVE",
+  "tenantProvisioned": false,
+  "adminApprovalRequired": true,
+  "mailStatus": "SENT",
+  "source": "customer-register-business-form-live",
+  "submittedAt": "2026-05-16T19:06:23.726Z",
+  "taxNo": "1234567890",
+  "taxOffice": "İstanbul Test Vergi Dairesi",
+  "companyName": "Pix2pi Test Firma 20260516220623",
+  "address": "Test Mahallesi Test Sokak No 1",
+  "district": "Üsküdar",
+  "city": "İstanbul",
+  "phone": "",
+  "website": "",
+  "mersisNo": "012345678900001",
+  "tradeRegistryNo": "",
+  "email": "surucukursu58@gmail.com",
+  "optionalFields": {
+    "phone": true,
+    "website": true,
+    "tradeRegistryNo": true
+  },
+  "mails": {
+    "applicant": {
+      "ok": true,
+      "statusCode": 200,
+      "providerId": "ad864a2a-d572-405a-83ad-46b36a213ed9"
+    },
+    "admin": {
+      "ok": true,
+      "statusCode": 200,
+      "providerId": "1a541220-9a8c-4bbb-89d9-679e65d383b9"
+    }
+  },
+  "application_status": "ACTIVE",
+  "previous_status": "PENDING",
+  "updated_at": "2026-05-18T05:10:04.762014+00:00",
+  "owner_admin_action": "APPROVE",
+  "owner_admin_action_at": "2026-05-16T20:44:08.948Z",
+  "owner_admin_actor": "PIX2PI_OWNER_ADMIN",
+  "approved_at": "2026-05-16T20:44:08.948Z",
+  "approved_by": "PIX2PI_OWNER_ADMIN",
+  "approval_handoff": {
+    "marker": "REGISTER_APPROVAL_HANDOFF_MARKER",
+    "tenant_create_real_create": false,
+    "tenant_create_status": "PENDING_MANUAL_HANDOFF",
+    "tenant_create_note": "Tenant bu adımda otomatik açılmaz. Pix2pi owner admin onayı sonrası tenant create ayrı kontrollü handoff olarak ilerler.",
+    "handoff_at": "2026-05-16T20:44:08.948Z"
+  },
+  "audit_trail": [
+    {
+      "at": "2026-05-16T20:44:08.948Z",
+      "actor": "PIX2PI_OWNER_ADMIN",
+      "action": "APPROVE_REGISTER_APPLICATION",
+      "from_status": "PENDING",
+      "to_status": "APPROVED",
+      "tenant_created": false,
+      "handoff_marker": "REGISTER_APPROVAL_HANDOFF_MARKER"
+    }
+  ],
+  "ownerEmail": "surucukursu58@gmail.com",
+  "owner_email": "surucukursu58@gmail.com",
+  "contactEmail": "surucukursu58@gmail.com",
+  "contact_email": "surucukursu58@gmail.com",
+  "loginEmail": "surucukursu58@gmail.com",
+  "login_email": "surucukursu58@gmail.com",
+  "userEmail": "surucukursu58@gmail.com",
+  "user_email": "surucukursu58@gmail.com",
+  "email_aliases": [
+    "surucukursu58+register20260516220623@gmail.com",
+    "surucukursu58@gmail.com"
+  ],
+  "previous_emails": [],
+  "approval_status": "APPROVED",
+  "account_status": "ACTIVE",
+  "tenant_status": "ACTIVE",
+  "is_active": true,
+  "active": true,
+  "login_enabled": true,
+  "customer_login_enabled": true,
+  "admin_reset_at": "2026-05-18T05:10:04.762014+00:00",
+  "admin_reset_source": "customer-email-normalize-password-reset-fix",
+  "password_hash_sha256": "ae2e4970f69bfc9ce933fb087dc82c6ffe5a0edccfbfd1ad3358a606ae0f05ff",
+  "passwordHashSha256": "ae2e4970f69bfc9ce933fb087dc82c6ffe5a0edccfbfd1ad3358a606ae0f05ff",
+  "login_password_hash_sha256": "ae2e4970f69bfc9ce933fb087dc82c6ffe5a0edccfbfd1ad3358a606ae0f05ff",
+  "password_algorithm": "sha256",
+  "password_reset_required": true,
+  "password_updated_at": "2026-05-18T05:10:04.762014+00:00",
+  "auth": {
+    "email": "surucukursu58@gmail.com",
+    "password_hash_sha256": "ae2e4970f69bfc9ce933fb087dc82c6ffe5a0edccfbfd1ad3358a606ae0f05ff",
+    "passwordHashSha256": "ae2e4970f69bfc9ce933fb087dc82c6ffe5a0edccfbfd1ad3358a606ae0f05ff",
+    "password_algorithm": "sha256",
+    "password_reset_required": true,
+    "password_updated_at": "2026-05-18T05:10:04.762014+00:00",
+    "login_enabled": true
+  },
+  "login": {
+    "email": "surucukursu58@gmail.com",
+    "password_hash_sha256": "ae2e4970f69bfc9ce933fb087dc82c6ffe5a0edccfbfd1ad3358a606ae0f05ff",
+    "passwordHashSha256": "ae2e4970f69bfc9ce933fb087dc82c6ffe5a0edccfbfd1ad3358a606ae0f05ff",
+    "password_algorithm": "sha256",
+    "password_reset_required": true,
+    "password_updated_at": "2026-05-18T05:10:04.762014+00:00",
+    "enabled": true,
+    "temporaryPassword": "Pix2pi@2026"
+  },
+  "temporaryPassword": "Pix2pi@2026"
+}

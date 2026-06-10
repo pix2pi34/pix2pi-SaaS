@@ -1,0 +1,149 @@
+{
+  "module": "FAZ_7_8L",
+  "step": "FAZ_7_8L.5",
+  "name": "Logo File Generation Dry-Run",
+  "provider": {
+    "provider_code": "LOGO",
+    "provider_name": "Logo",
+    "connector_code": "logo_connector",
+    "connector_family": "accounting_export_connector",
+    "provider_directory": "internal/platform/integrations/providers/logo",
+    "foundation_runtime_file": "internal/platform/integrations/providers/logo/logo_foundation.go",
+    "live_contract_runtime_file": "internal/platform/integrations/providers/logo/logo_live_contract.go",
+    "credential_runtime_file": "internal/platform/integrations/providers/logo/logo_credential.go",
+    "export_mapping_runtime_file": "internal/platform/integrations/providers/logo/logo_export_mapping.go",
+    "runtime_file": "internal/platform/integrations/providers/logo/logo_file_generation.go",
+    "test_file": "internal/platform/integrations/providers/logo/logo_file_generation_test.go"
+  },
+  "runtime": {
+    "mode": "DRY_RUN",
+    "file_generation_mode": "FILE_GENERATION_DRY_RUN_ONLY",
+    "target_system": "LOGO_ACCOUNTING_IMPORT_DRY_RUN",
+    "dry_run_file_generation_status": "READY",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE"
+  },
+  "dry_run_file_contract": {
+    "declared": true,
+    "status": "READY",
+    "format": "LOGO_DRY_RUN_IMPORT_PACKAGE_V1",
+    "real_logo_format": false,
+    "dry_run_only": true,
+    "external_call_allowed": false,
+    "real_file_delivery_allowed": false,
+    "erp_write_allowed": false,
+    "checksum_required": true,
+    "manifest_required": true,
+    "tenant_scope_required": true,
+    "correlation_id_required": true,
+    "idempotency_key_required": true,
+    "line_types": [
+      "HEADER",
+      "LINE",
+      "PARTY",
+      "TAX",
+      "INVOICE",
+      "MANIFEST"
+    ]
+  },
+  "required_input_fields": [
+    "tenant_id",
+    "correlation_id",
+    "idempotency_key",
+    "document_no",
+    "document_date",
+    "journal_lines",
+    "party_account",
+    "invoice_summary"
+  ],
+  "generated_package_fields": [
+    "package_id",
+    "tenant_id",
+    "correlation_id",
+    "idempotency_key",
+    "file_name",
+    "file_format",
+    "checksum_sha256",
+    "byte_size",
+    "dry_run_only",
+    "delivery_allowed"
+  ],
+  "operations": [
+    {
+      "name": "PREPARE_LOGO_DRY_RUN_EXPORT_INPUT",
+      "mode": "FILE_GENERATION_DRY_RUN_ONLY",
+      "dry_run_file_generation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "GENERATE_LOGO_DRY_RUN_FILE",
+      "mode": "FILE_GENERATION_DRY_RUN_ONLY",
+      "dry_run_file_generation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_DRY_RUN_FILE_SCHEMA",
+      "mode": "FILE_GENERATION_DRY_RUN_ONLY",
+      "dry_run_file_generation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "CALCULATE_LOGO_DRY_RUN_CHECKSUM",
+      "mode": "FILE_GENERATION_DRY_RUN_ONLY",
+      "dry_run_file_generation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_LOGO_IMPORT_PACKAGE_DRY_RUN",
+      "mode": "FILE_GENERATION_DRY_RUN_ONLY",
+      "dry_run_file_generation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_NO_REAL_DELIVERY",
+      "mode": "FILE_GENERATION_DRY_RUN_ONLY",
+      "dry_run_file_generation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    },
+    {
+      "name": "PREPARE_LOGO_IMPORT_DELIVERY_HANDOFF",
+      "mode": "FILE_GENERATION_DRY_RUN_ONLY",
+      "dry_run_file_generation_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false
+    }
+  ],
+  "handoff_gates": {
+    "logo_foundation_gate": "READY_FROM_7_8L_1",
+    "logo_live_contract_gate": "READY_FROM_7_8L_2",
+    "logo_credential_secret_gate": "READY_FROM_7_8L_3",
+    "logo_export_mapping_gate": "READY_FROM_7_8L_4",
+    "logo_file_generation_gate": "READY",
+    "logo_import_delivery_gate": "PENDING_7_8L_6",
+    "logo_validation_retry_dlq_gate": "PENDING_7_8L_7",
+    "logo_admin_ops_gate": "PENDING_7_8L_8",
+    "logo_e2e_dry_run_gate": "PENDING_7_8L_9",
+    "logo_final_closure_gate": "PENDING_7_8L_10"
+  },
+  "audit": {
+    "real_implementation_audit_required": true,
+    "real_provider_api_must_remain_closed": true,
+    "real_file_delivery_must_remain_closed": true,
+    "real_erp_write_must_remain_closed": true,
+    "dry_run_file_generation_must_be_present": true
+  }
+}

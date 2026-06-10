@@ -1,0 +1,79 @@
+{
+  "phase": "FAZ_3_13_6_DOCUMENT_INTEGRATION_UI_TESTS",
+  "suite": "document_integration_ui_tests",
+  "suite_enabled": true,
+  "route": "/faz3/document-integration/ui-tests/",
+  "report_file": "web/faz3/document-integration/ui-tests/index.html",
+  "test_script": "scripts/faz3/faz_3_13_6_document_integration_ui_tests_suite.sh",
+  "audit_script": "scripts/faz3/faz_3_13_6_document_integration_ui_tests_audit.sh",
+  "screen_coverage": {
+    "screen_174_ebelge_status_center": {
+      "route": "/faz3/document-integration/ebelge-status-center/",
+      "html_file": "web/faz3/document-integration/ebelge-status-center/index.html",
+      "config_file": "configs/faz3/document-integration/ebelge_status_center.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_13_1_EBELGE_STATUS_CENTER_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_175_ocr_document_review": {
+      "route": "/faz3/document-integration/ocr-review/",
+      "html_file": "web/faz3/document-integration/ocr-review/index.html",
+      "config_file": "configs/faz3/document-integration/ocr_document_review_screen.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_13_4_OCR_DOCUMENT_REVIEW_SCREEN_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    }
+  },
+  "planned_next_screen_coverage": {
+    "screen_177_retry_cancel_resend_action_surface": {
+      "status": "NEXT_GATE_NOT_REQUIRED_IN_THIS_TEST",
+      "next_gate": "FAZ_3_13_2_RETRY_CANCEL_RESEND_ACTION_SURFACE"
+    },
+    "screen_178_provider_error_view": {
+      "status": "PLANNED_AFTER_177",
+      "future_gate": "FAZ_3_13_3_PROVIDER_ERROR_VIEW"
+    },
+    "screen_179_manual_correction_queue": {
+      "status": "PLANNED_AFTER_178",
+      "future_gate": "FAZ_3_13_5_MANUAL_CORRECTION_QUEUE"
+    }
+  },
+  "test_policy": {
+    "html_file_required": true,
+    "config_file_required": true,
+    "documentation_file_required": true,
+    "evidence_file_required": true,
+    "phase_marker_required": true,
+    "screen_marker_required": true,
+    "tenant_guard_required": true,
+    "firm_guard_required": true,
+    "correlation_or_review_guard_required": true,
+    "audit_hash_required": true,
+    "evidence_trace_required": true,
+    "live_provider_closed_required": true,
+    "real_gib_closed_required": true,
+    "auto_commit_closed_required": true,
+    "human_review_required": true,
+    "dry_run_or_readonly_policy_required": true,
+    "no_real_external_action_required": true
+  },
+  "live_policy": {
+    "production_approved": false,
+    "document_integration_ui_tests_are_static_and_readonly": true,
+    "real_gib_call_allowed": false,
+    "real_provider_call_allowed": false,
+    "real_external_delivery_allowed": false,
+    "auto_commit_allowed": false,
+    "customer_card_write_allowed": false,
+    "raw_image_storage_allowed": false,
+    "audit_delete_allowed": false,
+    "audit_mutation_allowed": false,
+    "ui_actions_are_navigation_evidence_only": true
+  },
+  "covered_backend_gates": [
+    "FAZ_3_13_1_EBELGE_STATUS_CENTER",
+    "FAZ_3_13_4_OCR_DOCUMENT_REVIEW_SCREEN",
+    "FAZ_3_10_3_6_EBELGE_LIVE_INTEGRATION_TESTS",
+    "FAZ_3_10_6_5_DOCUMENT_AI_RUNTIME_TESTS"
+  ],
+  "previous_gate": "FAZ_3_13_4_OCR_DOCUMENT_REVIEW_SCREEN",
+  "next_gate": "FAZ_3_13_2_RETRY_CANCEL_RESEND_ACTION_SURFACE"
+}

@@ -1,0 +1,53 @@
+version: v1
+groups:
+  - id: infra
+    label: Infra
+    signals:
+      - id: infra.cpu.usage
+        metric: node_cpu_usage_percent
+      - id: infra.memory.usage
+        metric: node_memory_usage_percent
+      - id: infra.io.utilization
+        metric: node_disk_io_usage_percent
+
+  - id: app
+    label: App
+    signals:
+      - id: app.latency.p95
+        metric: http_request_latency_p95_ms
+      - id: app.error.rate
+        metric: http_error_rate_percent
+      - id: app.connection.saturation
+        metric: http_connection_saturation_percent
+
+  - id: db
+    label: Database
+    signals:
+      - id: db.connection.usage
+        metric: db_connection_usage_percent
+      - id: db.storage.usage
+        metric: db_storage_usage_percent
+
+  - id: event_bus
+    label: Event Bus
+    signals:
+      - id: event.backlog.size
+        metric: event_backlog_count
+      - id: event.consumer.lag
+        metric: event_consumer_lag_count
+
+  - id: cache
+    label: Cache
+    signals:
+      - id: cache.memory.usage
+        metric: cache_memory_usage_percent
+      - id: cache.connection.usage
+        metric: cache_connection_usage_percent
+
+  - id: tenant_security
+    label: Tenant / Security
+    signals:
+      - id: security.forbidden.rate
+        metric: security_forbidden_rate_percent
+      - id: tenant.mismatch.rate
+        metric: tenant_mismatch_rate_percent

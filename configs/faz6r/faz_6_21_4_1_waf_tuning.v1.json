@@ -1,0 +1,147 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "280",
+  "code": "FAZ_6_21_4_1",
+  "name": "WAF tuning",
+  "provider_neutral": true,
+  "live_provider_api_mutation_allowed": false,
+  "domains": [
+    "pix2pi.com.tr",
+    "www.pix2pi.com.tr",
+    "api.pix2pi.com.tr",
+    "panel.pix2pi.com.tr",
+    "pos.pix2pi.com.tr",
+    "auth.pix2pi.com.tr"
+  ],
+  "required_controls": [
+    "managed_waf_baseline",
+    "api_abuse_surface_guard",
+    "auth_bruteforce_guard",
+    "tenant_api_header_presence_guard",
+    "dangerous_method_block",
+    "scanner_exploit_path_guard",
+    "upload_boundary_guard",
+    "health_endpoint_safe_policy",
+    "safe_rollout_policy",
+    "rollback_policy",
+    "evidence_audit_policy"
+  ],
+  "safe_rollout": {
+    "default_stage": "observe",
+    "allowed_stages": [
+      "observe",
+      "challenge",
+      "enforce",
+      "rollback"
+    ],
+    "promotion_requires": [
+      "false_positive_review",
+      "ops_owner_approval",
+      "rollback_plan_ready",
+      "audit_evidence_written"
+    ]
+  },
+  "rule_groups": [
+    {
+      "id": "waf-managed-baseline",
+      "control": "managed_waf_baseline",
+      "stage": "observe",
+      "action": "log",
+      "targets": [
+        "*"
+      ]
+    },
+    {
+      "id": "api-abuse-surface",
+      "control": "api_abuse_surface_guard",
+      "stage": "challenge",
+      "action": "managed_challenge",
+      "targets": [
+        "/api/*"
+      ]
+    },
+    {
+      "id": "auth-bruteforce",
+      "control": "auth_bruteforce_guard",
+      "stage": "challenge",
+      "action": "managed_challenge",
+      "targets": [
+        "/auth/*",
+        "/api/auth/*",
+        "/login"
+      ]
+    },
+    {
+      "id": "tenant-header-presence",
+      "control": "tenant_api_header_presence_guard",
+      "stage": "observe",
+      "action": "log",
+      "targets": [
+        "/api/tenant/*",
+        "/api/query/*",
+        "/api/erp/*"
+      ],
+      "required_header": "X-Tenant-ID"
+    },
+    {
+      "id": "dangerous-method-block",
+      "control": "dangerous_method_block",
+      "stage": "enforce",
+      "action": "block",
+      "blocked_methods": [
+        "TRACE",
+        "TRACK"
+      ],
+      "targets": [
+        "*"
+      ]
+    },
+    {
+      "id": "scanner-exploit-path",
+      "control": "scanner_exploit_path_guard",
+      "stage": "enforce",
+      "action": "block",
+      "targets": [
+        "/wp-admin*",
+        "/wp-login.php*",
+        "/.env*",
+        "/phpmyadmin*",
+        "/vendor/phpunit*",
+        "/cgi-bin*"
+      ]
+    },
+    {
+      "id": "upload-boundary",
+      "control": "upload_boundary_guard",
+      "stage": "challenge",
+      "action": "managed_challenge",
+      "targets": [
+        "/api/upload/*",
+        "/api/files/*"
+      ],
+      "max_body_mb": 25
+    },
+    {
+      "id": "health-safe-policy",
+      "control": "health_endpoint_safe_policy",
+      "stage": "observe",
+      "action": "log",
+      "targets": [
+        "/health",
+        "/api/health",
+        "/ready",
+        "/live"
+      ]
+    }
+  ],
+  "rollback": {
+    "required": true,
+    "strategy": "return_to_previous_stable_edge_policy",
+    "owner": "sre",
+    "evidence_required": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_4_1_WAF_TUNING_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

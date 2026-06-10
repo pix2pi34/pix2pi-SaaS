@@ -1,0 +1,20 @@
+{
+  "marker": "CUSTOMER_LOGIN_ACTIVE_ACCOUNT_MARKER",
+  "email": "telliogluservet90@gmail.com",
+  "status": "ACTIVE",
+  "login_allowed": true,
+  "mail_code_allowed": true,
+  "tenant_id": "tenant_servet_bcb21f50",
+  "tenant_slug": "servet",
+  "tenant_name": "SERVET",
+  "owner_name": "Owner Admin",
+  "role": "OWNER_ADMIN",
+  "source_application_file": "CR-20260516-C125D0E6.json",
+  "source_application_id": "CR-20260516-C125D0E6",
+  "source_status": "ACTIVE",
+  "activated_at": "2026-05-16T21:40:44.293821+00:00",
+  "activated_by": "PIX2PI_OWNER_ADMIN",
+  "tenant_create_real_create": false,
+  "tenant_create_mode": "MANUAL_ACTIVE_LOGIN_ACCOUNT_ENSURE",
+  "handoff_marker": "REGISTER_APPROVAL_HANDOFF_MARKER"
+}

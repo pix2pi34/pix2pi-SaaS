@@ -1,0 +1,37 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 191,
+  "step": "FAZ_4_15_1",
+  "title": "Operational readmodel tabloları",
+  "priority_group": "DB-L6 Reporting / Readmodel",
+  "depends_on": [
+    "190_FAZ_4_15_7_READMODEL_REPORTING_TEST_SET"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "tables": [
+    "operational_readmodel_snapshots",
+    "operational_tenant_health_readmodel",
+    "operational_user_activity_readmodel",
+    "operational_import_queue_readmodel",
+    "operational_task_queue_readmodel",
+    "operational_service_health_readmodel",
+    "operational_readmodel_projection_offsets",
+    "operational_readmodel_audit_events"
+  ],
+  "readmodel_scope": [
+    "tenant_health",
+    "user_activity",
+    "import_queue",
+    "task_queue",
+    "service_health",
+    "projection_offsets",
+    "audit_events"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "192_FAZ_4_16_1_4_PILOT_VERI_SINIRLARI_TANIMI"
+  ]
+}

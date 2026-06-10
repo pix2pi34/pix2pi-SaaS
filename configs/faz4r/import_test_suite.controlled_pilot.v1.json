@@ -1,0 +1,85 @@
+{
+  "suite_id": "import_test_suite.controlled_pilot.v1",
+  "suite_status": "READY",
+  "test_mode": "DRY_RUN",
+  "commit_allowed": false,
+  "chain_dependencies": {
+    "198_FAZ_4_16_2_1_CARI_IMPORT": "PASS",
+    "199_FAZ_4_16_2_2_URUN_STOK_IMPORT": "PASS",
+    "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT": "PASS",
+    "201_FAZ_4_16_2_4_MAPPING_TRANSFORM_KURALLARI": "PASS",
+    "202_FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU": "PASS"
+  },
+  "test_cases": [
+    {
+      "code": "CUSTOMER_IMPORT_TEST",
+      "required": true,
+      "status": "PASS",
+      "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_1_CARI_IMPORT_REAL_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "code": "PRODUCT_STOCK_IMPORT_TEST",
+      "required": true,
+      "status": "PASS",
+      "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_2_URUN_STOK_IMPORT_REAL_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "code": "RECEIPT_MOVEMENT_IMPORT_TEST",
+      "required": true,
+      "status": "PASS",
+      "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_3_FIS_HAREKET_IMPORT_REAL_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "code": "MAPPING_TRANSFORM_TEST",
+      "required": true,
+      "status": "PASS",
+      "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_4_MAPPING_TRANSFORM_KURALLARI_REAL_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "code": "IMPORT_VALIDATION_REPORT_TEST",
+      "required": true,
+      "status": "PASS",
+      "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU_REAL_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "code": "CROSS_IMPORT_REFERENCE_TEST",
+      "required": true,
+      "status": "PASS",
+      "evidence_ref": "docs/faz4r/evidence/cross_import_reference_test.md"
+    },
+    {
+      "code": "DRY_RUN_COMMIT_GUARD_TEST",
+      "required": true,
+      "status": "PASS",
+      "evidence_ref": "docs/faz4r/evidence/dry_run_commit_guard_test.md"
+    },
+    {
+      "code": "CLOSED_EXTERNAL_POLICY_TEST",
+      "required": true,
+      "status": "PASS",
+      "evidence_ref": "docs/faz4r/evidence/closed_external_policy_test.md"
+    },
+    {
+      "code": "COUNTER_BASED_FINAL_STATUS_TEST",
+      "required": true,
+      "status": "PASS",
+      "evidence_ref": "docs/faz4r/evidence/counter_based_final_status_test.md"
+    }
+  ],
+  "summary": {
+    "total_test_count": 9,
+    "pass_count": 9,
+    "fail_count": 0,
+    "required_fail_count": 0,
+    "optional_warn_count": 0,
+    "suite_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

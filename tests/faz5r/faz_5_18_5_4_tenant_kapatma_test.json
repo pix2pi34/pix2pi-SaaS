@@ -1,0 +1,52 @@
+{
+  "test_name": "faz_5_18_5_4_tenant_kapatma_test",
+  "phase": "FAZ_5_18_5_4",
+  "expected": {
+    "required_step_count": 9,
+    "required_event_count": 9,
+    "internal_tenant_shutdown_ready": true,
+    "production_shutdown_enabled": false,
+    "real_tenant_closure_enabled": false,
+    "data_deletion_enabled": false,
+    "auto_access_cutoff_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_step_keys": [
+    "shutdown_request_intake",
+    "billing_status_validate",
+    "unpaid_invoice_check",
+    "data_export_offer",
+    "legal_hold_check",
+    "owner_approval_queue",
+    "tenant_access_freeze_plan",
+    "billing_stop_plan",
+    "final_shutdown_deferred_marker"
+  ],
+  "must_have_events": [
+    "SHUTDOWN_REQUEST_RECEIVED",
+    "BILLING_STATUS_VALIDATED",
+    "UNPAID_INVOICE_CHECKED",
+    "DATA_EXPORT_OFFERED",
+    "LEGAL_HOLD_CHECKED",
+    "OWNER_APPROVAL_QUEUED",
+    "TENANT_ACCESS_FREEZE_PLANNED",
+    "BILLING_STOP_PLANNED",
+    "FINAL_SHUTDOWN_DEFERRED"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_shutdown_request_id",
+    "requires_billing_status_check",
+    "requires_unpaid_invoice_check",
+    "requires_data_export_offer",
+    "requires_legal_hold_check",
+    "requires_owner_approval",
+    "requires_audit_trail",
+    "requires_rollback_window",
+    "requires_backup_snapshot",
+    "blocks_production_shutdown",
+    "blocks_real_tenant_closure",
+    "blocks_data_deletion"
+  ]
+}

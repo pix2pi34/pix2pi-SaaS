@@ -1,0 +1,16 @@
+gate	status	note
+opening_stock_test	PASS	18.1 opening stock evidence
+stock_movement_engine_test	PASS	18.2 movement engine evidence
+sales_stock_decrement_test	PASS	18.3 sales decrement evidence
+purchase_stock_increment_test	PASS	18.4 purchase increment evidence
+stock_reservation_test	PASS	18.5 reservation evidence
+negative_stock_policy_test	PASS	18.6 negative policy evidence
+stock_valuation_test	PASS	18.7 valuation evidence
+inventory_tenant_safety_test	PASS	all inventory tables have tenant_id
+inventory_migration_pair_test	PASS	pairs=35
+inventory_no_apply_test	PASS	no runtime/apply/mutation executed
+inventory_secret_safety_test	PASS	secret_hits=0 query_hits=0
+db_mutation	NO	final evidence only
+db_apply_executed	NO	final evidence only
+stock_balance_mutation	NO	final evidence only
+query_text_printed	NO	secret-safe report

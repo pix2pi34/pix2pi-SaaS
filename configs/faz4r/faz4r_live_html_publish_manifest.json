@@ -1,0 +1,60 @@
+{
+  "phase": "FAZ_4_R",
+  "artifact": "LIVE_HTML_PUBLISH_MANIFEST",
+  "status": "READY",
+  "generated_at": "2026-05-09T03:53:21.371962+00:00",
+  "web_root": "/var/www/pix2pi/live",
+  "publish_root": "/var/www/pix2pi/live/faz4r",
+  "published_count": 6,
+  "required_html": [
+    "approval-inbox/index.html",
+    "workflow-monitor/index.html",
+    "realtime-health/index.html",
+    "realtime-event-feed/index.html",
+    "notification-center/index.html"
+  ],
+  "missing_required_html": [],
+  "published": [
+    {
+      "title": "Approval Inbox",
+      "source": "/root/pix2pi/pix2pi-SaaS/web/faz4r/approval-inbox/index.html",
+      "published_file": "/var/www/pix2pi/live/faz4r/approval-inbox/index.html",
+      "url_path": "/faz4r/approval-inbox/"
+    },
+    {
+      "title": "Canlı Bildirim Merkezi",
+      "source": "/root/pix2pi/pix2pi-SaaS/web/faz4r/notification-center/index.html",
+      "published_file": "/var/www/pix2pi/live/faz4r/notification-center/index.html",
+      "url_path": "/faz4r/notification-center/"
+    },
+    {
+      "title": "Realtime Event Feed",
+      "source": "/root/pix2pi/pix2pi-SaaS/web/faz4r/realtime-event-feed/index.html",
+      "published_file": "/var/www/pix2pi/live/faz4r/realtime-event-feed/index.html",
+      "url_path": "/faz4r/realtime-event-feed/"
+    },
+    {
+      "title": "WebSocket / SSE Bağlantı Sağlığı",
+      "source": "/root/pix2pi/pix2pi-SaaS/web/faz4r/realtime-health/index.html",
+      "published_file": "/var/www/pix2pi/live/faz4r/realtime-health/index.html",
+      "url_path": "/faz4r/realtime-health/"
+    },
+    {
+      "title": "Workflow Monitor",
+      "source": "/root/pix2pi/pix2pi-SaaS/web/faz4r/workflow-monitor/index.html",
+      "published_file": "/var/www/pix2pi/live/faz4r/workflow-monitor/index.html",
+      "url_path": "/faz4r/workflow-monitor/"
+    },
+    {
+      "title": "Pilot Health Dashboard",
+      "source": "/root/pix2pi/pix2pi-SaaS/docs/faz4r/pilot_health_dashboard/pilot_health_dashboard.html",
+      "published_file": "/var/www/pix2pi/live/faz4r/docs/pilot_health_dashboard/pilot_health_dashboard.html",
+      "url_path": "/faz4r/docs/pilot_health_dashboard/pilot_health_dashboard.html"
+    }
+  ],
+  "public_base_urls": [
+    "https://www.pix2pi.com.tr/faz4r/",
+    "https://pix2pi.com.tr/faz4r/"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

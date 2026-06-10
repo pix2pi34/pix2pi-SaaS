@@ -1,0 +1,62 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 240,
+  "step": "FAZ_4_17_3",
+  "title": "Realtime event feed",
+  "priority_group": "WEB-L7 Workflow / Realtime UI",
+  "depends_on": [
+    "239_FAZ_4_17_6_WORKFLOW_REALTIME_UI_TESTLERI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "realtime_event_feed_policy": {
+    "realtime_event_feed_status_required": "READY",
+    "realtime_event_feed_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "tenant_scope_required": "SINGLE_TENANT",
+    "workflow_realtime_ui_test_status_required": "PASS",
+    "event_timeline_status_required": "READY",
+    "severity_badge_status_required": "READY",
+    "channel_badge_status_required": "READY",
+    "web_checkpoint_status_required": "READY",
+    "no_event_stream_publish_required": true,
+    "no_event_stream_subscribe_required": true,
+    "no_live_websocket_connection_required": true,
+    "no_live_sse_connection_required": true,
+    "no_workflow_mutation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_feed_items": [
+    "REALTIME_EVENT_FEED_SHELL",
+    "TENANT_SCOPED_EVENT_FEED",
+    "EVENT_TIMELINE_LIST",
+    "EVENT_METADATA_MODEL",
+    "EVENT_SEVERITY_BADGE_MODEL",
+    "EVENT_CHANNEL_BADGE_MODEL",
+    "EVENT_SOURCE_LABEL_MODEL",
+    "CORRELATION_ID_PLACEHOLDER",
+    "WORKFLOW_MONITOR_LINK",
+    "REALTIME_HEALTH_LINK",
+    "NOTIFICATION_CENTER_PLACEHOLDER",
+    "EMPTY_STATE",
+    "ERROR_STATE",
+    "NO_EVENT_PUBLISH_GUARD",
+    "NO_EVENT_SUBSCRIBE_GUARD",
+    "NO_LIVE_SOCKET_GUARD",
+    "EXTERNAL_POLICY_CLOSED_GATE",
+    "UI_CHECKPOINT_HTML",
+    "FINAL_REALTIME_EVENT_FEED_REPORT"
+  ],
+  "realtime_event_feed_artifact": "configs/faz4r/realtime_event_feed.controlled_pilot.v1.json",
+  "web_checkpoint": "web/faz4r/realtime-event-feed/index.html",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "241_FAZ_4_17_4_CANLI_BILDIRIM_MERKEZI"
+  ]
+}

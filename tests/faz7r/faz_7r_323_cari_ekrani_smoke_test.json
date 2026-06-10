@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "323",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "customers_screen",
+      "path": "/customers/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_323_CUSTOMERS_APP_SHELL_START",
+        "PIX2PI_323_CUSTOMER_LIST_START",
+        "PIX2PI_323_CUSTOMER_VALIDATION_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "customers_runtime",
+      "path": "/assets/customers/customers-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_323_CUSTOMERS_RUNTIME_START",
+        "tenantScopedHeaders",
+        "buildCustomerPayload"
+      ]
+    }
+  ]
+}

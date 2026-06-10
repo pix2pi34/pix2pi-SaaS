@@ -1,0 +1,38 @@
+{
+  "phase": "FAZ 2-7.7.1",
+  "runtime": "plugin_loader",
+  "require_tenant": true,
+  "required_runtime_prefix": "pix2pi-plugin-runtime/",
+  "allowed_environments": [
+    "SANDBOX",
+    "PRODUCTION"
+  ],
+  "allowed_permissions": [
+    "erp:read",
+    "erp:write",
+    "webhook:emit",
+    "public_api:read",
+    "public_api:write",
+    "workflow:trigger",
+    "notification:send",
+    "report:read"
+  ],
+  "manifest_required_fields": [
+    "tenant_id",
+    "plugin_id",
+    "name",
+    "version",
+    "runtime_version",
+    "entrypoint",
+    "permissions"
+  ],
+  "guards": [
+    "tenant_required",
+    "manifest_required",
+    "cross_tenant_manifest_denied",
+    "permission_allowlist_required",
+    "environment_allowlist_required",
+    "runtime_version_prefix_required"
+  ],
+  "next_ready": "FAZ_2_7_7_2_PLUGIN_LIFECYCLE_RUNTIME"
+}

@@ -1,0 +1,34 @@
+{
+  "phase": "FAZ_5_18_1_2",
+  "title": "Fiyat Tablosu",
+  "status": "READY",
+  "control_surface": "PRICING_TABLE",
+  "inputs": [
+    "FAZ_5_18_7_4_IC_FINANS_DASHBOARD",
+    "FAZ_7_2_PRODUCT_PACKAGING_PLAN_CATALOG",
+    "FAZ_7_3_ENTITLEMENT_RUNTIME_FEATURE_GATE",
+    "FAZ_5_R_PRIORITY_3_LVL18_PRICING"
+  ],
+  "outputs": [
+    "FREE_PLAN_ROW",
+    "STARTER_PLAN_ROW",
+    "PRO_PLAN_ROW",
+    "ENTERPRISE_PLAN_ROW",
+    "ACCOUNTANT_PACKAGE_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_pricing_table_ready": true,
+    "production_pricing_published": false,
+    "real_customer_billing_enabled": false,
+    "payment_collection_enabled": false,
+    "public_checkout_enabled": false,
+    "accountant_package_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

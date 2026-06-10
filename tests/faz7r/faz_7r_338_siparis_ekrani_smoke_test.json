@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "338",
+  "domain": "market.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "market_orders_screen",
+      "path": "/orders/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_338_ORDER_APP_SHELL_START",
+        "PIX2PI_338_BASKET_ORDER_DRAFT_CONTEXT_START",
+        "PIX2PI_338_ORDER_TOTALS_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "market_orders_runtime",
+      "path": "/assets/orders/market-orders-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_338_MARKET_ORDERS_RUNTIME_START",
+        "orderScopeHeaders",
+        "buildOrderDraftPayload"
+      ]
+    }
+  ]
+}

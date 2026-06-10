@@ -1,0 +1,20 @@
+{
+  "step": "FAZ 7-R / EK2 locale JSON missing fix",
+  "runId": "faz7r-ek2-missing-locale-json-husrev-20260514_140558",
+  "locales": [
+    "ku-Latn",
+    "ku-Arab",
+    "zza-Latn",
+    "zza-Arab"
+  ],
+  "paths": [
+    "/root/pix2pi/pix2pi-SaaS/locales",
+    "/var/www/pix2pi/panel/assets/i18n",
+    "/var/www/pix2pi/live/assets/i18n"
+  ],
+  "husrevFonts": {
+    "body": "/assets/fonts/husrev/eKalemDuz-Regular_150.ttf",
+    "title": "/assets/fonts/husrev/eKalemTezyinat-Regular_2.ttf",
+    "css": "/assets/fonts/husrev/husrev-ekalem.css"
+  }
+}

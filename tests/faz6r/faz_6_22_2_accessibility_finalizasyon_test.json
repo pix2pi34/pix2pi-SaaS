@@ -1,0 +1,42 @@
+{
+  "expected_dependency": "FAZ_6_20_6",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_frontend_deploy_allowed": false,
+  "expected_css_mutation_allowed": false,
+  "expected_js_mutation_allowed": false,
+  "expected_design_token_mutation_allowed": false,
+  "expected_route_mutation_allowed": false,
+  "expected_cdn_invalidation_allowed": false,
+  "expected_build_publish_allowed": false,
+  "expected_required_controls": [
+    "partition_shard_dependency_gate",
+    "wcag_target_policy",
+    "keyboard_navigation_policy",
+    "focus_management_policy",
+    "color_contrast_policy",
+    "semantic_html_policy",
+    "aria_usage_policy",
+    "form_error_accessibility_policy",
+    "table_grid_accessibility_policy",
+    "modal_drawer_accessibility_policy",
+    "notification_accessibility_policy",
+    "screen_reader_readiness_policy",
+    "dry_run_accessibility_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_surfaces": [
+    "auth_login",
+    "tenant_panel_shell",
+    "approval_inbox",
+    "workflow_monitor",
+    "reporting_tables",
+    "public_landing"
+  ],
+  "expected_min_check_count": 6,
+  "expected_status": "dry_run_only_no_accessibility_mutation",
+  "expected_next_step": "FAZ_6_22_3"
+}

@@ -1,0 +1,51 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 211,
+  "step": "FAZ_4_16_4_2",
+  "title": "Yardım merkezi içeriği",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "210_FAZ_4_16_4_1_KULLANICI_EGITIM_SETI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "help_center_policy": {
+    "help_center_status_required": "READY",
+    "help_center_mode_required": "CONTROLLED_PILOT",
+    "required_article_status_required": "READY",
+    "missing_article_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "training_set_status_required": "PASS",
+    "searchable_index_status_required": "READY",
+    "support_route_status_required": "READY",
+    "completion_checklist_status_required": "READY",
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_articles": [
+    "HELP_FIRST_LOGIN",
+    "HELP_TENANT_CONTEXT",
+    "HELP_MANAGEMENT_PANEL",
+    "HELP_POS_BASIC",
+    "HELP_CUSTOMER_IMPORT",
+    "HELP_PRODUCT_STOCK_IMPORT",
+    "HELP_RECEIPT_MOVEMENT_IMPORT",
+    "HELP_IMPORT_VALIDATION_REPORT",
+    "HELP_ACCOUNTING_PREVIEW",
+    "HELP_ACCOUNTANT_PORTAL_READONLY",
+    "HELP_E_DOCUMENT_EXPORT_PREVIEW",
+    "HELP_SUPPORT_ISSUE_REPORTING",
+    "HELP_PILOT_LIMITS",
+    "HELP_CLOSED_PROVIDER_POLICY",
+    "HELP_COMMON_FAQ"
+  ],
+  "help_center_artifact": "configs/faz4r/help_center_content.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "212_FAZ_4_16_4_3_ILK_DESTEK_TRIAGE_AKISI"
+  ]
+}

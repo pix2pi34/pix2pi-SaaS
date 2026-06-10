@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi FAZ 5 Pricing Surface</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --card: #101d31;
+      --card2: #152640;
+      --text: #eef6ff;
+      --muted: #a8b8cc;
+      --accent: #41b8ff;
+      --ok: #38d996;
+      --line: rgba(255,255,255,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, #16436b, var(--bg) 58%);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 42px;
+    }
+
+    .hero {
+      padding: 28px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(65,184,255,0.16), rgba(16,29,49,0.94));
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 38px rgba(0,0,0,0.26);
+    }
+
+    .eyebrow {
+      color: var(--ok);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.08;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 860px;
+      margin: 14px 0 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .card {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      min-height: 260px;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 10px 0;
+    }
+
+    ul {
+      color: var(--muted);
+      padding-left: 18px;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .note {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(56,217,150,0.1);
+      border: 1px solid rgba(56,217,150,0.25);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer span {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 1050px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        width: min(100% - 22px, 1180px);
+        padding-top: 18px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Pix2pi FAZ 5-10</div>
+      <h1>Public Pricing Surface</h1>
+      <p class="subtitle">
+        Pix2pi; POS, ERP, stok, cari, rapor, muhasebeci ve entegrasyon ihtiyaçlarını tek SaaS ERP platformunda birleştirir.
+        Bu sayfa FAZ 5 ticari karar kanıtıdır; production public launch değildir.
+      </p>
+    </section>
+
+    <section class="grid" aria-label="Pix2pi paketleri">
+      <article class="card">
+        <h2>Demo</h2>
+        <div class="price">0 TRY</div>
+        <ul>
+          <li>14 gün deneme</li>
+          <li>2 kullanıcı</li>
+          <li>API kapalı</li>
+          <li>Export kapalı</li>
+          <li>Canlı finansal işlem kapalı</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Starter</h2>
+        <div class="price">799 TRY / ay</div>
+        <ul>
+          <li>1 şube</li>
+          <li>3 kullanıcı</li>
+          <li>Temel ERP ve POS</li>
+          <li>Temel stok ve rapor</li>
+          <li>Standart destek</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Pro</h2>
+        <div class="price">1.999 TRY / ay</div>
+        <ul>
+          <li>3 şube</li>
+          <li>10 kullanıcı</li>
+          <li>Gelişmiş rapor</li>
+          <li>Export açık</li>
+          <li>Marketplace ve Paraşüt discovery</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Enterprise</h2>
+        <div class="price">Özel teklif</div>
+        <ul>
+          <li>Custom limits</li>
+          <li>API açık</li>
+          <li>Özel SLA</li>
+          <li>Gelişmiş audit</li>
+          <li>Özel onboarding</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Muhasebeci</h2>
+        <div class="price">999 TRY / ay</div>
+        <ul>
+          <li>10 firma dahil</li>
+          <li>Firma başı 149 TRY</li>
+          <li>Excel / PDF / TDHP export</li>
+          <li>Muhasebeci workspace</li>
+          <li>Firma bazlı erişim</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="note">
+      KDV notu: Bu FAZ 5 iç pricing yüzeyinde fiyatlar KDV hariç değerlendirilmiştir.
+      Aylık / yıllık toggle ve public yayın kararı sonraki production public launch adımlarında kesinleştirilecektir.
+    </section>
+
+    <footer class="footer">
+      <span>Kullanım Şartları</span>
+      <span>Gizlilik Politikası</span>
+      <span>KVKK Aydınlatma Metni</span>
+      <span>Çerez Politikası</span>
+      <span>İletişim</span>
+    </footer>
+  </main>
+</body>
+</html>

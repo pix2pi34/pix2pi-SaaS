@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi i18n Demo</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #687287;
+      --border: #e6e9f0;
+      --brand: #1f6feb;
+      --shadow: 0 14px 34px rgba(18, 27, 46, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 28px;
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.05em;
+    }
+
+    p { color: var(--muted); line-height: 1.55; }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    select {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      min-width: 260px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .mini {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    .calligraphy-note {
+      border: 1px dashed #b7c7e8;
+      background: #f8fbff;
+      color: #1e3a8a;
+      border-radius: 18px;
+      padding: 16px;
+      line-height: 1.55;
+    }
+
+    [dir="rtl"] .card,
+    [dir="rtl"] .mini,
+    [dir="rtl"] .calligraphy-note {
+      text-align: right;
+    }
+
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+      body { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- PIX2PI_318_LOCALIZATION_SMOKE_SURFACE_START -->
+  <main class="shell" data-localized-surface="panel-i18n-demo" data-hardcoded-ui-text-policy="data-i18n-required">
+    <section class="card">
+      <h1 data-i18n="panel.title">panel.title</h1>
+      <p data-i18n="panel.customer_surface">panel.customer_surface</p>
+
+      <!-- PIX2PI_318_PANEL_LANGUAGE_SWITCHER_START -->
+      <div class="toolbar">
+        <label for="language-switcher" data-i18n="panel.language_switcher">panel.language_switcher</label>
+        <select id="language-switcher" aria-label="Language switcher">
+          <option value="tr-TR">Latin Türkçe — tr-TR</option>
+          <option value="ota">Osmanlıca Türkçesi — ota</option>
+          <option value="ar">Arapça — ar</option>
+          <option value="fa">Farsça — fa</option>
+          <option value="en">English — en</option>
+        </select>
+      </div>
+      <!-- PIX2PI_318_PANEL_LANGUAGE_SWITCHER_END -->
+    </section>
+
+    <!-- PIX2PI_318_AHMED_HUSREV_CALLIGRAPHY_REFERENCE_START -->
+    <section class="calligraphy-note"
+      data-calligraphy-reference-required="Ahmed Hüsrev Altınbaşak hattı"
+      data-calligraphy-reference-url="https://oku.risale.online/osm"
+      data-applies-to="ota,ar,fa">
+      <strong>Hat referansı:</strong>
+      <span data-calligraphy-reference-output>Ahmed Hüsrev Altınbaşak hattı</span>
+      <br />
+      <strong>Kaynak:</strong>
+      <span>https://oku.risale.online/osm</span>
+      <br />
+      <span>Osmanlıca ve Arapça yazı üslubunda bu referans esas alınır.</span>
+    </section>
+    <!-- PIX2PI_318_AHMED_HUSREV_CALLIGRAPHY_REFERENCE_END -->
+
+    <section class="grid">
+      <article class="mini">
+        <strong data-i18n="pos.title">pos.title</strong>
+        <p data-i18n="pos.payment">pos.payment</p>
+      </article>
+
+      <article class="mini">
+        <strong data-i18n="marketplace.title">marketplace.title</strong>
+        <p data-i18n="marketplace.product_list">marketplace.product_list</p>
+      </article>
+
+      <article class="mini">
+        <strong data-i18n="notification.welcome">notification.welcome</strong>
+        <p data-i18n="email.subject.welcome">email.subject.welcome</p>
+      </article>
+    </section>
+
+    <!-- PIX2PI_318_RTL_LTR_LAYOUT_ENGINE_START -->
+    <section class="card">
+      <strong>RTL/LTR:</strong>
+      <span id="direction-output">ltr</span>
+      <br />
+      <strong>Currency:</strong>
+      <span id="currency-output">0</span>
+      <br />
+      <strong>Date:</strong>
+      <span id="date-output">0</span>
+    </section>
+    <!-- PIX2PI_318_RTL_LTR_LAYOUT_ENGINE_END -->
+  </main>
+  <!-- PIX2PI_318_LOCALIZATION_SMOKE_SURFACE_END -->
+
+  <script src="/assets/i18n/i18n-runtime.js"></script>
+  <script>
+    (function () {
+      const switcher = document.getElementById("language-switcher");
+      const directionOutput = document.getElementById("direction-output");
+      const currencyOutput = document.getElementById("currency-output");
+      const dateOutput = document.getElementById("date-output");
+
+      async function render(language) {
+        const result = await Pix2piI18n.applyLanguage(language);
+        directionOutput.textContent = result.direction;
+        currencyOutput.textContent = Pix2piI18n.formatCurrency(1234.56, "TRY", result.language);
+        dateOutput.textContent = Pix2piI18n.formatDate("2026-05-10T12:00:00Z", result.language);
+      }
+
+      switcher.addEventListener("change", function () {
+        render(switcher.value);
+      });
+
+      switcher.value = Pix2piI18n.getUserLanguagePreference();
+      render(switcher.value);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pix2pi — Temel UI Testleri</title>
+  <link rel="stylesheet" href="./basic_ui_tests.css">
+</head>
+<body>
+  <main class="pix2pi-page">
+    <header class="pix2pi-page-header">
+      <div>
+        <h1 class="pix2pi-page-title">Pix2pi Temel UI Testleri</h1>
+        <p class="pix2pi-page-subtitle">FAZ 1-4.8 — WEB-L1 UI Foundation / Design System final test kapısı</p>
+      </div>
+      <span class="pix2pi-badge ok" id="pix2piBasicUiFinalStatus">WEB-L1 FINAL STATUS: CHECKING</span>
+    </header>
+
+    <section class="pix2pi-grid">
+      <article class="pix2pi-card">
+        <button class="pix2pi-button primary" id="runBasicUiTestsButton" type="button">Temel UI testlerini çalıştır</button>
+
+        <div class="pix2pi-test-list" id="pix2piBasicUiTestList" style="margin-top:16px;"></div>
+      </article>
+
+      <aside class="pix2pi-card">
+        <pre class="pix2pi-log" id="pix2piBasicUiTestLog">BASIC_UI_TEST_LOG_LOADING</pre>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./basic_ui_tests.js"></script>
+</body>
+</html>

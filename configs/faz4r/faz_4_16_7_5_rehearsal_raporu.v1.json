@@ -1,0 +1,61 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 230,
+  "step": "FAZ_4_16_7_5",
+  "title": "Rehearsal raporu",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "226_FAZ_4_16_7_1_DRY_RUN_CANLIYA_GECIS",
+    "227_FAZ_4_16_7_2_CUTOVER_CHECKLIST",
+    "228_FAZ_4_16_7_3_GERI_DONUS_PROVASI",
+    "229_FAZ_4_16_7_4_ILETISIM_PLANI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "rehearsal_report_policy": {
+    "rehearsal_report_status_required": "READY",
+    "rehearsal_report_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "communication_plan_status_required": "PASS",
+    "dry_run_status_required": "PASS",
+    "cutover_checklist_status_required": "PASS",
+    "rollback_rehearsal_status_required": "PASS",
+    "evidence_index_status_required": "READY",
+    "risk_summary_status_required": "READY",
+    "blocker_summary_status_required": "READY",
+    "owner_signoff_status_required": "READY",
+    "go_no_go_readiness_note_status_required": "READY",
+    "no_production_launch_required": true,
+    "no_live_external_provider_activation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_report_items": [
+    "REHEARSAL_REPORT_KICKOFF",
+    "DRY_RUN_RESULT_SUMMARY",
+    "CUTOVER_CHECKLIST_SUMMARY",
+    "ROLLBACK_REHEARSAL_SUMMARY",
+    "COMMUNICATION_PLAN_SUMMARY",
+    "EVIDENCE_INDEX",
+    "RISK_SUMMARY",
+    "BLOCKER_SUMMARY",
+    "OPEN_ISSUE_SUMMARY",
+    "KPI_BASELINE_SNAPSHOT",
+    "OWNER_SIGNOFF_SUMMARY",
+    "GO_NO_GO_READINESS_NOTE",
+    "EXTERNAL_PROVIDER_POLICY_CLOSED_SUMMARY",
+    "FINAL_REHEARSAL_REPORT_STATUS"
+  ],
+  "rehearsal_report_artifact": "configs/faz4r/rehearsal_report.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "231_FAZ_4_16_8_1_PILOT_KPI_DEGERLENDIRMESI"
+  ]
+}

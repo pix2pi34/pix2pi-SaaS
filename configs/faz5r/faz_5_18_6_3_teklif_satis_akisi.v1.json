@@ -1,0 +1,39 @@
+{
+  "phase": "FAZ_5_18_6_3",
+  "title": "Teklif / Satış Akışı",
+  "status": "READY",
+  "control_surface": "QUOTE_SALES_FLOW",
+  "inputs": [
+    "FAZ_5_18_6_2_CRM_STAGE_YONETIMI",
+    "FAZ_5_18_1_2_FIYAT_TABLOSU",
+    "FAZ_5_18_2_2_FATURALAMA_AKISI",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "QUOTE_REQUEST_INTAKE",
+    "CRM_STAGE_VERIFY",
+    "CUSTOMER_PROFILE_VALIDATE",
+    "PRICING_SNAPSHOT_ATTACH",
+    "DISCOUNT_APPROVAL_QUEUE",
+    "PROPOSAL_DRAFT_CREATE",
+    "COMMERCIAL_TERMS_REVIEW",
+    "QUOTE_APPROVAL_RECORD",
+    "SALES_WON_HANDOFF",
+    "SALES_OPS_REPORT_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_quote_sales_flow_ready": true,
+    "production_sales_enabled": false,
+    "real_customer_sales_open": false,
+    "auto_quote_send_enabled": false,
+    "auto_contract_activation_enabled": false,
+    "sales_ops_report_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

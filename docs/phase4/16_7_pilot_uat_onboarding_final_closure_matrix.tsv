@@ -1,0 +1,52 @@
+gate	status	note
+baseline	PASS	16.1 pilot baseline final
+tenant_readiness	PASS	16.2 tenant readiness final
+uat_execution	PASS	16.3 UAT execution final
+data_readiness	PASS	16.4 pilot data readiness final
+go_no_go	PASS	16.5 go/no-go final
+pilot_tests	PASS	16.6 pilot UAT tests final
+artifact_coverage	PASS	missing=0
+no_runtime_change	PASS	failures=0
+no_config_change	PASS	failures=0
+secret_safe	PASS	failures=0
+metric_evidence	PASS	total=810 missing=0
+service_restarted	NO	final evidence only
+container_restarted	NO	final evidence only
+docker_compose_executed	NO	final evidence only
+nginx_reload_executed	NO	final evidence only
+firewall_changed	NO	final evidence only
+port_changed	NO	final evidence only
+config_changed	NO	final evidence only
+env_changed	NO	final evidence only
+rollout_executed	NO	final evidence only
+go_live_switched	NO	final evidence only
+production_traffic_changed	NO	final evidence only
+tenant_enabled_for_live	NO	final evidence only
+real_customer_notified	NO	final evidence only
+tenant_created	NO	final evidence only
+user_created	NO	final evidence only
+password_created	NO	final evidence only
+token_created	NO	final evidence only
+uat_executed	NO	final evidence only
+sample_data_inserted	NO	final evidence only
+real_customer_data_created	NO	final evidence only
+real_product_created	NO	final evidence only
+real_stock_mutated	NO	final evidence only
+real_sale_created	NO	final evidence only
+real_accounting_entry_created	NO	final evidence only
+data_import_executed	NO	final evidence only
+file_export_executed	NO	final evidence only
+ui_code_changed	NO	final evidence only
+api_route_created	NO	final evidence only
+api_implementation_changed	NO	final evidence only
+db_mutation	NO	final evidence only
+db_apply_executed	NO	final evidence only
+migration_created	NO	final evidence only
+migration_apply_executed	NO	final evidence only
+event_published	NO	final evidence only
+event_consumed	NO	final evidence only
+notification_sent	NO	final evidence only
+customer_private_data_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report

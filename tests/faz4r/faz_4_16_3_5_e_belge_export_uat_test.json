@@ -1,0 +1,145 @@
+{
+  "valid_fixture": {
+    "uat_id": "e_document_export_uat.valid_fixture",
+    "uat_status": "READY",
+    "uat_mode": "CONTROLLED_PILOT",
+    "export_mode": "PREVIEW",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT"
+    },
+    "chain_dependencies": {
+      "188_FAZ_4_15_3_E_DOCUMENT_EXPORT_REPORTING_MART": "PASS",
+      "190_FAZ_4_15_7_READMODEL_REPORTING_TEST_SET": "PASS",
+      "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT": "PASS",
+      "202_FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU": "PASS",
+      "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT": "PASS",
+      "206_FAZ_4_16_3_3_MUHASEBE_UAT": "PASS",
+      "207_FAZ_4_16_3_4_MUHASEBECI_PORTALI_UAT": "PASS"
+    },
+    "uat_cases": [
+      {"code": "E_DOCUMENT_EXPORT_ACCESS", "required": true, "status": "PASS", "area": "ACCESS", "evidence_ref": "docs/faz4r/evidence/e_document_export_access.md"},
+      {"code": "E_DOCUMENT_TENANT_CONTEXT_VISIBLE", "required": true, "status": "PASS", "area": "TENANT", "evidence_ref": "docs/faz4r/evidence/e_document_tenant_context_visible.md"},
+      {"code": "E_INVOICE_PREVIEW", "required": true, "status": "PASS", "area": "E_DOCUMENT", "evidence_ref": "docs/faz4r/evidence/e_invoice_preview.md"},
+      {"code": "E_ARCHIVE_PREVIEW", "required": true, "status": "PASS", "area": "E_DOCUMENT", "evidence_ref": "docs/faz4r/evidence/e_archive_preview.md"},
+      {"code": "E_ADISYON_EXPORT_PREVIEW", "required": true, "status": "PASS", "area": "E_DOCUMENT", "evidence_ref": "docs/faz4r/evidence/e_adisyon_export_preview.md"},
+      {"code": "XML_PREVIEW", "required": true, "status": "PASS", "area": "FILE_PREVIEW", "evidence_ref": "docs/faz4r/evidence/xml_preview.md"},
+      {"code": "PDF_PREVIEW", "required": true, "status": "PASS", "area": "FILE_PREVIEW", "evidence_ref": "docs/faz4r/evidence/pdf_preview.md"},
+      {"code": "LOGO_EXPORT_PREVIEW", "required": true, "status": "PASS", "area": "PACKAGE_EXPORT", "evidence_ref": "docs/faz4r/evidence/logo_export_preview.md"},
+      {"code": "MIKRO_EXPORT_PREVIEW", "required": true, "status": "PASS", "area": "PACKAGE_EXPORT", "evidence_ref": "docs/faz4r/evidence/mikro_export_preview.md"},
+      {"code": "ZIRVE_EXPORT_PREVIEW", "required": true, "status": "PASS", "area": "PACKAGE_EXPORT", "evidence_ref": "docs/faz4r/evidence/zirve_export_preview.md"},
+      {"code": "ETA_EXPORT_PREVIEW", "required": true, "status": "PASS", "area": "PACKAGE_EXPORT", "evidence_ref": "docs/faz4r/evidence/eta_export_preview.md"},
+      {"code": "EXPORT_VALIDATION_REPORT_VIEW", "required": true, "status": "PASS", "area": "VALIDATION", "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "ACCOUNTING_UAT_LINK", "required": true, "status": "PASS", "area": "ACCOUNTING", "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_3_3_MUHASEBE_UAT_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "ACCOUNTANT_PORTAL_EXPORT_LINK", "required": true, "status": "PASS", "area": "ACCOUNTANT_PORTAL", "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_3_4_MUHASEBECI_PORTALI_UAT_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "E_DOCUMENT_AUDIT_EVIDENCE_LINK_VIEW", "required": true, "status": "PASS", "area": "AUDIT", "evidence_ref": "docs/faz4r/evidence/e_document_audit_evidence_link_view.md"},
+      {"code": "GIB_LIVE_CLOSED_GATE", "required": true, "status": "PASS", "area": "POLICY", "evidence_ref": "docs/faz4r/evidence/gib_live_closed_gate.md"},
+      {"code": "REAL_EXPORT_CLOSED_GATE", "required": true, "status": "PASS", "area": "POLICY", "evidence_ref": "docs/faz4r/evidence/real_export_closed_gate.md"},
+      {"code": "CLOSED_EXTERNAL_POLICY_GATE", "required": true, "status": "PASS", "area": "POLICY", "evidence_ref": "docs/faz4r/evidence/closed_external_policy_gate.md"}
+    ],
+    "export_preview": {
+      "preview_batch_id": "edoc_export_preview_208_valid",
+      "supported_document_previews": ["E_INVOICE", "E_ARCHIVE", "E_ADISYON"],
+      "supported_file_previews": ["XML", "PDF"],
+      "supported_package_exports": ["LOGO", "MIKRO", "ZIRVE", "ETA"],
+      "document_preview_status": "PASS",
+      "xml_preview_status": "PASS",
+      "pdf_preview_status": "PASS",
+      "package_export_preview_status": "PASS",
+      "gib_live_status": "CLOSED",
+      "real_export_status": "CLOSED"
+    },
+    "summary": {
+      "total_case_count": 18,
+      "pass_count": 18,
+      "fail_count": 0,
+      "required_fail_count": 0,
+      "optional_warn_count": 0,
+      "critical_issue_count": 0,
+      "tenant_context_status": "PASS",
+      "document_preview_status": "PASS",
+      "xml_preview_status": "PASS",
+      "pdf_preview_status": "PASS",
+      "package_export_preview_status": "PASS",
+      "gib_live_status": "CLOSED",
+      "real_export_status": "CLOSED",
+      "uat_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "real_export": "CLOSED",
+      "real_gib_submission": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "uat_id": "e_document_export_uat.invalid_fixture",
+    "uat_status": "DRAFT",
+    "uat_mode": "PRODUCTION",
+    "export_mode": "LIVE",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED"
+    },
+    "chain_dependencies": {
+      "188_FAZ_4_15_3_E_DOCUMENT_EXPORT_REPORTING_MART": "PASS",
+      "190_FAZ_4_15_7_READMODEL_REPORTING_TEST_SET": "PASS",
+      "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT": "PASS",
+      "202_FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU": "PASS",
+      "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT": "PASS",
+      "206_FAZ_4_16_3_3_MUHASEBE_UAT": "PASS",
+      "207_FAZ_4_16_3_4_MUHASEBECI_PORTALI_UAT": "FAIL"
+    },
+    "uat_cases": [
+      {"code": "E_DOCUMENT_EXPORT_ACCESS", "required": true, "status": "FAIL", "area": "ACCESS", "evidence_ref": ""},
+      {"code": "E_DOCUMENT_TENANT_CONTEXT_VISIBLE", "required": true, "status": "WARN", "area": "TENANT", "evidence_ref": "x"},
+      {"code": "E_DOCUMENT_TENANT_CONTEXT_VISIBLE", "required": true, "status": "PASS", "area": "TENANT", "evidence_ref": "x"}
+    ],
+    "export_preview": {
+      "preview_batch_id": "",
+      "supported_document_previews": ["E_INVOICE"],
+      "supported_file_previews": ["XML"],
+      "supported_package_exports": ["LOGO"],
+      "document_preview_status": "FAIL",
+      "xml_preview_status": "FAIL",
+      "pdf_preview_status": "FAIL",
+      "package_export_preview_status": "FAIL",
+      "gib_live_status": "OPEN",
+      "real_export_status": "OPEN"
+    },
+    "summary": {
+      "total_case_count": 99,
+      "pass_count": 99,
+      "fail_count": 99,
+      "required_fail_count": 99,
+      "optional_warn_count": 99,
+      "critical_issue_count": 1,
+      "tenant_context_status": "FAIL",
+      "document_preview_status": "FAIL",
+      "xml_preview_status": "FAIL",
+      "pdf_preview_status": "FAIL",
+      "package_export_preview_status": "FAIL",
+      "gib_live_status": "OPEN",
+      "real_export_status": "OPEN",
+      "uat_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "real_export": "OPEN",
+      "real_gib_submission": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

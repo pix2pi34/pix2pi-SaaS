@@ -1,0 +1,66 @@
+{
+  "module_code": "FAZ_7_13_COMMERCIAL_LIVE_READY_CONTROL_PLANE",
+  "mode": "LIVE_READY_CONTROL_PLANE_WITH_PRODUCTION_ACTIVATION_DISABLED",
+  "status": "CONTROL_PLANE_READY",
+  "depends_on": {
+    "faz_7_accountant_portal_family_final_status": "PASS",
+    "faz_7_accountant_portal_family_seal_status": "SEALED",
+    "accountant_portal_commercial_handoff_gate": "READY_FOR_COMMERCIAL_LIVE_MODULE"
+  },
+  "live_ready_control_plane": {
+    "commercial_live_ready_gate": "READY_FOR_LIVE_READY_MODULES",
+    "provider_dry_run_set": "PARASUT_LOGO_MIKRO_ZIRVE",
+    "billing_live_module_status": "NOT_STARTED",
+    "payment_live_module_status": "NOT_STARTED",
+    "provider_live_module_status": "NOT_STARTED",
+    "export_live_module_status": "NOT_STARTED",
+    "erp_sync_worker_live_status": "NOT_STARTED",
+    "approval_matrix_status": "CLOSED_UNTIL_APPROVAL_MATRIX_PASS",
+    "production_activation_lock": "PRODUCTION_ACTIVATION_LOCKED_IN_FAZ_7_13"
+  },
+  "production_activation": {
+    "production_activation_allowed": false,
+    "real_money_movement_allowed": false,
+    "real_billing_allowed": false,
+    "real_payment_capture_allowed": false,
+    "real_provider_api_call_allowed": false,
+    "real_file_delivery_allowed": false,
+    "real_erp_write_allowed": false,
+    "real_customer_data_export_allowed": false,
+    "real_operator_provider_action_allowed": false
+  },
+  "required_live_ready_matrix": [
+    "billing_live_ready",
+    "payment_capture_live_ready",
+    "provider_live_ready",
+    "export_live_ready",
+    "erp_sync_live_ready",
+    "secrets_ready",
+    "legal_approval_ready",
+    "finance_approval_ready",
+    "security_approval_ready",
+    "operator_approval_ready",
+    "rollback_ready",
+    "observability_ready",
+    "incident_response_ready",
+    "tenant_isolation_ready"
+  ],
+  "next_modules": [
+    "FAZ_7_14_ACCOUNTANT_BILLING_LIVE_READY_RUNTIME",
+    "FAZ_7_15_PAYMENT_CAPTURE_LIVE_READY_RUNTIME",
+    "FAZ_7_16_PROVIDER_LIVE_ADAPTER_READINESS",
+    "FAZ_7_17_EXPORT_LIVE_READY_PIPELINE",
+    "FAZ_7_18_ERP_SYNC_WORKER_LIVE_READY_RUNTIME",
+    "FAZ_7_19_LIVE_ACTIVATION_GUARD_APPROVAL_MATRIX",
+    "FAZ_7_20_COMMERCIAL_MASTER_CLOSURE"
+  ],
+  "live_operation_policy": {
+    "money_movement": "NO_REAL_MONEY_MOVEMENT_IN_FAZ_7_13",
+    "billing": "NO_REAL_BILLING_IN_FAZ_7_13",
+    "payment_capture": "NO_REAL_PAYMENT_CAPTURE_IN_FAZ_7_13",
+    "provider_api": "NO_REAL_PROVIDER_API_CALL_IN_FAZ_7_13",
+    "file_delivery": "NO_REAL_FILE_DELIVERY_IN_FAZ_7_13",
+    "erp_write": "NO_REAL_ERP_WRITE_IN_FAZ_7_13",
+    "customer_data_export": "NO_REAL_CUSTOMER_DATA_EXPORT_IN_FAZ_7_13"
+  }
+}

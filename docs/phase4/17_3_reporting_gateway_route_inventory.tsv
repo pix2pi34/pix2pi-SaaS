@@ -1,0 +1,7 @@
+route	method	auth_gate	tenant_gate	status
+/api/v1/reporting/operational/summary	GET	bearer_required	x_tenant_id_required	GATE_READY
+/api/v1/reporting/operational/daily-metrics	GET	bearer_required	x_tenant_id_required	GATE_READY
+/api/v1/reporting/inventory/status	GET	bearer_required	x_tenant_id_required	GATE_READY
+/api/v1/reporting/documents/work-queue	GET	bearer_required	x_tenant_id_required	GATE_READY
+/api/v1/reporting/reconciliation/status	GET	bearer_required	x_tenant_id_required	GATE_READY
+/api/v1/reporting/projections/state	GET	bearer_required	x_tenant_id_required	GATE_READY

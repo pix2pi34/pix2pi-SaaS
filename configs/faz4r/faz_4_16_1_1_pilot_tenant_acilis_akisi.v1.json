@@ -1,0 +1,48 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 195,
+  "step": "FAZ_4_16_1_1",
+  "title": "Pilot tenant açılış akışı",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "192_FAZ_4_16_1_4_PILOT_VERI_SINIRLARI_TANIMI",
+    "193_FAZ_4_16_1_5_TENANT_ACCEPTANCE_CHECKLIST",
+    "194_FAZ_4_16_1_6_ONBOARDING_SMOKE"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "opening_policy": {
+    "opening_status_required": "READY",
+    "pilot_data_boundary_status_required": "PASS",
+    "tenant_acceptance_status_required": "PASS",
+    "onboarding_smoke_status_required": "PASS",
+    "critical_issue_count_must_be_zero": true,
+    "all_required_opening_stages_must_pass": true,
+    "required_evidence_ref": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_opening_stages": [
+    "PILOT_SCOPE_CONFIRMED",
+    "TENANT_ID_PREPARED",
+    "TENANT_RECORD_PREPARED",
+    "TENANT_CONFIG_PREPARED",
+    "TENANT_ADMIN_PREPARED",
+    "ROLE_BASELINE_PREPARED",
+    "USER_INVITE_PREPARED",
+    "IMPORT_DRY_RUN_PREPARED",
+    "READMODEL_REPORTING_CONFIRMED",
+    "OPERATIONAL_READMODEL_CONFIRMED",
+    "SUPPORT_CHANNEL_CONFIRMED",
+    "ROLLBACK_CUTOVER_GUARD_CONFIRMED",
+    "AUDIT_EVIDENCE_CONFIRMED",
+    "OPENING_APPROVED",
+    "CRITICAL_ISSUE_ZERO",
+    "CLOSED_EXTERNAL_POLICY_GATE"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "196_FAZ_4_16_1_2_TENANT_CONFIG_SABLONLARI"
+  ]
+}

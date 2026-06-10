@@ -1,0 +1,9 @@
+order	middleware_id	middleware_name	purpose	required	tenant_required	audit_ready	status
+1	request_id	RequestIdMiddleware	request and correlation context	YES	YES	YES	contract_only
+2	auth	AuthMiddleware	jwt auth context	YES	YES	YES	contract_only
+3	tenant_context	TenantContextMiddleware	tenant context extraction	YES	YES	YES	contract_only
+4	role_context	RoleContextMiddleware	role context extraction	YES	YES	YES	contract_only
+5	permission_guard	PermissionGuardMiddleware	role permission decision	YES	YES	YES	contract_only
+6	boundary_guard	BoundaryGuardMiddleware	support super-admin cross-tenant boundary	YES	YES	YES	contract_only
+7	audit_ready	AuditReadyMiddleware	audit-ready event preparation	YES	YES	YES	contract_only
+8	handler	Handler	protected handler execution	YES	YES	YES	contract_only

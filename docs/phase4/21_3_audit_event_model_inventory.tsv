@@ -1,0 +1,7 @@
+table	status	tenant_id_required	purpose	note
+audit_event_streams	YES	YES	audit_stream_catalog	platform_security.audit_event_streams
+audit_events	YES	YES	audit_event_header	platform_security.audit_events
+audit_actor_contexts	YES	YES	actor_context	platform_security.audit_actor_contexts
+audit_resource_contexts	YES	YES	resource_context	platform_security.audit_resource_contexts
+audit_decision_contexts	YES	YES	permission_decision_context	platform_security.audit_decision_contexts
+audit_integrity_chain	YES	YES	immutable_hash_chain	platform_security.audit_integrity_chain

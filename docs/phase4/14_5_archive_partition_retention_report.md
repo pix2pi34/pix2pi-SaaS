@@ -1,0 +1,148 @@
+# FAZ 4B / 14.5 - Archive / Partition / Retention Modeli Report
+
+Generated at: 2026-04-28 00:20:09 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+ARCHIVE_APPLY_EXECUTED=NO
+PARTITION_APPLY_EXECUTED=NO
+RETENTION_PURGE_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+VALIDATION_MODE=ARCHIVE_PARTITION_RETENTION_STANDARD_ONLY
+PREVIOUS_14_1_FINAL_STATUS=PASS
+PREVIOUS_14_1_MIGRATION_CHAIN_STANDARD=PASS
+PREVIOUS_14_2_FINAL_STATUS=PASS
+PREVIOUS_14_2_REFERENCE_SEED_STANDARD=PASS
+PREVIOUS_14_3_FINAL_STATUS=PASS
+PREVIOUS_14_3_IMPORT_STAGING_TABLES=PASS
+PREVIOUS_14_4_FINAL_STATUS=PASS
+PREVIOUS_14_4_BACKFILL_REBUILD_STANDARD=PASS
+PREVIOUS_14_4_BACKFILL_APPLY_EXECUTED=NO
+PREVIOUS_14_4_REBUILD_APPLY_EXECUTED=NO
+RETENTION_MANIFEST_FILE_EXISTS=YES
+RETENTION_DOC_MANIFEST_FILE_EXISTS=YES
+RETENTION_MANIFEST_ROW_COUNT=12
+RETENTION_DOC_MANIFEST_ROW_COUNT=12
+RETENTION_MISSING_COLUMN_COUNT=0
+RETENTION_DUPLICATE_TARGET_KEY_COUNT=0
+RETENTION_REQUIRED_TARGET_MISSING_COUNT=0
+RETENTION_PARTITION_CANDIDATE_COUNT=9
+RETENTION_KVKK_RELEVANCE_COUNT=7
+RETENTION_TENANT_SCOPED_COUNT=12
+RETENTION_LEGAL_HOLD_SUPPORTED_COUNT=12
+RETENTION_APPLY_GATE_YES_COUNT=12
+RETENTION_PERSONAL_DATA_COUNT=2
+RETENTION_LEGAL_AUDIT_COUNT=1
+RETENTION_BAD_NUMERIC_COUNT=0
+RETENTION_BAD_ORDER_COUNT=0
+RETENTION_BAD_TENANT_COUNT=0
+RETENTION_BAD_PARTITION_COUNT=0
+RETENTION_BAD_ARCHIVE_COUNT=0
+RETENTION_BAD_KVKK_COUNT=0
+RETENTION_BAD_LEGAL_HOLD_COUNT=0
+RETENTION_BAD_DELETE_ACTION_COUNT=0
+RETENTION_BAD_APPLY_GATE_COUNT=0
+RETENTION_BAD_RESTORE_COUNT=0
+RETENTION_CANDIDATE_PLAN_FILE_EXISTS=YES
+RETENTION_CANDIDATE_PLAN_GUARD_EXISTS=YES
+RETENTION_CANDIDATE_PLAN_BLOCKED_BY_DEFAULT=YES
+RETENTION_CANDIDATE_PLAN_NO_APPLY_MARKERS=YES
+RETENTION_CANDIDATE_PLAN_DRY_RUN_STATUS=PASS
+RETENTION_MANIFEST_STATUS=PASS
+RETENTION_PARTITION_CANDIDATE_STATUS=PASS
+RETENTION_TENANT_SAFETY_STATUS=PASS
+RETENTION_KVKK_STATUS=PASS
+RETENTION_LEGAL_HOLD_STATUS=PASS
+RETENTION_ORDER_STATUS=PASS
+RETENTION_ARCHIVE_STATUS=PASS
+RETENTION_APPLY_GATE_STATUS=PASS
+RETENTION_CANDIDATE_PLAN_STATUS=PASS
+RETENTION_MATRIX_LINE_COUNT=20
+ARCHIVE_PARTITION_RETENTION_MODEL=PASS
+FAZ4B_14_5_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+ARCHIVE_PARTITION_RETENTION_MODEL=PASS
+FAZ4B_14_5_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_bash=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+
+## Matrix
+MATRIX_FILE=docs/phase4/14_5_archive_partition_retention_matrix.tsv
+gate	status	note
+previous_14_1	PASS	migration chain prerequisite
+previous_14_2	PASS	reference seed prerequisite
+previous_14_3	PASS	import staging prerequisite
+previous_14_4	PASS	backfill rebuild prerequisite
+manifest	PASS	rows=12
+required_targets	PASS	missing=0
+partition_candidate	PASS	candidate_count=9
+tenant_safety	PASS	tenant_scoped=12
+kvkk	PASS	kvkk_count=7
+legal_hold	PASS	legal_hold_count=12
+retention_order	PASS	bad_order=0
+archive_strategy	PASS	bad_archive=0
+apply_gate	PASS	apply_gate_yes=12
+candidate_plan	PASS	blocked_by_default=YES
+db_mutation	NO	standard only
+archive_apply_executed	NO	standard only
+partition_apply_executed	NO	standard only
+retention_purge_executed	NO	standard only
+query_text_printed	NO	secret-safe report
+
+## Manifest
+MANIFEST_FILE=config/retention/archive_partition_retention_manifest.tsv
+target_key	domain	table_family	data_classification	tenant_scoped	retention_days	archive_after_days	purge_after_days	partition_candidate	partition_strategy	archive_strategy	kvkk_relevance	restore_requirement	legal_hold_supported	delete_request_action	apply_gate_required	note
+event_store_events	event	event_store_events	operational	YES	365	90	2555	YES	monthly_range	cold_archive_replay_pointer	YES	replay_restore	YES	anonymize_or_delete_when_allowed	YES	Event store retention standardi
+audit_log_events	security	audit_logs	legal_audit	YES	2555	365	3650	YES	monthly_range	cold_archive_immutable	YES	legal_audit_restore	YES	legal_hold_blocks_delete	YES	Audit log retention standardi
+application_logs	observability	service_logs	operational	YES	90	30	365	YES	daily_or_monthly_range	object_storage_archive	YES	incident_restore	YES	redact_personal_data	YES	Application/runtime log retention standardi
+import_batches	import	import_batches	operational	YES	365	180	1095	NO	not_required	archive_summary	YES	import_replay_restore	YES	delete_when_allowed	YES	Import batch retention standardi
+import_files	import	import_files	personal_data	YES	180	30	365	NO	not_required	object_storage_lifecycle	YES	file_restore	YES	delete_file_when_allowed	YES	Import file retention standardi
+import_staging_rows	import	import_staging_tables	personal_data	YES	90	30	180	YES	monthly_range	archive_validation_summary	YES	import_audit_restore	YES	purge_or_anonymize	YES	Import staging row retention standardi
+import_validation_errors	import	validation_errors	operational	YES	365	180	1095	YES	monthly_range	archive_summary	YES	import_error_restore	YES	purge_when_allowed	YES	Import validation error retention standardi
+notification_history	notifications	notification_delivery	operational	YES	180	60	365	YES	monthly_range	archive_summary	NO	support_restore	YES	delete_when_allowed	YES	Notification history retention standardi
+webhook_delivery_history	webhooks	webhook_delivery	operational	YES	180	60	365	YES	monthly_range	archive_summary	NO	replay_restore	YES	delete_when_allowed	YES	Webhook delivery retention standardi
+jobs_queue_history	jobs	job_history	operational	YES	90	30	180	YES	monthly_range	archive_summary	NO	support_restore	YES	delete_when_allowed	YES	Jobs queue history retention standardi
+reporting_marts	reporting	reporting_marts	aggregate	YES	1095	365	2555	YES	monthly_range	cold_archive_summary	NO	mart_restore	YES	aggregate_rebuild	YES	Reporting mart retention standardi
+readmodel_snapshots	readmodel	readmodel_snapshots	aggregate	YES	365	180	1095	NO	not_required	rebuild_from_source	NO	rebuild_restore	YES	rebuild_delete	YES	Readmodel snapshot retention standardi
+
+## Candidate Execution Plan Output
+===== 14.5 ARCHIVE / PARTITION / RETENTION CANDIDATE EXECUTION PLAN =====
+ARCHIVE_APPLY_EXECUTED=NO
+PARTITION_APPLY_EXECUTED=NO
+RETENTION_PURGE_EXECUTED=NO
+DB_MUTATION=NO
+QUERY_TEXT_PRINTED=NO
+RETENTION_PLAN_BLOCKED_BY_DEFAULT=YES
+RETENTION_PLAN_DECISION=PLAN_READY_APPLY_NOT_EXECUTED
+
+## Safety Decision
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+ARCHIVE_APPLY_EXECUTED=NO
+PARTITION_APPLY_EXECUTED=NO
+RETENTION_PURGE_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+QUERY_TEXT_PRINTED=NO

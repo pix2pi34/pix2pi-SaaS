@@ -1,0 +1,27 @@
+# Pix2pi Edge Security Headers
+# FAZ 6-10 Edge Header Hardening
+#
+# Bu dosya /etc/nginx/nginx.conf icindeki http context altinda
+# include edilen /etc/nginx/conf.d/*.conf kapsaminda calisir.
+#
+# Amac:
+# - Public route response'larinda temel security header standardi saglamak
+# - Edge smoke testlerinde header evidence uretmek
+# - Mevcut server block'lara minimum mudahale ile global guvenlik standardi eklemek
+#
+# Not:
+# - "always" parametresi 2xx/3xx disi response'larda da header gonderir.
+# - CSP bilincli olarak makul/genis tutuldu; inline CSS kullanan mevcut public HTML'i bozmaz.
+
+add_header X-Content-Type-Options "nosniff" always;
+add_header X-Frame-Options "SAMEORIGIN" always;
+add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+add_header X-XSS-Protection "0" always;
+add_header Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()" always;
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; frame-ancestors 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https: wss:;" always;
+
+# Static/public sayfalar icin makul varsayilan.
+# Hassas API response'lari ayri server/location seviyesinde no-store ile override edilebilir.
+add_header Cache-Control "public, max-age=300" always;

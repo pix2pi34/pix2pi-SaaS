@@ -1,0 +1,60 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "347",
+  "name": "Pilot müşteri tenant açılışı",
+  "surface": "merchant_panel_controlled_access",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/pilot-tenant/",
+  "runtime_path": "/assets/pilot-tenant/panel-pilot-tenant-runtime.js",
+  "depends_on": [
+    "346 - Plan enforcement / entitlement UI guard"
+  ],
+  "backend_contract": {
+    "pilot_tenant_draft_endpoint": "/api/admin/pilot-tenants/draft",
+    "pilot_tenant_opening_endpoint": "/api/admin/pilot-tenants/opening",
+    "pilot_tenant_audit_endpoint": "/api/admin/pilot-tenants/audit",
+    "method": "GET/POST",
+    "admin_session_header": "X-Admin-Session",
+    "tenant_opening_scope_header": "X-Tenant-Opening-Scope",
+    "correlation_header": "X-Correlation-ID"
+  },
+  "runtime_contract": {
+    "real_tenant_insert_enabled": false,
+    "real_owner_invite_enabled": false,
+    "real_tenant_activation_enabled": false,
+    "real_customer_access_enabled": false,
+    "pilot_tenant_draft_enabled": true,
+    "controlled_opening_gate_enabled": true,
+    "fallback_pilot_tenant_snapshot_enabled": true,
+    "ready_for_step_348": true
+  },
+  "approval_gates": {
+    "kvkk_approval_required": true,
+    "legal_approval_required": true,
+    "commercial_approval_required": true,
+    "rls_isolation_check_required": true,
+    "production_customer_access_allowed": false
+  },
+  "required_capabilities": [
+    "pilot_tenant_opening_app_shell",
+    "pilot_tenant_request_draft_context",
+    "tenant_slug_domain_environment_context",
+    "business_basic_info_checklist",
+    "legal_entity_branch_placeholder",
+    "default_plan_binding",
+    "default_language_timezone_currency_binding",
+    "owner_admin_assignment_placeholder",
+    "kvkk_legal_commercial_approval_gate",
+    "data_isolation_rls_readiness_gate",
+    "panel_pos_market_access_preparation",
+    "tenant_provisioning_disabled_guard",
+    "tenant_activation_disabled_guard",
+    "tenant_opening_audit_timeline",
+    "tenant_opening_runtime_data_contract",
+    "i18n_ready_pilot_tenant_marker",
+    "seo_opengraph_pilot_tenant_placeholder",
+    "pilot_tenant_opening_smoke_test"
+  ],
+  "next_step": "348 - İlk işletme kullanıcı daveti"
+}

@@ -1,0 +1,54 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 199,
+  "step": "FAZ_4_16_2_2",
+  "title": "Ürün / stok import",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "180_FAZ_4_14_3_IMPORT_STAGING_TABLES",
+    "198_FAZ_4_16_2_1_CARI_IMPORT"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "import_policy": {
+    "import_mode_required": "DRY_RUN",
+    "commit_allowed": false,
+    "tenant_id_required": true,
+    "batch_id_required": true,
+    "max_product_count": 5000,
+    "max_stock_entry_count": 20000,
+    "max_product_rows_per_batch": 5000,
+    "max_stock_rows_per_batch": 20000,
+    "duplicate_product_code_forbidden": true,
+    "duplicate_barcode_forbidden": true,
+    "duplicate_sku_forbidden": true,
+    "negative_stock_forbidden": true,
+    "unknown_stock_product_forbidden": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_product_fields": [
+    "product_code",
+    "product_name",
+    "product_type",
+    "unit_code",
+    "tax_rate"
+  ],
+  "required_stock_fields": [
+    "product_code",
+    "warehouse_code",
+    "quantity",
+    "reserved_quantity",
+    "min_stock_quantity"
+  ],
+  "mapping_artifact": "configs/faz4r/product_stock_import_mapping.controlled_pilot.v1.json",
+  "target_staging_tables": [
+    "import_staging_products",
+    "import_staging_stock_entries"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT"
+  ]
+}

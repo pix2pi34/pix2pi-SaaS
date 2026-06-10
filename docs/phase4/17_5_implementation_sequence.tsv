@@ -1,0 +1,12 @@
+order_no	step_name	description	target	safety_note	implementation_status	note
+10	contract_freeze	Freeze 17.1-17.5 docs and envelope names	docs only	no runtime change	READY_FOR_IMPLEMENTATION	plan_only
+20	dto_design	Define request/response DTOs and success/error envelope	api DTO plan	no code in this gate	READY_FOR_IMPLEMENTATION	plan_only
+30	rbac_middleware_check	Map endpoint permissions to JWT/RBAC/tenant middleware	security plan	tenant isolation required	READY_FOR_IMPLEMENTATION	plan_only
+40	api_read_endpoints	Implement GET workflow/approval/task/audit endpoints first	api implementation future	test with tenant headers	READY_FOR_IMPLEMENTATION	plan_only
+50	api_mutation_endpoints	Implement action/approve/reject/complete mutations with idempotency	api implementation future	audit required	READY_FOR_IMPLEMENTATION	plan_only
+60	realtime_sse_first	Implement SSE stream before WebSocket	realtime implementation future	simpler production baseline	READY_FOR_IMPLEMENTATION	plan_only
+70	websocket_optional	Implement WebSocket interactive channel after SSE is stable	realtime implementation future	optional after SSE tests	READY_FOR_IMPLEMENTATION	plan_only
+80	ui_read_pages	Build read-only workflow/approval/task pages	UI implementation future	no mutation first	READY_FOR_IMPLEMENTATION	plan_only
+90	ui_action_pages	Bind action panels with confirmation/reason/idempotency	UI implementation future	audit and permission visible	READY_FOR_IMPLEMENTATION	plan_only
+100	ops_security_pages	Bind ops/security realtime pages	UI implementation future	platform scoped only	READY_FOR_IMPLEMENTATION	plan_only
+110	test_gate	Run workflow/realtime tests and evidence reports	17.6	must pass before final closure	READY_FOR_IMPLEMENTATION	plan_only

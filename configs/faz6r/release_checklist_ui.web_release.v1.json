@@ -1,0 +1,97 @@
+{
+  "version": "web_release.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_22_6",
+  "status": "dry_run_only_no_release_checklist_ui_mutation",
+  "checks": [
+    {
+      "ui_check_id": "release-ui-security-edge-sre-ops",
+      "section": "security_edge_sre_ops",
+      "dependency_gate_status": "PASS_REQUIRED",
+      "blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "approval_display_status": "READ_ONLY_REQUIRED",
+      "rollback_display_status": "REQUIRED",
+      "permission_guard_status": "REQUIRED",
+      "tenant_guard_status": "REQUIRED",
+      "audit_link_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "ui_check_id": "release-ui-dr-cost-tuning",
+      "section": "dr_cost_tuning",
+      "dependency_gate_status": "PASS_REQUIRED",
+      "blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "approval_display_status": "READ_ONLY_REQUIRED",
+      "rollback_display_status": "REQUIRED",
+      "permission_guard_status": "REQUIRED",
+      "tenant_guard_status": "REQUIRED",
+      "audit_link_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "ui_check_id": "release-ui-db-scale-readiness",
+      "section": "db_scale_readiness",
+      "dependency_gate_status": "PASS_REQUIRED",
+      "blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "approval_display_status": "READ_ONLY_REQUIRED",
+      "rollback_display_status": "REQUIRED",
+      "permission_guard_status": "REQUIRED",
+      "tenant_guard_status": "REQUIRED",
+      "audit_link_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "ui_check_id": "release-ui-web-polish",
+      "section": "web_accessibility_performance_visual",
+      "dependency_gate_status": "PASS_REQUIRED",
+      "blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "approval_display_status": "READ_ONLY_REQUIRED",
+      "rollback_display_status": "REQUIRED",
+      "permission_guard_status": "REQUIRED",
+      "tenant_guard_status": "REQUIRED",
+      "audit_link_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "ui_check_id": "release-ui-permission-release-ui",
+      "section": "permission_release_ui",
+      "dependency_gate_status": "PASS_REQUIRED",
+      "blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "approval_display_status": "READ_ONLY_REQUIRED",
+      "rollback_display_status": "REQUIRED",
+      "permission_guard_status": "REQUIRED",
+      "tenant_guard_status": "REQUIRED",
+      "audit_link_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "ui_check_id": "release-ui-build-readiness",
+      "section": "release_build_readiness",
+      "dependency_gate_status": "PENDING_NEXT_STEP",
+      "blocker_status": "NO_OPEN_BLOCKER_REQUIRED",
+      "approval_display_status": "READ_ONLY_REQUIRED",
+      "rollback_display_status": "REQUIRED",
+      "permission_guard_status": "REQUIRED",
+      "tenant_guard_status": "REQUIRED",
+      "audit_link_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_22_7",
+    "name": "Release build doğrulaması",
+    "runtime_mutation_allowed_now": false
+  }
+}

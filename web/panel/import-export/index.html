@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Import / Export Yüzeyi</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #687287;
+      --border: #e6e9f0;
+      --brand: #1f6feb;
+      --brand-soft: #eaf2ff;
+      --ok: #0f8b4c;
+      --warn: #a16207;
+      --danger: #b42318;
+      --shadow: 0 14px 34px rgba(18, 27, 46, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 28px;
+    }
+
+    .shell {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #344054;
+    }
+
+    select, input {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 13px;
+      font: inherit;
+      outline: none;
+      background: #fff;
+    }
+
+    button {
+      border: none;
+      border-radius: 15px;
+      padding: 12px 16px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .primary { background: var(--brand); color: #fff; }
+    .secondary { background: var(--brand-soft); color: var(--brand); }
+
+    .ie-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .ie-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .pill {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .contract {
+      border: 1px dashed #bfdbfe;
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+
+    .gate {
+      border: 1px dashed #fecaca;
+      background: #fff1f2;
+      color: var(--danger);
+    }
+
+    @media (max-width: 980px) {
+      body { padding: 18px; }
+      .grid-2, .grid-4, .field-grid { grid-template-columns: 1fr; }
+      .ie-row { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_328_IMPORT_EXPORT_APP_SHELL_START -->
+  <main class="shell" data-step="328" data-surface="import-export">
+    <section class="hero">
+      <h1 data-i18n="import_export.title">Import / export yüzeyi</h1>
+      <p data-i18n="import_export.description">Cari, ürün/stok, belge ve muhasebe export işlemlerini tenant kapsamında hazırla.</p>
+    </section>
+
+    <section class="grid-4">
+      <!-- PIX2PI_328_CUSTOMER_IMPORT_EXPORT_SURFACE_START -->
+      <article class="card" data-widget="customer_import_export_surface">
+        <h2>Cari</h2>
+        <p>Cari import/export şablon, validation ve staging hazırlığı.</p>
+      </article>
+      <!-- PIX2PI_328_CUSTOMER_IMPORT_EXPORT_SURFACE_END -->
+
+      <!-- PIX2PI_328_PRODUCT_IMPORT_EXPORT_SURFACE_START -->
+      <article class="card" data-widget="product_import_export_surface">
+        <h2>Ürün / stok</h2>
+        <p>Ürün, SKU, barkod, stok ve depo import/export hazırlığı.</p>
+      </article>
+      <!-- PIX2PI_328_PRODUCT_IMPORT_EXPORT_SURFACE_END -->
+
+      <!-- PIX2PI_328_DOCUMENT_EXPORT_SURFACE_START -->
+      <article class="card" data-widget="document_export_surface">
+        <h2>Fatura / belge</h2>
+        <p>PDF, XML ve JSON belge export bağlantı noktası.</p>
+      </article>
+      <!-- PIX2PI_328_DOCUMENT_EXPORT_SURFACE_END -->
+
+      <!-- PIX2PI_328_ACCOUNTING_EXPORT_FORMATS_START -->
+      <article class="card" data-widget="accounting_export_formats">
+        <h2>Muhasebe export</h2>
+        <p>Logo / Mikro / Zirve / ETA formatları için placeholder.</p>
+      </article>
+      <!-- PIX2PI_328_ACCOUNTING_EXPORT_FORMATS_END -->
+    </section>
+
+    <section class="grid-2">
+      <!-- PIX2PI_328_IMPORT_FORM_START -->
+      <article class="card" data-widget="import_surface">
+        <h2>Import hazırlığı</h2>
+        <form id="import-form">
+          <div class="field-grid">
+            <label>
+              Domain
+              <select name="domain" required>
+                <option value="CUSTOMERS">Cari</option>
+                <option value="PRODUCTS">Ürün / stok</option>
+                <option value="DOCUMENTS">Belge</option>
+              </select>
+            </label>
+
+            <label>
+              Import formatı
+              <select name="import_format" required>
+                <option value="CSV">CSV</option>
+                <option value="XLSX">XLSX</option>
+                <option value="JSON">JSON</option>
+              </select>
+            </label>
+
+            <label>
+              Mapping policy
+              <select name="mapping_policy" required>
+                <option value="STRICT">STRICT</option>
+                <option value="LENIENT">LENIENT</option>
+                <option value="DRY_RUN_ONLY">DRY_RUN_ONLY</option>
+              </select>
+            </label>
+
+            <label>
+              Dosya
+              <input name="file_placeholder" type="text" placeholder="Gerçek yükleme backend sonrası" />
+            </label>
+          </div>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;">
+            <button type="button" class="secondary" id="template-button">Şablon payload hazırla</button>
+            <button type="button" class="secondary" id="validate-import-button">Validate payload hazırla</button>
+            <button type="submit" class="primary">Import dry-run payload hazırla</button>
+          </div>
+        </form>
+      </article>
+      <!-- PIX2PI_328_IMPORT_FORM_END -->
+
+      <!-- PIX2PI_328_EXPORT_FORM_START -->
+      <article class="card" data-widget="export_surface">
+        <h2>Export hazırlığı</h2>
+        <form id="export-form">
+          <div class="field-grid">
+            <label>
+              Domain
+              <select name="domain" required>
+                <option value="CUSTOMERS">Cari</option>
+                <option value="PRODUCTS">Ürün / stok</option>
+                <option value="DOCUMENTS">Belge</option>
+                <option value="ACCOUNTING">Muhasebe</option>
+              </select>
+            </label>
+
+            <label>
+              Export formatı
+              <select name="export_format" required>
+                <option value="CSV">CSV</option>
+                <option value="XLSX">XLSX</option>
+                <option value="PDF">PDF</option>
+                <option value="JSON">JSON</option>
+                <option value="LOGO">Logo</option>
+                <option value="MIKRO">Mikro</option>
+                <option value="ZIRVE">Zirve</option>
+                <option value="ETA">ETA</option>
+              </select>
+            </label>
+          </div>
+
+          <button type="submit" class="primary" style="margin-top:14px;">Export payload hazırla</button>
+        </form>
+      </article>
+      <!-- PIX2PI_328_EXPORT_FORM_END -->
+    </section>
+
+    <!-- PIX2PI_328_TEMPLATE_DOWNLOAD_PLACEHOLDER_START -->
+    <section class="card" data-widget="template_download_placeholder">
+      <h2>Şablon indirme placeholder</h2>
+      <p>Cari, ürün/stok ve belge import şablonları backend bağlanınca üretilecek.</p>
+    </section>
+    <!-- PIX2PI_328_TEMPLATE_DOWNLOAD_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_328_STAGING_PREVIEW_PLACEHOLDER_START -->
+    <section class="card" data-widget="file_upload_staging_preview_placeholder">
+      <h2>Dosya yükleme / staging preview placeholder</h2>
+      <p>Gerçek dosya işleme kapalıdır; bu adım yalnızca staging preview sözleşmesini kurar.</p>
+    </section>
+    <!-- PIX2PI_328_STAGING_PREVIEW_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_328_MAPPING_VALIDATION_PREVIEW_START -->
+    <section class="card contract" data-widget="mapping_validation_preview">
+      <h2>Mapping / validation preview</h2>
+      <p id="mapping-preview" data-mapping-domain="CUSTOMERS">customer_name, tax_number, tax_office, city, district, address_line, phone, email</p>
+    </section>
+    <!-- PIX2PI_328_MAPPING_VALIDATION_PREVIEW_END -->
+
+    <section class="grid-2">
+      <!-- PIX2PI_328_IMPORT_JOB_STATUS_LIST_START -->
+      <article class="card" data-widget="import_job_status_list">
+        <h2>Import job status</h2>
+        <div id="import-job-list" class="ie-list">
+          <article class="ie-row" data-ie-row-type="job" data-ie-row-id="imp-demo-001">
+            <div><strong>imp-demo-001</strong><p>CUSTOMERS / XLSX</p></div>
+            <span class="pill">STAGING_READY</span>
+          </article>
+        </div>
+      </article>
+      <!-- PIX2PI_328_IMPORT_JOB_STATUS_LIST_END -->
+
+      <!-- PIX2PI_328_EXPORT_HISTORY_LIST_START -->
+      <article class="card" data-widget="export_history_list">
+        <h2>Export history</h2>
+        <div id="export-history-list" class="ie-list">
+          <article class="ie-row" data-ie-row-type="history" data-ie-row-id="exp-demo-001">
+            <div><strong>exp-demo-001</strong><p>ACCOUNTING / LOGO</p></div>
+            <span class="pill">PLACEHOLDER_READY</span>
+          </article>
+        </div>
+      </article>
+      <!-- PIX2PI_328_EXPORT_HISTORY_LIST_END -->
+    </section>
+
+    <!-- PIX2PI_328_TENANT_SCOPED_IMPORT_EXPORT_GUARD_START -->
+    <section class="card" data-widget="tenant_scoped_import_export_guard">
+      <h2>Tenant scoped import/export guard</h2>
+      <p>Import/export işlemleri JWT ve `X-Tenant-ID` ile tenant kapsamına alınır.</p>
+    </section>
+    <!-- PIX2PI_328_TENANT_SCOPED_IMPORT_EXPORT_GUARD_END -->
+
+    <!-- PIX2PI_328_RUNTIME_CONTRACT_START -->
+    <section class="card gate" data-widget="import_export_runtime_contract">
+      <h2>Runtime contract</h2>
+      <p>real_file_processing_enabled=false / production_accounting_export_enabled=false / staging_preview_enabled=true</p>
+    </section>
+    <!-- PIX2PI_328_RUNTIME_CONTRACT_END -->
+
+    <!-- PIX2PI_328_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_import_export_markers">
+      <h2 data-i18n="import_export.i18n_ready">i18n-ready import/export</h2>
+      <p data-i18n="import_export.surface_ready">Import/export ekran metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_328_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_328_IMPORT_EXPORT_APP_SHELL_END -->
+
+  <script src="/assets/import-export/import-export-runtime.js"></script>
+  <script>
+    (function () {
+      const importForm = document.getElementById("import-form");
+      const exportForm = document.getElementById("export-form");
+      const templateButton = document.getElementById("template-button");
+      const validateButton = document.getElementById("validate-import-button");
+
+      Pix2piImportExport.bootImportExportScreen();
+
+      importForm.addEventListener("change", function () {
+        const payload = Pix2piImportExport.readForm(importForm);
+        Pix2piImportExport.renderMappingPreview(document.getElementById("mapping-preview"), payload.domain);
+      });
+
+      templateButton.addEventListener("click", function () {
+        const payload = Pix2piImportExport.readForm(importForm);
+        console.log("PIX2PI_328_TEMPLATE_PAYLOAD", Pix2piImportExport.buildTemplateRequestPayload(payload.domain, payload.import_format));
+      });
+
+      validateButton.addEventListener("click", function () {
+        const payload = Pix2piImportExport.readForm(importForm);
+        console.log("PIX2PI_328_VALIDATE_PAYLOAD", Pix2piImportExport.buildImportValidationPayload(payload));
+      });
+
+      importForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const payload = Pix2piImportExport.readForm(importForm);
+        console.log("PIX2PI_328_IMPORT_PAYLOAD", Pix2piImportExport.buildImportStartPayload(payload));
+      });
+
+      exportForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const payload = Pix2piImportExport.readForm(exportForm);
+        console.log("PIX2PI_328_EXPORT_PAYLOAD", Pix2piImportExport.buildExportPayload(payload));
+      });
+    })();
+  </script>
+</body>
+</html>

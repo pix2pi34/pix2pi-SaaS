@@ -1,0 +1,64 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 238,
+  "step": "FAZ_4_17_5",
+  "title": "WebSocket / SSE bağlantı sağlığı görünümü",
+  "priority_group": "WEB-L7 Workflow / Realtime UI",
+  "depends_on": [
+    "237_FAZ_4_17_2_WORKFLOW_MONITOR"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "realtime_health_policy": {
+    "realtime_health_status_required": "READY",
+    "realtime_health_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "tenant_scope_required": "SINGLE_TENANT",
+    "workflow_monitor_status_required": "PASS",
+    "websocket_health_status_required": "READY",
+    "sse_health_status_required": "READY",
+    "connection_status_badge_status_required": "READY",
+    "heartbeat_indicator_status_required": "READY",
+    "reconnect_indicator_status_required": "READY",
+    "latency_indicator_status_required": "READY",
+    "web_checkpoint_status_required": "READY",
+    "no_live_websocket_connection_required": true,
+    "no_live_sse_connection_required": true,
+    "no_event_stream_publish_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_health_items": [
+    "REALTIME_HEALTH_SHELL",
+    "TENANT_SCOPED_REALTIME_HEALTH",
+    "WEBSOCKET_HEALTH_PLACEHOLDER",
+    "SSE_HEALTH_PLACEHOLDER",
+    "CONNECTION_STATUS_BADGE_MODEL",
+    "HEARTBEAT_AGE_INDICATOR",
+    "LAST_EVENT_ID_PLACEHOLDER",
+    "RECONNECT_ATTEMPT_COUNTER",
+    "LATENCY_INDICATOR",
+    "SUBSCRIPTION_CHANNEL_LIST",
+    "WORKFLOW_MONITOR_LINK",
+    "EVENT_FEED_PLACEHOLDER",
+    "NOTIFICATION_CENTER_PLACEHOLDER",
+    "EMPTY_STATE",
+    "ERROR_STATE",
+    "NO_LIVE_SOCKET_GUARD",
+    "NO_LIVE_SSE_GUARD",
+    "EXTERNAL_POLICY_CLOSED_GATE",
+    "UI_CHECKPOINT_HTML",
+    "FINAL_REALTIME_HEALTH_REPORT"
+  ],
+  "realtime_health_artifact": "configs/faz4r/realtime_connection_health.controlled_pilot.v1.json",
+  "web_checkpoint": "web/faz4r/realtime-health/index.html",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "239_FAZ_4_17_6_WORKFLOW_REALTIME_UI_TESTLERI"
+  ]
+}

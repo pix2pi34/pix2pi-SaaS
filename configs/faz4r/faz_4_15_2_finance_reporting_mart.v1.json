@@ -1,0 +1,35 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 186,
+  "step": "FAZ_4_15_2",
+  "title": "Finance reporting mart",
+  "priority_group": "DB-L6 Reporting / Readmodel",
+  "depends_on": [
+    "185_FAZ_4_15_5_SEARCH_INDEX_PROJECTION_TABLES"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "tables": [
+    "finance_report_periods",
+    "finance_account_balances_mart",
+    "finance_income_expense_mart",
+    "finance_tax_summary_mart",
+    "finance_ar_ap_aging_mart",
+    "finance_reporting_projection_offsets",
+    "finance_reporting_audit_events"
+  ],
+  "readmodel_scope": [
+    "account_balances",
+    "income_expense",
+    "tax_summary",
+    "ar_ap_aging",
+    "projection_offsets",
+    "audit_events"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "187_FAZ_4_15_4_PAYMENT_RECONCILIATION_REPORTING_MART"
+  ]
+}

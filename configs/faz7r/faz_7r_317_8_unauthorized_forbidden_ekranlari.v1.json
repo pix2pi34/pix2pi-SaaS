@@ -1,0 +1,51 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "317.8",
+  "name": "Unauthorized / forbidden ekranları",
+  "component": "internal/auth/accessdenial",
+  "panel_paths": {
+    "unauthorized": "/unauthorized/",
+    "forbidden": "/forbidden/",
+    "runtime": "/assets/access-denial/access-denial-runtime.js"
+  },
+  "database_contract": {
+    "schema": "auth",
+    "tables": [
+      "auth.access_denial_events"
+    ],
+    "tracked_fields": [
+      "tenant_id",
+      "user_id",
+      "role_code",
+      "route_path",
+      "action_code",
+      "denial_code",
+      "http_status",
+      "correlation_id",
+      "ip_address",
+      "user_agent",
+      "occurred_at"
+    ]
+  },
+  "runtime_contract": {
+    "maps_unauthorized_to_401": true,
+    "maps_forbidden_to_403": true,
+    "records_access_denial_event": true,
+    "safe_public_message": true,
+    "correlation_id_required": true,
+    "tenant_user_role_context_supported": true,
+    "panel_screen_contract": true
+  },
+  "required_checks": [
+    "unauthorized_decision",
+    "forbidden_decision",
+    "http_status_mapping",
+    "audit_event_record",
+    "correlation_id_contract",
+    "panel_unauthorized_screen",
+    "panel_forbidden_screen",
+    "panel_smoke",
+    "go_test"
+  ],
+  "next_step": "317.9 - Login smoke test gerçek E2E"
+}

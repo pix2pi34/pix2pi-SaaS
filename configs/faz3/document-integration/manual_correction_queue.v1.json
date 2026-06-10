@@ -1,0 +1,98 @@
+{
+  "phase": "FAZ_3_13_5_MANUAL_CORRECTION_QUEUE",
+  "screen": "manual_correction_queue",
+  "screen_enabled": true,
+  "route": "/faz3/document-integration/manual-correction-queue/",
+  "static_file": "web/faz3/document-integration/manual-correction-queue/index.html",
+  "scope": {
+    "manual_correction_queue_visibility": true,
+    "ocr_review_source_visibility": true,
+    "ebelge_status_source_visibility": true,
+    "provider_error_source_visibility": true,
+    "retry_cancel_resend_source_visibility": true,
+    "correction_field_visibility": true,
+    "current_value_visibility": true,
+    "proposed_value_visibility": true,
+    "operator_assignment_visibility": true,
+    "reviewer_visibility": true,
+    "decision_visibility": true,
+    "approval_status_visibility": true,
+    "rejection_reason_visibility": true,
+    "correction_source_hash_visibility": true,
+    "before_value_hash_visibility": true,
+    "after_value_hash_visibility": true,
+    "decision_hash_visibility": true,
+    "audit_timeline_visibility": true
+  },
+  "guard_policy": {
+    "tenant_indicator_required": true,
+    "firm_indicator_required": true,
+    "operator_indicator_required": true,
+    "reviewer_indicator_required": true,
+    "queue_id_required": true,
+    "source_type_required": true,
+    "source_ref_required": true,
+    "document_no_required": true,
+    "correction_field_required": true,
+    "current_value_required": true,
+    "proposed_value_required": true,
+    "status_required": true,
+    "priority_required": true,
+    "decision_required": true,
+    "decision_reason_required": true,
+    "approval_status_required": true,
+    "correction_source_hash_required": true,
+    "before_value_hash_required": true,
+    "after_value_hash_required": true,
+    "decision_hash_required": true,
+    "audit_hash_required": true,
+    "evidence_file_required": true
+  },
+  "source_type_coverage": {
+    "ocr_review": true,
+    "ebelge_status": true,
+    "provider_error": true,
+    "retry_cancel_resend": true
+  },
+  "status_coverage": {
+    "open": true,
+    "assigned": true,
+    "waiting_approval": true,
+    "approved_dry_run": true,
+    "rejected": true
+  },
+  "priority_coverage": {
+    "low": true,
+    "medium": true,
+    "high": true,
+    "critical": true
+  },
+  "operation_coverage": {
+    "assign_operator": true,
+    "preview_correction": true,
+    "approve_dry_run": true,
+    "reject_correction": true,
+    "audit_evidence": true,
+    "live_apply_disabled": true
+  },
+  "live_policy": {
+    "production_approved": false,
+    "auto_apply_allowed": false,
+    "human_approval_required": true,
+    "dual_control_required": true,
+    "before_after_hash_required": true,
+    "audit_hash_required": true,
+    "live_write_allowed": false,
+    "raw_pii_visible": false,
+    "ui_actions_are_assign_correct_approve_reject_audit_only": true
+  },
+  "covered_backend_gates": [
+    "FAZ_3_13_4_OCR_DOCUMENT_REVIEW_SCREEN",
+    "FAZ_3_13_1_EBELGE_STATUS_CENTER",
+    "FAZ_3_13_2_RETRY_CANCEL_RESEND_ACTION_SURFACE",
+    "FAZ_3_13_3_PROVIDER_ERROR_VIEW",
+    "FAZ_3_13_6_DOCUMENT_INTEGRATION_UI_TESTS"
+  ],
+  "previous_gate": "FAZ_3_13_3_PROVIDER_ERROR_VIEW",
+  "next_gate": "FAZ_3_R_PRIORITY_3_FINAL_RECHECK"
+}

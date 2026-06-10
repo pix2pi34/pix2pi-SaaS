@@ -1,0 +1,52 @@
+{
+  "test_name": "faz_5_18_5_5_veri_export_devir_akisi_test",
+  "phase": "FAZ_5_18_5_5",
+  "expected": {
+    "required_step_count": 10,
+    "required_event_count": 10,
+    "internal_data_export_flow_ready": true,
+    "production_export_enabled": false,
+    "real_customer_export_enabled": false,
+    "data_deletion_enabled": false,
+    "auto_transfer_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_step_keys": [
+    "export_request_intake",
+    "owner_verification",
+    "legal_hold_check",
+    "data_scope_selection",
+    "kvkk_masking_policy",
+    "export_bundle_prepare",
+    "checksum_manifest_create",
+    "secure_download_package",
+    "handover_acceptance_record",
+    "data_deletion_deferred_marker"
+  ],
+  "must_have_events": [
+    "EXPORT_REQUEST_RECEIVED",
+    "OWNER_VERIFIED",
+    "LEGAL_HOLD_CHECKED",
+    "DATA_SCOPE_SELECTED",
+    "KVKK_MASKING_APPLIED",
+    "EXPORT_BUNDLE_PREPARED",
+    "CHECKSUM_MANIFEST_CREATED",
+    "SECURE_DOWNLOAD_READY",
+    "HANDOVER_ACCEPTANCE_RECORDED",
+    "DATA_DELETION_DEFERRED"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_export_request_id",
+    "requires_owner_approval",
+    "requires_legal_hold_check",
+    "requires_data_scope",
+    "requires_kvkk_masking",
+    "requires_checksum_manifest",
+    "requires_encryption",
+    "requires_secure_download",
+    "blocks_production_export",
+    "blocks_data_deletion"
+  ]
+}

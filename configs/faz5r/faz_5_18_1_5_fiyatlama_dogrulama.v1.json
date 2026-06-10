@@ -1,0 +1,37 @@
+{
+  "phase": "FAZ_5_18_1_5",
+  "title": "Fiyatlama Doğrulama",
+  "status": "READY",
+  "control_surface": "PRICING_VALIDATION",
+  "inputs": [
+    "FAZ_5_18_1_2_FIYAT_TABLOSU",
+    "FAZ_5_18_1_4_MUHASEBECI_OZEL_PAKETLERI",
+    "FAZ_5_R_PRIORITY_3_LVL18_PRICING"
+  ],
+  "outputs": [
+    "PRICING_TABLE_INTEGRITY",
+    "ACCOUNTANT_PACKAGE_INTEGRITY",
+    "VAT_POLICY_VALIDATION",
+    "ANNUAL_MONTHLY_PRICE_VALIDATION",
+    "ENTITLEMENT_CONSISTENCY_VALIDATION",
+    "BILLING_GATE_VALIDATION",
+    "PAYMENT_GATE_VALIDATION",
+    "PUBLIC_COPY_APPROVAL_VALIDATION",
+    "DEVELOPER_DOCS_PORTAL_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_pricing_validation_ready": true,
+    "production_pricing_published": false,
+    "real_customer_billing_enabled": false,
+    "payment_collection_enabled": false,
+    "public_checkout_enabled": false,
+    "developer_docs_portal_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

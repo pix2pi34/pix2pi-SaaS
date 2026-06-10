@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Ops Console — Incident / Audit Center</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --card: #1f2937;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --line: rgba(255,255,255,.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0f172a, #111827);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+    aside {
+      border-right: 1px solid var(--line);
+      padding: 24px;
+      background: rgba(15, 23, 42, .88);
+    }
+    main { padding: 28px; }
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 28px;
+    }
+    .nav-item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .nav-item.active {
+      background: rgba(34, 197, 94, .14);
+      color: var(--text);
+      border: 1px solid rgba(34, 197, 94, .35);
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    h1 { margin: 0; font-size: 28px; }
+    .tenant {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .card {
+      background: rgba(31, 41, 55, .86);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.22);
+    }
+    .metric-label { color: var(--muted); font-size: 13px; }
+    .metric-value { font-size: 30px; font-weight: 800; margin-top: 8px; }
+    .metric-note { color: var(--muted); margin-top: 6px; font-size: 12px; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      padding: 13px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      font-size: 14px;
+    }
+    th { color: var(--muted); font-weight: 600; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .pill.ok { background: rgba(34, 197, 94, .15); color: #86efac; }
+    .pill.warn { background: rgba(245, 158, 11, .15); color: #fcd34d; }
+    .pill.danger { background: rgba(239, 68, 68, .15); color: #fca5a5; }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .filter {
+      background: #0b1220;
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      min-width: 170px;
+    }
+    @media (max-width: 1080px) {
+      .shell { grid-template-columns: 1fr; }
+      aside { display: none; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="brand">Pix2pi Ops Console</div>
+      <div class="nav-item">Service Registry</div>
+      <div class="nav-item">Mission Control</div>
+      <div class="nav-item">Job Queue / Worker Monitor</div>
+      <div class="nav-item">Notification / Webhook İzleme</div>
+      <div class="nav-item active">Incident / Audit Center</div>
+      <div class="nav-item">Runtime Health / Topology</div>
+      <div class="nav-item">Early Warning</div>
+    </aside>
+
+    <main>
+      <section class="topbar">
+        <div>
+          <h1>Incident / Audit Center</h1>
+          <div class="metric-note">FAZ 2-8.6 — incident, operator action ve audit görünümü</div>
+        </div>
+        <div class="tenant">Tenant: tenant_7 · Scope: INTERNAL</div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <div class="metric-label">Open Incidents</div>
+          <div class="metric-value">7</div>
+          <div class="metric-note">active operational issues</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Critical</div>
+          <div class="metric-value">2</div>
+          <div class="metric-note">requires immediate action</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Audit Events</div>
+          <div class="metric-value">1,284</div>
+          <div class="metric-note">operator + system + security</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Resolved</div>
+          <div class="metric-value">46</div>
+          <div class="metric-note">closed incidents</div>
+        </div>
+      </section>
+
+      <section class="two-col">
+        <div class="card">
+          <div class="toolbar">
+            <strong>Incidents</strong>
+            <select class="filter">
+              <option>All Severity</option>
+              <option>CRITICAL</option>
+              <option>WARNING</option>
+              <option>INFO</option>
+            </select>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Incident</th>
+                <th>Source</th>
+                <th>Severity</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>incident_critical_1</td>
+                <td>webhook_runtime</td>
+                <td><span class="pill danger">CRITICAL</span></td>
+                <td><span class="pill warn">OPEN</span></td>
+              </tr>
+              <tr>
+                <td>incident_warning_1</td>
+                <td>job_runtime</td>
+                <td><span class="pill warn">WARNING</span></td>
+                <td><span class="pill ok">RESOLVED</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="toolbar">
+            <strong>Audit Stream</strong>
+            <span class="pill ok">Tenant-safe</span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Audit</th>
+                <th>Actor</th>
+                <th>Action</th>
+                <th>Severity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>audit_security_1</td>
+                <td>system</td>
+                <td>SECURITY_EVENT</td>
+                <td><span class="pill danger">CRITICAL</span></td>
+              </tr>
+              <tr>
+                <td>audit_operator_1</td>
+                <td>operator_1</td>
+                <td>OPERATOR_ACTION</td>
+                <td><span class="pill ok">INFO</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

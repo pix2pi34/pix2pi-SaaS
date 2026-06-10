@@ -1,0 +1,33 @@
+{
+  "phase": "FAZ_5_18_3_3",
+  "title": "Log Retention / İmha Politikası",
+  "status": "READY",
+  "control_surface": "LEGAL_KVKK_LOG_RETENTION_DESTRUCTION_POLICY",
+  "inputs": [
+    "FAZ_5_18_3_2_KVKK_PRIVACY_TEXTS",
+    "FAZ_5_18_3_4_CONSENT_REGISTRY_RUNTIME",
+    "FAZ_5_18_3_5_UYUM_DOKUMAN_KONTROLU"
+  ],
+  "outputs": [
+    "LOG_RETENTION_POLICY",
+    "DESTRUCTION_POLICY",
+    "TENANT_SAFE_RETENTION_CONTRACT",
+    "LEGAL_HOLD_GUARD",
+    "RESTORE_GUARD",
+    "AUDIT_EVIDENCE_REQUIREMENT"
+  ],
+  "gates": {
+    "internal_policy_ready": true,
+    "production_deletion_allowed": false,
+    "legal_hold_required": true,
+    "tenant_scope_required": true,
+    "audit_evidence_required": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

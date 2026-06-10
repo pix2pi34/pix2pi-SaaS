@@ -1,0 +1,54 @@
+{
+  "default_language": "tr-TR",
+  "fallback_language": "tr-TR",
+  "language_order": ["tr-TR", "ota", "ar", "fa", "en"],
+  "calligraphy_reference_policy": {
+    "primary_reference_name": "Ahmed Hüsrev Altınbaşak hattı",
+    "primary_reference_url": "https://oku.risale.online/osm",
+    "applies_to": ["ota", "ar", "fa"],
+    "use_other_reference_sources": false
+  },
+  "languages": [
+    {
+      "code": "tr-TR",
+      "name": "Latin Türkçe",
+      "native_name": "Türkçe",
+      "dir": "ltr",
+      "locale_file": "/i18n/locales/tr-TR.json"
+    },
+    {
+      "code": "ota",
+      "name": "Osmanlıca Türkçesi / Arap harfli Türkçe",
+      "native_name": "عثمانلیجه تورکجه",
+      "dir": "rtl",
+      "locale_file": "/i18n/locales/ota.json",
+      "calligraphy_reference": "Ahmed Hüsrev Altınbaşak hattı",
+      "calligraphy_reference_url": "https://oku.risale.online/osm"
+    },
+    {
+      "code": "ar",
+      "name": "Arapça",
+      "native_name": "العربية",
+      "dir": "rtl",
+      "locale_file": "/i18n/locales/ar.json",
+      "calligraphy_reference": "Ahmed Hüsrev Altınbaşak hattı",
+      "calligraphy_reference_url": "https://oku.risale.online/osm"
+    },
+    {
+      "code": "fa",
+      "name": "Farsça",
+      "native_name": "فارسی",
+      "dir": "rtl",
+      "locale_file": "/i18n/locales/fa.json",
+      "calligraphy_reference": "Ahmed Hüsrev Altınbaşak hattı uyumlu RTL fallback",
+      "calligraphy_reference_url": "https://oku.risale.online/osm"
+    },
+    {
+      "code": "en",
+      "name": "İngilizce",
+      "native_name": "English",
+      "dir": "ltr",
+      "locale_file": "/i18n/locales/en.json"
+    }
+  ]
+}

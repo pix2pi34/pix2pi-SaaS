@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "353",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "user_permission_screen",
+      "path": "/user-permission-check/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_353_USER_PERMISSION_CHECK_APP_SHELL_START",
+        "PIX2PI_353_ROLE_PERMISSION_MATRIX_PREVIEW_START",
+        "PIX2PI_353_PERMISSION_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "user_permission_runtime",
+      "path": "/assets/user-permission-check/user-permission-check-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_353_USER_PERMISSION_CHECK_RUNTIME_START",
+        "permissionScopeHeaders",
+        "buildUserPermissionRuntimeContract"
+      ]
+    }
+  ]
+}

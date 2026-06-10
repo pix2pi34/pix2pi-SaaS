@@ -1,0 +1,66 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 234,
+  "step": "FAZ_4_16_8_4",
+  "title": "Go / no-go kararı",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "233_FAZ_4_16_8_3_KRITIK_HATA_SIFIRLAMA",
+    "232_FAZ_4_16_8_2_UAT_BASARI_ESIGI",
+    "231_FAZ_4_16_8_1_PILOT_KPI_DEGERLENDIRMESI",
+    "230_FAZ_4_16_7_5_REHEARSAL_RAPORU"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "decision_policy": {
+    "go_no_go_decision_status_required": "READY",
+    "go_no_go_decision_mode_required": "CONTROLLED_PILOT",
+    "decision_result_required": "GO",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "p0_issue_count_required": 0,
+    "p1_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "open_incident_count_required": 0,
+    "regression_fail_count_required": 0,
+    "exception_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "critical_issue_reset_status_required": "PASS",
+    "uat_threshold_status_required": "PASS",
+    "pilot_kpi_status_required": "PASS",
+    "rehearsal_report_status_required": "PASS",
+    "owner_approval_status_required": "APPROVED",
+    "no_production_launch_required": true,
+    "no_live_external_provider_activation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_decision_items": [
+    "GO_NO_GO_DECISION_KICKOFF",
+    "CRITICAL_ISSUE_RESET_LINK",
+    "UAT_THRESHOLD_LINK",
+    "PILOT_KPI_LINK",
+    "REHEARSAL_REPORT_LINK",
+    "CRITICAL_ISSUE_ZERO_CHECK",
+    "P0_P1_ZERO_CHECK",
+    "OPEN_BLOCKER_ZERO_CHECK",
+    "UAT_PASS_CHECK",
+    "IMPORT_SUCCESS_CHECK",
+    "RUNTIME_HEALTH_READINESS_CHECK",
+    "ROLLBACK_READINESS_CHECK",
+    "COMMUNICATION_READINESS_CHECK",
+    "OWNER_APPROVAL_CHECK",
+    "DECISION_OUTCOME",
+    "EXTERNAL_POLICY_CLOSED_GATE",
+    "FINAL_DECISION_REPORT"
+  ],
+  "decision_artifact": "configs/faz4r/go_no_go_decision.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "235_FAZ_4_16_8_5_PILOT_CLOSURE_REPORT"
+  ]
+}

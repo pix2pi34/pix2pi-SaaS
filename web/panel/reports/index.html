@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Rapor Ekranları</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #687287;
+      --border: #e6e9f0;
+      --brand: #1f6feb;
+      --brand-soft: #eaf2ff;
+      --ok: #0f8b4c;
+      --danger: #b42318;
+      --shadow: 0 14px 34px rgba(18, 27, 46, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 28px;
+    }
+
+    .shell {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .grid-6 {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #344054;
+    }
+
+    input, select {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 13px;
+      font: inherit;
+      outline: none;
+      background: #fff;
+    }
+
+    button {
+      border: none;
+      border-radius: 15px;
+      padding: 12px 16px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .primary { background: var(--brand); color: #fff; }
+    .secondary { background: var(--brand-soft); color: var(--brand); }
+
+    .kpi-value {
+      font-size: 25px;
+      font-weight: 950;
+      letter-spacing: -0.05em;
+      margin-top: 10px;
+    }
+
+    .report-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .report-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .status {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 13px;
+      color: var(--muted);
+      background: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .status[data-validation-status="valid"] {
+      border-color: #bbf7d0;
+      background: #f0fdf4;
+      color: var(--ok);
+    }
+
+    .status[data-validation-status="invalid"] {
+      border-color: #fecaca;
+      background: #fff1f2;
+      color: var(--danger);
+    }
+
+    .contract {
+      border: 1px dashed #bfdbfe;
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+
+    @media (max-width: 1080px) {
+      body { padding: 18px; }
+      .grid-6, .grid-2, .field-grid { grid-template-columns: 1fr; }
+      .report-row { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_327_REPORTS_APP_SHELL_START -->
+  <main class="shell" data-step="327" data-surface="reports">
+    <section class="hero">
+      <h1 data-i18n="reports.title">Rapor ekranları</h1>
+      <p data-i18n="reports.description">Satış, stok, cari ve belge raporlarını tenant kapsamında görüntüle.</p>
+    </section>
+
+    <!-- PIX2PI_327_DATE_RANGE_FILTER_SURFACE_START -->
+    <section class="card" data-widget="date_range_filter">
+      <h2>Rapor filtresi</h2>
+      <form id="reports-filter-form">
+        <div class="field-grid">
+          <label>
+            Rapor tipi
+            <select name="report_type" required>
+              <option value="SALES">Satış</option>
+              <option value="STOCK">Stok</option>
+              <option value="CUSTOMERS">Cari</option>
+              <option value="DOCUMENTS">Belge</option>
+            </select>
+          </label>
+
+          <label>
+            Başlangıç
+            <input name="date_from" type="date" required value="2026-01-01" />
+          </label>
+
+          <label>
+            Bitiş
+            <input name="date_to" type="date" required value="2026-12-31" />
+          </label>
+
+          <label>
+            Export formatı
+            <select name="export_format">
+              <option value="PDF">PDF</option>
+              <option value="XLSX">XLSX</option>
+              <option value="CSV">CSV</option>
+              <option value="JSON">JSON</option>
+            </select>
+          </label>
+        </div>
+
+        <section id="reports-validation-status" class="status" hidden data-validation-status="">
+          Rapor validation sonucu burada gösterilir.
+        </section>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;">
+          <button type="submit" class="primary">Rapor kontrol et</button>
+          <button type="button" id="reports-export-button" class="secondary">Export payload hazırla</button>
+        </div>
+      </form>
+    </section>
+    <!-- PIX2PI_327_DATE_RANGE_FILTER_SURFACE_END -->
+
+    <!-- PIX2PI_327_KPI_SUMMARY_CARDS_START -->
+    <section class="grid-6" data-widget="kpi_summary_cards">
+      <article class="card"><h2>Toplam satış</h2><div id="report-kpi-total-sales" class="kpi-value">₺0,00</div></article>
+      <article class="card"><h2>Fiş</h2><div id="report-kpi-receipt-count" class="kpi-value">0</div></article>
+      <article class="card"><h2>Ürün</h2><div id="report-kpi-product-count" class="kpi-value">0</div></article>
+      <article class="card"><h2>Cari</h2><div id="report-kpi-customer-count" class="kpi-value">0</div></article>
+      <article class="card"><h2>Belge</h2><div id="report-kpi-document-count" class="kpi-value">0</div></article>
+      <article class="card"><h2>Stok</h2><div id="report-kpi-stock-total" class="kpi-value">0</div></article>
+    </section>
+    <!-- PIX2PI_327_KPI_SUMMARY_CARDS_END -->
+
+    <section class="grid-2">
+      <!-- PIX2PI_327_SALES_REPORT_SURFACE_START -->
+      <article class="card" data-widget="sales_report_surface">
+        <h2>Satış raporu</h2>
+        <div id="sales-report-list" class="report-list">
+          <article class="report-row" data-report-row-type="sales"><strong>Bugün</strong><span>₺0,00</span></article>
+        </div>
+      </article>
+      <!-- PIX2PI_327_SALES_REPORT_SURFACE_END -->
+
+      <!-- PIX2PI_327_STOCK_REPORT_SURFACE_START -->
+      <article class="card" data-widget="stock_report_surface">
+        <h2>Stok raporu</h2>
+        <div id="stock-report-list" class="report-list">
+          <article class="report-row" data-report-row-type="stock"><strong>Toplam stok</strong><span>0</span></article>
+        </div>
+      </article>
+      <!-- PIX2PI_327_STOCK_REPORT_SURFACE_END -->
+
+      <!-- PIX2PI_327_CUSTOMER_REPORT_SURFACE_START -->
+      <article class="card" data-widget="customer_report_surface">
+        <h2>Cari raporu</h2>
+        <div id="customers-report-list" class="report-list">
+          <article class="report-row" data-report-row-type="customers"><strong>Aktif cari</strong><span>0</span></article>
+        </div>
+      </article>
+      <!-- PIX2PI_327_CUSTOMER_REPORT_SURFACE_END -->
+
+      <!-- PIX2PI_327_DOCUMENT_REPORT_SURFACE_START -->
+      <article class="card" data-widget="document_report_surface">
+        <h2>Fatura / belge raporu</h2>
+        <div id="documents-report-list" class="report-list">
+          <article class="report-row" data-report-row-type="documents"><strong>Taslak belge</strong><span>0</span></article>
+        </div>
+      </article>
+      <!-- PIX2PI_327_DOCUMENT_REPORT_SURFACE_END -->
+    </section>
+
+    <!-- PIX2PI_327_EXPORT_PLACEHOLDER_START -->
+    <section class="card" data-widget="report_export_placeholder">
+      <h2>Export placeholder</h2>
+      <p>PDF, XLSX, CSV ve JSON export payload sözleşmesi hazırdır; gerçek export 328 ve ilgili backend adımlarında bağlanacak.</p>
+    </section>
+    <!-- PIX2PI_327_EXPORT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_327_REPORTING_STORE_CONTRACT_START -->
+    <section class="card contract" data-widget="reporting_store_read_model_contract">
+      <h2>Reporting store / read model contract</h2>
+      <p>source=reporting_store / production_query_enabled=false / fallback_snapshot_enabled=true</p>
+    </section>
+    <!-- PIX2PI_327_REPORTING_STORE_CONTRACT_END -->
+
+    <!-- PIX2PI_327_TENANT_SCOPED_REPORT_GUARD_START -->
+    <section class="card" data-widget="tenant_scoped_report_guard">
+      <h2>Tenant scoped report guard</h2>
+      <p>Rapor okuma/export işlemleri JWT ve `X-Tenant-ID` ile tenant kapsamına alınır.</p>
+    </section>
+    <!-- PIX2PI_327_TENANT_SCOPED_REPORT_GUARD_END -->
+
+    <!-- PIX2PI_327_RUNTIME_FALLBACK_SNAPSHOT_START -->
+    <section class="card" data-widget="runtime_fallback_snapshot">
+      <h2>Runtime fallback snapshot</h2>
+      <p>Backend hazır değilse panel güvenli fallback snapshot ile render eder.</p>
+    </section>
+    <!-- PIX2PI_327_RUNTIME_FALLBACK_SNAPSHOT_END -->
+
+    <!-- PIX2PI_327_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_report_markers">
+      <h2 data-i18n="reports.i18n_ready">i18n-ready reports</h2>
+      <p data-i18n="reports.surface_ready">Rapor ekran metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_327_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_327_REPORTS_APP_SHELL_END -->
+
+  <script src="/assets/reports/reports-runtime.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById("reports-filter-form");
+      const status = document.getElementById("reports-validation-status");
+      const exportButton = document.getElementById("reports-export-button");
+
+      Pix2piReports.bootReportsScreen();
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const filters = Pix2piReports.readFilters(form);
+        const validation = Pix2piReports.validateReportFilters(filters);
+        Pix2piReports.renderValidation(status, validation);
+
+        if (validation.valid) {
+          const result = await Pix2piReports.fetchReport(filters);
+          if (result.fallback_snapshot) {
+            Pix2piReports.renderReportsSnapshot(result.fallback_snapshot);
+          }
+        }
+      });
+
+      exportButton.addEventListener("click", async function () {
+        const filters = Pix2piReports.readFilters(form);
+        const validation = Pix2piReports.validateReportFilters(filters);
+        Pix2piReports.renderValidation(status, validation);
+        if (validation.valid) {
+          console.log("PIX2PI_327_EXPORT_PAYLOAD", Pix2piReports.buildExportPayload(filters, filters.export_format));
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

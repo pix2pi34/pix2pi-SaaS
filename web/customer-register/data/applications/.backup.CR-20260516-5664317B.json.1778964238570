@@ -1,0 +1,34 @@
+{
+  "id": "CR-20260516-5664317B",
+  "status": "PENDING",
+  "tenantProvisioned": false,
+  "adminApprovalRequired": true,
+  "mailStatus": "SENT",
+  "source": "customer-register-live",
+  "submittedAt": "2026-05-16T18:15:11.819Z",
+  "companyTitle": "Pix2pi Final Canlı Test İşletmesi 20260516211511",
+  "taxOrIdentityNo": "1234567890",
+  "authorizedFullName": "Final Canlı Test Yetkilisi",
+  "authorizedEmail": "surucukursu58+cr20260516211511@gmail.com",
+  "phone": "+905551112233",
+  "sector": "Sürücü Kursu",
+  "branchCount": 2,
+  "modules": [
+    "POS",
+    "Cari",
+    "Muhasebe",
+    "E-Fatura"
+  ],
+  "mails": {
+    "applicant": {
+      "ok": true,
+      "statusCode": 200,
+      "providerId": "7399678a-0352-485b-9a52-ec8bfa020ce9"
+    },
+    "admin": {
+      "ok": true,
+      "statusCode": 200,
+      "providerId": "66bced02-5422-4b39-aebe-3e9df0d99ba5"
+    }
+  }
+}

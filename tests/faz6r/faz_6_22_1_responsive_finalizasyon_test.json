@@ -1,0 +1,41 @@
+{
+  "expected_dependency": "FAZ_6_22_8",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_frontend_deploy_allowed": false,
+  "expected_css_mutation_allowed": false,
+  "expected_layout_mutation_allowed": false,
+  "expected_breakpoint_mutation_allowed": false,
+  "expected_build_publish_allowed": false,
+  "expected_cdn_invalidation_allowed": false,
+  "expected_required_controls": [
+    "final_web_closure_dependency_gate",
+    "breakpoint_matrix_policy",
+    "responsive_route_inventory",
+    "mobile_layout_policy",
+    "tablet_layout_policy",
+    "desktop_layout_policy",
+    "overflow_scroll_guard",
+    "touch_target_policy",
+    "navigation_collapse_policy",
+    "form_responsive_policy",
+    "table_responsive_policy",
+    "modal_drawer_responsive_policy",
+    "dry_run_responsive_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_surfaces": [
+    "public_landing",
+    "auth_login",
+    "tenant_panel_shell",
+    "approval_inbox",
+    "workflow_monitor",
+    "reporting_tables"
+  ],
+  "expected_min_check_count": 6,
+  "expected_status": "dry_run_only_no_responsive_mutation",
+  "expected_next_step": "FAZ_6_22_5"
+}

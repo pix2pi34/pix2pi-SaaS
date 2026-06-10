@@ -1,0 +1,21 @@
+gate	status	note
+previous_19_4	PASS	import wizard prerequisite
+contract	PASS	routes=8 fields=28 statuses=7
+route_manifest	PASS	route_count=8
+scenario_manifest	PASS	scenario_count=15
+component_manifest	PASS	component_count=16
+tenant_safety	PASS	tenant_yes=103 tenant_refs=43
+readiness	PASS	readiness=30 blocker=19 evidence=22
+flow_issue	PASS	flow_issue_links=6
+no_apply	PASS	contract only
+secret_safety	PASS	secret_hits=0
+db_mutation	NO	contract only
+db_apply_executed	NO	contract only
+migration_created	NO	contract only
+uat_runtime_executed	NO	contract only
+uat_status_update_executed	NO	contract only
+uat_evidence_upload_executed	NO	contract only
+go_live_approval_executed	NO	contract only
+panel_route_deployed	NO	contract only
+panel_build_executed	NO	contract only
+query_text_printed	NO	secret-safe report

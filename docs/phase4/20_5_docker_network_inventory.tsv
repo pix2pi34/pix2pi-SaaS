@@ -1,0 +1,10 @@
+network_id	network_name	driver	scope	risk	note
+2240bef271d3	bridge	bridge	local	LOW	evidence_only
+4d8a9b15ec18	deploy_pix2pi_net	bridge	local	LOW	evidence_only
+3114049d7c2f	dev_default	bridge	local	LOW	evidence_only
+d8e032957a40	host	host	local	HIGH	host_network_review
+63217a78808e	nats_default	bridge	local	LOW	evidence_only
+9c904bc2c373	none	null	local	LOW	evidence_only
+9c699663c6e9	observability_pix2pi_observability	bridge	local	LOW	evidence_only
+c55e17fcfc37	pix2pi_observability	bridge	local	LOW	evidence_only
+815a057cdc62	redis_default	bridge	local	LOW	evidence_only

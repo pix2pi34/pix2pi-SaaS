@@ -1,0 +1,35 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 181,
+  "step": "FAZ_4_14_7",
+  "title": "Migration / lifecycle / import testleri",
+  "depends_on": [
+    "180_FAZ_4_14_3_IMPORT_STAGING_TABLES"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "test_scope": [
+    "migration_apply_in_temporary_schema",
+    "import_batch_lifecycle",
+    "source_file_insert",
+    "raw_staging_rows_insert",
+    "customer_staging_insert",
+    "product_staging_insert",
+    "stock_staging_insert",
+    "finance_document_staging_insert",
+    "validation_error_insert",
+    "audit_event_insert",
+    "foreign_key_guard",
+    "status_transition_update",
+    "commit_status_update",
+    "rollback_safety"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "182_FAZ_4_14_4_BACKFILL_REBUILD_SCRIPT_STANDARD",
+    "183_FAZ_4_14_1_MIGRATION_CHAIN_STANDARD",
+    "184_FAZ_4_14_2_REFERENCE_DATA_SEED_STANDARD"
+  ]
+}

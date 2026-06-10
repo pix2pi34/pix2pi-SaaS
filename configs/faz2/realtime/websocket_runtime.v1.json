@@ -1,0 +1,13 @@
+{
+  "phase": "FAZ 2-7.5.1",
+  "runtime": "websocket_server",
+  "service": "realtime-ws",
+  "default_addr": ":9075",
+  "endpoint": "/ws",
+  "health_endpoint": "/health",
+  "tenant_header": "X-Tenant-ID",
+  "require_tenant": true,
+  "channel_query_param": "channel",
+  "user_query_param": "user_id",
+  "production_live_policy": "runtime_ready_but_not_deployed_by_this_phase"
+}

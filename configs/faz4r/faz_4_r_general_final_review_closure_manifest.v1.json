@@ -1,0 +1,151 @@
+{
+  "phase": "FAZ_4_R",
+  "closure_id": "faz_4_r_general_final_review_closure.v1",
+  "closure_status": "SEALED",
+  "closure_mode": "GENERAL_FINAL_REVIEW",
+  "title": "FAZ 4-R — Pilot / Import / UAT Final Closure",
+  "started_at": "2026-05-08",
+  "completed_at": "2026-05-09",
+  "priority_groups": [
+    {
+      "priority": 1,
+      "title": "DB-L7 Migration / Import",
+      "status": "SEALED",
+      "item_count": 5,
+      "items": [
+        {"no": 180, "code": "FAZ_4_14_3", "title": "Import / staging tabloları", "status": "SEALED"},
+        {"no": 181, "code": "FAZ_4_14_7", "title": "Migration / lifecycle / import testleri", "status": "SEALED"},
+        {"no": 182, "code": "FAZ_4_14_4", "title": "Backfill / rebuild script standardı", "status": "SEALED"},
+        {"no": 183, "code": "FAZ_4_14_1", "title": "Migration chain standardı", "status": "SEALED"},
+        {"no": 184, "code": "FAZ_4_14_2", "title": "Reference data / seed standardı", "status": "SEALED"}
+      ]
+    },
+    {
+      "priority": 2,
+      "title": "DB-L6 Reporting / Readmodel",
+      "status": "SEALED",
+      "item_count": 7,
+      "items": [
+        {"no": 185, "code": "FAZ_4_15_5", "title": "Search / index projection tabloları", "status": "SEALED"},
+        {"no": 186, "code": "FAZ_4_15_2", "title": "Finance reporting mart", "status": "SEALED"},
+        {"no": 187, "code": "FAZ_4_15_4", "title": "Payment / reconciliation reporting mart", "status": "SEALED"},
+        {"no": 188, "code": "FAZ_4_15_3", "title": "e-Belge / export reporting mart", "status": "SEALED"},
+        {"no": 189, "code": "FAZ_4_15_6", "title": "Materialized view / cache projection standardı", "status": "SEALED"},
+        {"no": 190, "code": "FAZ_4_15_7", "title": "Readmodel / reporting test seti", "status": "SEALED"},
+        {"no": 191, "code": "FAZ_4_15_1", "title": "Operational readmodel tabloları", "status": "SEALED"}
+      ]
+    },
+    {
+      "priority": 3,
+      "title": "LVL17 Pilot / UAT / Onboarding",
+      "status": "SEALED",
+      "item_count": 44,
+      "items": [
+        {"no": 192, "code": "FAZ_4_16_1_4", "title": "Pilot veri sınırları tanımı", "status": "SEALED"},
+        {"no": 193, "code": "FAZ_4_16_1_5", "title": "Tenant acceptance checklist", "status": "SEALED"},
+        {"no": 194, "code": "FAZ_4_16_1_6", "title": "Onboarding smoke", "status": "SEALED"},
+        {"no": 195, "code": "FAZ_4_16_1_1", "title": "Pilot tenant açılış akışı", "status": "SEALED"},
+        {"no": 196, "code": "FAZ_4_16_1_2", "title": "Tenant config şablonları", "status": "SEALED"},
+        {"no": 197, "code": "FAZ_4_16_1_3", "title": "Kullanıcı / rol ilk kurulumu", "status": "SEALED"},
+        {"no": 198, "code": "FAZ_4_16_2_1", "title": "Cari import", "status": "SEALED"},
+        {"no": 199, "code": "FAZ_4_16_2_2", "title": "Ürün / stok import", "status": "SEALED"},
+        {"no": 200, "code": "FAZ_4_16_2_3", "title": "Fiş / hareket import", "status": "SEALED"},
+        {"no": 201, "code": "FAZ_4_16_2_4", "title": "Mapping / transform kuralları", "status": "SEALED"},
+        {"no": 202, "code": "FAZ_4_16_2_5", "title": "Import validation raporu", "status": "SEALED"},
+        {"no": 203, "code": "FAZ_4_16_2_6", "title": "Import testleri", "status": "SEALED"},
+        {"no": 204, "code": "FAZ_4_16_3_1", "title": "Yönetim paneli UAT", "status": "SEALED"},
+        {"no": 205, "code": "FAZ_4_16_3_2", "title": "POS UAT", "status": "SEALED"},
+        {"no": 206, "code": "FAZ_4_16_3_3", "title": "Muhasebe UAT", "status": "SEALED"},
+        {"no": 207, "code": "FAZ_4_16_3_4", "title": "Muhasebeci portalı UAT", "status": "SEALED"},
+        {"no": 208, "code": "FAZ_4_16_3_5", "title": "e-Belge / export UAT", "status": "SEALED"},
+        {"no": 209, "code": "FAZ_4_16_3_6", "title": "UAT sign-off", "status": "SEALED"},
+        {"no": 210, "code": "FAZ_4_16_4_1", "title": "Kullanıcı eğitim seti", "status": "SEALED"},
+        {"no": 211, "code": "FAZ_4_16_4_2", "title": "Yardım merkezi içeriği", "status": "SEALED"},
+        {"no": 212, "code": "FAZ_4_16_4_3", "title": "İlk destek triage akışı", "status": "SEALED"},
+        {"no": 213, "code": "FAZ_4_16_4_4", "title": "Pilot issue escalation", "status": "SEALED"},
+        {"no": 214, "code": "FAZ_4_16_4_5", "title": "Eğitim / destek smoke", "status": "SEALED"},
+        {"no": 215, "code": "FAZ_4_16_5_2", "title": "Günlük pilot review", "status": "SEALED"},
+        {"no": 216, "code": "FAZ_4_16_5_4", "title": "Pilot rollback kararı akışı", "status": "SEALED"},
+        {"no": 217, "code": "FAZ_4_16_5_6", "title": "Pilot operations testleri", "status": "SEALED"},
+        {"no": 218, "code": "FAZ_4_16_5_1", "title": "Pilot health dashboard", "status": "SEALED"},
+        {"no": 219, "code": "FAZ_4_16_5_3", "title": "Pilot incident yönetimi", "status": "SEALED"},
+        {"no": 220, "code": "FAZ_4_16_5_5", "title": "Tenant bazlı durum raporu", "status": "SEALED"},
+        {"no": 221, "code": "FAZ_4_16_6_1", "title": "Feedback toplama kanalı", "status": "SEALED"},
+        {"no": 222, "code": "FAZ_4_16_6_2", "title": "Değişiklik sınıflandırma", "status": "SEALED"},
+        {"no": 223, "code": "FAZ_4_16_6_3", "title": "Hızlı düzeltme hattı", "status": "SEALED"},
+        {"no": 224, "code": "FAZ_4_16_6_4", "title": "Ürün karar defteri", "status": "SEALED"},
+        {"no": 225, "code": "FAZ_4_16_6_5", "title": "Feedback closure", "status": "SEALED"},
+        {"no": 226, "code": "FAZ_4_16_7_1", "title": "Dry-run canlıya geçiş", "status": "SEALED"},
+        {"no": 227, "code": "FAZ_4_16_7_2", "title": "Cutover checklist", "status": "SEALED"},
+        {"no": 228, "code": "FAZ_4_16_7_3", "title": "Geri dönüş provası", "status": "SEALED"},
+        {"no": 229, "code": "FAZ_4_16_7_4", "title": "İletişim planı", "status": "SEALED"},
+        {"no": 230, "code": "FAZ_4_16_7_5", "title": "Rehearsal raporu", "status": "SEALED"},
+        {"no": 231, "code": "FAZ_4_16_8_1", "title": "Pilot KPI değerlendirmesi", "status": "SEALED"},
+        {"no": 232, "code": "FAZ_4_16_8_2", "title": "UAT başarı eşiği", "status": "SEALED"},
+        {"no": 233, "code": "FAZ_4_16_8_3", "title": "Kritik hata sıfırlama", "status": "SEALED"},
+        {"no": 234, "code": "FAZ_4_16_8_4", "title": "Go / no-go kararı", "status": "SEALED"},
+        {"no": 235, "code": "FAZ_4_16_8_5", "title": "Pilot closure report", "status": "SEALED"}
+      ]
+    },
+    {
+      "priority": 4,
+      "title": "WEB-L7 Workflow / Realtime UI",
+      "status": "SEALED",
+      "item_count": 6,
+      "items": [
+        {"no": 236, "code": "FAZ_4_17_1", "title": "Approval inbox", "status": "SEALED"},
+        {"no": 237, "code": "FAZ_4_17_2", "title": "Workflow monitor", "status": "SEALED"},
+        {"no": 238, "code": "FAZ_4_17_5", "title": "WebSocket / SSE bağlantı sağlığı görünümü", "status": "SEALED"},
+        {"no": 239, "code": "FAZ_4_17_6", "title": "Workflow / realtime UI testleri", "status": "SEALED"},
+        {"no": 240, "code": "FAZ_4_17_3", "title": "Realtime event feed", "status": "SEALED"},
+        {"no": 241, "code": "FAZ_4_17_4", "title": "Canlı bildirim merkezi", "status": "SEALED"}
+      ]
+    }
+  ],
+  "live_html": {
+    "publish_status": "PASS",
+    "html_live_ready": "YES",
+    "public_url_index": "https://www.pix2pi.com.tr/faz4r/",
+    "required_live_html_count": 5,
+    "published_count": 6
+  },
+  "remaining_work": {
+    "partial_item_count": 0,
+    "pending_item_count": 0,
+    "fail_item_count": 0,
+    "partial_remaining": "NO",
+    "pending_remaining": "NO",
+    "fail_remaining": "NO"
+  },
+  "quality_gates": {
+    "required_fail_count": 0,
+    "optional_warn_count": 0,
+    "priority_1_status": "SEALED",
+    "priority_2_status": "SEALED",
+    "priority_3_status": "SEALED",
+    "priority_4_status": "SEALED"
+  },
+  "closed_policy_gates": {
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+    "production_launch_status": "CLOSED",
+    "live_external_provider_status": "CLOSED",
+    "gib_live_status": "CLOSED",
+    "bank_live_status": "CLOSED",
+    "pos_live_status": "CLOSED",
+    "payment_live_status": "CLOSED",
+    "workflow_mutation_status": "CLOSED",
+    "event_publish_status": "CLOSED",
+    "event_subscribe_status": "CLOSED",
+    "live_socket_status": "CLOSED"
+  },
+  "summary": {
+    "total_item_count": 62,
+    "sealed_item_count": 62,
+    "partial_item_count": 0,
+    "pending_item_count": 0,
+    "fail_item_count": 0,
+    "faz_4_r_general_final_review_status": "PASS",
+    "faz_4_r_final_closure_status": "SEALED",
+    "faz_4_r_ready_for_next_phase": "YES"
+  }
+}

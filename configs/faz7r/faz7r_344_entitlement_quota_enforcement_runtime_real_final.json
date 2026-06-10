@@ -1,0 +1,28 @@
+{
+  "step": "FAZ 7-R / 344",
+  "name": "Entitlement / quota enforcement runtime real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "entitlement-quota-runtime-344-20260513_232126",
+  "allowFeature": "marketplace.catalog.publish",
+  "quotaExceededFeature": "marketplace.order.create",
+  "disabledFeature": "commercial.billing.live",
+  "routes": [
+    "/commercial/entitlements-runtime/",
+    "POST /api/commercial/entitlements/check",
+    "POST /api/commercial/entitlements/quota-reserve",
+    "POST /api/commercial/entitlements/summary"
+  ],
+  "requiredEvidence": [
+    "entitlement decision DB runtime",
+    "active plan/subscription/paid invoice binding",
+    "feature entitlement check",
+    "quota reserve usage ledger",
+    "disabled feature guard",
+    "quota exceeded guard",
+    "tenant-safe entitlement guard",
+    "no-role denied",
+    "rollback no partial write",
+    "route smoke",
+    "entitlement runtime audit evidence"
+  ]
+}

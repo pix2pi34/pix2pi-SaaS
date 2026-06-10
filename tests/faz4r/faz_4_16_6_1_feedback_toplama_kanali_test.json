@@ -1,0 +1,153 @@
+{
+  "valid_fixture": {
+    "feedback_channel_id": "feedback_collection_channel.valid_fixture",
+    "feedback_channel_status": "READY",
+    "feedback_channel_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT",
+      "tenant_status": "PILOT_ACTIVE"
+    },
+    "chain_dependencies": {
+      "220_FAZ_4_16_5_5_TENANT_BAZLI_DURUM_RAPORU": "PASS"
+    },
+    "feedback_channels": [
+      {"code": "PILOT_USER_FEEDBACK_FORM", "required": true, "status": "READY", "source": "PILOT_USER", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/pilot_user_feedback_form.md"},
+      {"code": "IN_APP_FEEDBACK_ENTRY", "required": true, "status": "READY", "source": "APPLICATION", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/in_app_feedback_entry.md"},
+      {"code": "SUPPORT_TRIAGE_FEEDBACK_CAPTURE", "required": true, "status": "READY", "source": "SUPPORT_TRIAGE", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/support_triage_feedback_capture.md"},
+      {"code": "UAT_FEEDBACK_CAPTURE", "required": true, "status": "READY", "source": "UAT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/uat_feedback_capture.md"},
+      {"code": "TRAINING_HELP_FEEDBACK_CAPTURE", "required": true, "status": "READY", "source": "TRAINING_HELP", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/training_help_feedback_capture.md"},
+      {"code": "INCIDENT_FEEDBACK_LINK", "required": true, "status": "READY", "source": "INCIDENT_MANAGEMENT", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/incident_feedback_link.md"},
+      {"code": "DAILY_REVIEW_FEEDBACK_LINK", "required": true, "status": "READY", "source": "DAILY_REVIEW", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/daily_review_feedback_link.md"},
+      {"code": "FEEDBACK_CATEGORY_MAPPING", "required": true, "status": "READY", "source": "CLASSIFICATION", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/feedback_category_mapping.md"},
+      {"code": "FEEDBACK_PRIORITY_MAPPING", "required": true, "status": "READY", "source": "PRIORITY", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/feedback_priority_mapping.md"},
+      {"code": "FEEDBACK_EVIDENCE_ATTACHMENT", "required": true, "status": "READY", "source": "EVIDENCE", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/feedback_evidence_attachment.md"},
+      {"code": "FEEDBACK_OWNER_ROUTING", "required": true, "status": "READY", "source": "ROUTING", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/feedback_owner_routing.md"},
+      {"code": "FEEDBACK_PRIVACY_POLICY_GUARD", "required": true, "status": "READY", "source": "PRIVACY_KVKK", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/feedback_privacy_policy_guard.md"},
+      {"code": "CLOSED_PROVIDER_POLICY_ROUTE", "required": true, "status": "READY", "source": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/closed_provider_policy_route.md"},
+      {"code": "FEEDBACK_CLOSURE_INTAKE_CHECKLIST", "required": true, "status": "READY", "source": "CLOSURE", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_collection/feedback_closure_intake_checklist.md"}
+    ],
+    "feedback_controls": {
+      "tenant_status_report_status": "PASS",
+      "feedback_privacy_policy_status": "READY",
+      "feedback_category_mapping_status": "READY",
+      "feedback_priority_mapping_status": "READY",
+      "feedback_owner_routing_status": "READY",
+      "feedback_evidence_attachment_status": "READY",
+      "no_real_crm_system": true,
+      "no_real_ticket_system": true,
+      "no_real_email_dispatch": true,
+      "no_live_external_provider_activation": true
+    },
+    "feedback_metrics": {
+      "open_blocker_count": 0,
+      "critical_issue_count": 0,
+      "required_fail_count": 0,
+      "missing_channel_count": 0,
+      "real_crm_dispatch_count": 0,
+      "real_ticket_dispatch_count": 0,
+      "real_email_dispatch_count": 0,
+      "live_external_policy_status": "CLOSED"
+    },
+    "summary": {
+      "total_channel_count": 14,
+      "ready_channel_count": 14,
+      "missing_channel_count": 0,
+      "required_fail_count": 0,
+      "critical_issue_count": 0,
+      "open_blocker_count": 0,
+      "tenant_status_report_status": "PASS",
+      "feedback_privacy_policy_status": "READY",
+      "feedback_category_mapping_status": "READY",
+      "feedback_priority_mapping_status": "READY",
+      "feedback_owner_routing_status": "READY",
+      "feedback_channel_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "real_crm_system": "CLOSED",
+      "real_ticket_system": "CLOSED",
+      "real_email_dispatch": "CLOSED",
+      "production_launch": "CLOSED",
+      "hotfix_deploy": "CLOSED",
+      "real_rollback_execution": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "feedback_channel_id": "feedback_collection_channel.invalid_fixture",
+    "feedback_channel_status": "DRAFT",
+    "feedback_channel_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED",
+      "tenant_status": "UNKNOWN"
+    },
+    "chain_dependencies": {
+      "220_FAZ_4_16_5_5_TENANT_BAZLI_DURUM_RAPORU": "FAIL"
+    },
+    "feedback_channels": [
+      {"code": "PILOT_USER_FEEDBACK_FORM", "required": true, "status": "MISSING", "source": "", "owner": "", "evidence_ref": ""},
+      {"code": "IN_APP_FEEDBACK_ENTRY", "required": true, "status": "READY", "source": "APPLICATION", "owner": "PRODUCT_OWNER", "evidence_ref": "x"},
+      {"code": "IN_APP_FEEDBACK_ENTRY", "required": true, "status": "READY", "source": "APPLICATION", "owner": "PRODUCT_OWNER", "evidence_ref": "x"}
+    ],
+    "feedback_controls": {
+      "tenant_status_report_status": "FAIL",
+      "feedback_privacy_policy_status": "DRAFT",
+      "feedback_category_mapping_status": "DRAFT",
+      "feedback_priority_mapping_status": "DRAFT",
+      "feedback_owner_routing_status": "DRAFT",
+      "feedback_evidence_attachment_status": "DRAFT",
+      "no_real_crm_system": false,
+      "no_real_ticket_system": false,
+      "no_real_email_dispatch": false,
+      "no_live_external_provider_activation": false
+    },
+    "feedback_metrics": {
+      "open_blocker_count": 1,
+      "critical_issue_count": 1,
+      "required_fail_count": 1,
+      "missing_channel_count": 1,
+      "real_crm_dispatch_count": 1,
+      "real_ticket_dispatch_count": 1,
+      "real_email_dispatch_count": 1,
+      "live_external_policy_status": "OPEN"
+    },
+    "summary": {
+      "total_channel_count": 99,
+      "ready_channel_count": 99,
+      "missing_channel_count": 99,
+      "required_fail_count": 99,
+      "critical_issue_count": 1,
+      "open_blocker_count": 1,
+      "tenant_status_report_status": "FAIL",
+      "feedback_privacy_policy_status": "DRAFT",
+      "feedback_category_mapping_status": "DRAFT",
+      "feedback_priority_mapping_status": "DRAFT",
+      "feedback_owner_routing_status": "DRAFT",
+      "feedback_channel_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "real_crm_system": "OPEN",
+      "real_ticket_system": "OPEN",
+      "real_email_dispatch": "OPEN",
+      "production_launch": "OPEN",
+      "hotfix_deploy": "OPEN",
+      "real_rollback_execution": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

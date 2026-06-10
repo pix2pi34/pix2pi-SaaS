@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Satış / POS Yönetimi</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #687287;
+      --border: #e6e9f0;
+      --brand: #1f6feb;
+      --brand-soft: #eaf2ff;
+      --ok: #0f8b4c;
+      --warn: #a16207;
+      --danger: #b42318;
+      --shadow: 0 14px 34px rgba(18, 27, 46, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 28px;
+    }
+
+    .shell {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .kpi-value {
+      font-size: 28px;
+      font-weight: 950;
+      letter-spacing: -0.05em;
+      margin-top: 10px;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-row, .sale-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .pill {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .guard {
+      border: 1px dashed #fecaca;
+      background: #fff1f2;
+      color: var(--danger);
+    }
+
+    .policy {
+      border: 1px dashed #fbbf24;
+      background: #fffbeb;
+      color: #92400e;
+    }
+
+    @media (max-width: 980px) {
+      body { padding: 18px; }
+      .grid-4, .grid-2 { grid-template-columns: 1fr; }
+      .mini-row, .sale-row { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_325_SALES_POS_APP_SHELL_START -->
+  <main class="shell" data-step="325" data-surface="sales-pos-management">
+    <section class="hero">
+      <h1 data-i18n="sales_pos.title">Satış / POS yönetim ekranı</h1>
+      <p data-i18n="sales_pos.description">Panel üzerinden satış özeti, kasa/terminal durumu ve POS operasyon hazırlığını yönet.</p>
+    </section>
+
+    <!-- PIX2PI_325_SALES_SUMMARY_RECENT_SALES_START -->
+    <section class="grid-4" data-widget="sales_summary">
+      <article class="card">
+        <h2>Bugünkü satış</h2>
+        <div id="sales-today-total" class="kpi-value">₺0,00</div>
+      </article>
+
+      <article class="card">
+        <h2>Fiş sayısı</h2>
+        <div id="sales-receipt-count" class="kpi-value">0</div>
+      </article>
+
+      <article class="card">
+        <h2>Ortalama sepet</h2>
+        <div id="sales-average-basket" class="kpi-value">₺0,00</div>
+      </article>
+
+      <article class="card">
+        <h2>İade sayısı</h2>
+        <div id="sales-return-count" class="kpi-value">0</div>
+      </article>
+    </section>
+    <!-- PIX2PI_325_SALES_SUMMARY_RECENT_SALES_END -->
+
+    <section class="grid-2">
+      <!-- PIX2PI_325_POS_TERMINAL_STATUS_START -->
+      <article class="card" data-widget="pos_terminal_status">
+        <h2>POS terminal / kasa durumu</h2>
+        <div id="pos-terminal-list" class="mini-list">
+          <article class="mini-row" data-terminal-id="pos-terminal-demo-1" data-terminal-status="READY_FOR_BINDING">
+            <div>
+              <strong>Ana Kasa</strong>
+              <p>Demo Kasiyer / NOT_CONNECTED</p>
+            </div>
+            <span class="pill">READY_FOR_BINDING</span>
+          </article>
+        </div>
+      </article>
+      <!-- PIX2PI_325_POS_TERMINAL_STATUS_END -->
+
+      <!-- PIX2PI_325_PAYMENT_METHOD_SUMMARY_START -->
+      <article class="card" data-widget="payment_method_summary">
+        <h2>Ödeme yöntemi özeti</h2>
+        <div id="payment-method-summary" class="mini-list">
+          <article class="mini-row" data-payment-method="cash"><strong>CASH</strong><span>₺0,00</span></article>
+          <article class="mini-row" data-payment-method="card"><strong>CARD</strong><span>₺0,00</span></article>
+          <article class="mini-row" data-payment-method="qr"><strong>QR</strong><span>₺0,00</span></article>
+        </div>
+      </article>
+      <!-- PIX2PI_325_PAYMENT_METHOD_SUMMARY_END -->
+    </section>
+
+    <section class="grid-2">
+      <!-- PIX2PI_325_CASHIER_DEVICE_REGISTER_PLACEHOLDER_START -->
+      <article class="card" data-widget="cashier_device_register">
+        <h2>Kasiyer / cihaz register placeholder</h2>
+        <p>Kasiyer cihaz eşleme ve POS register işlemleri POS fazında `pos.pix2pi.com.tr` yüzeyiyle bağlanacak.</p>
+      </article>
+      <!-- PIX2PI_325_CASHIER_DEVICE_REGISTER_PLACEHOLDER_END -->
+
+      <!-- PIX2PI_325_RECEIPT_DOCUMENT_FLOW_PREVIEW_START -->
+      <article class="card" data-widget="receipt_document_flow">
+        <h2>Fiş / belge akışı preview</h2>
+        <p>POS satış → fiş → e-belge/fatura → muhasebe kayıt akışı burada izlenecek.</p>
+      </article>
+      <!-- PIX2PI_325_RECEIPT_DOCUMENT_FLOW_PREVIEW_END -->
+    </section>
+
+    <!-- PIX2PI_325_RECENT_SALES_LIST_START -->
+    <section class="card" data-widget="recent_sales">
+      <h2>Son satışlar</h2>
+      <div id="recent-sales-list" class="mini-list">
+        <article class="sale-row" data-sale-id="sale-demo-001" data-sale-status="DRAFT">
+          <div>
+            <strong>RCPT-DEMO-001</strong>
+            <p>cash / DOCUMENT_NOT_CREATED</p>
+          </div>
+          <span class="pill">DRAFT</span>
+          <strong>₺0,00</strong>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_325_RECENT_SALES_LIST_END -->
+
+    <!-- PIX2PI_325_RETURN_CANCEL_VOID_GUARD_START -->
+    <section class="card guard" data-widget="return_cancel_void_guard">
+      <h2>İade / iptal / void guard</h2>
+      <p>İade, iptal ve void aksiyonları sebep zorunluluğu ve tenant scope olmadan çalışmaz.</p>
+    </section>
+    <!-- PIX2PI_325_RETURN_CANCEL_VOID_GUARD_END -->
+
+    <!-- PIX2PI_325_SHIFT_POLICY_PLACEHOLDER_START -->
+    <section class="card policy" data-widget="shift_policy_placeholder">
+      <h2>Shift / kasa açılış-kapanış policy</h2>
+      <p id="shift-policy-summary">Kasa açılış zorunlu: true / Kasa kapanış zorunlu: true / Kasiyer zorunlu: true</p>
+    </section>
+    <!-- PIX2PI_325_SHIFT_POLICY_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_325_TENANT_SCOPED_SALES_POS_GUARD_START -->
+    <section class="card" data-widget="tenant_scoped_sales_pos_guard">
+      <h2>Tenant scoped sales/POS guard</h2>
+      <p>Satış/POS yönetim işlemleri JWT ve `X-Tenant-ID` ile tenant kapsamına alınır.</p>
+    </section>
+    <!-- PIX2PI_325_TENANT_SCOPED_SALES_POS_GUARD_END -->
+
+    <!-- PIX2PI_325_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="runtime_data_contract">
+      <h2>Runtime data contract</h2>
+      <p>Snapshot endpoint: <strong>/api/panel/sales/snapshot</strong></p>
+      <p>POS terminal endpoint: <strong>/api/panel/pos/terminals</strong></p>
+    </section>
+    <!-- PIX2PI_325_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_325_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_sales_pos_markers">
+      <h2 data-i18n="sales_pos.i18n_ready">i18n-ready sales/POS</h2>
+      <p data-i18n="sales_pos.surface_ready">Satış/POS yönetim ekran metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_325_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_325_SALES_POS_APP_SHELL_END -->
+
+  <script src="/assets/sales/sales-pos-runtime.js"></script>
+  <script>
+    Pix2piSalesPOS.bootSalesPosScreen();
+  </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{
+  "phase": "FAZ_7_8M",
+  "module": "MIKRO_CONNECTOR_FOUNDATION",
+  "module_name": "Mikro Connector Module Foundation",
+  "provider": {
+    "provider_id": "mikro",
+    "provider_name": "Mikro",
+    "provider_category": "ACCOUNTING_EXPORT_PROVIDER",
+    "country_scope": "TR",
+    "connector_family": "MIKRO_DRY_RUN_CONNECTOR"
+  },
+  "mode": {
+    "connector_mode": "DRY_RUN_CONTRACT_ONLY",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "provider_live_handoff_gate": "CLOSED_UNTIL_MIKRO_CONNECTOR_FINAL_CLOSURE"
+  },
+  "required_context_fields": [
+    "tenant_id",
+    "actor_user_id",
+    "correlation_id",
+    "operation"
+  ],
+  "forbidden_secret_fields": [
+    "client_secret",
+    "access_token",
+    "refresh_token",
+    "real_password",
+    "real_provider_endpoint",
+    "real_delivery_endpoint"
+  ],
+  "capabilities": [
+    {
+      "code": "CUSTOMER_EXPORT",
+      "direction": "PIX2PI_TO_MIKRO",
+      "status": "DRY_RUN_DECLARED"
+    },
+    {
+      "code": "VENDOR_EXPORT",
+      "direction": "PIX2PI_TO_MIKRO",
+      "status": "DRY_RUN_DECLARED"
+    },
+    {
+      "code": "PRODUCT_EXPORT",
+      "direction": "PIX2PI_TO_MIKRO",
+      "status": "DRY_RUN_DECLARED"
+    },
+    {
+      "code": "INVOICE_EXPORT",
+      "direction": "PIX2PI_TO_MIKRO",
+      "status": "DRY_RUN_DECLARED"
+    },
+    {
+      "code": "ACCOUNTING_VOUCHER_EXPORT",
+      "direction": "PIX2PI_TO_MIKRO",
+      "status": "DRY_RUN_DECLARED"
+    },
+    {
+      "code": "STOCK_MOVEMENT_EXPORT",
+      "direction": "PIX2PI_TO_MIKRO",
+      "status": "DRY_RUN_DECLARED"
+    },
+    {
+      "code": "IMPORT_PACKAGE_DRY_RUN",
+      "direction": "PIX2PI_TO_MIKRO",
+      "status": "DRY_RUN_DECLARED"
+    }
+  ],
+  "audit": {
+    "real_implementation_audit_required": true,
+    "go_test_required": true,
+    "hardcoded_final_ok_block_allowed": false,
+    "counter_based_final_status_required": true
+  },
+  "phase_gate": {
+    "faz_7_8m_foundation_gate": "READY_AFTER_TEST_AND_AUDIT_PASS",
+    "faz_7_9_hold_status": "HOLD_UNTIL_INTEGRATION_FAMILY_DONE"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "phase": "FAZ_7_8M_7",
+  "module": "MIKRO_CONNECTOR_FINAL_CLOSURE",
+  "module_name": "Mikro Connector Final Closure / Provider Live Module Handoff Gate",
+  "provider": {
+    "provider_id": "mikro",
+    "provider_name": "Mikro",
+    "provider_category": "ACCOUNTING_EXPORT_PROVIDER",
+    "connector_family": "MIKRO_DRY_RUN_CONNECTOR"
+  },
+  "final_closure": {
+    "final_closure_mode": "CONNECTOR_DRY_RUN_FINAL_CLOSURE_ONLY",
+    "direction": "PIX2PI_TO_MIKRO",
+    "source_system": "PIX2PI_ERP",
+    "target_system": "MIKRO_ACCOUNTING_IMPORT_DRY_RUN",
+    "final_closure_gate": "READY_AFTER_TEST_AND_AUDIT_PASS",
+    "dry_run_module_status": "SEALED",
+    "provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+    "provider_live_module_status": "NOT_STARTED",
+    "real_queue_write_policy": "NO_REAL_QUEUE_WRITE_IN_THIS_PHASE"
+  },
+  "closure_chain": [
+    "FOUNDATION",
+    "EXPORT_MAPPING",
+    "FILE_GENERATION",
+    "IMPORT_DELIVERY",
+    "VALIDATION_RETRY_DLQ",
+    "ADMIN_OPS",
+    "E2E_DRY_RUN"
+  ],
+  "closed_real_operations": {
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "real_delivery_channel_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_operator_provider_action_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE"
+  },
+  "required_context_fields": [
+    "tenant_id",
+    "actor_user_id",
+    "correlation_id",
+    "closure_id",
+    "package_id",
+    "delivery_id",
+    "validation_id",
+    "review_id"
+  ],
+  "forbidden_fields": [
+    "client_secret",
+    "access_token",
+    "refresh_token",
+    "password",
+    "real_provider_endpoint",
+    "real_delivery_endpoint",
+    "secret",
+    "token"
+  ],
+  "audit": {
+    "go_test_required": true,
+    "real_implementation_audit_required": true,
+    "hardcoded_final_ok_block_allowed": false,
+    "counter_based_final_status_required": true
+  },
+  "phase_gate": {
+    "faz_7_8m_7_final_closure_gate": "READY_AFTER_TEST_AND_AUDIT_PASS",
+    "mikro_connector_module_final_seal_status": "SEALED",
+    "mikro_dry_run_module_status": "SEALED",
+    "mikro_provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+    "mikro_provider_live_module_status": "NOT_STARTED",
+    "faz_7_8_next_provider_module_ready": "YES_AFTER_PASS",
+    "faz_7_9_hold_status": "HOLD_UNTIL_INTEGRATION_FAMILY_DONE"
+  }
+}

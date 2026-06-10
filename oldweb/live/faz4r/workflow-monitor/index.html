@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi FAZ 4-17.2 Workflow Monitor</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --card: #1f2937;
+      --line: #334155;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --blue: #38bdf8;
+      --danger: #fb7185;
+      --purple: #c084fc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(145deg, var(--bg), #020617);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .shell { max-width: 1200px; margin: 0 auto; padding: 32px 18px; }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .title h1 { margin: 0 0 8px; font-size: 30px; }
+    .title p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .badge {
+      border: 1px solid var(--line);
+      background: rgba(31, 41, 55, .75);
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--ok);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .stat {
+      background: rgba(17, 24, 39, .88);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .stat strong { display: block; font-size: 24px; margin-bottom: 5px; }
+    .stat span { color: var(--muted); font-size: 13px; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+    }
+    .panel {
+      background: rgba(17, 24, 39, .88);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.25);
+    }
+    .panel h2 { margin: 0 0 14px; font-size: 18px; }
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .filter {
+      border: 1px solid var(--line);
+      background: #0b1220;
+      border-radius: 12px;
+      padding: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .workflow-card {
+      border: 1px solid var(--line);
+      background: rgba(31, 41, 55, .78);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .workflow-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .workflow-title { font-weight: 800; font-size: 16px; }
+    .workflow-meta { color: var(--muted); font-size: 13px; margin-top: 5px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      margin-right: 6px;
+      margin-top: 8px;
+    }
+    .pending { color: var(--warn); }
+    .running { color: var(--blue); }
+    .high { color: var(--danger); }
+    .medium { color: var(--purple); }
+    .ok { color: var(--ok); }
+    .actions { display: flex; gap: 8px; margin-top: 14px; }
+    button {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 9px 12px;
+      background: #0b1220;
+      color: var(--muted);
+      cursor: not-allowed;
+    }
+    .side-list { display: grid; gap: 10px; }
+    .side-item {
+      border: 1px solid var(--line);
+      background: rgba(31, 41, 55, .65);
+      border-radius: 14px;
+      padding: 13px;
+    }
+    .side-item strong { display: block; margin-bottom: 5px; }
+    .side-item span { color: var(--muted); font-size: 13px; }
+    .empty, .error {
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .filters { grid-template-columns: 1fr 1fr; }
+      .top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <!-- FAZ_4_17_2_WORKFLOW_MONITOR_UI_CHECKPOINT -->
+  <!-- CLOSED_POLICY_GATE_REFERENCE_ONLY -->
+  <!-- NO_WORKFLOW_MUTATION -->
+  <!-- NO_REAL_WORKFLOW_EXECUTION -->
+  <!-- NO_REALTIME_SOCKET_CONNECTION -->
+  <main class="shell">
+    <section class="top">
+      <div class="title">
+        <h1>Workflow Monitor</h1>
+        <p>Controlled pilot workflow monitor checkpoint. Tenant scoped, read-only, no mutation, no realtime socket.</p>
+      </div>
+      <div class="badge">READY / CONTROLLED_PILOT</div>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><strong>2</strong><span>Total workflows</span></div>
+      <div class="stat"><strong>1</strong><span>Pending approval</span></div>
+      <div class="stat"><strong>1</strong><span>Running</span></div>
+      <div class="stat"><strong>0</strong><span>Failed</span></div>
+      <div class="stat"><strong>0</strong><span>SLA breached</span></div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Workflow instances</h2>
+        <div class="filters">
+          <div class="filter">Tenant: pilot_tenant_001</div>
+          <div class="filter">Status: ALL</div>
+          <div class="filter">Domain: ALL</div>
+          <div class="filter">Sort: SLA first</div>
+        </div>
+
+        <article class="workflow-card">
+          <div class="workflow-head">
+            <div>
+              <div class="workflow-title">Import validation approval workflow</div>
+              <div class="workflow-meta">WF-PILOT-001 · IMPORT · current_step=TENANT_ADMIN_APPROVAL</div>
+            </div>
+            <span class="pill pending">PENDING_APPROVAL</span>
+          </div>
+          <span class="pill high">HIGH</span>
+          <span class="pill ok">SLA ON TRACK</span>
+          <span class="pill">AGE 18 MIN</span>
+          <span class="pill">AUDIT TRACE READY</span>
+          <div class="actions">
+            <button disabled>Monitor only</button>
+            <button disabled>Retry disabled</button>
+            <button disabled>Cancel disabled</button>
+            <button disabled>Open Approval Inbox</button>
+          </div>
+        </article>
+
+        <article class="workflow-card">
+          <div class="workflow-head">
+            <div>
+              <div class="workflow-title">UAT sign-off workflow</div>
+              <div class="workflow-meta">WF-PILOT-002 · UAT · current_step=PRODUCT_OWNER_REVIEW</div>
+            </div>
+            <span class="pill running">RUNNING</span>
+          </div>
+          <span class="pill medium">MEDIUM</span>
+          <span class="pill ok">SLA ON TRACK</span>
+          <span class="pill">AGE 34 MIN</span>
+          <span class="pill">AUDIT TRACE READY</span>
+          <div class="actions">
+            <button disabled>Monitor only</button>
+            <button disabled>Retry disabled</button>
+            <button disabled>Cancel disabled</button>
+            <button disabled>Open Approval Inbox</button>
+          </div>
+        </article>
+
+        <div class="empty">Empty state ready: no workflow instances for selected filters.</div>
+        <div class="error">Error state ready: workflow monitor could not be loaded.</div>
+      </div>
+
+      <aside class="panel">
+        <h2>Readiness guards</h2>
+        <div class="side-list">
+          <div class="side-item"><strong>Tenant scope</strong><span>SINGLE_TENANT workflow visibility guard active.</span></div>
+          <div class="side-item"><strong>Status counters</strong><span>Pending, running, completed, failed counters READY.</span></div>
+          <div class="side-item"><strong>SLA indicator</strong><span>Age and SLA status indicators READY.</span></div>
+          <div class="side-item"><strong>Realtime placeholder</strong><span>No WebSocket/SSE connection opened in this step.</span></div>
+          <div class="side-item"><strong>Mutation safety</strong><span>Retry/cancel/escalate actions disabled preview-only.</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="footer">
+      Workflow Monitor is a static checkpoint for FAZ 4-17.2. It does not mutate workflow state, execute workflow actions, connect realtime sockets, or launch production.
+    </section>
+  </main>
+</body>
+</html>

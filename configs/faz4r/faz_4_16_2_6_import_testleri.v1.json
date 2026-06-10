@@ -1,0 +1,44 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 203,
+  "step": "FAZ_4_16_2_6",
+  "title": "Import testleri",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "198_FAZ_4_16_2_1_CARI_IMPORT",
+    "199_FAZ_4_16_2_2_URUN_STOK_IMPORT",
+    "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT",
+    "201_FAZ_4_16_2_4_MAPPING_TRANSFORM_KURALLARI",
+    "202_FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "test_suite_policy": {
+    "suite_status_required": "READY",
+    "test_mode_required": "DRY_RUN",
+    "commit_allowed": false,
+    "required_fail_count_required": 0,
+    "optional_warn_count_max": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_test_cases": [
+    "CUSTOMER_IMPORT_TEST",
+    "PRODUCT_STOCK_IMPORT_TEST",
+    "RECEIPT_MOVEMENT_IMPORT_TEST",
+    "MAPPING_TRANSFORM_TEST",
+    "IMPORT_VALIDATION_REPORT_TEST",
+    "CROSS_IMPORT_REFERENCE_TEST",
+    "DRY_RUN_COMMIT_GUARD_TEST",
+    "CLOSED_EXTERNAL_POLICY_TEST",
+    "COUNTER_BASED_FINAL_STATUS_TEST"
+  ],
+  "suite_artifact": "configs/faz4r/import_test_suite.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "204_FAZ_4_16_3_1_YONETIM_PANELI_UAT"
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "module": "FAZ_7_8L",
+  "step": "FAZ_7_8L.10",
+  "name": "Logo Connector Final Closure / Provider Live Handoff Gate",
+  "provider": {
+    "provider_code": "LOGO",
+    "provider_name": "Logo",
+    "connector_code": "logo_connector",
+    "connector_family": "accounting_export_connector",
+    "provider_directory": "internal/platform/integrations/providers/logo",
+    "foundation_runtime_file": "internal/platform/integrations/providers/logo/logo_foundation.go",
+    "live_contract_runtime_file": "internal/platform/integrations/providers/logo/logo_live_contract.go",
+    "credential_runtime_file": "internal/platform/integrations/providers/logo/logo_credential.go",
+    "export_mapping_runtime_file": "internal/platform/integrations/providers/logo/logo_export_mapping.go",
+    "file_generation_runtime_file": "internal/platform/integrations/providers/logo/logo_file_generation.go",
+    "import_delivery_runtime_file": "internal/platform/integrations/providers/logo/logo_import_delivery.go",
+    "validation_retry_dlq_runtime_file": "internal/platform/integrations/providers/logo/logo_validation_retry_dlq.go",
+    "admin_ops_runtime_file": "internal/platform/integrations/providers/logo/logo_admin_ops.go",
+    "e2e_dry_run_runtime_file": "internal/platform/integrations/providers/logo/logo_e2e_dry_run.go",
+    "runtime_file": "internal/platform/integrations/providers/logo/logo_final_closure.go",
+    "test_file": "internal/platform/integrations/providers/logo/logo_final_closure_test.go"
+  },
+  "runtime": {
+    "mode": "DRY_RUN",
+    "closure_mode": "FINAL_CLOSURE_PROVIDER_LIVE_HANDOFF_GATE",
+    "target_system": "LOGO_ACCOUNTING_IMPORT_DRY_RUN",
+    "final_closure_status": "PASS",
+    "module_final_seal_status": "SEALED",
+    "dry_run_module_status": "SEALED",
+    "provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "real_secret_value_status": "FORBIDDEN_IN_CODE_CONFIG_DOCS",
+    "real_delivery_channel_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE"
+  },
+  "required_step_seals": [
+    { "step": "FAZ_7_8L.1", "gate": "LOGO_CONNECTOR_FOUNDATION_GATE", "status": "READY", "required": true },
+    { "step": "FAZ_7_8L.2", "gate": "LOGO_LIVE_CONTRACT_GATE", "status": "READY", "required": true },
+    { "step": "FAZ_7_8L.3", "gate": "LOGO_CREDENTIAL_SECRET_REFERENCE_GATE", "status": "READY", "required": true },
+    { "step": "FAZ_7_8L.4", "gate": "LOGO_EXPORT_MAPPING_GATE", "status": "READY", "required": true },
+    { "step": "FAZ_7_8L.5", "gate": "LOGO_FILE_GENERATION_GATE", "status": "READY", "required": true },
+    { "step": "FAZ_7_8L.6", "gate": "LOGO_IMPORT_DELIVERY_GATE", "status": "READY", "required": true },
+    { "step": "FAZ_7_8L.7", "gate": "LOGO_VALIDATION_RETRY_DLQ_GATE", "status": "READY", "required": true },
+    { "step": "FAZ_7_8L.8", "gate": "LOGO_ADMIN_OPS_GATE", "status": "READY", "required": true },
+    { "step": "FAZ_7_8L.9", "gate": "LOGO_E2E_DRY_RUN_GATE", "status": "READY", "required": true }
+  ],
+  "provider_live_handoff_requirements": {
+    "legal_approval_status": "PENDING_PROVIDER_LIVE_MODULE",
+    "finance_approval_status": "PENDING_PROVIDER_LIVE_MODULE",
+    "security_approval_status": "PENDING_PROVIDER_LIVE_MODULE",
+    "provider_documentation_approval_status": "PENDING_PROVIDER_LIVE_MODULE",
+    "secret_vault_approval_status": "PENDING_PROVIDER_LIVE_MODULE",
+    "live_credential_injection_status": "PENDING_PROVIDER_LIVE_MODULE",
+    "live_file_delivery_approval_status": "PENDING_PROVIDER_LIVE_MODULE",
+    "rollback_plan_approval_status": "PENDING_PROVIDER_LIVE_MODULE",
+    "incident_response_approval_status": "PENDING_PROVIDER_LIVE_MODULE",
+    "monitoring_alerting_approval_status": "PENDING_PROVIDER_LIVE_MODULE",
+    "tenant_pilot_approval_status": "PENDING_PROVIDER_LIVE_MODULE"
+  },
+  "final_closure_contract": {
+    "declared": true,
+    "status": "PASS",
+    "dry_run_only": true,
+    "module_seal_required": true,
+    "provider_live_handoff_gate_required": true,
+    "external_call_allowed": false,
+    "real_file_delivery_allowed": false,
+    "erp_write_allowed": false,
+    "real_provider_live_allowed": false
+  },
+  "operations": [
+    {
+      "name": "DECLARE_LOGO_FINAL_CLOSURE_CONTRACT",
+      "mode": "FINAL_CLOSURE_PROVIDER_LIVE_HANDOFF_GATE",
+      "final_closure_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false,
+      "real_provider_live_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_MODULE_CHAIN_SEALS",
+      "mode": "FINAL_CLOSURE_PROVIDER_LIVE_HANDOFF_GATE",
+      "final_closure_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false,
+      "real_provider_live_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_DRY_RUN_E2E_SEAL",
+      "mode": "FINAL_CLOSURE_PROVIDER_LIVE_HANDOFF_GATE",
+      "final_closure_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false,
+      "real_provider_live_allowed": false
+    },
+    {
+      "name": "SEAL_LOGO_DRY_RUN_MODULE",
+      "mode": "FINAL_CLOSURE_PROVIDER_LIVE_HANDOFF_GATE",
+      "final_closure_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false,
+      "real_provider_live_allowed": false
+    },
+    {
+      "name": "DECLARE_LOGO_PROVIDER_LIVE_HANDOFF_GATE",
+      "mode": "FINAL_CLOSURE_PROVIDER_LIVE_HANDOFF_GATE",
+      "final_closure_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false,
+      "real_provider_live_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_PROVIDER_LIVE_PREREQUISITES_PLACEHOLDERS",
+      "mode": "FINAL_CLOSURE_PROVIDER_LIVE_HANDOFF_GATE",
+      "final_closure_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false,
+      "real_provider_live_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_NO_REAL_PROVIDER_API",
+      "mode": "FINAL_CLOSURE_PROVIDER_LIVE_HANDOFF_GATE",
+      "final_closure_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false,
+      "real_provider_live_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_NO_REAL_FILE_DELIVERY",
+      "mode": "FINAL_CLOSURE_PROVIDER_LIVE_HANDOFF_GATE",
+      "final_closure_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false,
+      "real_provider_live_allowed": false
+    },
+    {
+      "name": "VALIDATE_LOGO_NO_ERP_WRITE",
+      "mode": "FINAL_CLOSURE_PROVIDER_LIVE_HANDOFF_GATE",
+      "final_closure_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false,
+      "real_provider_live_allowed": false
+    },
+    {
+      "name": "RETURN_TO_FAZ_7_8_INTEGRATION_FAMILY",
+      "mode": "FINAL_CLOSURE_PROVIDER_LIVE_HANDOFF_GATE",
+      "final_closure_allowed": true,
+      "external_call_allowed": false,
+      "real_file_delivery_allowed": false,
+      "erp_write_allowed": false,
+      "real_provider_live_allowed": false
+    }
+  ],
+  "handoff_gates": {
+    "logo_connector_module_final_seal_status": "SEALED",
+    "logo_dry_run_module_status": "SEALED",
+    "logo_provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+    "logo_real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "logo_real_file_delivery_status": "CLOSED_UNTIL_IMPORT_DELIVERY_LIVE_MODULE",
+    "logo_real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "faz_7_8_next_provider_module_ready": "YES",
+    "faz_7_9_hold_status": "HOLD_UNTIL_INTEGRATION_FAMILY_DONE"
+  },
+  "audit": {
+    "real_implementation_audit_required": true,
+    "real_provider_api_must_remain_closed": true,
+    "real_file_delivery_must_remain_closed": true,
+    "real_erp_write_must_remain_closed": true,
+    "module_final_closure_must_be_present": true,
+    "provider_live_handoff_gate_must_be_present": true
+  }
+}

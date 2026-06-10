@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi controlled customer access activation ekranı" />
+  <meta property="og:title" content="Pix2pi Controlled Customer Access Activation" />
+  <meta property="og:description" content="Kontrollü müşteri erişimi aktivasyon preview yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Controlled Customer Access Activation</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.14), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1360px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .activation-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+      min-height: 96px;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_357_CONTROLLED_CUSTOMER_ACCESS_ACTIVATION_APP_SHELL_START -->
+  <main class="shell" data-step="357" data-surface="controlled-customer-access-activation">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 357</span>
+      <h1 data-i18n="controlled_activation.title">Controlled customer access activation</h1>
+      <p data-i18n="controlled_activation.description">Müşteri erişimi aktivasyon preview, approval, support ve monitoring handoff yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_357_TENANT_CUSTOMER_OWNER_ACTIVATION_CONTEXT_START -->
+    <section class="card guard" data-widget="tenant_customer_owner_activation_context">
+      <h2>Tenant / customer / owner activation context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="activation-tenant-id">controlled-pilot</strong></p>
+        <p>Customer: <strong id="activation-customer-name">Demo Market</strong></p>
+        <p>Owner: <strong id="activation-owner-user">owner@example.invalid</strong></p>
+        <!-- PIX2PI_357_ACTIVATION_WINDOW_SCOPE_PREVIEW_START -->
+        <p>Activation window: <strong id="activation-window">CONTROLLED_BUSINESS_HOURS</strong></p>
+        <!-- PIX2PI_357_ACTIVATION_WINDOW_SCOPE_PREVIEW_END -->
+        <p>Scope: <strong id="activation-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_357_TENANT_CUSTOMER_OWNER_ACTIVATION_CONTEXT_END -->
+
+    <!-- PIX2PI_357_HUMAN_APPROVAL_BINDING_PREVIEW_START -->
+    <section class="card" data-widget="human_approval_binding_preview">
+      <h2>Human approval binding preview</h2>
+      <div id="activation-approval-list" class="grid-4">
+        <article class="activation-card" data-approval-role="Founder / Product Owner" data-approval-status="PENDING_APPROVAL">
+          <strong>Founder / Product Owner</strong>
+          <p>required=true / PENDING_APPROVAL</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_357_HUMAN_APPROVAL_BINDING_PREVIEW_END -->
+
+    <!-- PIX2PI_357_CUSTOMER_ACCESS_TOGGLE_PREVIEW_START -->
+    <section class="card" data-widget="customer_access_toggle_preview">
+      <h2>Customer access toggle preview</h2>
+      <div id="activation-access-toggle-list" class="grid-4">
+        <!-- PIX2PI_357_PANEL_ACCESS_ACTIVATION_PREVIEW_START -->
+        <article class="activation-card" data-toggle-surface="panel" data-real-enabled="false" data-decision="PREVIEW_ONLY">
+          <strong>panel / activate_panel_access</strong>
+          <p>preview=true / real_enabled=false / PREVIEW_ONLY</p>
+        </article>
+        <!-- PIX2PI_357_PANEL_ACCESS_ACTIVATION_PREVIEW_END -->
+
+        <!-- PIX2PI_357_POS_ACCESS_ACTIVATION_PREVIEW_START -->
+        <article class="activation-card" data-toggle-surface="pos" data-real-enabled="false" data-decision="PREVIEW_ONLY">
+          <strong>pos / activate_pos_access</strong>
+          <p>preview=true / real_enabled=false / PREVIEW_ONLY</p>
+        </article>
+        <!-- PIX2PI_357_POS_ACCESS_ACTIVATION_PREVIEW_END -->
+
+        <!-- PIX2PI_357_MARKET_STOREFRONT_ACCESS_ACTIVATION_PREVIEW_START -->
+        <article class="activation-card" data-toggle-surface="market" data-real-enabled="false" data-decision="PREVIEW_ONLY">
+          <strong>market / activate_market_access</strong>
+          <p>preview=true / real_enabled=false / PREVIEW_ONLY</p>
+        </article>
+        <!-- PIX2PI_357_MARKET_STOREFRONT_ACCESS_ACTIVATION_PREVIEW_END -->
+
+        <!-- PIX2PI_357_ACTIVATION_TOKEN_SESSION_HANDOFF_DISABLED_GATE_START -->
+        <article class="activation-card" data-toggle-surface="token" data-real-enabled="false" data-decision="DISABLED_EXPECTED">
+          <strong>token / issue_activation_token</strong>
+          <p>preview=true / real_enabled=false / DISABLED_EXPECTED</p>
+        </article>
+        <!-- PIX2PI_357_ACTIVATION_TOKEN_SESSION_HANDOFF_DISABLED_GATE_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_357_CUSTOMER_ACCESS_TOGGLE_PREVIEW_END -->
+
+    <!-- PIX2PI_357_DATA_MUTATION_SAFETY_REMAINS_DISABLED_START -->
+    <section class="card locked" data-widget="data_mutation_safety_remains_disabled">
+      <h2>Data mutation safety remains disabled</h2>
+      <div id="activation-safety-guards" class="grid-3">
+        <article class="activation-card" data-safety-code="REAL_DATA_MUTATION_DISABLED" data-safety-status="ENFORCED">
+          <strong>REAL_DATA_MUTATION_DISABLED</strong>
+          <p>ENFORCED / value=false</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_357_DATA_MUTATION_SAFETY_REMAINS_DISABLED_END -->
+
+    <!-- PIX2PI_357_SUPPORT_CHANNEL_HANDOFF_PREVIEW_START -->
+    <section class="card guard" data-widget="support_channel_handoff_preview">
+      <h2>Support / monitoring / incident / rollback handoff</h2>
+      <div id="activation-handoff-list" class="grid-4">
+        <article class="activation-card" data-handoff-area="support" data-handoff-status="READY_PREVIEW">
+          <strong>support / support_channel_ready</strong>
+          <p>READY_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_357_MONITORING_INCIDENT_READINESS_PREVIEW_START -->
+        <article class="activation-card" data-handoff-area="monitoring" data-handoff-status="READY_PREVIEW">
+          <strong>monitoring / first_day_watch_dashboard_ready</strong>
+          <p>READY_PREVIEW</p>
+        </article>
+        <article class="activation-card" data-handoff-area="incident" data-handoff-status="READY_PREVIEW">
+          <strong>incident / pilot_incident_route_ready</strong>
+          <p>READY_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_357_MONITORING_INCIDENT_READINESS_PREVIEW_END -->
+        <!-- PIX2PI_357_ROLLBACK_ACTIVATION_ACTION_PREVIEW_START -->
+        <article class="activation-card" data-handoff-area="rollback" data-handoff-status="READY_PREVIEW">
+          <strong>rollback / deactivate_access_preview_ready</strong>
+          <p>READY_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_357_ROLLBACK_ACTIVATION_ACTION_PREVIEW_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_357_SUPPORT_CHANNEL_HANDOFF_PREVIEW_END -->
+
+    <!-- PIX2PI_357_CUSTOMER_NOTIFICATION_PREVIEW_START -->
+    <section class="card locked" data-widget="customer_notification_preview">
+      <h2>Customer notification preview</h2>
+      <div id="activation-notification-preview" class="grid-3">
+        <article class="activation-card" data-notification-channel="email">
+          <strong>email / controlled_access_ready</strong>
+          <p>real_send_enabled=false / PREVIEW_ONLY</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_357_CUSTOMER_NOTIFICATION_PREVIEW_END -->
+
+    <!-- PIX2PI_357_ACTIVATION_AUDIT_TIMELINE_START -->
+    <section class="card" data-widget="activation_audit_timeline">
+      <h2>Activation audit timeline</h2>
+      <div id="activation-audit-timeline" class="grid-3">
+        <article class="activation-card" data-audit-action="CONTROLLED_ACTIVATION_PREVIEW_READY">
+          <strong>CONTROLLED_ACTIVATION_PREVIEW_READY</strong>
+          <p>2026-05-demo / system / DRY_RUN</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_357_ACTIVATION_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_357_ACTIVATION_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="activation_runtime_data_contract">
+      <h2>Activation runtime data contract</h2>
+      <p id="activation-runtime-contract">activation_preview_enabled=true / real_customer_access_activation_enabled=false / ready_for_step_358=true</p>
+    </section>
+    <!-- PIX2PI_357_ACTIVATION_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_357_SEO_OPENGRAPH_ACTIVATION_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_activation_placeholder">
+      <h2>SEO / OpenGraph activation placeholder</h2>
+      <p>Title, description ve og:* metadata controlled activation yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_357_SEO_OPENGRAPH_ACTIVATION_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_357_I18N_READY_ACTIVATION_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_activation_marker">
+      <h2 data-i18n="controlled_activation.i18n_ready">i18n-ready controlled activation screen</h2>
+      <p data-i18n="controlled_activation.surface_ready">Controlled customer access activation ekranı çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_357_I18N_READY_ACTIVATION_MARKER_END -->
+  </main>
+  <!-- PIX2PI_357_CONTROLLED_CUSTOMER_ACCESS_ACTIVATION_APP_SHELL_END -->
+
+  <script src="/assets/controlled-customer-access-activation/controlled-customer-access-activation-runtime.js"></script>
+  <script>
+    Pix2piControlledCustomerAccessActivation.bootActivationScreen().then(function (contract) {
+      console.log("PIX2PI_357_CONTROLLED_CUSTOMER_ACCESS_ACTIVATION_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

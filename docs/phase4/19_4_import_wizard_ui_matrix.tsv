@@ -1,0 +1,19 @@
+gate	status	note
+previous_19_3	PASS	admin dashboard cards prerequisite
+contract	PASS	routes=8 steps=8 fields=20
+route_manifest	PASS	route_count=8
+step_manifest	PASS	step_count=8
+component_manifest	PASS	component_count=15
+tenant_safety	PASS	tenant_yes=45 tenant_refs=37
+flow_link	PASS	flow_link_count=11
+no_apply	PASS	contract only
+secret_safety	PASS	secret_hits=0
+db_mutation	NO	contract only
+db_apply_executed	NO	contract only
+migration_created	NO	contract only
+file_upload_executed	NO	contract only
+import_runtime_executed	NO	contract only
+import_commit_executed	NO	contract only
+panel_route_deployed	NO	contract only
+panel_build_executed	NO	contract only
+query_text_printed	NO	secret-safe report

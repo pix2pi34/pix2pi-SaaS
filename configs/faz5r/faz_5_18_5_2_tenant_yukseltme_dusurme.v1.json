@@ -1,0 +1,39 @@
+{
+  "phase": "FAZ_5_18_5_2",
+  "title": "Tenant Yükseltme / Düşürme",
+  "status": "READY",
+  "control_surface": "TENANT_PLAN_CHANGE_FLOW",
+  "inputs": [
+    "FAZ_5_18_5_5_VERI_EXPORT_DEVIR_AKISI",
+    "FAZ_5_18_2_2_FATURALAMA_AKISI",
+    "FAZ_5_18_2_3_TAHSILAT_BASARISIZ_ODEME_AKISI",
+    "FAZ_5_R_PRIORITY_2_BILLING_TENANT_LIFECYCLE_SALES_OPS"
+  ],
+  "outputs": [
+    "PLAN_CHANGE_REQUEST_INTAKE",
+    "CURRENT_PLAN_SNAPSHOT",
+    "TARGET_PLAN_VALIDATION",
+    "ENTITLEMENT_DIFF_CALCULATION",
+    "BILLING_IMPACT_CALCULATION",
+    "PRORATION_POLICY",
+    "DOWNGRADE_SAFETY_CHECK",
+    "OWNER_APPROVAL_QUEUE",
+    "EFFECTIVE_DATE_SCHEDULE",
+    "PLAN_CHANGE_DEFERRED_MARKER"
+  ],
+  "gates": {
+    "internal_tenant_plan_change_ready": true,
+    "production_plan_change_enabled": false,
+    "real_customer_plan_change_enabled": false,
+    "auto_entitlement_switch_enabled": false,
+    "auto_proration_billing_enabled": false,
+    "tenant_freeze_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

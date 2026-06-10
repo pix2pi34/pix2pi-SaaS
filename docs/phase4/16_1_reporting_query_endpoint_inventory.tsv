@@ -1,0 +1,7 @@
+method	path	source_table	purpose
+GET	/api/v1/reporting/operational/summary	readmodel.tenant_operational_snapshot	Tenant operasyon ozet kartlari
+GET	/api/v1/reporting/operational/daily-metrics	readmodel.daily_operational_metrics	Gunluk operasyon metrikleri
+GET	/api/v1/reporting/inventory/status	readmodel.inventory_status_snapshot	Stok durum snapshotlari
+GET	/api/v1/reporting/documents/work-queue	readmodel.document_work_queue	Belge is kuyrugu
+GET	/api/v1/reporting/reconciliation/status	readmodel.reconciliation_status_snapshot	Mutabakat durum snapshotlari
+GET	/api/v1/reporting/projections/state	readmodel.projection_state	Projection state lag kontrolu

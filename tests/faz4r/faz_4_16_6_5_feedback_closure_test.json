@@ -1,0 +1,166 @@
+{
+  "valid_fixture": {
+    "feedback_closure_id": "feedback_closure.valid_fixture",
+    "feedback_closure_status": "READY",
+    "feedback_closure_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT",
+      "tenant_status": "PILOT_ACTIVE"
+    },
+    "chain_dependencies": {
+      "224_FAZ_4_16_6_4_URUN_KARAR_DEFTERI": "PASS"
+    },
+    "closure_rules": [
+      {"code": "FEEDBACK_CLOSURE_INTAKE", "required": true, "status": "READY", "area": "INTAKE", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/feedback_closure_intake.md"},
+      {"code": "CLOSURE_OUTCOME_TAXONOMY", "required": true, "status": "READY", "area": "TAXONOMY", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/closure_outcome_taxonomy.md"},
+      {"code": "PRODUCT_DECISION_LINK", "required": true, "status": "READY", "area": "PRODUCT_DECISION", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/product_decision_link.md"},
+      {"code": "QUICK_FIX_LINK", "required": true, "status": "READY", "area": "QUICK_FIX", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/quick_fix_link.md"},
+      {"code": "DEFERRED_DECISION_LINK", "required": true, "status": "READY", "area": "DEFERRED", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/deferred_decision_link.md"},
+      {"code": "REJECTED_OUT_OF_SCOPE_LINK", "required": true, "status": "READY", "area": "REJECTED", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/rejected_out_of_scope_link.md"},
+      {"code": "TRAINING_SUPPORT_CLOSURE_LINK", "required": true, "status": "READY", "area": "TRAINING_SUPPORT", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/training_support_closure_link.md"},
+      {"code": "OWNER_CONFIRMATION", "required": true, "status": "READY", "area": "OWNER", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/owner_confirmation.md"},
+      {"code": "EVIDENCE_COMPLETION", "required": true, "status": "READY", "area": "EVIDENCE", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/evidence_completion.md"},
+      {"code": "USER_COMMUNICATION_NOTE", "required": true, "status": "READY", "area": "COMMUNICATION", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/user_communication_note.md"},
+      {"code": "CLOSURE_REASON", "required": true, "status": "READY", "area": "REASON", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/closure_reason.md"},
+      {"code": "CLOSURE_TIMESTAMP", "required": true, "status": "READY", "area": "TIME", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/closure_timestamp.md"},
+      {"code": "REOPEN_GUARD", "required": true, "status": "READY", "area": "REOPEN", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/reopen_guard.md"},
+      {"code": "CLOSURE_METRICS", "required": true, "status": "READY", "area": "METRICS", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/closure_metrics.md"},
+      {"code": "CLOSED_PROVIDER_POLICY_GUARD", "required": true, "status": "READY", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/feedback_closure/closed_provider_policy_guard.md"}
+    ],
+    "closure_controls": {
+      "product_decision_log_status": "PASS",
+      "closure_outcome_taxonomy_status": "READY",
+      "owner_confirmation_status": "READY",
+      "evidence_completion_status": "READY",
+      "user_communication_note_status": "READY",
+      "reopen_guard_status": "READY",
+      "closure_metrics_status": "READY",
+      "no_auto_delete_feedback": true,
+      "no_auto_apply_change": true,
+      "no_real_crm_system": true,
+      "no_real_ticket_system": true,
+      "no_real_email_dispatch": true,
+      "no_live_external_provider_activation": true
+    },
+    "closure_metrics": {
+      "open_blocker_count": 0,
+      "critical_issue_count": 0,
+      "required_fail_count": 0,
+      "missing_rule_count": 0,
+      "auto_delete_feedback_count": 0,
+      "auto_apply_change_count": 0,
+      "real_crm_dispatch_count": 0,
+      "real_ticket_dispatch_count": 0,
+      "real_email_dispatch_count": 0,
+      "live_external_policy_status": "CLOSED"
+    },
+    "summary": {
+      "total_rule_count": 15,
+      "ready_rule_count": 15,
+      "missing_rule_count": 0,
+      "required_fail_count": 0,
+      "critical_issue_count": 0,
+      "open_blocker_count": 0,
+      "product_decision_log_status": "PASS",
+      "closure_outcome_taxonomy_status": "READY",
+      "owner_confirmation_status": "READY",
+      "evidence_completion_status": "READY",
+      "user_communication_note_status": "READY",
+      "reopen_guard_status": "READY",
+      "feedback_closure_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "real_crm_system": "CLOSED",
+      "real_ticket_system": "CLOSED",
+      "real_email_dispatch": "CLOSED",
+      "production_launch": "CLOSED",
+      "hotfix_deploy": "CLOSED",
+      "real_rollback_execution": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "feedback_closure_id": "feedback_closure.invalid_fixture",
+    "feedback_closure_status": "DRAFT",
+    "feedback_closure_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED",
+      "tenant_status": "UNKNOWN"
+    },
+    "chain_dependencies": {
+      "224_FAZ_4_16_6_4_URUN_KARAR_DEFTERI": "FAIL"
+    },
+    "closure_rules": [
+      {"code": "FEEDBACK_CLOSURE_INTAKE", "required": true, "status": "MISSING", "area": "", "owner": "", "evidence_ref": ""},
+      {"code": "CLOSURE_OUTCOME_TAXONOMY", "required": true, "status": "READY", "area": "TAXONOMY", "owner": "PRODUCT_OWNER", "evidence_ref": "x"},
+      {"code": "CLOSURE_OUTCOME_TAXONOMY", "required": true, "status": "READY", "area": "TAXONOMY", "owner": "PRODUCT_OWNER", "evidence_ref": "x"}
+    ],
+    "closure_controls": {
+      "product_decision_log_status": "FAIL",
+      "closure_outcome_taxonomy_status": "DRAFT",
+      "owner_confirmation_status": "DRAFT",
+      "evidence_completion_status": "DRAFT",
+      "user_communication_note_status": "DRAFT",
+      "reopen_guard_status": "DRAFT",
+      "closure_metrics_status": "DRAFT",
+      "no_auto_delete_feedback": false,
+      "no_auto_apply_change": false,
+      "no_real_crm_system": false,
+      "no_real_ticket_system": false,
+      "no_real_email_dispatch": false,
+      "no_live_external_provider_activation": false
+    },
+    "closure_metrics": {
+      "open_blocker_count": 1,
+      "critical_issue_count": 1,
+      "required_fail_count": 1,
+      "missing_rule_count": 1,
+      "auto_delete_feedback_count": 1,
+      "auto_apply_change_count": 1,
+      "real_crm_dispatch_count": 1,
+      "real_ticket_dispatch_count": 1,
+      "real_email_dispatch_count": 1,
+      "live_external_policy_status": "OPEN"
+    },
+    "summary": {
+      "total_rule_count": 99,
+      "ready_rule_count": 99,
+      "missing_rule_count": 99,
+      "required_fail_count": 99,
+      "critical_issue_count": 1,
+      "open_blocker_count": 1,
+      "product_decision_log_status": "FAIL",
+      "closure_outcome_taxonomy_status": "DRAFT",
+      "owner_confirmation_status": "DRAFT",
+      "evidence_completion_status": "DRAFT",
+      "user_communication_note_status": "DRAFT",
+      "reopen_guard_status": "DRAFT",
+      "feedback_closure_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "real_crm_system": "OPEN",
+      "real_ticket_system": "OPEN",
+      "real_email_dispatch": "OPEN",
+      "production_launch": "OPEN",
+      "hotfix_deploy": "OPEN",
+      "real_rollback_execution": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

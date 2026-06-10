@@ -1,0 +1,13 @@
+seed_key	domain	scope	required_for_pilot	idempotency_strategy	rollback_strategy	tenant_safety	apply_gate_required	note
+tdhp_chart_of_accounts	accounting	GLOBAL_REFERENCE	YES	natural_key_upsert	versioned_disable_or_revert	no_tenant_id_allowed	YES	Tek Düzen Hesap Planı referans standardı
+tax_vat_rates	tax	GLOBAL_REFERENCE	YES	natural_key_upsert	versioned_disable_or_revert	no_tenant_id_allowed	YES	KDV oranları referans standardı
+document_types	document	GLOBAL_REFERENCE	YES	natural_key_upsert	versioned_disable_or_revert	no_tenant_id_allowed	YES	Fatura, irsaliye, iade, tahsilat belge tipleri
+currency_codes	finance	GLOBAL_REFERENCE	YES	natural_key_upsert	versioned_disable_or_revert	no_tenant_id_allowed	YES	TRY, USD, EUR gibi para birimleri
+unit_definitions	product	TENANT_DEFAULT	YES	natural_key_upsert	tenant_scoped_soft_delete	tenant_id_required	YES	Adet, kg, lt, paket gibi birimler
+product_categories	product	TENANT_DEFAULT	YES	natural_key_upsert	tenant_scoped_soft_delete	tenant_id_required	YES	Varsayılan ürün kategori ağacı
+stock_locations	inventory	TENANT_DEFAULT	YES	natural_key_upsert	tenant_scoped_soft_delete	tenant_id_required	YES	Varsayılan depo/stok lokasyonu
+payment_methods	payment	TENANT_DEFAULT	YES	natural_key_upsert	tenant_scoped_soft_delete	tenant_id_required	YES	Nakit, kart, havale gibi ödeme yöntemleri
+customer_import_seed	party	TENANT_SPECIFIC	YES	import_batch_upsert	import_batch_revert	tenant_id_required	YES	Pilot cari import seed standardı
+product_import_seed	product	TENANT_SPECIFIC	YES	import_batch_upsert	import_batch_revert	tenant_id_required	YES	Pilot ürün import seed standardı
+opening_stock_seed	inventory	TENANT_SPECIFIC	YES	import_batch_upsert	import_batch_revert	tenant_id_required	YES	Pilot açılış stok seed standardı
+price_list_seed	pricing	TENANT_SPECIFIC	NO	import_batch_upsert	import_batch_revert	tenant_id_required	YES	Pilot fiyat listesi seed standardı

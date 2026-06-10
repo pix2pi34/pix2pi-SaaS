@@ -1,0 +1,185 @@
+{
+  "report_id": "tenant_status_report.controlled_pilot.v1",
+  "report_status": "READY",
+  "report_mode": "CONTROLLED_PILOT",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT",
+    "tenant_status": "PILOT_ACTIVE"
+  },
+  "chain_dependencies": {
+    "218_FAZ_4_16_5_1_PILOT_HEALTH_DASHBOARD": "PASS",
+    "219_FAZ_4_16_5_3_PILOT_INCIDENT_YONETIMI": "PASS"
+  },
+  "report_sections": [
+    {
+      "code": "TENANT_IDENTITY_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "TENANT",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/tenant_identity_summary.md"
+    },
+    {
+      "code": "PILOT_HEALTH_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "HEALTH",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/pilot_health_summary.md"
+    },
+    {
+      "code": "IMPORT_STATUS_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "IMPORT",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/import_status_summary.md"
+    },
+    {
+      "code": "READMODEL_REPORTING_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "READMODEL",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/readmodel_reporting_summary.md"
+    },
+    {
+      "code": "UAT_STATUS_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "UAT",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/uat_status_summary.md"
+    },
+    {
+      "code": "TRAINING_SUPPORT_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "TRAINING_SUPPORT",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/training_support_summary.md"
+    },
+    {
+      "code": "SUPPORT_TRIAGE_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "TRIAGE",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/support_triage_summary.md"
+    },
+    {
+      "code": "PILOT_INCIDENT_MANAGEMENT_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "INCIDENT",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/pilot_incident_management_summary.md"
+    },
+    {
+      "code": "ISSUE_ESCALATION_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "ESCALATION",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/issue_escalation_summary.md"
+    },
+    {
+      "code": "ROLLBACK_DECISION_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "ROLLBACK",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/rollback_decision_summary.md"
+    },
+    {
+      "code": "KPI_SNAPSHOT_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "KPI",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/kpi_snapshot_summary.md"
+    },
+    {
+      "code": "OPEN_BLOCKER_CRITICAL_ISSUE_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "QUALITY",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/open_blocker_critical_issue_summary.md"
+    },
+    {
+      "code": "CLOSED_PROVIDER_POLICY_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "POLICY",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/closed_provider_policy_summary.md"
+    },
+    {
+      "code": "OPERATIONS_HANDOFF_SUMMARY",
+      "required": true,
+      "status": "READY",
+      "area": "HANDOFF",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/operations_handoff_summary.md"
+    },
+    {
+      "code": "REPORT_CLOSURE_CHECKLIST",
+      "required": true,
+      "status": "READY",
+      "area": "CLOSURE",
+      "result": "PASS",
+      "evidence_ref": "docs/faz4r/tenant_status_report/report_closure_checklist.md"
+    }
+  ],
+  "report_controls": {
+    "pilot_health_dashboard_status": "PASS",
+    "pilot_incident_management_status": "PASS",
+    "pilot_operations_tests_status": "PASS",
+    "daily_pilot_review_status": "PASS",
+    "rollback_signal_status": "CLEAR",
+    "operations_handoff_ready": "YES",
+    "tenant_report_visibility": "CONTROLLED_PILOT_ONLY",
+    "no_real_ticket_system": true,
+    "no_real_email_dispatch": true,
+    "no_live_external_provider_activation": true
+  },
+  "tenant_metrics": {
+    "open_incident_count": 0,
+    "open_blocker_count": 0,
+    "critical_issue_count": 0,
+    "required_fail_count": 0,
+    "missing_section_count": 0,
+    "live_external_policy_status": "CLOSED"
+  },
+  "summary": {
+    "total_section_count": 15,
+    "ready_section_count": 15,
+    "missing_section_count": 0,
+    "required_fail_count": 0,
+    "critical_issue_count": 0,
+    "open_blocker_count": 0,
+    "pilot_health_dashboard_status": "PASS",
+    "pilot_incident_management_status": "PASS",
+    "pilot_operations_tests_status": "PASS",
+    "rollback_signal_status": "CLEAR",
+    "operations_handoff_ready": "YES",
+    "report_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "real_ticket_system": "CLOSED",
+    "real_email_dispatch": "CLOSED",
+    "production_launch": "CLOSED",
+    "hotfix_deploy": "CLOSED",
+    "real_rollback_execution": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

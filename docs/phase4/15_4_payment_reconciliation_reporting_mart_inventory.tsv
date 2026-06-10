@@ -1,0 +1,8 @@
+table	status	tenant_id_required	period_key	date_key	provider_code	status_code	currency_code	note
+payment_attempt_summaries	YES	YES	YES	summary_date	YES	YES	YES	reporting_mart.payment_attempt_summaries
+payment_provider_summaries	YES	YES	YES	period_only	YES	YES	YES	reporting_mart.payment_provider_summaries
+settlement_summaries	YES	YES	YES	settlement_date	YES	YES	YES	reporting_mart.settlement_summaries
+reconciliation_difference_summaries	YES	YES	YES	period_only	YES	YES	YES	reporting_mart.reconciliation_difference_summaries
+commission_summaries	YES	YES	YES	period_only	YES	YES	YES	reporting_mart.commission_summaries
+merchant_payout_summaries	YES	YES	YES	payout_date	YES	YES	YES	reporting_mart.merchant_payout_summaries
+payment_reconciliation_tenant_kpis	YES	YES	YES	period_only	YES	YES	YES	reporting_mart.payment_reconciliation_tenant_kpis

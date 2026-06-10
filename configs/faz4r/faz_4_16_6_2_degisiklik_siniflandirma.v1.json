@@ -1,0 +1,58 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 222,
+  "step": "FAZ_4_16_6_2",
+  "title": "Değişiklik sınıflandırma",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "221_FAZ_4_16_6_1_FEEDBACK_TOPLAMA_KANALI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "classification_policy": {
+    "classification_status_required": "READY",
+    "classification_mode_required": "CONTROLLED_PILOT",
+    "required_rule_status_required": "READY",
+    "missing_rule_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "feedback_channel_status_required": "PASS",
+    "priority_mapping_status_required": "READY",
+    "severity_mapping_status_required": "READY",
+    "owner_routing_status_required": "READY",
+    "quick_fix_candidate_status_required": "READY",
+    "product_decision_candidate_status_required": "READY",
+    "no_auto_apply_change_required": true,
+    "no_hotfix_deploy_required": true,
+    "no_real_crm_system_required": true,
+    "no_real_ticket_system_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_classification_rules": [
+    "FEEDBACK_INTAKE_CLASSIFICATION",
+    "BUG_DEFECT_CLASSIFICATION",
+    "UX_IMPROVEMENT_CLASSIFICATION",
+    "TRAINING_GAP_CLASSIFICATION",
+    "SUPPORT_PROCESS_CLASSIFICATION",
+    "DATA_IMPORT_ISSUE_CLASSIFICATION",
+    "REPORTING_READMODEL_ISSUE_CLASSIFICATION",
+    "INTEGRATION_PROVIDER_POLICY_CLASSIFICATION",
+    "PRIORITY_MAPPING",
+    "SEVERITY_MAPPING",
+    "OWNER_ROUTING",
+    "PRODUCT_DECISION_CANDIDATE_MARKER",
+    "QUICK_FIX_CANDIDATE_MARKER",
+    "DEFERRED_CHANGE_MARKER",
+    "REJECTION_OUT_OF_SCOPE_MARKER"
+  ],
+  "classification_artifact": "configs/faz4r/change_classification.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "223_FAZ_4_16_6_3_HIZLI_DUZELTME_HATTI"
+  ]
+}

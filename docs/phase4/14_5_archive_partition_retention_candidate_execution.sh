@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "===== 14.5 ARCHIVE / PARTITION / RETENTION CANDIDATE EXECUTION PLAN ====="
+
+APPLY_RETENTION="${APPLY_RETENTION:-0}"
+RETENTION_TARGET_KEY="${RETENTION_TARGET_KEY:-}"
+TENANT_ID="${TENANT_ID:-}"
+DRY_RUN="${DRY_RUN:-1}"
+
+echo "ARCHIVE_APPLY_EXECUTED=NO"
+echo "PARTITION_APPLY_EXECUTED=NO"
+echo "RETENTION_PURGE_EXECUTED=NO"
+echo "DB_MUTATION=NO"
+echo "QUERY_TEXT_PRINTED=NO"
+
+if [ "$APPLY_RETENTION" != "1" ]; then
+  echo "RETENTION_PLAN_BLOCKED_BY_DEFAULT=YES"
+  echo "RETENTION_PLAN_DECISION=PLAN_READY_APPLY_NOT_EXECUTED"
+  exit 0
+fi
+
+echo "RETENTION_PLAN_BLOCKED_BY_DEFAULT=YES"
+echo "RETENTION_PLAN_DECISION=REFUSED_IN_14_5_STANDARD_STEP"
+echo "ERROR: 14.5 standard adiminda gercek archive/partition/purge apply calistirilmaz."
+echo "ERROR: Controlled apply icin sonraki apply gate adimi gerekir."
+exit 2

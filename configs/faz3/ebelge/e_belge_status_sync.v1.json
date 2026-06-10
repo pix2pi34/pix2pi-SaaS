@@ -1,0 +1,39 @@
+{
+  "phase": "FAZ_3_10_3_4_EBELGE_STATUS_SYNC",
+  "runtime": "callback_poll_status_sync",
+  "callback_signature_required": true,
+  "poll_enabled": true,
+  "poll_interval_seconds": 300,
+  "max_poll_batch_size": 100,
+  "max_retry_count": 3,
+  "allowed_document_types": [
+    "E_FATURA",
+    "E_ARSIV",
+    "E_ADISYON"
+  ],
+  "allowed_provider_codes": [
+    "SIM_GIB_EFATURA",
+    "SIM_GIB_EARSIV",
+    "SIM_GIB_EADISYON"
+  ],
+  "status_mapping": {
+    "PROVIDER_QUEUED": "PROVIDER_QUEUED",
+    "SENT": "SENT",
+    "DELIVERED": "DELIVERED",
+    "ACCEPTED": "ACCEPTED",
+    "REJECTED": "REJECTED",
+    "REPORTED": "REPORTED",
+    "CANCELED": "CANCELED",
+    "FAILED": "FAILED"
+  },
+  "security_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "provider_document_id_required": true,
+    "provider_payload_hash_required": true,
+    "callback_signature_required": true
+  },
+  "next_gate": "FAZ_3_10_3_5_EBELGE_ERROR_CANCEL_RETRY_RUNTIME"
+}

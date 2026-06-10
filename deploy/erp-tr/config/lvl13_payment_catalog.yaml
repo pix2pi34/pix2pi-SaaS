@@ -1,0 +1,43 @@
+version: v1
+payment:
+  pos_backbone:
+    required_fields:
+      - integration_id
+      - provider
+      - terminal_id
+      - tenant_id
+      - activated_at
+
+  bank_collection_flow:
+    required_fields:
+      - bank_account_id
+      - collection_type
+      - settlement_mode
+      - processed_at
+
+  reconciliation_bridge:
+    required_fields:
+      - reconciliation_id
+      - bank_reference
+      - internal_reference
+      - reconciliation_status
+
+  refund_cancel_flows:
+    required_fields:
+      - transaction_id
+      - refund_status
+      - cancel_status
+      - processed_at
+
+  audit_trail:
+    required_fields:
+      - payment_trace_id
+      - action_type
+      - actor_id
+      - recorded_at
+
+  test_suite:
+    required_fields:
+      - test_profile
+      - test_status
+      - tested_at

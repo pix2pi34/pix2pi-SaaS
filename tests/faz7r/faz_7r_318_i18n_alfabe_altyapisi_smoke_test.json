@@ -1,0 +1,44 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "318",
+  "fix": "V2",
+  "domain": "panel.pix2pi.com.tr",
+  "calligraphy_reference": {
+    "primary_reference_name": "Ahmed Hüsrev Altınbaşak hattı",
+    "primary_reference_url": "https://oku.risale.online/osm",
+    "applies_to": ["ota", "ar", "fa"]
+  },
+  "smoke_tests": [
+    {
+      "name": "i18n_demo",
+      "path": "/i18n-demo/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_318_LOCALIZATION_SMOKE_SURFACE_START",
+        "PIX2PI_318_PANEL_LANGUAGE_SWITCHER_START",
+        "PIX2PI_318_AHMED_HUSREV_CALLIGRAPHY_REFERENCE_START",
+        "PIX2PI_318_RTL_LTR_LAYOUT_ENGINE_START"
+      ]
+    },
+    {
+      "name": "i18n_runtime",
+      "path": "/assets/i18n/i18n-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_318_I18N_RUNTIME_START",
+        "calligraphyReferenceOf",
+        "Ahmed Hüsrev Altınbaşak hattı"
+      ]
+    },
+    {
+      "name": "language_registry",
+      "path": "/i18n/language-registry.json",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "\"default_language\": \"tr-TR\"",
+        "\"calligraphy_reference\": \"Ahmed Hüsrev Altınbaşak hattı\"",
+        "\"calligraphy_reference_url\": \"https://oku.risale.online/osm\""
+      ]
+    }
+  ]
+}

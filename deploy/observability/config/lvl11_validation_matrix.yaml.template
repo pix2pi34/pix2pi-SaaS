@@ -1,0 +1,25 @@
+version: v1
+validation:
+  - id: threshold_simulation
+    enabled: __THRESHOLD_SIMULATION_ENABLED__
+    expected: pass
+
+  - id: false_positive_test
+    max_percent: __FALSE_POSITIVE_MAX_PERCENT__
+    expected: pass
+
+  - id: false_negative_test
+    max_percent: __FALSE_NEGATIVE_MAX_PERCENT__
+    expected: pass
+
+  - id: dry_run_alarm_mode
+    enabled: __DRY_RUN_MODE__
+    expected: pass
+
+  - id: correlation_test
+    required: __CORRELATION_VALIDATION_REQUIRED__
+    expected: pass
+
+  - id: early_warning_suite
+    mode: __EARLY_WARNING_SUITE__
+    expected: pass

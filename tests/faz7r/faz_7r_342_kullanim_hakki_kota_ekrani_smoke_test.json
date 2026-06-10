@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "342",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "panel_quota_screen",
+      "path": "/quota/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_342_QUOTA_APP_SHELL_START",
+        "PIX2PI_342_ENTITLEMENT_SUMMARY_CARDS_START",
+        "PIX2PI_342_QUOTA_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "panel_quota_runtime",
+      "path": "/assets/quota/panel-quota-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_342_PANEL_QUOTA_RUNTIME_START",
+        "quotaScopeHeaders",
+        "buildQuotaRuntimeContract"
+      ]
+    }
+  ]
+}

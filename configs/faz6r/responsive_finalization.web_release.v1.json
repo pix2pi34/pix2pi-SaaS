@@ -1,0 +1,97 @@
+{
+  "version": "web_release.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_22_1",
+  "status": "dry_run_only_no_responsive_mutation",
+  "checks": [
+    {
+      "responsive_check_id": "responsive-public-landing",
+      "surface": "public_landing",
+      "mobile_status": "REQUIRED",
+      "tablet_status": "REQUIRED",
+      "desktop_status": "REQUIRED",
+      "overflow_guard_status": "REQUIRED",
+      "touch_target_status": "REQUIRED",
+      "navigation_status": "HEADER_COLLAPSE_REQUIRED",
+      "form_table_modal_status": "STATIC_CONTENT_REVIEW",
+      "risk_level": "medium",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "responsive_check_id": "responsive-auth-login",
+      "surface": "auth_login",
+      "mobile_status": "REQUIRED",
+      "tablet_status": "REQUIRED",
+      "desktop_status": "REQUIRED",
+      "overflow_guard_status": "REQUIRED",
+      "touch_target_status": "REQUIRED",
+      "navigation_status": "NOT_APPLICABLE",
+      "form_table_modal_status": "FORM_REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "responsive_check_id": "responsive-tenant-panel-shell",
+      "surface": "tenant_panel_shell",
+      "mobile_status": "REQUIRED",
+      "tablet_status": "REQUIRED",
+      "desktop_status": "REQUIRED",
+      "overflow_guard_status": "REQUIRED",
+      "touch_target_status": "REQUIRED",
+      "navigation_status": "SIDEBAR_TOPBAR_COLLAPSE_REQUIRED",
+      "form_table_modal_status": "SHELL_LAYOUT_REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "responsive_check_id": "responsive-approval-inbox",
+      "surface": "approval_inbox",
+      "mobile_status": "REQUIRED",
+      "tablet_status": "REQUIRED",
+      "desktop_status": "REQUIRED",
+      "overflow_guard_status": "REQUIRED",
+      "touch_target_status": "REQUIRED",
+      "navigation_status": "PANEL_NAV_REQUIRED",
+      "form_table_modal_status": "ACTION_MODAL_REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "responsive_check_id": "responsive-workflow-monitor",
+      "surface": "workflow_monitor",
+      "mobile_status": "REQUIRED",
+      "tablet_status": "REQUIRED",
+      "desktop_status": "REQUIRED",
+      "overflow_guard_status": "REQUIRED",
+      "touch_target_status": "REQUIRED",
+      "navigation_status": "PANEL_NAV_REQUIRED",
+      "form_table_modal_status": "STATUS_GRID_REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "responsive_check_id": "responsive-reporting-tables",
+      "surface": "reporting_tables",
+      "mobile_status": "REQUIRED",
+      "tablet_status": "REQUIRED",
+      "desktop_status": "REQUIRED",
+      "overflow_guard_status": "REQUIRED",
+      "touch_target_status": "REQUIRED",
+      "navigation_status": "PANEL_NAV_REQUIRED",
+      "form_table_modal_status": "TABLE_CARD_OR_SCROLL_STRATEGY_REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_22_5",
+    "name": "Permission regression seti",
+    "runtime_mutation_allowed_now": false
+  }
+}

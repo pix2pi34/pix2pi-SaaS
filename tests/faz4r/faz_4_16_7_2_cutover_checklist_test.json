@@ -1,0 +1,183 @@
+{
+  "valid_fixture": {
+    "cutover_checklist_id": "cutover_checklist.valid_fixture",
+    "cutover_checklist_status": "READY",
+    "cutover_checklist_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT",
+      "tenant_status": "PILOT_ACTIVE"
+    },
+    "chain_dependencies": {
+      "226_FAZ_4_16_7_1_DRY_RUN_CANLIYA_GECIS": "PASS"
+    },
+    "cutover_items": [
+      {"code": "CUTOVER_KICKOFF_CHECKLIST", "required": true, "status": "READY", "area": "KICKOFF", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/cutover_kickoff_checklist.md"},
+      {"code": "DRY_RUN_RESULT_LINK", "required": true, "status": "READY", "area": "DRY_RUN", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/dry_run_result_link.md"},
+      {"code": "TENANT_READINESS_CONFIRMATION", "required": true, "status": "READY", "area": "TENANT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/tenant_readiness_confirmation.md"},
+      {"code": "IMPORT_FREEZE_CONFIRMATION", "required": true, "status": "READY", "area": "IMPORT", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/import_freeze_confirmation.md"},
+      {"code": "READMODEL_REPORTING_CONFIRMATION", "required": true, "status": "READY", "area": "READMODEL", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/readmodel_reporting_confirmation.md"},
+      {"code": "UAT_CLOSURE_CONFIRMATION", "required": true, "status": "READY", "area": "UAT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/uat_closure_confirmation.md"},
+      {"code": "BACKUP_SNAPSHOT_CONFIRMATION", "required": true, "status": "READY", "area": "BACKUP", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/backup_snapshot_confirmation.md"},
+      {"code": "ROLLBACK_PACKAGE_CONFIRMATION", "required": true, "status": "READY", "area": "ROLLBACK", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/rollback_package_confirmation.md"},
+      {"code": "ROUTE_DNS_NGINX_PLAN_CONFIRMATION", "required": true, "status": "READY", "area": "ROUTING", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/route_dns_nginx_plan_confirmation.md"},
+      {"code": "RUNTIME_HEALTH_CONFIRMATION", "required": true, "status": "READY", "area": "RUNTIME", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/runtime_health_confirmation.md"},
+      {"code": "MONITORING_WATCH_CONFIRMATION", "required": true, "status": "READY", "area": "MONITORING", "owner": "TECH_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/monitoring_watch_confirmation.md"},
+      {"code": "SUPPORT_WATCH_CONFIRMATION", "required": true, "status": "READY", "area": "SUPPORT", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/support_watch_confirmation.md"},
+      {"code": "COMMUNICATION_PLAN_CONFIRMATION", "required": true, "status": "READY", "area": "COMMUNICATION", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/communication_plan_confirmation.md"},
+      {"code": "APPROVAL_OWNER_CONFIRMATION", "required": true, "status": "READY", "area": "APPROVAL", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/approval_owner_confirmation.md"},
+      {"code": "EXTERNAL_PROVIDER_POLICY_CLOSED_CONFIRMATION", "required": true, "status": "READY", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/external_provider_policy_closed_confirmation.md"},
+      {"code": "FINAL_CHECKLIST_REPORT", "required": true, "status": "READY", "area": "REPORT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/cutover_checklist/final_checklist_report.md"}
+    ],
+    "cutover_controls": {
+      "dry_run_go_live_status": "PASS",
+      "tenant_readiness_status": "READY",
+      "import_freeze_status": "READY",
+      "readmodel_reporting_status": "READY",
+      "uat_closure_status": "READY",
+      "backup_snapshot_status": "READY",
+      "rollback_package_status": "READY",
+      "route_plan_status": "READY",
+      "runtime_health_status": "READY",
+      "monitoring_watch_status": "READY",
+      "support_watch_status": "READY",
+      "communication_plan_status": "READY",
+      "approval_owner_status": "READY",
+      "no_production_launch": true,
+      "no_dns_change": true,
+      "no_nginx_change": true,
+      "no_ssl_change": true,
+      "no_live_external_provider_activation": true
+    },
+    "cutover_metrics": {
+      "open_blocker_count": 0,
+      "critical_issue_count": 0,
+      "required_fail_count": 0,
+      "missing_item_count": 0,
+      "production_launch_count": 0,
+      "dns_change_count": 0,
+      "nginx_change_count": 0,
+      "ssl_change_count": 0,
+      "live_external_provider_activation_count": 0,
+      "live_external_policy_status": "CLOSED"
+    },
+    "summary": {
+      "total_item_count": 16,
+      "ready_item_count": 16,
+      "missing_item_count": 0,
+      "required_fail_count": 0,
+      "critical_issue_count": 0,
+      "open_blocker_count": 0,
+      "dry_run_go_live_status": "PASS",
+      "backup_snapshot_status": "READY",
+      "rollback_package_status": "READY",
+      "route_plan_status": "READY",
+      "runtime_health_status": "READY",
+      "monitoring_watch_status": "READY",
+      "support_watch_status": "READY",
+      "communication_plan_status": "READY",
+      "approval_owner_status": "READY",
+      "cutover_checklist_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "production_launch": "CLOSED",
+      "dns_change": "CLOSED",
+      "nginx_change": "CLOSED",
+      "ssl_change": "CLOSED",
+      "hotfix_deploy": "CLOSED",
+      "real_rollback_execution": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "cutover_checklist_id": "cutover_checklist.invalid_fixture",
+    "cutover_checklist_status": "DRAFT",
+    "cutover_checklist_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED",
+      "tenant_status": "UNKNOWN"
+    },
+    "chain_dependencies": {
+      "226_FAZ_4_16_7_1_DRY_RUN_CANLIYA_GECIS": "FAIL"
+    },
+    "cutover_items": [
+      {"code": "CUTOVER_KICKOFF_CHECKLIST", "required": true, "status": "MISSING", "area": "", "owner": "", "evidence_ref": ""},
+      {"code": "DRY_RUN_RESULT_LINK", "required": true, "status": "READY", "area": "DRY_RUN", "owner": "PRODUCT_OWNER", "evidence_ref": "x"},
+      {"code": "DRY_RUN_RESULT_LINK", "required": true, "status": "READY", "area": "DRY_RUN", "owner": "PRODUCT_OWNER", "evidence_ref": "x"}
+    ],
+    "cutover_controls": {
+      "dry_run_go_live_status": "FAIL",
+      "tenant_readiness_status": "DRAFT",
+      "import_freeze_status": "DRAFT",
+      "readmodel_reporting_status": "DRAFT",
+      "uat_closure_status": "DRAFT",
+      "backup_snapshot_status": "DRAFT",
+      "rollback_package_status": "DRAFT",
+      "route_plan_status": "DRAFT",
+      "runtime_health_status": "DRAFT",
+      "monitoring_watch_status": "DRAFT",
+      "support_watch_status": "DRAFT",
+      "communication_plan_status": "DRAFT",
+      "approval_owner_status": "DRAFT",
+      "no_production_launch": false,
+      "no_dns_change": false,
+      "no_nginx_change": false,
+      "no_ssl_change": false,
+      "no_live_external_provider_activation": false
+    },
+    "cutover_metrics": {
+      "open_blocker_count": 1,
+      "critical_issue_count": 1,
+      "required_fail_count": 1,
+      "missing_item_count": 1,
+      "production_launch_count": 1,
+      "dns_change_count": 1,
+      "nginx_change_count": 1,
+      "ssl_change_count": 1,
+      "live_external_provider_activation_count": 1,
+      "live_external_policy_status": "OPEN"
+    },
+    "summary": {
+      "total_item_count": 99,
+      "ready_item_count": 99,
+      "missing_item_count": 99,
+      "required_fail_count": 99,
+      "critical_issue_count": 1,
+      "open_blocker_count": 1,
+      "dry_run_go_live_status": "FAIL",
+      "backup_snapshot_status": "DRAFT",
+      "rollback_package_status": "DRAFT",
+      "route_plan_status": "DRAFT",
+      "runtime_health_status": "DRAFT",
+      "monitoring_watch_status": "DRAFT",
+      "support_watch_status": "DRAFT",
+      "communication_plan_status": "DRAFT",
+      "approval_owner_status": "DRAFT",
+      "cutover_checklist_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "production_launch": "OPEN",
+      "dns_change": "OPEN",
+      "nginx_change": "OPEN",
+      "ssl_change": "OPEN",
+      "hotfix_deploy": "OPEN",
+      "real_rollback_execution": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

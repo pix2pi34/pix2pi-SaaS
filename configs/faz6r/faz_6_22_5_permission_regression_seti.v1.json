@@ -1,0 +1,179 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "313",
+  "code": "FAZ_6_22_5",
+  "name": "Permission regression seti",
+  "depends_on": [
+    "FAZ_6_22_1"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "role_permission_mutation_allowed": false,
+  "jwt_claim_mutation_allowed": false,
+  "route_guard_mutation_allowed": false,
+  "api_policy_mutation_allowed": false,
+  "frontend_deploy_allowed": false,
+  "build_publish_allowed": false,
+  "required_controls": [
+    "responsive_dependency_gate",
+    "permission_surface_inventory",
+    "role_route_matrix_policy",
+    "tenant_permission_isolation_policy",
+    "super_admin_boundary_policy",
+    "jwt_claim_permission_guard",
+    "api_ui_permission_alignment_guard",
+    "hidden_button_not_security_policy",
+    "negative_permission_test_policy",
+    "export_report_permission_policy",
+    "approval_workflow_permission_policy",
+    "accountant_portal_permission_policy",
+    "dry_run_permission_regression_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "permission_surfaces": [
+    {
+      "surface": "auth_login_session",
+      "risk_level": "critical",
+      "tenant_scope_required": true,
+      "negative_case_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "tenant_panel_navigation",
+      "risk_level": "critical",
+      "tenant_scope_required": true,
+      "negative_case_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "user_role_management",
+      "risk_level": "critical",
+      "tenant_scope_required": true,
+      "negative_case_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "approval_inbox_actions",
+      "risk_level": "high",
+      "tenant_scope_required": true,
+      "negative_case_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "reporting_export_actions",
+      "risk_level": "high",
+      "tenant_scope_required": true,
+      "negative_case_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "accountant_portal_access",
+      "risk_level": "high",
+      "tenant_scope_required": true,
+      "negative_case_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "surface": "super_admin_boundary",
+      "risk_level": "critical",
+      "tenant_scope_required": true,
+      "negative_case_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "permission_regression_policy": {
+    "enabled": true,
+    "requires_api_guard": true,
+    "requires_ui_guard": true,
+    "requires_negative_cases": true,
+    "requires_cross_tenant_deny_case": true,
+    "requires_super_admin_boundary_case": true,
+    "requires_jwt_claim_alignment": true,
+    "block_if_ui_only_guard": true,
+    "block_if_route_without_api_guard": true,
+    "block_if_cross_tenant_access_possible": true
+  },
+  "role_matrix_policy": {
+    "enabled": true,
+    "required_roles": [
+      "TENANT_ADMIN",
+      "OWNER",
+      "MANAGER",
+      "OPERATOR",
+      "ACCOUNTANT",
+      "READONLY",
+      "SUPER_ADMIN"
+    ],
+    "required_decisions": [
+      "ALLOW",
+      "DENY",
+      "MASK",
+      "REQUIRES_APPROVAL"
+    ],
+    "requires_per_route_mapping": true,
+    "requires_per_action_mapping": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "role_permission_mutation_execute",
+      "jwt_claim_mutation_execute",
+      "route_guard_mutation_execute",
+      "api_policy_mutation_execute",
+      "frontend_deploy_execute",
+      "build_publish_execute"
+    ],
+    "approval_roles": [
+      "security_owner",
+      "frontend_owner",
+      "backend_owner",
+      "sre_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "role_permission_mutation_allowed": false,
+    "jwt_claim_mutation_allowed": false,
+    "route_guard_mutation_allowed": false,
+    "api_policy_mutation_allowed": false,
+    "frontend_deploy_allowed": false,
+    "build_publish_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "permission_check_id",
+      "surface",
+      "role",
+      "route_or_action",
+      "expected_decision",
+      "api_guard_status",
+      "ui_guard_status",
+      "tenant_scope_status",
+      "negative_case_status",
+      "risk_level",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_responsive_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_role_permission_mutation_allowed": true,
+    "block_if_jwt_or_policy_mutation_allowed": true,
+    "block_if_frontend_deploy_allowed": true,
+    "block_if_missing_api_guard": true,
+    "block_if_missing_negative_case": true,
+    "block_if_missing_tenant_scope_guard": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_22_5_PERMISSION_REGRESSION_SETI_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

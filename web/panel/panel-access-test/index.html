@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi panel erişim testi ekranı" />
+  <meta property="og:title" content="Pix2pi Panel Erişim Testi" />
+  <meta property="og:description" content="İlk kullanıcı için kontrollü panel route ve erişim testi yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Panel Erişim Testi</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.13), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1360px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      color: #1d4ed8;
+      background: #eff6ff;
+    }
+
+    button:disabled {
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .access-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_350_PANEL_ACCESS_TEST_APP_SHELL_START -->
+  <main class="shell" data-step="350" data-surface="panel-access-test">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 350</span>
+      <h1 data-i18n="panel_access_test.title">Panel erişim testi</h1>
+      <p data-i18n="panel_access_test.description">İlk kullanıcı için panel route, rol ve erişim preview yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_350_AUTH_SESSION_SIMULATION_CONTEXT_START -->
+    <section class="card guard" data-widget="auth_session_simulation_context">
+      <h2>Auth/session simulation context</h2>
+      <div class="grid-4">
+        <!-- PIX2PI_350_TENANT_SELECTED_CONTEXT_START -->
+        <p>Tenant ID: <strong id="panel-access-tenant-id">controlled-pilot</strong></p>
+        <!-- PIX2PI_350_TENANT_SELECTED_CONTEXT_END -->
+        <p>Session: <strong id="panel-access-session-id">USER_DEMO_SESSION</strong></p>
+        <p>Email: <strong id="panel-access-email">owner@example.invalid</strong></p>
+        <!-- PIX2PI_350_OWNER_ADMIN_ROLE_ACCESS_PREVIEW_START -->
+        <p>Role: <strong id="panel-access-role">OWNER_ADMIN</strong></p>
+        <!-- PIX2PI_350_OWNER_ADMIN_ROLE_ACCESS_PREVIEW_END -->
+        <p>Scope: <strong id="panel-access-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_350_AUTH_SESSION_SIMULATION_CONTEXT_END -->
+
+    <!-- PIX2PI_350_PANEL_ROUTE_AVAILABILITY_CHECKLIST_START -->
+    <section class="card" data-widget="panel_route_availability_checklist">
+      <h2>Panel route availability checklist</h2>
+      <div id="panel-route-checklist" class="grid-3">
+        <!-- PIX2PI_350_DASHBOARD_ACCESS_CHECK_START -->
+        <article class="access-card" data-route="/dashboard/" data-decision="ALLOW_PREVIEW">
+          <strong>Merchant dashboard</strong>
+          <p>/dashboard/ / AVAILABLE / ALLOW_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_350_DASHBOARD_ACCESS_CHECK_END -->
+        <!-- PIX2PI_350_USERS_ROLES_ACCESS_CHECK_START -->
+        <article class="access-card" data-route="/users/" data-decision="ALLOW_PREVIEW">
+          <strong>Users / roles</strong>
+          <p>/users/ / AVAILABLE / ALLOW_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_350_USERS_ROLES_ACCESS_CHECK_END -->
+        <!-- PIX2PI_350_PRODUCTS_STOCK_ACCESS_CHECK_START -->
+        <article class="access-card" data-route="/products/" data-decision="ALLOW_PREVIEW">
+          <strong>Products / stock</strong>
+          <p>/products/ / AVAILABLE / ALLOW_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_350_PRODUCTS_STOCK_ACCESS_CHECK_END -->
+        <!-- PIX2PI_350_BILLING_ENTITLEMENTS_ACCESS_CHECK_START -->
+        <article class="access-card" data-route="/billing/" data-decision="ALLOW_PREVIEW">
+          <strong>Billing / entitlements</strong>
+          <p>/billing/ + /entitlements/ / AVAILABLE / ALLOW_PREVIEW</p>
+        </article>
+        <!-- PIX2PI_350_BILLING_ENTITLEMENTS_ACCESS_CHECK_END -->
+      </div>
+    </section>
+    <!-- PIX2PI_350_PANEL_ROUTE_AVAILABILITY_CHECKLIST_END -->
+
+    <!-- PIX2PI_350_UNAUTHORIZED_FORBIDDEN_PREVIEW_START -->
+    <section class="card locked" data-widget="unauthorized_forbidden_preview">
+      <h2>Unauthorized / forbidden preview</h2>
+      <div id="panel-denied-previews" class="grid-3">
+        <article class="access-card" data-error-code="UNAUTHORIZED">
+          <strong>UNAUTHORIZED</strong>
+          <p>Session yok / PREVIEW_ONLY</p>
+        </article>
+        <article class="access-card" data-error-code="FORBIDDEN">
+          <strong>FORBIDDEN</strong>
+          <p>Rol yetkisi yok / PREVIEW_ONLY</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_350_UNAUTHORIZED_FORBIDDEN_PREVIEW_END -->
+
+    <!-- PIX2PI_350_SESSION_TIMEOUT_PREVIEW_START -->
+    <section class="card locked" data-widget="session_timeout_preview">
+      <h2>Session timeout preview</h2>
+      <p>SESSION_TIMEOUT / Oturum süresi doldu / PREVIEW_ONLY. Gerçek session kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_350_SESSION_TIMEOUT_PREVIEW_END -->
+
+    <!-- PIX2PI_350_PANEL_NAVIGATION_HANDOFF_START -->
+    <section class="card guard" data-widget="panel_navigation_handoff">
+      <h2>Panel navigation handoff</h2>
+      <p>Dashboard, users, products, billing ve entitlements route preview geçildi. Sıradaki adım: 351 — POS erişim testi.</p>
+    </section>
+    <!-- PIX2PI_350_PANEL_NAVIGATION_HANDOFF_END -->
+
+    <!-- PIX2PI_350_ACCESS_AUDIT_TIMELINE_START -->
+    <section class="card" data-widget="access_audit_timeline">
+      <h2>Access audit timeline</h2>
+      <div id="panel-access-audit-timeline" class="grid-3">
+        <article class="access-card" data-audit-action="PANEL_ACCESS_PREVIEW_READY">
+          <strong>PANEL_ACCESS_PREVIEW_READY</strong>
+          <p>2026-05-demo / system / DRY_RUN</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_350_ACCESS_AUDIT_TIMELINE_END -->
+
+    <!-- PIX2PI_350_TENANT_USER_ROLE_ROUTE_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="tenant_user_role_route_scope_guard">
+      <h2>Tenant / user / role / route scope guard</h2>
+      <p>Panel access endpointleri `X-Tenant-ID`, `X-User-Session`, `X-User-Role`, `X-Route-Scope`, `X-Correlation-ID` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_350_TENANT_USER_ROLE_ROUTE_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_350_PANEL_ACCESS_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="panel_access_runtime_data_contract">
+      <h2>Panel access runtime data contract</h2>
+      <p id="panel-access-runtime-contract">panel_access_preview_enabled=true / route_smoke_preview_enabled=true / ready_for_step_351=true</p>
+    </section>
+    <!-- PIX2PI_350_PANEL_ACCESS_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_350_SEO_OPENGRAPH_PANEL_ACCESS_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_panel_access_placeholder">
+      <h2>SEO / OpenGraph panel access placeholder</h2>
+      <p>Title, description ve og:* metadata panel erişim testi yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_350_SEO_OPENGRAPH_PANEL_ACCESS_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_350_I18N_READY_PANEL_ACCESS_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_panel_access_marker">
+      <h2 data-i18n="panel_access_test.i18n_ready">i18n-ready panel access screen</h2>
+      <p data-i18n="panel_access_test.surface_ready">Panel erişim testi ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_350_I18N_READY_PANEL_ACCESS_MARKER_END -->
+  </main>
+  <!-- PIX2PI_350_PANEL_ACCESS_TEST_APP_SHELL_END -->
+
+  <script src="/assets/panel-access-test/panel-access-test-runtime.js"></script>
+  <script>
+    Pix2piPanelAccessTest.bootPanelAccessScreen().then(function (contract) {
+      console.log("PIX2PI_350_PANEL_ACCESS_TEST_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

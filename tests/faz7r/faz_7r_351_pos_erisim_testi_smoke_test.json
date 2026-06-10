@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "351",
+  "domain": "pos.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "pos_access_test_screen",
+      "path": "/pos-access-test/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_351_POS_ACCESS_TEST_APP_SHELL_START",
+        "PIX2PI_351_POS_ROUTE_AVAILABILITY_CHECKLIST_START",
+        "PIX2PI_351_POS_ACCESS_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "pos_access_test_runtime",
+      "path": "/assets/pos-access-test/pos-access-test-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_351_POS_ACCESS_TEST_RUNTIME_START",
+        "posAccessScopeHeaders",
+        "buildPosAccessRuntimeContract"
+      ]
+    }
+  ]
+}

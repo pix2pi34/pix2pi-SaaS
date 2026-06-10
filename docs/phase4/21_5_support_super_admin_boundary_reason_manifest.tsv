@@ -1,0 +1,11 @@
+reason_code	reason_name	allowed_for_support	allowed_for_super_admin	ticket_required	approval_required	audit_required	high_risk	default_status	status
+CUSTOMER_SUPPORT_REQUEST	Customer support request	YES	NO	YES	NO	YES	YES	allowed	contract_only
+PILOT_UAT_SUPPORT	Pilot UAT support	YES	NO	YES	NO	YES	YES	allowed	contract_only
+IMPORT_ASSISTANCE	Import assistance	YES	NO	YES	NO	YES	YES	allowed	contract_only
+INCIDENT_RESPONSE	Incident response	YES	YES	YES	YES	YES	YES	allowed	contract_only
+SECURITY_INVESTIGATION	Security investigation	YES	YES	YES	YES	YES	YES	allowed	contract_only
+DATA_REPAIR_APPROVED	Data repair approved	YES	YES	YES	YES	YES	YES	allowed	contract_only
+BILLING_SUPPORT	Billing support	YES	NO	YES	NO	YES	YES	allowed	contract_only
+BREAK_GLASS_INCIDENT	Break-glass incident	NO	YES	YES	YES	YES	YES	allowed	contract_only
+LEGAL_COMPLIANCE_REQUEST	Legal compliance request	NO	YES	YES	YES	YES	YES	allowed	contract_only
+INTERNAL_TESTING_DENIED	Internal testing denied	NO	NO	YES	YES	YES	YES	denied	contract_only

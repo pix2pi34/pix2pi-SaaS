@@ -1,0 +1,42 @@
+{
+  "phase": "FAZ_5_R_FINAL_REVIEW_CLOSURE",
+  "title": "FAZ 5-R General Final Review / Closure",
+  "status": "SEALED",
+  "control_surface": "GENERAL_FINAL_REVIEW_CLOSURE",
+  "inputs": [
+    "FAZ_5_18_3_COMPLIANCE_KVKK_CONTRACT_CONSENT",
+    "FAZ_5_18_4_SUPPORT_OPS",
+    "FAZ_5_18_8_COMMERCIAL_CLOSURE",
+    "FAZ_5_18_2_BILLING_TENANT_LIFECYCLE_SALES_OPS",
+    "FAZ_5_18_1_PRICING",
+    "FAZ_5_19_PUBLIC_DEVELOPER_SURFACES"
+  ],
+  "outputs": [
+    "FAZ_5_R_GENERAL_FINAL_REVIEW_STATUS_PASS",
+    "FAZ_5_R_FINAL_CLOSURE_STATUS_SEALED",
+    "FAZ_5_R_READY_FOR_NEXT_PHASE"
+  ],
+  "gates": {
+    "production_launch_allowed": false,
+    "real_customer_collection_open": false,
+    "real_billing_enabled": false,
+    "payment_collection_enabled": false,
+    "public_developer_access_open": false,
+    "checkout_enabled": false,
+    "sandbox_live_enabled": false,
+    "partial_remaining": false,
+    "pending_remaining": false,
+    "fail_remaining": false,
+    "ready_for_next_phase": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "closure_manifest_status": "READY",
+    "runtime_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING",
+    "general_final_review_status": "PENDING",
+    "final_closure_status": "PENDING"
+  }
+}

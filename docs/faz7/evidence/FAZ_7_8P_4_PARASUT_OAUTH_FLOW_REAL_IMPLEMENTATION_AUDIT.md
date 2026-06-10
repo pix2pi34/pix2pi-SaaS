@@ -1,0 +1,72 @@
+# FAZ 7-8P.4 Paraşüt OAuth Flow Real Implementation Audit
+
+Generated at: 2026-05-02T03:57:21Z
+
+- 7-8P.4.0.1 Documentation artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.0.2 Config artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.0.3 OAuth flow code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.0.4 OAuth flow test code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.0.5 Scope document title IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1.0 Scope doc connect surface IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.0 Scope doc authorization URL IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.0 Scope doc callback intake IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.4.0 Scope doc token exchange gate IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.5.0 Scope doc token ref handoff IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.6.0 Scope doc final closure IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.0.6 Config provider key IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.0.7 Config real provider API disabled IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.0.8 Config real token exchange disabled IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.0.9 Config dependency on credential UI IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1.1 Config connect button label IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1.2 Config callback path IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1.3 Config tenant admin role IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1.4 Config integration admin role IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.1 Config state required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.2 Config nonce required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.3 Config response type code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.1 Config authorization code required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.2 Config expected state required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.3 Config callback error supported IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.4.1 Config dry run token exchange mode IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.4.2 Config token exchange blocked status IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.5.1 Config access token ref required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.5.2 Config refresh token ref required IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.5.3 Config tenant-safe token refs IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1.5 Code connect surface contract IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1.6 Code default connect surface IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1.7 Code role oauth guard IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1.8 Code connect surface validator IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1.9 Code real token exchange disabled field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.4 Code state builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.5 Code state hash guard IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.6 Code authorization URL request IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.7 Code authorization URL builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.8 Code response type query IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.9 Code redirect URI query IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.10 Code scope query IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.11 Code real redirect disabled field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.4 Code callback request IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.5 Code callback handler IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.6 Code authorization code field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.7 Code callback error field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.8 Code state mismatch guard IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.9 Code expected state field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.10 Code received state field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.4.3 Code token exchange dry-run blocked status IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.4.4 Code provider live module guard IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.4.5 Code unsafe real token exchange blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.5.4 Code token ref handoff request IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.5.5 Code token ref handoff builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.5.6 Code access token ref field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.5.7 Code refresh token ref field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.5.8 Code tenant-safe ref validator IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.6.1 Code final readiness gate IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.6.2 Code final readiness decision IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.6.3 Code real API blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.6.4 Code real token exchange blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.1.10 Test connect button surface IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.2.12 Test authorization URL IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.3.11 Test callback state nonce IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.4.6 Test token exchange dry run IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.5.9 Test token ref handoff IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.4.6.5 Test final closure IMPLEMENTED_OR_PRESENT / OK

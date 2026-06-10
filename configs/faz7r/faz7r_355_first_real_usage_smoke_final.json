@@ -1,0 +1,25 @@
+{
+  "step": "FAZ 7-R / 355",
+  "name": "İlk gerçek kullanım smoke testi real final",
+  "tenantId": "tenant-api-e2e-success",
+  "ownerUserId": "user-348-accepted",
+  "cashierUserId": "user-321-cashier",
+  "storeId": "tenant-api-e2e-success-branch-main",
+  "registerId": "tenant-api-e2e-success-register-main",
+  "smokeRunId": "smoke-355-20260513_074549",
+  "requiredEvidence": [
+    "dependency gates",
+    "DB readiness SELECT",
+    "live API route validation",
+    "panel session create",
+    "panel access check",
+    "POS session create",
+    "POS sale/payment access",
+    "permission allow/deny",
+    "tenant isolation same/cross",
+    "localization runtime/locales",
+    "page route smoke",
+    "smoke audit insert",
+    "rollback no partial write"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "phase": "FAZ 2-7.5.2",
+  "runtime": "sse_server",
+  "service": "realtime-sse",
+  "default_addr": ":9076",
+  "endpoint": "/events",
+  "health_endpoint": "/health",
+  "tenant_header": "X-Tenant-ID",
+  "require_tenant": true,
+  "channel_query_param": "channel",
+  "user_query_param": "user_id",
+  "heartbeat_interval_seconds": 15,
+  "production_live_policy": "runtime_ready_but_not_deployed_by_this_phase"
+}

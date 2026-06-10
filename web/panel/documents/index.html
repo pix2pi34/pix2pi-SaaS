@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Fatura / Belge Ekranı</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #687287;
+      --border: #e6e9f0;
+      --brand: #1f6feb;
+      --brand-soft: #eaf2ff;
+      --ok: #0f8b4c;
+      --danger: #b42318;
+      --warn: #a16207;
+      --shadow: 0 14px 34px rgba(18, 27, 46, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 28px;
+    }
+
+    .shell {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #344054;
+    }
+
+    input, select, textarea {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 13px;
+      font: inherit;
+      outline: none;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 86px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      border-radius: 15px;
+      padding: 12px 16px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .primary { background: var(--brand); color: #fff; }
+    .secondary { background: var(--brand-soft); color: var(--brand); }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .document-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .document-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .pill {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .pill[data-status="DRAFT"] { background: #f1f5f9; color: #475569; }
+    .pill[data-status="EXPORT_READY"] { background: #f0fdf4; color: var(--ok); }
+    .pill[data-status="PROVIDER_CLOSED"] { background: #fff1f2; color: var(--danger); }
+
+    .status {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 13px;
+      color: var(--muted);
+      background: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .status[data-validation-status="valid"] {
+      border-color: #bbf7d0;
+      background: #f0fdf4;
+      color: var(--ok);
+    }
+
+    .status[data-validation-status="invalid"] {
+      border-color: #fecaca;
+      background: #fff1f2;
+      color: var(--danger);
+    }
+
+    .provider-closed {
+      border: 1px dashed #fecaca;
+      background: #fff1f2;
+      color: var(--danger);
+    }
+
+    @media (max-width: 980px) {
+      body { padding: 18px; }
+      .grid, .field-grid, .document-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_326_DOCUMENTS_APP_SHELL_START -->
+  <main class="shell" data-step="326" data-surface="documents">
+    <section class="hero">
+      <h1 data-i18n="documents.title">Fatura / belge ekranı</h1>
+      <p data-i18n="documents.description">Fatura, e-belge ve belge lifecycle yönetimini tenant kapsamında hazırla.</p>
+    </section>
+
+    <section class="grid">
+      <!-- PIX2PI_326_DOCUMENT_LIST_START -->
+      <article class="card" data-widget="document_list">
+        <h2>Belge listesi</h2>
+
+        <!-- PIX2PI_326_VAT_TOTAL_SUMMARY_START -->
+        <p id="documents-summary">Belge sayısı: 0 / Toplam: ₺0,00 / Provider kapalı: 0</p>
+        <!-- PIX2PI_326_VAT_TOTAL_SUMMARY_END -->
+
+        <div id="documents-list" class="document-list" style="margin-top:14px;">
+          <article class="document-row" data-document-id="doc_demo_001" data-document-type="SALES_INVOICE" data-document-status="DRAFT">
+            <div>
+              <strong>INV-DEMO-001</strong>
+              <p>SALES_INVOICE / Demo Market Müşterisi</p>
+              <p>1111111111</p>
+            </div>
+            <span class="pill">SALES_INVOICE</span>
+            <span class="pill" data-status="DRAFT">DRAFT</span>
+            <strong>₺120,00</strong>
+          </article>
+        </div>
+      </article>
+      <!-- PIX2PI_326_DOCUMENT_LIST_END -->
+
+      <!-- PIX2PI_326_DOCUMENT_CREATE_EDIT_FORM_START -->
+      <article class="card" data-widget="document_create_edit_form">
+        <h2>Belge oluştur / düzenle</h2>
+        <form id="document-form">
+          <div class="field-grid">
+            <!-- PIX2PI_326_DOCUMENT_TYPE_SELECTION_START -->
+            <label>
+              Belge tipi
+              <select name="document_type" required>
+                <option value="E_INVOICE">e-Fatura</option>
+                <option value="E_ARCHIVE">e-Arşiv</option>
+                <option value="E_ADISYON">e-Adisyon</option>
+                <option value="SALES_INVOICE">Satış faturası</option>
+                <option value="PURCHASE_INVOICE">Alış faturası</option>
+              </select>
+            </label>
+            <!-- PIX2PI_326_DOCUMENT_TYPE_SELECTION_END -->
+
+            <label>
+              Belge no
+              <input name="document_no" placeholder="Otomatik / taslak" />
+            </label>
+
+            <!-- PIX2PI_326_CUSTOMER_TAX_PREVIEW_START -->
+            <label>
+              Cari adı
+              <input name="customer_name" required placeholder="Demo Cari" />
+            </label>
+
+            <label>
+              Vergi no / TCKN
+              <input name="tax_number" required placeholder="10 veya 11 hane" />
+            </label>
+
+            <label>
+              Vergi dairesi
+              <input name="tax_office" placeholder="Vergi dairesi" />
+            </label>
+
+            <label>
+              Adres
+              <input name="address_line" placeholder="Cari adresi" />
+            </label>
+            <!-- PIX2PI_326_CUSTOMER_TAX_PREVIEW_END -->
+
+            <!-- PIX2PI_326_DOCUMENT_LINE_ITEMS_START -->
+            <label>
+              Ürün / hizmet
+              <input name="line_product_name" required placeholder="Demo Ürün" />
+            </label>
+
+            <label>
+              Miktar
+              <input name="line_quantity" type="number" step="0.01" min="0.01" required value="1" />
+            </label>
+
+            <label>
+              Birim fiyat
+              <input name="line_unit_price" type="number" step="0.01" min="0" required value="0" />
+            </label>
+
+            <label>
+              KDV oranı
+              <select name="line_vat_rate" required>
+                <option value="0">%0</option>
+                <option value="1">%1</option>
+                <option value="8">%8</option>
+                <option value="10">%10</option>
+                <option value="18">%18</option>
+                <option value="20" selected>%20</option>
+              </select>
+            </label>
+            <!-- PIX2PI_326_DOCUMENT_LINE_ITEMS_END -->
+
+            <label>
+              Para birimi
+              <select name="currency">
+                <option value="TRY">TRY</option>
+              </select>
+            </label>
+          </div>
+
+          <section id="document-total-preview" class="status" style="margin-top:12px;">
+            Ara toplam: ₺0,00 / KDV: ₺0,00 / Genel toplam: ₺0,00
+          </section>
+
+          <!-- PIX2PI_326_DOCUMENT_VALIDATION_CONTRACT_START -->
+          <section id="document-validation-status" class="status" hidden data-validation-status="">
+            Fatura/belge validation sonucu burada gösterilir.
+          </section>
+          <!-- PIX2PI_326_DOCUMENT_VALIDATION_CONTRACT_END -->
+
+          <section class="actions" style="margin-top:14px;">
+            <button type="button" class="secondary" id="save-document-draft">Taslak kaydet</button>
+            <button type="submit" class="primary">Belge kontrol et</button>
+          </section>
+        </form>
+      </article>
+      <!-- PIX2PI_326_DOCUMENT_CREATE_EDIT_FORM_END -->
+    </section>
+
+    <!-- PIX2PI_326_DOCUMENT_LIFECYCLE_PREVIEW_START -->
+    <section class="card" data-widget="document_lifecycle_preview">
+      <h2>Belge lifecycle preview</h2>
+      <p>DRAFT → READY_FOR_REVIEW → APPROVED → EXPORT_READY. Canlı provider gönderimi kapalı gate arkasındadır.</p>
+    </section>
+    <!-- PIX2PI_326_DOCUMENT_LIFECYCLE_PREVIEW_END -->
+
+    <!-- PIX2PI_326_PROVIDER_CLOSED_GATE_START -->
+    <section class="card provider-closed" data-widget="provider_closed_gate">
+      <h2>GİB / özel entegratör canlı gönderim kapalı</h2>
+      <p>gib_live_enabled=false / private_integrator_live_enabled=false / real_send_enabled=false</p>
+    </section>
+    <!-- PIX2PI_326_PROVIDER_CLOSED_GATE_END -->
+
+    <!-- PIX2PI_326_EXPORT_PLACEHOLDER_START -->
+    <section class="card" data-widget="pdf_xml_export_placeholder">
+      <h2>PDF / XML / export placeholder</h2>
+      <p>PDF, XML ve muhasebe export aksiyonları sonraki entegrasyon adımlarında gerçek backend ile bağlanacak.</p>
+    </section>
+    <!-- PIX2PI_326_EXPORT_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_326_TENANT_SCOPED_DOCUMENT_GUARD_START -->
+    <section class="card" data-widget="tenant_scoped_document_guard">
+      <h2>Tenant scoped document guard</h2>
+      <p>Belge okuma/yazma işlemleri JWT ve `X-Tenant-ID` ile tenant kapsamına alınır.</p>
+    </section>
+    <!-- PIX2PI_326_TENANT_SCOPED_DOCUMENT_GUARD_END -->
+
+    <!-- PIX2PI_326_I18N_READY_MARKERS_START -->
+    <section class="card" data-widget="i18n_ready_document_markers">
+      <h2 data-i18n="documents.i18n_ready">i18n-ready documents</h2>
+      <p data-i18n="documents.surface_ready">Fatura/belge ekran metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_326_I18N_READY_MARKERS_END -->
+  </main>
+  <!-- PIX2PI_326_DOCUMENTS_APP_SHELL_END -->
+
+  <script src="/assets/documents/documents-runtime.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById("document-form");
+      const status = document.getElementById("document-validation-status");
+      const totalPreview = document.getElementById("document-total-preview");
+      const draftButton = document.getElementById("save-document-draft");
+
+      Pix2piDocuments.bootDocumentsScreen();
+
+      form.addEventListener("input", function () {
+        Pix2piDocuments.renderTotalsFromForm(form, totalPreview);
+      });
+
+      draftButton.addEventListener("click", function () {
+        const payload = Pix2piDocuments.readForm(form);
+        Pix2piDocuments.saveDraft(payload);
+        status.textContent = "Belge taslağı kaydedildi.";
+        status.setAttribute("data-validation-status", "valid");
+        status.hidden = false;
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const payload = Pix2piDocuments.readForm(form);
+        const validation = Pix2piDocuments.validateDocumentPayload(payload);
+        Pix2piDocuments.renderValidation(status, validation);
+
+        if (validation.valid) {
+          Pix2piDocuments.saveDraft(payload);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

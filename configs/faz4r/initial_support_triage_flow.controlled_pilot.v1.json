@@ -1,0 +1,198 @@
+{
+  "triage_id": "initial_support_triage_flow.controlled_pilot.v1",
+  "triage_status": "READY",
+  "triage_mode": "CONTROLLED_PILOT",
+  "tenant": {
+    "tenant_id": "pilot_tenant_001",
+    "tenant_scope": "SINGLE_TENANT",
+    "pilot_mode": "CONTROLLED_PILOT"
+  },
+  "chain_dependencies": {
+    "210_FAZ_4_16_4_1_KULLANICI_EGITIM_SETI": "PASS",
+    "211_FAZ_4_16_4_2_YARDIM_MERKEZI_ICERIGI": "PASS"
+  },
+  "triage_flows": [
+    {
+      "code": "SUPPORT_INTAKE_FORM",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "severity": "N/A",
+      "evidence_ref": "docs/faz4r/support_triage/support_intake_form.md"
+    },
+    {
+      "code": "ISSUE_CLASSIFICATION",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "severity": "N/A",
+      "evidence_ref": "docs/faz4r/support_triage/issue_classification.md"
+    },
+    {
+      "code": "SEVERITY_P0_BLOCKER",
+      "required": true,
+      "status": "READY",
+      "owner": "TECH_OWNER",
+      "severity": "P0",
+      "evidence_ref": "docs/faz4r/support_triage/severity_p0_blocker.md"
+    },
+    {
+      "code": "SEVERITY_P1_CRITICAL",
+      "required": true,
+      "status": "READY",
+      "owner": "TECH_OWNER",
+      "severity": "P1",
+      "evidence_ref": "docs/faz4r/support_triage/severity_p1_critical.md"
+    },
+    {
+      "code": "SEVERITY_P2_NORMAL",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "severity": "P2",
+      "evidence_ref": "docs/faz4r/support_triage/severity_p2_normal.md"
+    },
+    {
+      "code": "SEVERITY_P3_QUESTION",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "severity": "P3",
+      "evidence_ref": "docs/faz4r/support_triage/severity_p3_question.md"
+    },
+    {
+      "code": "ROUTE_TO_PRODUCT_OWNER",
+      "required": true,
+      "status": "READY",
+      "owner": "PRODUCT_OWNER",
+      "severity": "P1_P2",
+      "evidence_ref": "docs/faz4r/support_triage/route_to_product_owner.md"
+    },
+    {
+      "code": "ROUTE_TO_TECH_OWNER",
+      "required": true,
+      "status": "READY",
+      "owner": "TECH_OWNER",
+      "severity": "P0_P1",
+      "evidence_ref": "docs/faz4r/support_triage/route_to_tech_owner.md"
+    },
+    {
+      "code": "ROUTE_TO_SUPPORT_OWNER",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "severity": "P2_P3",
+      "evidence_ref": "docs/faz4r/support_triage/route_to_support_owner.md"
+    },
+    {
+      "code": "RESPONSE_SLA_MATRIX",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "severity": "ALL",
+      "evidence_ref": "docs/faz4r/support_triage/response_sla_matrix.md"
+    },
+    {
+      "code": "EVIDENCE_ATTACHMENT_RULE",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "severity": "ALL",
+      "evidence_ref": "docs/faz4r/support_triage/evidence_attachment_rule.md"
+    },
+    {
+      "code": "DUPLICATE_ISSUE_GUARD",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "severity": "ALL",
+      "evidence_ref": "docs/faz4r/support_triage/duplicate_issue_guard.md"
+    },
+    {
+      "code": "CLOSED_PROVIDER_POLICY_ROUTE",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "severity": "POLICY",
+      "evidence_ref": "docs/faz4r/support_triage/closed_provider_policy_route.md"
+    },
+    {
+      "code": "FIRST_RESPONSE_TEMPLATE",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "severity": "ALL",
+      "evidence_ref": "docs/faz4r/support_triage/first_response_template.md"
+    },
+    {
+      "code": "TRIAGE_COMPLETION_CHECKLIST",
+      "required": true,
+      "status": "READY",
+      "owner": "SUPPORT_OWNER",
+      "severity": "ALL",
+      "evidence_ref": "docs/faz4r/support_triage/triage_completion_checklist.md"
+    }
+  ],
+  "support_channels": {
+    "intake_channel_status": "READY",
+    "intake_channel_type": "CONTROLLED_PILOT_INTERNAL_FORM",
+    "severity_matrix_status": "READY",
+    "routing_matrix_status": "READY",
+    "response_sla_status": "READY",
+    "evidence_attachment_status": "READY",
+    "no_real_external_dispatch": true
+  },
+  "severity_matrix": {
+    "P0": {
+      "label": "BLOCKER",
+      "description": "Pilot kullanımını tamamen durduran kritik blokaj",
+      "first_response_target": "SAME_BUSINESS_DAY",
+      "owner": "TECH_OWNER"
+    },
+    "P1": {
+      "label": "CRITICAL",
+      "description": "Temel akışı bozan ama workaround ihtimali olan hata",
+      "first_response_target": "NEXT_BUSINESS_DAY",
+      "owner": "TECH_OWNER"
+    },
+    "P2": {
+      "label": "NORMAL",
+      "description": "İş akışını durdurmayan hata veya iyileştirme",
+      "first_response_target": "TWO_BUSINESS_DAYS",
+      "owner": "SUPPORT_OWNER"
+    },
+    "P3": {
+      "label": "QUESTION",
+      "description": "Kullanım sorusu veya yönlendirme ihtiyacı",
+      "first_response_target": "THREE_BUSINESS_DAYS",
+      "owner": "SUPPORT_OWNER"
+    }
+  },
+  "summary": {
+    "total_flow_count": 15,
+    "ready_flow_count": 15,
+    "missing_flow_count": 0,
+    "required_fail_count": 0,
+    "critical_issue_count": 0,
+    "training_set_status": "PASS",
+    "help_center_status": "PASS",
+    "intake_channel_status": "READY",
+    "severity_matrix_status": "READY",
+    "routing_matrix_status": "READY",
+    "response_sla_status": "READY",
+    "evidence_attachment_status": "READY",
+    "triage_result": "PASS",
+    "live_external_policy_status": "CLOSED"
+  },
+  "external_policy": {
+    "live_external_provider": "CLOSED",
+    "gib": "CLOSED",
+    "bank": "CLOSED",
+    "pos_provider": "CLOSED",
+    "payment_provider": "CLOSED",
+    "real_ticket_system": "CLOSED",
+    "real_email_dispatch": "CLOSED",
+    "production_launch": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

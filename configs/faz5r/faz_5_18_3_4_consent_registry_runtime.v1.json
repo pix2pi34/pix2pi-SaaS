@@ -1,0 +1,82 @@
+{
+  "phase": "FAZ 5-R",
+  "step_no": 244,
+  "step_code": "FAZ_5_18_3_4",
+  "slug": "faz_5_18_3_4_consent_registry_runtime",
+  "module": "commercial_public_launch_consent",
+  "title_tr": "Consent Registry / Onay Kayıt Runtime",
+  "version": "0.1.0",
+  "status": "READY_DRAFT",
+  "public_publish_allowed": false,
+  "core_product_allowed": true,
+  "data_monetization_guarded": true,
+  "commercial_benefit_guarded": true,
+  "runtime_required": true,
+  "required_fields": [
+    "tenant_id",
+    "user_id",
+    "consent_scope",
+    "consent_status",
+    "document_version",
+    "accepted_at",
+    "revoked_at",
+    "ip_address",
+    "user_agent",
+    "channel",
+    "evidence_hash",
+    "correlation_id"
+  ],
+  "consent_scopes": [
+    "DATA_SUPPORTED_PLAN_TERMS",
+    "PERSONAL_DATA_COMMERCIAL_RECOMMENDATION",
+    "SPONSORED_OFFER_PERSONALIZATION",
+    "ANONYMIZED_AGGREGATED_INSIGHT",
+    "AI_DECISION_SUPPORT",
+    "COMMERCIAL_ELECTRONIC_MESSAGE",
+    "NON_ESSENTIAL_COOKIES"
+  ],
+  "consent_statuses": [
+    "UNKNOWN",
+    "ACCEPTED",
+    "DECLINED",
+    "REVOKED"
+  ],
+  "feature_gates": {
+    "core_product": {
+      "requires_consent": false,
+      "default_allowed": true
+    },
+    "data_supported_plan": {
+      "requires_scope": "DATA_SUPPORTED_PLAN_TERMS",
+      "default_allowed": false
+    },
+    "commercial_recommendation": {
+      "requires_scope": "PERSONAL_DATA_COMMERCIAL_RECOMMENDATION",
+      "default_allowed": false
+    },
+    "sponsored_offer_personalization": {
+      "requires_scope": "SPONSORED_OFFER_PERSONALIZATION",
+      "default_allowed": false
+    },
+    "anonymous_aggregated_insight": {
+      "requires_scope": "ANONYMIZED_AGGREGATED_INSIGHT",
+      "default_allowed": false
+    },
+    "ai_decision_support": {
+      "requires_scope": "AI_DECISION_SUPPORT",
+      "default_allowed": false
+    },
+    "commercial_electronic_message": {
+      "requires_scope": "COMMERCIAL_ELECTRONIC_MESSAGE",
+      "default_allowed": false
+    },
+    "non_essential_cookies": {
+      "requires_scope": "NON_ESSENTIAL_COOKIES",
+      "default_allowed": false
+    }
+  },
+  "next_step": {
+    "step_no": 245,
+    "ready_when_this_passes": true
+  }
+}

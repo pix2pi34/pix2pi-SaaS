@@ -1,0 +1,46 @@
+{
+  "phase": "FAZ_1_4_6",
+  "module": "WEB_L1_UI_FOUNDATION_DESIGN_SYSTEM",
+  "component": "loading_error_empty_retry_standard",
+  "status": "READY",
+  "required_capabilities": [
+    "loading_state",
+    "error_state",
+    "empty_state",
+    "retry_action",
+    "ui_tests"
+  ],
+  "state_contract": {
+    "root_id": "pix2piStateStandardRoot",
+    "loading_id": "pix2piLoadingState",
+    "error_id": "pix2piErrorState",
+    "empty_id": "pix2piEmptyState",
+    "content_id": "pix2piContentState",
+    "retry_button_id": "pix2piRetryButton",
+    "test_output_id": "pix2piStateTestOutput"
+  },
+  "loading_contract": {
+    "skeleton_class": "pix2pi-skeleton",
+    "spinner_class": "pix2pi-spinner",
+    "message": "Yükleniyor..."
+  },
+  "error_contract": {
+    "error_class": "pix2pi-error-state",
+    "message": "İşlem sırasında hata oluştu.",
+    "retry_policy": "SHOW_RETRY_ACTION"
+  },
+  "empty_contract": {
+    "empty_class": "pix2pi-empty-state",
+    "message": "Gösterilecek kayıt bulunamadı.",
+    "action_policy": "OPTIONAL_CREATE_OR_RESET_ACTION"
+  },
+  "retry_contract": {
+    "retry_action": "pix2pi:retry-action",
+    "retry_max_attempt_demo": 3,
+    "retry_policy": "RETRY_RELOADS_LAST_OPERATION"
+  },
+  "test_contract": {
+    "final_gate": "PASS_ONLY_IF_ALL_UI_STATE_TESTS_PASS",
+    "required_fail_count": 0
+  }
+}

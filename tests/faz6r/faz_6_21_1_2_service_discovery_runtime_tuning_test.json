@@ -1,0 +1,39 @@
+{
+  "expected_dependency": "FAZ_6_21_2_5",
+  "expected_runtime_mutation_allowed": false,
+  "expected_provider_mutation_allowed": false,
+  "expected_service_registry_mutation_allowed": false,
+  "expected_dns_mutation_allowed": false,
+  "expected_load_balancer_mutation_allowed": false,
+  "expected_gateway_route_mutation_allowed": false,
+  "expected_deployment_rollout_allowed": false,
+  "expected_container_restart_allowed": false,
+  "expected_required_controls": [
+    "pitr_dependency_gate",
+    "service_inventory_model",
+    "registry_health_ttl_policy",
+    "stale_endpoint_guard",
+    "deregistration_guard",
+    "health_based_routing_guard",
+    "service_route_confidence_policy",
+    "dependency_graph_policy",
+    "dns_lb_alignment_guard",
+    "tenant_aware_service_guard",
+    "dry_run_discovery_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_services": [
+    "api_gateway",
+    "identity_api",
+    "panel",
+    "pos",
+    "event_consumer",
+    "reporting_readmodel"
+  ],
+  "expected_min_recommendation_count": 5,
+  "expected_status": "dry_run_only_no_service_discovery_mutation",
+  "expected_next_step": "FAZ_6_21_1_4"
+}

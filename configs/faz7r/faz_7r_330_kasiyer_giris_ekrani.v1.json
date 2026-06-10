@@ -1,0 +1,45 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "330",
+  "name": "Kasiyer giriş ekranı",
+  "surface": "pos",
+  "domain": "pos.pix2pi.com.tr",
+  "path": "/login/",
+  "runtime_path": "/assets/login/cashier-login-runtime.js",
+  "depends_on": [
+    "329 - pos.pix2pi.com.tr altyapısı"
+  ],
+  "backend_contract": {
+    "cashier_login_endpoint": "/api/pos/auth/cashier-login",
+    "session_verify_endpoint": "/api/pos/auth/session",
+    "method": "POST/GET",
+    "tenant_header": "X-Tenant-ID",
+    "device_header": "X-POS-Device-ID"
+  },
+  "runtime_contract": {
+    "real_backend_login_enabled": false,
+    "demo_session_enabled": true,
+    "sale_screen_redirect_path": "/sale/",
+    "ready_for_step_331": true
+  },
+  "session_storage": {
+    "tenant_key": "pix2pi.pos.tenant.preference",
+    "device_key": "pix2pi.pos.device.id",
+    "cashier_session_key": "pix2pi.pos.cashier.session"
+  },
+  "required_capabilities": [
+    "cashier_login_app_shell",
+    "cashier_code_pin_form",
+    "tenant_context_indicator",
+    "device_register_placeholder",
+    "auth_endpoint_contract",
+    "session_storage_contract",
+    "login_validation_contract",
+    "error_lockout_messages",
+    "pos_sale_redirect_placeholder",
+    "offline_login_policy_placeholder",
+    "i18n_ready_cashier_login_markers",
+    "cashier_login_smoke_test"
+  ],
+  "next_step": "331 - POS satış ekranı"
+}

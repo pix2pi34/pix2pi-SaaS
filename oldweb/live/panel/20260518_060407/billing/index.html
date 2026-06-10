@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="tr-TR" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Pix2pi panel ödeme ve billing ekranı" />
+  <meta property="og:title" content="Pix2pi Ödeme / Billing" />
+  <meta property="og:description" content="İşletme müşterisi için ödeme, tahsilat ve billing hazırlık yüzeyi." />
+  <meta property="og:type" content="website" />
+  <title>Pix2pi Ödeme / Billing</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --ok: #16a34a;
+      --warn: #f59e0b;
+      --danger: #dc2626;
+      --blue: #2563eb;
+      --shadow: 0 16px 42px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.14), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(22,163,74,.13), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+
+    .shell {
+      width: min(100%, 1320px);
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero, .card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.03em; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 900;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    button:disabled {
+      color: #64748b;
+      background: #f1f5f9;
+      cursor: not-allowed;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .metric, .billing-line, .approval-gate {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
+    .metric strong {
+      font-style: normal;
+      font-weight: 950;
+      font-size: 28px;
+      color: #166534;
+      letter-spacing: -0.05em;
+    }
+
+    .guard {
+      border: 1px dashed #93c5fd;
+      background: #eff6ff;
+    }
+
+    .locked {
+      border: 1px dashed #f59e0b;
+      background: #fffbeb;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-4, .grid-2 { grid-template-columns: 1fr; }
+      .hero, .card { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PIX2PI_343_BILLING_APP_SHELL_START -->
+  <main class="shell" data-step="343" data-surface="panel-billing">
+    <section class="hero">
+      <span class="badge">FAZ 7-R / 343</span>
+      <h1 data-i18n="panel_billing.title">Ödeme / billing</h1>
+      <p data-i18n="panel_billing.description">Ödeme, tahsilat, fatura taslağı ve billing onay gate yüzeyi.</p>
+    </section>
+
+    <!-- PIX2PI_343_TENANT_MERCHANT_SUBSCRIPTION_CONTEXT_START -->
+    <section class="card guard" data-widget="tenant_merchant_subscription_context">
+      <h2>Tenant / merchant / subscription context</h2>
+      <div class="grid-4">
+        <p>Tenant: <strong id="billing-tenant">controlled-pilot</strong></p>
+        <p>Merchant session: <strong id="billing-merchant-session">MERCHANT_DEMO_SESSION</strong></p>
+        <p>Subscription: <strong id="billing-subscription">Small Business / DRAFT_NOT_COLLECTING</strong></p>
+        <p>Scope: <strong id="billing-scope-validation" data-validation-status="valid">VALID</strong></p>
+      </div>
+    </section>
+    <!-- PIX2PI_343_TENANT_MERCHANT_SUBSCRIPTION_CONTEXT_END -->
+
+    <!-- PIX2PI_343_BILLING_SUMMARY_CARDS_START -->
+    <section class="grid-4" data-widget="billing_summary_cards">
+      <!-- PIX2PI_343_PLAN_PRICE_VAT_TOTAL_BREAKDOWN_START -->
+      <article class="metric"><h2>Ara toplam</h2><strong id="billing-subtotal">₺999,00</strong></article>
+      <article class="metric"><h2>İndirim</h2><strong id="billing-discount">₺0,00</strong></article>
+      <article class="metric"><h2>KDV</h2><strong id="billing-vat-total">₺199,80</strong></article>
+      <article class="metric"><h2>Genel toplam</h2><strong id="billing-grand-total">₺1.198,80</strong></article>
+      <!-- PIX2PI_343_PLAN_PRICE_VAT_TOTAL_BREAKDOWN_END -->
+    </section>
+    <!-- PIX2PI_343_BILLING_SUMMARY_CARDS_END -->
+
+    <section class="grid-2">
+      <!-- PIX2PI_343_PAYMENT_METHOD_PLACEHOLDER_START -->
+      <section class="card" data-widget="payment_method_placeholder">
+        <h2>Ödeme yöntemi placeholder</h2>
+        <p>Method: <strong id="billing-payment-method">CARD_PLACEHOLDER</strong></p>
+        <p>Provider: <strong id="billing-provider">SIMULATION_ONLY</strong></p>
+        <p>Provider token: <strong id="billing-provider-token">null</strong></p>
+      </section>
+      <!-- PIX2PI_343_PAYMENT_METHOD_PLACEHOLDER_END -->
+
+      <!-- PIX2PI_343_PAYMENT_PROVIDER_SELECTION_PLACEHOLDER_START -->
+      <section class="card" data-widget="payment_provider_selection_placeholder">
+        <h2>Payment provider selection placeholder</h2>
+        <p>Provider seçimi gerçek sözleşme ve sandbox/live onayı sonrası açılır.</p>
+        <button type="button" disabled>Provider seçimi kapalı</button>
+      </section>
+      <!-- PIX2PI_343_PAYMENT_PROVIDER_SELECTION_PLACEHOLDER_END -->
+    </section>
+
+    <!-- PIX2PI_343_CARD_STORAGE_PROVIDER_TOKEN_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="card_storage_provider_token_disabled_gate">
+      <h2>Kart saklama / provider token disabled gate</h2>
+      <p>real_card_storage_enabled=false / provider_token=null / real_provider_transaction_enabled=false.</p>
+    </section>
+    <!-- PIX2PI_343_CARD_STORAGE_PROVIDER_TOKEN_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_343_INVOICE_DRAFT_PREVIEW_START -->
+    <section class="card" data-widget="invoice_draft_preview">
+      <h2>Invoice draft preview</h2>
+      <p>Draft no: <strong id="billing-invoice-draft-no">INV-DRAFT-343-DEMO</strong></p>
+      <p>Başlık: <strong id="billing-invoice-title">Pix2pi Small Business abonelik taslağı</strong></p>
+      <div id="billing-invoice-lines">
+        <article class="billing-line" data-line-code="PLAN_SMALL_BUSINESS">
+          <strong>Small Business aylık kullanım bedeli</strong>
+          <p>1 × ₺999,00 / KDV %20</p>
+        </article>
+      </div>
+    </section>
+    <!-- PIX2PI_343_INVOICE_DRAFT_PREVIEW_END -->
+
+    <!-- PIX2PI_343_COLLECTION_START_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="collection_start_disabled_gate">
+      <h2>Tahsilat başlat disabled gate</h2>
+      <p>real_payment_collection_enabled=false. Gerçek tahsilat bu adımda kapalıdır.</p>
+    </section>
+    <!-- PIX2PI_343_COLLECTION_START_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_343_PAYMENT_ATTEMPT_DISABLED_GATE_START -->
+    <section class="card locked" data-widget="payment_attempt_disabled_gate">
+      <h2>Payment attempt disabled gate</h2>
+      <p>real_provider_transaction_enabled=false. Payment attempt kayıt ve provider transaction bu adımda kapalıdır.</p>
+      <button type="button" disabled>Ödeme denemesi oluşturma kapalı</button>
+    </section>
+    <!-- PIX2PI_343_PAYMENT_ATTEMPT_DISABLED_GATE_END -->
+
+    <!-- PIX2PI_343_BILLING_APPROVAL_GATES_PANEL_START -->
+    <section class="card" data-widget="billing_approval_gates_panel">
+      <h2>Billing approval gates</h2>
+      <!-- PIX2PI_343_FINANCIAL_TAX_LEGAL_APPROVAL_STATUS_START -->
+      <div id="billing-approval-gates" class="grid-4">
+        <article class="approval-gate" data-gate-code="FINANCIAL_APPROVAL" data-gate-status="REQUIRED">
+          <strong>Finans onayı</strong>
+          <p>Status: REQUIRED</p>
+        </article>
+        <article class="approval-gate" data-gate-code="TAX_CONSULTANT_APPROVAL" data-gate-status="REQUIRED">
+          <strong>Vergi / mali müşavir onayı</strong>
+          <p>Status: REQUIRED</p>
+        </article>
+        <article class="approval-gate" data-gate-code="LEGAL_APPROVAL" data-gate-status="REQUIRED">
+          <strong>Hukuk / sözleşme onayı</strong>
+          <p>Status: REQUIRED</p>
+        </article>
+        <article class="approval-gate" data-gate-code="PAYMENT_PROVIDER_CONTRACT" data-gate-status="REQUIRED">
+          <strong>Ödeme sağlayıcı sözleşmesi</strong>
+          <p>Status: REQUIRED</p>
+        </article>
+      </div>
+      <!-- PIX2PI_343_FINANCIAL_TAX_LEGAL_APPROVAL_STATUS_END -->
+    </section>
+    <!-- PIX2PI_343_BILLING_APPROVAL_GATES_PANEL_END -->
+
+    <!-- PIX2PI_343_TENANT_BILLING_PAYMENT_SCOPE_GUARD_START -->
+    <section class="card guard" data-widget="tenant_billing_payment_scope_guard">
+      <h2>Tenant / billing / payment scope guard</h2>
+      <p>Billing endpointleri `X-Tenant-ID`, `X-Merchant-Session`, `X-Billing-Scope` ile scope edilir.</p>
+    </section>
+    <!-- PIX2PI_343_TENANT_BILLING_PAYMENT_SCOPE_GUARD_END -->
+
+    <!-- PIX2PI_343_BILLING_RUNTIME_DATA_CONTRACT_START -->
+    <section class="card" data-widget="billing_runtime_data_contract">
+      <h2>Billing runtime data contract</h2>
+      <p id="billing-runtime-contract">billing_summary_enabled=true / fallback_billing_snapshot_enabled=true / ready_for_step_344=true</p>
+    </section>
+    <!-- PIX2PI_343_BILLING_RUNTIME_DATA_CONTRACT_END -->
+
+    <!-- PIX2PI_343_SEO_OPENGRAPH_BILLING_PLACEHOLDER_START -->
+    <section class="card" data-widget="seo_opengraph_billing_placeholder">
+      <h2>SEO / OpenGraph billing placeholder</h2>
+      <p>Title, description ve og:* metadata ödeme/billing yüzeyi için hazırdır.</p>
+    </section>
+    <!-- PIX2PI_343_SEO_OPENGRAPH_BILLING_PLACEHOLDER_END -->
+
+    <!-- PIX2PI_343_I18N_READY_BILLING_MARKER_START -->
+    <section class="card" data-widget="i18n_ready_billing_marker">
+      <h2 data-i18n="panel_billing.i18n_ready">i18n-ready billing screen</h2>
+      <p data-i18n="panel_billing.surface_ready">Ödeme / billing ekranı metinleri çeviri dosyalarına bağlanmaya hazırdır.</p>
+    </section>
+    <!-- PIX2PI_343_I18N_READY_BILLING_MARKER_END -->
+  </main>
+  <!-- PIX2PI_343_BILLING_APP_SHELL_END -->
+
+  <script src="/assets/billing/panel-billing-runtime.js"></script>
+  <script>
+    Pix2piPanelBilling.bootBillingScreen().then(function (contract) {
+      console.log("PIX2PI_343_BILLING_CONTRACT", contract);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+component_id	component_name	purpose	required	tenant_safe	status
+issue_feedback_shell	IssueFeedbackShell	issue feedback page shell	YES	YES	contract_only
+issue_summary_cards	IssueSummaryCards	issue summary cards	YES	YES	contract_only
+issue_create_form	IssueCreateForm	create issue form	YES	YES	contract_only
+feedback_create_form	FeedbackCreateForm	create feedback form	YES	YES	contract_only
+issue_type_selector	IssueTypeSelector	issue type selection	YES	YES	contract_only
+issue_severity_selector	IssueSeveritySelector	severity selection	YES	YES	contract_only
+issue_priority_selector	IssuePrioritySelector	priority selection	YES	YES	contract_only
+issue_context_link_panel	IssueContextLinkPanel	context links	YES	YES	contract_only
+issue_runtime_flow_link_panel	IssueRuntimeFlowLinkPanel	runtime flow link	YES	YES	contract_only
+issue_uat_link_panel	IssueUATLinkPanel	uat checklist link	YES	YES	contract_only
+issue_import_link_panel	IssueImportLinkPanel	import batch link	YES	YES	contract_only
+issue_evidence_panel	IssueEvidencePanel	evidence placeholder	YES	YES	contract_only
+issue_comment_panel	IssueCommentPanel	comments placeholder	YES	YES	contract_only
+issue_status_timeline	IssueStatusTimeline	status lifecycle timeline	YES	YES	contract_only
+issue_assignee_panel	IssueAssigneePanel	assignee and owner	YES	YES	contract_only
+issue_list_table	IssueListTable	issue list table	YES	YES	contract_only
+feedback_list_table	FeedbackListTable	feedback list table	YES	YES	contract_only
+issue_empty_state	IssueEmptyState	empty state	YES	YES	contract_only
+issue_loading_state	IssueLoadingState	loading state	YES	YES	contract_only
+issue_error_state	IssueErrorState	error state	YES	YES	contract_only

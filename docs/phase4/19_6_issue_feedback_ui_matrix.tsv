@@ -1,0 +1,22 @@
+gate	status	note
+previous_19_5	PASS	UAT checklist prerequisite
+contract	PASS	routes=7 fields=29 issue_status=8 feedback_status=6
+route_manifest	PASS	route_count=9
+type_manifest	PASS	type_count=10
+component_manifest	PASS	component_count=20
+tenant_safety	PASS	tenant_yes=68 tenant_refs=37
+linkage	PASS	linkage_refs=9 evidence_refs=18
+classification	PASS	severity_refs=36 priority_refs=23
+no_apply	PASS	contract only
+secret_safety	PASS	secret_hits=0
+db_mutation	NO	contract only
+db_apply_executed	NO	contract only
+migration_created	NO	contract only
+issue_runtime_executed	NO	contract only
+issue_create_executed	NO	contract only
+feedback_create_executed	NO	contract only
+issue_status_update_executed	NO	contract only
+issue_evidence_upload_executed	NO	contract only
+panel_route_deployed	NO	contract only
+panel_build_executed	NO	contract only
+query_text_printed	NO	secret-safe report

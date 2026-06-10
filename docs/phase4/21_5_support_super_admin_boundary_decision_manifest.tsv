@@ -1,0 +1,17 @@
+decision_code	decision_type	allow_access	actor_group	deny_reason_required	audit_required	high_risk	boundary_related	tenant_required	status
+ALLOW_SUPPORT_READONLY_TIMEBOXED	allow	YES	support	NO	YES	YES	YES	YES	contract_only
+ALLOW_SUPPORT_OPERATOR_APPROVED	allow	YES	support	NO	YES	YES	YES	YES	contract_only
+ALLOW_SUPER_ADMIN_BREAK_GLASS_APPROVED	allow	YES	super_admin	NO	YES	YES	YES	YES	contract_only
+DENY_SUPPORT_REASON_MISSING	deny	NO	support	YES	YES	YES	YES	YES	contract_only
+DENY_SUPPORT_TICKET_MISSING	deny	NO	support	YES	YES	YES	YES	YES	contract_only
+DENY_SUPPORT_TIMEBOX_MISSING	deny	NO	support	YES	YES	YES	YES	YES	contract_only
+DENY_SUPPORT_SECRET_ACCESS	deny	NO	support	YES	YES	YES	YES	YES	contract_only
+DENY_SUPPORT_EXPORT_ACCESS	deny	NO	support	YES	YES	YES	YES	YES	contract_only
+DENY_SUPPORT_TENANT_SCOPE	deny	NO	support	YES	YES	YES	YES	YES	contract_only
+DENY_SUPER_ADMIN_BREAK_GLASS_REQUIRED	deny	NO	super_admin	YES	YES	YES	YES	YES	contract_only
+DENY_SUPER_ADMIN_APPROVAL_MISSING	deny	NO	super_admin	YES	YES	YES	YES	YES	contract_only
+DENY_SUPER_ADMIN_SILENT_ACCESS	deny	NO	super_admin	YES	YES	YES	YES	YES	contract_only
+DENY_SUPER_ADMIN_TIMEBOX_MISSING	deny	NO	super_admin	YES	YES	YES	YES	YES	contract_only
+DENY_CROSS_TENANT_BOUNDARY	deny	NO	any	YES	YES	YES	YES	YES	contract_only
+DENY_BOUNDARY_AUDIT_REQUIRED	deny	NO	any	YES	YES	YES	YES	YES	contract_only
+DENY_EMERGENCY_REVOKED	deny	NO	any	YES	YES	YES	YES	YES	contract_only

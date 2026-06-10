@@ -1,0 +1,46 @@
+gate	status	note
+previous_22_4	PASS	traces/tempo readiness prerequisite
+alert_rule_inventory	PASS	alerts=24 critical=6 high=14 medium=4
+severity_matrix	PASS	severity_rows=4
+signal_mapping	PASS	mapped=24 ready=24
+escalation_matrix	PASS	escalation_rows=4
+runbook_placeholder	PASS	runbook_placeholders=24
+security_alerts	PASS	count=4
+runtime_alerts	PASS	count=3
+db_alerts	PASS	count=2
+event_bus_alerts	PASS	count=3
+observability_alerts	PASS	count=4
+body_not_printed	PASS	metric/log/trace/query body not printed
+no_config_change	PASS	alert/prometheus/grafana config not changed
+no_restart	PASS	service/container not restarted
+secret_safe	PASS	secret values not printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+prometheus_config_changed	NO	evidence only
+prometheus_reload_executed	NO	evidence only
+prometheus_restarted	NO	evidence only
+alertmanager_config_changed	NO	evidence only
+alertmanager_reload_executed	NO	evidence only
+alertmanager_restarted	NO	evidence only
+grafana_dashboard_changed	NO	evidence only
+grafana_alert_changed	NO	evidence only
+alert_rule_changed	NO	evidence only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+metric_body_printed	NO	secret-safe report
+log_content_printed	NO	secret-safe report
+trace_body_printed	NO	secret-safe report
+prometheus_query_body_printed	NO	secret-safe report
+loki_query_body_printed	NO	secret-safe report
+tempo_query_body_printed	NO	secret-safe report
+query_text_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report

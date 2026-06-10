@@ -1,0 +1,40 @@
+{
+  "expected_dependency": "FAZ_6_21_4_1",
+  "expected_live_provider_api_mutation_allowed": false,
+  "expected_required_controls": [
+    "bot_score_policy",
+    "suspicious_automation_guard",
+    "credential_stuffing_guard",
+    "login_rate_anomaly_guard",
+    "api_scraping_guard",
+    "high_error_rate_guard",
+    "bad_user_agent_guard",
+    "impossible_path_guard",
+    "tenant_abuse_signal_policy",
+    "allowlist_policy",
+    "false_positive_review_policy",
+    "safe_rollout_policy",
+    "rollback_policy",
+    "evidence_audit_policy"
+  ],
+  "expected_surfaces": [
+    "auth",
+    "api",
+    "panel",
+    "public_web",
+    "health"
+  ],
+  "expected_signal_controls": [
+    "bot_score_policy",
+    "suspicious_automation_guard",
+    "credential_stuffing_guard",
+    "login_rate_anomaly_guard",
+    "api_scraping_guard",
+    "high_error_rate_guard",
+    "bad_user_agent_guard",
+    "impossible_path_guard",
+    "tenant_abuse_signal_policy"
+  ],
+  "expected_allowlist_requires_expiry": true,
+  "expected_rollback_required": true
+}

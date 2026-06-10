@@ -1,0 +1,48 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 202,
+  "step": "FAZ_4_16_2_5",
+  "title": "Import validation raporu",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "198_FAZ_4_16_2_1_CARI_IMPORT",
+    "199_FAZ_4_16_2_2_URUN_STOK_IMPORT",
+    "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT",
+    "201_FAZ_4_16_2_4_MAPPING_TRANSFORM_KURALLARI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "report_policy": {
+    "report_status_required": "READY",
+    "validation_mode_required": "DRY_RUN",
+    "commit_allowed": false,
+    "tenant_id_required": true,
+    "batch_id_required": true,
+    "count_reconciliation_required": true,
+    "error_detail_required": true,
+    "warning_detail_required": true,
+    "evidence_ref_required": true,
+    "audit_safe_output_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "supported_import_types": [
+    "CUSTOMER",
+    "PRODUCT_STOCK",
+    "RECEIPT_MOVEMENT"
+  ],
+  "allowed_report_results": [
+    "PASS",
+    "FAIL"
+  ],
+  "allowed_severities": [
+    "ERROR",
+    "WARNING"
+  ],
+  "schema_artifact": "configs/faz4r/import_validation_report_schema.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "203_FAZ_4_16_2_6_IMPORT_TESTLERI"
+  ]
+}

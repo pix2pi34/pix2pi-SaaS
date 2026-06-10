@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="tr-TR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pix2pi Merchant Dashboard</title>
+  <style>
+    body{margin:0;background:#07090d;color:#f8fafc;font-family:system-ui}
+    .wrap{max-width:1120px;margin:auto;padding:40px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .card{border:1px solid rgba(255,214,10,.28);background:rgba(255,255,255,.06);border-radius:22px;padding:22px}
+    code{color:#ffd60a}
+    .metric{font-size:28px;font-weight:900;color:#ffd60a}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <h1>Merchant dashboard</h1>
+      <p>Gerçek satış, stok, cari, tahsilat, marketplace, paket ve hızlı işlem dashboard’u.</p>
+      <code>PIX2PI_320_MERCHANT_DASHBOARD_SCREEN_START</code>
+    </section>
+    <section class="grid">
+      <div class="card"><p>Günlük satış</p><div class="metric" data-metric="daily_sales_total">REAL_DB</div></div>
+      <div class="card"><p>Stok uyarıları</p><div class="metric" data-metric="low_stock_count">REAL_DB</div></div>
+      <div class="card"><p>Cari</p><div class="metric" data-metric="customer_count">REAL_DB</div></div>
+      <div class="card"><p>Tahsilat</p><div class="metric" data-metric="paid_collection_total">REAL_DB</div></div>
+    </section>
+  </main>
+</body>
+</html>

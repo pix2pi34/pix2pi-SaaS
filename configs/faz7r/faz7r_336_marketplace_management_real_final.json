@@ -1,0 +1,28 @@
+{
+  "step": "FAZ 7-R / 336",
+  "name": "Marketplace satıcı / ürün yönetimi real final",
+  "tenantId": "tenant-api-e2e-success",
+  "runId": "marketplace-management-336-20260513_222711",
+  "sellerId": "seller-335-main",
+  "catalogProductId": "catalog-product-335-main",
+  "routes": [
+    "/management/",
+    "POST /api/market/management/seller-read",
+    "POST /api/market/management/seller-update",
+    "POST /api/market/management/product-status",
+    "POST /api/market/management/product-snapshot",
+    "POST /api/market/management/checkout-intent"
+  ],
+  "requiredEvidence": [
+    "seller management read",
+    "product publish/unpublish",
+    "price/stock snapshot update",
+    "product status history",
+    "controlled marketplace enable/disable guard",
+    "tenant-safe seller management",
+    "no-role denied",
+    "rollback no partial write",
+    "route smoke",
+    "management audit evidence"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "app.name": "Pix2pi",
+  "panel.title": "Merchant Panel",
+  "panel.dashboard": "Dashboard",
+  "panel.customer_surface": "Customer Usage Surface",
+  "panel.language_switcher": "Language selection",
+  "panel.tenant_indicator": "Tenant",
+  "auth.login.title": "Sign in",
+  "auth.login.email": "Email",
+  "auth.login.password": "Password",
+  "auth.login.submit": "Sign in",
+  "auth.tenant_select.title": "Business selection",
+  "auth.errors.INVALID_CREDENTIALS": "Email or password is incorrect.",
+  "auth.errors.TENANT_REQUIRED": "Business selection is required to continue.",
+  "auth.errors.TENANT_FORBIDDEN": "This user cannot access the selected business.",
+  "auth.errors.SESSION_EXPIRED": "Session expired. Please sign in again.",
+  "auth.errors.NETWORK_ERROR": "Could not reach the server. Please try again.",
+  "auth.errors.UNKNOWN": "Sign-in could not be completed.",
+  "pos.title": "POS Sales Screen",
+  "pos.cart": "Cart",
+  "pos.payment": "Payment",
+  "marketplace.title": "Marketplace",
+  "marketplace.product_list": "Product list",
+  "marketplace.order": "Order",
+  "notification.welcome": "Welcome to Pix2pi.",
+  "email.subject.welcome": "Your Pix2pi account is ready",
+  "error.unauthorized": "Session could not be verified.",
+  "error.forbidden": "Permission denied.",
+  "format.currency": "Currency format",
+  "format.date": "Date format",
+  "format.number": "Number format",
+  "layout.direction": "ltr",
+  "layout.font_family": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+  "helpCenter": {
+    "title": "Help Center",
+    "subtitle": "Pix2pi first-use documentation",
+    "login": {
+      "title": "Signing in",
+      "body": "Sign in from the panel with your email and password. Select your tenant when prompted."
+    },
+    "business": {
+      "title": "Creating a business",
+      "body": "Enter business name, tax details, address, sector, default language, and default currency."
+    },
+    "party": {
+      "title": "Adding an account",
+      "body": "Add customer or supplier information from the account screen and verify tax and address fields."
+    },
+    "product": {
+      "title": "Adding a product",
+      "body": "Enter product name, barcode, SKU, category, unit, sale price, VAT rate, and stock information."
+    },
+    "posSale": {
+      "title": "Making a POS sale",
+      "body": "Select the register in POS, add products to the cart, choose payment type, and complete the sale."
+    },
+    "report": {
+      "title": "Viewing reports",
+      "body": "View daily sales, stock, account balance, and VAT reports from the reports screen."
+    },
+    "language": {
+      "title": "Changing language",
+      "body": "Choose Turkish, Ottoman Turkish, Arabic, Persian, or English from the language selector."
+    },
+    "smoke": {
+      "title": "Help center smoke test",
+      "body": "Help center documents are verified with live URLs, i18n keys, and DB smoke records."
+    }
+  }
+}

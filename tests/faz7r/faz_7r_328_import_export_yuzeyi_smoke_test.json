@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "328",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "import_export_screen",
+      "path": "/import-export/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_328_IMPORT_EXPORT_APP_SHELL_START",
+        "PIX2PI_328_IMPORT_FORM_START",
+        "PIX2PI_328_RUNTIME_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "import_export_runtime",
+      "path": "/assets/import-export/import-export-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_328_IMPORT_EXPORT_RUNTIME_START",
+        "tenantScopedHeaders",
+        "buildExportPayload"
+      ]
+    }
+  ]
+}

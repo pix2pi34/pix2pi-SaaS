@@ -1,0 +1,36 @@
+{
+  "phase": "FAZ 2-8.5",
+  "screen": "early_warning_alert_dashboard",
+  "web_path": "web/ops-console/early-warning-alert-dashboard/index.html",
+  "runtime_package": "./internal/platform/ops/console",
+  "require_tenant": true,
+  "allow_platform_viewer": true,
+  "max_visible_rules": 100,
+  "max_visible_alerts": 100,
+  "guards": [
+    "tenant_required",
+    "cross_tenant_viewer_denied",
+    "valid_source_required",
+    "valid_severity_required",
+    "valid_status_required",
+    "valid_operator_required",
+    "metric_required",
+    "message_required",
+    "operator_required_for_ack_resolve",
+    "resolved_visibility_toggle",
+    "source_filter_supported",
+    "severity_filter_supported",
+    "status_filter_supported"
+  ],
+  "screen_sections": [
+    "open_alerts_metric",
+    "critical_metric",
+    "acknowledged_metric",
+    "resolved_metric",
+    "alert_stream_table",
+    "alert_rules_panel",
+    "tenant_indicator",
+    "responsive_shell"
+  ],
+  "next_ready": "ONCELIK_5_WEB_L3_PLATFORM_OPERATIONS_CONSOLE_FINAL_CLOSURE"
+}

@@ -1,0 +1,70 @@
+{
+  "app.name": "Pix2pi",
+  "panel.title": "İşletme Paneli",
+  "panel.dashboard": "Dashboard",
+  "panel.customer_surface": "Müşteri Kullanım Yüzeyi",
+  "panel.language_switcher": "Dil seçimi",
+  "panel.tenant_indicator": "Tenant",
+  "auth.login.title": "Giriş yap",
+  "auth.login.email": "E-posta",
+  "auth.login.password": "Şifre",
+  "auth.login.submit": "Giriş yap",
+  "auth.tenant_select.title": "İşletme seçimi",
+  "auth.errors.INVALID_CREDENTIALS": "E-posta veya şifre hatalı.",
+  "auth.errors.TENANT_REQUIRED": "Devam etmek için işletme seçimi gerekli.",
+  "auth.errors.TENANT_FORBIDDEN": "Bu kullanıcı seçilen işletmeye erişemez.",
+  "auth.errors.SESSION_EXPIRED": "Oturum süresi doldu. Lütfen tekrar giriş yapın.",
+  "auth.errors.NETWORK_ERROR": "Sunucuya ulaşılamadı. Lütfen tekrar deneyin.",
+  "auth.errors.UNKNOWN": "Giriş işlemi tamamlanamadı.",
+  "pos.title": "POS Satış Ekranı",
+  "pos.cart": "Sepet",
+  "pos.payment": "Ödeme",
+  "marketplace.title": "Marketplace",
+  "marketplace.product_list": "Ürün listesi",
+  "marketplace.order": "Sipariş",
+  "notification.welcome": "Pix2pi’ye hoş geldiniz.",
+  "email.subject.welcome": "Pix2pi hesabınız hazır",
+  "error.unauthorized": "Oturum doğrulanamadı.",
+  "error.forbidden": "Yetki yok.",
+  "format.currency": "Para formatı",
+  "format.date": "Tarih formatı",
+  "format.number": "Sayı formatı",
+  "layout.direction": "ltr",
+  "layout.font_family": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+  "helpCenter": {
+    "title": "Yardım Merkezi",
+    "subtitle": "Pix2pi ilk kullanım dokümanları",
+    "login": {
+      "title": "Giriş yapma",
+      "body": "Panel adresinden e-posta ve şifrenizle giriş yapın. Tenant seçimi geldiyse işletmenizi seçin."
+    },
+    "business": {
+      "title": "İşletme oluşturma",
+      "body": "İşletme adı, vergi bilgisi, adres, sektör, varsayılan dil ve para birimini girerek işletme kaydını tamamlayın."
+    },
+    "party": {
+      "title": "Cari ekleme",
+      "body": "Cari ekranından müşteri veya tedarikçi bilgilerini ekleyin. Vergi bilgisi ve adres alanlarını kontrol edin."
+    },
+    "product": {
+      "title": "Ürün ekleme",
+      "body": "Ürün adı, barkod, SKU, kategori, birim, satış fiyatı, KDV oranı ve stok bilgilerini girin."
+    },
+    "posSale": {
+      "title": "POS satış yapma",
+      "body": "POS ekranında kasayı seçin, ürünü sepete ekleyin, ödeme tipini seçin ve satışı tamamlayın."
+    },
+    "report": {
+      "title": "Rapor görüntüleme",
+      "body": "Rapor ekranından günlük satış, stok, cari bakiye ve KDV raporlarını görüntüleyin."
+    },
+    "language": {
+      "title": "Dil değiştirme",
+      "body": "Dil listesinden Türkçe, Osmanlıca, Arapça, Farsça veya İngilizce seçeneklerinden birini seçin."
+    },
+    "smoke": {
+      "title": "Help center smoke test",
+      "body": "Yardım merkezi dokümanları canlı URL, i18n key ve DB smoke kayıtlarıyla doğrulanır."
+    }
+  }
+}

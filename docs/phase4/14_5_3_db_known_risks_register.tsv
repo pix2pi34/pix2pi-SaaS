@@ -1,0 +1,8 @@
+risk_id	category	severity	status	source	evidence	action	closure_gate
+DB-RISK-001	pitr	HIGH	DEFERRED	14.2.6/14.5.2	PITR_CURRENT_READY=NO; PITR_ENABLE_DECISION=PLAN_READY_APPLY_NOT_EXECUTED	Bakim penceresinde WAL archive mount/config apply yap ve PITR verification al	PITR_CURRENT_READY=YES
+DB-RISK-002	wal_archive	HIGH	DEFERRED	14.2.6	HOST_WAL_ARCHIVE_DIR_STATUS=NOT_FOUND; WAL_ARCHIVE_MOUNT_STATUS=NOT_FOUND	Host WAL archive dizini ve container mount kontrollu apply adiminda olusturulacak	WAL_ARCHIVE_MOUNT_STATUS=FOUND
+DB-RISK-003	pitr_config	HIGH	DEFERRED	14.2.6	ARCHIVE_MODE_READY=NO; ARCHIVE_COMMAND_READY=NO	archive_mode=on ve archive_command kontrollu maintenance adiminda aktif edilecek	ARCHIVE_MODE_READY=YES; ARCHIVE_COMMAND_READY=YES
+DB-RISK-004	index_usage	MEDIUM	OBSERVE_ONLY	14.4.2	LOW_DATA_CONTEXT=YES; DB_UNUSED_INDEX_COUNT=274; DB_UNUSED_NON_UNIQUE_INDEX_COUNT=225	Production veri hacmi artinca index usage baseline tekrar alinacak; simdi index drop yok	Production baseline tekrar PASS
+DB-RISK-005	vacuum_bloat	MEDIUM	OBSERVE_ONLY	14.4.3	LOW_DATA_CONTEXT=YES; LIVE=161; DEAD=697; HIGH_DEAD_RATIO_TABLES=78	Production veri hacmi artinca vacuum/dead tuple baseline tekrar alinacak; simdi vacuum/analyze yok	Production vacuum baseline tekrar PASS
+DB-RISK-006	production_readiness	MEDIUM	DEFERRED	14.5.2	READINESS_STATUS=READY_WITH_DEFERRED_ACTIONS; SCORE=96; GRADE=A	Deferred PITR apply tamamlanana kadar DB readiness A ama PITR tam aktif degil olarak etiketlenecek	READINESS_STATUS=READY
+DB-RISK-007	db_health	LOW	ACCEPTED_BASELINE	14.4.4	HEALTH_RISK=LOW; LOCK=0; DEADLOCK=0; IDLE_TX=0	Normal operasyon baseline olarak kabul edildi; production sonrasi periyodik tekrar alinacak	Periodic DB health baseline PASS

@@ -1,0 +1,61 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 237,
+  "step": "FAZ_4_17_2",
+  "title": "Workflow monitor",
+  "priority_group": "WEB-L7 Workflow / Realtime UI",
+  "depends_on": [
+    "236_FAZ_4_17_1_APPROVAL_INBOX"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "workflow_monitor_policy": {
+    "workflow_monitor_status_required": "READY",
+    "workflow_monitor_mode_required": "CONTROLLED_PILOT",
+    "required_item_status_required": "READY",
+    "missing_item_count_required": 0,
+    "required_fail_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "tenant_scope_required": "SINGLE_TENANT",
+    "approval_inbox_status_required": "PASS",
+    "workflow_summary_status_required": "READY",
+    "status_counter_status_required": "READY",
+    "sla_indicator_status_required": "READY",
+    "web_checkpoint_status_required": "READY",
+    "no_workflow_mutation_required": true,
+    "no_real_workflow_execution_required": true,
+    "no_realtime_socket_connection_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_monitor_items": [
+    "WORKFLOW_MONITOR_SHELL",
+    "TENANT_SCOPED_MONITOR",
+    "WORKFLOW_INSTANCE_SUMMARY",
+    "PENDING_APPROVAL_COUNTER",
+    "RUNNING_WORKFLOW_COUNTER",
+    "COMPLETED_WORKFLOW_COUNTER",
+    "FAILED_WORKFLOW_COUNTER",
+    "SLA_AGE_INDICATOR",
+    "WORKFLOW_STATUS_BADGE_MODEL",
+    "APPROVAL_INBOX_LINK",
+    "AUDIT_TRACE_PLACEHOLDER",
+    "REALTIME_PLACEHOLDER",
+    "MONITOR_FILTER_MODEL",
+    "MONITOR_SORT_MODEL",
+    "EMPTY_STATE",
+    "ERROR_STATE",
+    "NO_MUTATION_GUARD",
+    "EXTERNAL_POLICY_CLOSED_GATE",
+    "UI_CHECKPOINT_HTML",
+    "FINAL_WORKFLOW_MONITOR_REPORT"
+  ],
+  "workflow_monitor_artifact": "configs/faz4r/workflow_monitor.controlled_pilot.v1.json",
+  "web_checkpoint": "web/faz4r/workflow-monitor/index.html",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "238_FAZ_4_17_5_WEBSOCKET_SSE_BAGLANTI_SAGLIGI_GORUNUMU"
+  ]
+}

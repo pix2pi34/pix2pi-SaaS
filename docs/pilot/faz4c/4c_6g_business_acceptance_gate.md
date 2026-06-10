@@ -1,0 +1,89 @@
+# FAZ 4C — 4C-6G Business Acceptance Gate
+
+## Blok
+
+4C-6G — Business Acceptance Gate
+
+## Amaç
+
+uzmanparcaci gerçek pilot UAT için işletme kabul kapısını yönetmek.
+
+Bu adım DB'ye yazmaz.
+
+---
+
+## 1. Kaynak durum
+
+4C-6F sonucu:
+
+4C_6F_UAT_BUG_BLOCKER_REGISTER_STATUS=PASS
+4C_6F_CRITICAL_BLOCKER_COUNT=0
+4C_6F_WARNING_COUNT=2
+4C_6F_BUSINESS_ACCEPTANCE_PENDING=YES
+4C_6G_READY=YES
+
+---
+
+## 2. Teknik UAT durumu
+
+TECHNICAL_UAT_STATUS=PASS
+TECHNICAL_FAIL_COUNT=0
+CRITICAL_BLOCKER_COUNT=0
+
+Teknik tarafta UAT geçmiştir.
+
+---
+
+## 3. İşletme kabul durumu
+
+BUSINESS_ACCEPTANCE_STATUS=PENDING
+
+Bu bilinçli bir kalite kapısıdır.
+
+İşletme temsilcisi kabul vermeden:
+
+- 4C-6 final PASS verilmeyecek
+- 4C-6H final closure açılmayacak
+- Go / No-Go hazır denmeyecek
+
+---
+
+## 4. Kabul şartları
+
+4C-6G final PASS için aşağıdaki alanlar PENDING olmamalıdır:
+
+- BUSINESS_ACCEPTANCE_STATUS
+- BUSINESS_REPRESENTATIVE_NAME
+- BUSINESS_ACCEPTANCE_DATE
+- BUSINESS_ACCEPTANCE_NOTE
+- BUSINESS_ACCEPTS_TENANT_ACCESS
+- BUSINESS_ACCEPTS_USER_ROLE_ACCESS
+- BUSINESS_ACCEPTS_STAGING_PRODUCTS
+- BUSINESS_ACCEPTS_OEM_FIELD
+- BUSINESS_ACCEPTS_EQUIVALENT_FIELD
+- BUSINESS_ACCEPTS_VEHICLE_FITMENT_FIELD
+- BUSINESS_ACCEPTS_BARCODE_NON_BLOCKER
+- BUSINESS_ACCEPTS_MARKETPLACE_PHASE_4D
+
+---
+
+## 5. Geçici gate kararı
+
+4C_6G_BUSINESS_ACCEPTANCE_GATE_STATUS=PENDING
+4C_6G_GATE_DOC_STATUS=PASS
+4C_6G_TECHNICAL_UAT_STATUS=PASS
+4C_6G_BUSINESS_ACCEPTANCE_STATUS=PENDING
+4C_6G_FINAL_UAT_RESULT=PENDING_BUSINESS_ACCEPTANCE
+4C_6G_GO_NO_GO_READY=NO
+4C_6G_DB_WRITE_APPLIED=NO
+4C_6H_READY=NO
+
+---
+
+## 6. Sonraki adım
+
+Gerçek işletme kabul bilgileri doldurulduktan sonra:
+
+4C-6G-2 — Business Acceptance Apply / Gate Finalization
+
+çalıştırılacaktır.

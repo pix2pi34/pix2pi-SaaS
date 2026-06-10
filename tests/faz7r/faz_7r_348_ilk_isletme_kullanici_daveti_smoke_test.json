@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "348",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "panel_user_invite_screen",
+      "path": "/user-invite/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_348_FIRST_USER_INVITE_APP_SHELL_START",
+        "PIX2PI_348_PILOT_TENANT_OWNER_INVITE_CONTEXT_START",
+        "PIX2PI_348_INVITE_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "panel_user_invite_runtime",
+      "path": "/assets/user-invite/panel-user-invite-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_348_PANEL_USER_INVITE_RUNTIME_START",
+        "inviteScopeHeaders",
+        "buildInviteRuntimeContract"
+      ]
+    }
+  ]
+}

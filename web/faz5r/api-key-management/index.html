@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pix2pi API Key Yönetim Ekranı — Internal Preview</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root { color-scheme: dark; font-family: Inter, Arial, sans-serif; background:#0f172a; color:#e5e7eb; }
+    body { margin:0; }
+    .wrap { max-width:1180px; margin:0 auto; padding:40px 20px; }
+    .hero { border:1px solid #334155; border-radius:24px; padding:28px; background:linear-gradient(135deg,#111827,#1e293b); }
+    .badge { display:inline-block; padding:6px 10px; border:1px solid #475569; border-radius:999px; font-size:12px; color:#cbd5e1; }
+    h1 { margin:18px 0 10px; font-size:36px; line-height:1.1; }
+    p { color:#cbd5e1; line-height:1.65; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin-top:22px; }
+    .card { border:1px solid #334155; border-radius:18px; padding:18px; background:#111827; }
+    .card h2 { margin:0 0 8px; font-size:18px; }
+    .disabled { opacity:.74; }
+    code { background:#020617; border:1px solid #334155; border-radius:8px; padding:2px 6px; color:#93c5fd; }
+    .guard { margin-top:24px; border:1px solid #7f1d1d; background:#450a0a; border-radius:18px; padding:18px; color:#fecaca; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <!-- PIX2PI_API_KEY_MANAGEMENT_SCREEN_START -->
+    <section class="hero">
+      <span class="badge">FAZ 5-19.4 / Internal Preview / API Key Creation Disabled</span>
+      <h1>Pix2pi API Key Yönetim Ekranı</h1>
+      <p>
+        Bu ekran API key yönetim yüzeyi için internal preview iskeletidir. Gerçek API key üretimi,
+        secret reveal, rotation ve canlı sandbox erişimi bu fazda kapalıdır.
+      </p>
+      <p>
+        Tenant-safe zorunluluklar: <code>X-Tenant-ID</code>, developer account, role guard,
+        permission scope ve audit trail.
+      </p>
+    </section>
+
+    <section class="grid" aria-label="API key management sections">
+      <article class="card" data-screen-section="key_inventory">
+        <h2>Key Inventory</h2>
+        <p>Key adı, masked prefix, tenant scope ve durum bilgisi preview.</p>
+      </article>
+      <article class="card disabled" data-screen-section="key_create_disabled_panel">
+        <h2>Create Disabled</h2>
+        <p>Gerçek API key oluşturma kapalı: <code>api_key_creation_enabled=false</code>.</p>
+      </article>
+      <article class="card" data-screen-section="key_masked_secret_panel">
+        <h2>Masked Secret</h2>
+        <p>Secret değerleri gösterilmez; sadece masked display standardı uygulanır.</p>
+      </article>
+      <article class="card" data-screen-section="key_rotation_preview">
+        <h2>Rotation Preview</h2>
+        <p>Rotation akışı preview seviyesindedir; canlı işlem kapalıdır.</p>
+      </article>
+      <article class="card" data-screen-section="key_revoke_preview">
+        <h2>Revoke Preview</h2>
+        <p>Revoke akışı audit trail ile tasarlanır; canlı aksiyon sonraki kapılara bağlıdır.</p>
+      </article>
+      <article class="card" data-screen-section="permission_scope_panel">
+        <h2>Permission Scope</h2>
+        <p>Read/write scope, webhook scope, sandbox scope ayrımları.</p>
+      </article>
+      <article class="card" data-screen-section="tenant_scope_panel">
+        <h2>Tenant Scope</h2>
+        <p>Her key tenant sınırıyla ilişkilidir; cross-tenant erişim kapalıdır.</p>
+      </article>
+      <article class="card" data-screen-section="audit_trail_panel">
+        <h2>Audit Trail</h2>
+        <p>Key lifecycle aksiyonları audit zorunluluğu ile izlenir.</p>
+      </article>
+      <article class="card" data-screen-section="security_policy_panel">
+        <h2>Security Policy</h2>
+        <p>Expiry, rate limit, secret reveal block ve güvenlik notları.</p>
+      </article>
+    </section>
+
+    <section class="guard">
+      <strong>Launch Guard:</strong>
+      production_screen_published=false,
+      real_developer_access_enabled=false,
+      api_key_creation_enabled=false,
+      api_key_reveal_enabled=false,
+      api_key_rotation_enabled=false,
+      sandbox_live_enabled=false.
+    </section>
+    <!-- PIX2PI_API_KEY_MANAGEMENT_SCREEN_END -->
+  </main>
+</body>
+</html>

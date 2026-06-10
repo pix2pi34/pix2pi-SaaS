@@ -1,0 +1,43 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 194,
+  "step": "FAZ_4_16_1_6",
+  "title": "Onboarding smoke",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "192_FAZ_4_16_1_4_PILOT_VERI_SINIRLARI_TANIMI",
+    "193_FAZ_4_16_1_5_TENANT_ACCEPTANCE_CHECKLIST"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "onboarding_policy": {
+    "onboarding_status_required": "READY",
+    "tenant_acceptance_status_required": "PASS",
+    "pilot_data_boundary_status_required": "PASS",
+    "critical_issue_count_must_be_zero": true,
+    "all_required_smoke_checks_must_pass": true,
+    "required_evidence_ref": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_smoke_checks": [
+    "TENANT_ID_READY",
+    "TENANT_CONFIG_READY",
+    "TENANT_ADMIN_READY",
+    "ROLE_BASELINE_READY",
+    "USER_INVITE_FLOW_READY",
+    "IMPORT_DRY_RUN_READY",
+    "READMODEL_REPORTING_READY",
+    "OPERATIONAL_READMODEL_READY",
+    "SUPPORT_CHANNEL_READY",
+    "ROLLBACK_CUTOVER_GUARD_READY",
+    "AUDIT_EVIDENCE_READY",
+    "CRITICAL_ISSUE_ZERO",
+    "CLOSED_EXTERNAL_POLICY_GATE"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "195_FAZ_4_16_1_1_PILOT_TENANT_ACILIS_AKISI"
+  ]
+}

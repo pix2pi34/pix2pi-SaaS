@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="tr" data-phase="FAZ_3_12_2" data-screen="COMPANY_SWITCHER_SCREEN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Muhasebeci Portalı — Firma Değiştirici</title>
+  <meta name="description" content="FAZ 3-12.2 Firma değiştirici: muhasebeci portalında tenant-safe firma context switch, yetki, abonelik, dönem, export route ve audit izleri." />
+  <style>
+    :root {
+      --card:#fff; --text:#0f172a; --soft:#475569; --muted:#64748b; --line:#e2e8f0;
+      --ok:#059669; --warn:#d97706; --fail:#dc2626; --info:#2563eb; --violet:#7c3aed;
+      --shadow:0 20px 60px rgba(15,23,42,.15); --radius:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;color:var(--text);
+      background:radial-gradient(circle at 8% 0%,rgba(37,99,235,.17),transparent 34rem),
+      radial-gradient(circle at 92% 0%,rgba(5,150,105,.14),transparent 32rem),#f8fafc;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+    .shell{min-height:100vh;display:grid;grid-template-columns:280px minmax(0,1fr)}
+    .sidebar{position:sticky;top:0;height:100vh;padding:28px 22px;color:#e5e7eb;background:linear-gradient(180deg,#0f172a,#111827)}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+    .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#2563eb,#059669);color:white;display:grid;place-items:center;font-weight:900}
+    .brand strong{display:block;font-size:18px}.brand small{color:#94a3b8;font-size:12px}
+    .nav-title{color:#94a3b8;text-transform:uppercase;letter-spacing:.12em;font-size:11px;margin:26px 0 10px}
+    .nav-item{display:flex;justify-content:space-between;gap:12px;padding:12px;border-radius:14px;color:#cbd5e1;font-size:14px;margin-bottom:6px}
+    .nav-item.active{color:white;background:rgba(37,99,235,.15);border:1px solid rgba(147,197,253,.25)}
+    .main{padding:26px;min-width:0}
+    .topbar{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:18px 20px;margin-bottom:20px;border:1px solid rgba(226,232,240,.9);background:rgba(255,255,255,.88);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(16px)}
+    .crumb{color:var(--muted);font-size:13px;margin-bottom:4px}
+    h1{margin:0;font-size:clamp(26px,4vw,40px);letter-spacing:-.04em;line-height:1.05}
+    .top-actions{display:flex;gap:10px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+    .pill{display:inline-flex;align-items:center;border-radius:999px;padding:8px 11px;font-size:12px;font-weight:800;border:1px solid var(--line);background:white;color:var(--soft);white-space:nowrap}
+    .pill.ok{color:var(--ok);border-color:rgba(5,150,105,.25);background:rgba(5,150,105,.08)}
+    .pill.warn{color:var(--warn);border-color:rgba(217,119,6,.25);background:rgba(217,119,6,.08)}
+    .pill.fail{color:var(--fail);border-color:rgba(220,38,38,.25);background:rgba(220,38,38,.08)}
+    .pill.info{color:var(--info);border-color:rgba(37,99,235,.25);background:rgba(37,99,235,.08)}
+    .grid{display:grid;gap:18px}.kpi-grid{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;min-width:0}
+    .kpi-label{color:var(--muted);font-size:13px;margin-bottom:8px}.kpi-value{font-size:28px;font-weight:900;letter-spacing:-.04em}.kpi-foot{color:var(--soft);font-size:12px;margin-top:8px}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 410px;gap:18px}
+    .panel-title{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:14px}
+    .panel-title h2{margin:0;font-size:20px;letter-spacing:-.03em}.panel-title p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.45}
+    .filters{display:grid;grid-template-columns:1.2fr repeat(4,minmax(120px,.42fr));gap:10px;margin-bottom:14px}
+    input,select{width:100%;border:1px solid var(--line);border-radius:14px;padding:11px 12px;font:inherit;color:var(--text);background:#fff;outline:none}
+    input:focus,select:focus{border-color:rgba(37,99,235,.5);box-shadow:0 0 0 4px rgba(37,99,235,.1)}
+    table{width:100%;border-collapse:collapse} th{text-align:left;color:var(--muted);font-size:12px;padding:12px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+    td{padding:14px 10px;border-bottom:1px solid #edf2f7;vertical-align:top;font-size:14px} tbody tr{cursor:pointer;transition:background .15s ease} tbody tr:hover{background:#f8fafc}
+    .main-text{font-weight:850;letter-spacing:-.02em}.sub{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+    .status{display:inline-flex;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:850;border:1px solid transparent;white-space:nowrap}
+    .status.active{color:var(--ok);background:rgba(5,150,105,.09);border-color:rgba(5,150,105,.22)}
+    .status.review{color:var(--warn);background:rgba(217,119,6,.09);border-color:rgba(217,119,6,.22)}
+    .status.blocked{color:var(--fail);background:rgba(220,38,38,.09);border-color:rgba(220,38,38,.22)}
+    .status.trial{color:var(--info);background:rgba(37,99,235,.09);border-color:rgba(37,99,235,.22)}
+    .button-row{display:flex;gap:8px;flex-wrap:wrap}
+    button{border:0;border-radius:12px;padding:9px 11px;color:white;background:#0f172a;font-weight:850;font-size:12px;cursor:pointer;box-shadow:0 10px 24px rgba(15,23,42,.14)}
+    button.secondary{color:#0f172a;background:#f1f5f9;border:1px solid var(--line);box-shadow:none} button.warning{background:#d97706} button.success{background:#059669} button.danger{background:#dc2626}
+    button:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
+    .side-stack{display:grid;gap:18px;align-content:start}
+    .detail-row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:13px}
+    .detail-row span:first-child{color:var(--muted)}.detail-row strong{text-align:right;word-break:break-word}
+    .notice{border-radius:16px;padding:13px;font-size:13px;line-height:1.5;border:1px solid rgba(37,99,235,.24);color:#1e3a8a;background:rgba(37,99,235,.08)}
+    .ops-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+    .op-card{border:1px solid var(--line);border-radius:16px;padding:13px;background:#f8fafc}
+    .op-card strong{display:block;font-size:13px;margin-bottom:6px}.op-card small{display:block;color:var(--muted);font-size:12px;line-height:1.45}
+    .timeline{display:grid;gap:10px}.event{border:1px solid var(--line);border-radius:16px;padding:12px;background:#f8fafc}.event strong{display:block;font-size:13px;margin-bottom:4px}.event small{color:var(--muted);line-height:1.45}
+    @media(max-width:1180px){.shell{grid-template-columns:1fr}.sidebar{display:none}.layout{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:780px){.main{padding:14px}.topbar{flex-direction:column;align-items:flex-start}.filters{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr}table{min-width:1120px}.table-wrap{overflow-x:auto}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Accountant portal navigation">
+      <div class="brand">
+        <div class="logo">P2</div>
+        <div><strong>Pix2pi Muhasebeci</strong><small>Company Switcher</small></div>
+      </div>
+
+      <div class="nav-title">FAZ 3-12 Portal</div>
+      <div class="nav-item"><span>Export Workspace</span><span>167</span></div>
+      <div class="nav-item"><span>Çok Firmalı Workspace</span><span>168</span></div>
+      <div class="nav-item active"><span>Firma Değiştirici</span><span>169</span></div>
+      <div class="nav-item"><span>Firma Yetki Ekranı</span><span>170</span></div>
+      <div class="nav-item"><span>Abonelik Durumu</span><span>171</span></div>
+      <div class="nav-item"><span>Portal Audit</span><span>172</span></div>
+      <div class="nav-item"><span>Portal Testleri</span><span>173</span></div>
+
+      <div class="nav-title">Switch Policy</div>
+      <div class="nav-item"><span>Cross Tenant</span><span>CLOSED</span></div>
+      <div class="nav-item"><span>Authorization</span><span>REQUIRED</span></div>
+      <div class="nav-item"><span>Context Hash</span><span>REQUIRED</span></div>
+    </aside>
+
+    <main class="main">
+      <section class="topbar">
+        <div>
+          <div class="crumb">FAZ 3-R › Öncelik 3 › 169 / FAZ 3-12.2</div>
+          <h1>Firma Değiştirici</h1>
+        </div>
+        <div class="top-actions">
+          <span class="pill info" data-accountant-guard="required">Accountant: acc_demo_001</span>
+          <span class="pill ok" data-current-firm="firm_demo_001">Current Firm: Demo Market A.Ş.</span>
+          <span class="pill info" data-tenant-guard="required">Tenant Boundary: required</span>
+          <span class="pill fail" data-cross-tenant-access="closed">Cross Tenant: CLOSED</span>
+        </div>
+      </section>
+
+      <section class="grid kpi-grid">
+        <article class="card" data-kpi="switchable_firms">
+          <div class="kpi-label">Switch edilebilir firma</div>
+          <div class="kpi-value">11</div>
+          <div class="kpi-foot">Yetki + abonelik uygun</div>
+        </article>
+        <article class="card" data-kpi="current_context">
+          <div class="kpi-label">Aktif context</div>
+          <div class="kpi-value">1</div>
+          <div class="kpi-foot">Tek firma context aktif</div>
+        </article>
+        <article class="card" data-kpi="blocked_switch">
+          <div class="kpi-label">Bloklu switch</div>
+          <div class="kpi-value">1</div>
+          <div class="kpi-foot">Abonelik / yetki engeli</div>
+        </article>
+        <article class="card" data-kpi="audit_required">
+          <div class="kpi-label">Audit</div>
+          <div class="kpi-value">ON</div>
+          <div class="kpi-foot">Her firma değişimi loglanır</div>
+        </article>
+      </section>
+
+      <section class="layout">
+        <div class="card">
+          <div class="panel-title">
+            <div>
+              <h2>Firma Switch Listesi</h2>
+              <p>Muhasebecinin yetkili olduğu firmalar arasında tenant-safe context değişimi.</p>
+            </div>
+            <span class="pill ok">Switcher Audit Ready</span>
+          </div>
+
+          <div class="filters" data-filter-bar="company-switcher">
+            <input id="searchInput" aria-label="Firma ara" placeholder="Firma, tenant, vergi no, role, context hash ara..." />
+            <select id="statusFilter" aria-label="Durum filtrele">
+              <option value="ALL">Tüm durumlar</option>
+              <option value="ACTIVE">Active</option>
+              <option value="TRIAL">Trial</option>
+              <option value="REVIEW_REQUIRED">Review Required</option>
+              <option value="BLOCKED">Blocked</option>
+            </select>
+            <select id="permissionFilter" aria-label="Yetki filtrele">
+              <option value="ALL">Tüm yetkiler</option>
+              <option value="MANAGE">Manage</option>
+              <option value="EXPORT">Export</option>
+              <option value="VIEW">View</option>
+              <option value="READ_ONLY">Read Only</option>
+            </select>
+            <select id="switchFilter" aria-label="Switch filtrele">
+              <option value="ALL">Tüm switch kararları</option>
+              <option value="SWITCH_ALLOWED">Switch Allowed</option>
+              <option value="SWITCH_REVIEW">Switch Review</option>
+              <option value="SWITCH_BLOCKED">Switch Blocked</option>
+            </select>
+            <select id="periodFilter" aria-label="Dönem filtrele">
+              <option value="2026-05">2026-05</option>
+              <option value="2026-Q2">2026-Q2</option>
+              <option value="YTD">YTD</option>
+            </select>
+          </div>
+
+          <div class="table-wrap">
+            <table aria-label="Firma değiştirici tablosu">
+              <thead>
+                <tr>
+                  <th>Firma</th>
+                  <th>Tenant / Vergi</th>
+                  <th>Durum</th>
+                  <th>Yetki</th>
+                  <th>Switch Kararı</th>
+                  <th>Context</th>
+                  <th>Hash</th>
+                  <th>Aksiyon</th>
+                </tr>
+              </thead>
+              <tbody id="firmRows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <aside class="side-stack">
+          <section class="card" data-detail-drawer="company-switcher">
+            <div class="panel-title">
+              <div>
+                <h2>Switch Detayı</h2>
+                <p>Seçili firma için yetki, tenant boundary, context token ve audit izleri.</p>
+              </div>
+            </div>
+            <div id="detailPanel"></div>
+          </section>
+
+          <section class="card" data-operation-actions="company-switcher">
+            <div class="panel-title">
+              <div>
+                <h2>Switch Operasyonları</h2>
+                <p>Context switch, permission validation, route prepare ve audit evidence.</p>
+              </div>
+            </div>
+
+            <div class="notice" data-live-policy="context-switch-guard">
+              Firma değiştirici cross-tenant erişim açmaz. Her switch için accountant authorization, firm scope, context token ve audit hash zorunludur.
+            </div>
+
+            <div class="ops-grid">
+              <div class="op-card" data-action="switch-company">
+                <strong>Switch Company</strong>
+                <small>Aktif firma context değişimi.</small>
+              </div>
+              <div class="op-card" data-action="validate-permission">
+                <strong>Validate Permission</strong>
+                <small>Firma rolü ve abonelik kontrolü.</small>
+              </div>
+              <div class="op-card" data-action="prepare-route">
+                <strong>Prepare Route</strong>
+                <small>Workspace/export/finance route hazırlığı.</small>
+              </div>
+              <div class="op-card" data-action="audit-evidence">
+                <strong>Audit Evidence</strong>
+                <small>Switch hash ve evidence izleri.</small>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" data-audit-trail="company-switcher">
+            <div class="panel-title">
+              <div>
+                <h2>Audit Timeline</h2>
+                <p>Firma switch işlem geçmişi.</p>
+              </div>
+            </div>
+            <div class="timeline" id="timeline"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const productionApproved = false;
+    const crossTenantAccessAllowed = false;
+    const accountantAuthorizationRequired = true;
+    const firmScopeRequired = true;
+    const switchAuditRequired = true;
+    const contextTokenRequired = true;
+
+    const firms = [
+      {
+        id:"firm_demo_001", name:"Demo Market A.Ş.", tenantId:"tenant_demo_001", taxNo:"1234567890",
+        status:"ACTIVE", permission:"MANAGE", period:"2026-05", switchDecision:"SWITCH_ALLOWED",
+        activeContext:true, subscriptionStatus:"ACTIVE", roleSet:"ACCOUNTANT_MANAGER",
+        contextToken:"ctx-firm-demo-001", targetRoute:"/faz3/accountant-portal/multi-company-workspace/?firm=firm_demo_001",
+        exportRoute:"/faz3/accountant-portal/export-workspace/?firm=firm_demo_001&period=2026-05",
+        financeRoute:"/faz3/erp-ui/finance-summary/", tenantBoundaryHash:"sha256:switch-tenant-001",
+        firmScopeHash:"sha256:switch-firm-001", contextHash:"sha256:switch-context-001",
+        permissionHash:"sha256:switch-permission-001", auditHash:"sha256:switch-audit-001",
+        evidenceFile:"docs/faz3/evidence/company_switch_firm_001.md", allowedActions:["SWITCH","VALIDATE","ROUTE","AUDIT"]
+      },
+      {
+        id:"firm_demo_002", name:"Pilot Oto Yedek Parça Ltd.", tenantId:"tenant_demo_002", taxNo:"2234567890",
+        status:"REVIEW_REQUIRED", permission:"EXPORT", period:"2026-05", switchDecision:"SWITCH_REVIEW",
+        activeContext:false, subscriptionStatus:"ACTIVE", roleSet:"ACCOUNTANT_EXPORTER",
+        contextToken:"ctx-firm-demo-002", targetRoute:"/faz3/accountant-portal/multi-company-workspace/?firm=firm_demo_002",
+        exportRoute:"/faz3/accountant-portal/export-workspace/?firm=firm_demo_002&period=2026-05",
+        financeRoute:"/faz3/erp-ui/finance-summary/", tenantBoundaryHash:"sha256:switch-tenant-002",
+        firmScopeHash:"sha256:switch-firm-002", contextHash:"sha256:switch-context-002",
+        permissionHash:"sha256:switch-permission-002", auditHash:"sha256:switch-audit-002",
+        evidenceFile:"docs/faz3/evidence/company_switch_firm_002.md", allowedActions:["VALIDATE","ROUTE","AUDIT"]
+      },
+      {
+        id:"firm_demo_003", name:"Demo Cafe İşletmesi", tenantId:"tenant_demo_003", taxNo:"3234567890",
+        status:"TRIAL", permission:"VIEW", period:"2026-Q2", switchDecision:"SWITCH_ALLOWED",
+        activeContext:false, subscriptionStatus:"TRIAL", roleSet:"ACCOUNTANT_VIEWER",
+        contextToken:"ctx-firm-demo-003", targetRoute:"/faz3/accountant-portal/multi-company-workspace/?firm=firm_demo_003",
+        exportRoute:"/faz3/accountant-portal/export-workspace/?firm=firm_demo_003&period=2026-Q2",
+        financeRoute:"/faz3/erp-ui/finance-summary/", tenantBoundaryHash:"sha256:switch-tenant-003",
+        firmScopeHash:"sha256:switch-firm-003", contextHash:"sha256:switch-context-003",
+        permissionHash:"sha256:switch-permission-003", auditHash:"sha256:switch-audit-003",
+        evidenceFile:"docs/faz3/evidence/company_switch_firm_003.md", allowedActions:["SWITCH","VALIDATE","ROUTE","AUDIT"]
+      },
+      {
+        id:"firm_demo_004", name:"Demo Hizmet Ltd.", tenantId:"tenant_demo_004", taxNo:"4234567890",
+        status:"BLOCKED", permission:"READ_ONLY", period:"YTD", switchDecision:"SWITCH_BLOCKED",
+        activeContext:false, subscriptionStatus:"SUSPENDED", roleSet:"ACCOUNTANT_READ_ONLY",
+        contextToken:"ctx-firm-demo-004", targetRoute:"/faz3/accountant-portal/multi-company-workspace/?firm=firm_demo_004",
+        exportRoute:"/faz3/accountant-portal/export-workspace/?firm=firm_demo_004&period=YTD",
+        financeRoute:"/faz3/erp-ui/finance-summary/", tenantBoundaryHash:"sha256:switch-tenant-004",
+        firmScopeHash:"sha256:switch-firm-004", contextHash:"sha256:switch-context-004",
+        permissionHash:"sha256:switch-permission-004", auditHash:"sha256:switch-audit-004",
+        evidenceFile:"docs/faz3/evidence/company_switch_firm_004.md", allowedActions:["VALIDATE","AUDIT"]
+      }
+    ];
+
+    const statusClass = {ACTIVE:"active",TRIAL:"trial",REVIEW_REQUIRED:"review",BLOCKED:"blocked"};
+    const statusLabel = {ACTIVE:"Active",TRIAL:"Trial",REVIEW_REQUIRED:"Review Required",BLOCKED:"Blocked"};
+
+    function actionButtons(item) {
+      const actions = [
+        ["SWITCH","Switch","success"],
+        ["VALIDATE","Validate","warning"],
+        ["ROUTE","Route","secondary"],
+        ["AUDIT","Audit","secondary"],
+        ["CROSS_TENANT","Cross","danger"]
+      ];
+      return actions
+        .filter(([key]) => item.allowedActions.includes(key) || key === "CROSS_TENANT")
+        .map(([key,label,cls]) => {
+          const disabled = key === "CROSS_TENANT" || (key === "SWITCH" && item.switchDecision !== "SWITCH_ALLOWED");
+          return `<button class="${cls}" data-op="${key}" ${disabled ? "disabled" : ""}>${label}</button>`;
+        }).join("");
+    }
+
+    function renderRows() {
+      const q = document.getElementById("searchInput").value.trim().toLowerCase();
+      const status = document.getElementById("statusFilter").value;
+      const permission = document.getElementById("permissionFilter").value;
+      const switchDecision = document.getElementById("switchFilter").value;
+      const period = document.getElementById("periodFilter").value;
+
+      const filtered = firms.filter(item => {
+        const haystack = [
+          item.id,item.name,item.tenantId,item.taxNo,item.status,item.permission,item.period,
+          item.switchDecision,item.subscriptionStatus,item.roleSet,item.contextToken,item.targetRoute,
+          item.exportRoute,item.financeRoute,item.tenantBoundaryHash,item.firmScopeHash,item.contextHash,
+          item.permissionHash,item.auditHash,item.evidenceFile
+        ].join(" ").toLowerCase();
+
+        return (q === "" || haystack.includes(q))
+          && (status === "ALL" || item.status === status)
+          && (permission === "ALL" || item.permission === permission)
+          && (switchDecision === "ALL" || item.switchDecision === switchDecision)
+          && (period === item.period || period === "YTD" || period === "2026-Q2");
+      });
+
+      document.getElementById("firmRows").innerHTML = filtered.map(item => `
+        <tr data-firm-id="${item.id}" onclick="selectFirm('${item.id}')">
+          <td><span class="main-text">${item.name}</span><span class="sub">${item.id}${item.activeContext ? " / ACTIVE_CONTEXT" : ""}</span></td>
+          <td><strong>${item.tenantId}</strong><span class="sub">${item.taxNo}</span></td>
+          <td><span class="status ${statusClass[item.status]}">${statusLabel[item.status]}</span></td>
+          <td><strong>${item.permission}</strong><span class="sub">${item.roleSet}</span></td>
+          <td><strong>${item.switchDecision}</strong><span class="sub">${item.subscriptionStatus}</span></td>
+          <td><strong>${item.contextToken}</strong><span class="sub">${item.period}</span></td>
+          <td><strong>${item.contextHash}</strong><span class="sub">${item.auditHash}</span></td>
+          <td><div class="button-row">${actionButtons(item)}</div></td>
+        </tr>
+      `).join("");
+
+      if (filtered.length > 0) selectFirm(filtered[0].id);
+      else {
+        document.getElementById("detailPanel").innerHTML = "";
+        document.getElementById("timeline").innerHTML = "";
+      }
+    }
+
+    function yesNo(value) { return value ? "YES" : "NO"; }
+
+    function selectFirm(id) {
+      const item = firms.find(row => row.id === id);
+      if (!item) return;
+
+      document.getElementById("detailPanel").innerHTML = `
+        <div class="detail-row"><span>Firm ID</span><strong>${item.id}</strong></div>
+        <div class="detail-row"><span>Firm Name</span><strong>${item.name}</strong></div>
+        <div class="detail-row"><span>Tenant ID</span><strong>${item.tenantId}</strong></div>
+        <div class="detail-row"><span>Tax No</span><strong>${item.taxNo}</strong></div>
+        <div class="detail-row"><span>Status</span><strong>${statusLabel[item.status]}</strong></div>
+        <div class="detail-row"><span>Permission</span><strong>${item.permission}</strong></div>
+        <div class="detail-row"><span>Role Set</span><strong>${item.roleSet}</strong></div>
+        <div class="detail-row"><span>Period</span><strong>${item.period}</strong></div>
+        <div class="detail-row"><span>Switch Decision</span><strong>${item.switchDecision}</strong></div>
+        <div class="detail-row"><span>Active Context</span><strong>${yesNo(item.activeContext)}</strong></div>
+        <div class="detail-row"><span>Subscription</span><strong>${item.subscriptionStatus}</strong></div>
+        <div class="detail-row"><span>Context Token</span><strong>${item.contextToken}</strong></div>
+        <div class="detail-row"><span>Target Route</span><strong>${item.targetRoute}</strong></div>
+        <div class="detail-row"><span>Export Route</span><strong>${item.exportRoute}</strong></div>
+        <div class="detail-row"><span>Finance Route</span><strong>${item.financeRoute}</strong></div>
+        <div class="detail-row"><span>Tenant Boundary Hash</span><strong>${item.tenantBoundaryHash}</strong></div>
+        <div class="detail-row"><span>Firm Scope Hash</span><strong>${item.firmScopeHash}</strong></div>
+        <div class="detail-row"><span>Context Hash</span><strong>${item.contextHash}</strong></div>
+        <div class="detail-row"><span>Permission Hash</span><strong>${item.permissionHash}</strong></div>
+        <div class="detail-row"><span>Audit Hash</span><strong>${item.auditHash}</strong></div>
+        <div class="detail-row"><span>Evidence File</span><strong>${item.evidenceFile}</strong></div>
+        <div class="detail-row"><span>Cross Tenant Access</span><strong>${yesNo(crossTenantAccessAllowed)}</strong></div>
+        <div class="detail-row"><span>Authorization Required</span><strong>${yesNo(accountantAuthorizationRequired)}</strong></div>
+        <div class="detail-row"><span>Firm Scope Required</span><strong>${yesNo(firmScopeRequired)}</strong></div>
+        <div class="detail-row"><span>Context Token Required</span><strong>${yesNo(contextTokenRequired)}</strong></div>
+      `;
+
+      document.getElementById("timeline").innerHTML = [
+        ["COMPANY_SWITCH_SELECTED", `${item.name} firma switch adayı olarak seçildi.`],
+        [item.switchDecision, `Switch kararı: ${item.switchDecision}.`],
+        [item.contextHash, `Context hash: ${item.contextHash}, audit hash: ${item.auditHash}.`]
+      ].map(([title,desc]) => `<div class="event"><strong>${title}</strong><small>${desc}</small></div>`).join("");
+    }
+
+    document.getElementById("searchInput").addEventListener("input", renderRows);
+    document.getElementById("statusFilter").addEventListener("change", renderRows);
+    document.getElementById("permissionFilter").addEventListener("change", renderRows);
+    document.getElementById("switchFilter").addEventListener("change", renderRows);
+    document.getElementById("periodFilter").addEventListener("change", renderRows);
+
+    renderRows();
+  </script>
+</body>
+</html>

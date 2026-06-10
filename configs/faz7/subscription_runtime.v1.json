@@ -1,0 +1,68 @@
+{
+  "schema_version": "subscription_runtime.v1",
+  "phase": "FAZ_7",
+  "step": "7-4",
+  "runtime_status": "READY",
+  "source_catalog": "configs/faz7/product_plan_catalog.v1.json",
+  "source_entitlement": "configs/faz7/entitlement_feature_gate.v1.json",
+  "next_step": "7-5 Billing Readiness",
+  "required_account_fields": [
+    "tenant_id",
+    "account_id",
+    "plan_code",
+    "subscription_status",
+    "current_period_start",
+    "current_period_end"
+  ],
+  "subscription_statuses": [
+    "ACTIVE",
+    "TRIALING",
+    "SUSPENDED",
+    "CANCELED",
+    "EXPIRED"
+  ],
+  "supported_operations": [
+    "start_trial",
+    "activate",
+    "change_plan",
+    "renew",
+    "suspend",
+    "resume",
+    "cancel",
+    "check_feature",
+    "check_limit",
+    "check_feature_and_limit"
+  ],
+  "usage_counters": [
+    "current_users",
+    "current_tenants",
+    "current_api_requests",
+    "current_exports",
+    "current_accountant_firms",
+    "current_integrations"
+  ],
+  "decision_model": {
+    "allow_status": "ALLOW",
+    "deny_status": "DENY",
+    "reason_codes": [
+      "ALLOW_SUBSCRIPTION_ACTIVE",
+      "ALLOW_TRIAL_ACTIVE",
+      "ALLOW_SUBSCRIPTION_UPDATED",
+      "DENY_TENANT_REQUIRED",
+      "DENY_ACCOUNT_REQUIRED",
+      "DENY_USER_REQUIRED",
+      "DENY_PLAN_REQUIRED",
+      "DENY_PLAN_UNKNOWN",
+      "DENY_SUBSCRIPTION_SUSPENDED",
+      "DENY_SUBSCRIPTION_CANCELED",
+      "DENY_SUBSCRIPTION_EXPIRED",
+      "DENY_TRIAL_EXPIRED",
+      "DENY_INVALID_OPERATION"
+    ]
+  },
+  "billing_readiness": {
+    "real_payment_enabled": false,
+    "billing_simulation_enabled": true,
+    "requires_financial_approval_before_real_payment": true
+  }
+}

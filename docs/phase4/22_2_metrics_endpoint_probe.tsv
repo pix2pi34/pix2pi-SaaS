@@ -1,0 +1,11 @@
+probe_name	category	service_hint	host	port	path	purpose	result	status_code	reachable	body_policy	note
+prometheus_ready	metrics_core	prometheus	127.0.0.1	9090	/-/ready	readiness	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+prometheus_healthy	metrics_core	prometheus	127.0.0.1	9090	/-/healthy	health	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+prometheus_targets_api	metrics_core	prometheus	127.0.0.1	9090	/api/v1/targets	target_metadata	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+node_exporter_metrics	host_metrics	node_exporter	127.0.0.1	9100	/metrics	metrics_body_not_printed	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+cadvisor_health	container_metrics	cadvisor	127.0.0.1	8080	/healthz	health	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+cadvisor_metrics	container_metrics	cadvisor	127.0.0.1	8080	/metrics	metrics_body_not_printed	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+nats_healthz	event_bus_metrics	nats	127.0.0.1	8222	/healthz	health	REVIEW	000	NO	body_not_printed	metadata_only
+nats_varz	event_bus_metrics	nats	127.0.0.1	8222	/varz	metadata_body_not_printed	REVIEW	000	NO	body_not_printed	metadata_only
+api_gateway_health	service_health_scrape_candidate	api_gateway	127.0.0.1	9010	/health	health	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+identity_health	service_health_scrape_candidate	identity	127.0.0.1	9001	/health	health	REVIEW	000	NO	body_not_printed	metadata_only

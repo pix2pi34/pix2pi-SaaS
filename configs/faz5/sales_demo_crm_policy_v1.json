@@ -1,0 +1,150 @@
+{
+  "catalog_code": "pix2pi_sales_demo_crm_policy_v1",
+  "phase": "FAZ_5",
+  "step": "5-8",
+  "depends_on": [
+    "pix2pi_packages_pricing_v1",
+    "pix2pi_entitlement_matrix_v1",
+    "pix2pi_subscription_billing_policy_v1",
+    "pix2pi_tenant_lifecycle_policy_v1",
+    "pix2pi_legal_compliance_policy_v1",
+    "pix2pi_support_sla_incident_policy_v1"
+  ],
+  "lead_states": [
+    "lead_created",
+    "lead_qualified",
+    "demo_scheduled",
+    "proposal_sent",
+    "negotiation",
+    "won",
+    "lost"
+  ],
+  "lead_sources": [
+    "web_form",
+    "phone_whatsapp",
+    "referral",
+    "pilot_business",
+    "accountant_referral",
+    "field_sales"
+  ],
+  "qualification_fields": [
+    "business_type",
+    "branch_count",
+    "user_count",
+    "pos_need",
+    "erp_need",
+    "accountant_need",
+    "package_potential"
+  ],
+  "demo_flow": {
+    "default_package": "demo",
+    "trial_days": 14,
+    "max_users": 2,
+    "live_financial_operation": false,
+    "api_access": "disabled",
+    "export_access": "disabled",
+    "demo_dataset_allowed": true,
+    "expiry_action": "convert_to_paid_or_restrict_access",
+    "conversion_targets": [
+      "starter",
+      "pro",
+      "enterprise",
+      "accountant"
+    ]
+  },
+  "proposal_flow": {
+    "proposal_states": [
+      "draft",
+      "sent",
+      "viewed",
+      "negotiation",
+      "accepted",
+      "rejected",
+      "expired"
+    ],
+    "default_validity_days": {
+      "starter": 7,
+      "pro": 7,
+      "enterprise": 15,
+      "accountant": 15
+    },
+    "required_fields": [
+      "package_code",
+      "price",
+      "currency",
+      "tax_note",
+      "valid_until",
+      "scope"
+    ],
+    "discount_types": [
+      "annual_payment_discount",
+      "pilot_customer_discount",
+      "enterprise_contract_discount",
+      "accountant_multi_company_discount"
+    ]
+  },
+  "sales_close_flow": {
+    "required_steps": [
+      "package_selection",
+      "legal_acceptance",
+      "first_payment_or_manual_approval",
+      "tenant_activation",
+      "onboarding_start",
+      "support_channel_assignment"
+    ],
+    "activation_dependencies": [
+      "package_code",
+      "subscription_state",
+      "entitlement_profile",
+      "tenant_owner",
+      "first_user"
+    ],
+    "handoff_targets": [
+      "tenant_lifecycle",
+      "subscription_billing",
+      "support_sla",
+      "revenue_metrics"
+    ]
+  },
+  "won_reasons": [
+    "price_fit",
+    "feature_fit",
+    "local_erp_need",
+    "pos_erp_unified_need",
+    "accountant_workflow_need",
+    "enterprise_custom_need"
+  ],
+  "lost_reasons": [
+    "price",
+    "missing_feature",
+    "timing",
+    "competitor",
+    "customer_cancelled",
+    "not_fit"
+  ],
+  "sales_handoff_checklist": [
+    "customer_identity",
+    "selected_package",
+    "billing_cycle",
+    "payment_status",
+    "tenant_owner",
+    "first_user",
+    "onboarding_need",
+    "support_level",
+    "legal_acceptance_status"
+  ],
+  "out_of_scope": [
+    "real_crm_app_setup",
+    "runtime_sales_pipeline_dashboard",
+    "runtime_demo_tenant_automation",
+    "proposal_pdf_generation",
+    "electronic_signature_integration",
+    "payment_link_generation",
+    "lead_form_backend_integration"
+  ],
+  "seal": {
+    "FAZ_5_8_SALES_DEMO_CRM_STATUS": "PASS",
+    "FAZ_5_8_SALES_DEMO_CRM_SEAL_STATUS": "SEALED",
+    "FAZ_5_9_READY": "YES"
+  }
+}

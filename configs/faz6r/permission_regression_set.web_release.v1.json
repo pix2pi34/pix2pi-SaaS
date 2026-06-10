@@ -1,0 +1,111 @@
+{
+  "version": "web_release.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_22_5",
+  "status": "dry_run_only_no_permission_mutation",
+  "checks": [
+    {
+      "permission_check_id": "perm-auth-session-cross-tenant-deny",
+      "surface": "auth_login_session",
+      "role": "OPERATOR",
+      "route_or_action": "session_tenant_context",
+      "expected_decision": "DENY_CROSS_TENANT",
+      "api_guard_status": "REQUIRED",
+      "ui_guard_status": "REQUIRED",
+      "tenant_scope_status": "REQUIRED",
+      "negative_case_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "permission_check_id": "perm-panel-nav-role-route-matrix",
+      "surface": "tenant_panel_navigation",
+      "role": "READONLY",
+      "route_or_action": "admin_navigation_entry",
+      "expected_decision": "DENY",
+      "api_guard_status": "REQUIRED",
+      "ui_guard_status": "REQUIRED",
+      "tenant_scope_status": "REQUIRED",
+      "negative_case_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "permission_check_id": "perm-user-role-management-super-admin-boundary",
+      "surface": "user_role_management",
+      "role": "TENANT_ADMIN",
+      "route_or_action": "grant_super_admin",
+      "expected_decision": "DENY",
+      "api_guard_status": "REQUIRED",
+      "ui_guard_status": "REQUIRED",
+      "tenant_scope_status": "REQUIRED",
+      "negative_case_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "permission_check_id": "perm-approval-inbox-action-deny",
+      "surface": "approval_inbox_actions",
+      "role": "OPERATOR",
+      "route_or_action": "approve_financial_action",
+      "expected_decision": "REQUIRES_APPROVAL_OR_DENY",
+      "api_guard_status": "REQUIRED",
+      "ui_guard_status": "REQUIRED",
+      "tenant_scope_status": "REQUIRED",
+      "negative_case_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "permission_check_id": "perm-reporting-export-mask-or-deny",
+      "surface": "reporting_export_actions",
+      "role": "READONLY",
+      "route_or_action": "export_financial_report",
+      "expected_decision": "MASK_OR_DENY",
+      "api_guard_status": "REQUIRED",
+      "ui_guard_status": "REQUIRED",
+      "tenant_scope_status": "REQUIRED",
+      "negative_case_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "permission_check_id": "perm-accountant-portal-assigned-tenant-only",
+      "surface": "accountant_portal_access",
+      "role": "ACCOUNTANT",
+      "route_or_action": "view_assigned_company",
+      "expected_decision": "ALLOW_ASSIGNED_DENY_UNASSIGNED",
+      "api_guard_status": "REQUIRED",
+      "ui_guard_status": "REQUIRED",
+      "tenant_scope_status": "REQUIRED",
+      "negative_case_status": "REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "permission_check_id": "perm-super-admin-audit-boundary",
+      "surface": "super_admin_boundary",
+      "role": "SUPER_ADMIN",
+      "route_or_action": "tenant_impersonation_or_override",
+      "expected_decision": "REQUIRES_AUDIT_AND_APPROVAL",
+      "api_guard_status": "REQUIRED",
+      "ui_guard_status": "REQUIRED",
+      "tenant_scope_status": "REQUIRED",
+      "negative_case_status": "REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_22_6",
+    "name": "Release checklist UI",
+    "runtime_mutation_allowed_now": false
+  }
+}

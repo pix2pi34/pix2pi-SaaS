@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 2-7.7.4",
+  "runtime": "tenant_safe_plugin_sandbox",
+  "require_tenant": true,
+  "require_enabled_install": true,
+  "require_sandbox_environment": true,
+  "deny_production_by_default": true,
+  "enable_permission_bridge": true,
+  "namespace_format": "plugin_sandbox:{tenant_id}:{plugin_id}:{install_id}",
+  "guards": [
+    "tenant_required",
+    "install_required",
+    "action_required",
+    "cross_tenant_denied",
+    "enabled_install_required",
+    "environment_match_required",
+    "production_denied",
+    "permission_runtime_required",
+    "permission_bridge_required",
+    "tenant_context_match_helper"
+  ],
+  "bridges": [
+    "plugin_lifecycle_status",
+    "permission_enforcement"
+  ],
+  "next_ready": "FAZ_2_7_7_5_VERSION_COMPATIBILITY_RUNTIME_CHECK"
+}

@@ -1,0 +1,166 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "314",
+  "code": "FAZ_6_22_6",
+  "name": "Release checklist UI",
+  "depends_on": [
+    "FAZ_6_22_5"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "ui_deploy_allowed": false,
+  "frontend_deploy_allowed": false,
+  "build_publish_allowed": false,
+  "route_mutation_allowed": false,
+  "checklist_state_mutation_allowed": false,
+  "approval_state_mutation_allowed": false,
+  "cdn_invalidation_allowed": false,
+  "required_controls": [
+    "permission_regression_dependency_gate",
+    "release_gate_visibility_policy",
+    "checklist_section_model",
+    "blocker_status_policy",
+    "dependency_evidence_display_policy",
+    "approval_state_display_policy",
+    "rollback_readiness_display_policy",
+    "permission_safe_visibility_policy",
+    "tenant_safe_release_visibility_policy",
+    "audit_evidence_link_policy",
+    "dry_run_release_checklist_ui_runtime",
+    "production_mutation_closed_policy",
+    "manual_approval_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "ui_surface_policy": {
+    "enabled": true,
+    "mode": "read_only_release_readiness_ui",
+    "block_if_checklist_can_mutate": true,
+    "block_if_approval_can_mutate": true,
+    "block_if_missing_permission_guard": true,
+    "block_if_missing_tenant_guard": true,
+    "block_if_missing_audit_evidence_link": true
+  },
+  "checklist_sections": [
+    {
+      "section": "security_edge_sre_ops",
+      "risk_level": "critical",
+      "dependency_evidence_required": true,
+      "blocker_status_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "section": "dr_cost_tuning",
+      "risk_level": "high",
+      "dependency_evidence_required": true,
+      "blocker_status_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "section": "db_scale_readiness",
+      "risk_level": "high",
+      "dependency_evidence_required": true,
+      "blocker_status_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "section": "web_accessibility_performance_visual",
+      "risk_level": "high",
+      "dependency_evidence_required": true,
+      "blocker_status_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "section": "permission_release_ui",
+      "risk_level": "critical",
+      "dependency_evidence_required": true,
+      "blocker_status_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "section": "release_build_readiness",
+      "risk_level": "critical",
+      "dependency_evidence_required": true,
+      "blocker_status_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "visibility_policy": {
+    "enabled": true,
+    "requires_authenticated_user": true,
+    "requires_tenant_scope": true,
+    "requires_release_role": true,
+    "allowed_roles": [
+      "TENANT_ADMIN",
+      "OWNER",
+      "SUPER_ADMIN"
+    ],
+    "readonly_roles": [
+      "MANAGER",
+      "READONLY"
+    ],
+    "block_cross_tenant_evidence": true,
+    "mask_sensitive_evidence_paths": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "ui_deploy_execute",
+      "frontend_deploy_execute",
+      "build_publish_execute",
+      "route_mutation_execute",
+      "checklist_state_mutation_execute",
+      "approval_state_mutation_execute",
+      "cdn_invalidation_execute"
+    ],
+    "approval_roles": [
+      "release_owner",
+      "frontend_owner",
+      "security_owner",
+      "sre_owner"
+    ]
+  },
+  "production_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "ui_deploy_allowed": false,
+    "frontend_deploy_allowed": false,
+    "build_publish_allowed": false,
+    "route_mutation_allowed": false,
+    "checklist_state_mutation_allowed": false,
+    "approval_state_mutation_allowed": false,
+    "cdn_invalidation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "ui_check_id",
+      "section",
+      "dependency_gate_status",
+      "blocker_status",
+      "approval_display_status",
+      "rollback_display_status",
+      "permission_guard_status",
+      "tenant_guard_status",
+      "audit_link_status",
+      "risk_level",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_permission_regression_dependency_missing": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_ui_or_frontend_deploy_allowed": true,
+    "block_if_checklist_or_approval_mutation_allowed": true,
+    "block_if_build_publish_allowed": true,
+    "block_if_missing_permission_guard": true,
+    "block_if_missing_tenant_guard": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_22_6_RELEASE_CHECKLIST_UI_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

@@ -1,0 +1,127 @@
+:root {
+  --pix2pi-bg: #f5f7fb;
+  --pix2pi-card: #ffffff;
+  --pix2pi-text: #172033;
+  --pix2pi-muted: #657089;
+  --pix2pi-border: #dfe5f1;
+  --pix2pi-shadow: 0 18px 45px rgba(23, 32, 51, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--pix2pi-bg);
+  color: var(--pix2pi-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.pix2pi-panel {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+}
+
+.pix2pi-sidebar {
+  padding: 28px;
+  background: #101827;
+  color: #fff;
+}
+
+.pix2pi-sidebar strong {
+  display: block;
+  font-size: 22px;
+}
+
+.pix2pi-sidebar span {
+  display: block;
+  margin-top: 6px;
+  color: #aab5ca;
+}
+
+.pix2pi-sidebar nav {
+  display: grid;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.pix2pi-sidebar a {
+  color: #e7edf8;
+  text-decoration: none;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+}
+
+.pix2pi-workspace {
+  padding: 32px;
+}
+
+.pix2pi-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.pix2pi-topbar p {
+  margin: 0;
+  color: var(--pix2pi-muted);
+  font-weight: 700;
+}
+
+.pix2pi-topbar h1 {
+  margin: 6px 0 0;
+  font-size: 34px;
+}
+
+.pix2pi-tenant-pill {
+  padding: 12px 16px;
+  border: 1px solid var(--pix2pi-border);
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: var(--pix2pi-shadow);
+  font-weight: 700;
+}
+
+.pix2pi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.pix2pi-card {
+  background: var(--pix2pi-card);
+  border: 1px solid var(--pix2pi-border);
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: var(--pix2pi-shadow);
+}
+
+.pix2pi-card p {
+  margin: 0;
+  color: var(--pix2pi-muted);
+}
+
+.pix2pi-card h2 {
+  margin: 10px 0;
+  font-size: 22px;
+}
+
+.pix2pi-card span {
+  font-size: 12px;
+  color: var(--pix2pi-muted);
+}
+
+@media (max-width: 980px) {
+  .pix2pi-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .pix2pi-grid {
+    grid-template-columns: 1fr;
+  }
+}

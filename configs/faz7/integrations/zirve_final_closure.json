@@ -1,0 +1,63 @@
+{
+  "module_code": "FAZ_7_8Z_7",
+  "module_name": "Zirve Connector Final Closure / Provider Live Handoff Gate",
+  "provider_id": "zirve",
+  "provider_display_name": "Zirve",
+  "mode": "CONNECTOR_FINAL_CLOSURE_DRY_RUN_MODULE_ONLY",
+  "final_status": "PASS",
+  "zirve_connector_module_final_seal_status": "SEALED",
+  "zirve_dry_run_module_status": "SEALED",
+  "evidence_policy": "ALL_DRY_RUN_MODULES_TESTED_AND_AUDITED",
+  "real_ops_policy": "REAL_PROVIDER_API_FILE_DELIVERY_ERP_WRITE_REMAIN_CLOSED",
+  "required_modules": [
+    {
+      "step_code": "7-8Z",
+      "module_code": "FAZ_7_8Z",
+      "status": "PASS"
+    },
+    {
+      "step_code": "7-8Z.2",
+      "module_code": "FAZ_7_8Z_2",
+      "status": "PASS"
+    },
+    {
+      "step_code": "7-8Z.3",
+      "module_code": "FAZ_7_8Z_3",
+      "status": "PASS"
+    },
+    {
+      "step_code": "7-8Z.4",
+      "module_code": "FAZ_7_8Z_4",
+      "status": "PASS"
+    },
+    {
+      "step_code": "7-8Z.5",
+      "module_code": "FAZ_7_8Z_5",
+      "status": "PASS"
+    },
+    {
+      "step_code": "7-8Z.6",
+      "module_code": "FAZ_7_8Z_6",
+      "status": "PASS"
+    }
+  ],
+  "provider_live_handoff": {
+    "zirve_provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+    "zirve_provider_live_module_status": "NOT_STARTED",
+    "zirve_provider_live_real_operation_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE"
+  },
+  "real_operation_policy": {
+    "real_zirve_api": false,
+    "real_file_delivery": false,
+    "real_delivery_channel": false,
+    "real_erp_write": false,
+    "real_operator_provider_action": false,
+    "external_delivery_attempted": false,
+    "provider_side_effect_attempted": false
+  },
+  "handoff": {
+    "faz_7_8_next_provider_module_ready": "YES",
+    "faz_7_8_integration_family_review_ready": "YES",
+    "faz_7_9_hold_status": "HOLD_UNTIL_INTEGRATION_FAMILY_DONE"
+  }
+}

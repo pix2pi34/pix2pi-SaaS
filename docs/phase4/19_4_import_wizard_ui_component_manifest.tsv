@@ -1,0 +1,16 @@
+component_id	component_name	purpose	required	status
+import_wizard_shell	ImportWizardShell	wizard layout and state boundary	YES	contract_only
+import_step_indicator	ImportStepIndicator	step progress indicator	YES	contract_only
+import_template_selector	ImportTemplateSelector	template selection	YES	contract_only
+import_file_dropzone	ImportFileDropzone	file upload placeholder	YES	contract_only
+import_file_summary	ImportFileSummary	file metadata display	YES	contract_only
+import_column_mapper	ImportColumnMapper	column mapping UI	YES	contract_only
+import_validation_panel	ImportValidationPanel	validation result summary	YES	contract_only
+import_preview_table	ImportPreviewTable	staged row preview	YES	contract_only
+import_error_download_panel	ImportErrorDownloadPanel	error export/download placeholder	YES	contract_only
+import_commit_plan_panel	ImportCommitPlanPanel	controlled commit plan	YES	contract_only
+import_history_link_panel	ImportHistoryLinkPanel	import history navigation	YES	contract_only
+import_flow_link_panel	ImportFlowLinkPanel	runtime flow detail link	YES	contract_only
+import_empty_state	ImportEmptyState	empty state	YES	contract_only
+import_loading_state	ImportLoadingState	loading state	YES	contract_only
+import_error_state	ImportErrorState	error state	YES	contract_only

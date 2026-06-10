@@ -1,0 +1,57 @@
+{
+  "phase": "FAZ_3_10_5_2_COMPANY_PERMISSION_ENFORCEMENT",
+  "runtime": "company_permission_enforcement",
+  "runtime_enabled": true,
+  "require_tenant_scope": true,
+  "require_company_scope": true,
+  "require_assignment_scope": true,
+  "require_resource_permission": true,
+  "require_role_permission_map": true,
+  "require_explicit_grant": true,
+  "require_audit_subject": true,
+  "allow_super_admin_override": false,
+  "required_permissions": [
+    "VIEW_FIRM",
+    "VIEW_LEDGER",
+    "EXPORT_EXCEL",
+    "EXPORT_PDF",
+    "EXPORT_TDHP",
+    "MANAGE_ASSIGNMENT",
+    "VIEW_SUBSCRIPTION"
+  ],
+  "allowed_roles": [
+    "ACCOUNTANT_OWNER",
+    "ACCOUNTANT_STAFF",
+    "ACCOUNTANT_READ_ONLY",
+    "SUPER_ADMIN"
+  ],
+  "allowed_resource_types": [
+    "FIRM",
+    "LEDGER",
+    "EXPORT",
+    "ASSIGNMENT",
+    "SUBSCRIPTION"
+  ],
+  "guard_policy": {
+    "tenant_id_required": true,
+    "correlation_id_required": true,
+    "request_id_required": true,
+    "idempotency_key_required": true,
+    "accountant_firm_id_required": true,
+    "accountant_user_id_required": true,
+    "assignment_id_required": true,
+    "target_firm_tenant_id_required": true,
+    "target_company_id_required": true,
+    "resource_type_required": true,
+    "required_permission_required": true,
+    "audit_subject_required": true,
+    "grant_tenant_scope_required": true,
+    "grant_company_scope_required": true,
+    "grant_assignment_scope_required": true,
+    "role_permission_map_required": true,
+    "resource_permission_map_required": true,
+    "explicit_grant_required": true,
+    "bulk_permission_enforcement_supported": true
+  },
+  "next_gate": "FAZ_3_10_5_3_EXCEL_PDF_TDHP_EXPORT_RUNTIME"
+}

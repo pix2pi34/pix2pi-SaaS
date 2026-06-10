@@ -1,0 +1,13 @@
+version: v1
+registry_rules:
+  health_ttl_seconds: 60
+  stale_after_seconds: 180
+  max_instances_per_service: 20
+  tenant_visibility_mode: tenant_scoped
+
+mission_control_rules:
+  allow_restart: true
+  allow_isolate: true
+  allow_maintenance: true
+  incident_notes_enabled: true
+  default_view: service_status

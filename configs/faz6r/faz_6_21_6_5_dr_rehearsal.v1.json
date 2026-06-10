@@ -1,0 +1,132 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "292",
+  "code": "FAZ_6_21_6_5",
+  "name": "DR rehearsal",
+  "depends_on": [
+    "FAZ_6_21_6_4"
+  ],
+  "runtime_mutation_allowed": false,
+  "live_failover_allowed": false,
+  "dns_mutation_allowed": false,
+  "db_promotion_allowed": false,
+  "queue_mutation_allowed": false,
+  "storage_mutation_allowed": false,
+  "compute_mutation_allowed": false,
+  "customer_notification_allowed": false,
+  "required_controls": [
+    "operational_communication_dependency_gate",
+    "rehearsal_scope_model",
+    "rehearsal_step_catalog",
+    "preflight_check_policy",
+    "rto_rpo_measurement_policy",
+    "backup_restore_readiness_check",
+    "regional_outage_scenario_link",
+    "communication_plan_link",
+    "rollback_readiness_check",
+    "no_live_failover_policy",
+    "no_provider_mutation_policy",
+    "dry_run_rehearsal_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "rehearsal_scope": {
+    "mode": "dry_run_only",
+    "surfaces": [
+      "edge_dns",
+      "api_gateway",
+      "auth",
+      "panel",
+      "pos",
+      "database_primary",
+      "database_replica",
+      "event_queue",
+      "cache",
+      "file_storage",
+      "observability",
+      "operational_communication"
+    ],
+    "excluded_live_actions": [
+      "dns_failover_execute",
+      "db_promotion_execute",
+      "queue_failover_execute",
+      "storage_failover_execute",
+      "compute_failover_execute",
+      "customer_notification_send",
+      "status_page_publish"
+    ]
+  },
+  "preflight_check_policy": {
+    "enabled": true,
+    "required_checks": [
+      "dependency_evidence_pass",
+      "scenario_catalog_ready",
+      "communication_plan_ready",
+      "backup_readiness_recorded",
+      "rollback_plan_recorded",
+      "manual_approval_model_present",
+      "provider_mutation_closed"
+    ]
+  },
+  "rto_rpo_measurement_policy": {
+    "enabled": true,
+    "dry_run_measurement_only": true,
+    "target_rto_minutes": 60,
+    "target_rpo_minutes": 15,
+    "p0_target_rto_minutes": 30,
+    "p0_target_rpo_minutes": 5
+  },
+  "backup_restore_readiness_check": {
+    "enabled": true,
+    "mode": "evidence_check_only",
+    "restore_execution_allowed": false,
+    "required_records": [
+      "latest_backup_reference",
+      "restore_procedure_reference",
+      "rollback_reference"
+    ]
+  },
+  "linked_artifacts": {
+    "regional_outage_scenario": "configs/faz6r/regional_outage_scenario.dr_ops.v1.json",
+    "operational_communication_plan": "configs/faz6r/operational_communication_plan.dr_ops.v1.json",
+    "previous_evidence": "docs/faz6r/evidence/FAZ_6_21_6_4_OPERASYONEL_ILETISIM_PLANI_REAL_IMPLEMENTATION_AUDIT.md"
+  },
+  "provider_mutation_closed_policy": {
+    "enabled": true,
+    "dns_mutation_allowed": false,
+    "db_promotion_allowed": false,
+    "queue_mutation_allowed": false,
+    "storage_mutation_allowed": false,
+    "compute_mutation_allowed": false,
+    "customer_notification_allowed": false,
+    "status_page_publish_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "rehearsal_id",
+      "scenario_id",
+      "surface",
+      "preflight_status",
+      "rto_target_minutes",
+      "rpo_target_minutes",
+      "measured_rto_status",
+      "measured_rpo_status",
+      "mutation_allowed",
+      "decision",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_live_failover_allowed": true,
+    "block_if_provider_mutation_allowed": true,
+    "block_if_missing_preflight": true,
+    "block_if_missing_rto_rpo": true,
+    "block_if_missing_linked_artifacts": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_6_5_DR_REHEARSAL_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

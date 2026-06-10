@@ -1,0 +1,130 @@
+{
+  "mapping_id": "product_stock_import_mapping.controlled_pilot.v1",
+  "mapping_status": "READY",
+  "import_mode": "DRY_RUN",
+  "commit_allowed": false,
+  "tenant_guard_required": true,
+  "batch_guard_required": true,
+  "target_staging_tables": [
+    "import_staging_products",
+    "import_staging_stock_entries"
+  ],
+  "product_fields": [
+    {
+      "source": "product_code",
+      "target": "product_code",
+      "required": true,
+      "type": "string",
+      "max_length": 64
+    },
+    {
+      "source": "product_name",
+      "target": "product_name",
+      "required": true,
+      "type": "string",
+      "max_length": 255
+    },
+    {
+      "source": "product_type",
+      "target": "product_type",
+      "required": true,
+      "type": "enum",
+      "allowed_values": ["PHYSICAL", "SERVICE", "BUNDLE", "RAW_MATERIAL"]
+    },
+    {
+      "source": "unit_code",
+      "target": "unit_code",
+      "required": true,
+      "type": "string",
+      "allowed_values": ["ADET", "KG", "LT", "MT", "PAKET", "KOLI", "SAAT"]
+    },
+    {
+      "source": "barcode",
+      "target": "barcode",
+      "required": false,
+      "type": "string",
+      "max_length": 64
+    },
+    {
+      "source": "sku",
+      "target": "sku",
+      "required": false,
+      "type": "string",
+      "max_length": 64
+    },
+    {
+      "source": "tax_rate",
+      "target": "tax_rate",
+      "required": true,
+      "type": "number",
+      "min": 0,
+      "max": 100
+    },
+    {
+      "source": "sales_price",
+      "target": "sales_price",
+      "required": false,
+      "type": "number",
+      "min": 0
+    },
+    {
+      "source": "purchase_price",
+      "target": "purchase_price",
+      "required": false,
+      "type": "number",
+      "min": 0
+    },
+    {
+      "source": "track_stock",
+      "target": "track_stock",
+      "required": true,
+      "type": "boolean"
+    }
+  ],
+  "stock_fields": [
+    {
+      "source": "product_code",
+      "target": "product_code",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "source": "warehouse_code",
+      "target": "warehouse_code",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "source": "quantity",
+      "target": "quantity",
+      "required": true,
+      "type": "number",
+      "min": 0
+    },
+    {
+      "source": "reserved_quantity",
+      "target": "reserved_quantity",
+      "required": true,
+      "type": "number",
+      "min": 0
+    },
+    {
+      "source": "min_stock_quantity",
+      "target": "min_stock_quantity",
+      "required": true,
+      "type": "number",
+      "min": 0
+    }
+  ],
+  "guards": {
+    "duplicate_product_code_forbidden": true,
+    "duplicate_barcode_forbidden": true,
+    "duplicate_sku_forbidden": true,
+    "negative_stock_forbidden": true,
+    "unknown_stock_product_forbidden": true,
+    "dry_run_required": true,
+    "real_commit_forbidden": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+}

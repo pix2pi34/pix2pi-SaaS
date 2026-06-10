@@ -1,0 +1,20 @@
+gate	status	note
+previous_21_1	PASS	role matrix prerequisite
+contract	PASS	inputs=17 outputs=15 decisions=11
+middleware_manifest	PASS	middleware_count=8
+decision_manifest	PASS	decision_count=11
+surface_manifest	PASS	surface_count=10
+tenant_safety	PASS	tenant_refs=44 deny_refs=46
+boundary	PASS	boundary_refs=67
+audit_ready	PASS	audit_refs=26
+no_apply	PASS	contract only
+secret_safety	PASS	secret_hits=0
+db_mutation	NO	contract only
+db_apply_executed	NO	contract only
+migration_created	NO	contract only
+permission_guard_executed	NO	contract only
+rbac_enforcement_executed	NO	contract only
+audit_log_write_executed	NO	contract only
+panel_route_deployed	NO	contract only
+api_route_deployed	NO	contract only
+query_text_printed	NO	secret-safe report

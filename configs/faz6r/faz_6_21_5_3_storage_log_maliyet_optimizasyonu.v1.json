@@ -1,0 +1,216 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "295",
+  "code": "FAZ_6_21_5_3",
+  "name": "Storage / log maliyet optimizasyonu",
+  "depends_on": [
+    "FAZ_6_21_5_2"
+  ],
+  "runtime_mutation_allowed": false,
+  "provider_mutation_allowed": false,
+  "storage_delete_allowed": false,
+  "log_delete_allowed": false,
+  "backup_delete_allowed": false,
+  "audit_delete_allowed": false,
+  "evidence_delete_allowed": false,
+  "retention_delete_allowed": false,
+  "required_controls": [
+    "db_cost_dependency_gate",
+    "storage_inventory_model",
+    "log_inventory_model",
+    "retention_tier_policy",
+    "log_volume_review_policy",
+    "backup_storage_review_policy",
+    "artifact_storage_review_policy",
+    "evidence_retention_guard",
+    "audit_log_retention_guard",
+    "tenant_data_retention_guard",
+    "compression_archive_policy",
+    "lifecycle_transition_policy",
+    "production_delete_closed_policy",
+    "manual_approval_policy",
+    "dry_run_cost_runtime",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "storage_classes": [
+    {
+      "class": "audit_logs",
+      "examples": [
+        "tenant_audit",
+        "security_audit",
+        "payment_audit"
+      ],
+      "delete_allowed": false,
+      "retention_guard_required": true
+    },
+    {
+      "class": "runtime_logs",
+      "examples": [
+        "gateway_logs",
+        "service_logs",
+        "worker_logs"
+      ],
+      "delete_allowed": false,
+      "retention_guard_required": true
+    },
+    {
+      "class": "evidence_artifacts",
+      "examples": [
+        "faz_evidence",
+        "audit_outputs",
+        "release_evidence"
+      ],
+      "delete_allowed": false,
+      "retention_guard_required": true
+    },
+    {
+      "class": "backup_archive",
+      "examples": [
+        "db_backups",
+        "wal_archive",
+        "rollback_files"
+      ],
+      "delete_allowed": false,
+      "retention_guard_required": true
+    },
+    {
+      "class": "static_assets",
+      "examples": [
+        "web_assets",
+        "generated_html",
+        "public_assets"
+      ],
+      "delete_allowed": "review_only",
+      "retention_guard_required": false
+    }
+  ],
+  "signals": [
+    "log_volume_growth_rate",
+    "audit_log_growth_rate",
+    "backup_storage_growth_rate",
+    "wal_archive_growth_rate",
+    "evidence_artifact_growth_rate",
+    "static_asset_growth_rate",
+    "large_file_candidates",
+    "duplicate_artifact_candidates",
+    "compression_candidate_ratio",
+    "lifecycle_transition_candidates",
+    "tenant_storage_distribution"
+  ],
+  "retention_tier_policy": {
+    "enabled": true,
+    "tiers": [
+      {
+        "tier": "hot",
+        "purpose": "recent_runtime_logs",
+        "review_only": true
+      },
+      {
+        "tier": "warm",
+        "purpose": "recent_audit_and_evidence",
+        "review_only": true
+      },
+      {
+        "tier": "cold",
+        "purpose": "old_backups_and_archives",
+        "review_only": true
+      }
+    ],
+    "delete_requires_explicit_approval": true,
+    "audit_evidence_never_auto_delete": true
+  },
+  "guards": {
+    "evidence_retention_guard": {
+      "enabled": true,
+      "auto_delete_allowed": false,
+      "requires_owner_approval": true
+    },
+    "audit_log_retention_guard": {
+      "enabled": true,
+      "auto_delete_allowed": false,
+      "requires_security_approval": true
+    },
+    "tenant_data_retention_guard": {
+      "enabled": true,
+      "auto_delete_allowed": false,
+      "requires_tenant_scope_validation": true
+    },
+    "backup_storage_guard": {
+      "enabled": true,
+      "auto_delete_allowed": false,
+      "requires_restore_chain_validation": true
+    }
+  },
+  "recommendation_policy": {
+    "log_volume_review_enabled": true,
+    "backup_storage_review_enabled": true,
+    "artifact_storage_review_enabled": true,
+    "compression_archive_review_enabled": true,
+    "lifecycle_transition_review_enabled": true,
+    "recommendation_only": true,
+    "minimum_observation_days": 7,
+    "requires_retention_confirmation": true,
+    "requires_tenant_scope_confirmation": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "storage_delete_execute",
+      "log_delete_execute",
+      "backup_delete_execute",
+      "audit_delete_execute",
+      "evidence_delete_execute",
+      "retention_delete_execute",
+      "lifecycle_transition_execute",
+      "compression_archive_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "security_owner",
+      "data_owner"
+    ]
+  },
+  "provider_mutation_closed_policy": {
+    "enabled": true,
+    "provider_mutation_allowed": false,
+    "storage_delete_allowed": false,
+    "log_delete_allowed": false,
+    "backup_delete_allowed": false,
+    "audit_delete_allowed": false,
+    "evidence_delete_allowed": false,
+    "retention_delete_allowed": false,
+    "lifecycle_transition_allowed": false,
+    "compression_archive_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "recommendation_id",
+      "storage_surface",
+      "storage_class",
+      "current_cost_driver",
+      "recommended_action",
+      "estimated_savings_level",
+      "risk_level",
+      "retention_guard_status",
+      "tenant_scope_guard_status",
+      "approval_required",
+      "mutation_allowed",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_provider_mutation_allowed": true,
+    "block_if_any_delete_allowed": true,
+    "block_if_missing_retention_guard": true,
+    "block_if_missing_tenant_scope_guard": true,
+    "block_if_missing_manual_approval": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_5_3_STORAGE_LOG_MALIYET_OPTIMIZASYONU_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

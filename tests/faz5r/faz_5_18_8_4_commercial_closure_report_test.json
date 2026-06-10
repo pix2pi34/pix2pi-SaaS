@@ -1,0 +1,40 @@
+{
+  "test_name": "faz_5_18_8_4_commercial_closure_report_test",
+  "phase": "FAZ_5_18_8_4",
+  "expected": {
+    "required_item_count": 8,
+    "required_domain_count": 6,
+    "internal_commercial_closure_ready": true,
+    "priority_1_commercial_block_complete": true,
+    "production_public_launch_allowed": false,
+    "real_customer_commercial_ops_open": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_item_keys": [
+    "compliance_block_complete",
+    "support_ops_block_complete",
+    "commercial_checklist_complete",
+    "legal_checklist_complete",
+    "support_readiness_complete",
+    "priority_1_closure_gate",
+    "production_launch_block",
+    "priority_2_ready_marker"
+  ],
+  "must_have_domains": [
+    "COMPLIANCE",
+    "SUPPORT_OPS",
+    "COMMERCIAL",
+    "LEGAL",
+    "CLOSURE",
+    "NEXT_PRIORITY"
+  ],
+  "must_have_flags": [
+    "internal_ready",
+    "has_evidence",
+    "has_counter_based_audit",
+    "blocks_production_launch",
+    "production_enabled",
+    "real_customer_ops_open"
+  ]
+}

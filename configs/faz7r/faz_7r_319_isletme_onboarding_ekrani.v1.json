@@ -1,0 +1,50 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "319",
+  "name": "İşletme onboarding ekranı",
+  "surface": "merchant_panel",
+  "domain": "panel.pix2pi.com.tr",
+  "path": "/onboarding/",
+  "runtime_path": "/assets/onboarding/onboarding-runtime.js",
+  "depends_on": [
+    "316 - panel.pix2pi.com.tr altyapısı",
+    "317 - Login / tenant seçimi",
+    "318 - Dil Modülü / i18n / Alfabe Altyapısı"
+  ],
+  "backend_contract": {
+    "draft_endpoint": "/api/onboarding/business/draft",
+    "submit_endpoint": "/api/onboarding/business/submit",
+    "method": "POST",
+    "auth": "Bearer JWT",
+    "tenant_context": "pending_tenant_until_bootstrap"
+  },
+  "storage": {
+    "draft_key": "pix2pi.panel.onboarding.draft",
+    "last_step_key": "pix2pi.panel.onboarding.last_step"
+  },
+  "required_fields": [
+    "business_name",
+    "business_type",
+    "tax_number",
+    "tax_office",
+    "city",
+    "district",
+    "owner_name",
+    "owner_email",
+    "default_language"
+  ],
+  "supported_default_languages": ["tr-TR", "ota", "ar", "fa", "en"],
+  "required_capabilities": [
+    "onboarding_app_shell",
+    "business_identity_form",
+    "tax_commercial_registration_form",
+    "address_contact_form",
+    "tenant_default_language_selection",
+    "owner_admin_info",
+    "onboarding_validation_contract",
+    "tenant_bootstrap_payload_contract",
+    "draft_save_continue_later",
+    "onboarding_smoke_test"
+  ],
+  "next_step": "320 - Merchant dashboard"
+}

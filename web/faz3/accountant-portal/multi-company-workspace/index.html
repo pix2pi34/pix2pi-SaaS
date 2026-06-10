@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="tr" data-phase="FAZ_3_12_1" data-screen="MULTI_COMPANY_WORKSPACE">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pix2pi Muhasebeci Portalı — Çok Firmalı Workspace</title>
+  <meta name="description" content="FAZ 3-12.1 Çok firmalı workspace: muhasebeci firma portföyü, yetkili firma listesi, tenant/firma scope, dönem, abonelik, export, audit ve erişim görünümü." />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #ffffff;
+      --text: #0f172a;
+      --soft: #475569;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --ok: #059669;
+      --warn: #d97706;
+      --fail: #dc2626;
+      --info: #2563eb;
+      --violet: #7c3aed;
+      --shadow: 0 20px 60px rgba(15, 23, 42, .15);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(5,150,105,.17), transparent 34rem),
+        radial-gradient(circle at 92% 0%, rgba(124,58,237,.14), transparent 32rem),
+        #f8fafc;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 22px;
+      color: #e5e7eb;
+      background: linear-gradient(180deg, #0f172a, #111827);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #059669, #7c3aed);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 12px 30px rgba(5,150,105,.25);
+    }
+
+    .brand strong { display: block; font-size: 18px; }
+    .brand small { color: #94a3b8; font-size: 12px; }
+
+    .nav-title {
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 11px;
+      margin: 26px 0 10px;
+    }
+
+    .nav-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .nav-item.active {
+      color: white;
+      background: rgba(5,150,105,.15);
+      border: 1px solid rgba(110,231,183,.25);
+    }
+
+    .main { padding: 26px; min-width: 0; }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(226,232,240,.9);
+      background: rgba(255,255,255,.88);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .crumb {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.05;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--soft);
+      white-space: nowrap;
+    }
+
+    .pill.ok { color: var(--ok); border-color: rgba(5,150,105,.25); background: rgba(5,150,105,.08); }
+    .pill.warn { color: var(--warn); border-color: rgba(217,119,6,.25); background: rgba(217,119,6,.08); }
+    .pill.fail { color: var(--fail); border-color: rgba(220,38,38,.25); background: rgba(220,38,38,.08); }
+    .pill.info { color: var(--info); border-color: rgba(37,99,235,.25); background: rgba(37,99,235,.08); }
+
+    .grid { display: grid; gap: 18px; }
+    .kpi-grid { grid-template-columns: repeat(4, minmax(0,1fr)); margin-bottom: 18px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      min-width: 0;
+    }
+
+    .kpi-label { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    .kpi-value { font-size: 28px; font-weight: 900; letter-spacing: -.04em; }
+    .kpi-foot { color: var(--soft); font-size: 12px; margin-top: 8px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 410px;
+      gap: 18px;
+    }
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .panel-title h2 { margin: 0; font-size: 20px; letter-spacing: -.03em; }
+    .panel-title p { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(4, minmax(120px, .42fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 11px 12px;
+      font: inherit;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: rgba(37,99,235,.5);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.1);
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 14px 10px;
+      border-bottom: 1px solid #edf2f7;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    tbody tr { cursor: pointer; transition: background .15s ease; }
+    tbody tr:hover { background: #f8fafc; }
+
+    .main-text { font-weight: 850; letter-spacing: -.02em; }
+    .sub { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+    .status {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 11px;
+      font-weight: 850;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .status.active { color: var(--ok); background: rgba(5,150,105,.09); border-color: rgba(5,150,105,.22); }
+    .status.review { color: var(--warn); background: rgba(217,119,6,.09); border-color: rgba(217,119,6,.22); }
+    .status.blocked { color: var(--fail); background: rgba(220,38,38,.09); border-color: rgba(220,38,38,.22); }
+    .status.trial { color: var(--info); background: rgba(37,99,235,.09); border-color: rgba(37,99,235,.22); }
+
+    .button-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 9px 11px;
+      color: white;
+      background: #0f172a;
+      font-weight: 850;
+      font-size: 12px;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(15,23,42,.14);
+    }
+
+    button.secondary {
+      color: #0f172a;
+      background: #f1f5f9;
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    button.warning { background: #d97706; }
+    button.success { background: #059669; }
+    button.danger { background: #dc2626; }
+    button:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
+
+    .side-stack { display: grid; gap: 18px; align-content: start; }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 13px;
+    }
+
+    .detail-row span:first-child { color: var(--muted); }
+    .detail-row strong { text-align: right; word-break: break-word; }
+
+    .notice {
+      border-radius: 16px;
+      padding: 13px;
+      font-size: 13px;
+      line-height: 1.5;
+      border: 1px solid rgba(5,150,105,.24);
+      color: #065f46;
+      background: rgba(5,150,105,.08);
+    }
+
+    .ops-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .op-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px;
+      background: #f8fafc;
+    }
+
+    .op-card strong { display: block; font-size: 13px; margin-bottom: 6px; }
+    .op-card small { display: block; color: var(--muted); font-size: 12px; line-height: 1.45; }
+
+    .timeline { display: grid; gap: 10px; }
+
+    .event {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+
+    .event strong { display: block; font-size: 13px; margin-bottom: 4px; }
+    .event small { color: var(--muted); line-height: 1.45; }
+
+    @media (max-width: 1180px) {
+      .shell { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .layout { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 780px) {
+      .main { padding: 14px; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .filters { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      table { min-width: 1120px; }
+      .table-wrap { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Accountant portal navigation">
+      <div class="brand">
+        <div class="logo">P2</div>
+        <div>
+          <strong>Pix2pi Muhasebeci</strong>
+          <small>Multi Company Workspace</small>
+        </div>
+      </div>
+
+      <div class="nav-title">FAZ 3-12 Portal</div>
+      <div class="nav-item"><span>Export Workspace</span><span>167</span></div>
+      <div class="nav-item active"><span>Çok Firmalı Workspace</span><span>168</span></div>
+      <div class="nav-item"><span>Firma Değiştirici</span><span>169</span></div>
+      <div class="nav-item"><span>Firma Yetki Ekranı</span><span>170</span></div>
+      <div class="nav-item"><span>Abonelik Durumu</span><span>171</span></div>
+      <div class="nav-item"><span>Portal Audit</span><span>172</span></div>
+      <div class="nav-item"><span>Portal Testleri</span><span>173</span></div>
+
+      <div class="nav-title">Scope</div>
+      <div class="nav-item"><span>Yetkili Firma</span><span>12</span></div>
+      <div class="nav-item"><span>Seçili Firma</span><span>1</span></div>
+      <div class="nav-item"><span>Cross Tenant</span><span>CLOSED</span></div>
+    </aside>
+
+    <main class="main">
+      <section class="topbar">
+        <div>
+          <div class="crumb">FAZ 3-R › Öncelik 3 › 168 / FAZ 3-12.1</div>
+          <h1>Çok Firmalı Workspace</h1>
+        </div>
+        <div class="top-actions">
+          <span class="pill info" data-tenant-guard="required">Tenant Scope: isolated</span>
+          <span class="pill info" data-accountant-guard="required">Accountant: acc_demo_001</span>
+          <span class="pill ok" data-authorized-firm-count="12">Authorized Firms: 12</span>
+          <span class="pill fail" data-cross-tenant-access="closed">Cross Tenant: CLOSED</span>
+        </div>
+      </section>
+
+      <section class="grid kpi-grid" aria-label="Multi company KPI cards">
+        <article class="card" data-kpi="authorized_firms">
+          <div class="kpi-label">Yetkili firma</div>
+          <div class="kpi-value">12</div>
+          <div class="kpi-foot">Muhasebeci portföyü</div>
+        </article>
+        <article class="card" data-kpi="active_companies">
+          <div class="kpi-label">Aktif firma</div>
+          <div class="kpi-value">9</div>
+          <div class="kpi-foot">Abonelik/erişim açık</div>
+        </article>
+        <article class="card" data-kpi="review_required">
+          <div class="kpi-label">Review</div>
+          <div class="kpi-value">2</div>
+          <div class="kpi-foot">Yetki veya dönem kilidi</div>
+        </article>
+        <article class="card" data-kpi="blocked_companies">
+          <div class="kpi-label">Bloklu</div>
+          <div class="kpi-value">1</div>
+          <div class="kpi-foot">Abonelik/erişim kapalı</div>
+        </article>
+      </section>
+
+      <section class="layout">
+        <div class="card">
+          <div class="panel-title">
+            <div>
+              <h2>Firma Portföyü</h2>
+              <p>Muhasebecinin yetkili olduğu firmalar, tenant/firma scope, dönem, abonelik, export ve audit durumu.</p>
+            </div>
+            <span class="pill ok">Workspace Audit Ready</span>
+          </div>
+
+          <div class="filters" data-filter-bar="multi-company-workspace">
+            <input id="searchInput" aria-label="Firma ara" placeholder="Firma, tenant, vergi no, abonelik, export, hash ara..." />
+            <select id="statusFilter" aria-label="Durum filtrele">
+              <option value="ALL">Tüm durumlar</option>
+              <option value="ACTIVE">Active</option>
+              <option value="TRIAL">Trial</option>
+              <option value="REVIEW_REQUIRED">Review Required</option>
+              <option value="BLOCKED">Blocked</option>
+            </select>
+            <select id="permissionFilter" aria-label="Yetki filtrele">
+              <option value="ALL">Tüm yetkiler</option>
+              <option value="VIEW">View</option>
+              <option value="EXPORT">Export</option>
+              <option value="MANAGE">Manage</option>
+              <option value="READ_ONLY">Read Only</option>
+            </select>
+            <select id="periodFilter" aria-label="Dönem filtrele">
+              <option value="2026-05">2026-05</option>
+              <option value="2026-Q2">2026-Q2</option>
+              <option value="YTD">YTD</option>
+            </select>
+            <select id="sectorFilter" aria-label="Sektör filtrele">
+              <option value="ALL">Tüm sektörler</option>
+              <option value="RETAIL">Perakende</option>
+              <option value="AUTO_PARTS">Oto yedek parça</option>
+              <option value="FOOD">Yeme içme</option>
+              <option value="SERVICE">Hizmet</option>
+            </select>
+          </div>
+
+          <div class="table-wrap">
+            <table aria-label="Çok firmalı workspace tablosu">
+              <thead>
+                <tr>
+                  <th>Firma</th>
+                  <th>Tenant / Vergi</th>
+                  <th>Sektör</th>
+                  <th>Durum</th>
+                  <th>Yetki</th>
+                  <th>Dönem</th>
+                  <th>Readiness</th>
+                  <th>Aksiyon</th>
+                </tr>
+              </thead>
+              <tbody id="firmRows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <aside class="side-stack">
+          <section class="card" data-detail-drawer="multi-company-workspace">
+            <div class="panel-title">
+              <div>
+                <h2>Firma Detayı</h2>
+                <p>Seçili firma için tenant, vergi, yetki, abonelik, export ve audit izleri.</p>
+              </div>
+            </div>
+            <div id="detailPanel"></div>
+          </section>
+
+          <section class="card" data-operation-actions="multi-company-workspace">
+            <div class="panel-title">
+              <div>
+                <h2>Workspace Operasyonları</h2>
+                <p>Firma seç, export workspace aç, yetki kontrol et ve audit evidence görüntüle.</p>
+              </div>
+            </div>
+
+            <div class="notice" data-live-policy="tenant-firm-scope-guard">
+              Çok firmalı workspace cross-tenant erişim yapmaz. Her firma için accountant authorization, firm scope ve tenant boundary zorunludur.
+            </div>
+
+            <div class="ops-grid">
+              <div class="op-card" data-action="select-firm">
+                <strong>Select Firm</strong>
+                <small>Firma context seçimi ve route hazırlığı.</small>
+              </div>
+              <div class="op-card" data-action="open-export-workspace">
+                <strong>Open Export Workspace</strong>
+                <small>167 export workspace’e firma/dönem scope ile geçiş.</small>
+              </div>
+              <div class="op-card" data-action="permission-check">
+                <strong>Permission Check</strong>
+                <small>VIEW / EXPORT / MANAGE / READ_ONLY yetki doğrulaması.</small>
+              </div>
+              <div class="op-card" data-action="audit-evidence">
+                <strong>Audit Evidence</strong>
+                <small>Access hash, scope hash ve audit evidence dosyası.</small>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" data-audit-trail="multi-company-workspace">
+            <div class="panel-title">
+              <div>
+                <h2>Audit Timeline</h2>
+                <p>Accountant-safe ve tenant-safe firma seçim geçmişi.</p>
+              </div>
+            </div>
+            <div class="timeline" id="timeline"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const crossTenantAccessAllowed = false;
+    const accountantAuthorizationRequired = true;
+    const firmScopeRequired = true;
+    const subscriptionStatusRequired = true;
+    const productionApproved = false;
+
+    const firms = [
+      {
+        id: "firm_demo_001",
+        name: "Demo Market A.Ş.",
+        tenantId: "tenant_demo_001",
+        taxNo: "1234567890",
+        taxOffice: "Kadıköy",
+        sector: "RETAIL",
+        sectorLabel: "Perakende",
+        status: "ACTIVE",
+        permission: "MANAGE",
+        period: "2026-05",
+        subscriptionStatus: "ACTIVE",
+        assignedAt: "2026-05-01",
+        assignedBy: "tenant_admin_001",
+        roleSet: "ACCOUNTANT_MANAGER",
+        exportWorkspaceRoute: "/faz3/accountant-portal/export-workspace/?firm=firm_demo_001&period=2026-05",
+        financeSummaryRoute: "/faz3/erp-ui/finance-summary/",
+        accessDecision: "ALLOWED",
+        readiness: "EXPORT_READY",
+        openTasks: 2,
+        reviewReason: "-",
+        tenantBoundaryHash: "sha256:tenant-boundary-001",
+        firmScopeHash: "sha256:firm-scope-001",
+        permissionHash: "sha256:permission-001",
+        auditHash: "sha256:audit-multi-company-001",
+        evidenceFile: "docs/faz3/evidence/multi_company_firm_001.md",
+        allowedActions: ["SELECT", "EXPORT", "PERMISSION", "AUDIT"]
+      },
+      {
+        id: "firm_demo_002",
+        name: "Pilot Oto Yedek Parça Ltd.",
+        tenantId: "tenant_demo_002",
+        taxNo: "2234567890",
+        taxOffice: "Ümraniye",
+        sector: "AUTO_PARTS",
+        sectorLabel: "Oto yedek parça",
+        status: "REVIEW_REQUIRED",
+        permission: "EXPORT",
+        period: "2026-05",
+        subscriptionStatus: "ACTIVE",
+        assignedAt: "2026-05-02",
+        assignedBy: "tenant_admin_002",
+        roleSet: "ACCOUNTANT_EXPORTER",
+        exportWorkspaceRoute: "/faz3/accountant-portal/export-workspace/?firm=firm_demo_002&period=2026-05",
+        financeSummaryRoute: "/faz3/erp-ui/finance-summary/",
+        accessDecision: "PERIOD_LOCK_REVIEW",
+        readiness: "REVIEW_BEFORE_EXPORT",
+        openTasks: 5,
+        reviewReason: "Dönem kilidi ve yetki gözden geçirme",
+        tenantBoundaryHash: "sha256:tenant-boundary-002",
+        firmScopeHash: "sha256:firm-scope-002",
+        permissionHash: "sha256:permission-002",
+        auditHash: "sha256:audit-multi-company-002",
+        evidenceFile: "docs/faz3/evidence/multi_company_firm_002.md",
+        allowedActions: ["SELECT", "PERMISSION", "AUDIT"]
+      },
+      {
+        id: "firm_demo_003",
+        name: "Demo Cafe İşletmesi",
+        tenantId: "tenant_demo_003",
+        taxNo: "3234567890",
+        taxOffice: "Beşiktaş",
+        sector: "FOOD",
+        sectorLabel: "Yeme içme",
+        status: "TRIAL",
+        permission: "VIEW",
+        period: "2026-Q2",
+        subscriptionStatus: "TRIAL",
+        assignedAt: "2026-05-03",
+        assignedBy: "tenant_admin_003",
+        roleSet: "ACCOUNTANT_VIEWER",
+        exportWorkspaceRoute: "/faz3/accountant-portal/export-workspace/?firm=firm_demo_003&period=2026-Q2",
+        financeSummaryRoute: "/faz3/erp-ui/finance-summary/",
+        accessDecision: "VIEW_ONLY",
+        readiness: "VIEW_READY",
+        openTasks: 1,
+        reviewReason: "-",
+        tenantBoundaryHash: "sha256:tenant-boundary-003",
+        firmScopeHash: "sha256:firm-scope-003",
+        permissionHash: "sha256:permission-003",
+        auditHash: "sha256:audit-multi-company-003",
+        evidenceFile: "docs/faz3/evidence/multi_company_firm_003.md",
+        allowedActions: ["SELECT", "PERMISSION", "AUDIT"]
+      },
+      {
+        id: "firm_demo_004",
+        name: "Demo Hizmet Ltd.",
+        tenantId: "tenant_demo_004",
+        taxNo: "4234567890",
+        taxOffice: "Şişli",
+        sector: "SERVICE",
+        sectorLabel: "Hizmet",
+        status: "BLOCKED",
+        permission: "READ_ONLY",
+        period: "YTD",
+        subscriptionStatus: "SUSPENDED",
+        assignedAt: "2026-05-04",
+        assignedBy: "tenant_admin_004",
+        roleSet: "ACCOUNTANT_READ_ONLY",
+        exportWorkspaceRoute: "/faz3/accountant-portal/export-workspace/?firm=firm_demo_004&period=YTD",
+        financeSummaryRoute: "/faz3/erp-ui/finance-summary/",
+        accessDecision: "SUBSCRIPTION_BLOCKED",
+        readiness: "BLOCKED_BY_SUBSCRIPTION",
+        openTasks: 7,
+        reviewReason: "Abonelik askıda",
+        tenantBoundaryHash: "sha256:tenant-boundary-004",
+        firmScopeHash: "sha256:firm-scope-004",
+        permissionHash: "sha256:permission-004",
+        auditHash: "sha256:audit-multi-company-004",
+        evidenceFile: "docs/faz3/evidence/multi_company_firm_004.md",
+        allowedActions: ["SELECT", "AUDIT"]
+      }
+    ];
+
+    const statusClass = {
+      ACTIVE: "active",
+      TRIAL: "trial",
+      REVIEW_REQUIRED: "review",
+      BLOCKED: "blocked"
+    };
+
+    const statusLabel = {
+      ACTIVE: "Active",
+      TRIAL: "Trial",
+      REVIEW_REQUIRED: "Review Required",
+      BLOCKED: "Blocked"
+    };
+
+    function actionButtons(item) {
+      const actions = [
+        ["SELECT", "Select", "success"],
+        ["EXPORT", "Export", "secondary"],
+        ["PERMISSION", "Permission", "warning"],
+        ["AUDIT", "Audit", "secondary"],
+        ["CROSS_TENANT", "Cross", "danger"]
+      ];
+
+      return actions
+        .filter(([key]) => item.allowedActions.includes(key) || key === "CROSS_TENANT")
+        .map(([key, label, cls]) => {
+          const disabled = key === "CROSS_TENANT" || (key === "EXPORT" && !item.allowedActions.includes("EXPORT"));
+          return `<button class="${cls}" data-op="${key}" ${disabled ? "disabled" : ""}>${label}</button>`;
+        })
+        .join("");
+    }
+
+    function renderRows() {
+      const q = document.getElementById("searchInput").value.trim().toLowerCase();
+      const status = document.getElementById("statusFilter").value;
+      const permission = document.getElementById("permissionFilter").value;
+      const period = document.getElementById("periodFilter").value;
+      const sector = document.getElementById("sectorFilter").value;
+
+      const filtered = firms.filter(item => {
+        const haystack = [
+          item.id,
+          item.name,
+          item.tenantId,
+          item.taxNo,
+          item.taxOffice,
+          item.sector,
+          item.status,
+          item.permission,
+          item.period,
+          item.subscriptionStatus,
+          item.roleSet,
+          item.accessDecision,
+          item.readiness,
+          item.tenantBoundaryHash,
+          item.firmScopeHash,
+          item.permissionHash,
+          item.auditHash,
+          item.evidenceFile
+        ].join(" ").toLowerCase();
+
+        const qOk = q === "" || haystack.includes(q);
+        const statusOk = status === "ALL" || item.status === status;
+        const permissionOk = permission === "ALL" || item.permission === permission;
+        const periodOk = period === item.period || period === "YTD" || period === "2026-Q2";
+        const sectorOk = sector === "ALL" || item.sector === sector;
+
+        return qOk && statusOk && permissionOk && periodOk && sectorOk;
+      });
+
+      document.getElementById("firmRows").innerHTML = filtered.map(item => `
+        <tr data-firm-id="${item.id}" onclick="selectFirm('${item.id}')">
+          <td>
+            <span class="main-text">${item.name}</span>
+            <span class="sub">${item.id}</span>
+          </td>
+          <td>
+            <strong>${item.tenantId}</strong>
+            <span class="sub">${item.taxNo} / ${item.taxOffice}</span>
+          </td>
+          <td><strong>${item.sectorLabel}</strong></td>
+          <td><span class="status ${statusClass[item.status]}">${statusLabel[item.status]}</span></td>
+          <td>
+            <strong>${item.permission}</strong>
+            <span class="sub">${item.roleSet}</span>
+          </td>
+          <td><strong>${item.period}</strong></td>
+          <td>
+            <strong>${item.readiness}</strong>
+            <span class="sub">${item.accessDecision} / ${item.subscriptionStatus}</span>
+          </td>
+          <td><div class="button-row">${actionButtons(item)}</div></td>
+        </tr>
+      `).join("");
+
+      if (filtered.length > 0) {
+        selectFirm(filtered[0].id);
+      } else {
+        document.getElementById("detailPanel").innerHTML = "";
+        document.getElementById("timeline").innerHTML = "";
+      }
+    }
+
+    function yesNo(value) {
+      return value ? "YES" : "NO";
+    }
+
+    function selectFirm(id) {
+      const item = firms.find(row => row.id === id);
+      if (!item) return;
+
+      document.getElementById("detailPanel").innerHTML = `
+        <div class="detail-row"><span>Firm ID</span><strong>${item.id}</strong></div>
+        <div class="detail-row"><span>Firm Name</span><strong>${item.name}</strong></div>
+        <div class="detail-row"><span>Tenant ID</span><strong>${item.tenantId}</strong></div>
+        <div class="detail-row"><span>Tax No</span><strong>${item.taxNo}</strong></div>
+        <div class="detail-row"><span>Tax Office</span><strong>${item.taxOffice}</strong></div>
+        <div class="detail-row"><span>Sector</span><strong>${item.sectorLabel}</strong></div>
+        <div class="detail-row"><span>Status</span><strong>${statusLabel[item.status]}</strong></div>
+        <div class="detail-row"><span>Permission</span><strong>${item.permission}</strong></div>
+        <div class="detail-row"><span>Role Set</span><strong>${item.roleSet}</strong></div>
+        <div class="detail-row"><span>Period</span><strong>${item.period}</strong></div>
+        <div class="detail-row"><span>Subscription</span><strong>${item.subscriptionStatus}</strong></div>
+        <div class="detail-row"><span>Assigned At</span><strong>${item.assignedAt}</strong></div>
+        <div class="detail-row"><span>Assigned By</span><strong>${item.assignedBy}</strong></div>
+        <div class="detail-row"><span>Export Route</span><strong>${item.exportWorkspaceRoute}</strong></div>
+        <div class="detail-row"><span>Finance Route</span><strong>${item.financeSummaryRoute}</strong></div>
+        <div class="detail-row"><span>Access Decision</span><strong>${item.accessDecision}</strong></div>
+        <div class="detail-row"><span>Readiness</span><strong>${item.readiness}</strong></div>
+        <div class="detail-row"><span>Open Tasks</span><strong>${item.openTasks}</strong></div>
+        <div class="detail-row"><span>Review Reason</span><strong>${item.reviewReason}</strong></div>
+        <div class="detail-row"><span>Tenant Boundary Hash</span><strong>${item.tenantBoundaryHash}</strong></div>
+        <div class="detail-row"><span>Firm Scope Hash</span><strong>${item.firmScopeHash}</strong></div>
+        <div class="detail-row"><span>Permission Hash</span><strong>${item.permissionHash}</strong></div>
+        <div class="detail-row"><span>Audit Hash</span><strong>${item.auditHash}</strong></div>
+        <div class="detail-row"><span>Evidence File</span><strong>${item.evidenceFile}</strong></div>
+        <div class="detail-row"><span>Cross Tenant Access</span><strong>${yesNo(crossTenantAccessAllowed)}</strong></div>
+        <div class="detail-row"><span>Authorization Required</span><strong>${yesNo(accountantAuthorizationRequired)}</strong></div>
+        <div class="detail-row"><span>Firm Scope Required</span><strong>${yesNo(firmScopeRequired)}</strong></div>
+      `;
+
+      document.getElementById("timeline").innerHTML = [
+        ["FIRM_SELECTED", `${item.name} firma context tenant/accountant scope içinde seçildi.`],
+        [item.accessDecision, `Erişim kararı: ${item.accessDecision}.`],
+        [item.readiness, `Workspace readiness: ${item.readiness}, audit hash: ${item.auditHash}.`]
+      ].map(([title, desc]) => `
+        <div class="event">
+          <strong>${title}</strong>
+          <small>${desc}</small>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("searchInput").addEventListener("input", renderRows);
+    document.getElementById("statusFilter").addEventListener("change", renderRows);
+    document.getElementById("permissionFilter").addEventListener("change", renderRows);
+    document.getElementById("periodFilter").addEventListener("change", renderRows);
+    document.getElementById("sectorFilter").addEventListener("change", renderRows);
+
+    renderRows();
+  </script>
+</body>
+</html>

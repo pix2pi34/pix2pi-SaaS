@@ -1,0 +1,65 @@
+{
+  "module_code": "FAZ_7_9_ACCOUNTANT_PORTAL_COMMERCIAL_SURFACE",
+  "mode": "COMMERCIAL_SURFACE_DRY_RUN_ONLY",
+  "status": "READY_DRY_RUN_ONLY",
+  "commercial_surface": {
+    "plans": [
+      {
+        "code": "ACCOUNTANT_STARTER",
+        "name": "Muhasebeci Starter",
+        "monthly_price_try": 1490,
+        "currency": "TRY",
+        "max_firm_slots": 5,
+        "max_portal_users": 2,
+        "billing_mode": "DRAFT_ONLY_NO_REAL_INVOICE",
+        "export_preview_enabled": true
+      },
+      {
+        "code": "ACCOUNTANT_PRO",
+        "name": "Muhasebeci Pro",
+        "monthly_price_try": 3990,
+        "currency": "TRY",
+        "max_firm_slots": 25,
+        "max_portal_users": 8,
+        "billing_mode": "DRAFT_ONLY_NO_REAL_INVOICE",
+        "export_preview_enabled": true
+      },
+      {
+        "code": "ACCOUNTANT_ENTERPRISE",
+        "name": "Muhasebeci Enterprise",
+        "monthly_price_try": 9990,
+        "currency": "TRY",
+        "max_firm_slots": 100,
+        "max_portal_users": 25,
+        "billing_mode": "DRAFT_ONLY_NO_REAL_INVOICE",
+        "export_preview_enabled": true
+      }
+    ],
+    "provider_dry_run_set": [
+      "PARASUT",
+      "LOGO",
+      "MIKRO",
+      "ZIRVE"
+    ]
+  },
+  "closed_live_gates": {
+    "real_accountant_billing_status": "CLOSED_UNTIL_BILLING_LIVE_MODULE",
+    "real_payment_capture_status": "CLOSED_UNTIL_BILLING_LIVE_MODULE",
+    "real_provider_api_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_file_delivery_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_delivery_channel_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "real_erp_write_status": "CLOSED_UNTIL_SYNC_WORKER_LIVE_MODULE",
+    "real_customer_data_export_live_status": "CLOSED_UNTIL_EXPORT_LIVE_MODULE",
+    "real_operator_provider_action_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE"
+  },
+  "provider_family_context": {
+    "integration_family_final_status": "PASS",
+    "integration_family_seal_status": "SEALED",
+    "provider_dry_run_set": "PARASUT_LOGO_MIKRO_ZIRVE",
+    "parasut_connector_module_final_seal_status": "SEALED",
+    "logo_connector_module_final_seal_status": "SEALED",
+    "mikro_connector_module_final_seal_status": "SEALED",
+    "zirve_connector_module_final_seal_status": "SEALED",
+    "all_provider_live_modules_status": "NOT_STARTED"
+  }
+}

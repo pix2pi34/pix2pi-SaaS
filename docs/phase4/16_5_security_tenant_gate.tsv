@@ -1,0 +1,11 @@
+gate_name	security_area	required_status	blocker_if_failed	evidence_source	owner_role	implementation_status	note
+auth_login_gate	auth	PASS	YES	login tenant access evidence	security_admin	READY_FOR_IMPLEMENTATION	contract_only
+rbac_denied_gate	rbac	PASS	YES	permission denied evidence	security_admin	READY_FOR_IMPLEMENTATION	contract_only
+tenant_isolation_gate	tenant_isolation	PASS	YES	tenant scoped visibility evidence	security_admin	READY_FOR_IMPLEMENTATION	contract_only
+audit_trail_gate	audit	PASS	YES	actor/request/tenant audit evidence	tenant_admin	READY_FOR_IMPLEMENTATION	contract_only
+secret_safety_gate	secret_safety	PASS	YES	no raw secret/token/dsn evidence	security_admin	READY_FOR_IMPLEMENTATION	contract_only
+customer_private_data_gate	privacy	PASS	YES	synthetic/masked data evidence	security_admin	READY_FOR_IMPLEMENTATION	contract_only
+ops_access_gate	ops_security	PASS	YES	ops access restricted evidence	ops_admin	READY_FOR_IMPLEMENTATION	contract_only
+support_masking_gate	support_security	PASS	YES	support sees masked status only	support	READY_FOR_IMPLEMENTATION	contract_only
+no_raw_payload_ui_gate	ui_security	PASS	YES	no raw payload UI policy evidence	security_admin	READY_FOR_IMPLEMENTATION	contract_only
+incident_security_gate	incident	PASS	YES	security escalation owner exists	security_admin	READY_FOR_IMPLEMENTATION	contract_only

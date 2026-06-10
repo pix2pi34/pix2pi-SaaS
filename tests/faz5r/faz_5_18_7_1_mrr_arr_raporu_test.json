@@ -1,0 +1,46 @@
+{
+  "test_name": "faz_5_18_7_1_mrr_arr_raporu_test",
+  "phase": "FAZ_5_18_7_1",
+  "expected": {
+    "required_section_count": 9,
+    "required_domain_count": 8,
+    "internal_mrr_arr_report_ready": true,
+    "production_revenue_report_enabled": false,
+    "real_customer_revenue_enabled": false,
+    "external_finance_export_enabled": false,
+    "auto_investor_email_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_section_keys": [
+    "subscription_base_snapshot",
+    "mrr_summary",
+    "arr_summary",
+    "new_mrr_summary",
+    "expansion_mrr_summary",
+    "contraction_mrr_summary",
+    "collection_status_summary",
+    "audit_evidence_summary",
+    "churn_expansion_deferred_marker"
+  ],
+  "must_have_domains": [
+    "SUBSCRIPTION_BASE",
+    "MRR",
+    "ARR",
+    "EXPANSION",
+    "CONTRACTION",
+    "COLLECTION",
+    "AUDIT_EVIDENCE",
+    "NEXT_PRIORITY"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_period_window",
+    "requires_subscription_source",
+    "requires_billing_source",
+    "requires_plan_snapshot",
+    "requires_mrr_formula",
+    "requires_arr_formula",
+    "blocks_production_revenue_report"
+  ]
+}

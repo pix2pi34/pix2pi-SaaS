@@ -1,0 +1,46 @@
+{
+  "test_name": "faz_5_18_7_3_tahsilat_basari_raporu_test",
+  "phase": "FAZ_5_18_7_3",
+  "expected": {
+    "required_section_count": 9,
+    "required_domain_count": 8,
+    "internal_collection_success_report_ready": true,
+    "production_collection_report_enabled": false,
+    "real_customer_collection_enabled": false,
+    "external_finance_export_enabled": false,
+    "auto_dunning_enabled": false,
+    "required_fail": 0,
+    "optional_warn": 0
+  },
+  "must_have_section_keys": [
+    "billing_base_snapshot",
+    "invoice_collection_summary",
+    "collection_success_summary",
+    "failed_payment_summary",
+    "recovery_summary",
+    "aging_bucket_summary",
+    "collection_risk_summary",
+    "audit_evidence_summary",
+    "internal_finance_dashboard_deferred_marker"
+  ],
+  "must_have_domains": [
+    "BILLING_BASE",
+    "COLLECTION_SUCCESS",
+    "FAILED_PAYMENT",
+    "RECOVERY",
+    "AGING",
+    "RISK",
+    "AUDIT_EVIDENCE",
+    "NEXT_PRIORITY"
+  ],
+  "must_have_flags": [
+    "requires_tenant_id",
+    "requires_period_window",
+    "requires_invoice_source",
+    "requires_billing_source",
+    "requires_payment_attempt_source",
+    "requires_success_rate_formula",
+    "requires_failed_payment_metric",
+    "blocks_production_collection_report"
+  ]
+}

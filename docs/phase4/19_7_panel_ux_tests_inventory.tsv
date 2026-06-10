@@ -1,0 +1,7 @@
+block	status	domain_key	report_file	artifact_expected	artifact_existing	primary_evidence
+19.1	PASS	RUNTIME_FLOW_HISTORY	docs/phase4/19_1_runtime_flow_history_report.md	6	6	RUNTIME_FLOW_HISTORY=PASS
+19.2	PASS	FLOW_DETAIL_PAGE	docs/phase4/19_2_flow_detail_page_report.md	6	6	FLOW_DETAIL_PAGE=PASS
+19.3	PASS	ADMIN_DASHBOARD_CARDS	docs/phase4/19_3_admin_dashboard_cards_report.md	6	6	ADMIN_DASHBOARD_CARDS=PASS
+19.4	PASS	IMPORT_WIZARD_UI	docs/phase4/19_4_import_wizard_ui_report.md	7	7	IMPORT_WIZARD_UI=PASS
+19.5	PASS	UAT_CHECKLIST_UI	docs/phase4/19_5_uat_checklist_ui_report.md	7	7	UAT_CHECKLIST_UI=PASS
+19.6	PASS	ISSUE_FEEDBACK_UI	docs/phase4/19_6_issue_feedback_ui_report.md	7	7	ISSUE_FEEDBACK_UI=PASS

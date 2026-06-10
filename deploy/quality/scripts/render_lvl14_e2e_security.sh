@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+QUALITY_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ENV_FILE="${1:-${QUALITY_DIR}/env/lvl14_e2e_security.env.example}"
+E2E_CATALOG_FILE="${QUALITY_DIR}/config/lvl14_e2e_catalog.yaml"
+SECURITY_CATALOG_FILE="${QUALITY_DIR}/config/lvl14_security_regression_catalog.yaml"
+TEMPLATE_FILE="${QUALITY_DIR}/config/lvl14_e2e_security_rules.yaml.template"
+OUTPUT_FILE="${QUALITY_DIR}/generated/lvl14_e2e_security_rules.yaml"
+E2E_SUMMARY_FILE="${QUALITY_DIR}/generated/lvl14_e2e_summary.md"
+SECURITY_SUMMARY_FILE="${QUALITY_DIR}/generated/lvl14_security_regression_summary.md"
+
+if [ ! -f "${ENV_FILE}" ]; then
+  echo "HATA ❌ env dosyasi yok: ${ENV_FILE}"
+  exit 1
+fi
+
+if [ ! -f "${E2E_CATALOG_FILE}" ]; then
+  echo "HATA ❌ e2e catalog yok: ${E2E_CATALOG_FILE}"
+  exit 1
+fi
+
+if [ ! -f "${SECURITY_CATALOG_FILE}" ]; then
+  echo "HATA ❌ security regression catalog yok: ${SECURITY_CATALOG_FILE}"
+  exit 1
+fi
+
+if [ ! -f "${TEMPLATE_FILE}" ]; then
+  echo "HATA ❌ template dosyasi yok: ${TEMPLATE_FILE}"
+  exit 1
+fi
+
+set -a
+source "${ENV_FILE}"
+set +a
+
+REQUIRED_VARS=(
+  E2E_AUTH_TENANT_SCENARIO_ENABLED
+  E2E_DASHBOARD_MONITORING_SCENARIO_ENABLED
+  E2E_ERP_ACCOUNTING_SCENARIO_ENABLED
+  E2E_EBELGE_EXPORT_SCENARIO_ENABLED
+  E2E_PAYMENT_RECONCILIATION_SCENARIO_ENABLED
+  E2E_SMOKE_PROFILE
+  SECURITY_CROSS_TENANT_REGRESSION_ENABLED
+  SECURITY_AUTH_FORBIDDEN_REGRESSION_ENABLED
+  SECURITY_RATE_LIMIT_ABUSE_REGRESSION_ENABLED
+  SECURITY_SECRET_CONFIG_REGRESSION_ENABLED
+  SECURITY_AUDIT_EXPORT_ISOLATION_ENABLED
+  SECURITY_REGRESSION_PROFILE
+)
+
+for v in "${REQUIRED_VARS[@]}"; do
+  if [ -z "${!v:-}" ]; then
+    echo "HATA ❌ zorunlu degisken bos: ${v}"
+    exit 1
+  fi
+done
+
+sed \
+  -e "s|__E2E_AUTH_TENANT_SCENARIO_ENABLED__|${E2E_AUTH_TENANT_SCENARIO_ENABLED}|g" \
+  -e "s|__E2E_DASHBOARD_MONITORING_SCENARIO_ENABLED__|${E2E_DASHBOARD_MONITORING_SCENARIO_ENABLED}|g" \
+  -e "s|__E2E_ERP_ACCOUNTING_SCENARIO_ENABLED__|${E2E_ERP_ACCOUNTING_SCENARIO_ENABLED}|g" \
+  -e "s|__E2E_EBELGE_EXPORT_SCENARIO_ENABLED__|${E2E_EBELGE_EXPORT_SCENARIO_ENABLED}|g" \
+  -e "s|__E2E_PAYMENT_RECONCILIATION_SCENARIO_ENABLED__|${E2E_PAYMENT_RECONCILIATION_SCENARIO_ENABLED}|g" \
+  -e "s|__E2E_SMOKE_PROFILE__|${E2E_SMOKE_PROFILE}|g" \
+  -e "s|__SECURITY_CROSS_TENANT_REGRESSION_ENABLED__|${SECURITY_CROSS_TENANT_REGRESSION_ENABLED}|g" \
+  -e "s|__SECURITY_AUTH_FORBIDDEN_REGRESSION_ENABLED__|${SECURITY_AUTH_FORBIDDEN_REGRESSION_ENABLED}|g" \
+  -e "s|__SECURITY_RATE_LIMIT_ABUSE_REGRESSION_ENABLED__|${SECURITY_RATE_LIMIT_ABUSE_REGRESSION_ENABLED}|g" \
+  -e "s|__SECURITY_SECRET_CONFIG_REGRESSION_ENABLED__|${SECURITY_SECRET_CONFIG_REGRESSION_ENABLED}|g" \
+  -e "s|__SECURITY_AUDIT_EXPORT_ISOLATION_ENABLED__|${SECURITY_AUDIT_EXPORT_ISOLATION_ENABLED}|g" \
+  -e "s|__SECURITY_REGRESSION_PROFILE__|${SECURITY_REGRESSION_PROFILE}|g" \
+  "${TEMPLATE_FILE}" > "${OUTPUT_FILE}"
+
+cat <<E2ESUMMARY > "${E2E_SUMMARY_FILE}"
+# LVL14 E2E Summary
+
+- Auth + tenant scenario enabled: ${E2E_AUTH_TENANT_SCENARIO_ENABLED}
+- Dashboard + monitoring scenario enabled: ${E2E_DASHBOARD_MONITORING_SCENARIO_ENABLED}
+- ERP accounting scenario enabled: ${E2E_ERP_ACCOUNTING_SCENARIO_ENABLED}
+- e-Belge + export scenario enabled: ${E2E_EBELGE_EXPORT_SCENARIO_ENABLED}
+- Payment + reconciliation scenario enabled: ${E2E_PAYMENT_RECONCILIATION_SCENARIO_ENABLED}
+- Smoke profile: ${E2E_SMOKE_PROFILE}
+E2ESUMMARY
+
+cat <<SECSUMMARY > "${SECURITY_SUMMARY_FILE}"
+# LVL14 Security Regression Summary
+
+- Cross-tenant regression enabled: ${SECURITY_CROSS_TENANT_REGRESSION_ENABLED}
+- Auth / forbidden regression enabled: ${SECURITY_AUTH_FORBIDDEN_REGRESSION_ENABLED}
+- Rate limit / abuse regression enabled: ${SECURITY_RATE_LIMIT_ABUSE_REGRESSION_ENABLED}
+- Secret / config regression enabled: ${SECURITY_SECRET_CONFIG_REGRESSION_ENABLED}
+- Audit / export isolation enabled: ${SECURITY_AUDIT_EXPORT_ISOLATION_ENABLED}
+- Regression profile: ${SECURITY_REGRESSION_PROFILE}
+SECSUMMARY
+
+echo "OK ✅ generated e2e/security rules hazir: ${OUTPUT_FILE}"
+echo "OK ✅ generated e2e summary hazir: ${E2E_SUMMARY_FILE}"
+echo "OK ✅ generated security regression summary hazir: ${SECURITY_SUMMARY_FILE}"

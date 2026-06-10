@@ -1,0 +1,63 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "345",
+  "name": "Admin commercial panel",
+  "surface": "platform_admin_commercial",
+  "domain": "panel.pix2pi.com.tr",
+  "web_root": "/var/www/pix2pi/panel",
+  "path": "/admin-commercial/",
+  "runtime_path": "/assets/admin-commercial/panel-admin-commercial-runtime.js",
+  "depends_on": [
+    "341 - Paket / abonelik ekranı",
+    "342 - Kullanım hakkı / kota ekranı",
+    "343 - Ödeme / billing ekranı",
+    "344 - Fatura geçmişi ekranı"
+  ],
+  "backend_contract": {
+    "commercial_admin_snapshot_endpoint": "/api/admin/commercial/snapshot",
+    "tenant_subscription_admin_endpoint": "/api/admin/commercial/tenant-subscriptions",
+    "billing_approval_endpoint": "/api/admin/commercial/billing-approvals",
+    "method": "GET/POST",
+    "admin_session_header": "X-Admin-Session",
+    "tenant_header": "X-Tenant-ID",
+    "commercial_scope_header": "X-Commercial-Scope"
+  },
+  "runtime_contract": {
+    "real_manual_override_enabled": false,
+    "real_tenant_suspend_resume_enabled": false,
+    "real_subscription_mutation_enabled": false,
+    "real_payment_provider_live_enabled": false,
+    "real_export_report_enabled": false,
+    "admin_snapshot_enabled": true,
+    "fallback_admin_commercial_snapshot_enabled": true,
+    "ready_for_step_346": true
+  },
+  "approval_gates": {
+    "financial_approval_required": true,
+    "tax_consultant_approval_required": true,
+    "legal_approval_required": true,
+    "payment_provider_contract_required": true,
+    "production_live_commercial_allowed": false
+  },
+  "required_capabilities": [
+    "admin_commercial_app_shell",
+    "platform_admin_context",
+    "tenant_commercial_overview",
+    "subscription_account_status_table",
+    "plan_catalog_management_preview",
+    "billing_approval_queue",
+    "payment_provider_gate_status",
+    "revenue_mrr_trial_kpi_cards",
+    "risk_compliance_gate_panel",
+    "manual_commercial_override_disabled_gate",
+    "tenant_suspend_resume_cancel_disabled_gate",
+    "commercial_audit_timeline",
+    "export_report_disabled_gate",
+    "admin_tenant_commercial_scope_guard",
+    "admin_commercial_runtime_data_contract",
+    "i18n_ready_admin_commercial_marker",
+    "seo_opengraph_admin_commercial_placeholder",
+    "admin_commercial_smoke_test"
+  ],
+  "next_step": "346 - Plan enforcement / entitlement UI guard"
+}

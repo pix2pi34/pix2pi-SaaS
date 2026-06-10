@@ -1,0 +1,94 @@
+{
+  "phase": "FAZ_3_12_7_ACCOUNTANT_PORTAL_TESTS",
+  "suite": "accountant_portal_tests",
+  "suite_enabled": true,
+  "route": "/faz3/accountant-portal/portal-tests/",
+  "report_file": "web/faz3/accountant-portal/portal-tests/index.html",
+  "test_script": "scripts/faz3/faz_3_12_7_accountant_portal_tests_suite.sh",
+  "audit_script": "scripts/faz3/faz_3_12_7_accountant_portal_tests_audit.sh",
+  "screen_coverage": {
+    "screen_167_export_workspace": {
+      "route": "/faz3/accountant-portal/export-workspace/",
+      "html_file": "web/faz3/accountant-portal/export-workspace/index.html",
+      "config_file": "configs/faz3/accountant-portal/accountant_export_workspace.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_12_4_ACCOUNTANT_EXPORT_WORKSPACE_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_168_multi_company_workspace": {
+      "route": "/faz3/accountant-portal/multi-company-workspace/",
+      "html_file": "web/faz3/accountant-portal/multi-company-workspace/index.html",
+      "config_file": "configs/faz3/accountant-portal/multi_company_workspace.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_12_1_MULTI_COMPANY_WORKSPACE_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_169_company_switcher": {
+      "route": "/faz3/accountant-portal/company-switcher/",
+      "html_file": "web/faz3/accountant-portal/company-switcher/index.html",
+      "config_file": "configs/faz3/accountant-portal/company_switcher.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_12_2_COMPANY_SWITCHER_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_170_company_permissions": {
+      "route": "/faz3/accountant-portal/company-permissions/",
+      "html_file": "web/faz3/accountant-portal/company-permissions/index.html",
+      "config_file": "configs/faz3/accountant-portal/company_based_permission_screen.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_12_3_COMPANY_BASED_PERMISSION_SCREEN_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_171_subscription_status": {
+      "route": "/faz3/accountant-portal/subscription-status/",
+      "html_file": "web/faz3/accountant-portal/subscription-status/index.html",
+      "config_file": "configs/faz3/accountant-portal/subscription_status_view.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_12_5_SUBSCRIPTION_STATUS_VIEW_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    },
+    "screen_172_audit_history": {
+      "route": "/faz3/accountant-portal/audit-history/",
+      "html_file": "web/faz3/accountant-portal/audit-history/index.html",
+      "config_file": "configs/faz3/accountant-portal/portal_audit_history.v1.json",
+      "evidence_file": "docs/faz3/evidence/FAZ_3_12_6_PORTAL_AUDIT_HISTORY_REAL_IMPLEMENTATION_AUDIT.md",
+      "required": true
+    }
+  },
+  "test_policy": {
+    "html_file_required": true,
+    "config_file_required": true,
+    "documentation_file_required": true,
+    "evidence_file_required": true,
+    "phase_marker_required": true,
+    "screen_marker_required": true,
+    "tenant_guard_required": true,
+    "accountant_guard_required": true,
+    "firm_scope_required": true,
+    "cross_tenant_closed_required": true,
+    "production_false_or_readonly_policy_required": true,
+    "audit_hash_required": true,
+    "evidence_trace_required": true,
+    "route_trace_required": true,
+    "no_real_billing_required": true,
+    "no_external_delivery_required": true,
+    "append_only_audit_required": true
+  },
+  "live_policy": {
+    "production_approved": false,
+    "accountant_portal_tests_are_static_and_readonly": true,
+    "cross_tenant_access_allowed": false,
+    "real_billing_allowed": false,
+    "real_payment_collection_allowed": false,
+    "real_invoice_issue_allowed": false,
+    "real_external_delivery_allowed": false,
+    "audit_delete_allowed": false,
+    "audit_mutation_allowed": false,
+    "ui_actions_are_navigation_evidence_only": true
+  },
+  "covered_backend_gates": [
+    "FAZ_3_12_4_ACCOUNTANT_EXPORT_WORKSPACE",
+    "FAZ_3_12_1_MULTI_COMPANY_WORKSPACE",
+    "FAZ_3_12_2_COMPANY_SWITCHER",
+    "FAZ_3_12_3_COMPANY_BASED_PERMISSION_SCREEN",
+    "FAZ_3_12_5_SUBSCRIPTION_STATUS_VIEW",
+    "FAZ_3_12_6_PORTAL_AUDIT_HISTORY"
+  ],
+  "previous_gate": "FAZ_3_12_6_PORTAL_AUDIT_HISTORY",
+  "next_gate": "FAZ_3_13_1_EBELGE_STATUS_CENTER"
+}

@@ -1,0 +1,54 @@
+{
+  "module_code": "FAZ_7_15_PAYMENT_CAPTURE_LIVE_READY_RUNTIME",
+  "mode": "PAYMENT_CAPTURE_LIVE_READY_WITH_REAL_CAPTURE_DISABLED",
+  "status": "PAYMENT_CAPTURE_LIVE_READY_RUNTIME_READY",
+  "depends_on": {
+    "faz_7_14_accountant_billing_live_ready_runtime_final_status": "PASS",
+    "accountant_billing_live_ready_gate": "BILLING_LIVE_READY_RUNTIME_READY"
+  },
+  "payment_capture_live_ready_gate": {
+    "production_payment_allowed": false,
+    "real_authorization_allowed": false,
+    "real_capture_allowed": false,
+    "real_refund_allowed": false,
+    "real_void_allowed": false,
+    "real_money_movement_allowed": false,
+    "real_provider_api_call_allowed": false,
+    "real_settlement_allowed": false,
+    "real_webhook_ingestion_allowed": false,
+    "payment_live_module_status": "PAYMENT_CAPTURE_LIVE_READY_RUNTIME_READY",
+    "provider_live_module_status": "CLOSED_UNTIL_PROVIDER_LIVE_MODULE",
+    "approval_matrix_status": "CLOSED_UNTIL_APPROVAL_MATRIX_PASS",
+    "webhook_live_module_status": "CLOSED_UNTIL_WEBHOOK_LIVE_MODULE",
+    "settlement_live_module_status": "CLOSED_UNTIL_SETTLEMENT_LIVE_MODULE",
+    "production_payment_lock": "PRODUCTION_PAYMENT_CAPTURE_LOCKED_IN_FAZ_7_15"
+  },
+  "required_payment_live_ready_matrix": [
+    "billing_live_ready",
+    "provider_contract_ready",
+    "payment_attempt_model_ready",
+    "authorization_plan_ready",
+    "capture_policy_ready",
+    "refund_void_policy_ready",
+    "payment_idempotency_ready",
+    "payment_retry_dlq_ready",
+    "webhook_verification_ready",
+    "payment_audit_ready",
+    "payment_rollback_ready",
+    "legal_approval_gate_ready",
+    "finance_approval_gate_ready",
+    "security_gate_ready",
+    "payment_observability_ready"
+  ],
+  "live_operation_policy": {
+    "authorization": "NO_REAL_PAYMENT_AUTHORIZATION_IN_FAZ_7_15",
+    "capture": "NO_REAL_PAYMENT_CAPTURE_IN_FAZ_7_15",
+    "refund": "NO_REAL_PAYMENT_REFUND_IN_FAZ_7_15",
+    "void": "NO_REAL_PAYMENT_VOID_IN_FAZ_7_15",
+    "money_movement": "NO_REAL_MONEY_MOVEMENT_IN_FAZ_7_15",
+    "provider_api": "NO_REAL_PROVIDER_API_CALL_IN_FAZ_7_15",
+    "settlement": "NO_REAL_SETTLEMENT_IN_FAZ_7_15",
+    "webhook_ingestion": "NO_REAL_PROVIDER_WEBHOOK_INGESTION_IN_FAZ_7_15"
+  },
+  "next_module": "FAZ_7_16_PROVIDER_LIVE_ADAPTER_READINESS"
+}

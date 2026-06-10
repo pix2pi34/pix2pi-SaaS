@@ -1,0 +1,8 @@
+probe_name	category	service_hint	host	port	path	purpose	result	status_code	reachable	body_policy	note
+loki_ready	logs_core	loki	127.0.0.1	3100	/ready	readiness	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+loki_metrics	logs_core	loki	127.0.0.1	3100	/metrics	metrics_body_not_printed	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+loki_buildinfo	logs_core	loki	127.0.0.1	3100	/loki/api/v1/status/buildinfo	metadata_body_not_printed	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+loki_labels	logs_core	loki	127.0.0.1	3100	/loki/api/v1/labels	query_body_not_printed	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only
+promtail_ready	log_agent	promtail	127.0.0.1	9080	/ready	readiness	REVIEW	000	NO	body_not_printed	metadata_only
+promtail_metrics	log_agent	promtail	127.0.0.1	9080	/metrics	metrics_body_not_printed	REVIEW	000	NO	body_not_printed	metadata_only
+grafana_health_for_logs	log_explore_surface	grafana	127.0.0.1	3001	/api/health	health	READY_OR_AUTH_REQUIRED	200	YES	body_not_printed	metadata_only

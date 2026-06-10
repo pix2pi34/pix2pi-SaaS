@@ -1,0 +1,43 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "322",
+  "name": "İşletme ayarları / profil ekranı",
+  "surface": "merchant_panel",
+  "domain": "panel.pix2pi.com.tr",
+  "path": "/settings/",
+  "runtime_path": "/assets/settings/business-settings-runtime.js",
+  "depends_on": [
+    "316 - panel.pix2pi.com.tr altyapısı",
+    "317 - Login / tenant seçimi",
+    "318 - Dil Modülü / i18n / Alfabe Altyapısı",
+    "319 - İşletme onboarding ekranı",
+    "320 - Merchant dashboard",
+    "321 - Kullanıcı / rol / personel ekranı"
+  ],
+  "backend_contract": {
+    "read_endpoint": "/api/panel/settings/business",
+    "save_endpoint": "/api/panel/settings/business/save",
+    "method": "GET/POST",
+    "auth": "Bearer JWT",
+    "tenant_header": "X-Tenant-ID"
+  },
+  "storage": {
+    "draft_key": "pix2pi.panel.business.settings.draft"
+  },
+  "supported_default_languages": ["tr-TR", "ota", "ar", "fa", "en"],
+  "required_capabilities": [
+    "business_settings_app_shell",
+    "business_profile_card",
+    "tax_commercial_settings",
+    "address_contact_settings",
+    "tenant_default_language_setting",
+    "brand_logo_placeholder",
+    "pos_erp_marketplace_visibility_settings",
+    "notification_preferences",
+    "tenant_scoped_settings_guard",
+    "settings_validation_draft_save_contract",
+    "i18n_ready_settings_markers",
+    "settings_smoke_test"
+  ],
+  "next_step": "323 - Cari ekranı"
+}

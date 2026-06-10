@@ -1,0 +1,106 @@
+{
+  "catalog_code": "pix2pi_public_pricing_developer_surface_v1",
+  "phase": "FAZ_5",
+  "step": "5-10",
+  "depends_on": [
+    "pix2pi_packages_pricing_v1",
+    "pix2pi_entitlement_matrix_v1",
+    "pix2pi_subscription_billing_policy_v1",
+    "pix2pi_legal_compliance_policy_v1",
+    "pix2pi_sales_demo_crm_policy_v1",
+    "pix2pi_revenue_metrics_policy_v1"
+  ],
+  "public_site_surfaces": [
+    "landing_page_commercial_copy",
+    "pricing_page",
+    "package_comparison",
+    "demo_request_page",
+    "contact_sales_form",
+    "legal_footer_links"
+  ],
+  "pricing_cards": [
+    {
+      "code": "demo",
+      "title_tr": "Demo",
+      "price_display": "0 TRY",
+      "cta": "Demo talep et",
+      "public_visible": true
+    },
+    {
+      "code": "starter",
+      "title_tr": "Starter",
+      "monthly_try": 799,
+      "annual_try": 7990,
+      "cta": "Başlangıç paketi",
+      "public_visible": true
+    },
+    {
+      "code": "pro",
+      "title_tr": "Pro",
+      "monthly_try": 1999,
+      "annual_try": 19990,
+      "cta": "Büyüme paketi",
+      "public_visible": true
+    },
+    {
+      "code": "enterprise",
+      "title_tr": "Enterprise",
+      "price_display": "Özel teklif",
+      "cta": "Satış ile görüş",
+      "public_visible": true
+    },
+    {
+      "code": "accountant",
+      "title_tr": "Muhasebeci",
+      "monthly_try": 999,
+      "annual_try": 9990,
+      "per_company_monthly_try": 149,
+      "cta": "Muhasebeci paketi",
+      "public_visible": true
+    }
+  ],
+  "pricing_ui": {
+    "monthly_annual_toggle_planned": true,
+    "vat_note_required": true,
+    "vat_policy": "vat_excluded",
+    "public_launch_status": "not_public_launch_decision_evidence_only",
+    "package_comparison_required": true
+  },
+  "developer_surface": {
+    "developer_docs_landing": true,
+    "api_docs_draft": true,
+    "sandbox_description": true,
+    "api_key_management_scope": true,
+    "rate_limit_quota_description": true,
+    "webhook_docs_scope": true
+  },
+  "web_files": {
+    "pricing_html": "web/faz5/pricing/index.html",
+    "developer_html": "web/faz5/developer/index.html",
+    "nginx_route_change": false,
+    "responsive_required": true,
+    "content_match_required": true
+  },
+  "legal_footer_links": [
+    "terms_of_service",
+    "privacy_policy",
+    "kvkk_notice",
+    "cookie_policy",
+    "contact"
+  ],
+  "out_of_scope": [
+    "production_public_launch",
+    "nginx_route_change",
+    "live_demo_form_backend",
+    "live_payment_link",
+    "real_api_key_generation",
+    "developer_portal_login",
+    "runtime_webhook_engine",
+    "seo_final_publish"
+  ],
+  "seal": {
+    "FAZ_5_10_PUBLIC_PRICING_DEVELOPER_STATUS": "PASS",
+    "FAZ_5_10_PUBLIC_PRICING_DEVELOPER_SEAL_STATUS": "SEALED",
+    "FAZ_5_11_READY": "YES"
+  }
+}

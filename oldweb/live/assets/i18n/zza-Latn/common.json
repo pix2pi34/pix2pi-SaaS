@@ -1,0 +1,35 @@
+{
+  "locale": "zza-Latn",
+  "languageName": "Zazaca / Zazakî Latin",
+  "nativeName": "Zazakî",
+  "script": "Latn",
+  "direction": "ltr",
+  "calligraphyRenderer": null,
+  "calligraphyCssClass": "pix2pi-no-husrev",
+  "calligraphyTitleCssClass": "pix2pi-no-husrev",
+  "fontBinding": {
+    "bodyFontFamily": "system-ui",
+    "titleFontFamily": "system-ui",
+    "bodyAssetPath": null,
+    "titleAssetPath": null,
+    "cssPath": null
+  },
+  "messages": {
+    "app.name": "Pix2pi",
+    "auth.login": "Tede kewtış",
+    "nav.dashboard": "Panel",
+    "nav.pos": "POS",
+    "tenant.create": "Karê xo vıraze",
+    "customer.add": "Mişterî dekerê",
+    "product.add": "Mal dekerê",
+    "pos.sale": "Rotışê POS",
+    "reports.view": "Raporan bıvênê",
+    "language.change": "Zıwan bıvurne",
+    "support.title": "Peştıvaniye û ardim",
+    "upgrade.required": "Berzkerdış lazımo",
+    "quota.exceeded": "Sînor derbas bı",
+    "localization.ek2.title": "Kurdî û Zazakî ameyê zêdekırdene",
+    "localization.ek2.subtitle": "Latin û herfê îslamî amade yê",
+    "nav.marketplace": "Bazar"
+  }
+}

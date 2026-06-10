@@ -1,0 +1,156 @@
+{
+  "phase": "FAZ_6_R",
+  "item": "290",
+  "code": "FAZ_6_21_6_3",
+  "name": "Bölgesel kesinti senaryosu",
+  "depends_on": [
+    "FAZ_6_21_7_5"
+  ],
+  "runtime_mutation_allowed": false,
+  "live_failover_allowed": false,
+  "dns_mutation_allowed": false,
+  "db_failover_allowed": false,
+  "queue_failover_allowed": false,
+  "storage_failover_allowed": false,
+  "compute_failover_allowed": false,
+  "required_controls": [
+    "sre_metric_review_dependency_gate",
+    "regional_outage_scope_model",
+    "affected_surface_inventory",
+    "rto_rpo_policy",
+    "failover_decision_policy",
+    "dns_failover_guard",
+    "db_failover_guard",
+    "queue_failover_guard",
+    "storage_failover_guard",
+    "read_only_degradation_policy",
+    "manual_approval_policy",
+    "communication_handoff_policy",
+    "dry_run_scenario_runtime",
+    "provider_mutation_closed_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "rto_rpo_policy": {
+    "enabled": true,
+    "default_rto_minutes": 60,
+    "default_rpo_minutes": 15,
+    "p0_rto_minutes": 30,
+    "p0_rpo_minutes": 5,
+    "requires_business_owner_ack": true
+  },
+  "affected_surfaces": [
+    "public_web",
+    "api_gateway",
+    "auth",
+    "panel",
+    "pos",
+    "database_primary",
+    "database_replica",
+    "event_queue",
+    "cache",
+    "file_storage",
+    "observability",
+    "edge_dns"
+  ],
+  "failover_guards": {
+    "dns_failover_guard": {
+      "enabled": true,
+      "mode": "decision_only_no_dns_mutation",
+      "manual_approval_required": true
+    },
+    "db_failover_guard": {
+      "enabled": true,
+      "mode": "decision_only_no_db_promotion",
+      "manual_approval_required": true
+    },
+    "queue_failover_guard": {
+      "enabled": true,
+      "mode": "decision_only_no_queue_mutation",
+      "manual_approval_required": true
+    },
+    "storage_failover_guard": {
+      "enabled": true,
+      "mode": "decision_only_no_storage_mutation",
+      "manual_approval_required": true
+    }
+  },
+  "read_only_degradation_policy": {
+    "enabled": true,
+    "allowed_decisions": [
+      "keep_full_service",
+      "degrade_to_read_only",
+      "pause_noncritical_writes",
+      "freeze_release",
+      "prepare_failover_without_execute"
+    ],
+    "requires_manual_approval_for_write_pause": true
+  },
+  "manual_approval_policy": {
+    "required": true,
+    "required_for": [
+      "dns_failover_execute",
+      "db_failover_execute",
+      "queue_failover_execute",
+      "storage_failover_execute",
+      "compute_failover_execute",
+      "write_pause_execute",
+      "release_freeze_execute"
+    ],
+    "approval_roles": [
+      "sre_owner",
+      "ops_owner",
+      "business_owner"
+    ]
+  },
+  "communication_handoff_policy": {
+    "required": true,
+    "detailed_step": "FAZ_6_21_6_4",
+    "handoff_fields": [
+      "incident_id",
+      "severity",
+      "affected_region",
+      "affected_surfaces",
+      "current_decision",
+      "customer_impact",
+      "owner",
+      "next_update_time"
+    ]
+  },
+  "provider_mutation_closed_policy": {
+    "enabled": true,
+    "dns_mutation_allowed": false,
+    "db_promotion_allowed": false,
+    "queue_mutation_allowed": false,
+    "storage_mutation_allowed": false,
+    "compute_mutation_allowed": false
+  },
+  "evidence_policy": {
+    "required": true,
+    "minimum_fields": [
+      "scenario_id",
+      "severity",
+      "affected_region",
+      "affected_surfaces",
+      "rto_minutes",
+      "rpo_minutes",
+      "decision",
+      "manual_approval_required",
+      "provider_mutation_allowed",
+      "communication_handoff_required",
+      "timestamp"
+    ]
+  },
+  "final_status_policy": {
+    "block_if_live_failover_allowed": true,
+    "block_if_missing_rto_rpo": true,
+    "block_if_missing_affected_surfaces": true,
+    "block_if_missing_manual_approval": true,
+    "block_if_missing_communication_handoff": true,
+    "block_if_missing_evidence_fields": true
+  },
+  "audit": {
+    "required": true,
+    "evidence_file": "docs/faz6r/evidence/FAZ_6_21_6_3_BOLGESEL_KESINTI_SENARYOSU_REAL_IMPLEMENTATION_AUDIT.md"
+  }
+}

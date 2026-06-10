@@ -1,0 +1,43 @@
+{
+  "phase": "FAZ_5_19_2",
+  "title": "Fiyatlama Sayfaları",
+  "status": "READY",
+  "control_surface": "PRICING_PAGES",
+  "inputs": [
+    "FAZ_5_18_1_2_FIYAT_TABLOSU",
+    "FAZ_5_18_1_4_MUHASEBECI_OZEL_PAKETLERI",
+    "FAZ_5_18_1_5_FIYATLAMA_DOGRULAMA",
+    "FAZ_5_19_5_SANDBOX_KULLANIM_YUZEYI"
+  ],
+  "outputs": [
+    "PRICING_LANDING_PAGE",
+    "PLAN_COMPARISON_TABLE",
+    "VAT_NOTICE_PANEL",
+    "FREE_PLAN_PUBLIC_COPY",
+    "STARTER_PLAN_PUBLIC_COPY",
+    "PRO_PLAN_PUBLIC_COPY",
+    "ENTERPRISE_PLAN_PUBLIC_COPY",
+    "ACCOUNTANT_PACKAGE_PUBLIC_COPY",
+    "LAUNCH_GUARD_PANEL",
+    "PUBLIC_DEVELOPER_WEB_TESTS_DEFERRED_MARKER"
+  ],
+  "web_artifact": "web/faz5r/pricing-pages/index.html",
+  "gates": {
+    "internal_pricing_pages_ready": true,
+    "static_html_ready": true,
+    "production_page_published": false,
+    "real_customer_signup_enabled": false,
+    "checkout_enabled": false,
+    "payment_collection_enabled": false,
+    "public_pricing_visible": false,
+    "public_developer_web_tests_required_next": true
+  },
+  "final_status": {
+    "doc_status": "READY",
+    "config_status": "READY",
+    "runtime_status": "READY",
+    "web_status": "READY",
+    "test_status": "PENDING",
+    "real_implementation_status": "PENDING"
+  }
+}

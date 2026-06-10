@@ -1,0 +1,17 @@
+version: v1
+performance_rules:
+  latency_gate_ms: 400
+  error_budget_percent: 1
+  backlog_gate_count: 2000
+  db_saturation_percent: 85
+  cache_saturation_percent: 80
+  failover_retry_required: true
+  test_profile: final-performance-core
+
+release_rules:
+  checklist_required: true
+  rollback_ready: true
+  observability_evidence_required: true
+  ops_handoff_required: true
+  report_mode: full
+  final_production_readiness_mode: strict

@@ -1,0 +1,55 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 220,
+  "step": "FAZ_4_16_5_5",
+  "title": "Tenant bazlı durum raporu",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "218_FAZ_4_16_5_1_PILOT_HEALTH_DASHBOARD",
+    "219_FAZ_4_16_5_3_PILOT_INCIDENT_YONETIMI"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "report_policy": {
+    "report_status_required": "READY",
+    "report_mode_required": "CONTROLLED_PILOT",
+    "required_section_status_required": "READY",
+    "missing_section_count_required": 0,
+    "required_fail_count_required": 0,
+    "critical_issue_count_required": 0,
+    "open_blocker_count_required": 0,
+    "required_evidence_ref": true,
+    "counter_reconciliation_required": true,
+    "pilot_health_dashboard_status_required": "PASS",
+    "pilot_incident_management_status_required": "PASS",
+    "pilot_operations_tests_status_required": "PASS",
+    "rollback_signal_status_required": "CLEAR",
+    "operations_handoff_ready_required": "YES",
+    "report_result_required": "PASS",
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_report_sections": [
+    "TENANT_IDENTITY_SUMMARY",
+    "PILOT_HEALTH_SUMMARY",
+    "IMPORT_STATUS_SUMMARY",
+    "READMODEL_REPORTING_SUMMARY",
+    "UAT_STATUS_SUMMARY",
+    "TRAINING_SUPPORT_SUMMARY",
+    "SUPPORT_TRIAGE_SUMMARY",
+    "PILOT_INCIDENT_MANAGEMENT_SUMMARY",
+    "ISSUE_ESCALATION_SUMMARY",
+    "ROLLBACK_DECISION_SUMMARY",
+    "KPI_SNAPSHOT_SUMMARY",
+    "OPEN_BLOCKER_CRITICAL_ISSUE_SUMMARY",
+    "CLOSED_PROVIDER_POLICY_SUMMARY",
+    "OPERATIONS_HANDOFF_SUMMARY",
+    "REPORT_CLOSURE_CHECKLIST"
+  ],
+  "report_artifact": "configs/faz4r/tenant_status_report.controlled_pilot.v1.json",
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "221_FAZ_4_16_6_1_FEEDBACK_TOPLAMA_KANALI"
+  ]
+}

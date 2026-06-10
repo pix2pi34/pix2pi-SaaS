@@ -1,0 +1,126 @@
+{
+  "version": "sre_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_7_4",
+  "status": "review_ready_no_real_provider_send",
+  "timezone": "Europe/Istanbul",
+  "chains": [
+    {
+      "severity": "P0",
+      "name": "critical_outage_or_security_breach",
+      "steps": [
+        {
+          "order": 1,
+          "level": "L1",
+          "role": "primary_on_call",
+          "ack_minutes": 5
+        },
+        {
+          "order": 2,
+          "level": "L2",
+          "role": "secondary_on_call",
+          "ack_minutes": 10
+        },
+        {
+          "order": 3,
+          "level": "L3",
+          "role": "sre_owner",
+          "ack_minutes": 15
+        },
+        {
+          "order": 4,
+          "level": "L4",
+          "role": "security_owner_or_ops_owner",
+          "ack_minutes": 30
+        },
+        {
+          "order": 5,
+          "level": "L5",
+          "role": "business_owner",
+          "ack_minutes": 60
+        }
+      ],
+      "incident_commander_required": true,
+      "postmortem_required": true
+    },
+    {
+      "severity": "P1",
+      "name": "major_degradation_or_release_blocker",
+      "steps": [
+        {
+          "order": 1,
+          "level": "L1",
+          "role": "primary_on_call",
+          "ack_minutes": 15
+        },
+        {
+          "order": 2,
+          "level": "L2",
+          "role": "secondary_on_call",
+          "ack_minutes": 20
+        },
+        {
+          "order": 3,
+          "level": "L3",
+          "role": "sre_owner",
+          "ack_minutes": 30
+        },
+        {
+          "order": 4,
+          "level": "L4",
+          "role": "security_owner_or_ops_owner",
+          "ack_minutes": 45
+        }
+      ],
+      "incident_commander_required": true,
+      "postmortem_required": true
+    },
+    {
+      "severity": "P2",
+      "name": "partial_degradation_or_high_risk_warning",
+      "steps": [
+        {
+          "order": 1,
+          "level": "L1",
+          "role": "primary_on_call",
+          "ack_minutes": 60
+        },
+        {
+          "order": 2,
+          "level": "L2",
+          "role": "secondary_on_call",
+          "ack_minutes": 90
+        },
+        {
+          "order": 3,
+          "level": "L3",
+          "role": "sre_owner",
+          "ack_minutes": 120
+        }
+      ],
+      "incident_commander_required": false,
+      "postmortem_required": false
+    },
+    {
+      "severity": "P3",
+      "name": "minor_warning_or_followup",
+      "steps": [
+        {
+          "order": 1,
+          "level": "L1",
+          "role": "primary_on_call",
+          "ack_minutes": 240
+        }
+      ],
+      "incident_commander_required": false,
+      "postmortem_required": false
+    }
+  ],
+  "provider_mode": {
+    "real_sms_enabled": false,
+    "real_email_enabled": false,
+    "real_phone_call_enabled": false,
+    "real_pager_enabled": false,
+    "record_only_no_real_send": true
+  }
+}

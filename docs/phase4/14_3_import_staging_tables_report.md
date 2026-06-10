@@ -1,0 +1,123 @@
+# FAZ 4B / 14.3 - Import / Staging Tabloları Report
+
+Generated at: 2026-04-28 00:09:22 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+MIGRATION_BASE=20260428_143001_import_staging_tables
+UP_FILE=db/migrations/20260428_143001_import_staging_tables.up.sql
+DOWN_FILE=db/migrations/20260428_143001_import_staging_tables.down.sql
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=YES
+MIGRATION_APPLY_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+VALIDATION_MODE=MIGRATION_PAIR_CREATE_ONLY
+PREVIOUS_14_1_FINAL_STATUS=PASS
+PREVIOUS_14_1_MIGRATION_CHAIN_STANDARD=PASS
+PREVIOUS_14_2_FINAL_STATUS=PASS
+PREVIOUS_14_2_REFERENCE_SEED_STANDARD=PASS
+UP_FILE_SHA256=a6df40f9dd9efbebc41e079162a25c6b7ab6b56f7c2766731cd82ef76412de6d
+DOWN_FILE_SHA256=2e3bd957885c007a982c9b0217f3e2f5a186110b0689484ba3b918d1221ef227
+CREATE_SCHEMA_COUNT=1
+IMPORT_STAGING_TABLE_COUNT=9
+IMPORT_STAGING_EXPECTED_TABLE_MISSING_COUNT=0
+IMPORT_STAGING_TENANT_ID_COLUMN_COUNT=9
+IMPORT_STAGING_IMPORT_BATCH_ID_COLUMN_COUNT=8
+IMPORT_STAGING_JSONB_PAYLOAD_COLUMN_COUNT=5
+IMPORT_STAGING_VALIDATION_STATUS_COLUMN_COUNT=5
+IMPORT_STAGING_APPLY_STATUS_COLUMN_COUNT=5
+IMPORT_STAGING_INDEX_COUNT=16
+IMPORT_STAGING_DOWN_DROP_TABLE_COUNT=9
+DROP_TABLE_IN_UP=0
+TRUNCATE_IN_UP=0
+ALTER_SYSTEM_IN_UP=0
+DOCKER_IN_UP=0
+SYSTEMCTL_IN_UP=0
+PSQL_IN_UP=0
+CURRENT_MIGRATION_SQL_FILE_COUNT=48
+CURRENT_MIGRATION_INVALID_NAME_COUNT=0
+CURRENT_MIGRATION_PAIR_COUNT=24
+CURRENT_MIGRATION_MISSING_PAIR_COUNT=0
+CURRENT_MIGRATION_DUPLICATE_PAIR_COUNT=0
+IMPORT_STAGING_MIGRATION_PAIR=PASS
+IMPORT_STAGING_SCHEMA_STATUS=PASS
+IMPORT_STAGING_TABLE_STATUS=PASS
+IMPORT_STAGING_TENANT_SAFETY_STATUS=PASS
+IMPORT_STAGING_INDEX_STATUS=PASS
+IMPORT_STAGING_DOWN_STATUS=PASS
+IMPORT_STAGING_RISK_STATUS=PASS
+IMPORT_STAGING_CHAIN_STATUS=PASS
+IMPORT_STAGING_INVENTORY_LINE_COUNT=10
+IMPORT_STAGING_MATRIX_LINE_COUNT=15
+IMPORT_STAGING_TABLES=PASS
+FAZ4B_14_3_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+IMPORT_STAGING_TABLES=PASS
+FAZ4B_14_3_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+TOOL_sha256sum=FOUND
+
+## Inventory
+INVENTORY_FILE=docs/phase4/14_3_import_staging_tables_inventory.tsv
+table	status	tenant_id_required	import_batch_id_required	note
+import_batches	YES	YES	NO	import_pipeline.import_batches
+import_files	YES	YES	YES	import_pipeline.import_files
+import_customers_staging	YES	YES	YES	import_pipeline.import_customers_staging
+import_vendors_staging	YES	YES	YES	import_pipeline.import_vendors_staging
+import_products_staging	YES	YES	YES	import_pipeline.import_products_staging
+import_opening_stocks_staging	YES	YES	YES	import_pipeline.import_opening_stocks_staging
+import_price_lists_staging	YES	YES	YES	import_pipeline.import_price_lists_staging
+import_validation_errors	YES	YES	YES	import_pipeline.import_validation_errors
+import_row_status_events	YES	YES	YES	import_pipeline.import_row_status_events
+
+## Matrix
+MATRIX_FILE=docs/phase4/14_3_import_staging_tables_matrix.tsv
+gate	status	note
+previous_14_1	PASS	migration chain prerequisite
+previous_14_2	PASS	reference seed prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=9
+tenant_safety	PASS	tenant_id=9 import_batch_id=8
+payload_lifecycle	PASS	payload=5 validation=5 apply=5
+indexes	PASS	index_count=16
+down_migration	PASS	drop_table_count=9
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=24
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+query_text_printed	NO	secret-safe report
+
+## Migration Files
+UP_FILE=db/migrations/20260428_143001_import_staging_tables.up.sql
+DOWN_FILE=db/migrations/20260428_143001_import_staging_tables.down.sql
+UP_FILE_SHA256=a6df40f9dd9efbebc41e079162a25c6b7ab6b56f7c2766731cd82ef76412de6d
+DOWN_FILE_SHA256=2e3bd957885c007a982c9b0217f3e2f5a186110b0689484ba3b918d1221ef227
+
+## Safety Decision
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=YES
+MIGRATION_APPLY_EXECUTED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+QUERY_TEXT_PRINTED=NO

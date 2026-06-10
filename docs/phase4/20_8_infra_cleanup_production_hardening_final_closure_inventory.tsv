@@ -1,0 +1,8 @@
+block	status	domain_key	report_file	artifact_expected	artifact_existing	risk_key_hits	risk_key_expected	risk_key_sum	gate_failures
+20.1	PASS	PRODUCTION_CLEANUP_GATE	docs/phase4/20_1_production_cleanup_report.md	8	8	3	3	48	0
+20.2	PASS	CONFIG_ENV_HARDENING_GATE	docs/phase4/20_2_config_env_hardening_report.md	8	8	6	6	1281	0
+20.3	PASS	RUNTIME_SERVICE_HARDENING	docs/phase4/20_3_runtime_service_hardening_report.md	10	10	3	3	85	0
+20.4	PASS	NGINX_REVERSE_PROXY_HARDENING	docs/phase4/20_4_nginx_reverse_proxy_hardening_report.md	10	10	4	4	79	0
+20.5	PASS	DOCKER_COMPOSE_HARDENING	docs/phase4/20_5_docker_compose_hardening_report.md	12	12	5	5	86	0
+20.6	PASS	BACKUP_ARCHIVE_RETENTION_HYGIENE	docs/phase4/20_6_backup_archive_retention_report.md	9	9	5	5	785	0
+20.7	PASS	PRODUCTION_HARDENING_TESTS	docs/phase4/20_7_production_hardening_tests_report.md	7	7	4	4	2364	0

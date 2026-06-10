@@ -1,0 +1,43 @@
+version: v1
+performance_gates:
+  latency_gate:
+    required_fields:
+      - route_group
+      - p95_ms
+      - threshold_ms
+      - status
+
+  error_budget_gate:
+    required_fields:
+      - service_name
+      - error_budget_percent
+      - threshold_percent
+      - status
+
+  backlog_queue_gate:
+    required_fields:
+      - queue_name
+      - backlog_count
+      - threshold_count
+      - status
+
+  db_cache_saturation_gate:
+    required_fields:
+      - component_name
+      - saturation_percent
+      - threshold_percent
+      - status
+
+  failover_retry_gate:
+    required_fields:
+      - scenario_name
+      - failover_status
+      - retry_status
+      - checked_at
+
+  regression_suite:
+    required_fields:
+      - suite_name
+      - profile
+      - status
+      - executed_at

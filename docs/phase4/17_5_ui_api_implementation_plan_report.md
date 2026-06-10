@@ -1,0 +1,178 @@
+# FAZ 4B / 17.5 - UI Surface + API Implementation Plan Report
+
+Generated at: 2026-04-29 20:30:45 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+DOCKER_COMPOSE_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+FIREWALL_CHANGED=NO
+PORT_CHANGED=NO
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+UI_CODE_CHANGED=NO
+FRONTEND_FILE_CREATED=NO
+API_ROUTE_CREATED=NO
+API_IMPLEMENTATION_CHANGED=NO
+DTO_CODE_CREATED=NO
+HANDLER_CODE_CREATED=NO
+MIDDLEWARE_CHANGED=NO
+WEBSOCKET_SERVER_STARTED=NO
+SSE_SERVER_STARTED=NO
+REALTIME_RUNTIME_CHANGED=NO
+WORKFLOW_RUNTIME_CHANGED=NO
+APPROVAL_RUNTIME_CHANGED=NO
+EVENT_PUBLISHED=NO
+EVENT_CONSUMED=NO
+NOTIFICATION_SENT=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+RAW_PAYLOAD_PRINTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+TOKEN_PRINTED=NO
+VALIDATION_MODE=UI_API_IMPLEMENTATION_PLAN_ONLY
+PREVIOUS_17_4_FINAL_STATUS=PASS
+PREVIOUS_17_4_REALTIME_CHANNEL_CONTRACT=PASS
+PREVIOUS_17_4_REALTIME_NO_RUNTIME_CHANGE=PASS
+PREVIOUS_17_4_REALTIME_SECRET_SAFE=PASS
+PREVIOUS_17_3_FINAL_STATUS=PASS
+PREVIOUS_17_2_FINAL_STATUS=PASS
+PREVIOUS_17_1_FINAL_STATUS=PASS
+PREVIOUS_22_FINAL_STATUS=PASS
+PREVIOUS_20_FINAL_STATUS=PASS
+PREVIOUS_20_INFRA_PRODUCTION_HARDENING_FINAL_CLOSURE=PASS
+PREVIOUS_21_FINAL_STATUS=PASS
+PREVIOUS_21_SECURITY_RBAC_AUDIT_FINAL_CLOSURE=PASS
+UI_API_UI_PAGE_COUNT=12
+UI_API_TENANT_UI_PAGE_COUNT=8
+UI_API_PLATFORM_UI_PAGE_COUNT=4
+UI_API_AUDIT_UI_PAGE_COUNT=12
+UI_API_ENDPOINT_COUNT=22
+UI_API_TENANT_API_ENDPOINT_COUNT=16
+UI_API_PLATFORM_API_ENDPOINT_COUNT=6
+UI_API_AUDIT_API_ENDPOINT_COUNT=8
+UI_API_REALTIME_API_ENDPOINT_COUNT=21
+UI_API_PERMISSION_COUNT=18
+UI_API_PERMISSION_AUDIT_COUNT=11
+UI_API_SEQUENCE_COUNT=11
+UI_API_TEST_COUNT=12
+UI_API_TENANT_TEST_COUNT=12
+UI_API_RBAC_TEST_COUNT=12
+UI_API_AUDIT_TEST_COUNT=11
+UI_API_REALTIME_TEST_COUNT=12
+UI_API_PREVIOUS_17_4=PASS
+UI_PAGE_IMPLEMENTATION_PLAN=PASS
+API_ENDPOINT_IMPLEMENTATION_PLAN=PASS
+UI_API_PERMISSION_MAPPING=PASS
+UI_API_SEQUENCE_PLAN=PASS
+UI_API_TEST_PLAN=PASS
+UI_API_NO_RUNTIME_CHANGE=PASS
+UI_API_NO_CONFIG_CHANGE=PASS
+UI_API_SECRET_SAFE=PASS
+UI_API_IMPLEMENTATION_PLAN=PASS
+FAZ4B_17_5_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+UI_API_IMPLEMENTATION_PLAN=PASS
+FAZ4B_17_5_FINAL_STATUS=PASS
+
+## Tool Status
+TOOL_python3=FOUND
+TOOL_grep=FOUND
+TOOL_wc=FOUND
+
+## Matrix
+MATRIX_FILE=docs/phase4/17_5_ui_api_implementation_plan_matrix.tsv
+gate	status	note
+previous_17_4	PASS	realtime channel contract prerequisite
+ui_page_plan	PASS	ui_pages=12 tenant=8 platform=4
+api_endpoint_plan	PASS	api_endpoints=22 tenant=16 platform=6
+permission_mapping	PASS	permissions=18 audit_permissions=11
+sequence_plan	PASS	steps=11
+test_plan	PASS	tests=12 tenant=12 rbac=12 realtime=12
+audit_coverage	PASS	ui_audit=12 api_audit=8
+realtime_mapping	PASS	realtime_api_endpoints=21
+tenant_platform_split	PASS	tenant_ui=8 platform_ui=4 tenant_api=16 platform_api=6
+no_runtime_change	PASS	no UI/API/realtime runtime changed
+no_config_change	PASS	no config/env/nginx/firewall changed
+secret_safe	PASS	no secrets printed
+service_restarted	NO	evidence only
+container_restarted	NO	evidence only
+docker_compose_executed	NO	evidence only
+nginx_reload_executed	NO	evidence only
+firewall_changed	NO	evidence only
+port_changed	NO	evidence only
+config_changed	NO	evidence only
+env_changed	NO	evidence only
+ui_code_changed	NO	plan only
+frontend_file_created	NO	plan only
+api_route_created	NO	plan only
+api_implementation_changed	NO	plan only
+dto_code_created	NO	plan only
+handler_code_created	NO	plan only
+middleware_changed	NO	plan only
+websocket_server_started	NO	plan only
+sse_server_started	NO	plan only
+realtime_runtime_changed	NO	plan only
+workflow_runtime_changed	NO	plan only
+approval_runtime_changed	NO	plan only
+event_published	NO	plan only
+event_consumed	NO	plan only
+notification_sent	NO	plan only
+db_mutation	NO	evidence only
+db_apply_executed	NO	evidence only
+migration_created	NO	evidence only
+migration_apply_executed	NO	evidence only
+raw_payload_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report
+
+## Inventories
+UI_PAGE_IMPLEMENTATION_PLAN_FILE=docs/phase4/17_5_ui_page_implementation_plan.tsv
+API_ENDPOINT_IMPLEMENTATION_PLAN_FILE=docs/phase4/17_5_api_endpoint_implementation_plan.tsv
+UI_API_PERMISSION_MAPPING_FILE=docs/phase4/17_5_ui_api_permission_mapping.tsv
+IMPLEMENTATION_SEQUENCE_FILE=docs/phase4/17_5_implementation_sequence.tsv
+UI_API_TEST_PLAN_FILE=docs/phase4/17_5_ui_api_test_plan.tsv
+NOTE=Plan only. No UI/API/runtime/DB/config/event/notification change executed.
+
+## Safety Decision
+SERVICE_RESTARTED=NO
+CONTAINER_RESTARTED=NO
+DOCKER_COMPOSE_EXECUTED=NO
+NGINX_RELOAD_EXECUTED=NO
+FIREWALL_CHANGED=NO
+PORT_CHANGED=NO
+CONFIG_CHANGED=NO
+ENV_CHANGED=NO
+UI_CODE_CHANGED=NO
+FRONTEND_FILE_CREATED=NO
+API_ROUTE_CREATED=NO
+API_IMPLEMENTATION_CHANGED=NO
+DTO_CODE_CREATED=NO
+HANDLER_CODE_CREATED=NO
+MIDDLEWARE_CHANGED=NO
+WEBSOCKET_SERVER_STARTED=NO
+SSE_SERVER_STARTED=NO
+REALTIME_RUNTIME_CHANGED=NO
+WORKFLOW_RUNTIME_CHANGED=NO
+APPROVAL_RUNTIME_CHANGED=NO
+EVENT_PUBLISHED=NO
+EVENT_CONSUMED=NO
+NOTIFICATION_SENT=NO
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+MIGRATION_APPLY_EXECUTED=NO
+RAW_PAYLOAD_PRINTED=NO
+RAW_DSN_PRINTED=NO
+SECRET_VALUE_PRINTED=NO
+TOKEN_PRINTED=NO
+
+## Issues
+OK ✅ issue yok

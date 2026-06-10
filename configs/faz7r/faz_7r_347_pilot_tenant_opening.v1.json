@@ -1,0 +1,63 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "347",
+  "name": "Pilot müşteri tenant açılışı gerçek provisioning",
+  "component": "internal/onboarding/pilottenantopening",
+  "panel_path": "/pilot-tenant-opening/",
+  "asset_path": "/assets/pilot-tenant-opening/pilot-tenant-opening-runtime.js",
+  "database_contract": {
+    "schema": "tenant_onboarding",
+    "tables": [
+      "tenant_onboarding.pilot_tenant_opening_runs",
+      "tenant_onboarding.pilot_tenant_opening_audit_events",
+      "core.tenant_configs",
+      "commercial.tenant_plan_bindings",
+      "core.branches",
+      "pos.registers",
+      "auth.user_tenant_memberships"
+    ],
+    "tracked_fields": [
+      "tenant_id",
+      "owner_user_id",
+      "default_language",
+      "default_currency",
+      "default_plan_code",
+      "branch_id",
+      "register_id",
+      "opening_status",
+      "correlation_id"
+    ]
+  },
+  "runtime_contract": {
+    "tenant_config_created": true,
+    "default_language_tr_tr": true,
+    "default_plan_bound": true,
+    "branch_created": true,
+    "register_created": true,
+    "owner_membership_verified": true,
+    "opening_run_completed": true,
+    "audit_event_contract": true,
+    "panel_screen_contract": true
+  },
+  "defaults": {
+    "default_language": "tr-TR",
+    "default_currency": "TRY",
+    "default_plan_code": "pilot-controlled",
+    "default_branch_name": "Merkez Şube",
+    "default_register_name": "Kasa 1",
+    "owner_role_code": "owner"
+  },
+  "required_checks": [
+    "tenant_config_creation",
+    "default_language_tr_tr",
+    "default_plan_binding",
+    "branch_creation",
+    "register_creation",
+    "owner_membership_verification",
+    "opening_run_completed",
+    "audit_event_record",
+    "panel_screen_smoke",
+    "go_test"
+  ],
+  "next_step": "348 - İlk işletme kullanıcı daveti gerçek invite akışı"
+}

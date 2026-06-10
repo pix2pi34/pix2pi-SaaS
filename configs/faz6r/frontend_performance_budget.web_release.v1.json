@@ -1,0 +1,97 @@
+{
+  "version": "web_release.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_22_3",
+  "status": "dry_run_only_no_frontend_performance_mutation",
+  "budgets": [
+    {
+      "budget_id": "perf-budget-public-landing",
+      "route": "public_landing",
+      "lcp_status": "TARGET_2500_MS",
+      "inp_status": "TARGET_200_MS",
+      "cls_status": "TARGET_0_1",
+      "js_budget_status": "MAX_180_KB",
+      "css_budget_status": "MAX_80_KB",
+      "image_budget_status": "MAX_900_KB",
+      "cache_status": "HASHED_STATIC_ASSETS_REQUIRED",
+      "risk_level": "medium",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "budget_id": "perf-budget-auth-login",
+      "route": "auth_login",
+      "lcp_status": "TARGET_2200_MS",
+      "inp_status": "TARGET_200_MS",
+      "cls_status": "TARGET_0_1",
+      "js_budget_status": "MAX_140_KB",
+      "css_budget_status": "MAX_60_KB",
+      "image_budget_status": "MAX_250_KB",
+      "cache_status": "HTML_NO_CACHE_STATIC_HASH_REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "budget_id": "perf-budget-tenant-panel-shell",
+      "route": "tenant_panel_shell",
+      "lcp_status": "TARGET_2500_MS",
+      "inp_status": "TARGET_200_MS",
+      "cls_status": "TARGET_0_1",
+      "js_budget_status": "MAX_280_KB",
+      "css_budget_status": "MAX_100_KB",
+      "image_budget_status": "MAX_300_KB",
+      "cache_status": "HASHED_STATIC_ASSETS_REQUIRED",
+      "risk_level": "critical",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "budget_id": "perf-budget-approval-inbox",
+      "route": "approval_inbox",
+      "lcp_status": "TARGET_2500_MS",
+      "inp_status": "TARGET_200_MS",
+      "cls_status": "TARGET_0_1",
+      "js_budget_status": "MAX_260_KB",
+      "css_budget_status": "MAX_90_KB",
+      "image_budget_status": "MAX_250_KB",
+      "cache_status": "HASHED_STATIC_ASSETS_REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "budget_id": "perf-budget-workflow-monitor",
+      "route": "workflow_monitor",
+      "lcp_status": "TARGET_2800_MS",
+      "inp_status": "TARGET_200_MS",
+      "cls_status": "TARGET_0_1",
+      "js_budget_status": "MAX_300_KB",
+      "css_budget_status": "MAX_100_KB",
+      "image_budget_status": "MAX_250_KB",
+      "cache_status": "HASHED_STATIC_ASSETS_REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    },
+    {
+      "budget_id": "perf-budget-reporting-tables",
+      "route": "reporting_tables",
+      "lcp_status": "TARGET_2800_MS",
+      "inp_status": "TARGET_200_MS",
+      "cls_status": "TARGET_0_1",
+      "js_budget_status": "MAX_320_KB",
+      "css_budget_status": "MAX_100_KB",
+      "image_budget_status": "MAX_200_KB",
+      "cache_status": "HASHED_STATIC_ASSETS_REQUIRED",
+      "risk_level": "high",
+      "approval_required": true,
+      "mutation_allowed": false
+    }
+  ],
+  "next_step": {
+    "step": "FAZ_6_22_4",
+    "name": "Visual regression seti",
+    "runtime_mutation_allowed_now": false
+  }
+}

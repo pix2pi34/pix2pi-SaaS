@@ -1,0 +1,60 @@
+{
+  "phase": "FAZ_4_R",
+  "phase_no": 200,
+  "step": "FAZ_4_16_2_3",
+  "title": "Fiş / hareket import",
+  "priority_group": "LVL17 Pilot / UAT / Onboarding",
+  "depends_on": [
+    "180_FAZ_4_14_3_IMPORT_STAGING_TABLES",
+    "198_FAZ_4_16_2_1_CARI_IMPORT",
+    "199_FAZ_4_16_2_2_URUN_STOK_IMPORT"
+  ],
+  "status_policy": "COUNTER_BASED_FINAL_STATUS_ONLY",
+  "terminal_policy": {
+    "clear_before_test_or_audit": true
+  },
+  "import_policy": {
+    "import_mode_required": "DRY_RUN",
+    "commit_allowed": false,
+    "tenant_id_required": true,
+    "batch_id_required": true,
+    "max_receipt_rows_per_batch": 5000,
+    "max_movement_rows_per_batch": 20000,
+    "duplicate_receipt_no_forbidden": true,
+    "duplicate_movement_id_forbidden": true,
+    "unknown_customer_forbidden": true,
+    "unknown_product_forbidden": true,
+    "negative_amount_forbidden": true,
+    "header_line_total_reconciliation_required": true,
+    "live_external_policy_status_required": "CLOSED"
+  },
+  "required_receipt_header_fields": [
+    "receipt_no",
+    "receipt_type",
+    "receipt_date",
+    "customer_code",
+    "currency_code",
+    "gross_total",
+    "net_total",
+    "tax_total"
+  ],
+  "required_receipt_line_fields": [
+    "line_no",
+    "product_code",
+    "quantity",
+    "unit_price",
+    "tax_rate",
+    "net_amount",
+    "tax_amount",
+    "gross_amount"
+  ],
+  "mapping_artifact": "configs/faz4r/receipt_movement_import_mapping.controlled_pilot.v1.json",
+  "target_staging_tables": [
+    "import_staging_finance_documents",
+    "import_staging_stock_entries"
+  ],
+  "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY",
+  "next_steps": [
+    "201_FAZ_4_16_2_4_MAPPING_TRANSFORM_KURALLARI"
+  ]
+}

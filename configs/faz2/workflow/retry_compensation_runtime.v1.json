@@ -1,0 +1,46 @@
+{
+  "phase": "FAZ 2-7.6.4",
+  "runtime": "retry_compensation",
+  "require_tenant": true,
+  "retry": {
+    "actions": [
+      "RETRY",
+      "COMPENSATE",
+      "FAIL"
+    ],
+    "attempt_statuses": [
+      "SCHEDULED",
+      "RUNNING",
+      "SUCCEEDED",
+      "FAILED",
+      "EXHAUSTED"
+    ],
+    "backoff_strategies": [
+      "FIXED",
+      "LINEAR",
+      "EXPONENTIAL"
+    ]
+  },
+  "compensation": {
+    "statuses": [
+      "REQUESTED",
+      "RUNNING",
+      "COMPLETED",
+      "FAILED",
+      "CANCELED"
+    ],
+    "workflow_bridge": {
+      "start": "FAILED -> COMPENSATING",
+      "complete": "COMPENSATING -> COMPENSATED"
+    }
+  },
+  "guards": [
+    "tenant_required",
+    "workflow_id_required",
+    "step_id_required",
+    "retry_policy_required",
+    "cross_tenant_compensation_denied",
+    "final_compensation_cannot_change"
+  ],
+  "next_ready": "FAZ_2_7_6_5_WORKFLOW_OBSERVABILITY_RUNTIME"
+}

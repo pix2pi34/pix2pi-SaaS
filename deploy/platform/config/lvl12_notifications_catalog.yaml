@@ -1,0 +1,35 @@
+version: v1
+notifications:
+  service:
+    required_fields:
+      - notification_id
+      - channel
+      - severity
+      - payload
+      - created_at
+
+  mail_channel:
+    required_fields:
+      - to
+      - subject
+      - body
+
+  sms_push_channel:
+    required_fields:
+      - recipient
+      - message
+      - provider
+
+  webhook_delivery:
+    required_fields:
+      - endpoint
+      - secret
+      - event_type
+      - delivery_id
+
+  webhook_retry_dlq:
+    required_fields:
+      - retry_count
+      - max_retry
+      - dlq_enabled
+      - failed_at

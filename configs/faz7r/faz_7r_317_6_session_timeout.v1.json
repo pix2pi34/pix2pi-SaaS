@@ -1,0 +1,50 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "317.6",
+  "name": "Session timeout gerçek davranış",
+  "component": "internal/auth/sessiontimeout",
+  "database_contract": {
+    "schema": "auth",
+    "tables": [
+      "auth.login_sessions",
+      "auth.session_timeout_events"
+    ],
+    "tracked_fields": [
+      "session_id",
+      "access_token_id",
+      "refresh_token_id",
+      "issued_at",
+      "access_expires_at",
+      "refresh_expires_at",
+      "last_seen_at",
+      "revoked_at"
+    ]
+  },
+  "runtime_contract": {
+    "validates_access_expiry": true,
+    "validates_refresh_expiry": true,
+    "validates_idle_timeout": true,
+    "validates_absolute_timeout": true,
+    "updates_last_seen": true,
+    "records_timeout_event": true,
+    "revokes_on_logout": true
+  },
+  "timeout_policy": {
+    "access_ttl_minutes": 60,
+    "refresh_ttl_hours": 720,
+    "idle_timeout_minutes": 30,
+    "absolute_timeout_hours": 12
+  },
+  "required_checks": [
+    "active_session_validation",
+    "access_expiry_rejection",
+    "refresh_expiry_rejection",
+    "idle_timeout_rejection",
+    "absolute_timeout_rejection",
+    "revoked_session_rejection",
+    "touch_updates_last_seen",
+    "logout_revokes_session",
+    "go_test"
+  ],
+  "next_step": "317.7 - Login error messages gerçek hata mesajları"
+}

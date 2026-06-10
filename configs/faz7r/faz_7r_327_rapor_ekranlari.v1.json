@@ -1,0 +1,66 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "327",
+  "name": "Rapor ekranları",
+  "surface": "merchant_panel",
+  "domain": "panel.pix2pi.com.tr",
+  "path": "/reports/",
+  "runtime_path": "/assets/reports/reports-runtime.js",
+  "depends_on": [
+    "316 - panel.pix2pi.com.tr altyapısı",
+    "317 - Login / tenant seçimi",
+    "318 - Dil Modülü / i18n / Alfabe Altyapısı",
+    "319 - İşletme onboarding ekranı",
+    "320 - Merchant dashboard",
+    "321 - Kullanıcı / rol / personel ekranı",
+    "322 - İşletme ayarları / profil ekranı",
+    "323 - Cari ekranı",
+    "324 - Ürün / stok ekranı",
+    "325 - Satış / POS yönetim ekranı",
+    "326 - Fatura / belge ekranı"
+  ],
+  "backend_contract": {
+    "snapshot_endpoint": "/api/panel/reports/snapshot",
+    "sales_endpoint": "/api/panel/reports/sales",
+    "stock_endpoint": "/api/panel/reports/stock",
+    "customers_endpoint": "/api/panel/reports/customers",
+    "documents_endpoint": "/api/panel/reports/documents",
+    "export_endpoint": "/api/panel/reports/export",
+    "method": "GET/POST",
+    "auth": "Bearer JWT",
+    "tenant_header": "X-Tenant-ID"
+  },
+  "report_types": [
+    "SALES",
+    "STOCK",
+    "CUSTOMERS",
+    "DOCUMENTS"
+  ],
+  "export_formats": [
+    "PDF",
+    "XLSX",
+    "CSV",
+    "JSON"
+  ],
+  "read_model_contract": {
+    "source": "reporting_store",
+    "production_query_enabled": false,
+    "fallback_snapshot_enabled": true
+  },
+  "required_capabilities": [
+    "reports_app_shell",
+    "kpi_summary_cards",
+    "sales_report_surface",
+    "stock_report_surface",
+    "customer_report_surface",
+    "document_report_surface",
+    "date_range_filter_surface",
+    "export_placeholder",
+    "reporting_store_read_model_contract",
+    "tenant_scoped_report_guard",
+    "runtime_fallback_snapshot",
+    "i18n_ready_report_markers",
+    "reports_smoke_test"
+  ],
+  "next_step": "328 - Import / export yüzeyi"
+}

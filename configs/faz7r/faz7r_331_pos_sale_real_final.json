@@ -1,0 +1,25 @@
+{
+  "step": "FAZ 7-R / 331",
+  "name": "POS satış ekranı real final",
+  "schema": "pos_sales",
+  "routes": [
+    "/sale/",
+    "POST /api/pos/sale/product-search",
+    "POST /api/pos/sale/quote",
+    "POST /api/pos/sale/complete"
+  ],
+  "requiredEvidence": [
+    "migration applied",
+    "product search by barcode HTTP 200",
+    "cart quote subtotal discount VAT total",
+    "sale complete HTTP 201",
+    "sale line DB SELECT",
+    "payment DB SELECT",
+    "inventory stock decrease DB SELECT",
+    "insufficient stock blocked",
+    "no-role deny",
+    "cross-tenant product denied",
+    "rollback no partial write",
+    "route smoke"
+  ]
+}

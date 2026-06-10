@@ -1,0 +1,117 @@
+{
+  "version": "dr_ops.v1",
+  "phase": "FAZ_6_R",
+  "code": "FAZ_6_21_6_4",
+  "status": "record_only_no_real_send",
+  "channels": [
+    {
+      "channel": "internal_incident_room",
+      "mode": "record_only_no_real_send",
+      "audience": "internal"
+    },
+    {
+      "channel": "ops_update_record",
+      "mode": "record_only_no_real_send",
+      "audience": "internal"
+    },
+    {
+      "channel": "customer_update_draft",
+      "mode": "record_only_no_real_send",
+      "audience": "external"
+    },
+    {
+      "channel": "status_page_draft",
+      "mode": "record_only_no_real_send",
+      "audience": "external"
+    },
+    {
+      "channel": "support_macro_draft",
+      "mode": "record_only_no_real_send",
+      "audience": "customer_support"
+    }
+  ],
+  "templates": [
+    {
+      "template_id": "internal-p0-initial",
+      "audience": "internal",
+      "severity": "P0",
+      "channel": "internal_incident_room",
+      "approval_owner": "incident_commander",
+      "message": "P0 incident opened. Scope, affected surfaces and next update time are being tracked."
+    },
+    {
+      "template_id": "internal-p1-initial",
+      "audience": "internal",
+      "severity": "P1",
+      "channel": "internal_incident_room",
+      "approval_owner": "incident_commander",
+      "message": "P1 incident opened. Initial triage and mitigation owner assigned."
+    },
+    {
+      "template_id": "customer-impact-initial",
+      "audience": "external",
+      "severity": "P0",
+      "channel": "customer_update_draft",
+      "approval_owner": "business_owner",
+      "message": "We are investigating a service disruption affecting selected Pix2pi services. Next update will follow within the stated window."
+    },
+    {
+      "template_id": "status-page-public-impact",
+      "audience": "external",
+      "severity": "P0",
+      "channel": "status_page_draft",
+      "approval_owner": "business_owner",
+      "message": "Pix2pi is investigating a service disruption. Some services may be degraded."
+    },
+    {
+      "template_id": "security-impact-internal",
+      "audience": "security",
+      "severity": "P1",
+      "channel": "ops_update_record",
+      "approval_owner": "security_owner",
+      "message": "Security-impact incident requires security owner review before customer-facing communication."
+    },
+    {
+      "template_id": "support-macro-degraded-service",
+      "audience": "customer_support",
+      "severity": "P2",
+      "channel": "support_macro_draft",
+      "approval_owner": "ops_owner",
+      "message": "We are tracking a service degradation. Support should avoid speculative root-cause statements."
+    }
+  ],
+  "sample_incidents": [
+    {
+      "incident_id": "INC-DR-P0-001",
+      "severity": "P0",
+      "customer_impact": true,
+      "public_impact": true,
+      "security_impact": false,
+      "affected_surfaces": [
+        "api_gateway",
+        "database_primary"
+      ]
+    },
+    {
+      "incident_id": "INC-SEC-P1-001",
+      "severity": "P1",
+      "customer_impact": false,
+      "public_impact": false,
+      "security_impact": true,
+      "affected_surfaces": [
+        "edge_dns",
+        "api_gateway"
+      ]
+    },
+    {
+      "incident_id": "INC-DEG-P2-001",
+      "severity": "P2",
+      "customer_impact": false,
+      "public_impact": false,
+      "security_impact": false,
+      "affected_surfaces": [
+        "event_queue"
+      ]
+    }
+  ]
+}

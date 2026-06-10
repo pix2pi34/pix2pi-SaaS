@@ -1,0 +1,112 @@
+{
+  "valid_fixture": {
+    "uat_id": "management_panel_uat.valid_fixture",
+    "uat_status": "READY",
+    "uat_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT"
+    },
+    "chain_dependencies": {
+      "192_FAZ_4_16_1_4_PILOT_VERI_SINIRLARI_TANIMI": "PASS",
+      "193_FAZ_4_16_1_5_TENANT_ACCEPTANCE_CHECKLIST": "PASS",
+      "194_FAZ_4_16_1_6_ONBOARDING_SMOKE": "PASS",
+      "195_FAZ_4_16_1_1_PILOT_TENANT_ACILIS_AKISI": "PASS",
+      "196_FAZ_4_16_1_2_TENANT_CONFIG_SABLONLARI": "PASS",
+      "197_FAZ_4_16_1_3_KULLANICI_ROL_ILK_KURULUMU": "PASS",
+      "198_FAZ_4_16_2_1_CARI_IMPORT": "PASS",
+      "199_FAZ_4_16_2_2_URUN_STOK_IMPORT": "PASS",
+      "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT": "PASS",
+      "201_FAZ_4_16_2_4_MAPPING_TRANSFORM_KURALLARI": "PASS",
+      "202_FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU": "PASS",
+      "203_FAZ_4_16_2_6_IMPORT_TESTLERI": "PASS"
+    },
+    "uat_cases": [
+      {"code": "PANEL_LOGIN_ACCESS", "required": true, "status": "PASS", "area": "ACCESS", "evidence_ref": "docs/faz4r/evidence/panel_login.md"},
+      {"code": "TENANT_CONTEXT_VISIBLE", "required": true, "status": "PASS", "area": "TENANT", "evidence_ref": "docs/faz4r/evidence/tenant_context.md"},
+      {"code": "TENANT_CONFIG_VIEW", "required": true, "status": "PASS", "area": "TENANT", "evidence_ref": "configs/faz4r/tenant_config_template.controlled_pilot.v1.json"},
+      {"code": "USER_ROLE_VIEW", "required": true, "status": "PASS", "area": "ACCESS", "evidence_ref": "configs/faz4r/user_role_initial_setup.controlled_pilot.v1.json"},
+      {"code": "IMPORT_BATCH_LIST_VIEW", "required": true, "status": "PASS", "area": "IMPORT", "evidence_ref": "docs/faz4r/evidence/import_batch_list.md"},
+      {"code": "IMPORT_VALIDATION_REPORT_VIEW", "required": true, "status": "PASS", "area": "IMPORT", "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "CUSTOMER_IMPORT_RESULT_VIEW", "required": true, "status": "PASS", "area": "IMPORT", "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_1_CARI_IMPORT_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "PRODUCT_STOCK_IMPORT_RESULT_VIEW", "required": true, "status": "PASS", "area": "IMPORT", "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_2_URUN_STOK_IMPORT_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "RECEIPT_MOVEMENT_IMPORT_RESULT_VIEW", "required": true, "status": "PASS", "area": "IMPORT", "evidence_ref": "docs/faz4r/evidence/FAZ_4_16_2_3_FIS_HAREKET_IMPORT_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "READMODEL_REPORTING_SUMMARY_VIEW", "required": true, "status": "PASS", "area": "REPORTING", "evidence_ref": "docs/faz4r/evidence/FAZ_4_15_7_READMODEL_REPORTING_TEST_SET_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "OPERATIONAL_READMODEL_SUMMARY_VIEW", "required": true, "status": "PASS", "area": "REPORTING", "evidence_ref": "docs/faz4r/evidence/FAZ_4_15_1_OPERATIONAL_READMODEL_TABLES_REAL_IMPLEMENTATION_AUDIT.md"},
+      {"code": "SUPPORT_ISSUE_LINK_VIEW", "required": true, "status": "PASS", "area": "SUPPORT", "evidence_ref": "docs/faz4r/evidence/support_issue_link.md"},
+      {"code": "AUDIT_EVIDENCE_LINK_VIEW", "required": true, "status": "PASS", "area": "AUDIT", "evidence_ref": "docs/faz4r/evidence/audit_evidence_link.md"},
+      {"code": "ROLLBACK_CUTOVER_GUARD_VIEW", "required": true, "status": "PASS", "area": "OPS", "evidence_ref": "docs/faz4r/evidence/rollback_cutover_guard.md"},
+      {"code": "CLOSED_EXTERNAL_POLICY_GATE", "required": true, "status": "PASS", "area": "POLICY", "evidence_ref": "docs/faz4r/evidence/closed_external_policy_gate.md"}
+    ],
+    "summary": {
+      "total_case_count": 15,
+      "pass_count": 15,
+      "fail_count": 0,
+      "required_fail_count": 0,
+      "optional_warn_count": 0,
+      "critical_issue_count": 0,
+      "tenant_context_status": "PASS",
+      "import_uat_status": "PASS",
+      "reporting_uat_status": "PASS",
+      "uat_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "uat_id": "management_panel_uat.invalid_fixture",
+    "uat_status": "DRAFT",
+    "uat_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED"
+    },
+    "chain_dependencies": {
+      "192_FAZ_4_16_1_4_PILOT_VERI_SINIRLARI_TANIMI": "PASS",
+      "193_FAZ_4_16_1_5_TENANT_ACCEPTANCE_CHECKLIST": "PASS",
+      "194_FAZ_4_16_1_6_ONBOARDING_SMOKE": "PASS",
+      "195_FAZ_4_16_1_1_PILOT_TENANT_ACILIS_AKISI": "PASS",
+      "196_FAZ_4_16_1_2_TENANT_CONFIG_SABLONLARI": "PASS",
+      "197_FAZ_4_16_1_3_KULLANICI_ROL_ILK_KURULUMU": "PASS",
+      "198_FAZ_4_16_2_1_CARI_IMPORT": "FAIL",
+      "199_FAZ_4_16_2_2_URUN_STOK_IMPORT": "PASS",
+      "200_FAZ_4_16_2_3_FIS_HAREKET_IMPORT": "PASS",
+      "201_FAZ_4_16_2_4_MAPPING_TRANSFORM_KURALLARI": "PASS",
+      "202_FAZ_4_16_2_5_IMPORT_VALIDATION_RAPORU": "PASS",
+      "203_FAZ_4_16_2_6_IMPORT_TESTLERI": "PASS"
+    },
+    "uat_cases": [
+      {"code": "PANEL_LOGIN_ACCESS", "required": true, "status": "FAIL", "area": "ACCESS", "evidence_ref": ""},
+      {"code": "TENANT_CONTEXT_VISIBLE", "required": true, "status": "WARN", "area": "TENANT", "evidence_ref": "x"},
+      {"code": "TENANT_CONTEXT_VISIBLE", "required": true, "status": "PASS", "area": "TENANT", "evidence_ref": "x"}
+    ],
+    "summary": {
+      "total_case_count": 99,
+      "pass_count": 99,
+      "fail_count": 99,
+      "required_fail_count": 99,
+      "optional_warn_count": 99,
+      "critical_issue_count": 1,
+      "tenant_context_status": "FAIL",
+      "import_uat_status": "FAIL",
+      "reporting_uat_status": "FAIL",
+      "uat_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

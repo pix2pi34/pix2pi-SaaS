@@ -1,0 +1,7 @@
+{
+  "openapi_trace": "3.1.0-draft-ready",
+  "title": "Pix2pi Public API",
+  "version": "v1",
+  "base_url": "https://api.pix2pi.com.tr",
+  "status": "runtime_publish_pipeline_ready"
+}

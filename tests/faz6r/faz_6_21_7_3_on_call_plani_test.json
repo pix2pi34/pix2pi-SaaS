@@ -1,0 +1,37 @@
+{
+  "expected_dependency": "FAZ_6_21_7_2",
+  "expected_runtime_mutation_allowed": false,
+  "expected_notification_provider_enabled": false,
+  "expected_real_paging_enabled": false,
+  "expected_required_controls": [
+    "auto_remediation_dependency_gate",
+    "on_call_role_model",
+    "primary_secondary_coverage_policy",
+    "severity_response_target_policy",
+    "handoff_policy",
+    "override_policy",
+    "fatigue_management_policy",
+    "incident_commander_policy",
+    "notification_provider_closed_policy",
+    "escalation_placeholder_policy",
+    "evidence_capture_policy",
+    "final_status_policy"
+  ],
+  "expected_roles": [
+    "primary_on_call",
+    "secondary_on_call",
+    "incident_commander",
+    "sre_owner",
+    "ops_owner"
+  ],
+  "expected_severities": [
+    "P0",
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "expected_timezone": "Europe/Istanbul",
+  "expected_handoff_required": true,
+  "expected_escalation_step": "FAZ_6_21_7_4",
+  "expected_next_step": "FAZ_6_21_7_4"
+}

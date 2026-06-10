@@ -1,0 +1,27 @@
+{
+  "phase": "FAZ 7-R",
+  "step": "361",
+  "domain": "panel.pix2pi.com.tr",
+  "smoke_tests": [
+    {
+      "name": "pilot_closure_rollout_readiness_screen",
+      "path": "/pilot-closure-rollout-readiness/",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_361_PILOT_CLOSURE_APP_SHELL_START",
+        "PIX2PI_361_GO_HOLD_ROLLOUT_DECISION_PREVIEW_START",
+        "PIX2PI_361_ROLLOUT_READINESS_RUNTIME_DATA_CONTRACT_START"
+      ]
+    },
+    {
+      "name": "pilot_closure_rollout_readiness_runtime",
+      "path": "/assets/pilot-closure-rollout-readiness/pilot-closure-rollout-readiness-runtime.js",
+      "expected_http_status": 200,
+      "expected_body_contains": [
+        "PIX2PI_361_PILOT_CLOSURE_ROLLOUT_READINESS_RUNTIME_START",
+        "rolloutReadinessHeaders",
+        "buildRolloutReadinessRuntimeContract"
+      ]
+    }
+  ]
+}

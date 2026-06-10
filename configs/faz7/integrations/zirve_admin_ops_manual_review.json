@@ -1,0 +1,58 @@
+{
+  "module_code": "FAZ_7_8Z_5",
+  "module_name": "Zirve Admin / Ops / Manual Review",
+  "provider_id": "zirve",
+  "provider_display_name": "Zirve",
+  "mode": "ADMIN_OPS_MANUAL_REVIEW_DRY_RUN_ONLY",
+  "status": "READY_DRY_RUN_ONLY",
+  "queue_policy": "QUEUE_VALIDATION_DLQ_AND_MANUAL_REVIEW_DECISIONS",
+  "action_policy": "ASSIGN_RESOLVE_REJECT_DRY_RUN_ONLY",
+  "audit_policy": "EVERY_REVIEW_ACTION_REQUIRES_AUDIT_DECISION",
+  "required_upstream_decision": {
+    "module_code": "FAZ_7_8Z_4",
+    "mode": "VALIDATION_RETRY_DLQ_DRY_RUN_ONLY",
+    "eligible_outcomes": [
+      "DLQ",
+      "MANUAL_REVIEW",
+      "DENY"
+    ],
+    "not_eligible_outcomes": [
+      "PASS",
+      "RETRY"
+    ]
+  },
+  "review_statuses": [
+    "OPEN",
+    "ASSIGNED",
+    "RESOLVED",
+    "REJECTED"
+  ],
+  "review_priorities": [
+    "LOW",
+    "MEDIUM",
+    "HIGH",
+    "CRITICAL"
+  ],
+  "manual_review_actions": [
+    "ASSIGN",
+    "RESOLVE",
+    "REJECT"
+  ],
+  "tenant_safety_mode": "TENANT_CONTEXT_REQUIRED",
+  "review_read_policy": "TENANT_SAFE_READ_ONLY",
+  "secret_policy": "FORBIDDEN_IN_CODE_CONFIG_DOCS",
+  "real_operation_policy": {
+    "real_zirve_api": false,
+    "real_file_delivery": false,
+    "real_delivery_channel": false,
+    "real_erp_write": false,
+    "real_operator_provider_action": false,
+    "external_delivery_attempted": false,
+    "provider_side_effect_attempted": false
+  },
+  "handoff": {
+    "zirve_provider_live_module_status": "NOT_STARTED",
+    "zirve_provider_live_handoff_gate": "READY_FOR_PROVIDER_LIVE_MODULE",
+    "next_step": "FAZ 7-8Z.6 Zirve E2E Dry-Run Flow"
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "valid_fixture": {
+    "realtime_health_id": "realtime_connection_health.valid_fixture",
+    "realtime_health_status": "READY",
+    "realtime_health_mode": "CONTROLLED_PILOT",
+    "tenant": {
+      "tenant_id": "pilot_tenant_001",
+      "tenant_scope": "SINGLE_TENANT",
+      "pilot_mode": "CONTROLLED_PILOT",
+      "tenant_status": "PILOT_CLOSED"
+    },
+    "chain_dependencies": {
+      "237_FAZ_4_17_2_WORKFLOW_MONITOR": "PASS"
+    },
+    "health_items": [
+      {"code": "REALTIME_HEALTH_SHELL", "required": true, "status": "READY", "area": "UI", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "TENANT_SCOPED_REALTIME_HEALTH", "required": true, "status": "READY", "area": "TENANCY", "owner": "WEB_OWNER", "evidence_ref": "docs/faz4r/FAZ_4_17_5_WEBSOCKET_SSE_BAGLANTI_SAGLIGI_GORUNUMU.md"},
+      {"code": "WEBSOCKET_HEALTH_PLACEHOLDER", "required": true, "status": "READY", "area": "WEBSOCKET", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "SSE_HEALTH_PLACEHOLDER", "required": true, "status": "READY", "area": "SSE", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "CONNECTION_STATUS_BADGE_MODEL", "required": true, "status": "READY", "area": "STATUS", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "HEARTBEAT_AGE_INDICATOR", "required": true, "status": "READY", "area": "HEARTBEAT", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "LAST_EVENT_ID_PLACEHOLDER", "required": true, "status": "READY", "area": "EVENT", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "RECONNECT_ATTEMPT_COUNTER", "required": true, "status": "READY", "area": "RECONNECT", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "LATENCY_INDICATOR", "required": true, "status": "READY", "area": "LATENCY", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "SUBSCRIPTION_CHANNEL_LIST", "required": true, "status": "READY", "area": "CHANNEL", "owner": "WEB_OWNER", "evidence_ref": "configs/faz4r/realtime_connection_health.controlled_pilot.v1.json"},
+      {"code": "WORKFLOW_MONITOR_LINK", "required": true, "status": "READY", "area": "NAVIGATION", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "EVENT_FEED_PLACEHOLDER", "required": true, "status": "READY", "area": "EVENT_FEED", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "NOTIFICATION_CENTER_PLACEHOLDER", "required": true, "status": "READY", "area": "NOTIFICATION", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "EMPTY_STATE", "required": true, "status": "READY", "area": "STATE", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "ERROR_STATE", "required": true, "status": "READY", "area": "STATE", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "NO_LIVE_SOCKET_GUARD", "required": true, "status": "READY", "area": "SAFETY", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/realtime_connection_health.controlled_pilot.v1.json"},
+      {"code": "NO_LIVE_SSE_GUARD", "required": true, "status": "READY", "area": "SAFETY", "owner": "SECURITY_OWNER", "evidence_ref": "configs/faz4r/realtime_connection_health.controlled_pilot.v1.json"},
+      {"code": "EXTERNAL_POLICY_CLOSED_GATE", "required": true, "status": "READY", "area": "POLICY", "owner": "SUPPORT_OWNER", "evidence_ref": "configs/faz4r/realtime_connection_health.controlled_pilot.v1.json"},
+      {"code": "UI_CHECKPOINT_HTML", "required": true, "status": "READY", "area": "WEB", "owner": "WEB_OWNER", "evidence_ref": "web/faz4r/realtime-health/index.html"},
+      {"code": "FINAL_REALTIME_HEALTH_REPORT", "required": true, "status": "READY", "area": "REPORT", "owner": "PRODUCT_OWNER", "evidence_ref": "docs/faz4r/evidence/FAZ_4_17_5_WEBSOCKET_SSE_BAGLANTI_SAGLIGI_GORUNUMU_REAL_IMPLEMENTATION_AUDIT.md"}
+    ],
+    "connection_samples": [
+      {
+        "connection_id": "RT-PILOT-WS-001",
+        "tenant_id": "pilot_tenant_001",
+        "transport": "WEBSOCKET",
+        "status": "PLACEHOLDER_READY",
+        "channel": "workflow.status",
+        "heartbeat_age_seconds": 0,
+        "latency_ms": 0,
+        "reconnect_attempt_count": 0,
+        "last_event_id": "PLACEHOLDER_ONLY",
+        "connection_state": "NOT_CONNECTED_PREVIEW_ONLY"
+      },
+      {
+        "connection_id": "RT-PILOT-SSE-001",
+        "tenant_id": "pilot_tenant_001",
+        "transport": "SSE",
+        "status": "PLACEHOLDER_READY",
+        "channel": "approval.inbox",
+        "heartbeat_age_seconds": 0,
+        "latency_ms": 0,
+        "reconnect_attempt_count": 0,
+        "last_event_id": "PLACEHOLDER_ONLY",
+        "connection_state": "NOT_CONNECTED_PREVIEW_ONLY"
+      }
+    ],
+    "subscription_channels": [
+      "workflow.status",
+      "approval.inbox",
+      "event.feed",
+      "notification.center"
+    ],
+    "health_controls": {
+      "workflow_monitor_status": "PASS",
+      "tenant_scope": "SINGLE_TENANT",
+      "websocket_health_status": "READY",
+      "sse_health_status": "READY",
+      "connection_status_badge_status": "READY",
+      "heartbeat_indicator_status": "READY",
+      "reconnect_indicator_status": "READY",
+      "latency_indicator_status": "READY",
+      "last_event_id_placeholder_status": "READY",
+      "subscription_channel_list_status": "READY",
+      "event_feed_placeholder_status": "READY",
+      "notification_center_placeholder_status": "READY",
+      "empty_state_status": "READY",
+      "error_state_status": "READY",
+      "web_checkpoint_status": "READY",
+      "no_live_websocket_connection": true,
+      "no_live_sse_connection": true,
+      "no_event_stream_publish": true,
+      "no_production_launch": true,
+      "no_live_external_provider_activation": true
+    },
+    "health_metrics": {
+      "total_item_count": 20,
+      "ready_item_count": 20,
+      "missing_item_count": 0,
+      "required_fail_count": 0,
+      "sample_connection_count": 2,
+      "active_websocket_connection_count": 0,
+      "active_sse_connection_count": 0,
+      "event_stream_publish_count": 0,
+      "reconnect_attempt_count": 0,
+      "failed_connection_count": 0,
+      "production_launch_count": 0,
+      "live_external_provider_activation_count": 0,
+      "live_external_policy_status": "CLOSED"
+    },
+    "summary": {
+      "total_item_count": 20,
+      "ready_item_count": 20,
+      "missing_item_count": 0,
+      "required_fail_count": 0,
+      "tenant_scope": "SINGLE_TENANT",
+      "workflow_monitor_status": "PASS",
+      "websocket_health_status": "READY",
+      "sse_health_status": "READY",
+      "connection_status_badge_status": "READY",
+      "heartbeat_indicator_status": "READY",
+      "reconnect_indicator_status": "READY",
+      "latency_indicator_status": "READY",
+      "web_checkpoint_status": "READY",
+      "realtime_health_result": "PASS",
+      "live_external_policy_status": "CLOSED"
+    },
+    "external_policy": {
+      "live_external_provider": "CLOSED",
+      "gib": "CLOSED",
+      "bank": "CLOSED",
+      "pos_provider": "CLOSED",
+      "payment_provider": "CLOSED",
+      "production_launch": "CLOSED",
+      "live_websocket_connection": "CLOSED",
+      "live_sse_connection": "CLOSED",
+      "event_stream_publish": "CLOSED"
+    },
+    "closed_policy_reference": "CLOSED_POLICY_GATE_REFERENCE_ONLY"
+  },
+  "invalid_fixture": {
+    "realtime_health_id": "realtime_connection_health.invalid_fixture",
+    "realtime_health_status": "DRAFT",
+    "realtime_health_mode": "PRODUCTION",
+    "tenant": {
+      "tenant_id": "",
+      "tenant_scope": "MULTI_TENANT",
+      "pilot_mode": "UNCONTROLLED",
+      "tenant_status": "UNKNOWN"
+    },
+    "chain_dependencies": {
+      "237_FAZ_4_17_2_WORKFLOW_MONITOR": "FAIL"
+    },
+    "health_items": [
+      {"code": "REALTIME_HEALTH_SHELL", "required": true, "status": "MISSING", "area": "", "owner": "", "evidence_ref": ""},
+      {"code": "TENANT_SCOPED_REALTIME_HEALTH", "required": true, "status": "READY", "area": "TENANCY", "owner": "WEB_OWNER", "evidence_ref": "x"},
+      {"code": "TENANT_SCOPED_REALTIME_HEALTH", "required": true, "status": "READY", "area": "TENANCY", "owner": "WEB_OWNER", "evidence_ref": "x"}
+    ],
+    "connection_samples": [
+      {
+        "connection_id": "",
+        "tenant_id": "other_tenant",
+        "transport": "LONG_POLLING",
+        "status": "CONNECTED",
+        "channel": "",
+        "heartbeat_age_seconds": -1,
+        "latency_ms": -1,
+        "reconnect_attempt_count": 3,
+        "last_event_id": "",
+        "connection_state": "CONNECTED"
+      }
+    ],
+    "subscription_channels": [
+      "unknown.channel"
+    ],
+    "health_controls": {
+      "workflow_monitor_status": "FAIL",
+      "tenant_scope": "MULTI_TENANT",
+      "websocket_health_status": "DRAFT",
+      "sse_health_status": "DRAFT",
+      "connection_status_badge_status": "DRAFT",
+      "heartbeat_indicator_status": "DRAFT",
+      "reconnect_indicator_status": "DRAFT",
+      "latency_indicator_status": "DRAFT",
+      "last_event_id_placeholder_status": "DRAFT",
+      "subscription_channel_list_status": "DRAFT",
+      "event_feed_placeholder_status": "DRAFT",
+      "notification_center_placeholder_status": "DRAFT",
+      "empty_state_status": "DRAFT",
+      "error_state_status": "DRAFT",
+      "web_checkpoint_status": "DRAFT",
+      "no_live_websocket_connection": false,
+      "no_live_sse_connection": false,
+      "no_event_stream_publish": false,
+      "no_production_launch": false,
+      "no_live_external_provider_activation": false
+    },
+    "health_metrics": {
+      "total_item_count": 99,
+      "ready_item_count": 99,
+      "missing_item_count": 1,
+      "required_fail_count": 1,
+      "sample_connection_count": 99,
+      "active_websocket_connection_count": 1,
+      "active_sse_connection_count": 1,
+      "event_stream_publish_count": 1,
+      "reconnect_attempt_count": 1,
+      "failed_connection_count": 1,
+      "production_launch_count": 1,
+      "live_external_provider_activation_count": 1,
+      "live_external_policy_status": "OPEN"
+    },
+    "summary": {
+      "total_item_count": 99,
+      "ready_item_count": 99,
+      "missing_item_count": 99,
+      "required_fail_count": 99,
+      "tenant_scope": "MULTI_TENANT",
+      "workflow_monitor_status": "FAIL",
+      "websocket_health_status": "DRAFT",
+      "sse_health_status": "DRAFT",
+      "connection_status_badge_status": "DRAFT",
+      "heartbeat_indicator_status": "DRAFT",
+      "reconnect_indicator_status": "DRAFT",
+      "latency_indicator_status": "DRAFT",
+      "web_checkpoint_status": "DRAFT",
+      "realtime_health_result": "PASS",
+      "live_external_policy_status": "OPEN"
+    },
+    "external_policy": {
+      "live_external_provider": "OPEN",
+      "gib": "OPEN",
+      "bank": "OPEN",
+      "pos_provider": "OPEN",
+      "payment_provider": "OPEN",
+      "production_launch": "OPEN",
+      "live_websocket_connection": "OPEN",
+      "live_sse_connection": "OPEN",
+      "event_stream_publish": "OPEN"
+    },
+    "closed_policy_reference": "OPEN"
+  }
+}

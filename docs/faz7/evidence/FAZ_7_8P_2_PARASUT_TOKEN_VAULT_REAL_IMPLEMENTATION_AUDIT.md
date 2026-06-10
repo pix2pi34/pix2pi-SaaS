@@ -1,0 +1,71 @@
+# FAZ 7-8P.2 Paraşüt Token Vault Real Implementation Audit
+
+Generated at: 2026-05-02T03:46:02Z
+
+- 7-8P.2.0.1 Documentation artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.0.2 Config artifact IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.0.3 Token vault code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.0.4 Token vault test code IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.0.5 Scope document title IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.0 User API entry surface documented IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.1 Scope doc credential entry IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.0 Scope doc secret reference IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.3.0 Scope doc vault IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.4.0 Scope doc credential storage IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.5.0 Scope doc rotation revocation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.6.0 Scope doc final closure IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.0.6 Config provider key IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.0.7 Config real provider API disabled IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.2 Config UI entry path IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.3 Config tenant admin role IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.4 Config integration admin role IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.5 Config plaintext never persisted IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.1 Config secret ref format IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.2 Config client secret kind IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.3 Config webhook secret kind IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.4 Config access token kind IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.5 Config refresh token kind IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.3.1 Config store secret IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.5.1 Config rotate secret IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.5.2 Config revoke secret IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.4.1 Config plaintext DB storage denied IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.6 Code credential entry surface IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.7 Code default credential entry surface IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.8 Code role guard IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.9 Code tenant admin role IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.10 Code integration admin role IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.11 Code plaintext never persisted field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.6 Code secret kind model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.7 Code client secret kind IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.8 Code webhook secret kind IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.9 Code access token kind IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.10 Code refresh token kind IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.11 Code secret reference model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.12 Code secret ref builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.3.2 Code in-memory vault contract IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.3.3 Code store secret IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.3.4 Code find secret reference IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.3.5 Code raw secret resolver IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.3.6 Code raw resolve blocked while live closed IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.3.7 Code tenant-safe lookup IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.4.2 Code credential set model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.4.3 Code credential set builder IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.4.4 Code client secret ref field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.4.5 Code webhook secret ref field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.4.6 Code access token ref field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.4.7 Code refresh token ref field IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.4.8 Code tenant-safe secret ref validator IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.5.3 Code rotate secret IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.5.4 Code revoke secret IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.5.5 Code rotated status IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.5.6 Code revoked status IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.5.7 Code expired status IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.6.1 Code final readiness gate IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.6.2 Code readiness decision IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.6.3 Code real API blocker IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.1.12 Test credential entry surface IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.2.13 Test secret reference model IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.3.8 Test vault contract IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.4.9 Test credential storage IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.5.8 Test rotation revocation IMPLEMENTED_OR_PRESENT / OK
+- 7-8P.2.6.4 Test final closure IMPLEMENTED_OR_PRESENT / OK

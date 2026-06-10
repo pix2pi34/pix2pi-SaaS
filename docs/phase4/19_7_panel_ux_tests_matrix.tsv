@@ -1,0 +1,20 @@
+gate	status	note
+runtime_flow_history_test	PASS	19.1 runtime flow history evidence
+flow_detail_page_test	PASS	19.2 flow detail page evidence
+admin_dashboard_cards_test	PASS	19.3 dashboard cards evidence
+import_wizard_ui_test	PASS	19.4 import wizard evidence
+uat_checklist_ui_test	PASS	19.5 UAT checklist evidence
+issue_feedback_ui_test	PASS	19.6 issue feedback evidence
+panel_contract_artifact_test	PASS	missing_artifacts=0
+panel_manifest_coverage_test	PASS	dashboard_cards=10 import_steps=8 uat_scenarios=15 issue_types=10
+panel_tenant_safety_test	PASS	tenant_failures=0
+panel_ux_linkage_test	PASS	link_failures=0
+panel_migration_chain_test	PASS	pairs=36
+panel_no_apply_test	PASS	no_apply_failures=0
+panel_secret_safety_test	PASS	secret_hits=0 query_hits=0
+db_mutation	NO	final evidence only
+db_apply_executed	NO	final evidence only
+migration_apply_executed	NO	final evidence only
+panel_route_deployed	NO	final evidence only
+panel_build_executed	NO	final evidence only
+query_text_printed	NO	secret-safe report

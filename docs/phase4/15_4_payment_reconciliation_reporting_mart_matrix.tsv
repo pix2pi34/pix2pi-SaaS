@@ -1,0 +1,20 @@
+gate	status	note
+previous_14	PASS	migration lifecycle prerequisite
+previous_15_2	PASS	finance reporting prerequisite
+previous_15_3	PASS	ebelge/export prerequisite
+migration_pair	PASS	up/down files exist
+schema	PASS	create_schema_count=1
+tables	PASS	table_count=7
+tenant_safety	PASS	tenant_id=7
+period_date	PASS	period=7 summary=1 settlement=1 payout=1
+provider	PASS	provider_code=7
+status_code	PASS	status_code=7
+currency	PASS	currency_code=7
+amount_rate	PASS	numeric=37 rate=3
+indexes	PASS	index_count=14
+down_migration	PASS	drop_table_count=7
+risk	PASS	no destructive/system token in up
+current_migration_chain	PASS	pairs=27
+db_mutation	NO	migration pair only
+db_apply_executed	NO	apply gate is later
+query_text_printed	NO	secret-safe report

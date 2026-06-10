@@ -1,0 +1,43 @@
+gate	status	note
+baseline	PASS	17.1 workflow realtime baseline final
+state_machine	PASS	17.2 workflow state machine final
+action_approval	PASS	17.3 action approval final
+realtime_channel	PASS	17.4 realtime channel final
+ui_api_plan	PASS	17.5 UI/API plan final
+workflow_tests	PASS	17.6 workflow realtime tests final
+artifact_coverage	PASS	missing=0
+no_runtime_change	PASS	failures=0
+no_config_change	PASS	failures=0
+secret_safe	PASS	failures=0
+metric_evidence	PASS	total=918 missing=0
+service_restarted	NO	final evidence only
+container_restarted	NO	final evidence only
+docker_compose_executed	NO	final evidence only
+nginx_reload_executed	NO	final evidence only
+firewall_changed	NO	final evidence only
+port_changed	NO	final evidence only
+config_changed	NO	final evidence only
+env_changed	NO	final evidence only
+ui_code_changed	NO	final evidence only
+frontend_file_created	NO	final evidence only
+api_route_created	NO	final evidence only
+api_implementation_changed	NO	final evidence only
+dto_code_created	NO	final evidence only
+handler_code_created	NO	final evidence only
+middleware_changed	NO	final evidence only
+websocket_server_started	NO	final evidence only
+sse_server_started	NO	final evidence only
+realtime_runtime_changed	NO	final evidence only
+workflow_runtime_changed	NO	final evidence only
+approval_runtime_changed	NO	final evidence only
+event_published	NO	final evidence only
+event_consumed	NO	final evidence only
+notification_sent	NO	final evidence only
+db_mutation	NO	final evidence only
+db_apply_executed	NO	final evidence only
+migration_created	NO	final evidence only
+migration_apply_executed	NO	final evidence only
+raw_payload_printed	NO	secret-safe report
+raw_dsn_printed	NO	secret-safe report
+secret_value_printed	NO	secret-safe report
+token_printed	NO	secret-safe report

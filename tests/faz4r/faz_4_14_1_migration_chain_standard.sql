@@ -1,0 +1,6 @@
+-- 183 — FAZ 4-14.1 Migration Chain Standardı SQL test artifact
+-- Runtime DB apply test is performed by scripts/faz4r/validate_faz4_migration_chain.sh.
+-- The chain validator applies FAZ 4 migrations into a generated temporary schema
+-- and verifies required import staging tables.
+--
+-- MIGRATION_CHAIN_STANDARD_SQL_TEST_ARTIFACT_IMPLEMENTED

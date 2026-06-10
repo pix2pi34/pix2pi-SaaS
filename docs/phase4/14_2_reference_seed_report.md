@@ -1,0 +1,106 @@
+# FAZ 4B / 14.2 - Reference Data / Seed Standardı Report
+
+Generated at: 2026-04-28 00:06:14 
+
+## Summary
+ROOT_DIR=/root/pix2pi/pix2pi-SaaS
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+SEED_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+VALIDATION_MODE=REFERENCE_SEED_STANDARD_ONLY
+PREVIOUS_14_1_FINAL_STATUS=PASS
+PREVIOUS_14_1_MIGRATION_CHAIN_STANDARD=PASS
+PREVIOUS_14_1_MIGRATION_PAIRING_STATUS=PASS
+PREVIOUS_14_1_MIGRATION_NAMING_STATUS=PASS
+REFERENCE_SEED_MANIFEST_FILE_EXISTS=YES
+REFERENCE_SEED_DOC_MANIFEST_FILE_EXISTS=YES
+REFERENCE_SEED_SCOPE_RULES_FILE_EXISTS=YES
+REFERENCE_SEED_MANIFEST_ROW_COUNT=12
+REFERENCE_SEED_DOC_MANIFEST_ROW_COUNT=12
+REFERENCE_SEED_SCOPE_RULE_ROW_COUNT=3
+REFERENCE_SEED_MANIFEST_MISSING_COLUMN_COUNT=0
+REFERENCE_SEED_GLOBAL_REFERENCE_COUNT=4
+REFERENCE_SEED_TENANT_DEFAULT_COUNT=4
+REFERENCE_SEED_TENANT_SPECIFIC_COUNT=4
+REFERENCE_SEED_DUPLICATE_KEY_COUNT=0
+REFERENCE_SEED_REQUIRED_KEY_MISSING_COUNT=0
+REFERENCE_SEED_IDEMPOTENCY_MISSING_COUNT=0
+REFERENCE_SEED_ROLLBACK_MISSING_COUNT=0
+REFERENCE_SEED_APPLY_GATE_NOT_REQUIRED_COUNT=0
+REFERENCE_SEED_TENANT_SAFETY_FAIL_COUNT=0
+REFERENCE_SEED_REQUIRED_FOR_PILOT_COUNT=11
+REFERENCE_SEED_MANIFEST_STATUS=PASS
+REFERENCE_SEED_SCOPE_STATUS=PASS
+REFERENCE_SEED_IDEMPOTENCY_STATUS=PASS
+REFERENCE_SEED_ROLLBACK_STATUS=PASS
+REFERENCE_SEED_TENANT_SAFETY_STATUS=PASS
+REFERENCE_SEED_APPLY_GATE_STATUS=PASS
+REFERENCE_SEED_MATRIX_LINE_COUNT=12
+REFERENCE_SEED_STANDARD=PASS
+FAZ4B_14_2_FINAL_STATUS=PASS
+FAIL_COUNT=0
+WARN_COUNT=0
+REFERENCE_SEED_STANDARD=PASS
+FAZ4B_14_2_FINAL_STATUS=PASS
+
+## Matrix
+MATRIX_FILE=docs/phase4/14_2_reference_seed_matrix.tsv
+gate	status	note
+previous_14_1	PASS	migration chain prerequisite
+manifest_file	PASS	rows=12
+scope_coverage	PASS	global=4 tenant_default=4 tenant_specific=4
+required_seed_keys	PASS	missing=0
+idempotency	PASS	missing=0
+rollback	PASS	missing=0
+tenant_safety	PASS	fail=0
+apply_gate_required	PASS	not_required=0
+db_mutation	NO	standard only
+seed_apply_executed	NO	standard only
+query_text_printed	NO	secret-safe report
+
+## Manifest
+MANIFEST_FILE=config/reference-data/seed_manifest.tsv
+seed_key	domain	scope	required_for_pilot	idempotency_strategy	rollback_strategy	tenant_safety	apply_gate_required	note
+tdhp_chart_of_accounts	accounting	GLOBAL_REFERENCE	YES	natural_key_upsert	versioned_disable_or_revert	no_tenant_id_allowed	YES	Tek Düzen Hesap Planı referans standardı
+tax_vat_rates	tax	GLOBAL_REFERENCE	YES	natural_key_upsert	versioned_disable_or_revert	no_tenant_id_allowed	YES	KDV oranları referans standardı
+document_types	document	GLOBAL_REFERENCE	YES	natural_key_upsert	versioned_disable_or_revert	no_tenant_id_allowed	YES	Fatura, irsaliye, iade, tahsilat belge tipleri
+currency_codes	finance	GLOBAL_REFERENCE	YES	natural_key_upsert	versioned_disable_or_revert	no_tenant_id_allowed	YES	TRY, USD, EUR gibi para birimleri
+unit_definitions	product	TENANT_DEFAULT	YES	natural_key_upsert	tenant_scoped_soft_delete	tenant_id_required	YES	Adet, kg, lt, paket gibi birimler
+product_categories	product	TENANT_DEFAULT	YES	natural_key_upsert	tenant_scoped_soft_delete	tenant_id_required	YES	Varsayılan ürün kategori ağacı
+stock_locations	inventory	TENANT_DEFAULT	YES	natural_key_upsert	tenant_scoped_soft_delete	tenant_id_required	YES	Varsayılan depo/stok lokasyonu
+payment_methods	payment	TENANT_DEFAULT	YES	natural_key_upsert	tenant_scoped_soft_delete	tenant_id_required	YES	Nakit, kart, havale gibi ödeme yöntemleri
+customer_import_seed	party	TENANT_SPECIFIC	YES	import_batch_upsert	import_batch_revert	tenant_id_required	YES	Pilot cari import seed standardı
+product_import_seed	product	TENANT_SPECIFIC	YES	import_batch_upsert	import_batch_revert	tenant_id_required	YES	Pilot ürün import seed standardı
+opening_stock_seed	inventory	TENANT_SPECIFIC	YES	import_batch_upsert	import_batch_revert	tenant_id_required	YES	Pilot açılış stok seed standardı
+price_list_seed	pricing	TENANT_SPECIFIC	NO	import_batch_upsert	import_batch_revert	tenant_id_required	YES	Pilot fiyat listesi seed standardı
+
+## Scope Rules
+SCOPE_RULES_FILE=docs/phase4/14_2_reference_seed_scope_rules.tsv
+scope	tenant_id_rule	allowed_examples	forbidden_examples	apply_requirement
+GLOBAL_REFERENCE	tenant_id_forbidden	tdhp_chart_of_accounts,tax_vat_rates,currency_codes	customer_import_seed,opening_stock_seed	global_seed_apply_gate
+TENANT_DEFAULT	tenant_id_required	unit_definitions,product_categories,stock_locations	tdhp_chart_of_accounts	tenant_create_or_tenant_seed_gate
+TENANT_SPECIFIC	tenant_id_required	customer_import_seed,product_import_seed,opening_stock_seed,tprice_import_seed	tax_vat_rates	import_batch_apply_gate
+
+## Safety Decision
+DB_MUTATION=NO
+DB_APPLY_EXECUTED=NO
+SEED_APPLY_EXECUTED=NO
+MIGRATION_CREATED=NO
+POSTGRES_CONFIG_CHANGED=NO
+CONTAINER_RESTARTED=NO
+QUERY_TEXT_PRINTED=NO
+RAW_DSN_PRINTED=NO
+
+## Issues
+OK ✅ issue yok
+
+## Secret Safety
+RAW_DSN_PRINTED=NO
+POSTGRES_PASSWORD_PRINTED=NO
+AUTH_TOKEN_PRINTED=NO
+QUERY_TEXT_PRINTED=NO

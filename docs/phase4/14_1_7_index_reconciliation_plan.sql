@@ -1,0 +1,13 @@
+-- FAZ 4 / 14.1.7 - Index-only reconciliation plan
+-- Generated at: 2026-04-27 13:27:42 +0300
+-- IMPORTANT: This file is a PLAN only.
+-- IMPORTANT: It was NOT executed by 14.1.7.
+-- IMPORTANT: Review before applying.
+-- INDEX_PLAN_MUTATION=NO
+
+-- SAFE_INDEX_CANDIDATE_COUNT=0
+-- SKIPPED_TABLE_MISSING_COUNT=0
+-- ALREADY_EXISTS_INDEX_COUNT=319
+-- PARSE_SKIP_COUNT=0
+-- UNKNOWN_CHECK_COUNT=0
+
